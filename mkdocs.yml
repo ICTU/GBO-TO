@@ -1,0 +1,225 @@
+site_name: Gemeenschappelijke Bronontsluiting
+
+extra:
+  version:
+    provider: mike
+    alias: true
+  document_version: "0.2.0"
+  document_date: "november 2026"
+  document_author: "ICTU"
+  document_status: "concept"
+
+theme:
+  name: material
+  language: custom
+  custom_dir: overrides
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - toc.integrate
+    - content.code.copy
+    - content.code.annotate
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.path
+    - toc.follow
+
+
+markdown_extensions:
+  - tables
+  - footnotes
+  - sane_lists
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - admonition
+  - attr_list
+  # Mermaid diagrammen
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.snippets:
+      base_path:
+        - docs
+        - includes
+      check_paths: true
+  # Automatische inhoudsopgave
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+site_url: https://ictu.github.io/GBO-TO/
+repo_url: https://github.com/ICTU/GBO-TO
+repo_name: ictu/gbo-to
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/pdf.css
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascript/mermaid-init.js
+  - javascript/print.js
+  - javascript/print-site-toc-fix.js
+
+plugins:
+  - search
+  - mike:
+      canonical_version: "latest"
+  - print-site:
+      add_to_navigation: false
+      print_page_title: "Gemeenschappelijke Bronontsluiting - Technisch Ontwerp"
+      add_cover_page: true
+      cover_page_template: "docs/assets/templates/voorblad.tpl"
+      enumerate_headings: false
+      enumerate_figures: false
+      add_table_of_contents: false
+      toc_title: "Inhoudsopgave"
+      toc_depth: 2
+      exclude:
+        - traceability/coverage.md
+        - traceability/findings-closed.md
+        - traceability/answered-questions.md
+
+validation:
+  links:
+    anchors: warn
+
+hooks:
+  - hooks/print_site_nav.py
+
+nav:
+  - Gemeenschappelijke Bronontsluiting: https://ictu.github.io/GBO/
+  - Context: https://ictu.github.io/GBO/latest/context
+  - Globaal Ontwerp: https://ictu.github.io/GBO-GO/
+  - Projectstartarchitectuur: https://ictu.github.io/GBO-PSA/
+  - Technisch Ontwerp:
+      - Introduction and goals: index.md
+      - Constraints: constraints.md
+      - Context and scope: context.md
+      - Solution strategy: solution-strategy.md
+      - Building block view:
+          - Overview: building-blocks/index.md
+          - GBO Basis:
+              - GBO Basis: building-blocks/gbo-basis/index.md
+              - Authorization: building-blocks/gbo-basis/authorization.md
+              - Source access: building-blocks/gbo-basis/source-access.md
+              - Source configuration: building-blocks/gbo-basis/source-configuration.md
+              - Policy rules: building-blocks/gbo-basis/policy.md
+              - Records: building-blocks/gbo-basis/records.md
+          - DvTP channel:
+              - DvTP channel: building-blocks/dvtp/index.md
+              - Toestemmingsvoorziening: building-blocks/dvtp/consent-service.md
+          - EUDI wallet channel:
+              - EUDI wallet channel: building-blocks/eudi/index.md
+              - PubEAA provider: building-blocks/eudi/pubeaa.md
+              - ASI provider: building-blocks/eudi/asi.md
+          - OOTS channel: building-blocks/oots.md
+          - Component catalog: building-blocks/components.md
+      - Runtime view:
+          - Overview: runtime/index.md
+          - DvTP consent: runtime/dvtp-consent.md
+          - DvTP query: runtime/dvtp-query.md
+          - DvTP citizen access: runtime/dvtp-citizen-access.md
+          - EUDI issuance: runtime/eudi-issuance.md
+          - ASI verification: runtime/asi-verification.md
+          - Admission and activation: runtime/admission.md
+          - Policy distribution: runtime/policy-distribution.md
+          - Design-level scenarios: runtime/design-level.md
+      - Deployment view: deployment.md
+      - Crosscutting concepts:
+          - Authorization: concepts/authorization.md
+          - Consent: concepts/consent.md
+          - Pseudonymization: concepts/pseudonymization.md
+          - Source onboarding: concepts/source-onboarding.md
+          - Identity and trust: concepts/identity-trust.md
+          - Policy lifecycle: concepts/policy-lifecycle.md
+          - Logging, audit and traceability: concepts/logging.md
+      - Architecture decisions:
+          - Decision log: decisions/index.md
+          - Accepted:
+              - ADR-0001 GraphQL source access: decisions/0001-graphql-source-access.md
+              - ADR-0002 OPA/Rego and AuthZEN: decisions/0002-opa-rego-authzen.md
+              - ADR-0003 FSC connectivity: decisions/0003-fsc-connectivity.md
+              - ADR-0004 Federated authorization: decisions/0004-federated-authorization.md
+              - ADR-0005 BSNk PP: decisions/0005-bsnk-pp.md
+              - ADR-0009 Closed-world rules: decisions/0009-closed-world-rules.md
+              - ADR-0013 PDP request mapper: decisions/0013-pdp-request-mapper.md
+              - ADR-0015 Contract acceptance by policy: decisions/0015-contract-acceptance-by-policy.md
+              - ADR-0016 Source-owned metadata: decisions/0016-source-owned-metadata.md
+              - ADR-0017 gbo-simple-v1: decisions/0017-gbo-simple-v1.md
+              - ADR-0018 EUDI disclosure issuance: decisions/0018-eudi-disclosure-issuance.md
+              - ADR-0020 AS4 bridge for OOTS: decisions/0020-as4-bridge-for-oots.md
+              - ADR-0021 Policy management per source holder: decisions/0021-central-pap-signed-bundles.md
+              - ADR-0023 Organization identity and EUDI certificate roles: decisions/0023-identity-convergence.md
+              - ADR-0026 LDV logbook per controller: decisions/0026-ldv-integration.md
+              - ADR-0031 Regime from evidence: decisions/0031-regime-from-evidence.md
+              - ADR-0032 Consent proof: decisions/0032-consent-proof.md
+              - ADR-0033 Gateway decrypts after allow: decisions/0033-gateway-decrypts-after-allow.md
+              - ADR-0034 Integrator delegation: decisions/0034-integrator-delegation.md
+              - ADR-0035 W3C Trace Context: decisions/0035-w3c-trace-context.md
+              - ADR-0036 ADL decision record: decisions/0036-adl-decision-record.md
+              - ADR-0037 ASI OAuth front door: decisions/0037-asi-oauth-front-door.md
+              - ADR-0038 ASI data service per source: decisions/0038-asi-data-service-per-source.md
+              - ADR-0039 ASI source-described attributes: decisions/0039-asi-source-described-attributes.md
+          - Proposed:
+              - ADR-0024 Canonical semantic models: decisions/0024-canonical-semantic-models.md
+              - ADR-0025 GraphQL FDS datadienst: decisions/0025-graphql-fds-datadienst.md
+              - ADR-0027 Onboarding toolkit: decisions/0027-onboarding-toolkit.md
+              - ADR-0028 PubEAA productization: decisions/0028-pubeaa-productization.md
+              - ADR-0040 Route D citizen recognition: decisions/0040-route-d-citizen-recognition.md
+              - ADR-0041 ASI seal format: decisions/0041-asi-seal-format.md
+              - ADR-0042 ASI attribute token binding: decisions/0042-asi-attribute-token-binding.md
+              - ADR-0043 Identifiers out of PDP input: decisions/0043-identifiers-out-of-pdp-input.md
+          - Deferred:
+              - ADR-0022 Sector grants: decisions/0022-sector-grants.md
+          - Superseded:
+              - ADR-0006 Consent register as PIP: decisions/0006-consent-register-as-pip.md
+              - ADR-0007 Consent signed token: decisions/0007-consent-signed-token.md
+              - ADR-0008 Dienstencatalogus ceiling: decisions/0008-dienstencatalogus-ceiling.md
+              - ADR-0010 PEP BSN resolution: decisions/0010-pep-bsn-resolution.md
+              - ADR-0011 Sidecar pseudonym resolution: decisions/0011-sidecar-pseudonym-resolution.md
+              - ADR-0012 OPA graphql.parse_query: decisions/0012-opa-graphql-parse.md
+              - ADR-0014 Provider-signed flow claims: decisions/0014-provider-signed-flow-claims.md
+              - ADR-0019 FSC transaction ID tracing: decisions/0019-fsc-transaction-id-tracing.md
+              - ADR-0029 Authentic Source Interface: decisions/0029-authentic-source-interface.md
+              - ADR-0030 Grant properties: decisions/0030-grant-properties.md
+      - Quality requirements: quality.md
+      - Risks and technical debt: risks.md
+      - Glossary: glossary.md
+  - Technische Requirements:
+      - Requirements:
+          - Overview: requirements/index.md
+          - Authorization and data access: requirements/authorization.md
+          - Logging and audit: requirements/logging-audit.md
+          - Admission and connection: requirements/admission.md
+          - Sources and identity: requirements/sources-identity.md
+          - Consent (DvTP): requirements/consent.md
+          - Pseudonymization and BSNk: requirements/pseudonymization.md
+          - EUDI issuance: requirements/eudi-issuance.md
+          - Authentic Source Interface: requirements/asi.md
+      - Traceability:
+          - How to trace: traceability/index.md
+          - Coverage: traceability/coverage.md
+          - Design to demo matrix: traceability/matrix.md
+          - Demo increments: traceability/increments.md
+          - Findings (open): traceability/findings.md
+          - Findings (closed): traceability/findings-closed.md
+          - Open questions: traceability/open-questions.md
+          - Answered questions: traceability/answered-questions.md
+          - Standards feedback: traceability/standards-feedback.md
+  - Semantiek: https://ictu.github.io/GBO-Semantiek/
+  - Demo: https://gbo.simulatie.datastelsel.nl/
