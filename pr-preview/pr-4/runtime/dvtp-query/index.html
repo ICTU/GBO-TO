@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4578,10 +4578,10 @@
   
 
 
-<h1 id="dvtp-the-consumer-queries-a-source-under-consent">DvTP: the consumer queries a source under consent<a class="headerlink" href="#dvtp-the-consumer-queries-a-source-under-consent" title="Permanent link">&para;</a></h1>
-<p>A consumer (dienstverlener) asks a source for data about a citizen who gave
+<h1 id="dvtp-the-consumer-queries-a-source-under-consent"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: the consumer queries a source under consent<a class="headerlink" href="#dvtp-the-consumer-queries-a-source-under-consent" title="Permanent link">&para;</a></h1>
+<p>A consumer (afnemer) asks a source for data about a citizen who gave
 consent. The consumer sends a GraphQL query and the consent proof through
-FSC. The PDP of the source decides before any data reaches the source.
+<abbr title="Federated Service Connectivity">FSC</abbr>. The <abbr title="Policy Decision Point">PDP</abbr> of the source decides before any data reaches the source.
 After an allow, the source fills in the citizen. Besides the direct call,
 the flow has two variants: a call by an integrator, and a call by the
 Installatie Register to LVG.</p>
@@ -4594,9 +4594,9 @@ and <a href="../../building-blocks/components/#level-2-bronhouder">Level 2: bron
 decisions are <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>,
 <a href="../../decisions/0032-consent-proof/">ADR-0032</a>, and
 <a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>.</p>
-<p>The precondition is that the consumer has an FSC contract with the source.
+<p>The precondition is that the consumer has an <abbr title="Federated Service Connectivity">FSC</abbr> contract with the source.
 The Manager of the source signed the contract after a positive admission
-decision of the same PDP
+decision of the same <abbr title="Policy Decision Point">PDP</abbr>
 (<a href="../../requirements/admission/#req-61">REQ-61</a>,
 <a href="../../requirements/admission/#req-62">REQ-62</a>). For that scenario, see
 <a href="../admission/">Admission and activation</a>.</p>
@@ -4615,7 +4615,7 @@ decision of the same PDP
       participant CRIN as Register Inway
     end
     box rgb(254,220,216) DvTP
-      participant CR as Toestemmingsregister
+      participant CR as Consent register
     end
     box rgb(220,252,231) GBO Basis at the source
       participant SC as bron-sidecar
@@ -4696,38 +4696,38 @@ numbers refer to the steps of the sequence:</p>
 <tr>
 <td>4</td>
 <td>HV Outway → BD Inway</td>
-<td>FSC transport</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> transport</td>
 <td>Body 1:1, <code>Fsc-Authorization</code>, <code>X-GBO-Consent-Token</code>, and <code>Fsc-Transaction-Id</code></td>
 <td>—</td>
-<td>FSC native transport over mTLS (<a href="../../decisions/0003-fsc-connectivity/">ADR-0003</a>)</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> native transport over mTLS (<a href="../../decisions/0003-fsc-connectivity/">ADR-0003</a>)</td>
 </tr>
 <tr>
 <td>5</td>
-<td>BD Inway → PDP</td>
+<td>BD Inway → <abbr title="Policy Decision Point">PDP</abbr></td>
 <td><code>POST /authzen/v1/evaluation</code></td>
 <td><code>subject</code> (HV peer, token attributes), <code>action.properties.body</code>, <code>resource</code>, and <code>context.headers</code></td>
 <td>—</td>
-<td>The AuthZEN plugin of the Inway is the PEP. It passes the request unchanged (<a href="../../requirements/authorization/#req-42">REQ-42</a>). The Inway sends no <code>traceparent</code>. It correlates with <code>X-Request-ID</code> = <code>Fsc-Transaction-Id</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/ftv-graphql-profile.md#L105-L106"><code>ftv-graphql-profile.md#L105-L106</code></a>)</td>
+<td>The <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> plugin of the Inway is the <abbr title="Policy Enforcement Point">PEP</abbr>. It passes the request unchanged (<a href="../../requirements/authorization/#req-42">REQ-42</a>). The Inway sends no <code>traceparent</code>. It correlates with <code>X-Request-ID</code> = <code>Fsc-Transaction-Id</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/ftv-graphql-profile.md#L105-L106"><code>ftv-graphql-profile.md#L105-L106</code></a>)</td>
 </tr>
 <tr>
 <td>6</td>
-<td>PDP (internal)</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> (internal)</td>
 <td>Mapper, then policy</td>
-<td>AuthZEN request</td>
-<td>FTV field list</td>
+<td><abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> request</td>
+<td><abbr title="Federatieve Toegangsverlening">FTV</abbr> field list</td>
 <td>The mapper only maps (<a href="../../concepts/authorization/#query-mapping-ftv-graphql-profile">Query mapping</a>). The policy reads the token from the headers and selects the regime (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L173-L181"><code>engine.rego#L173-L181</code></a>, <a href="../../concepts/authorization/#regime-selection">Regime selection</a>)</td>
 </tr>
 <tr>
 <td>7</td>
-<td>PDP → register</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → register</td>
 <td><code>GET /.well-known/jwks.json</code></td>
 <td>—</td>
 <td>—</td>
-<td>Direct, without FSC. Only if the cache is empty or older than 300 seconds, or if the <code>kid</code> is unknown</td>
+<td>Direct, without <abbr title="Federated Service Connectivity">FSC</abbr>. Only if the cache is empty or older than 300 seconds, or if the <code>kid</code> is unknown</td>
 </tr>
 <tr>
 <td>8</td>
-<td>Register → PDP</td>
+<td>Register → <abbr title="Policy Decision Point">PDP</abbr></td>
 <td>—</td>
 <td>—</td>
 <td>ES256 public keys</td>
@@ -4735,7 +4735,7 @@ numbers refer to the steps of the sequence:</p>
 </tr>
 <tr>
 <td>9</td>
-<td>PDP (internal)</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> (internal)</td>
 <td>Proof verification</td>
 <td><code>X-GBO-Consent-Token</code></td>
 <td><code>consent_id</code>, <code>scopes</code>, <code>dienstverlener_oin</code>, and <code>valid_until</code></td>
@@ -4743,7 +4743,7 @@ numbers refer to the steps of the sequence:</p>
 </tr>
 <tr>
 <td>10</td>
-<td>PDP → PDP Outway</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → <abbr title="Policy Decision Point">PDP</abbr> Outway</td>
 <td><code>GET /consent-status/consents/{id}/status</code></td>
 <td><code>consent_id</code>, <code>traceparent</code>, and <code>Fsc-Transaction-Id</code></td>
 <td>—</td>
@@ -4751,11 +4751,11 @@ numbers refer to the steps of the sequence:</p>
 </tr>
 <tr>
 <td>11</td>
-<td>PDP Outway → Register Inway</td>
-<td>FSC service <code>consent-status</code></td>
+<td><abbr title="Policy Decision Point">PDP</abbr> Outway → Register Inway</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> service <code>consent-status</code></td>
 <td>Same as hop 10</td>
 <td>—</td>
-<td>From the PDP peer <code>…0800</code> to the register peer <code>…0700</code> (<a href="../../deployment/#fsc-peers">FSC peers</a>, <a href="../../requirements/consent/#req-76">REQ-76</a>)</td>
+<td>From the <abbr title="Policy Decision Point">PDP</abbr> peer <code>…0800</code> to the register peer <code>…0700</code> (<a href="../../deployment/#fsc-peers"><abbr title="Federated Service Connectivity">FSC</abbr> peers</a>, <a href="../../requirements/consent/#req-76">REQ-76</a>)</td>
 </tr>
 <tr>
 <td>12</td>
@@ -4763,11 +4763,11 @@ numbers refer to the steps of the sequence:</p>
 <td>Status listener, port 4012</td>
 <td><code>consent_id</code></td>
 <td>—</td>
-<td>The listener serves only the status. If the request has no FSC peer, the listener answers 401. The register logs the lookup with the calling peer as processor</td>
+<td>The listener serves only the status. If the request has no <abbr title="Federated Service Connectivity">FSC</abbr> peer, the listener answers 401. The register logs the lookup with the calling peer as processor</td>
 </tr>
 <tr>
 <td>13</td>
-<td>Register → PDP</td>
+<td>Register → <abbr title="Policy Decision Point">PDP</abbr></td>
 <td>—</td>
 <td>—</td>
 <td><code>{status}</code> or 404</td>
@@ -4775,19 +4775,19 @@ numbers refer to the steps of the sequence:</p>
 </tr>
 <tr>
 <td>14</td>
-<td>PDP (internal)</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> (internal)</td>
 <td>Rules</td>
 <td>Resolved consent, field list, and <code>subject</code></td>
 <td>Decision per field</td>
-<td>DVT0001 binds the fields of service <code>bri</code>. It checks actor binding, placeholder, scope, years, and fields (<a href="../../requirements/authorization/#req-48">REQ-48</a>, <a href="../../requirements/authorization/#req-97">REQ-97</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001.rego#L72-L80"><code>dvt0001.rego#L72-L80</code></a>). The PDP input holds no BSN and no pseudonym</td>
+<td>DVT0001 binds the fields of service <code>bri</code>. It checks actor binding, placeholder, scope, years, and fields (<a href="../../requirements/authorization/#req-48">REQ-48</a>, <a href="../../requirements/authorization/#req-97">REQ-97</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001.rego#L72-L80"><code>dvt0001.rego#L72-L80</code></a>). The <abbr title="Policy Decision Point">PDP</abbr> input holds no <abbr title="Burgerservicenummer">BSN</abbr> and no pseudonym</td>
 </tr>
 <tr>
 <td>15</td>
-<td>PDP → BD Inway</td>
-<td>AuthZEN decision</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → BD Inway</td>
+<td><abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> decision</td>
 <td>—</td>
 <td><code>decision: true</code>, granted fields</td>
-<td>The engine adds the resolved consent to its response for the console log (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L25-L29"><code>engine.rego#L25-L29</code></a>). The ADL records the request and the decision (<a href="../../decisions/0036-adl-decision-record/">ADR-0036</a>)</td>
+<td>The engine adds the resolved consent to its response for the console log (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L25-L29"><code>engine.rego#L25-L29</code></a>). The <abbr title="Authorization Decision Log">ADL</abbr> records the request and the decision (<a href="../../decisions/0036-adl-decision-record/">ADR-0036</a>)</td>
 </tr>
 <tr>
 <td>16</td>
@@ -4795,69 +4795,69 @@ numbers refer to the steps of the sequence:</p>
 <td><code>POST /graphql</code></td>
 <td>Body 1:1, <code>X-GBO-Consent-Token</code>, and <code>Fsc-Authorization</code></td>
 <td>—</td>
-<td>The Inway forwards only after the allow. Only the source Inways reach the sidecar (<a href="../../requirements/pseudonymization/#req-81">REQ-81</a>, <a href="../../concepts/pseudonymization/#network-isolation-is-the-control">Network isolation</a>)</td>
+<td>The Inway forwards only after the allow. Only the source Inways reach the source gateway (<a href="../../requirements/pseudonymization/#req-81">REQ-81</a>, <a href="../../concepts/pseudonymization/#network-isolation-is-the-control">Network isolation</a>)</td>
 </tr>
 <tr>
 <td>17</td>
-<td>Sidecar (internal)</td>
+<td>Source gateway (internal)</td>
 <td>Substitution</td>
 <td>Proof, body</td>
-<td>VI for <code>OWN_PEER_OIN</code></td>
-<td>If the request carries a consent token, the sidecar takes the subject from that token. The sidecar does not verify the token again (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L105-L107"><code>substitution.go#L105-L107</code></a>)</td>
+<td><abbr title="Encrypted identity">VI</abbr> for <code>OWN_PEER_OIN</code></td>
+<td>If the request carries a consent token, the source gateway takes the subject from that token. The source gateway does not verify the token again (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L105-L107"><code>substitution.go#L105-L107</code></a>)</td>
 </tr>
 <tr>
 <td>18</td>
-<td>Sidecar → decryption component</td>
+<td>Source gateway → decryption component</td>
 <td><code>POST /signed-encrypted-identity</code></td>
-<td>VI, own decryption keys, and scheme keys</td>
+<td><abbr title="Encrypted identity">VI</abbr>, own decryption keys, and scheme keys</td>
 <td>—</td>
-<td>For <code>consent:pseudonym</code>, the sidecar sends the VP to <code>/signed-encrypted-pseudonym</code>. No BSNk call in the query path (<a href="../../requirements/pseudonymization/#req-21">REQ-21</a>, <a href="../../requirements/pseudonymization/#bsnk-09">BSNK-09</a>)</td>
+<td>For <code>consent:pseudonym</code>, the source gateway sends the <abbr title="Encrypted pseudonym">VP</abbr> to <code>/signed-encrypted-pseudonym</code>. No BSNk call in the query path (<a href="../../requirements/pseudonymization/#req-21">REQ-21</a>, <a href="../../requirements/pseudonymization/#bsnk-09">BSNK-09</a>)</td>
 </tr>
 <tr>
 <td>19</td>
-<td>Decryption component → sidecar</td>
+<td>Decryption component → source gateway</td>
 <td>—</td>
 <td>—</td>
-<td>BSN, recipient OIN</td>
-<td><strong>BSN</strong>, inside the source boundary. In the demo, the three sources share one decryption component and one OIN</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr>, recipient <abbr title="Organisatie-identificatienummer">OIN</abbr></td>
+<td><strong><abbr title="Burgerservicenummer">BSN</abbr></strong>, inside the source boundary. In the demo, the three sources share one decryption component and one <abbr title="Organisatie-identificatienummer">OIN</abbr></td>
 </tr>
 <tr>
 <td>20</td>
-<td>Sidecar (internal)</td>
+<td>Source gateway (internal)</td>
 <td>Recipient check and substitution</td>
-<td>BSN, recipient</td>
-<td>Body with the BSN</td>
-<td>The value must name the own OIN as recipient (<a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L213-L232"><code>substitution.go#L213-L232</code></a>). The sidecar logs the decryption in the LDV logbook of the source</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr>, recipient</td>
+<td>Body with the <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>The value must name the own <abbr title="Organisatie-identificatienummer">OIN</abbr> as recipient (<a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L213-L232"><code>substitution.go#L213-L232</code></a>). The source gateway logs the decryption in the <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook of the source</td>
 </tr>
 <tr>
 <td>21</td>
-<td>Sidecar → source</td>
+<td>Source gateway → source</td>
 <td><code>POST /graphql</code></td>
-<td><code>variables.bsn</code> = BSN</td>
+<td><code>variables.bsn</code> = <abbr title="Burgerservicenummer">BSN</abbr></td>
 <td>—</td>
-<td><strong>BSN</strong> only at the source. The query and <code>operationName</code> stay the same</td>
+<td><strong><abbr title="Burgerservicenummer">BSN</abbr></strong> only at the source. The query and <code>operationName</code> stay the same</td>
 </tr>
 <tr>
 <td>22</td>
-<td>Source → sidecar</td>
+<td>Source → source gateway</td>
 <td>—</td>
 <td>—</td>
 <td><code>{data}</code></td>
-<td>Only the selected fields (<a href="../../requirements/authorization/#req-08">REQ-08</a>). The sidecar logs the forward</td>
+<td>Only the selected fields (<a href="../../requirements/authorization/#req-08">REQ-08</a>). The source gateway logs the forward</td>
 </tr>
 <tr>
 <td>23 to 25</td>
-<td>Sidecar → BD Inway → HV Outway → consumer</td>
+<td>Source gateway → BD Inway → HV Outway → consumer</td>
 <td>—</td>
 <td>—</td>
 <td><code>{data}</code></td>
-<td>No BSN in the response. The consumer logs its processing under the <code>consent_id</code> (<a href="../../traceability/findings/#f-76">F-76</a>, <a href="../../traceability/open-questions/#q-27">Q-27</a>)</td>
+<td>No <abbr title="Burgerservicenummer">BSN</abbr> in the response. The consumer logs its processing under the <code>consent_id</code> (<a href="../../traceability/findings/#f-76">F-76</a>, <a href="../../traceability/open-questions/#q-27">Q-27</a>)</td>
 </tr>
 </tbody>
 </table>
 <h2 id="variant-an-integrator-calls-for-the-consumer">Variant: an integrator calls for the consumer<a class="headerlink" href="#variant-an-integrator-calls-for-the-consumer" title="Permanent link">&para;</a></h2>
 <p>An integrator is a software party that calls the source for a consumer
-under FSC delegation (<a href="../../decisions/0034-integrator-delegation/">ADR-0034</a>,
+under <abbr title="Federated Service Connectivity">FSC</abbr> delegation (<a href="../../decisions/0034-integrator-delegation/">ADR-0034</a>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/integrator.md"><code>integrator.md</code></a>).
 The demo runs this variant opt-in with <code>make demo-integrator</code>. The consent
 stays a consent to the consumer (Hypotheek-BV, peer <code>…0300</code>).</p>
@@ -4916,9 +4916,9 @@ stays a consent to the consumer (Hypotheek-BV, peer <code>…0300</code>).</p>
 </tr>
 </tbody>
 </table>
-<p>At the source, the sidecar and the source log the integrator as
-<code>foreignOperation.processor</code>. The LDV record has no field for "on behalf
-of". The FSC transaction log of the source records both peers
+<p>At the source, the source gateway and the source log the integrator as
+<code>foreignOperation.processor</code>. The <abbr title="Logboek Dataverwerkingen">LDV</abbr> record has no field for "on behalf
+of". The <abbr title="Federated Service Connectivity">FSC</abbr> transaction log of the source records both peers
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/integrator.md#L132-L152"><code>integrator.md#L132-L152</code></a>).
 It is open whether the proof must name the integrator
 (<a href="../../traceability/open-questions/#q-46">Q-46</a>).</p>
@@ -4926,13 +4926,14 @@ It is open whether the proof must name the integrator
 <p>The LVG pilot uses the same consent pattern with a different consumer and
 a different source
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/lvg-ir.md"><code>lvg-ir.md</code></a>).
-The Installatie Register (IR) asks the Landelijke Voorziening Gebouwen
-(LVG) whether a building unit belongs to the citizen. The citizen gives two
+The Installatie Register (IR) asks the national buildings facility (LVG)
+whether a building unit belongs to the citizen. The citizen gives two
 consents:</p>
 <ul>
-<li>One consent to IR in the toestemmingsportaal (scope <code>lvg:vbo:eigendom</code>).
-  This consent is in GBO.</li>
-<li>One consent to the installer inside IR. This consent is not in GBO.</li>
+<li>One consent to IR in the consent portal (toestemmingsportaal), with
+  scope <code>lvg:vbo:eigendom</code>.
+  This consent is in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</li>
+<li>One consent to the installer inside IR. This consent is not in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</li>
 </ul>
 <div class="mermaid">sequenceDiagram
     autonumber
@@ -5009,19 +5010,19 @@ the <code>vboId</code> belongs in the consent
 (<a href="../../concepts/authorization/#reason-codes-two-layers">Reason codes</a>,
 <a href="../../requirements/authorization/#req-06">REQ-06</a>):</p>
 <ul>
-<li>Consumer code: the PDP puts this code in <code>reason_user</code>, and the ADL
+<li>Consumer code: the <abbr title="Policy Decision Point">PDP</abbr> puts this code in <code>reason_user</code>, and the <abbr title="Authorization Decision Log">ADL</abbr>
   stores it. It never names the field or the failed check.</li>
 <li>Administrator codes: these codes are per field. They reach only the OPA
   console decision log. For a server fault, the request code is
   <code>PIP_UNAVAILABLE</code>, and the trace keeps the cause.</li>
 </ul>
-<p>In demo v0.9.0, the FSC Inway removes the consumer code. The Inway reads
-<code>reasonUser</code>, but the PDP sends <code>reason_user</code>
+<p>In demo v0.9.0, the <abbr title="Federated Service Connectivity">FSC</abbr> Inway removes the consumer code. The Inway reads
+<code>reasonUser</code>, but the <abbr title="Policy Decision Point">PDP</abbr> sends <code>reason_user</code>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/ftv-graphql-profile.md#L93-L96"><code>ftv-graphql-profile.md#L93-L96</code></a>).
 As a result, the consumer gets a deny without a code. The consumer backend
 then shows <code>UNAVAILABLE</code> to the citizen
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/consumer/denial.go#L12-L56"><code>denial.go#L12-L56</code></a>).</p>
-<p>On every PDP deny, no request reaches the sidecar or the source. If one
+<p>On every <abbr title="Policy Decision Point">PDP</abbr> deny, no request reaches the source gateway or the source. If one
 field has more than one reason, the administrator code is the first reason
 in a fixed order
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L321-L339"><code>engine.rego#L321-L339</code></a>).
@@ -5067,7 +5068,7 @@ The error paths have these triggers and codes:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent_test.rego#L380-L424"><code>consent_test.rego#L380-L424</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent_test.rego#L438"><code>#L438</code></a></td>
 </tr>
 <tr>
-<td>The PDP cannot fetch the JWKS</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> cannot fetch the JWKS</td>
 <td><code>ACCESS_DENIED</code></td>
 <td><code>PIP_UNAVAILABLE</code>, trace <code>CONSENT_KEYS_UNAVAILABLE</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent_test.rego#L297"><code>consent_test.rego#L297</code></a></td>
@@ -5103,7 +5104,7 @@ The error paths have these triggers and codes:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001_test.rego#L167-L176"><code>dvt0001_test.rego#L167-L176</code></a>, scenarios <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/scenarios/use-hypotheek-2023-deny.json"><code>use-hypotheek-2023-deny</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/scenarios/use-jaar-niet-geconsenteerd-deny.json"><code>use-jaar-niet-geconsenteerd-deny</code></a></td>
 </tr>
 <tr>
-<td>The subject is a literal BSN, <code>consent:pseudonym</code>, a different string, or a schema default</td>
+<td>The subject is a literal <abbr title="Burgerservicenummer">BSN</abbr>, <code>consent:pseudonym</code>, a different string, or a schema default</td>
 <td><code>FIELD_NOT_PERMITTED</code></td>
 <td><code>CONSTRAINT_MISMATCH</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001_test.rego#L131-L154"><code>dvt0001_test.rego#L131-L154</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/lvg0001_test.rego#L48-L55"><code>lvg0001_test.rego#L48-L55</code></a></td>
@@ -5117,7 +5118,7 @@ The error paths have these triggers and codes:</p>
 <tr>
 <td>The consumer omits the proof</td>
 <td><code>FIELD_NOT_PERMITTED</code></td>
-<td>PID regime: <code>PID_NOT_PRESENT</code> (placeholder) or <code>ACTOR_NOT_ALLOWED</code> (literal BSN)</td>
+<td><abbr title="Person Identification Data">PID</abbr> regime: <code>PID_NOT_PRESENT</code> (placeholder) or <code>ACTOR_NOT_ALLOWED</code> (literal <abbr title="Burgerservicenummer">BSN</abbr>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L341-L355"><code>engine_test.rego#L341-L355</code></a>, disjoint actors <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L371"><code>#L371</code></a></td>
 </tr>
 <tr>
@@ -5145,9 +5146,9 @@ The error paths have these triggers and codes:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L631-L642"><code>engine_test.rego#L631-L642</code></a></td>
 </tr>
 <tr>
-<td>After the allow: the proof has no value of the asked form for this source (a source not on the BSN authorization list has no VI)</td>
+<td>After the allow: the proof has no value of the asked form for this source (a source not on the <abbr title="Burgerservicenummer">BSN</abbr> authorization list has no <abbr title="Encrypted identity">VI</abbr>)</td>
 <td>HTTP 400 <code>the subject of the consent could not be filled in</code></td>
-<td>Sidecar log <code>subject substitution failed</code> (<code>ErrNoValue</code>), LDV decryption record with an error status</td>
+<td>Source gateway log <code>subject substitution failed</code> (<code>ErrNoValue</code>), <abbr title="Logboek Dataverwerkingen">LDV</abbr> decryption record with an error status</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L186"><code>substitution_test.go#L186</code></a></td>
 </tr>
 <tr>
@@ -5157,19 +5158,19 @@ The error paths have these triggers and codes:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L112"><code>substitution_test.go#L112</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L234"><code>#L234</code></a></td>
 </tr>
 <tr>
-<td>A request with a literal subject under a proof reaches the sidecar (so it did not pass the PDP)</td>
+<td>A request with a literal subject under a proof reaches the source gateway (so it did not pass the <abbr title="Policy Decision Point">PDP</abbr>)</td>
 <td>HTTP 400, with the same message</td>
 <td><code>ErrLiteralSubject</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L141"><code>substitution_test.go#L141</code></a></td>
 </tr>
 <tr>
-<td>The sidecar cannot log the decryption</td>
+<td>The source gateway cannot log the decryption</td>
 <td>HTTP 500</td>
 <td><code>the decryption could not be logged; refusing the request</code></td>
 <td>Code only: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/main.go#L236-L244"><code>main.go#L236-L244</code></a></td>
 </tr>
 <tr>
-<td>A request outside the transport subset reaches the sidecar</td>
+<td>A request outside the transport subset reaches the source gateway</td>
 <td>HTTP 404, 405, 400, or 415, before any decryption</td>
 <td>The transport reason</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/transport_test.go#L14"><code>transport_test.go#L14</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/transport_test.go#L83"><code>#L83</code></a></td>
@@ -5180,34 +5181,34 @@ The error paths have these triggers and codes:</p>
 matching scope gives <code>SCOPE_NOT_ALLOWED</code>. A year outside the consent gives
 <code>YEAR_NOT_COVERED</code>.</p>
 <h2 id="observations">Observations<a class="headerlink" href="#observations" title="Permanent link">&para;</a></h2>
-<p>The DvTP run in demo v0.9.0 shows these facts:</p>
+<p>The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> run in demo v0.9.0 shows these facts:</p>
 <ul>
 <li>The evidence selects the regime. A consent token, verified or not, puts
   the request in the consent regime. If the request has no consent token,
-  only PID-regime rules apply. No header, grant property, or default
+  only <abbr title="Person Identification Data">PID</abbr>-regime rules apply. No header, grant property, or default
   decides the regime (<a href="../../requirements/authorization/#req-74">REQ-74</a>,
-  <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>). The PID regime
+  <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>). The <abbr title="Person Identification Data">PID</abbr> regime
   starts when a proof is absent. As a result, its actor lists must stay
   disjoint from consent consumers (<a href="../../traceability/findings/#f-70">F-70</a>).</li>
-<li>The legal basis travels as a proof, and the status stays online. The PDP
+<li>The legal basis travels as a proof, and the status stays online. The <abbr title="Policy Decision Point">PDP</abbr>
   verifies the proof locally. It asks only for the status, per request and
   fail-closed (<a href="../../requirements/consent/#req-68">REQ-68</a>,
-  <a href="../../traceability/findings-closed/#f-61">F-61</a>). As a result, every DvTP
+  <a href="../../traceability/findings-closed/#f-61">F-61</a>). As a result, every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>
   request depends on the register
   (<a href="../../requirements/consent/#req-75">REQ-75</a>,
   <a href="../../traceability/answered-questions/#q-05">Q-05</a>). The status answer is not
-  in the PDP input, so the ADL cannot replay the decision
+  in the <abbr title="Policy Decision Point">PDP</abbr> input, so the <abbr title="Authorization Decision Log">ADL</abbr> cannot replay the decision
   (<a href="../../traceability/findings/#f-72">F-72</a>).</li>
 <li>The subject comes from the proof. The consumer names the citizen only
   with a placeholder (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>,
   <a href="../../concepts/pseudonymization/#subject-binding">Subject binding</a>). The
-  PDP does not check who the subject is. It checks only that the subject
+  <abbr title="Policy Decision Point">PDP</abbr> does not check who the subject is. It checks only that the subject
   comes from the proof. One request is about one citizen
   (<a href="../../traceability/findings/#f-77">F-77</a>).</li>
-<li>The rule "after the decision" depends on network isolation. The sidecar
+<li>The rule "after the decision" depends on network isolation. The source gateway
   does not verify the token again. A consumer holds real proofs, so a
   second verification gives no protection. Only the source Inways reach
-  the sidecar (<a href="../../requirements/pseudonymization/#req-81">REQ-81</a>,
+  the source gateway (<a href="../../requirements/pseudonymization/#req-81">REQ-81</a>,
   <a href="../../traceability/findings/#f-79">F-79</a>,
   <a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>). In
   Kubernetes, this isolation needs a NetworkPolicy
@@ -5219,15 +5220,15 @@ matching scope gives <code>SCOPE_NOT_ALLOWED</code>. A year outside the consent 
   (<a href="../../requirements/admission/#av-09">AV-09</a>). In demo
   v0.9.0, no demo rule accepts <code>consent:pseudonym</code>, because no demo source
   takes a pseudonym (<a href="https://github.com/ICTU/GBO-demo/issues/474">#474</a>).</li>
-<li>The PDP gives a clean deny instead of an HTTP error. For an unknown
-  consent or an unreachable register, the PDP makes a policy decision with
+<li>The <abbr title="Policy Decision Point">PDP</abbr> gives a clean deny instead of an HTTP error. For an unknown
+  consent or an unreachable register, the <abbr title="Policy Decision Point">PDP</abbr> makes a policy decision with
   a reason in the decision record. The consumer does not get an upstream
   error (<a href="../../traceability/findings-closed/#f-24">F-24</a>).</li>
 <li>The records correlate. The consumer sends <code>traceparent</code> and
   <code>Fsc-Transaction-Id</code> (<a href="../../requirements/logging-audit/#req-55">REQ-55</a>,
   <a href="../../requirements/admission/#av-01">AV-01</a>,
   <a href="../../decisions/0035-w3c-trace-context/">ADR-0035</a>). The Inway does not
-  pass <code>traceparent</code> to the PDP. The policy puts both on the status lookup.
+  pass <code>traceparent</code> to the <abbr title="Policy Decision Point">PDP</abbr>. The policy puts both on the status lookup.
   For how the records join, see
   <a href="../../concepts/logging/#correlation-trace-id-and-transaction-id">Logging</a>.</li>
 <li>A suspended consumer keeps access. A consumer with an existing contract
@@ -5242,6 +5243,7 @@ matching scope gives <code>SCOPE_NOT_ALLOWED</code>. A year outside the consent 
 <li>Open questions: <a href="../../traceability/answered-questions/#q-05">Q-05</a> (answered), <a href="../../traceability/open-questions/#q-27">Q-27</a> (open), <a href="../../traceability/open-questions/#q-46">Q-46</a> (open), <a href="../../traceability/open-questions/#q-53">Q-53</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-22">SL-22</a> (done), <a href="../../traceability/increments/#sl-31">SL-31</a> (done), <a href="../../traceability/increments/#sl-40">SL-40</a> (done), <a href="../../traceability/increments/#sl-47">SL-47</a> (done), <a href="../../traceability/increments/#sl-48">SL-48</a> (done), <a href="../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

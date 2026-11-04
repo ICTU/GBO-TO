@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4576,7 +4576,7 @@
   
 
 
-<h1 id="adr-0030-flow-and-subject-identifier-semantics-as-fsc-grant-properties">ADR-0030: Flow and subject identifier semantics as FSC grant properties<a class="headerlink" href="#adr-0030-flow-and-subject-identifier-semantics-as-fsc-grant-properties" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0030-flow-and-subject-identifier-semantics-as-fsc-grant-properties">ADR-0030: Flow and subject identifier semantics as <abbr title="Federated Service Connectivity">FSC</abbr> grant properties<a class="headerlink" href="#adr-0030-flow-and-subject-identifier-semantics-as-fsc-grant-properties" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: superseded by <a href="../0031-regime-from-evidence/">ADR-0031</a></li>
 <li>Date: 2026-09-07, superseded on 2026-11-02</li>
@@ -4592,7 +4592,7 @@ evidence that the request carries
 (<a href="../0031-regime-from-evidence/">ADR-0031</a>):</p>
 <ul>
 <li>A consent proof puts the request in the consent regime.</li>
-<li>A request without a consent proof is in the PID regime.</li>
+<li>A request without a consent proof is in the <abbr title="Person Identification Data">PID</abbr> regime.</li>
 </ul>
 <p>After that change, no component read the <code>flow</code> property. The
 <code>subject_id_type</code> property also lost its reader. The source gateway
@@ -4601,7 +4601,7 @@ takes the subject from the consent proof, and not from the contract
 properties. The following sections hold the original decision as
 history.</p>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>The PDP judges a request under an authorization regime. The regime has
+<p>The <abbr title="Policy Decision Point">PDP</abbr> judges a request under an authorization regime. The regime has
 two parts: the <code>flow</code>, and the way to read the subject identifier
 (<code>subject_id_type</code>). The regime must be bound to the connection and
 signed, and the caller must not control it.
@@ -4609,18 +4609,18 @@ signed, and the caller must not control it.
 that this ADR replaced.</p>
 <h2 id="decision-superseded">Decision (superseded)<a class="headerlink" href="#decision-superseded" title="Permanent link">&para;</a></h2>
 <p>The decision put <code>flow</code> and <code>subject_id_type</code> as properties in the
-<code>GRANT_TYPE_SERVICE_CONNECTION</code> grant of the FSC contract (fsc-core,
+<code>GRANT_TYPE_SERVICE_CONNECTION</code> grant of the <abbr title="Federated Service Connectivity">FSC</abbr> contract (fsc-core,
 section Properties). It worked as follows:</p>
 <ul>
 <li>The properties are inside the grant, so they are part of the grant
   hash. Both peers countersign the regime when they sign the contract.</li>
 <li>The Manager of the provider puts the properties in the access token,
-  as the FSC-normative <code>prp</code> claim.</li>
-<li>The PDP request mapper reads the flow from <code>prp</code> only. It uses no
+  as the <abbr title="Federated Service Connectivity">FSC</abbr>-normative <code>prp</code> claim.</li>
+<li>The <abbr title="Policy Decision Point">PDP</abbr> request mapper reads the flow from <code>prp</code> only. It uses no
   header and no default.</li>
 <li>If a token has no <code>prp</code>, the flow is empty. An empty flow matches no
-  rule, so the PDP denies with <code>NO_APPLICABLE_RULE</code>.</li>
-<li>The sidecar reads <code>subject_id_type</code> from the same claim.</li>
+  rule, so the <abbr title="Policy Decision Point">PDP</abbr> denies with <code>NO_APPLICABLE_RULE</code>.</li>
+<li>The source gateway reads <code>subject_id_type</code> from the same claim.</li>
 </ul>
 <p>The demo seeded three property sets:</p>
 <table>
@@ -4636,7 +4636,7 @@ section Properties). It worked as follows:</p>
 <td><code>{"flow": "eudi:attestation", "subject_id_type": "direct"}</code></td>
 </tr>
 <tr>
-<td>Hypotheekverlener → <code>bri</code></td>
+<td>Mortgage lender (Hypotheek-BV) → <code>bri</code></td>
 <td><code>{"flow": "dvtp:query", "subject_id_type": "pseudonym"}</code></td>
 </tr>
 <tr>
@@ -4654,11 +4654,11 @@ section Properties). It worked as follows:</p>
   seed scripts matched on properties and moved the grant link to the new
   contract.</li>
 <li>Every peer on a contract needed OpenFSC 2.0 or later. If the contract
-  of a peer carried no properties, the PDP denied the peer until a new
+  of a peer carried no properties, the <abbr title="Policy Decision Point">PDP</abbr> denied the peer until a new
   seed.</li>
-<li>If <code>subject_id_type</code> was missing, the fail-safe default of the sidecar
+<li>If <code>subject_id_type</code> was missing, the fail-safe default of the source gateway
   was <code>direct</code> (pass-through). If the flow was missing, the default of
-  the PDP was deny. This difference was safe, because the PDP decided
+  the <abbr title="Policy Decision Point">PDP</abbr> was deny. This difference was safe, because the <abbr title="Policy Decision Point">PDP</abbr> decided
   first.</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -4668,6 +4668,7 @@ section Properties). It worked as follows:</p>
 <li>Open questions: <a href="../../traceability/answered-questions/#q-15">Q-15</a> (answered)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-24">SL-24</a> (dropped), <a href="../../traceability/increments/#sl-48">SL-48</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

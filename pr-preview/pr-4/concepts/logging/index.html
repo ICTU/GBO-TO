@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4601,12 +4601,12 @@ v0.9.0 implements. The decisions behind the model are
 <a href="../../decisions/0035-w3c-trace-context/">ADR-0035</a> (correlation),
 <a href="../../decisions/0036-adl-decision-record/">ADR-0036</a> (decision records),
 and <a href="../../decisions/0026-ldv-integration/">ADR-0026</a> (processing records).</p>
-<p>The term "controller (Verantwoordelijke)" means the organization that is
-responsible for a processing under the GDPR. The term "data subject"
-means the Betrokkene.</p>
+<p>A controller (Verantwoordelijke) is the organization that is responsible
+for a processing under the GDPR. A data subject (Betrokkene) is the
+person whom a processing is about.</p>
 <h2 id="three-records-one-chain">Three records, one chain<a class="headerlink" href="#three-records-one-chain" title="Permanent link">&para;</a></h2>
 <p>Logius maintains three related logging standards. Each standard records a
-different thing. GBO uses all three, together with traces and logs
+different thing. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> uses all three, together with traces and logs
 (<a href="../../traceability/findings-closed/#f-63">F-63</a>):</p>
 <table>
 <thead>
@@ -4622,15 +4622,15 @@ different thing. GBO uses all three, together with traces and logs
 <tbody>
 <tr>
 <td>Decision</td>
-<td>Authorization Decision Log (ADL)</td>
-<td>each PDP evaluation</td>
-<td>the PDP (OpenFTV)</td>
+<td>Authorization Decision Log (<abbr title="Authorization Decision Log">ADL</abbr>)</td>
+<td>each <abbr title="Policy Decision Point">PDP</abbr> evaluation</td>
+<td>the <abbr title="Policy Decision Point">PDP</abbr> (<abbr title="Federatieve Toegangsverlening">OpenFTV</abbr>)</td>
 <td>Postgres database <code>ftv_adl</code></td>
 <td>authoritative</td>
 </tr>
 <tr>
 <td>Processing</td>
-<td>Logboek Dataverwerkingen (LDV) 1.0.0</td>
+<td>Logboek Dataverwerkingen (<abbr title="Logboek Dataverwerkingen">LDV</abbr>) 1.0.0</td>
 <td>each processing of personal data</td>
 <td>each component, in the logbook of its controller</td>
 <td>one logbook per controller</td>
@@ -4638,10 +4638,10 @@ different thing. GBO uses all three, together with traces and logs
 </tr>
 <tr>
 <td>Transport</td>
-<td>FSC-Logging (draft)</td>
-<td>each FSC transaction</td>
-<td>FSC Inway and Outway</td>
-<td>transaction log per FSC peer</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr>-Logging (draft)</td>
+<td>each <abbr title="Federated Service Connectivity">FSC</abbr> transaction</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> Inway and Outway</td>
+<td>transaction log per <abbr title="Federated Service Connectivity">FSC</abbr> peer</td>
 <td>authoritative</td>
 </tr>
 <tr>
@@ -4662,7 +4662,7 @@ different thing. GBO uses all three, together with traces and logs
 </tr>
 </tbody>
 </table>
-<p>A PDP decision is not a processing, so it gets no LDV record. The LDV
+<p>A <abbr title="Policy Decision Point">PDP</abbr> decision is not a processing, so it gets no <abbr title="Logboek Dataverwerkingen">LDV</abbr> record. The <abbr title="Logboek Dataverwerkingen">LDV</abbr>
 records are at three processings
 (<a href="../../traceability/findings-closed/#f-64">F-64</a>):</p>
 <ul>
@@ -4723,17 +4723,17 @@ The components write their records to these stores:</p>
 <tr>
 <td>Made by</td>
 <td>the application that starts the processing</td>
-<td>the FSC Outway (or the entry component)</td>
+<td>the <abbr title="Federated Service Connectivity">FSC</abbr> Outway (or the entry component)</td>
 </tr>
 <tr>
 <td>Count per processing</td>
 <td>one</td>
-<td>one per FSC transaction</td>
+<td>one per <abbr title="Federated Service Connectivity">FSC</abbr> transaction</td>
 </tr>
 <tr>
 <td>Recorded in</td>
-<td>LDV <code>trace_id</code>, ADL <code>trace_id</code>, spans, operational logs</td>
-<td>FSC transaction log, ADL <code>adl.fsc.transaction_id</code>, span attribute <code>gbo.fsc.transaction_id</code></td>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr> <code>trace_id</code>, <abbr title="Authorization Decision Log">ADL</abbr> <code>trace_id</code>, spans, operational logs</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> transaction log, <abbr title="Authorization Decision Log">ADL</abbr> <code>adl.fsc.transaction_id</code>, span attribute <code>gbo.fsc.transaction_id</code></td>
 </tr>
 </tbody>
 </table>
@@ -4749,13 +4749,13 @@ The components write their records to these stores:</p>
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-client/tracecontext.go#L78"><code>tracecontext.go#L78</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-client/tracecontext.go#L181"><code>#L181</code></a>).</li>
 <li>The transaction ID never replaces an incoming trace. A component that
-  starts or receives an FSC transaction records the transaction ID next to
+  starts or receives an <abbr title="Federated Service Connectivity">FSC</abbr> transaction records the transaction ID next to
   the trace ID.</li>
 <li>If an entry component receives no <code>traceparent</code>, it can tie its new
   trace to the UUIDv7 transaction ID that it mints
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/consumerhttp/consumerhttp.go#L166-L182"><code>consumerhttp.go#L166-L182</code></a>).
-  If a request crosses FSC once, the trace ID and the transaction ID then
-  have the same value. After a second FSC hop, they differ.</li>
+  If a request crosses <abbr title="Federated Service Connectivity">FSC</abbr> once, the trace ID and the transaction ID then
+  have the same value. After a second <abbr title="Federated Service Connectivity">FSC</abbr> hop, they differ.</li>
 </ul>
 <p>The earlier rule "trace ID equals transaction ID"
 (<a href="../../decisions/0019-fsc-transaction-id-tracing/">ADR-0019</a>) broke in
@@ -4763,22 +4763,22 @@ three cases (<a href="../../traceability/findings-closed/#f-67">F-67</a>):</p>
 <ul>
 <li>a caller that sends its own <code>traceparent</code></li>
 <li>one processing that calls several sources</li>
-<li>every extra FSC hop</li>
+<li>every extra <abbr title="Federated Service Connectivity">FSC</abbr> hop</li>
 </ul>
-<p>FSC forwards <code>traceparent</code> on the data path. One hop breaks the context:
-the Inway calls the PDP over AuthZEN on a fresh context, with only
+<p><abbr title="Federated Service Connectivity">FSC</abbr> forwards <code>traceparent</code> on the data path. One hop breaks the context:
+the Inway calls the <abbr title="Policy Decision Point">PDP</abbr> over <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> on a fresh context, with only
 <code>X-Request-Id</code> (<a href="../../traceability/findings-closed/#f-39">F-39</a>,
 <a href="../../traceability/findings-closed/#f-41">F-41</a>).</p>
-<p>The Inway copies the headers of the original request into the AuthZEN
-context. When the policy calls the consent register for a status, it
+<p>The Inway copies the headers of the original request into the <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr>
+context. When the policy calls the consent register (toestemmingsregister) for a status, it
 reads the trace from this context. The status request carries the trace
 ID of the request with a new span. It also carries the transaction ID
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L190-L245"><code>consent.rego#L190-L245</code></a>).
-As a result, the LDV record of the register lands in the trace of the
+As a result, the <abbr title="Logboek Dataverwerkingen">LDV</abbr> record of the register lands in the trace of the
 request.</p>
-<p>The status lookup goes through the own Outway of the PDP. It is a second
-FSC transaction, but it sends the transaction ID of the consumer.
-FSC-Logging says that a transaction ID is unique per transaction. Nobody
+<p>The status lookup goes through the own Outway of the <abbr title="Policy Decision Point">PDP</abbr>. It is a second
+<abbr title="Federated Service Connectivity">FSC</abbr> transaction, but it sends the transaction ID of the consumer.
+<abbr title="Federated Service Connectivity">FSC</abbr>-Logging says that a transaction ID is unique per transaction. Nobody
 checked on a running stack whether the Outway accepts a duplicate ID from
 the client.</p>
 <p>Separate units of work keep separate traces. The <code>consent_id</code> joins
@@ -4790,33 +4790,33 @@ logging
 Logs and traces join on equal identifiers. Time stamps play no part in
 the join. In demo v0.9.0, the operational logs of <code>bron-sidecar</code>,
 <code>eudi-adapter</code>, and <code>asi-provider</code> carry no trace ID.</p>
-<h2 id="decision-records-adl">Decision records (ADL)<a class="headerlink" href="#decision-records-adl" title="Permanent link">&para;</a></h2>
-<p>The PDP writes one ADL record for each evaluation, to the Postgres
+<h2 id="decision-records-adl">Decision records (<abbr title="Authorization Decision Log">ADL</abbr>)<a class="headerlink" href="#decision-records-adl" title="Permanent link">&para;</a></h2>
+<p>The <abbr title="Policy Decision Point">PDP</abbr> writes one <abbr title="Authorization Decision Log">ADL</abbr> record for each evaluation, to the Postgres
 database <code>ftv_adl</code>
 (<a href="../../requirements/logging-audit/#req-71">REQ-71</a>,
-<a href="../../decisions/0036-adl-decision-record/">ADR-0036</a>). The PDP does not
-start without this database, so the ADL runs in every deployment profile
+<a href="../../decisions/0036-adl-decision-record/">ADR-0036</a>). The <abbr title="Policy Decision Point">PDP</abbr> does not
+start without this database, so the <abbr title="Authorization Decision Log">ADL</abbr> runs in every deployment profile
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L117-L126"><code>docker-compose.yml#L117-L126</code></a>).
-Contract-acceptance decisions are ADL records too. A reader gets a
+Contract-acceptance decisions are <abbr title="Authorization Decision Log">ADL</abbr> records too. A reader gets a
 SELECT-only role, <code>adl_reader</code>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/adl/adl-reader.sql"><code>adl-reader.sql</code></a>).</p>
 <p>The embedded OPA also writes a console decision log line for each
 evaluation. This line goes to Loki. It holds the full policy result: for
 each field, the rule that granted or denied it, and the step trace. The
 line is observability data. The developer portal shows it as detail next
-to the ADL record. The portal sets the color of the PDP from the ADL
+to the <abbr title="Authorization Decision Log">ADL</abbr> record. The portal sets the color of the <abbr title="Policy Decision Point">PDP</abbr> from the <abbr title="Authorization Decision Log">ADL</abbr>
 record alone (<a href="../../traceability/findings-closed/#f-53">F-53</a>).</p>
-<p>The ADL record holds the AuthZEN request and answer. OpenFTV takes only
+<p>The <abbr title="Authorization Decision Log">ADL</abbr> record holds the <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> request and answer. <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> takes only
 <code>allow</code> and <code>reason</code> from the policy. On a deny, <code>reason</code> becomes
 <code>reason_user.en</code>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/authz.rego#L42-L51"><code>authz.rego#L42-L51</code></a>).
-Per-field detail cannot go in the answer, because the FSC Inway returns
+Per-field detail cannot go in the answer, because the <abbr title="Federated Service Connectivity">FSC</abbr> Inway returns
 the reason to the consumer. So the record can hold only what the consumer
 can also see (<a href="../../traceability/findings/#f-72">F-72</a>).</p>
 <p>The decision record has five known gaps:</p>
 <ul>
 <li>No correlation behind the Inway: the Inway sends neither <code>traceparent</code>
-  nor <code>Fsc-Transaction-Id</code> to the PDP. The record gets a random trace and
+  nor <code>Fsc-Transaction-Id</code> to the <abbr title="Policy Decision Point">PDP</abbr>. The record gets a random trace and
   no <code>adl.fsc.transaction_id</code>. A reader finds the record through the
   request headers stored in it
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/adl.go#L48-L66"><code>adl.go#L48-L66</code></a>,
@@ -4834,11 +4834,11 @@ can also see (<a href="../../traceability/findings/#f-72">F-72</a>).</p>
 <li>No pointer to the consent logbook
   (<a href="../../traceability/open-questions/#q-25">Q-25</a>). For more information,
   see <a href="#reading-a-chain">Reading a chain</a>.</li>
-<li>A BSN in the EUDI and ASI routes. For more information, see
+<li>A <abbr title="Burgerservicenummer">BSN</abbr> in the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> routes. For more information, see
   <a href="#data-handling">Data handling</a>.</li>
 </ul>
-<h2 id="processing-records-ldv">Processing records (LDV)<a class="headerlink" href="#processing-records-ldv" title="Permanent link">&para;</a></h2>
-<p>Every GBO-delivered component that processes personal data writes one LDV
+<h2 id="processing-records-ldv">Processing records (<abbr title="Logboek Dataverwerkingen">LDV</abbr>)<a class="headerlink" href="#processing-records-ldv" title="Permanent link">&para;</a></h2>
+<p>Every <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component that processes personal data writes one <abbr title="Logboek Dataverwerkingen">LDV</abbr>
 record per processing and per data subject. It writes to the logbook of
 its own controller
 (<a href="../../requirements/logging-audit/#req-72">REQ-72</a>,
@@ -4884,28 +4884,28 @@ image as seven logbooks
 </tr>
 <tr>
 <td><code>logboek-toestemming</code></td>
-<td>GBO</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr></td>
 <td><code>consent-register</code>, <code>consent-portal-backend</code></td>
 </tr>
 <tr>
 <td><code>logboek-eudi-adapter</code></td>
-<td>GBO</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr></td>
 <td><code>eudi-adapter</code></td>
 </tr>
 </tbody>
 </table>
-<p>In production, GBO does not build these logbooks. Each controller runs
-its own logbook, and GBO ships the client
+<p>In production, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not build these logbooks. Each controller runs
+its own logbook, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> ships the client
 (<a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-client"><code>services/ldv-client</code></a>).
 The client holds the parts that are the same everywhere: configuration,
 the acknowledged write, trace and span IDs, and the attribute map. It
-also decodes FSC claims and derives the data subject.</p>
+also decodes <abbr title="Federated Service Connectivity">FSC</abbr> claims and derives the data subject.</p>
 <p>Each record carries five elements:</p>
 <ul>
 <li>Trace context, as defined in
   <a href="../../decisions/0035-w3c-trace-context/">ADR-0035</a>.</li>
 <li>
-<p>The data subject, never a BSN: <code>dpl.core.data_subject_id</code> names the
+<p>The data subject, never a <abbr title="Burgerservicenummer">BSN</abbr>: <code>dpl.core.data_subject_id</code> names the
   data subject in the own identifier space of the controller. The field
   <code>data_subject_id_type</code> makes the type explicit:</p>
 <table>
@@ -4924,12 +4924,12 @@ also decodes FSC claims and derives the data subject.</p>
 </tr>
 <tr>
 <td><code>logboek-pseudoniem</code></td>
-<td>HMAC over the BSN with a key of this controller</td>
+<td>HMAC over the <abbr title="Burgerservicenummer">BSN</abbr> with a key of this controller</td>
 <td>sources, EUDI adapter</td>
 </tr>
 <tr>
 <td><code>portal-subject</code></td>
-<td>the reference that the consent portal derives</td>
+<td>the reference that the consent portal (toestemmingsportaal) derives</td>
 <td>consent register and portal</td>
 </tr>
 <tr>
@@ -4953,14 +4953,14 @@ also decodes FSC claims and derives the data subject.</p>
   consumer does this for each source call. The EUDI adapter does it on the
   attestation record. The portal points to BSNk. That value is a demo
   placeholder, because the BSNk mock has no read API.</li>
-<li>The calling party: on a lookup over FSC,
-  <code>dpl.core.foreign_operation.processor</code> names the FSC peer of the caller.
+<li>The calling party: on a lookup over <abbr title="Federated Service Connectivity">FSC</abbr>,
+  <code>dpl.core.foreign_operation.processor</code> names the <abbr title="Federated Service Connectivity">FSC</abbr> peer of the caller.
   At the consent register, this is the peer verified from
   <code>Fsc-Authorization</code>
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-client/client.go#L441-L452"><code>client.go#L441-L452</code></a>,
   <a href="../../requirements/consent/#req-76">REQ-76</a>).</li>
 </ul>
-<p>The LDV integration rests on six design choices:</p>
+<p>The <abbr title="Logboek Dataverwerkingen">LDV</abbr> integration rests on six design choices:</p>
 <ul>
 <li>One record per data subject: a further data subject of the same
   processing gets a child record under the first record. In the
@@ -4975,10 +4975,10 @@ also decodes FSC claims and derives the data subject.</p>
   (<a href="../../traceability/findings-closed/#f-69">F-69</a>). Since
   <a href="../../traceability/increments/#sl-51">SL-51</a>, no pseudonym travels in
   the chain at all.</li>
-<li>The logbook refuses a BSN: it scans every write for a nine-digit run
-  that passes the elfproef. The scan covers all values, the record name,
+<li>The logbook refuses a <abbr title="Burgerservicenummer">BSN</abbr>: it scans every write for a nine-digit run
+  that passes the <abbr title="Burgerservicenummer">BSN</abbr> checksum (elfproef). The scan covers all values, the record name,
   and the resource. The logbook refuses a match. The check is
-  word-bounded, so a 20-digit OIN passes
+  word-bounded, so a 20-digit <abbr title="Organisatie-identificatienummer">OIN</abbr> passes
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/internal/ldv/validate.go#L141-L157"><code>validate.go#L141-L157</code></a>).</li>
 <li>
 <p>Durable first, delivered after: a component stores the record in a
@@ -5001,25 +5001,25 @@ transaction.</p>
 </li>
 <li>A local extension: the consent register, the portal, and the EUDI
   adapter write <code>dpl.gbo.*</code> attributes. This extension has no approval
-  from Logius. The honest claim is "LDV core with a local extension"
+  from Logius. The honest claim is "<abbr title="Logboek Dataverwerkingen">LDV</abbr> core with a local extension"
   (<a href="../../traceability/open-questions/#q-72">Q-72</a>).</li>
 </ul>
-<p>In demo v0.9.0, the ASIP writes no LDV records, although it is a
-GBO-delivered component that processes personal data.</p>
+<p>In demo v0.9.0, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> writes no <abbr title="Logboek Dataverwerkingen">LDV</abbr> records, although it is a
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component that processes personal data.</p>
 <h2 id="reading-a-chain">How to read a chain<a class="headerlink" href="#reading-a-chain" title="Permanent link">&para;</a></h2>
-<p>The LDV read extension is <code>POST /data-processing-operations</code>. It selects
+<p>The <abbr title="Logboek Dataverwerkingen">LDV</abbr> read extension is <code>POST /data-processing-operations</code>. It selects
 records by <code>traceId</code>, <code>processingActivityId</code>, or <code>dataSubjectId</code>. A read
 starts at the application that started the processing. From there, a
 reader follows <code>nextLogbookId</code>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/ldv/README.md">docs/ldv/README.md</a>).
-For one DvTP query, a reader does these steps:</p>
+For one <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query, a reader does these steps:</p>
 <ol>
 <li>Call the consumer logbook with trace ID <code>T</code>.</li>
 <li>Follow <code>nextLogbookId</code> in the consumer record to the read API of the
    source.</li>
 <li>Call the source logbook with <code>T</code>. It returns the records of the source
    gateway and of the source.</li>
-<li>Use the transaction ID for the FSC transaction logs. Find the ADL
+<li>Use the transaction ID for the <abbr title="Federated Service Connectivity">FSC</abbr> transaction logs. Find the <abbr title="Authorization Decision Log">ADL</abbr>
    record through the transaction ID in the stored request headers
    (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>).</li>
 <li>Call the consent logbook with <code>T</code>. No record points there.</li>
@@ -5046,13 +5046,13 @@ For one DvTP query, a reader does these steps:</p>
 <p>Two gaps limit this route (<a href="../../traceability/findings/#f-68">F-68</a>):</p>
 <ul>
 <li>
-<p>The start is at a party that LDV does not bind. In DvTP, a private
+<p>The start is at a party that <abbr title="Logboek Dataverwerkingen">LDV</abbr> does not bind. In <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, a private
   consumer starts the processing. Without its records, nobody knows which
   sources one processing touched. A consumer that calls two sources writes
   two records under one trace ID. Each record has its own pointer and its
   own transaction ID.</p>
 <p>The minimum for a consumer is trace context and the transaction ID
-(<a href="../../requirements/admission/#av-01">AV-01</a>). LDV for the
+(<a href="../../requirements/admission/#av-01">AV-01</a>). <abbr title="Logboek Dataverwerkingen">LDV</abbr> for the
 consumer is a candidate condition
 (<a href="../../requirements/admission/#av-02">AV-02</a>). The demo
 consumer logs under the consent ID, because it has no citizen
@@ -5062,8 +5062,8 @@ source call leads to a status lookup, and the register logs this
 lookup with trace and consent ID.</p>
 </li>
 <li>
-<p>The step from the decision to the consent logbook. The PDP writes only
-  an ADL record and no LDV record. The ADL has no field like
+<p>The step from the decision to the consent logbook. The <abbr title="Policy Decision Point">PDP</abbr> writes only
+  an <abbr title="Authorization Decision Log">ADL</abbr> record and no <abbr title="Logboek Dataverwerkingen">LDV</abbr> record. The <abbr title="Authorization Decision Log">ADL</abbr> has no field like
   <code>nextLogbookId</code>. The demo applies option 3 of
   <a href="../../traceability/open-questions/#q-25">Q-25</a>: a reader calls the
   consent logbook by trace ID. The chain view in the developer portal
@@ -5081,52 +5081,52 @@ logbook, by data subject. Each controller answers for its own processings
 (GDPR article 15) (<a href="../../traceability/findings-closed/#f-65">F-65</a>). Demo v0.9.0
 does not build a view of the processings per consent.</p>
 <h2 id="data-handling">Data handling<a class="headerlink" href="#data-handling" title="Permanent link">&para;</a></h2>
-<p>Logging holds no BSN that the processing does not need. Masking in the
+<p>Logging holds no <abbr title="Burgerservicenummer">BSN</abbr> that the processing does not need. Masking in the
 decision log is never the only safeguard
 (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>). Each record type
-handles the BSN as follows, per route:</p>
+handles the <abbr title="Burgerservicenummer">BSN</abbr> as follows, per route:</p>
 <table>
 <thead>
 <tr>
 <th>Record</th>
-<th>Consent route (DvTP)</th>
-<th>EUDI and ASI routes</th>
+<th>Consent route (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</th>
+<th>EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> routes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>LDV</td>
-<td>no BSN. The logbook refuses one</td>
-<td>no BSN. The logbook refuses one</td>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr></td>
+<td>no <abbr title="Burgerservicenummer">BSN</abbr>. The logbook refuses one</td>
+<td>no <abbr title="Burgerservicenummer">BSN</abbr>. The logbook refuses one</td>
 </tr>
 <tr>
-<td>ADL and console decision log</td>
+<td><abbr title="Authorization Decision Log">ADL</abbr> and console decision log</td>
 <td>a placeholder, no identity (<a href="../../traceability/increments/#sl-51">SL-51</a>)</td>
-<td>the plain BSN, from the PID or the token</td>
+<td>the plain <abbr title="Burgerservicenummer">BSN</abbr>, from the <abbr title="Person Identification Data">PID</abbr> or the token</td>
 </tr>
 <tr>
 <td>Spans and operational logs</td>
-<td>no BSN</td>
-<td>no BSN</td>
+<td>no <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>no <abbr title="Burgerservicenummer">BSN</abbr></td>
 </tr>
 </tbody>
 </table>
-<p>In the consent route, the PDP input holds a placeholder for the subject.
+<p>In the consent route, the <abbr title="Policy Decision Point">PDP</abbr> input holds a placeholder for the subject.
 The source gateway replaces the placeholder after the allow
 (<a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>,
 <a href="../pseudonymization/">Pseudonymization</a>).</p>
-<p>In the EUDI and ASI routes, the query variables hold the plain BSN
+<p>In the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> routes, the query variables hold the plain <abbr title="Burgerservicenummer">BSN</abbr>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L273"><code>eudi-adapter/source_metadata.go#L273</code></a>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/source.go#L94"><code>asi-provider/internal/graphqlsource/source.go#L94</code></a>).
-Neither decision log masks anything. The ADL has no masking option, and
+Neither decision log masks anything. The <abbr title="Authorization Decision Log">ADL</abbr> has no masking option, and
 the console log ignores the OPA mask policy
 (<a href="../../traceability/findings/#f-54">F-54</a>).</p>
-<p>Earlier, the request mapper pseudonymized the BSN before evaluation.
+<p>Earlier, the request mapper pseudonymized the <abbr title="Burgerservicenummer">BSN</abbr> before evaluation.
 <a href="https://github.com/ICTU/GBO-demo/pull/370">PR #370</a> removed this step
 when the mapper became a pure mapper. Until
 <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a> decides, the demo
-accepts the BSN in both decision logs. The proposal is to keep
-identifiers out of the PDP input
+accepts the <abbr title="Burgerservicenummer">BSN</abbr> in both decision logs. The proposal is to keep
+identifiers out of the <abbr title="Policy Decision Point">PDP</abbr> input
 (<a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>).</p>
 <h2 id="protection-and-retention">Protection and retention<a class="headerlink" href="#protection-and-retention" title="Permanent link">&para;</a></h2>
 <p><a href="../../requirements/logging-audit/#req-32">REQ-32</a> requires three things
@@ -5137,9 +5137,9 @@ each property:</p>
 <thead>
 <tr>
 <th>Property</th>
-<th>ADL</th>
-<th>LDV logbooks</th>
-<th>FSC transaction logs</th>
+<th><abbr title="Authorization Decision Log">ADL</abbr></th>
+<th><abbr title="Logboek Dataverwerkingen">LDV</abbr> logbooks</th>
+<th><abbr title="Federated Service Connectivity">FSC</abbr> transaction logs</th>
 </tr>
 </thead>
 <tbody>
@@ -5177,7 +5177,7 @@ each property:</p>
 </table>
 <p>Two points are open: who can read which records, and how long the
 records are kept (<a href="../../traceability/open-questions/#q-08">Q-08</a>). The
-ADL source-reference model adds a constraint: a source that a record
+<abbr title="Authorization Decision Log">ADL</abbr> source-reference model adds a constraint: a source that a record
 points to must stay available as long as the record exists.</p>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5215,6 +5215,7 @@ points to must stay available as long as the record exists.</p>
   <a href="../../decisions/0036-adl-decision-record/">ADR-0036</a>,
   <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a> (proposed)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

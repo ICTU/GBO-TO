@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4623,11 +4623,11 @@
 
 
 <h1 id="identity-and-trust">Identity and trust<a class="headerlink" href="#identity-and-trust" title="Permanent link">&para;</a></h1>
-<p>GBO must know which organization it deals with, and which certificate the
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> must know which organization it deals with, and which certificate the
 chain uses for which purpose. The design keeps two questions apart:</p>
 <ul>
-<li>Who is this organization? This is the legal identity (OIN and name) and
-  the technical identity on FSC.</li>
+<li>Who is this organization? This is the legal identity (<abbr title="Organisatie-identificatienummer">OIN</abbr> and name) and
+  the technical identity on <abbr title="Federated Service Connectivity">FSC</abbr>.</li>
 <li>Which certificates does EUDI need? These are the trust roles of
   attestation issuance and of the Authentic Source Interface.</li>
 </ul>
@@ -4638,17 +4638,17 @@ under <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-07<
 (trust through recognized admission and trust anchors). These decisions
 apply:</p>
 <ul>
-<li><a href="../../decisions/0003-fsc-connectivity/">ADR-0003</a>: FSC for all
+<li><a href="../../decisions/0003-fsc-connectivity/">ADR-0003</a>: <abbr title="Federated Service Connectivity">FSC</abbr> for all
   connectivity.</li>
 <li><a href="../../decisions/0023-identity-convergence/">ADR-0023</a>: part A,
   organization identity (accepted), and part B, EUDI certificate roles
   (proposed).</li>
-<li><a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>: PuB-EAA
+<li><a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>: <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr>
   productization (proposed).</li>
 </ul>
 <p>For the requirements, see
 <a href="../../requirements/sources-identity/#identity-trust">Identity, trust and transport</a>.</p>
-<p>Authorization per request is a separate layer. FSC establishes the
+<p>Authorization per request is a separate layer. <abbr title="Federated Service Connectivity">FSC</abbr> establishes the
 organization, but this tells nothing about what the organization can do in
 one request. For more information, see <a href="../authorization/">Authorization</a>.</p>
 <h2 id="three-identity-carriers">Three identity carriers<a class="headerlink" href="#three-identity-carriers" title="Permanent link">&para;</a></h2>
@@ -4664,12 +4664,12 @@ one request. For more information, see <a href="../authorization/">Authorization
 </thead>
 <tbody>
 <tr>
-<td>FSC Peer ID</td>
-<td>the FSC peer: the system that sends or receives FSC traffic</td>
-<td><code>subject.serialNumber</code> of the FSC certificate</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> Peer ID</td>
+<td>the <abbr title="Federated Service Connectivity">FSC</abbr> peer: the system that sends or receives <abbr title="Federated Service Connectivity">FSC</abbr> traffic</td>
+<td><code>subject.serialNumber</code> of the <abbr title="Federated Service Connectivity">FSC</abbr> certificate</td>
 </tr>
 <tr>
-<td>OIN</td>
+<td><abbr title="Organisatie-identificatienummer">OIN</abbr></td>
 <td>the legal organization (bronhouder, consumer)</td>
 <td><code>serialNumber</code> of the organization's certificate</td>
 </tr>
@@ -4680,7 +4680,7 @@ one request. For more information, see <a href="../authorization/">Authorization
 </tr>
 </tbody>
 </table>
-<p>If the bronhouder runs its own peer, its Peer ID is its OIN. In other cases,
+<p>If the bronhouder runs its own peer, its Peer ID is its <abbr title="Organisatie-identificatienummer">OIN</abbr>. In other cases,
 the two values can differ. One peer can offer services of more than one
 bronhouder. Simulation Peer IDs are not OINs, for example
 <code>0000009950HYPBV00000</code>. Until <a href="../../traceability/increments/#sl-49">SL-49</a>
@@ -4688,11 +4688,11 @@ bronhouder. Simulation Peer IDs are not OINs, for example
 field for both values. In demo v0.9.0, the source configuration keeps
 <code>provider_peer_id</code> as a separate field
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_configuration.go#L35-L44"><code>source_configuration.go#L35-L44</code></a>).</p>
-<p>It is open whether policy can read the Peer ID of a consumer as its OIN.
+<p>It is open whether policy can read the Peer ID of a consumer as its <abbr title="Organisatie-identificatienummer">OIN</abbr>.
 The alternative is that policy takes that link from the admission register
-(<a href="../../traceability/open-questions/#q-68">Q-68</a>).</p>
+(toelatingsregister) (<a href="../../traceability/open-questions/#q-68">Q-68</a>).</p>
 <h2 id="the-legal-identity-comes-from-the-certificate">The legal identity comes from the certificate<a class="headerlink" href="#the-legal-identity-comes-from-the-certificate" title="Permanent link">&para;</a></h2>
-<p>A GBO component can put the OIN or name of a bronhouder in an attestation
+<p>A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component can put the <abbr title="Organisatie-identificatienummer">OIN</abbr> or name of a bronhouder in an attestation
 or a decision record. The component takes that value from verified
 certificate material. A value that an operator can fill in freely is never
 the source (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>,
@@ -4707,15 +4707,15 @@ the source (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>,
 </thead>
 <tbody>
 <tr>
-<td>20-digit OIN in <code>serialNumber</code>, exactly one organization name</td>
-<td>The OIN and the name come from the certificate</td>
+<td>20-digit <abbr title="Organisatie-identificatienummer">OIN</abbr> in <code>serialNumber</code>, exactly one organization name</td>
+<td>The <abbr title="Organisatie-identificatienummer">OIN</abbr> and the name come from the certificate</td>
 </tr>
 <tr>
-<td>The configured OIN or name differs from the certificate</td>
+<td>The configured <abbr title="Organisatie-identificatienummer">OIN</abbr> or name differs from the certificate</td>
 <td>Refused: the component does not load the set</td>
 </tr>
 <tr>
-<td>No 20-digit OIN, or not exactly one organization name</td>
+<td>No 20-digit <abbr title="Organisatie-identificatienummer">OIN</abbr>, or not exactly one organization name</td>
 <td>Refused (<code>CERTIFICATE_SET_INVALID</code>)</td>
 </tr>
 </tbody>
@@ -4725,7 +4725,7 @@ the source (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>,
 and
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/source-registry/onboarding/service.go#L293-L297"><code>source-registry/onboarding/service.go#L293-L297</code></a>.
 The source document also names its <code>source_oin</code>. This value must equal the
-OIN in the certificate set. If it differs, the onboarding refuses the
+<abbr title="Organisatie-identificatienummer">OIN</abbr> in the certificate set. If it differs, the onboarding refuses the
 document (<a href="../source-onboarding/">Source onboarding</a>). The issuer name, the
 description, and the logo that the wallet shows also come from the
 certificate (<a href="https://github.com/ICTU/GBO-demo/pull/321">PR #321</a>).</p>
@@ -4738,19 +4738,19 @@ certificate (<a href="https://github.com/ICTU/GBO-demo/pull/321">PR #321</a>).</
   <a href="https://github.com/ICTU/GBO-demo/pull/244">PR #244</a> and
   <a href="https://github.com/ICTU/GBO-demo/pull/277">PR #277</a> showed this.</li>
 <li>In the default demo onboarding, the Belastingdienst peer publishes RvIG
-  with the Belastingdienst OIN. This is a demo shortcut, and it does not
-  show one OIN per bronhouder. The certificate sets still differ per
+  with the Belastingdienst <abbr title="Organisatie-identificatienummer">OIN</abbr>. This is a demo shortcut, and it does not
+  show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per bronhouder. The certificate sets still differ per
   source.</li>
 </ul>
-<h2 id="every-channel-goes-through-fsc">Every channel goes through FSC<a class="headerlink" href="#every-channel-goes-through-fsc" title="Permanent link">&para;</a></h2>
-<p>Every channel that calls a source for an external party goes through FSC,
+<h2 id="every-channel-goes-through-fsc">Every channel goes through <abbr title="Federated Service Connectivity">FSC</abbr><a class="headerlink" href="#every-channel-goes-through-fsc" title="Permanent link">&para;</a></h2>
+<p>Every channel that calls a source for an external party goes through <abbr title="Federated Service Connectivity">FSC</abbr>,
 with a valid certificate
 (<a href="../../requirements/sources-identity/#req-46">REQ-46</a>,
-<a href="../../decisions/0003-fsc-connectivity/">ADR-0003</a>). DvTP, EUDI issuance,
-and the ASIP each call through their own Outway. FSC traffic is mTLS
+<a href="../../decisions/0003-fsc-connectivity/">ADR-0003</a>). <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI issuance,
+and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> each call through their own Outway. <abbr title="Federated Service Connectivity">FSC</abbr> traffic is mTLS
 between peers. The Manager of the provider issues the access token with the
 grant hash of the contract.</p>
-<p>FSC refuses a connection with an expired or revoked certificate. open-fsc
+<p><abbr title="Federated Service Connectivity">FSC</abbr> refuses a connection with an expired or revoked certificate. open-fsc
 checks revocation with a CRL cache. An operator can switch off this cache
 per Inway, Outway, and Manager. The requirement forbids this. The demo does
 not check this behavior. It is open within which time a revocation must
@@ -4761,19 +4761,19 @@ take effect (<a href="../../traceability/open-questions/#q-53">Q-53</a>).</p>
 <ul>
 <li>People use eHerkenning at onboarding and for management (FR-03).</li>
 <li>Systems use an organization certificate from a recognized issuer, linked
-  to the OIN or the KvK number (FR-33, FR-34).</li>
+  to the <abbr title="Organisatie-identificatienummer">OIN</abbr> or the KvK number (FR-33, FR-34).</li>
 </ul>
 <p>The candidate connection condition has two parts
 (<a href="../../requirements/admission/#av-04">AV-04</a>):</p>
 <ul>
-<li>A private consumer runs its own FSC peer with a PKIoverheid certificate.</li>
-<li>The private consumer uses the OIN as its legal identity.</li>
+<li>A private consumer runs its own <abbr title="Federated Service Connectivity">FSC</abbr> peer with a PKIoverheid certificate.</li>
+<li>The private consumer uses the <abbr title="Organisatie-identificatienummer">OIN</abbr> as its legal identity.</li>
 </ul>
-<p>FR-33 allows an OIN or a KvK number. The link between OIN, KvK, and eIDAS
+<p>FR-33 allows an <abbr title="Organisatie-identificatienummer">OIN</abbr> or a KvK number. The link between <abbr title="Organisatie-identificatienummer">OIN</abbr>, KvK, and eIDAS
 identifiers is an open S04 decision. The trust framework for private
 parties as a whole is PSA decision B-09 in the
-<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">besluitregister</a>.</p>
-<p>An integrator connects under FSC delegation. The consent binds the party
+<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">decision register</a>.</p>
+<p>An integrator connects under <abbr title="Federated Service Connectivity">FSC</abbr> delegation. The consent binds the party
 that the integrator represents
 (<a href="../../decisions/0034-integrator-delegation/">ADR-0034</a>). The consent does
 not bind the integrator.</p>
@@ -4784,16 +4784,16 @@ certificates, including EUDI. GO and PSA no longer follow that ambition
 (<a href="../../traceability/answered-questions/#q-07">Q-07</a>, answered). The roles are
 separate:</p>
 <ul>
-<li>PKIoverheid is the Dutch PKI for mTLS, FSC, and organization identity.</li>
-<li>A PuB-EAA carries a qualified electronic seal, from a certificate that a
-  QTSP issues. Neither PKIoverheid nor an access CA seals it
+<li>PKIoverheid is the Dutch PKI for mTLS, <abbr title="Federated Service Connectivity">FSC</abbr>, and organization identity.</li>
+<li>A <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> carries a qualified electronic seal, from a certificate that a
+  <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues. Neither PKIoverheid nor an access CA seals it
   (<a href="../../traceability/findings-closed/#f-66">F-66</a>).</li>
 <li>An access CA issues access certificates only (ETSI TS 119 411-8). An
   access certificate authenticates an issuer or relying party to the
   wallet. It never signs attestations.</li>
 </ul>
 <p>Dutch EUDI governance decides which party operates the Dutch access CA.
-This is a dependency outside the decision scope of GBO.</p>
+This is a dependency outside the decision scope of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</p>
 <h2 id="eudi-issuance-a-certificate-set-per-source">EUDI issuance: a certificate set per source<a class="headerlink" href="#eudi-issuance-a-certificate-set-per-source" title="Permanent link">&para;</a></h2>
 <p>The issuance facility keeps a certificate set per bronhouder. The set has
 issuer, reader (access), and status-list certificates. The facility never
@@ -4805,7 +4805,7 @@ fallback to the set of another source made the wallet show the wrong issuer
 <p>A missing or incomplete set blocks only that source. For the failure cases,
 see <a href="../source-onboarding/#a-certificate-set-per-source">Source onboarding</a>.</p>
 <h2 id="eudi-trust-roles">EUDI trust roles<a class="headerlink" href="#eudi-trust-roles" title="Permanent link">&para;</a></h2>
-<p>GBO issues attestations for bronhouders. Each of these bronhouders needs
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issues attestations for bronhouders. Each of these bronhouders needs
 its own certificate per role, and one certificate never fills two roles
 (<a href="../../decisions/0023-identity-convergence/">ADR-0023</a>, part B, proposed,
 <a href="../../traceability/findings/#f-81">F-81</a>). The roles are as follows:</p>
@@ -4821,13 +4821,13 @@ its own certificate per role, and one certificate never fills two roles
 <tbody>
 <tr>
 <td>Organization or system certificate</td>
-<td>mTLS for FSC, and the OIN and name</td>
+<td>mTLS for <abbr title="Federated Service Connectivity">FSC</abbr>, and the <abbr title="Organisatie-identificatienummer">OIN</abbr> and name</td>
 <td>PKIoverheid</td>
 <td>PKIoverheid root</td>
 </tr>
 <tr>
 <td>Access certificate</td>
-<td>Authenticates the issuer to the wallet (OpenID4VCI)</td>
+<td>Authenticates the issuer to the wallet (<abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr>)</td>
 <td>An access CA (ETSI TS 119 411-8)</td>
 <td>The access CA that the member state notifies</td>
 </tr>
@@ -4839,8 +4839,8 @@ its own certificate per role, and one certificate never fills two roles
 </tr>
 <tr>
 <td>Qualified certificate for electronic seal</td>
-<td>Seals the PuB-EAA. Profile ETSI TS 119 412-6 clause 8. Names the authentic source and the legal basis. Key in a QSCD</td>
-<td>A QTSP</td>
+<td>Seals the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr>. Profile ETSI TS 119 412-6 clause 8. Names the authentic source and the legal basis. Key in a QSCD</td>
+<td>A <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td>Open (<a href="../../traceability/open-questions/#q-30">Q-30</a>)</td>
 </tr>
 <tr>
@@ -4854,14 +4854,14 @@ its own certificate per role, and one certificate never fills two roles
 <p><a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a> sets the roles and
 responsibilities around these certificates:</p>
 <ul>
-<li>Each bronhouder is the PuB-EAA provider of its attestations. GBO operates
-  the technical issuance facility. GBO is probably the <code>EEAIssuer</code> in the
+<li>Each bronhouder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider of its attestations. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates
+  the technical issuance facility. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> is probably the <code>EEAIssuer</code> in the
   notification of each bronhouder. It is open who designates the Dutch
-  PuB-EAA issuer, and who supervises
+  <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuer, and who supervises
   (<a href="../../traceability/open-questions/#q-28">Q-28</a>).</li>
 <li>The issuer registers as relying party with the entitlement
   <code>PUB_EAA_Provider</code>.</li>
-<li>It is open on which trust list PuB-EAA providers appear. The options are
+<li>It is open on which trust list <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> providers appear. The options are
   a List of Trusted Entities (ETSI TS 119 602) or the trusted lists
   (ETSI TS 119 612). The specifications contradict each other
   (<a href="../../traceability/open-questions/#q-30">Q-30</a>). No decision exists for
@@ -4871,39 +4871,39 @@ responsibilities around these certificates:</p>
   (<a href="../../traceability/open-questions/#q-17">Q-17</a>). In the demo, the
   central issuance server holds them.</li>
 </ul>
-<p>To verify the PID that the wallet discloses, the issuance server also
-trusts PID issuers. Its list of PID trust anchors holds these CAs
+<p>To verify the <abbr title="Person Identification Data">PID</abbr> that the wallet discloses, the issuance server also
+trusts <abbr title="Person Identification Data">PID</abbr> issuers. Its list of <abbr title="Person Identification Data">PID</abbr> trust anchors holds these CAs
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/config/issuance_server.toml.example#L3-L9"><code>issuance_server.toml.example#L3-L9</code></a>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_release.go#L120-L121"><code>issuance_release.go#L120-L121</code></a>):</p>
 <ul>
-<li>The BZK pre-production PID issuer CA.</li>
-<li>The GBO development issuer CA.</li>
+<li>The BZK pre-production <abbr title="Person Identification Data">PID</abbr> issuer CA.</li>
+<li>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> development issuer CA.</li>
 <li>The issuer CA of every source.</li>
 </ul>
-<p>That list is too broad. It must hold PID-provider anchors only. The
+<p>That list is too broad. It must hold <abbr title="Person Identification Data">PID</abbr>-provider anchors only. The
 callback from the issuance server to the adapter has no caller
 authentication (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>,
 <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>).</p>
-<h2 id="asi-trust-roles">ASI trust roles<a class="headerlink" href="#asi-trust-roles" title="Permanent link">&para;</a></h2>
-<p>In the ASI route, the QTSP is not an FSC participant. The chain on FSC
-starts behind the ASIP (<a href="../../traceability/findings/#f-87">F-87</a>). Two
+<h2 id="asi-trust-roles"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> trust roles<a class="headerlink" href="#asi-trust-roles" title="Permanent link">&para;</a></h2>
+<p>In the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> is not an <abbr title="Federated Service Connectivity">FSC</abbr> participant. The chain on <abbr title="Federated Service Connectivity">FSC</abbr>
+starts behind the <abbr title="Authentic Source Interface Provider">ASIP</abbr> (<a href="../../traceability/findings/#f-87">F-87</a>). Two
 trust points apply:</p>
 <ul>
-<li>Admission of a QTSP: only a QTSP with the <code>QEAA_Provider</code> right in the
-  register becomes a client of the ASIP
+<li>Admission of a <abbr title="Qualified Trust Service Provider">QTSP</abbr>: only a <abbr title="Qualified Trust Service Provider">QTSP</abbr> with the <code>QEAA_Provider</code> right in the
+  register becomes a client of the <abbr title="Authentic Source Interface Provider">ASIP</abbr>
   (<a href="../../requirements/asi/#req-88">REQ-88</a>). That register and the
   certificate profile do not exist in demo v0.9.0
   (<a href="../../traceability/findings/#f-85">F-85</a>). It is open which identifier
-  links the access certificate of a QTSP to its register entry
+  links the access certificate of a <abbr title="Qualified Trust Service Provider">QTSP</abbr> to its register entry
   (<a href="../../traceability/open-questions/#q-35">Q-35</a>).</li>
-<li>The seal on a result: the ASIP seals every verification result
+<li>The seal on a result: the <abbr title="Authentic Source Interface Provider">ASIP</abbr> seals every verification result
   (<a href="../../requirements/asi/#req-83">REQ-83</a>). The format is open
   (<a href="../../traceability/open-questions/#q-32">Q-32</a>,
   <a href="../../decisions/0041-asi-seal-format/">ADR-0041</a>). The demo seals with a
   development certificate. This certificate is not a qualified seal
   certificate.</li>
 </ul>
-<p><a href="../../decisions/0037-asi-oauth-front-door/">ADR-0037</a> describes the ASI
+<p><a href="../../decisions/0037-asi-oauth-front-door/">ADR-0037</a> describes the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>
 front door.</p>
 <h2 id="demo-pki-and-production">Demo PKI and production<a class="headerlink" href="#demo-pki-and-production" title="Permanent link">&para;</a></h2>
 <p>The demo generates its own trust anchors. Git ignores the private keys, and
@@ -4919,29 +4919,29 @@ the demo generates them again for each checkout.</p>
 </thead>
 <tbody>
 <tr>
-<td>FSC group root</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> group root</td>
 <td>A self-hosted CA: cfssl with a root and intermediate CA (<code>GBO-DEMO Root CA</code>) (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/pki/generate-root-ca.sh"><code>fsc-infra/pki/generate-root-ca.sh</code></a>)</td>
 <td>PKIoverheid</td>
 </tr>
 <tr>
-<td>FSC certificate requests</td>
-<td>The FSC <code>ca-certportal</code> in front of cfssl (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L60-L72"><code>fsc-infra/docker-compose.yml#L60-L72</code></a>)</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> certificate requests</td>
+<td>The <abbr title="Federated Service Connectivity">FSC</abbr> <code>ca-certportal</code> in front of cfssl (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L60-L72"><code>fsc-infra/docker-compose.yml#L60-L72</code></a>)</td>
 <td>The PKIoverheid issuance process of each organization</td>
 </tr>
 <tr>
 <td>Organization certificates</td>
-<td>Per organization, a group certificate with <code>serialNumber</code> = OIN, and internal mTLS certificates (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/pki/bootstrap-bd-mock.sh#L48"><code>bootstrap-bd-mock.sh#L48</code></a>)</td>
+<td>Per organization, a group certificate with <code>serialNumber</code> = <abbr title="Organisatie-identificatienummer">OIN</abbr>, and internal mTLS certificates (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/pki/bootstrap-bd-mock.sh#L48"><code>bootstrap-bd-mock.sh#L48</code></a>)</td>
 <td>PKIoverheid certificates of each organization</td>
 </tr>
 <tr>
-<td>PDP AuthZEN endpoint</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> endpoint</td>
 <td>A self-signed certificate that the Inways pin as CA (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/pki/generate-pdp-cert.sh"><code>generate-pdp-cert.sh</code></a>)</td>
 <td>An organization certificate</td>
 </tr>
 <tr>
 <td>EUDI issuer and reader CAs</td>
 <td>Two pre-provisioned development CAs. The demo never generates them, and onboarding stops without them (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L268-L272"><code>Makefile#L268-L272</code></a>)</td>
-<td>A QTSP for the seal, an access CA, and a registration certificate provider</td>
+<td>A <abbr title="Qualified Trust Service Provider">QTSP</abbr> for the seal, an access CA, and a registration certificate provider</td>
 </tr>
 <tr>
 <td>Source leaf certificates</td>
@@ -4949,14 +4949,14 @@ the demo generates them again for each checkout.</p>
 <td>Issued per bronhouder, per role</td>
 </tr>
 <tr>
-<td>ASIP seal and QTSP client certificates</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> seal and <abbr title="Qualified Trust Service Provider">QTSP</abbr> client certificates</td>
 <td>From the same development CAs (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L276-L283"><code>Makefile#L276-L283</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L320-L324"><code>#L320-L324</code></a>)</td>
 <td>A qualified seal certificate, and access certificates of admitted QTSPs</td>
 </tr>
 <tr>
-<td>PID trust anchor</td>
-<td>The BZK pre-production PID issuer CA</td>
-<td>The notified PID providers</td>
+<td><abbr title="Person Identification Data">PID</abbr> trust anchor</td>
+<td>The BZK pre-production <abbr title="Person Identification Data">PID</abbr> issuer CA</td>
+<td>The notified <abbr title="Person Identification Data">PID</abbr> providers</td>
 </tr>
 </tbody>
 </table>
@@ -4971,15 +4971,15 @@ standards (<a href="../../traceability/findings/#f-81">F-81</a>):</p>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
 <p>These points about identity and trust are open:</p>
 <ul>
-<li>Can policy read the Peer ID of a consumer as its OIN
+<li>Can policy read the Peer ID of a consumer as its <abbr title="Organisatie-identificatienummer">OIN</abbr>
   (<a href="../../traceability/open-questions/#q-68">Q-68</a>)?</li>
-<li>The trust list for PuB-EAA providers
+<li>The trust list for <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> providers
   (<a href="../../traceability/open-questions/#q-30">Q-30</a>).</li>
 <li>Custody of the seal and status-list keys
   (<a href="../../traceability/open-questions/#q-17">Q-17</a>).</li>
-<li>Designation of the Dutch PuB-EAA issuer, and supervision
+<li>Designation of the Dutch <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuer, and supervision
   (<a href="../../traceability/open-questions/#q-28">Q-28</a>).</li>
-<li>The identifier between a QTSP access certificate and its register entry
+<li>The identifier between a <abbr title="Qualified Trust Service Provider">QTSP</abbr> access certificate and its register entry
   (<a href="../../traceability/open-questions/#q-35">Q-35</a>).</li>
 <li>The time limit for a revocation to take effect
   (<a href="../../traceability/open-questions/#q-53">Q-53</a>).</li>
@@ -5017,6 +5017,7 @@ standards (<a href="../../traceability/findings/#f-81">F-81</a>):</p>
   <a href="../../decisions/0023-identity-convergence/">ADR-0023</a>,
   <a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a> (proposed)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

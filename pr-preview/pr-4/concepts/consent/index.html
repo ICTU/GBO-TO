@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4679,29 +4679,29 @@
 
 
 <h1 id="consent">Consent<a class="headerlink" href="#consent" title="Permanent link">&para;</a></h1>
-<p>In DvTP, the consent of the citizen is the legal basis for delivery of
-source data to a private consumer. A consent proof carries the consent to
-the source, and the PDP of the source verifies that proof on every
+<p>In <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, the consent of the citizen is the legal basis for delivery of
+source data to a private consumer (afnemer). A consent proof carries the consent to
+the source, and the <abbr title="Policy Decision Point">PDP</abbr> of the source verifies that proof on every
 request. A consent has a lifecycle of validity, revocation, and repeated
 use.
-The consent model realizes capabilities
+The consent model realizes capability
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie">S01</a>
-(toestemmingsregister) and
+for the consent register (toestemmingsregister) and capability
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal">S02</a>
-(toestemmingsportaal).</p>
+for the consent portal (toestemmingsportaal).</p>
 <p>The main decision is <a href="../../decisions/0032-consent-proof/">ADR-0032</a>. It
 defines the consent proof in five points:</p>
 <ul>
 <li>The register signs the proof.</li>
 <li>The proof carries a value per source.</li>
 <li>The consumer can name the citizen only with a placeholder.</li>
-<li>The status stays online over FSC.</li>
+<li>The status stays online over <abbr title="Federated Service Connectivity">FSC</abbr>.</li>
 <li>The policy verifies the proof.</li>
 </ul>
 <p>For the scenarios, see the runtime view:
-<a href="../../runtime/dvtp-consent/">DvTP consent</a>,
-<a href="../../runtime/dvtp-query/">DvTP query</a>, and
-<a href="../../runtime/dvtp-citizen-access/">DvTP citizen access</a>.</p>
+<a href="../../runtime/dvtp-consent/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consent</a>,
+<a href="../../runtime/dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a>, and
+<a href="../../runtime/dvtp-citizen-access/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> citizen access</a>.</p>
 <h2 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h2>
 <p>Five roles take part in consent:</p>
 <table>
@@ -4714,23 +4714,23 @@ defines the consent proof in five points:</p>
 </thead>
 <tbody>
 <tr>
-<td>Toestemmingsportaal (S02)</td>
+<td>Consent portal (S02)</td>
 <td><code>toestemmingsportaal-frontend</code>, consent portal backend</td>
 <td>Shows the request, logs the citizen in, makes the values per source at BSNk, and lets the citizen view and revoke consents</td>
 </tr>
 <tr>
-<td>Toestemmingsregister (S01)</td>
+<td>Consent register (S01)</td>
 <td><code>consent-register</code></td>
-<td>Stores the consent record, signs the proof, and answers the status over FSC</td>
+<td>Stores the consent record, signs the proof, and answers the status over <abbr title="Federated Service Connectivity">FSC</abbr></td>
 </tr>
 <tr>
-<td>Consumer (dienstverlener)</td>
+<td>Consumer</td>
 <td><code>dienstverlener-backend</code></td>
 <td>Starts the request, receives the proof, and sends it unchanged with every query</td>
 </tr>
 <tr>
-<td>PDP of the source</td>
-<td>OpenFTV PDP, <code>consent.rego</code></td>
+<td><abbr title="Policy Decision Point">PDP</abbr> of the source</td>
+<td><abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> <abbr title="Policy Decision Point">PDP</abbr>, <code>consent.rego</code></td>
 <td>Verifies the proof and gets the status at every request</td>
 </tr>
 <tr>
@@ -4760,7 +4760,7 @@ requirements on the roles, see
 follows from <code>valid_until</code>. The citizen overview shows Active, Expired,
 and Revoked. Demo v0.9.0 does not build a "retrieved" status. Two points
 are open: when a consent counts as retrieved, and how the register learns
-this (<a href="../../traceability/open-questions/#q-42">Q-42</a>). The FR-DvTP texts
+this (<a href="../../traceability/open-questions/#q-42">Q-42</a>). The FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> texts
 name the statuses with different words
 (<a href="../../traceability/findings/#f-97">F-97</a>).</p>
 <p>A consent is bound to one consumer, one service, and named data sets
@@ -4769,9 +4769,9 @@ Within a set, the citizen does not pick fields
 (<a href="../../requirements/consent/#req-10">REQ-10</a>). The portal shows only the
 data sets that the consumer asks for. It refuses a data set that it
 cannot describe. For the record model, see
-<a href="../../requirements/consent/#consent-register">Consent register</a>.</p>
+<a href="../../requirements/consent/#consent-register">consent register</a>.</p>
 <h2 id="the-consent-proof">The consent proof<a class="headerlink" href="#the-consent-proof" title="Permanent link">&para;</a></h2>
-<p>When the citizen gives consent, the toestemmingsregister signs a JWT with
+<p>When the citizen gives consent, the consent register signs a JWT with
 these parts
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L130-L152"><code>consent_token.go#L130-L152</code></a>):</p>
 <table>
@@ -4796,7 +4796,7 @@ these parts
 </tr>
 <tr>
 <td><code>dienstverlener_oin</code></td>
-<td>The represented party. In the demo, this field holds the FSC Peer ID (<a href="../../traceability/open-questions/#q-68">Q-68</a>)</td>
+<td>The represented party. In the demo, this field holds the <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID (<a href="../../traceability/open-questions/#q-68">Q-68</a>)</td>
 </tr>
 <tr>
 <td><code>valid_until</code>, <code>exp</code></td>
@@ -4808,17 +4808,17 @@ these parts
 </tr>
 <tr>
 <td><code>encrypted_subject</code></td>
-<td>For each source OIN: a <code>pseudonym</code> (VP) and, only for a source on the BSN authorization list, an <code>identity</code> (VI). Each value has its <code>key_set_version</code></td>
+<td>For each source <abbr title="Organisatie-identificatienummer">OIN</abbr>: a <code>pseudonym</code> (<abbr title="Encrypted pseudonym">VP</abbr>) and, only for a source on the <abbr title="Burgerservicenummer">BSN</abbr> authorization list, an <code>identity</code> (<abbr title="Encrypted identity">VI</abbr>). Each value has its <code>key_set_version</code></td>
 </tr>
 </tbody>
 </table>
-<p>The proof holds no BSN and no PI
+<p>The proof holds no <abbr title="Burgerservicenummer">BSN</abbr> and no <abbr title="Polymorphic identity">PI</abbr>
 (<a href="../../requirements/pseudonymization/#req-20">REQ-20</a>). Only the source
 that a value in <code>encrypted_subject</code> was made for can read that value
 (<a href="../../requirements/pseudonymization/#req-80">REQ-80</a>). The register
 refuses a proof without a pseudonym for every party
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L45-L64"><code>consent_token.go#L45-L64</code></a>).
-The PDP denies such a proof too, with <code>CONSENT_CONTEXT_INVALID</code>. For how
+The <abbr title="Policy Decision Point">PDP</abbr> denies such a proof too, with <code>CONSENT_CONTEXT_INVALID</code>. For how
 the values are made, see <a href="../pseudonymization/">Pseudonymization</a>.</p>
 <p>The portal returns the proof to the consumer in the URL fragment of the
 return redirect. The consumer frontend removes the proof from the visible
@@ -4829,17 +4829,17 @@ The question of what the return redirect gives back is partly answered
 <p>The consumer sends the proof unchanged in <code>X-GBO-Consent-Token</code>
 (<a href="../../requirements/admission/#av-05">AV-05</a>). In its query,
 the consumer names the citizen only with a placeholder: <code>consent:identity</code>
-for a BSN API, <code>consent:pseudonym</code> for a source-pseudonym API
+for a <abbr title="Burgerservicenummer">BSN</abbr> API, <code>consent:pseudonym</code> for a source-pseudonym API
 (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>). The consumer can
 read <code>consent_id</code> and <code>scopes</code> from the proof. It cannot read who the
 citizen is (<a href="../../traceability/findings/#f-76">F-76</a>).</p>
 <h3 id="the-integrator-is-not-in-the-proof">The integrator is not in the proof<a class="headerlink" href="#the-integrator-is-not-in-the-proof" title="Permanent link">&para;</a></h3>
-<p>An integrator calls the source for a consumer under FSC delegation
+<p>An integrator calls the source for a consumer under <abbr title="Federated Service Connectivity">FSC</abbr> delegation
 (<a href="../../decisions/0034-integrator-delegation/">ADR-0034</a>). The proof binds
 only the represented party, which is the consumer. The integrator needs
 its own mandate for each consumer and rule in the admission register
 (<a href="../../requirements/consent/#req-106">REQ-106</a>). If this mandate is
-absent, the PDP denies with <code>INTEGRATOR_NOT_REGISTERED</code>.</p>
+absent, the <abbr title="Policy Decision Point">PDP</abbr> denies with <code>INTEGRATOR_NOT_REGISTERED</code>.</p>
 <p>It is an open question whether the proof must also bind the integrator
 (<a href="../../traceability/open-questions/#q-46">Q-46</a>). The working assumption
 is that it does not. If the integrator is in the proof, a change of
@@ -4851,14 +4851,14 @@ proof.</p>
 consumer. It does not stop replay by the same consumer
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/consent-flow.md#L268-L273"><code>consent-flow.md#L268-L273</code></a>).
 Production needs a shorter validity and proof-of-possession binding to the
-FSC identity (<a href="../../risks/">Risks</a>).</p>
+<abbr title="Federated Service Connectivity">FSC</abbr> identity (<a href="../../risks/">Risks</a>).</p>
 <p>The location and the rotation of the signing key are open
 (<a href="../../traceability/open-questions/#q-55">Q-55</a>). If the register uses a
 persistent store, it needs a fixed signing key
 (<code>CONSENT_SIGNING_KEY_PATH</code>). Then proofs stay valid after a restart
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/main.go#L84-L86"><code>main.go#L84-L86</code></a>).</p>
 <h2 id="verification-and-status">Verification and status<a class="headerlink" href="#verification-and-status" title="Permanent link">&para;</a></h2>
-<p>The PDP of the source decides only on a consent that it checked itself
+<p>The <abbr title="Policy Decision Point">PDP</abbr> of the source decides only on a consent that it checked itself
 (<a href="../../requirements/consent/#req-68">REQ-68</a>). It establishes the origin,
 the binding, and the status at evaluation time. The policy does this work.
 The request mapper has no part in it
@@ -4872,7 +4872,7 @@ The policy verifies the proof and gets the status in this sequence:</p>
       participant CRIN as Register Inway
     end
     box rgb(254,220,216) DvTP
-      participant CR as Toestemmingsregister
+      participant CR as Consent register
     end
     IN-&gt;&gt;PDP: AuthZEN evaluation with X-GBO-Consent-Token
     opt JWKS not cached, older than 300 s, or unknown kid
@@ -4901,18 +4901,18 @@ The policy verifies the proof and gets the status in this sequence:</p>
   a 2-second timeout, and <code>raise_error: false</code>. The call carries
   <code>traceparent</code> and <code>Fsc-Transaction-Id</code>
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L190-L200"><code>consent.rego#L190-L200</code></a>).
-  It goes over FSC, from the Outway of the PDP (peer <code>…0800</code>) to the
-  Inway of the register (peer <code>…0700</code>, FSC service <code>consent-status</code>).</li>
+  It goes over <abbr title="Federated Service Connectivity">FSC</abbr>, from the Outway of the <abbr title="Policy Decision Point">PDP</abbr> (peer <code>…0800</code>) to the
+  Inway of the register (peer <code>…0700</code>, <abbr title="Federated Service Connectivity">FSC</abbr> service <code>consent-status</code>).</li>
 </ul>
 <p>The register serves the status on its own listener. This listener serves
 nothing else
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/status.go#L13-L26"><code>status.go#L13-L26</code></a>).
-A lookup without an FSC peer gets 401. The register logs each lookup as a
+A lookup without an <abbr title="Federated Service Connectivity">FSC</abbr> peer gets 401. The register logs each lookup as a
 processing, with the calling peer as processor
 (<a href="../../requirements/consent/#req-76">REQ-76</a>).</p>
-<p>The FSC Manager of the register signs a contract only for the peer of the
-PDP. Still, any connected peer can get the status of a consent if it holds
-the consent ID. Demo v0.9.0 does not restrict lookups to the PDP of the
+<p>The <abbr title="Federated Service Connectivity">FSC</abbr> Manager of the register signs a contract only for the peer of the
+<abbr title="Policy Decision Point">PDP</abbr>. Still, any connected peer can get the status of a consent if it holds
+the consent ID. Demo v0.9.0 does not restrict lookups to the <abbr title="Policy Decision Point">PDP</abbr> of the
 source that the consent is for.</p>
 <p>Each failure has its own reason code. For the table of codes, see
 <a href="../authorization/#consent-verification-in-policy">Authorization</a>.</p>
@@ -4932,7 +4932,7 @@ freshness:</p>
 <tr>
 <td>Proof content (scopes, party, validity)</td>
 <td>Fixed at consent, verified locally</td>
-<td>The register signed it. The PDP needs no lookup for it</td>
+<td>The register signed it. The <abbr title="Policy Decision Point">PDP</abbr> needs no lookup for it</td>
 </tr>
 <tr>
 <td>Verification keys</td>
@@ -4946,24 +4946,24 @@ freshness:</p>
 </tr>
 </tbody>
 </table>
-<p>If the status is unknown, the PDP denies. So the register is a dependency
-of every DvTP request (<a href="../../requirements/consent/#req-75">REQ-75</a>). The
+<p>If the status is unknown, the <abbr title="Policy Decision Point">PDP</abbr> denies. So the register is a dependency
+of every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> request (<a href="../../requirements/consent/#req-75">REQ-75</a>). The
 values for propagation time, availability, and latency are open
 (<a href="../../traceability/open-questions/#q-47">Q-47</a>). The question of who is
 authoritative for revocation and expiry is answered: the register, with
 the status online and fail closed
 (<a href="../../traceability/answered-questions/#q-05">Q-05</a>).</p>
-<p>The status answer is not in the PDP input. As a result, the input, the
-policy, and the data do not reproduce a decision. The ADL does not hold
+<p>The status answer is not in the <abbr title="Policy Decision Point">PDP</abbr> input. As a result, the input, the
+policy, and the data do not reproduce a decision. The <abbr title="Authorization Decision Log">ADL</abbr> does not hold
 the answer (<a href="../../traceability/findings/#f-72">F-72</a>).</p>
 <h2 id="validity">Validity<a class="headerlink" href="#validity" title="Permanent link">&para;</a></h2>
-<p>A consent has a finite validity. After the validity ends, the PDP denies
+<p>A consent has a finite validity. After the validity ends, the <abbr title="Policy Decision Point">PDP</abbr> denies
 (<a href="../../requirements/consent/#req-19">REQ-19</a>). Three rules set
 the validity:</p>
 <ul>
 <li>The register sets <code>valid_until</code> at creation, and the proof has
   <code>exp = valid_until</code>.</li>
-<li>The PDP checks both values. Within 30 seconds after <code>valid_until</code>, it
+<li>The <abbr title="Policy Decision Point">PDP</abbr> checks both values. Within 30 seconds after <code>valid_until</code>, it
   denies with <code>CONSENT_EXPIRED</code>. After that, the token check denies first,
   with <code>CONSENT_TOKEN_EXPIRED</code>.</li>
 <li>In the demo, the consumer chooses the period with <code>validity_seconds</code>.
@@ -4993,10 +4993,10 @@ need no BSNk call.</p>
 <p>The register sets the status to <code>REVOKED</code> and keeps the record. It writes
 the processing record in the same transaction
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/main.go#L585-L596"><code>main.go#L585-L596</code></a>).
-For the next request on that proof, the status is <code>REVOKED</code>, and the PDP
+For the next request on that proof, the status is <code>REVOKED</code>, and the <abbr title="Policy Decision Point">PDP</abbr>
 denies with <code>CONSENT_WITHDRAWN</code>
 (<a href="../../requirements/consent/#req-14">REQ-14</a>). Another active consent of
-the same citizen cannot take its place, because the PDP checks only the
+the same citizen cannot take its place, because the <abbr title="Policy Decision Point">PDP</abbr> checks only the
 <code>consent_id</code> from the signed proof.</p>
 <p>Three points on revocation are open:</p>
 <ul>
@@ -5021,7 +5021,7 @@ Revocation stops this use
 <h2 id="the-proof-freezes-at-consent">The proof freezes at consent<a class="headerlink" href="#the-proof-freezes-at-consent" title="Permanent link">&para;</a></h2>
 <p>BSNk transforms only while the citizen is logged in
 (<a href="../../requirements/pseudonymization/#bsnk-04">BSNK-04</a>). So all values
-in the proof are made at consent time. Parties, key versions, BSN
+in the proof are made at consent time. Parties, key versions, <abbr title="Burgerservicenummer">BSN</abbr>
 authorization, and proof form are fixed for the whole validity period
 (<a href="../../traceability/findings/#f-78">F-78</a>). This has four consequences:</p>
 <ul>
@@ -5029,19 +5029,19 @@ authorization, and proof form are fixed for the whole validity period
 <li>If a source gets a new key version, it keeps its old keys while proofs
   for the old version are valid
   (<a href="../../requirements/admission/#av-09">AV-09</a>).</li>
-<li>A source that joins the BSN authorization list later has only a
+<li>A source that joins the <abbr title="Burgerservicenummer">BSN</abbr> authorization list later has only a
   pseudonym in older consents.</li>
 <li>A new proof form makes every outstanding proof fail with
   <code>CONSENT_CONTEXT_INVALID</code>. The proof has no version field.</li>
 </ul>
 <p>It is an open question what counts as a change of a consent
 (<a href="../../traceability/open-questions/#q-77">Q-77</a>). When consent is given,
-the register must know the OIN, the key version, and the BSN
+the register must know the <abbr title="Organisatie-identificatienummer">OIN</abbr>, the key version, and the <abbr title="Burgerservicenummer">BSN</abbr>
 authorization of each source
 (<a href="../../requirements/pseudonymization/#req-82">REQ-82</a>).</p>
 <h2 id="consent-in-other-routes">Consent in other routes<a class="headerlink" href="#consent-in-other-routes" title="Permanent link">&para;</a></h2>
-<p>DvTP consent is a registered, revocable legal basis. Approval in the
-wallet (EUDI) and login at the ASI authorization server are a different
+<p><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consent is a registered, revocable legal basis. Approval in the
+wallet (EUDI) and login at the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server are a different
 thing. They are the choice of the citizen for each presentation or each
 request. Neither is a legal basis, and neither replaces the other
 (<a href="../../traceability/findings/#f-83">F-83</a>,
@@ -5066,22 +5066,22 @@ the same tags. The tags are in order of sensitivity:</p>
 <td>Every transport hop</td>
 </tr>
 <tr>
-<td>OIN / Peer ID</td>
+<td><abbr title="Organisatie-identificatienummer">OIN</abbr> / Peer ID</td>
 <td>Organization identifier of the consumer</td>
 <td>low</td>
-<td>FSC token, PDP input, decision logs</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> token, <abbr title="Policy Decision Point">PDP</abbr> input, decision logs</td>
 </tr>
 <tr>
 <td>scope</td>
 <td>Data-set code, for example <code>bd:ib:2025</code></td>
 <td>low</td>
-<td>Every DvTP and EUDI hop</td>
+<td>Every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> and EUDI hop</td>
 </tr>
 <tr>
-<td>FSC token</td>
-<td>Certificate-bound JWT of the FSC Manager of the provider. It carries no grant properties</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> token</td>
+<td>Certificate-bound JWT of the <abbr title="Federated Service Connectivity">FSC</abbr> Manager of the provider. It carries no grant properties</td>
 <td>medium (transport authentication)</td>
-<td>Outway, Inway, PDP. The source gateway reads only the caller, for its logbook</td>
+<td>Outway, Inway, <abbr title="Policy Decision Point">PDP</abbr>. The source gateway reads only the caller, for its logbook</td>
 </tr>
 <tr>
 <td><code>consent_id</code></td>
@@ -5093,43 +5093,43 @@ the same tags. The tags are in order of sensitivity:</p>
 <td>consent proof</td>
 <td>Signed (ES256), audience-bound JWT with <code>consent_id</code>, <code>encrypted_subject</code>, <code>scopes</code>, <code>dienstverlener_oin</code>, and <code>valid_until</code></td>
 <td>medium-high (carries the values per source and the legal basis)</td>
-<td>Consumer → FSC → PDP → source gateway, in <code>X-GBO-Consent-Token</code>. Never in observer or history payloads</td>
+<td>Consumer → <abbr title="Federated Service Connectivity">FSC</abbr> → <abbr title="Policy Decision Point">PDP</abbr> → source gateway, in <code>X-GBO-Consent-Token</code>. Never in observer or history payloads</td>
 </tr>
 <tr>
-<td>VI (encrypted identity)</td>
-<td>Value that BSNk makes for one party and key version. That party decrypts it to the BSN. Only for a party on the BSN authorization list</td>
+<td><abbr title="Encrypted identity">VI</abbr> (encrypted identity)</td>
+<td>Value that BSNk makes for one party and key version. That party decrypts it to the <abbr title="Burgerservicenummer">BSN</abbr>. Only for a party on the <abbr title="Burgerservicenummer">BSN</abbr> authorization list</td>
 <td>high at the recipient, unreadable for others (readable in the demo: the mock does not encrypt)</td>
 <td>Only inside the proof. The source gateway takes its own value after the allow</td>
 </tr>
 <tr>
-<td>VP (encrypted pseudonym)</td>
+<td><abbr title="Encrypted pseudonym">VP</abbr> (encrypted pseudonym)</td>
 <td>Value that BSNk makes for one party and key version. That party decrypts it to its own pseudonym of the citizen. Every party gets one</td>
 <td>medium at the recipient, unreadable for others (readable in the demo)</td>
-<td>Only inside the proof. Demo v0.9.0 does not build a VP for the consumer (<a href="https://github.com/ICTU/GBO-demo/issues/478">#478</a>)</td>
+<td>Only inside the proof. Demo v0.9.0 does not build a <abbr title="Encrypted pseudonym">VP</abbr> for the consumer (<a href="https://github.com/ICTU/GBO-demo/issues/478">#478</a>)</td>
 </tr>
 <tr>
 <td>placeholder</td>
 <td><code>consent:identity</code> or <code>consent:pseudonym</code> in the place of the subject</td>
 <td>none (identifies nobody)</td>
-<td>Consumer → FSC → PDP → source gateway, which replaces it</td>
+<td>Consumer → <abbr title="Federated Service Connectivity">FSC</abbr> → <abbr title="Policy Decision Point">PDP</abbr> → source gateway, which replaces it</td>
 </tr>
 <tr>
-<td>PI / PP</td>
+<td><abbr title="Polymorphic identity">PI</abbr> / <abbr title="Polymorphic pseudonym">PP</abbr></td>
 <td>Polymorphic identity and pseudonym of BSNk. Only the requester can use them</td>
 <td>medium (only BSNk can transform them)</td>
 <td>Portal backend. Stored in the register under <code>subject_ref</code> (route D)</td>
 </tr>
 <tr>
 <td><code>subject_ref</code></td>
-<td>HMAC of the BSN with the secret key of the portal</td>
-<td>medium (computable from a BSN with the key)</td>
+<td>HMAC of the <abbr title="Burgerservicenummer">BSN</abbr> with the secret key of the portal</td>
+<td>medium (computable from a <abbr title="Burgerservicenummer">BSN</abbr> with the key)</td>
 <td>Portal backend, register</td>
 </tr>
 <tr>
-<td>BSN</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr></td>
 <td>Plain citizen service number</td>
 <td>high (personal data)</td>
-<td>DvTP: the portal backend at login, and the source after the allow. EUDI and ASI: through the flow, and in both PDP decision logs (<a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>)</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: the portal backend at login, and the source after the allow. EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>: through the flow, and in both <abbr title="Policy Decision Point">PDP</abbr> decision logs (<a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -5162,6 +5162,7 @@ the same tags. The tags are in order of sensitivity:</p>
 <li>Open questions: <a href="../../traceability/answered-questions/#q-04">Q-04</a> (answered), <a href="../../traceability/answered-questions/#q-05">Q-05</a> (answered), <a href="../../traceability/open-questions/#q-13">Q-13</a> (open), <a href="../../traceability/open-questions/#q-42">Q-42</a> (open), <a href="../../traceability/open-questions/#q-43">Q-43</a> (partly answered), <a href="../../traceability/open-questions/#q-44">Q-44</a> (partly answered), <a href="../../traceability/open-questions/#q-45">Q-45</a> (open), <a href="../../traceability/open-questions/#q-46">Q-46</a> (open), <a href="../../traceability/open-questions/#q-47">Q-47</a> (open), <a href="../../traceability/open-questions/#q-48">Q-48</a> (open), <a href="../../traceability/open-questions/#q-49">Q-49</a> (open), <a href="../../traceability/open-questions/#q-51">Q-51</a> (open), <a href="../../traceability/open-questions/#q-54">Q-54</a> (open), <a href="../../traceability/open-questions/#q-55">Q-55</a> (open), <a href="../../traceability/open-questions/#q-59">Q-59</a> (open), <a href="../../traceability/open-questions/#q-61">Q-61</a> (open), <a href="../../traceability/open-questions/#q-62">Q-62</a> (open), <a href="../../traceability/open-questions/#q-68">Q-68</a> (open), <a href="../../traceability/open-questions/#q-69">Q-69</a> (open), <a href="../../traceability/open-questions/#q-73">Q-73</a> (open), <a href="../../traceability/open-questions/#q-76">Q-76</a> (open), <a href="../../traceability/open-questions/#q-77">Q-77</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-01a">SL-01a</a> (done), <a href="../../traceability/increments/#sl-01b">SL-01b</a> (blocked), <a href="../../traceability/increments/#sl-11">SL-11</a> (done), <a href="../../traceability/increments/#sl-47">SL-47</a> (done), <a href="../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

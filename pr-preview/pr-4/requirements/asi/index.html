@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1298,7 +1298,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4809,18 +4809,18 @@
 
 
 <h1 id="authentic-source-interface-requirements">Authentic Source Interface requirements<a class="headerlink" href="#authentic-source-interface-requirements" title="Permanent link">&para;</a></h1>
-<p>In the Authentic Source Interface (ASI) route, a qualified trust service
-provider (QTSP) verifies or retrieves attributes of a citizen at an
-authentic source. The QTSP does this at the request of that citizen. eIDAS
-<a href="https://eur-lex.europa.eu/eli/reg/2014/910/oj">article 45e</a> gives the QTSP this right. The Authentic Source
-Interface Provider (ASIP) offers the interface. Its authorization server
+<p>In the Authentic Source Interface (<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>) route, a qualified trust service
+provider (<abbr title="Qualified Trust Service Provider">QTSP</abbr>) verifies or retrieves attributes of a citizen at an
+authentic source. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> does this at the request of that citizen. eIDAS
+<a href="https://eur-lex.europa.eu/eli/reg/2014/910/oj">article 45e</a> gives the <abbr title="Qualified Trust Service Provider">QTSP</abbr> this right. The Authentic Source
+Interface Provider (<abbr title="Authentic Source Interface Provider">ASIP</abbr>) offers the interface. Its authorization server
 admits QTSPs and lets the citizen approve each request.</p>
 <p>The interface follows <a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> V1.1.1, clause 6.1.
 Article 9 of Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj">2025/1569</a> and Annex IV
 of Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj">2026/1735</a> make clause 6.1.1 the
 legal interface for verification. Annex IV and the seal obligation of
 article 9(4) apply from January 1, 2027.</p>
-<p>The requirements on the ASIP and its authorization server cover these
+<p>The requirements on the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and its authorization server cover these
 topics:</p>
 <ul>
 <li>the verify and retrieve interface</li>
@@ -4828,7 +4828,7 @@ topics:</p>
 <li>the authorization server</li>
 <li>the admission of QTSPs</li>
 <li>the request page with citizen identification</li>
-<li>the chain behind the ASIP, with one data service per source</li>
+<li>the chain behind the <abbr title="Authentic Source Interface Provider">ASIP</abbr>, with one data service per source</li>
 <li>discovery</li>
 </ul>
 <p><a href="../../traceability/findings/#f-80">F-80</a> describes the legal frame. <a href="../../traceability/findings/#f-84">F-84</a> to <a href="../../traceability/findings/#f-89">F-89</a>
@@ -4837,33 +4837,33 @@ describe the open design choices.</p>
 shows the code of demo v0.9.0. A link at commit <code>819f3eb</code> shows the code
 at the time of the review of the requirement. Use that link as historical
 evidence, because the file changed or moved after that commit.</p>
-<h2 id="asi-profile">GBO profile on ETSI TS 119 478<a class="headerlink" href="#asi-profile" title="Permanent link">&para;</a></h2>
-<p>The specification for a Dutch ASIP is ETSI TS 119 478 V1.1.1, as Annex IV
+<h2 id="asi-profile"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> profile on ETSI TS 119 478<a class="headerlink" href="#asi-profile" title="Permanent link">&para;</a></h2>
+<p>The specification for a Dutch <abbr title="Authentic Source Interface Provider">ASIP</abbr> is ETSI TS 119 478 V1.1.1, as Annex IV
 of Implementing Regulation (EU) 2026/1735 adapts it (Implementing
 Regulation 2025/1569, article 9(2a)). The profile does not repeat that
 text. For each clause, the profile records two things:</p>
 <ul>
-<li>what GBO chooses, adds, or interprets on top of ETSI</li>
+<li>what <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> chooses, adds, or interprets on top of ETSI</li>
 <li>where that choice is recorded: in a requirement on this page, an open
   question, or a finding</li>
 </ul>
 <p>A requirement that the profile does not name follows ETSI unchanged.</p>
-<p>The profile is for the build of the ASIP and its authorization server.
-That build does not reuse the code of the demo ASIP. The content for each
+<p>The profile is for the build of the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and its authorization server.
+That build does not reuse the code of the demo <abbr title="Authentic Source Interface Provider">ASIP</abbr>. The content for each
 requirement comes from two documents of the demo: the conformance matrix
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/conformance/etsi-ts-119478.yaml"><code>etsi-ts-119478.yaml</code></a>) and the
-documentation of the ASI route (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/asi-route.md"><code>asi-route.md</code></a>).
+documentation of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/asi-route.md"><code>asi-route.md</code></a>).
 If nobody decided on a choice of the demo, the profile records it as an
 open question and does not make it a requirement.</p>
 <ul>
-<li><strong>Source</strong>: design. The source is the line on ETSI TS 119 478 in
-  "Afspraken en standaarden" of <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. The profile fills the open
-  point "PubEAA-/ASI-profielen" from the summary of S11. Matters about the
-  ASI provider and its conditions belong to PSA open decision
+<li><strong>Source</strong>: design. The source is the line on ETSI TS 119 478 in the
+  section on agreements and standards ("Afspraken en standaarden") of <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. The profile fills the open
+  point on <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> profiles ("PubEAA-/<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>-profielen") from the summary of S11. Matters about the
+  <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider and its conditions belong to PSA open decision
   <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-14</a>.</li>
 </ul>
 <h3 id="categories">Categories<a class="headerlink" href="#categories" title="Permanent link">&para;</a></h3>
-<p>The profile puts each GBO choice in one of eight categories:</p>
+<p>The profile puts each <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> choice in one of eight categories:</p>
 <table>
 <thead>
 <tr>
@@ -4878,15 +4878,15 @@ open question and does not make it a requirement.</p>
 </tr>
 <tr>
 <td><strong>N</strong></td>
-<td>not applicable because of a GBO choice</td>
+<td>not applicable because of a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> choice</td>
 </tr>
 <tr>
 <td><strong>R</strong></td>
-<td>requirements on a role outside the ASIP and its authorization server (DIP, TSP)</td>
+<td>requirements on a role outside the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and its authorization server (<abbr title="Discover Interface Provider">DIP</abbr>, TSP)</td>
 </tr>
 <tr>
 <td><strong>A</strong></td>
-<td>an addition: GBO requires something that ETSI does not specify</td>
+<td>an addition: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> requires something that ETSI does not specify</td>
 </tr>
 <tr>
 <td><strong>I</strong></td>
@@ -4908,58 +4908,58 @@ open question and does not make it a requirement.</p>
 </table>
 <h3 id="per-clause">Per clause<a class="headerlink" href="#per-clause" title="Permanent link">&para;</a></h3>
 <p>For each ETSI clause, the profile gives the ETSI requirements, the
-category, the GBO choice, and where the choice is recorded:</p>
+category, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> choice, and where the choice is recorded:</p>
 <table>
 <thead>
 <tr>
 <th>Clause</th>
 <th>ETSI requirements</th>
 <th>Cat.</th>
-<th>GBO choice</th>
+<th><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> choice</th>
 <th>Recorded in</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>4.3</td>
-<td>REQ-ASIP-4.3-04</td>
+<td>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-4.3-04</td>
 <td><strong>K</strong></td>
 <td>only the interface of clause 6.1 (HTTP, OAuth)</td>
 <td><a href="#req-112">REQ-112</a>, <a href="../../traceability/open-questions/#q-64">Q-64</a></td>
 </tr>
 <tr>
 <td>4.4, 6.2, Annex C</td>
-<td>REQ-AZP-4.4-02, REQ-ASIP-6.2.*, REQ-ASIP-C-01</td>
+<td>REQ-AZP-4.4-02, REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.2.*, REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-C-01</td>
 <td><strong>N</strong></td>
 <td>follows from REQ-112</td>
 <td><a href="#req-112">REQ-112</a></td>
 </tr>
 <tr>
 <td>4.3</td>
-<td>REQ-ASIP-4.3-03</td>
+<td>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-4.3-03</td>
 <td><strong>X</strong></td>
-<td>a legitimate user and an entitled QTSP depend on the identification means and the register of relying parties</td>
+<td>a legitimate user and an entitled <abbr title="Qualified Trust Service Provider">QTSP</abbr> depend on the identification means and the register of relying parties</td>
 <td><a href="#req-88">REQ-88</a>, <a href="#req-102">REQ-102</a>, <a href="../../traceability/open-questions/#q-36">Q-36</a></td>
 </tr>
 <tr>
 <td>4.2</td>
 <td>—</td>
 <td><strong>A</strong></td>
-<td>the ASIP queries the source through the chain, with one query per request, and the source judges that query</td>
+<td>the <abbr title="Authentic Source Interface Provider">ASIP</abbr> queries the source through the chain, with one query per request, and the source judges that query</td>
 <td><a href="#req-92">REQ-92</a>, <a href="../../traceability/open-questions/#q-38">Q-38</a></td>
 </tr>
 <tr>
 <td>5</td>
-<td>REQ-DIP-*, REQ-TSP-5.4-*</td>
+<td>REQ-<abbr title="Discover Interface Provider">DIP</abbr>-*, REQ-TSP-5.4-*</td>
 <td><strong>R</strong></td>
-<td>these requirements are for the common OOTS services of the Commission. How Dutch data services get there is open.</td>
+<td>these requirements are for the common <abbr title="Once-Only Technical System">OOTS</abbr> services of the Commission. How Dutch data services get there is open.</td>
 <td><a href="../../traceability/open-questions/#q-67">Q-67</a></td>
 </tr>
 <tr>
 <td>5.3</td>
 <td>—</td>
 <td><strong>A</strong></td>
-<td>the ASIP publishes a <code>dataService</code> record for each attribute and data service</td>
+<td>the <abbr title="Authentic Source Interface Provider">ASIP</abbr> publishes a <code>dataService</code> record for each attribute and data service</td>
 <td><a href="#req-99">REQ-99</a></td>
 </tr>
 <tr>
@@ -4971,63 +4971,63 @@ category, the GBO choice, and where the choice is recorded:</p>
 </tr>
 <tr>
 <td>6.1.1.1</td>
-<td>REQ-ASIP-6.1.1.1-06-01, -06-02-01</td>
+<td>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-06-01, -06-02-01</td>
 <td><strong>X</strong></td>
 <td>attribute IDs and value schemas come from the EU catalogue of attributes. Until that catalogue exists, the source describes them.</td>
 <td><a href="../../traceability/open-questions/#q-38">Q-38</a></td>
 </tr>
 <tr>
 <td>6.1.1.1</td>
-<td>REQ-ASIP-6.1.1.1-09</td>
+<td>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-09</td>
 <td><strong>K</strong></td>
-<td>the ASIP supports attribute fragments</td>
+<td>the <abbr title="Authentic Source Interface Provider">ASIP</abbr> supports attribute fragments</td>
 <td><a href="#req-115">REQ-115</a></td>
 </tr>
 <tr>
 <td>6.1.1.1</td>
-<td>REQ-ASIP-6.1.1.1-10</td>
+<td>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-10</td>
 <td><strong>K</strong></td>
 <td>fuzzy matching only on text values, with published rules</td>
 <td><a href="#req-113">REQ-113</a>, <a href="../../traceability/open-questions/#q-70">Q-70</a></td>
 </tr>
 <tr>
 <td>6.1.1.1</td>
-<td>REQ-ASIP-6.1.1.1-10-01</td>
+<td>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-10-01</td>
 <td><strong>I</strong></td>
 <td>conflicts with Annex IV, which makes the value optional</td>
 <td><a href="#req-85">REQ-85</a>, <a href="../../traceability/open-questions/#q-29">Q-29</a>, <a href="../../traceability/standards-feedback/#e2">E2</a></td>
 </tr>
 <tr>
 <td>6.1.1, 6.1.2</td>
-<td>REQ-ASIP-6.1.1.1-11 to -13, -6.1.1.2-10, -11, -6.1.2.1-04, -6.1.2.2-05, -05-01</td>
+<td>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-11 to -13, -6.1.1.2-10, -11, -6.1.2.1-04, -6.1.2.2-05, -05-01</td>
 <td><strong>K</strong></td>
 <td>a request on behalf of another person (<code>mandate</code>) gets 501</td>
 <td><a href="#req-114">REQ-114</a>, <a href="../../traceability/open-questions/#q-65">Q-65</a></td>
 </tr>
 <tr>
 <td>6.1.1.2</td>
-<td>REQ-ASIP-6.1.1.2-04</td>
+<td>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.2-04</td>
 <td><strong>I</strong></td>
 <td><code>Unknown</code> means that the source has no value, or no complete value. ETSI takes precedence over the ARF.</td>
 <td><a href="#req-84">REQ-84</a></td>
 </tr>
 <tr>
 <td>6.1.1.2</td>
-<td>REQ-ASIP-6.1.1.2-04-01 to -03, -06-03, -06-04-*</td>
+<td>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.2-04-01 to -03, -06-03, -06-04-*</td>
 <td><strong>K</strong></td>
 <td>no value in the response</td>
 <td><a href="#req-85">REQ-85</a>, <a href="../../traceability/open-questions/#q-29">Q-29</a></td>
 </tr>
 <tr>
 <td>6.1.1.2</td>
-<td>REQ-ASIP-6.1.1.2-08, -6.1.2.2-04</td>
+<td>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.2-08, -6.1.2.2-04</td>
 <td><strong>I</strong></td>
 <td>one authentic source per response, so one data service per source</td>
 <td><a href="#req-94">REQ-94</a>, <a href="../../traceability/findings/#f-89">F-89</a></td>
 </tr>
 <tr>
 <td>6.1.2.2</td>
-<td>REQ-ASIP-6.1.2.2-02-01</td>
+<td>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.2.2-02-01</td>
 <td><strong>I</strong></td>
 <td>a retrieve without a value in the source gets 404 and no partial result</td>
 <td><a href="#req-101">REQ-101</a></td>
@@ -5050,28 +5050,28 @@ category, the GBO choice, and where the choice is recorded:</p>
 <td>6.1</td>
 <td>—</td>
 <td><strong>A + X</strong></td>
-<td>the ASIP seals every successful response (Implementing Regulation 2025/1569, article 9(4)). The format is open. The qualified seal certificate is external.</td>
+<td>the <abbr title="Authentic Source Interface Provider">ASIP</abbr> seals every successful response (Implementing Regulation 2025/1569, article 9(4)). The format is open. The qualified seal certificate is external.</td>
 <td><a href="#req-83">REQ-83</a>, <a href="../../traceability/open-questions/#q-32">Q-32</a>, <a href="../../traceability/open-questions/#q-17">Q-17</a></td>
 </tr>
 <tr>
 <td>6.1.3.1</td>
-<td>REQ-AZSP-6.1.3.1-02, -03</td>
+<td>REQ-<abbr title="The ASI authorization server">AZSP</abbr>-6.1.3.1-02, -03</td>
 <td><strong>X</strong></td>
 <td>identification with the EUDI wallet. Other means are open.</td>
 <td><a href="#req-90">REQ-90</a>, <a href="#req-102">REQ-102</a>, <a href="../../traceability/open-questions/#q-36">Q-36</a></td>
 </tr>
 <tr>
 <td>6.1.3.1</td>
-<td>REQ-AZSP-6.1.3.1-05, -06</td>
+<td>REQ-<abbr title="The ASI authorization server">AZSP</abbr>-6.1.3.1-05, -06</td>
 <td><strong>open</strong></td>
-<td>client authentication (mTLS, or <code>private_key_jwt</code>, or both) and token binding (mTLS or DPoP)</td>
+<td>client authentication (mTLS, or <code>private_key_jwt</code>, or both) and token binding (mTLS or <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr>)</td>
 <td><a href="../../traceability/open-questions/#q-66">Q-66</a>, <a href="../../traceability/findings/#f-84">F-84</a></td>
 </tr>
 <tr>
 <td>6.1.3.1</td>
-<td>REQ-AZSP-6.1.3.1-08</td>
+<td>REQ-<abbr title="The ASI authorization server">AZSP</abbr>-6.1.3.1-08</td>
 <td><strong>I</strong></td>
-<td>the identification data in the token. The NL PID has no place of birth.</td>
+<td>the identification data in the token. The NL <abbr title="Person Identification Data">PID</abbr> has no place of birth.</td>
 <td><a href="#req-86">REQ-86</a>, <a href="../../traceability/findings/#f-86">F-86</a>, <a href="../../traceability/findings/#f-94">F-94</a></td>
 </tr>
 <tr>
@@ -5092,14 +5092,14 @@ category, the GBO choice, and where the choice is recorded:</p>
 <td>6.1.3.1</td>
 <td>—</td>
 <td><strong>A</strong></td>
-<td>the citizen sees the QTSP, the source, and the operation before he logs in</td>
+<td>the citizen sees the <abbr title="Qualified Trust Service Provider">QTSP</abbr>, the source, and the operation before he logs in</td>
 <td><a href="#req-90">REQ-90</a>, <a href="#req-91">REQ-91</a> (absorbs the former REQ-96)</td>
 </tr>
 <tr>
 <td>6.1.3.2</td>
-<td>REQ-AZSP-6.1.3.2-01, -02</td>
+<td>REQ-<abbr title="The ASI authorization server">AZSP</abbr>-6.1.3.2-01, -02</td>
 <td><strong>A + X</strong></td>
-<td>registration with a software statement of the QTSP. The entitlement is in the register. Access certificates are external.</td>
+<td>registration with a software statement of the <abbr title="Qualified Trust Service Provider">QTSP</abbr>. The entitlement is in the register. Access certificates are external.</td>
 <td><a href="#req-88">REQ-88</a>, <a href="../../traceability/findings/#f-85">F-85</a></td>
 </tr>
 <tr>
@@ -5111,14 +5111,14 @@ category, the GBO choice, and where the choice is recorded:</p>
 </tr>
 <tr>
 <td>6.1.3.4</td>
-<td>REQ-AZSP-6.1.3.4-01</td>
+<td>REQ-<abbr title="The ASI authorization server">AZSP</abbr>-6.1.3.4-01</td>
 <td><strong>I + open</strong></td>
-<td>GBO weighs each security consideration. The security profile, <code>iss</code>, and tokens after withdrawal are open.</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> weighs each security consideration. The security profile, <code>iss</code>, and tokens after withdrawal are open.</td>
 <td><a href="../../traceability/open-questions/#q-66">Q-66</a>, <a href="../../traceability/findings/#f-96">F-96</a>, <a href="../../traceability/open-questions/#q-41">Q-41</a></td>
 </tr>
 <tr>
 <td>6.1.3.4</td>
-<td>REQ-AZSP-6.1.3.4-02</td>
+<td>REQ-<abbr title="The ASI authorization server">AZSP</abbr>-6.1.3.4-02</td>
 <td><strong>O</strong></td>
 <td>follows ETSI (an ISMS) and applies to the operator. Who the operator is stays open.</td>
 <td><a href="../../traceability/open-questions/#q-37">Q-37</a></td>
@@ -5127,14 +5127,14 @@ category, the GBO choice, and where the choice is recorded:</p>
 <td>6.1.3</td>
 <td>REQ-TSP-6.1.3.*</td>
 <td><strong>R</strong></td>
-<td>requirements on the QTSP</td>
+<td>requirements on the <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td>—</td>
 </tr>
 <tr>
 <td>—</td>
 <td>—</td>
 <td><strong>R</strong></td>
-<td>the QTSP identifies the citizen itself, and issues only to that citizen. This is a duty of the QTSP under ETSI and eIDAS. GBO only checks that the QTSP is on the trusted list as qualified.</td>
+<td>the <abbr title="Qualified Trust Service Provider">QTSP</abbr> identifies the citizen itself, and issues only to that citizen. This is a duty of the <abbr title="Qualified Trust Service Provider">QTSP</abbr> under ETSI and eIDAS. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> only checks that the <abbr title="Qualified Trust Service Provider">QTSP</abbr> is on the trusted list as qualified.</td>
 <td><a href="#req-88">REQ-88</a></td>
 </tr>
 </tbody>
@@ -5142,23 +5142,23 @@ category, the GBO choice, and where the choice is recorded:</p>
 <h3 id="external-dependencies">External dependencies<a class="headerlink" href="#external-dependencies" title="Permanent link">&para;</a></h3>
 <p>Some parts are a stub in the demo. For the build, each of these parts is
 a facility that must come from outside. They are not requirements on the
-ASIP. The profile needs these external facilities to apply in full:</p>
+<abbr title="Authentic Source Interface Provider">ASIP</abbr>. The profile needs these external facilities to apply in full:</p>
 <ul>
 <li>the register of relying parties, and the API to look up the entitlement
-  of a QTSP (<a href="../../traceability/findings/#f-85">F-85</a>)</li>
+  of a <abbr title="Qualified Trust Service Provider">QTSP</abbr> (<a href="../../traceability/findings/#f-85">F-85</a>)</li>
 <li>access certificates for QTSPs according to ETSI TS 119 411-8
   (<a href="../../traceability/open-questions/#q-35">Q-35</a>)</li>
-<li>a qualified seal certificate for the ASIP (<a href="../../traceability/open-questions/#q-17">Q-17</a>)</li>
+<li>a qualified seal certificate for the <abbr title="Authentic Source Interface Provider">ASIP</abbr> (<a href="../../traceability/open-questions/#q-17">Q-17</a>)</li>
 <li>DigiD or another identification means next to the EUDI wallet
   (<a href="../../traceability/open-questions/#q-36">Q-36</a>)</li>
 <li>the EU catalogue of attributes, with IDs and value schemas
   (<a href="../../traceability/open-questions/#q-38">Q-38</a>)</li>
 </ul>
-<h2 id="req-83">REQ-83: Every ASIP verification result is sealed<a class="headerlink" href="#req-83" title="Permanent link">&para;</a></h2>
+<h2 id="req-83">REQ-83: Every <abbr title="Authentic Source Interface Provider">ASIP</abbr> verification result is sealed<a class="headerlink" href="#req-83" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>The ASIP MUST seal every successful response to verify and to retrieve. With
-only the received response and the trusted lists, the QTSP can then
-establish that the response comes unchanged from this ASIP. The seal MUST
+<p>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST seal every successful response to verify and to retrieve. With
+only the received response and the trusted lists, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> can then
+establish that the response comes unchanged from this <abbr title="Authentic Source Interface Provider">ASIP</abbr>. The seal MUST
 cover the response exactly and carry the certificate chain. The seal MUST
 be at least an advanced electronic seal. This seal MUST be based on a
 qualified seal certificate of the responsible public sector body or of
@@ -5199,16 +5199,17 @@ the designated intermediary.</p>
   <a href="https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj">2026/1735</a> replaces it from January 1, 2027 ("the
   verification result shall be signed or sealed … using at least … an
   advanced electronic seal based on a qualified certificate").</li>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("ETSI-profielen voor gekwalificeerde zegels").</li>
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>, on ETSI profiles for qualified seals
+  ("ETSI-profielen voor gekwalificeerde zegels").</li>
 <li>For retrieve, the requirement serves
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. A QTSP can put a retrieved value in a
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. A <abbr title="Qualified Trust Service Provider">QTSP</abbr> can put a retrieved value in a
   qualified attestation. It must then show in the same way that the
   value comes from the source.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the ASIP. Interface agreement:
-  the form of the seal, for every ASIP.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/498">ICTU/GBO-demo#498</a>, <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a>. Code and tests:<ul>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. Interface agreement:
+  the form of the seal, for every <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/498">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#498</a>, <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a>. Code and tests:<ul>
 <li>The seal is in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/seal/seal.go#L18-L57"><code>seal.go#L18-L57</code></a>.</li>
 <li>Only a successful response gets the seal, in
   <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/httpapi/handler.go#L393-L408"><code>handler.go#L393-L408</code></a>.
@@ -5244,7 +5245,7 @@ the designated intermediary.</p>
 <h2 id="req-84">REQ-84: <code>Unknown</code> only means the source has no (complete) value<a class="headerlink" href="#req-84" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>If the source has no value, or no complete value, for this citizen, the
-ASIP MUST answer an attribute or fragment with <code>Unknown</code>. It MUST NOT
+<abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST answer an attribute or fragment with <code>Unknown</code>. It MUST NOT
 give <code>NoMatch</code> in that case. An attribute that the data service does not
 deliver MUST get 404 (<a href="#req-94">REQ-94</a>) and MUST NOT get <code>Unknown</code>. A
 source that does not answer MUST NOT get <code>Unknown</code> either (<a href="#req-93">REQ-93</a>).</p>
@@ -5266,7 +5267,7 @@ source that does not answer MUST NOT get <code>Unknown</code> either (<a href="#
 <td><code>NoMatch</code> (code)</td>
 </tr>
 <tr>
-<td>The source does not know the BSN</td>
+<td>The source does not know the <abbr title="Burgerservicenummer">BSN</abbr></td>
 <td><code>Unknown</code> (code)</td>
 </tr>
 <tr>
@@ -5279,7 +5280,7 @@ source that does not answer MUST NOT get <code>Unknown</code> either (<a href="#
 </tr>
 <tr>
 <td>An attribute that this data service does not deliver</td>
-<td>404, and the ASIP does not ask the source (code)</td>
+<td>404, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not ask the source (code)</td>
 </tr>
 <tr>
 <td>The source is unreachable, or the chain refuses</td>
@@ -5295,20 +5296,20 @@ source that does not answer MUST NOT get <code>Unknown</code> either (<a href="#
 <ul>
 <li>
 <ul>
-<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-ASIP-6.1.1.2-04, item 4 ("no authentic
+<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.2-04, item 4 ("no authentic
   source data was available to determine a match for the attribute
   for the user").</li>
 <li>Annex IV of Implementing Regulation (EU)
   <a href="https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj">2026/1735</a>, which designates clause 6.1.1.</li>
 </ul>
 <p><strong>Source</strong>: design:</p>
-<p>The ARF (QTSPAS_02) calls this case <code>no match</code>. GBO follows ETSI,
-because the regulation designates ETSI and the ARF does not bind. GBO
+<p>The ARF (QTSPAS_02) calls this case <code>no match</code>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> follows ETSI,
+because the regulation designates ETSI and the ARF does not bind. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 interprets an incomplete value as no value.</p>
 </li>
 <li>
-<p><strong>Addressee</strong>: interface agreement: every ASIP. GBO-delivered component:
-  the ASIP and its source connection.</p>
+<p><strong>Addressee</strong>: interface agreement: every <abbr title="Authentic Source Interface Provider">ASIP</abbr>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component:
+  the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and its source connection.</p>
 </li>
 <li>
 <ul>
@@ -5328,9 +5329,9 @@ interprets an incomplete value as no value.</p>
 </ul>
 <p><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a>, <a href="https://github.com/ICTU/GBO-demo/pull/527">PR #527</a>, <a href="https://github.com/ICTU/GBO-demo/pull/529">PR #529</a>.
   Historical code and tests:</p>
-<p>Code at v0.9.0: steps 1 to 5 of <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/GBO-demo#592</a> removed the
+<p>Code at v0.9.0: steps 1 to 5 of <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#592</a> removed the
 BRP code adapter (<a href="https://github.com/ICTU/GBO-demo/pull/611">PR #611</a>, <a href="https://github.com/ICTU/GBO-demo/pull/613">PR #613</a>, <a href="https://github.com/ICTU/GBO-demo/pull/620">PR #620</a>,
-<a href="https://github.com/ICTU/GBO-demo/pull/622">PR #622</a>, <a href="https://github.com/ICTU/GBO-demo/pull/623">PR #623</a>, <a href="https://github.com/ICTU/GBO-demo/pull/624">PR #624</a>). The ASIP builds
+<a href="https://github.com/ICTU/GBO-demo/pull/622">PR #622</a>, <a href="https://github.com/ICTU/GBO-demo/pull/623">PR #623</a>, <a href="https://github.com/ICTU/GBO-demo/pull/624">PR #624</a>). The <abbr title="Authentic Source Interface Provider">ASIP</abbr> builds
 each attribute from the <code>asi</code> description that the source publishes.
 An attribute without a value gets <code>Unknown</code> in
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/verification/service.go#L166-L179"><code>service.go#L166-L179</code></a>. An
@@ -5344,7 +5345,7 @@ attribute that the description does not name gets 404 in
 </li>
 <li><strong>Notes</strong>: the value schema of the attribute defines what a complete
   value is. Until the EU catalogue of attributes exists, the source
-  describes it (<a href="../../traceability/open-questions/#q-38">Q-38</a>, <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/GBO-demo#592</a>). <code>Unknown</code>
+  describes it (<a href="../../traceability/open-questions/#q-38">Q-38</a>, <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#592</a>). <code>Unknown</code>
   also tells something about the person, for example that he has no Dutch
   residential address. The citizen approved the request himself
   (<a href="#req-90">REQ-90</a>).</li>
@@ -5352,8 +5353,8 @@ attribute that the description does not name gets 404 in
 </details>
 <h2 id="req-85">REQ-85: The verify response contains no value from the source<a class="headerlink" href="#req-85" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>On <code>Match</code> and <code>MatchWithVariation</code>, the ASIP MUST NOT return an
-<code>attributeValue</code>, and for fragments no <code>fragmentValue</code>. The QTSP only
+<p>On <code>Match</code> and <code>MatchWithVariation</code>, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST NOT return an
+<code>attributeValue</code>, and for fragments no <code>fragmentValue</code>. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> only
 learns whether its value is correct.</p>
 </blockquote>
 <ul>
@@ -5365,17 +5366,17 @@ learns whether its value is correct.</p>
 <li><strong>Source</strong>: derived. The requirement serves
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>
   (minimal data processing). If the response carries the value on
-  <code>MatchWithVariation</code>, the QTSP learns the value from the source. The
-  QTSP does not need that value for the verification. The legal frame is
+  <code>MatchWithVariation</code>, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> learns the value from the source. The
+  <abbr title="Qualified Trust Service Provider">QTSP</abbr> does not need that value for the verification. The legal frame is
   as follows:<ul>
 <li>Annex IV of Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj">2026/1735</a> makes the
-  value optional (REQ-ASIP-6.1.1.2-04-01 and -06-04-01).</li>
+  value optional (REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.2-04-01 and -06-04-01).</li>
 <li>Unchanged <a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> requires the value.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: interface agreement: every ASIP. GBO-delivered component:
-  the ASIP.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/498">ICTU/GBO-demo#498</a>, <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a>. Code and tests:<ul>
+<li><strong>Addressee</strong>: interface agreement: every <abbr title="Authentic Source Interface Provider">ASIP</abbr>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component:
+  the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/498">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#498</a>, <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a>. Code and tests:<ul>
 <li>The response has no value field
   (<a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/httpapi/handler.go#L177-L192"><code>handler.go#L177-L192</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/verification/service.go#L100-L103"><code>service.go#L100-L103</code></a>).</li>
@@ -5390,14 +5391,14 @@ learns whether its value is correct.</p>
 <li><strong>Related</strong>: <a href="#req-113">REQ-113</a>, <a href="../../traceability/findings/#f-80">F-80</a>, <a href="../../traceability/findings/#f-92">F-92</a>,
   <a href="../../traceability/open-questions/#q-29">Q-29</a>.</li>
 <li><strong>Notes</strong>: sub-questions 2 and 3 of <a href="../../traceability/open-questions/#q-29">Q-29</a> are open.<ul>
-<li>REQ-ASIP-6.1.1.1-10-01 still requires the source value from an ASIP
+<li>REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-10-01 still requires the source value from an <abbr title="Authentic Source Interface Provider">ASIP</abbr>
   that supports fuzzy matching. Annex IV does not adapt that
   requirement.</li>
-<li>Read literally, the ASIP does not meet REQ-ASIP-6.1.1.1-10-01
+<li>Read literally, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not meet REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-10-01
   (<a href="../../traceability/standards-feedback/#e2">E2</a>). The conformance matrix marks the row <code>failing</code>.</li>
-<li>On <code>Match</code>, the value is equal to the value of the QTSP. Only on
+<li>On <code>Match</code>, the value is equal to the value of the <abbr title="Qualified Trust Service Provider">QTSP</abbr>. Only on
   <code>MatchWithVariation</code> does the omission of the value share less data.
-  For that reason, on <code>MatchWithVariation</code> the QTSP records its own
+  For that reason, on <code>MatchWithVariation</code> the <abbr title="Qualified Trust Service Provider">QTSP</abbr> records its own
   value.</li>
 </ul>
 </li>
@@ -5406,16 +5407,16 @@ learns whether its value is correct.</p>
 <h2 id="req-86">REQ-86: The access token carries the citizen's identification data and the means used to identify him<a class="headerlink" href="#req-86" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>The authorization server MUST issue access tokens as a JWT according to
-RFC 9068. Each token MUST be bound to a key of the QTSP and MUST carry
+RFC 9068. Each token MUST be bound to a key of the <abbr title="Qualified Trust Service Provider">QTSP</abbr> and MUST carry
 the scope for each operation (<code>verify</code>, <code>retrieve</code>). The token MUST
 carry the identification data of the citizen as the identification means
-delivers them. It MUST always carry the BSN. Of the mandatory PID
+delivers them. It MUST always carry the <abbr title="Burgerservicenummer">BSN</abbr>. Of the mandatory <abbr title="Person Identification Data">PID</abbr>
 attributes, it MUST carry only those that the means delivers.</p>
 <p>The token MUST name the means in <code>acr</code> and <code>amr</code>. The authorization
 server MUST establish that means itself, and MUST NOT copy what the
-means declares. An identification without a BSN MUST NOT lead to a
-token. The BSN in the token MUST be readable only for the ASIP. A QTSP
-without BSN authority that holds the token MUST NOT be able to read it.</p>
+means declares. An identification without a <abbr title="Burgerservicenummer">BSN</abbr> MUST NOT lead to a
+token. The <abbr title="Burgerservicenummer">BSN</abbr> in the token MUST be readable only for the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. A <abbr title="Qualified Trust Service Provider">QTSP</abbr>
+without <abbr title="Burgerservicenummer">BSN</abbr> authority that holds the token MUST NOT be able to read it.</p>
 </blockquote>
 <table>
 <thead>
@@ -5427,18 +5428,18 @@ without BSN authority that holds the token MUST NOT be able to read it.</p>
 <tbody>
 <tr>
 <td>Logged in with DigiD (mock)</td>
-<td>the BSN, with <code>acr</code> and <code>amr</code> set to <code>digid-mock</code>, and no PID attributes (code)</td>
+<td>the <abbr title="Burgerservicenummer">BSN</abbr>, with <code>acr</code> and <code>amr</code> set to <code>digid-mock</code>, and no <abbr title="Person Identification Data">PID</abbr> attributes (code)</td>
 </tr>
 <tr>
-<td>A QTSP without BSN authority reads the token</td>
-<td>no readable BSN. <em>This is a proposal. In the demo, the BSN in the token is readable.</em></td>
+<td>A <abbr title="Qualified Trust Service Provider">QTSP</abbr> without <abbr title="Burgerservicenummer">BSN</abbr> authority reads the token</td>
+<td>no readable <abbr title="Burgerservicenummer">BSN</abbr>. <em>This is a proposal. In the demo, the <abbr title="Burgerservicenummer">BSN</abbr> in the token is readable.</em></td>
 </tr>
 <tr>
 <td>Logged in with the NL Wallet</td>
-<td>the BSN, <code>family_name</code>, <code>given_name</code>, <code>birthdate</code>, and <code>nationalities</code>, with <code>acr</code> and <code>amr</code> set to <code>nl-wallet</code>. No place of birth (<a href="../../traceability/findings/#f-94">F-94</a>) (code).</td>
+<td>the <abbr title="Burgerservicenummer">BSN</abbr>, <code>family_name</code>, <code>given_name</code>, <code>birthdate</code>, and <code>nationalities</code>, with <code>acr</code> and <code>amr</code> set to <code>nl-wallet</code>. No place of birth (<a href="../../traceability/findings/#f-94">F-94</a>) (code).</td>
 </tr>
 <tr>
-<td>The means delivers no BSN</td>
+<td>The means delivers no <abbr title="Burgerservicenummer">BSN</abbr></td>
 <td>no authorization code. The citizen sees the request page again, and the transaction stays (code).</td>
 </tr>
 </tbody>
@@ -5450,7 +5451,7 @@ without BSN authority that holds the token MUST NOT be able to read it.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-AZSP-6.1.3.1-06 (token binding), -08 (JWT
+<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-<abbr title="The ASI authorization server">AZSP</abbr>-6.1.3.1-06 (token binding), -08 (JWT
   according to RFC 9068 "which shall contain the required
   identification data of the user"), and clause 6.1.3.2 (the scopes).</li>
 <li>Article 9(3) of Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj">2025/1569</a> ("the
@@ -5459,33 +5460,34 @@ without BSN authority that holds the token MUST NOT be able to read it.</p>
   article.</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. Implementing Regulation 2026/1735 does not
   designate clause 6.1.3. S11 names TS 119 478 as a whole.</li>
-<li>For a BSN that only the ASIP can read:
+<li>For a <abbr title="Burgerservicenummer">BSN</abbr> that only the <abbr title="Authentic Source Interface Provider">ASIP</abbr> can read:
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">PSA S03</a>
-  ("een private afnemer zonder wettelijke BSN-bevoegdheid ontvangt een
-  partijspecifieke identiteit of pseudoniem") and
-  <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a>.</li>
+  and <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a>.
+  Under S03, a private consumer without a statutory <abbr title="Burgerservicenummer">BSN</abbr> authority
+  gets a party-specific identity or pseudonym ("een private afnemer zonder wettelijke <abbr title="Burgerservicenummer">BSN</abbr>-bevoegdheid ontvangt een
+  partijspecifieke identiteit of pseudoniem").</li>
 <li>For the means in the token, the requirement is derived. It serves
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-05</a>:
-  the ASIP and the audit must see with which means, and so at which
+  the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and the audit must see with which means, and so at which
   level, the citizen was identified.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the authorization server.
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the authorization server.
   Interface agreement: the content of the token between the authorization
-  server and the ASIP.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/605">ICTU/GBO-demo#605</a> is not built in demo v0.9.0. A BSN that
-  only the ASIP can read is not built either:
-  <a href="https://github.com/ICTU/GBO-demo/issues/595">ICTU/GBO-demo#595</a> (open). The built parts come from
-  <a href="https://github.com/ICTU/GBO-demo/issues/503">ICTU/GBO-demo#503</a>, <a href="https://github.com/ICTU/GBO-demo/issues/544">#544</a>,
+  server and the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/605">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#605</a> is not built in demo v0.9.0. A <abbr title="Burgerservicenummer">BSN</abbr> that
+  only the <abbr title="Authentic Source Interface Provider">ASIP</abbr> can read is not built either:
+  <a href="https://github.com/ICTU/GBO-demo/issues/595">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#595</a> (open). The built parts come from
+  <a href="https://github.com/ICTU/GBO-demo/issues/503">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#503</a>, <a href="https://github.com/ICTU/GBO-demo/issues/544">#544</a>,
   <a href="https://github.com/ICTU/GBO-demo/issues/546">#546</a>, <a href="https://github.com/ICTU/GBO-demo/pull/504">PR #504</a>, <a href="https://github.com/ICTU/GBO-demo/pull/524">PR #524</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/545">PR #545</a>, and <a href="https://github.com/ICTU/GBO-demo/pull/552">PR #552</a> (with a run with the real NL
   Wallet). Code and tests:<ul>
 <li>The issuance is in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/tokens.go#L53-L85"><code>tokens.go#L53-L85</code></a>.</li>
-<li>The DPoP binding at the token request is in
+<li>The <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr> binding at the token request is in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/service.go#L326"><code>service.go#L326</code></a>.</li>
 <li>The core establishes the means, and allows no identification without
-  a BSN, in
+  a <abbr title="Burgerservicenummer">BSN</abbr>, in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/identification.go#L45-L51"><code>identification.go#L45-L51</code></a>
   and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/identification.go#L358-L363"><code>#L358-L363</code></a>.</li>
 <li>The tests are in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/httpapi/handler_test.go#L62-L122"><code>handler_test.go#L62-L122</code></a>
@@ -5501,35 +5503,35 @@ without BSN authority that holds the token MUST NOT be able to read it.</p>
   <a href="../../traceability/findings/#f-94">F-94</a>, <a href="../../traceability/open-questions/#q-33">Q-33</a>, <a href="../../traceability/open-questions/#q-36">Q-36</a>, <a href="../../traceability/open-questions/#q-66">Q-66</a>.</li>
 <li>
 <ul>
-<li>The binding is DPoP (RFC 9449) and not mTLS (<a href="../../traceability/open-questions/#q-66">Q-66</a>).</li>
+<li>The binding is <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr> (RFC 9449) and not mTLS (<a href="../../traceability/open-questions/#q-66">Q-66</a>).</li>
 <li>The token has a lifetime of ten minutes.</li>
 <li>The <code>sub</code> differs for each token.</li>
-<li>The PID attributes use the names of the IANA JWT Claims Registry.
-  The SD-JWT VC encoding of the PID also uses these names.</li>
-<li>The BSN has a provisional claim name.</li>
+<li>The <abbr title="Person Identification Data">PID</abbr> attributes use the names of the IANA JWT Claims Registry.
+  The SD-JWT VC encoding of the <abbr title="Person Identification Data">PID</abbr> also uses these names.</li>
+<li>The <abbr title="Burgerservicenummer">BSN</abbr> has a provisional claim name.</li>
 </ul>
 <p><strong>Notes</strong>: design choices:</p>
-<p>GBO interprets -08 so that the token with DigiD carries only the BSN
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> interprets -08 so that the token with DigiD carries only the <abbr title="Burgerservicenummer">BSN</abbr>
 (<a href="../../traceability/findings/#f-88">F-88</a>, <a href="../../traceability/open-questions/#q-36">Q-36</a>). How the claims become readable only for
-the ASIP is a design choice, for example encryption for the ASIP
-(RFC 9068 §6). See <a href="https://github.com/ICTU/GBO-demo/issues/595">ICTU/GBO-demo#595</a> and <a href="../../traceability/findings/#f-86">F-86</a>. With the NL
+the <abbr title="Authentic Source Interface Provider">ASIP</abbr> is a design choice, for example encryption for the <abbr title="Authentic Source Interface Provider">ASIP</abbr>
+(RFC 9068 §6). See <a href="https://github.com/ICTU/GBO-demo/issues/595">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#595</a> and <a href="../../traceability/findings/#f-86">F-86</a>. With the NL
 Wallet, the demo puts <code>place_of_birth</code> as an empty object in the token
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/tokens.go#L73-L78"><code>tokens.go#L73-L78</code></a>).
 The requirement asks to leave it out.</p>
 </li>
 </ul>
 </details>
-<h2 id="req-87">REQ-87: The ASIP takes the citizen only from a valid token bound to the QTSP that covers the operation<a class="headerlink" href="#req-87" title="Permanent link">&para;</a></h2>
+<h2 id="req-87">REQ-87: The <abbr title="Authentic Source Interface Provider">ASIP</abbr> takes the citizen only from a valid token bound to the <abbr title="Qualified Trust Service Provider">QTSP</abbr> that covers the operation<a class="headerlink" href="#req-87" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>On every verify and retrieve request, before any other check, the ASIP
+<p>On every verify and retrieve request, before any other check, the <abbr title="Authentic Source Interface Provider">ASIP</abbr>
 MUST validate the access token according to RFC 9068 §4 (signature with
 a key of the authorization server, issuer, audience, validity). It MUST
-validate the binding to the key of the QTSP with a valid DPoP proof for
+validate the binding to the key of the <abbr title="Qualified Trust Service Provider">QTSP</abbr> with a valid <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr> proof for
 this request according to RFC 9449. It MUST check that the scope covers
 the operation. The identification data of the citizen MUST come from
 that token, never from the request. Every authentication or
 authorization error MUST be 401, with a <code>WWW-Authenticate</code> challenge. If
-the keys of the authorization server are not available, the ASIP MUST
+the keys of the authorization server are not available, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST
 give 503.</p>
 </blockquote>
 <table>
@@ -5545,7 +5547,7 @@ give 503.</p>
 <td>401, challenge without an error code (code)</td>
 </tr>
 <tr>
-<td>Signature, issuer, audience, expiry, or <code>typ</code> is wrong, or the token has no <code>cnf</code> or no BSN</td>
+<td>Signature, issuer, audience, expiry, or <code>typ</code> is wrong, or the token has no <code>cnf</code> or no <abbr title="Burgerservicenummer">BSN</abbr></td>
 <td>401 <code>invalid_token</code> (code)</td>
 </tr>
 <tr>
@@ -5581,24 +5583,26 @@ give 503.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-ASIP-6.1.1.2-12 (401 "due to an
+<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.2-12 (401 "due to an
   authentication or authorization error"). Implementing Regulation
   (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj">2026/1735</a> designates clause 6.1.1.</li>
-<li>ETSI REQ-ASIP-4.3-03 ("access controls … to determine that the
+<li>ETSI REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-4.3-03 ("access controls … to determine that the
   requester is a trust service provider and is acting at the request
   of a legitimate user").</li>
 <li><a href="https://www.rfc-editor.org/rfc/rfc9068">RFC 9068</a> §4, and
   <a href="https://www.rfc-editor.org/rfc/rfc9449">RFC 9449</a> §4.3 and §7.</li>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("uitgifte, verificatie en retrieval gebruiken
-  passende authenticatie, autorisatie en logging").</li>
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. Under S11, issuance, verification, and
+  retrieval use appropriate authentication, authorization, and logging
+  ("uitgifte, verificatie en retrieval gebruiken passende
+  authenticatie, autorisatie en logging").</li>
 <li>For the 503, the requirement is derived. It serves
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>: a 401 blames the QTSP for a failure on
-  the side of the ASIP.</li>
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>: a 401 blames the <abbr title="Qualified Trust Service Provider">QTSP</abbr> for a failure on
+  the side of the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the ASIP. Interface agreement:
-  every ASIP.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/503">ICTU/GBO-demo#503</a>, <a href="https://github.com/ICTU/GBO-demo/pull/504">PR #504</a>. Code and tests:<ul>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. Interface agreement:
+  every <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/503">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#503</a>, <a href="https://github.com/ICTU/GBO-demo/pull/504">PR #504</a>. Code and tests:<ul>
 <li>The check is in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/accesstoken/accesstoken.go#L112-L175"><code>accesstoken.go#L112-L175</code></a>
   and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/accesstoken/dpop.go#L35-L80"><code>dpop.go#L35-L80</code></a>.</li>
 <li>The citizen from the token, the 401, and the 503 are in
@@ -5614,18 +5618,18 @@ give 503.</p>
 </li>
 <li><strong>Related</strong>: <a href="#req-86">REQ-86</a>, <a href="#req-95">REQ-95</a>, <a href="#req-103">REQ-103</a>,
   <a href="../../traceability/findings/#f-84">F-84</a>, <a href="../../traceability/open-questions/#q-41">Q-41</a>, <a href="../../traceability/open-questions/#q-66">Q-66</a>.</li>
-<li><strong>Notes</strong>: GBO interprets ETSI so that <code>insufficient_scope</code> is also 401.
-  RFC 6750 §3.1 gives 403 for this case. The ASIP accepts RS256, because
+<li><strong>Notes</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> interprets ETSI so that <code>insufficient_scope</code> is also 401.
+  RFC 6750 §3.1 gives 403 for this case. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> accepts RS256, because
   RFC 9068 §2.1 requires it. The authorization server signs with ES256.
-  The ASIP gets the keys from the metadata of the authorization server.
-  If the entitlement of a QTSP is withdrawn, its token stays valid until
+  The <abbr title="Authentic Source Interface Provider">ASIP</abbr> gets the keys from the metadata of the authorization server.
+  If the entitlement of a <abbr title="Qualified Trust Service Provider">QTSP</abbr> is withdrawn, its token stays valid until
   it expires (<a href="../../traceability/open-questions/#q-41">Q-41</a>).</li>
 </ul>
 </details>
-<h2 id="req-88">REQ-88: Only a QTSP with the <code>QEAA_Provider</code> right in the register becomes a client<a class="headerlink" href="#req-88" title="Permanent link">&para;</a></h2>
+<h2 id="req-88">REQ-88: Only a <abbr title="Qualified Trust Service Provider">QTSP</abbr> with the <code>QEAA_Provider</code> right in the register becomes a client<a class="headerlink" href="#req-88" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>The authorization server MUST register a client only with a software
-statement that the QTSP signed or sealed with the key of its
+statement that the <abbr title="Qualified Trust Service Provider">QTSP</abbr> signed or sealed with the key of its
 certificate. That certificate MUST have a chain to a trusted anchor. The
 statement refers to an entry in the register of relying parties
 (<code>registryURI</code>). That entry MUST carry the entitlement <code>QEAA_Provider</code>
@@ -5633,7 +5637,7 @@ and MUST name the organization of the certificate.</p>
 <p>After registration, the client MUST be able to authenticate only with
 the key of that certificate. If the register cannot be consulted, the
 authorization server MUST refuse the registration. It MUST register only
-a QTSP that is on the trusted list as a qualified provider, and MUST NOT
+a <abbr title="Qualified Trust Service Provider">QTSP</abbr> that is on the trusted list as a qualified provider, and MUST NOT
 know clients outside this registration.</p>
 </blockquote>
 <table>
@@ -5696,14 +5700,14 @@ know clients outside this registration.</p>
   qualified electronic attestations of attributes.</li>
 <li><a href="https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj">Annex I item 12 of Implementing Regulation (EU) 2025/848</a>,
   which defines the entitlement <code>QEAA_Provider</code>.</li>
-<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-AZSP-6.1.3.2-01, -02, and figure 2
+<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-<abbr title="The ASI authorization server">AZSP</abbr>-6.1.3.2-01, -02, and figure 2
   (informative).</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-07</a>.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the authorization server.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/607">ICTU/GBO-demo#607</a> is not built in demo v0.9.0. The
-  built parts come from <a href="https://github.com/ICTU/GBO-demo/issues/503">ICTU/GBO-demo#503</a> and
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the authorization server.</li>
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/607">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#607</a> is not built in demo v0.9.0. The
+  built parts come from <a href="https://github.com/ICTU/GBO-demo/issues/503">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#503</a> and
   <a href="https://github.com/ICTU/GBO-demo/pull/522">PR #522</a>. Code and tests:<ul>
 <li>Registration and approval are in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/registration.go#L154-L215"><code>registration.go#L154-L215</code></a>.</li>
 <li>The statement and the certificate are in
@@ -5724,8 +5728,8 @@ know clients outside this registration.</p>
   file and certificates of the development CA (<a href="../../traceability/findings/#f-85">F-85</a>).</li>
 <li>Which identifier links the certificate and the entry is
   <a href="../../traceability/open-questions/#q-35">Q-35</a>. The demo uses <code>organizationIdentifier</code>.</li>
-<li>What the QTSP must deliver (REQ-TSP-6.1.3.2-01 to -03) is a
-  requirement on the QTSP. It belongs in a candidate connection
+<li>What the <abbr title="Qualified Trust Service Provider">QTSP</abbr> must deliver (REQ-TSP-6.1.3.2-01 to -03) is a
+  requirement on the <abbr title="Qualified Trust Service Provider">QTSP</abbr>. It belongs in a candidate connection
   condition.</li>
 <li>A client from the configuration file of the demo
   (<code>AZSP_CLIENTS_FILE</code>) bypasses this admission. A production setup
@@ -5779,11 +5783,11 @@ authorizations and no more tokens.</p>
 <li>Article 9(5) of Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj">2025/1569</a>.</li>
 <li>The requirement is also derived. It serves
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-07</a>:
-  a QTSP whose entitlement is withdrawn must not continue to verify
+  a <abbr title="Qualified Trust Service Provider">QTSP</abbr> whose entitlement is withdrawn must not continue to verify
   because it registered earlier.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the authorization server.</li>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the authorization server.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/522">PR #522</a>. Code and tests:<ul>
 <li>The re-check is in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/registration.go#L222-L244"><code>registration.go#L222-L244</code></a>.</li>
@@ -5830,14 +5834,14 @@ stay open for a new attempt or another means.</p>
 <tbody>
 <tr>
 <td>The citizen refuses, before or instead of a login</td>
-<td><code>access_denied</code> to the QTSP, without a login (code)</td>
+<td><code>access_denied</code> to the <abbr title="Qualified Trust Service Provider">QTSP</abbr>, without a login (code)</td>
 </tr>
 <tr>
 <td>The citizen logs in and the means identifies him</td>
-<td>authorization code to the QTSP (code)</td>
+<td>authorization code to the <abbr title="Qualified Trust Service Provider">QTSP</abbr> (code)</td>
 </tr>
 <tr>
-<td>The means does not identify him: DigiD (mock) gets no BSN of nine digits, or the wallet gives no usable PID</td>
+<td>The means does not identify him: DigiD (mock) gets no <abbr title="Burgerservicenummer">BSN</abbr> of nine digits, or the wallet gives no usable <abbr title="Person Identification Data">PID</abbr></td>
 <td>the page again, with the reason. The transaction stays (code).</td>
 </tr>
 <tr>
@@ -5868,7 +5872,7 @@ stay open for a new attempt or another means.</p>
 <li>eIDAS <a href="https://eur-lex.europa.eu/eli/reg/2014/910/oj">article 45e(1)</a> ("at the request of the user").</li>
 <li>Article 9(5) of Implementing Regulation (EU)
   <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj">2025/1569</a> ("acting at the request of a legitimate user").</li>
-<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-AZSP-6.1.3.1-02 ("shall identify the
+<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-<abbr title="The ASI authorization server">AZSP</abbr>-6.1.3.1-02 ("shall identify the
   user"), and clause 6.1.3.3, steps 7 to 11. These steps are
   informative ("the authorization of the later resource request by the
   user").</li>
@@ -5877,8 +5881,8 @@ stay open for a new attempt or another means.</p>
   ETSI refers to RFC 9700.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the authorization server.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/523">ICTU/GBO-demo#523</a>, <a href="https://github.com/ICTU/GBO-demo/issues/544">#544</a>,
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the authorization server.</li>
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/523">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#523</a>, <a href="https://github.com/ICTU/GBO-demo/issues/544">#544</a>,
   <a href="https://github.com/ICTU/GBO-demo/issues/546">#546</a>, <a href="https://github.com/ICTU/GBO-demo/issues/548">#548</a>, <a href="https://github.com/ICTU/GBO-demo/pull/524">PR #524</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/545">PR #545</a>, <a href="https://github.com/ICTU/GBO-demo/pull/552">PR #552</a>, <a href="https://github.com/ICTU/GBO-demo/pull/573">PR #573</a>. Code and tests:<ul>
 <li>The transaction is in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/service.go#L210-L231"><code>service.go#L210-L231</code></a>
@@ -5912,9 +5916,9 @@ stay open for a new attempt or another means.</p>
 <p><strong>Notes</strong>: design choices:</p>
 <p>The choice of a means starts the approval. Approval and identification
 are one step, as in ETSI figure 3 step 9. DigiD (mock) is a stub that
-only checks the form of the BSN. Which means a Dutch ASI accepts is
+only checks the form of the <abbr title="Burgerservicenummer">BSN</abbr>. Which means a Dutch <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> accepts is
 <a href="../../traceability/open-questions/#q-36">Q-36</a>. <a href="../../traceability/open-questions/#q-40">Q-40</a> asks whether the citizen who logs in here is the
-same as the citizen who logged in at the QTSP.</p>
+same as the citizen who logged in at the <abbr title="Qualified Trust Service Provider">QTSP</abbr>.</p>
 </li>
 </ul>
 </details>
@@ -5923,8 +5927,8 @@ same as the citizen who logged in at the QTSP.</p>
 <p>For every authorization, the authorization server MUST show the citizen
 these facts before he logs in:</p>
 <ul>
-<li>The QTSP that makes the request. The page MUST use the name from the
-  entry of the QTSP in the register of relying parties. A technical
+<li>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> that makes the request. The page MUST use the name from the
+  entry of the <abbr title="Qualified Trust Service Provider">QTSP</abbr> in the register of relying parties. A technical
   client identifier alone is not enough.</li>
 <li>The requested operation. This is verify, retrieve, or both.</li>
 <li>The authentic source. The page MUST name the source for which the
@@ -5943,7 +5947,7 @@ name any.</p>
 </thead>
 <tbody>
 <tr>
-<td>Registered QTSP</td>
+<td>Registered <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td>the legal name from the entry. A changed name shows after the next re-check (code).</td>
 </tr>
 <tr>
@@ -5956,7 +5960,7 @@ name any.</p>
 </tr>
 <tr>
 <td>Request with <code>authorization_details</code></td>
-<td>the attributes, and what the QTSP gets to see (code)</td>
+<td>the attributes, and what the <abbr title="Qualified Trust Service Provider">QTSP</abbr> gets to see (code)</td>
 </tr>
 <tr>
 <td>Request without <code>authorization_details</code></td>
@@ -5981,13 +5985,13 @@ name any.</p>
   of the client and the scope of the authorization".</li>
 <li>The requirement is also derived. It serves
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-13</a>:
-  without the name of the QTSP and of the source, the citizen does not
+  without the name of the <abbr title="Qualified Trust Service Provider">QTSP</abbr> and of the source, the citizen does not
   know what he approves. If he does not see the source, a token for one
   source (<a href="#req-95">REQ-95</a>) does not help him.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the authorization server.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/525">ICTU/GBO-demo#525</a>, <a href="https://github.com/ICTU/GBO-demo/issues/544">#544</a>,
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the authorization server.</li>
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/525">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#525</a>, <a href="https://github.com/ICTU/GBO-demo/issues/544">#544</a>,
   <a href="https://github.com/ICTU/GBO-demo/issues/547">#547</a>, <a href="https://github.com/ICTU/GBO-demo/pull/529">PR #529</a>, <a href="https://github.com/ICTU/GBO-demo/pull/545">PR #545</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/559">PR #559</a>, <a href="https://github.com/ICTU/GBO-demo/pull/591">PR #591</a>. Code and tests:<ul>
 <li>The request page is in
@@ -6012,29 +6016,29 @@ name any.</p>
   <a href="#req-95">REQ-95</a>, <a href="#req-102">REQ-102</a>, <a href="#req-103">REQ-103</a>,
   <a href="../../traceability/open-questions/#q-36">Q-36</a>.</li>
 <li><strong>Notes</strong>:<ul>
-<li>The page has other texts: why, what the QTSP learns, only this
+<li>The page has other texts: why, what the <abbr title="Qualified Trust Service Provider">QTSP</abbr> learns, only this
   request, and where the citizen logs in. These texts are a text
   choice of the demo and are not a requirement.</li>
-<li>The NL Wallet shows the authorization server and not the QTSP,
+<li>The NL Wallet shows the authorization server and not the <abbr title="Qualified Trust Service Provider">QTSP</abbr>,
   because a fixed reader certificate cannot carry a name for each
-  QTSP. The page and the purpose in that certificate explain the
+  <abbr title="Qualified Trust Service Provider">QTSP</abbr>. The page and the purpose in that certificate explain the
   relation (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/provision.go#L109"><code>provision.go#L109</code></a>,
   <a href="#req-102">REQ-102</a>).</li>
 <li>The chosen safeguard is that the server does not start without a
   source name. In v0.9.0, the authorization server takes its data
   services and source names from <code>AZSP_RESOURCES</code> and not from the
-  source descriptions. <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/GBO-demo#592</a> stays open.</li>
+  source descriptions. <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#592</a> stays open.</li>
 <li>This requirement absorbs the former REQ-96.</li>
 </ul>
 </li>
 </ul>
 </details>
-<h2 id="req-92">REQ-92: The ASIP asks the source only for the fields of the requested attributes<a class="headerlink" href="#req-92" title="Permanent link">&para;</a></h2>
+<h2 id="req-92">REQ-92: The <abbr title="Authentic Source Interface Provider">ASIP</abbr> asks the source only for the fields of the requested attributes<a class="headerlink" href="#req-92" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>An ASIP that queries a source through the chain MUST ask the source
+<p>An <abbr title="Authentic Source Interface Provider">ASIP</abbr> that queries a source through the chain MUST ask the source
 only for the fields that the requested attributes need. This applies to
 each verify or retrieve request, for the citizen from the access token. The
-ASIP MUST refuse a request with an attribute that the data service does
+<abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST refuse a request with an attribute that the data service does
 not deliver, before it asks the source anything.</p>
 </blockquote>
 <table>
@@ -6051,11 +6055,11 @@ not deliver, before it asks the source anything.</p>
 </tr>
 <tr>
 <td>An attribute outside the catalogue next to a valid attribute</td>
-<td>404, and the ASIP does not ask the source (code)</td>
+<td>404, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not ask the source (code)</td>
 </tr>
 <tr>
-<td>An attribute for which the ASIP knows no fields</td>
-<td>error, and the ASIP does not ask the source (code)</td>
+<td>An attribute for which the <abbr title="Authentic Source Interface Provider">ASIP</abbr> knows no fields</td>
+<td>error, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not ask the source (code)</td>
 </tr>
 </tbody>
 </table>
@@ -6068,11 +6072,11 @@ not deliver, before it asks the source anything.</p>
 <li><strong>Source</strong>: derived. The requirement serves
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>
   and <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-09</a>
-  (selective data request). The ASIP is a consumer of the source. If it
-  asks more fields than the QTSP needs, it processes data without a
-  purpose. <a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> clause 4.3 leaves open how an ASIP
+  (selective data request). The <abbr title="Authentic Source Interface Provider">ASIP</abbr> is a consumer of the source. If it
+  asks more fields than the <abbr title="Qualified Trust Service Provider">QTSP</abbr> needs, it processes data without a
+  purpose. <a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> clause 4.3 leaves open how an <abbr title="Authentic Source Interface Provider">ASIP</abbr>
   that is "an intermediary acting on its behalf" queries its source.</li>
-<li><strong>Addressee</strong>: GBO-delivered component: the ASIP.</li>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
 <li>
 <ul>
 <li>The fields for each attribute, and the one query, are in
@@ -6085,17 +6089,17 @@ not deliver, before it asks the source anything.</p>
   <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/brpsource/source_test.go#L186-L217"><code>#L186-L217</code></a>,
   and <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/brpsource/trace_test.go#L45-L81"><code>trace_test.go#L45-L81</code></a>.</li>
 </ul>
-<p><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/525">ICTU/GBO-demo#525</a>, <a href="https://github.com/ICTU/GBO-demo/pull/527">PR #527</a>,
+<p><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/525">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#525</a>, <a href="https://github.com/ICTU/GBO-demo/pull/527">PR #527</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/530">PR #530</a>. Historical code and tests:</p>
-<p>Code at v0.9.0: since steps 1 to 5 of <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/GBO-demo#592</a> (up to
-<a href="https://github.com/ICTU/GBO-demo/pull/624">PR #624</a>), the ASIP derives one query from the <code>asi</code> description
+<p>Code at v0.9.0: since steps 1 to 5 of <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#592</a> (up to
+<a href="https://github.com/ICTU/GBO-demo/pull/624">PR #624</a>), the <abbr title="Authentic Source Interface Provider">ASIP</abbr> derives one query from the <code>asi</code> description
 of the source. It does this in two steps:</p>
 <ol>
-<li>The ASIP checks that the description names every attribute
+<li>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> checks that the description names every attribute
    (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/verification/service.go#L238-L251"><code>service.go#L238-L251</code></a>).</li>
-<li>The ASIP makes one plan for all requested attributes
+<li>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> makes one plan for all requested attributes
    (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/verification/service.go#L253-L268"><code>#L253-L268</code></a>,
-   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-mapping/plan.go#L22-L35"><code>plan.go#L22-L35</code></a>), with the BSN as a variable
+   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-mapping/plan.go#L22-L35"><code>plan.go#L22-L35</code></a>), with the <abbr title="Burgerservicenummer">BSN</abbr> as a variable
    (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/source.go#L94"><code>source.go#L94</code></a>).</li>
 </ol>
 <p>The tests are in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/source_test.go#L102"><code>source_test.go#L102</code></a>
@@ -6109,26 +6113,26 @@ and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/
 </li>
 <li><strong>Notes</strong>:<ul>
 <li>The design uses one query per request. As a result, there is one
-  FSC transaction and one decision of the PDP. The BSN is a variable
+  <abbr title="Federated Service Connectivity">FSC</abbr> transaction and one decision of the <abbr title="Policy Decision Point">PDP</abbr>. The <abbr title="Burgerservicenummer">BSN</abbr> is a variable
   and is not in the query text. The source enforces the limit itself
   with its own rule (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego"><code>asi0001.rego</code></a>).</li>
 <li>In v0.9.0, the source describes which fields belong to an
   attribute. It does this in the <code>asi</code> capability of its source
-  metadata. GBO validates the description against its attribute
+  metadata. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates the description against its attribute
   catalogue (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json"><code>schemas/asi-attributes.json</code></a>). The open points of
   that direction are in <a href="../../traceability/open-questions/#q-38">Q-38</a> and
-  <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/GBO-demo#592</a>.</li>
+  <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#592</a>.</li>
 </ul>
 </li>
 </ul>
 </details>
 <h2 id="req-93">REQ-93: A chain that does not answer is an error, not <code>Unknown</code><a class="headerlink" href="#req-93" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>If the ASIP cannot reach the source, or the chain gives a server error,
-the ASIP MUST return 503. If the chain refuses the query, the ASIP MUST
-return 500. An example is a refusal by the PDP of the source. If the ASIP
+<p>If the <abbr title="Authentic Source Interface Provider">ASIP</abbr> cannot reach the source, or the chain gives a server error,
+the <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST return 503. If the chain refuses the query, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST
+return 500. An example is a refusal by the <abbr title="Policy Decision Point">PDP</abbr> of the source. If the <abbr title="Authentic Source Interface Provider">ASIP</abbr>
 cannot read the answer of the source, it MUST also return 500. In all
-these cases, the ASIP MUST NOT return a verification result. This also
+these cases, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST NOT return a verification result. This also
 excludes <code>Unknown</code>.</p>
 </blockquote>
 <table>
@@ -6148,7 +6152,7 @@ excludes <code>Unknown</code>.</p>
 <td>503 (code)</td>
 </tr>
 <tr>
-<td>The PDP of the source refuses (the Inway gives 401)</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> of the source refuses (the Inway gives 401)</td>
 <td>500 (code)</td>
 </tr>
 <tr>
@@ -6165,12 +6169,12 @@ excludes <code>Unknown</code>.</p>
 <ul>
 <li><strong>Source</strong>: derived. For verify, the requirement serves
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. <code>Unknown</code> says that the source has no data
-  (<a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-ASIP-6.1.1.2-04). If the ASIP reports a
-  failure as <code>Unknown</code>, the QTSP gets a wrong verification result. The
-  QTSP can then refuse the citizen, or let him fill in the value himself.
+  (<a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.2-04). If the <abbr title="Authentic Source Interface Provider">ASIP</abbr> reports a
+  failure as <code>Unknown</code>, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> gets a wrong verification result. The
+  <abbr title="Qualified Trust Service Provider">QTSP</abbr> can then refuse the citizen, or let him fill in the value himself.
   Annex B has no 500 and no 503, so these codes are an addition.</li>
-<li><strong>Addressee</strong>: interface agreement: every ASIP. GBO-delivered component:
-  the ASIP.</li>
+<li><strong>Addressee</strong>: interface agreement: every <abbr title="Authentic Source Interface Provider">ASIP</abbr>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component:
+  the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
 <li>
 <ul>
 <li>The status codes are in
@@ -6183,7 +6187,7 @@ excludes <code>Unknown</code>.</p>
   <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/brpsource/source_test.go#L148-L177"><code>brpsource/source_test.go#L148-L177</code></a>,
   and <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/verification/service_test.go#L201-L217"><code>service_test.go#L201-L217</code></a>.</li>
 </ul>
-<p><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/525">ICTU/GBO-demo#525</a>, <a href="https://github.com/ICTU/GBO-demo/pull/527">PR #527</a>.
+<p><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/525">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#525</a>, <a href="https://github.com/ICTU/GBO-demo/pull/527">PR #527</a>.
   Historical code and tests:</p>
 <p>Code at v0.9.0: the status codes are in
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L362-L384"><code>handler.go#L362-L384</code></a>. Unreachable or
@@ -6196,23 +6200,23 @@ and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/
 <p><strong>Related</strong>: <a href="../logging-audit/#req-60">REQ-60</a>, <a href="#req-84">REQ-84</a>,
   <a href="#req-101">REQ-101</a>.</p>
 </li>
-<li><strong>Notes</strong>: only unit tests show the 500 on a refusal by the PDP. The
+<li><strong>Notes</strong>: only unit tests show the 500 on a refusal by the <abbr title="Policy Decision Point">PDP</abbr>. The
   stack does not show it. A refusal by the chain is a fault in the setup
   and not a property of the citizen. Error messages name the
-  <code>Fsc-Transaction-Id</code> and not the BSN (<a href="../logging-audit/#req-60">REQ-60</a>).
-  In v0.9.0, if the source has no up-to-date <code>asi</code> description, the ASIP
+  <code>Fsc-Transaction-Id</code> and not the <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../logging-audit/#req-60">REQ-60</a>).
+  In v0.9.0, if the source has no up-to-date <code>asi</code> description, the <abbr title="Authentic Source Interface Provider">ASIP</abbr>
   also gives 503
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/source.go#L60-L68"><code>source.go#L60-L68</code></a>).</li>
 </ul>
 </details>
-<h2 id="req-94">REQ-94: Every ASI response names the one authentic source responsible for it<a class="headerlink" href="#req-94" title="Permanent link">&para;</a></h2>
+<h2 id="req-94">REQ-94: Every <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> response names the one authentic source responsible for it<a class="headerlink" href="#req-94" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Every verify and retrieve response of the ASIP MUST name the ASIP
-(<code>provider</code>). If the ASIP is not itself the authentic source, the
+<p>Every verify and retrieve response of the <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST name the <abbr title="Authentic Source Interface Provider">ASIP</abbr>
+(<code>provider</code>). If the <abbr title="Authentic Source Interface Provider">ASIP</abbr> is not itself the authentic source, the
 response MUST also name the responsible authentic source
-(<code>authenticSource</code>). It MUST name exactly one source. For that reason, an ASIP
+(<code>authenticSource</code>). It MUST name exactly one source. For that reason, an <abbr title="Authentic Source Interface Provider">ASIP</abbr>
 that serves several sources MUST limit each request to one source. An
-attribute of another source MUST give 404, and the ASIP MUST NOT ask
+attribute of another source MUST give 404, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST NOT ask
 any source anything.</p>
 </blockquote>
 <table>
@@ -6224,16 +6228,16 @@ any source anything.</p>
 </thead>
 <tbody>
 <tr>
-<td>Data service with an authentic source behind the ASIP</td>
+<td>Data service with an authentic source behind the <abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
 <td><code>provider</code> and <code>authenticSource</code> in every response (code)</td>
 </tr>
 <tr>
-<td>Data service of which the ASIP is itself the source</td>
-<td><code>provider</code>, no <code>authenticSource</code>. This is historical code, in unit tests only. In v0.9.0, the ASIP always takes <code>authenticSource</code> from the source description.</td>
+<td>Data service of which the <abbr title="Authentic Source Interface Provider">ASIP</abbr> is itself the source</td>
+<td><code>provider</code>, no <code>authenticSource</code>. This is historical code, in unit tests only. In v0.9.0, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> always takes <code>authenticSource</code> from the source description.</td>
 </tr>
 <tr>
 <td>Attribute of another data service</td>
-<td>404, and the ASIP asks no source (code)</td>
+<td>404, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> asks no source (code)</td>
 </tr>
 </tbody>
 </table>
@@ -6250,15 +6254,16 @@ any source anything.</p>
   sector body responsible for the authentic source". Where applicable,
   the result specifies instead "the public sector body designated to
   act on behalf of the authentic source".</li>
-<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-ASIP-6.1.1.2-07, -08, and
-  REQ-ASIP-6.1.2.2-04 (one <code>authenticSource</code>).</li>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("de bronhouder blijft juridisch en
+<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.2-07, -08, and
+  REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.2.2-04 (one <code>authenticSource</code>).</li>
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. Under S11, the bronhouder stays responsible
+  for the law and for the content ("de bronhouder blijft juridisch en
   inhoudelijk verantwoordelijk").</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: interface agreement: every ASIP. GBO-delivered component:
-  the ASIP.</li>
+<li><strong>Addressee</strong>: interface agreement: every <abbr title="Authentic Source Interface Provider">ASIP</abbr>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component:
+  the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
 <li>
 <ul>
 <li>The data services come from the configuration in
@@ -6274,11 +6279,11 @@ any source anything.</p>
   <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/httpapi/handler_test.go#L329-L349"><code>#L329-L349</code></a>,
   and <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/verification/service_test.go#L133-L148"><code>service_test.go#L133-L148</code></a>.</li>
 </ul>
-<p><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/525">ICTU/GBO-demo#525</a>, <a href="https://github.com/ICTU/GBO-demo/pull/529">PR #529</a>.
+<p><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/525">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#525</a>, <a href="https://github.com/ICTU/GBO-demo/pull/529">PR #529</a>.
   Historical code and tests:</p>
 <p>Code at v0.9.0: the data services are in
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/config/dataservices.json"><code>dataservices.json</code></a>
-and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/main.go#L115-L125"><code>main.go#L115-L125</code></a>. The ASIP takes <code>authenticSource</code>
+and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/main.go#L115-L125"><code>main.go#L115-L125</code></a>. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> takes <code>authenticSource</code>
 from the source description in
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L304"><code>handler.go#L304</code></a>
 and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L339"><code>#L339</code></a>. The tests are in
@@ -6294,7 +6299,7 @@ and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/
   (<a href="../../decisions/0038-asi-data-service-per-source/">ADR 0038</a>). Each data service has its own base URL, contract,
   catalogue, and token audience. The demo has one data service (<code>brp</code>,
   source <code>rvig</code>). A second data service exists only in unit tests. Whether
-  an ASIP for several sources makes GBO an intermediary is <a href="../../traceability/open-questions/#q-37">Q-37</a>.</li>
+  an <abbr title="Authentic Source Interface Provider">ASIP</abbr> for several sources makes <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> an intermediary is <a href="../../traceability/open-questions/#q-37">Q-37</a>.</li>
 </ul>
 </details>
 <h2 id="req-95">REQ-95: An access token is valid only for the source the citizen saw<a class="headerlink" href="#req-95" title="Permanent link">&para;</a></h2>
@@ -6303,7 +6308,7 @@ and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/
 citizen saw at the authorization (<a href="#req-91">REQ-91</a>). An authorization
 request or a token request can name no data service, more than one, or an
 unknown one. The authorization server MUST then refuse it with
-<code>invalid_target</code>. The ASIP MUST refuse a token for another data service.</p>
+<code>invalid_target</code>. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST refuse a token for another data service.</p>
 </blockquote>
 <table>
 <thead>
@@ -6340,17 +6345,17 @@ unknown one. The authorization server MUST then refuse it with
 <li><strong>Source</strong>: derived. The requirement serves eIDAS
   <a href="https://eur-lex.europa.eu/eli/reg/2014/910/oj">article 45e(1)</a> ("at the request of the user") and
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-13</a>.
-  If a token is also valid for another source, the QTSP verifies data at a
+  If a token is also valid for another source, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies data at a
   source that the citizen did not see. <a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> does not
   specify the reach of a token for each data service.</li>
-<li><strong>Addressee</strong>: GBO-delivered component: the authorization server and
-  the ASIP.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/525">ICTU/GBO-demo#525</a>, <a href="https://github.com/ICTU/GBO-demo/pull/529">PR #529</a>. Code and tests:<ul>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the authorization server and
+  the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/525">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#525</a>, <a href="https://github.com/ICTU/GBO-demo/pull/529">PR #529</a>. Code and tests:<ul>
 <li>The authorization server is in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/service.go#L201-L204"><code>service.go#L201-L204</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/service.go#L255-L276"><code>#L255-L276</code></a>,
   and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/service.go#L341-L343"><code>#L341-L343</code></a>.</li>
-<li>The audience at the ASIP is in
+<li>The audience at the <abbr title="Authentic Source Interface Provider">ASIP</abbr> is in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/accesstoken/accesstoken.go#L148"><code>accesstoken.go#L148</code></a>,
   and for each data service in
   <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/main.go#L102"><code>main.go#L102</code></a>.</li>
@@ -6365,15 +6370,15 @@ unknown one. The authorization server MUST then refuse it with
   <a href="#req-94">REQ-94</a>, <a href="#req-99">REQ-99</a>, <a href="#req-103">REQ-103</a>, <a href="../../traceability/findings/#f-89">F-89</a>,
   <a href="../../decisions/0038-asi-data-service-per-source/">ADR 0038</a>.</li>
 <li><strong>Notes</strong>: the design allows exactly one <code>resource</code> for each
-  authorization (<a href="../../decisions/0038-asi-data-service-per-source/">ADR 0038</a>). As a result, a QTSP that needs
+  authorization (<a href="../../decisions/0038-asi-data-service-per-source/">ADR 0038</a>). As a result, a <abbr title="Qualified Trust Service Provider">QTSP</abbr> that needs
   attributes of two sources authorizes twice, with two interactions of the
   citizen. RFC 8707 §2.2 allows more resources in one authorization, with
   a token for each resource.</li>
 </ul>
 </details>
-<h2 id="req-99">REQ-99: The ASIP provides a discovery record for each attribute and data service, with a path to endpoint, contract, and authorization server<a class="headerlink" href="#req-99" title="Permanent link">&para;</a></h2>
+<h2 id="req-99">REQ-99: The <abbr title="Authentic Source Interface Provider">ASIP</abbr> provides a discovery record for each attribute and data service, with a path to endpoint, contract, and authorization server<a class="headerlink" href="#req-99" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>For every data service, the ASIP MUST provide a <code>dataService</code> record
+<p>For every data service, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST provide a <code>dataService</code> record
 according to ETSI TS 119 478 clause 5.3.3. It MUST provide one record for
 each attribute that the data service delivers. The record holds these
 items: the identifier of the attribute (<code>attributeIdentifier</code>), the
@@ -6381,8 +6386,8 @@ endpoint of the data service (<code>endpointURI</code>), its contract
 (<code>endpointDescription</code>), and the provider (<code>provider</code>). The contract MUST
 name the same endpoint as server. The contract MUST also name the
 metadata of the authorization server (<a href="#req-100">REQ-100</a>). From the record, a
-QTSP can then verify or retrieve without prior knowledge of the
-addresses of the ASIP.</p>
+<abbr title="Qualified Trust Service Provider">QTSP</abbr> can then verify or retrieve without prior knowledge of the
+addresses of the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</p>
 </blockquote>
 <table>
 <thead>
@@ -6413,21 +6418,22 @@ addresses of the ASIP.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> clause 5.3.3, REQ-DIP-5.3.3-03 (the content
-  of the record). ETSI puts this requirement on the DIP.</li>
-<li>ETSI figure 3, steps 2 to 5. In these steps, the QTSP finds the data
+<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> clause 5.3.3, REQ-<abbr title="Discover Interface Provider">DIP</abbr>-5.3.3-03 (the content
+  of the record). ETSI puts this requirement on the <abbr title="Discover Interface Provider">DIP</abbr>.</li>
+<li>ETSI figure 3, steps 2 to 5. In these steps, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> finds the data
   service through the Discover Interface.</li>
 <li>The requirement is also derived. It serves
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("aansluiting op relevante vertrouwenslijsten
-  en catalogi") and
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> and
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-11</a>:
-  without a record, a QTSP finds no Dutch data service for an
-  attribute.</li>
+  without a record, a <abbr title="Qualified Trust Service Provider">QTSP</abbr> finds no Dutch data service for an
+  attribute. S11 asks for the connection to relevant trusted lists
+  and catalogues ("aansluiting op relevante vertrouwenslijsten
+  en catalogi").</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the ASIP. Interface agreement:
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. Interface agreement:
   the record and the contract.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/533">ICTU/GBO-demo#533</a>, <a href="https://github.com/ICTU/GBO-demo/pull/534">PR #534</a>,
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/533">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#533</a>, <a href="https://github.com/ICTU/GBO-demo/pull/534">PR #534</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/535">PR #535</a>. Code and tests:<ul>
 <li>The records for each data service are in
   <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/httpapi/handler.go#L104-L111"><code>handler.go#L104-L111</code></a>
@@ -6436,15 +6442,15 @@ addresses of the ASIP.</p>
   (<a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/httpapi/discovery_test.go#L62"><code>discovery_test.go#L62</code></a>).
   Another test follows the path from record to contract
   (<a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/httpapi/discovery_test.go#L101"><code>discovery_test.go#L101</code></a>).</li>
-<li>The stub of the DIP checks the records
+<li>The stub of the <abbr title="Discover Interface Provider">DIP</abbr> checks the records
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-discovery-stub/directory.go#L101-L134"><code>directory.go#L101-L134</code></a>)
   and finds them for each attribute
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-discovery-stub/handler_test.go#L97"><code>handler_test.go#L97</code></a>).</li>
-<li>The reference QTSP follows the record, the contract, and the
+<li>The reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> follows the record, the contract, and the
   metadata
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/internal/qtsp/qtsp.go#L119-L202"><code>qtsp.go#L119-L202</code></a>).</li>
 <li>Code at v0.9.0: the records follow the up-to-date description of
-  the source. Without an up-to-date description, the ASIP gives 503
+  the source. Without an up-to-date description, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> gives 503
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L131-L165"><code>handler.go#L131-L165</code></a>).
   The tests are in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/discovery_test.go#L66"><code>discovery_test.go#L66</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/discovery_test.go#L105"><code>#L105</code></a>,
@@ -6454,16 +6460,16 @@ addresses of the ASIP.</p>
 <li><strong>Related</strong>: <a href="#req-94">REQ-94</a>, <a href="#req-95">REQ-95</a>, <a href="#req-100">REQ-100</a>,
   <a href="../../traceability/findings/#f-89">F-89</a>, <a href="../../traceability/open-questions/#q-67">Q-67</a>.</li>
 <li><strong>Notes</strong>:<ul>
-<li>How the records get into the Data Service Directory of OOTS, and who
+<li>How the records get into the Data Service Directory of <abbr title="Once-Only Technical System">OOTS</abbr>, and who
   registers them, is open (<a href="../../traceability/open-questions/#q-67">Q-67</a>).</li>
 <li>The demo offers the records for each data service at
-  <code>/&lt;dataservice&gt;/dataservices</code>. A stub of the DIP fetches them.</li>
+  <code>/&lt;dataservice&gt;/dataservices</code>. A stub of the <abbr title="Discover Interface Provider">DIP</abbr> fetches them.</li>
 <li>In demo v0.9.0, the provider carries no <code>identifiers</code>.
-  REQ-DIP-5.3.3-03-04-04 is only a recommendation, and there is no EU
-  identifier type for an OIN.</li>
-<li>The search of a QTSP through the Discover Interface is behavior of
-  the QTSP itself (clause 5) and is no requirement on GBO.</li>
-<li>The reference QTSP refuses a request with attributes of two data
+  REQ-<abbr title="Discover Interface Provider">DIP</abbr>-5.3.3-03-04-04 is only a recommendation, and there is no EU
+  identifier type for an <abbr title="Organisatie-identificatienummer">OIN</abbr>.</li>
+<li>The search of a <abbr title="Qualified Trust Service Provider">QTSP</abbr> through the Discover Interface is behavior of
+  the <abbr title="Qualified Trust Service Provider">QTSP</abbr> itself (clause 5) and is no requirement on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</li>
+<li>The reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> refuses a request with attributes of two data
   services before it contacts the authorization server. The reason is
   that a token is valid for one data service (<a href="#req-95">REQ-95</a>).</li>
 </ul>
@@ -6503,16 +6509,17 @@ issuer.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-DIP-5.3.3-03-02-01. The contract "shall
+<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-<abbr title="Discover Interface Provider">DIP</abbr>-5.3.3-03-02-01. The contract "shall
   specify the corresponding metadata of the OAuth 2.0 based
   authorization server".</li>
 <li><a href="https://www.rfc-editor.org/rfc/rfc8414">RFC 8414</a> §3.1 and §3.3.</li>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("ETSI TS 119 478 V1.1.1 voor de inrichting van
-  de ASI-provider").</li>
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>, which names ETSI TS 119 478 V1.1.1 for the
+  setup of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider ("ETSI TS 119 478 V1.1.1 voor de inrichting van
+  de <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>-provider").</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: interface agreement: the contract of every ASIP.
-  GBO-delivered component: the ASIP.</li>
+<li><strong>Addressee</strong>: interface agreement: the contract of every <abbr title="Authentic Source Interface Provider">ASIP</abbr>.
+  <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/534">PR #534</a>, <a href="https://github.com/ICTU/GBO-demo/pull/537">PR #537</a>. Code and tests:<ul>
 <li>The contract is in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/contract.go#L102-L110"><code>contract.go#L102-L110</code></a>.</li>
@@ -6527,17 +6534,17 @@ issuer.</p>
 <li><strong>Related</strong>: <a href="#req-99">REQ-99</a>, <a href="../../traceability/findings/#f-91">F-91</a>, <a href="../../traceability/open-questions/#q-39">Q-39</a>,
   <a href="../../traceability/open-questions/#q-67">Q-67</a>, <a href="../../traceability/standards-feedback/#e1">E1</a>.</li>
 <li><strong>Notes</strong>: the extension <code>x-oauth-authorization-server</code> in the <code>oauth2</code>
-  security scheme is a design choice. GBO chose this name itself, because
+  security scheme is a design choice. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> chose this name itself, because
   ETSI gives no field (<a href="../../traceability/standards-feedback/#e1">E1</a>). Until <a href="../../traceability/open-questions/#q-39">Q-39</a> has a decision,
-  each ASIP chooses for itself. RFC 8414 §3.3 already requires the client
+  each <abbr title="Authentic Source Interface Provider">ASIP</abbr> chooses for itself. RFC 8414 §3.3 already requires the client
   to check the <code>issuer</code> in the metadata against the URL. The reference
-  QTSP does exactly this
+  <abbr title="Qualified Trust Service Provider">QTSP</abbr> does exactly this
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/internal/qtsp/qtsp.go#L196-L200"><code>qtsp.go#L196-L200</code></a>).</li>
 </ul>
 </details>
 <h2 id="req-101">REQ-101: A retrieve for which the source lacks a requested attribute is not found and gives no partial result<a class="headerlink" href="#req-101" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>If the source has no value for a requested attribute, the ASIP MUST
+<p>If the source has no value for a requested attribute, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST
 answer a retrieve request with 404, with the attribute in the reason. A
 retrieve MUST NOT give a partial result: a 200 MUST contain every
 requested attribute. Verify still gives <code>Unknown</code> (<a href="#req-84">REQ-84</a>).</p>
@@ -6575,12 +6582,12 @@ requested attribute. Verify still gives <code>Unknown</code> (<a href="#req-84">
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design. The source is <a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a>
-  REQ-ASIP-6.1.2.2-06 ("404 … at least one of the requested attributes …
-  was not found") and -02-01 ("one or more attribute objects"). GBO reads
+  REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.2.2-06 ("404 … at least one of the requested attributes …
+  was not found") and -02-01 ("one or more attribute objects"). <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> reads
   these requirements so that no value in the source also counts as not
   found.</li>
-<li><strong>Addressee</strong>: interface agreement: every ASIP. GBO-delivered component:
-  the ASIP.</li>
+<li><strong>Addressee</strong>: interface agreement: every <abbr title="Authentic Source Interface Provider">ASIP</abbr>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component:
+  the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/541">PR #541</a>, <a href="https://github.com/ICTU/GBO-demo/pull/542">PR #542</a>. Code and tests:<ul>
 <li>Historical code:
   <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/verification/service.go#L152-L158"><code>service.go#L152-L158</code></a>
@@ -6599,13 +6606,13 @@ requested attribute. Verify still gives <code>Unknown</code> (<a href="#req-84">
   request himself (<a href="#req-90">REQ-90</a>).</li>
 </ul>
 </details>
-<h2 id="req-102">REQ-102: The authorization server identifies the citizen with the EUDI wallet through OpenID4VP and asks only the PID attributes in its registration<a class="headerlink" href="#req-102" title="Permanent link">&para;</a></h2>
+<h2 id="req-102">REQ-102: The authorization server identifies the citizen with the EUDI wallet through <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> and asks only the <abbr title="Person Identification Data">PID</abbr> attributes in its registration<a class="headerlink" href="#req-102" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>The authorization server of the ASI MUST be able to identify the citizen
-with the EUDI wallet through OpenID4VP. It MUST act as a registered
-wallet relying party of its own, and ask only the PID attributes that
-are in its registration. The PID MUST come from a trusted PID issuer and
-contain a BSN. A presentation of another type, or without a BSN, MUST
+<p>The authorization server of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> MUST be able to identify the citizen
+with the EUDI wallet through <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr>. It MUST act as a registered
+wallet relying party of its own, and ask only the <abbr title="Person Identification Data">PID</abbr> attributes that
+are in its registration. The <abbr title="Person Identification Data">PID</abbr> MUST come from a trusted <abbr title="Person Identification Data">PID</abbr> issuer and
+contain a <abbr title="Burgerservicenummer">BSN</abbr>. A presentation of another type, or without a <abbr title="Burgerservicenummer">BSN</abbr>, MUST
 NOT lead to an identification.</p>
 </blockquote>
 <table>
@@ -6617,11 +6624,11 @@ NOT lead to an identification.</p>
 </thead>
 <tbody>
 <tr>
-<td>PID <code>urn:eudi:pid:nl:1</code> with BSN, from a trusted issuer</td>
-<td>identified. The BSN and the PID attributes go into the token (<a href="#req-86">REQ-86</a>) (code).</td>
+<td><abbr title="Person Identification Data">PID</abbr> <code>urn:eudi:pid:nl:1</code> with <abbr title="Burgerservicenummer">BSN</abbr>, from a trusted issuer</td>
+<td>identified. The <abbr title="Burgerservicenummer">BSN</abbr> and the <abbr title="Person Identification Data">PID</abbr> attributes go into the token (<a href="#req-86">REQ-86</a>) (code).</td>
 </tr>
 <tr>
-<td>PID without BSN, another type, another query ID, or no presentation</td>
+<td><abbr title="Person Identification Data">PID</abbr> without <abbr title="Burgerservicenummer">BSN</abbr>, another type, another query ID, or no presentation</td>
 <td>not identified (code)</td>
 </tr>
 <tr>
@@ -6641,21 +6648,22 @@ NOT lead to an identification.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-AZSP-6.1.3.1-02 and -03 ("with the
-  EUDI-Wallet using the OpenID4VP protocol"), and clause 6.1.3.3,
+<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-<abbr title="The ASI authorization server">AZSP</abbr>-6.1.3.1-02 and -03 ("with the
+  EUDI-Wallet using the <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> protocol"), and clause 6.1.3.3,
   steps 8 to 10.</li>
 <li><a href="https://eur-lex.europa.eu/eli/reg/2014/910/oj">eIDAS</a> article 5b(1) to (3). The relying party is registered
   and asks no other data than the registered data.</li>
 <li>Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj">2025/848</a> article 8.</li>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("OpenID4VP voor presentatie of verificatie
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>, which names <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> for presentation or
+  verification where relevant ("<abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> voor presentatie of verificatie
   waar relevant").</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the authorization server of the
-  ASI.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/546">ICTU/GBO-demo#546</a>, <a href="https://github.com/ICTU/GBO-demo/pull/550">PR #550</a>,
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the authorization server of the
+  <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>.</li>
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/546">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#546</a>, <a href="https://github.com/ICTU/GBO-demo/pull/550">PR #550</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/552">PR #552</a>, <a href="https://github.com/ICTU/GBO-demo/pull/573">PR #573</a>. Code and tests:<ul>
-<li>The request for the PID is in
+<li>The request for the <abbr title="Person Identification Data">PID</abbr> is in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/client.go#L39-L48"><code>client.go#L39-L48</code></a>
   and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/provision.go#L36-L40"><code>provision.go#L36-L40</code></a>.</li>
 <li>The registration with only those attributes is in
@@ -6664,7 +6672,7 @@ NOT lead to an identification.</p>
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/provision_test.go#L115-L117"><code>provision_test.go#L115-L117</code></a>.</li>
 <li>The trusted issuers are in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/provision.go#L139-L150"><code>provision.go#L139-L150</code></a>.</li>
-<li>The code accepts only a PID of the right type with a BSN, in
+<li>The code accepts only a <abbr title="Person Identification Data">PID</abbr> of the right type with a <abbr title="Burgerservicenummer">BSN</abbr>, in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/client.go#L157-L175"><code>client.go#L157-L175</code></a>, tested in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/client_test.go#L174-L192"><code>client_test.go#L174-L192</code></a>.</li>
 <li>Return on the same device works only for the session of this
@@ -6688,31 +6696,31 @@ NOT lead to an identification.</p>
   (purpose and allowed attributes). In the demo, this certificate
   comes from a development CA and is not a registered access
   certificate.</li>
-<li>The NL PID has no place of birth (<a href="../../traceability/findings/#f-94">F-94</a>).</li>
-<li>The wallet shows the authorization server and not the QTSP. The
+<li>The NL <abbr title="Person Identification Data">PID</abbr> has no place of birth (<a href="../../traceability/findings/#f-94">F-94</a>).</li>
+<li>The wallet shows the authorization server and not the <abbr title="Qualified Trust Service Provider">QTSP</abbr>. The
   purpose in the registration explains the relation
   (<a href="#req-91">REQ-91</a>).</li>
-<li>The same-device route runs only in tests. A real run needs the ASI
+<li>The same-device route runs only in tests. A real run needs the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>
   route on https in the simulation environment
-  (<a href="https://github.com/ICTU/GBO-demo/issues/594">ICTU/GBO-demo#594</a>, <a href="https://github.com/ICTU/GBO-demo/issues/596">ICTU/GBO-demo#596</a>).</li>
+  (<a href="https://github.com/ICTU/GBO-demo/issues/594">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#594</a>, <a href="https://github.com/ICTU/GBO-demo/issues/596">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#596</a>).</li>
 <li>Which means come next to the wallet is <a href="../../traceability/open-questions/#q-36">Q-36</a>.</li>
-<li>The verifier accepts a PID whose revocation status cannot be
+<li>The verifier accepts a <abbr title="Person Identification Data">PID</abbr> whose revocation status cannot be
   established
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/config.go#L45"><code>config.go#L45</code></a>).
-  A sub-question of <a href="../../traceability/open-questions/#q-36">Q-36</a> asks whether a PID with an unknown
-  revocation status, or a revoked PID, can lead to an identification.</li>
+  A sub-question of <a href="../../traceability/open-questions/#q-36">Q-36</a> asks whether a <abbr title="Person Identification Data">PID</abbr> with an unknown
+  revocation status, or a revoked <abbr title="Person Identification Data">PID</abbr>, can lead to an identification.</li>
 </ul>
 </li>
 </ul>
 </details>
-<h2 id="req-103">REQ-103: An authorization can be bound to the requested attributes, and the ASIP then processes only those attributes<a class="headerlink" href="#req-103" title="Permanent link">&para;</a></h2>
+<h2 id="req-103">REQ-103: An authorization can be bound to the requested attributes, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> then processes only those attributes<a class="headerlink" href="#req-103" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>An authorization request can name the attributes that the QTSP wants to
-verify or retrieve. The authorization server of the ASI MUST then check
+<p>An authorization request can name the attributes that the <abbr title="Qualified Trust Service Provider">QTSP</abbr> wants to
+verify or retrieve. The authorization server of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> MUST then check
 that these attributes belong to exactly the data service and the
 operations of the request. It MUST refuse an invalid list, show the
 attributes to the citizen, and put them unchanged in the access token.
-If the token carries such a list, the ASIP MUST refuse a request that
+If the token carries such a list, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST refuse a request that
 names an attribute outside the list.</p>
 <p>A policy under article 9(5) of Implementing Regulation 2025/1569 can
 make the list mandatory
@@ -6731,7 +6739,7 @@ of the data service is then the limit.</p>
 <tbody>
 <tr>
 <td>No list</td>
-<td>authorization per operation, a page without attributes, and a token without a list. The ASIP allows every attribute from the catalogue (code).</td>
+<td>authorization per operation, a page without attributes, and a token without a list. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> allows every attribute from the catalogue (code).</td>
 </tr>
 <tr>
 <td>No list, list made mandatory</td>
@@ -6763,17 +6771,20 @@ of the data service is then the limit.</p>
 <li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> clause 6.1.3.2 binds only for each operation
   (<a href="../../traceability/findings/#f-95">F-95</a>).</li>
 <li>The requirement is also derived. It serves
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("uitgifte, verificatie en retrieval gebruiken
-  passende authenticatie, autorisatie en logging") and
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> and
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>.
-  Without a binding, the QTSP can ask every attribute from the
+  Under S11, issuance, verification, and retrieval use appropriate
+  authentication, authorization, and logging ("uitgifte, verificatie
+  en retrieval gebruiken passende authenticatie, autorisatie en
+  logging").
+  Without a binding, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> can ask every attribute from the
   catalogue with the same token, also when the citizen approved
   something else.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the authorization server and
-  the ASIP. Interface agreement: with the QTSP.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/559">PR #559</a>, <a href="https://github.com/ICTU/GBO-demo/issues/571">ICTU/GBO-demo#571</a>,
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the authorization server and
+  the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. Interface agreement: with the <abbr title="Qualified Trust Service Provider">QTSP</abbr>.</li>
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/559">PR #559</a>, <a href="https://github.com/ICTU/GBO-demo/issues/571">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#571</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/572">PR #572</a>. Code and tests:<ul>
 <li>The check at the authorization server is in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/authorization_details.go#L31-L79"><code>authorization_details.go#L31-L79</code></a>
@@ -6784,7 +6795,7 @@ of the data service is then the limit.</p>
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/tokens.go#L70-L72"><code>tokens.go#L70-L72</code></a>.</li>
 <li>The configuration that makes the list mandatory is in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/main.go#L109"><code>main.go#L109</code></a>.</li>
-<li>The check at the ASIP is in
+<li>The check at the <abbr title="Authentic Source Interface Provider">ASIP</abbr> is in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/accesstoken/accesstoken.go#L177-L197"><code>accesstoken.go#L177-L197</code></a>
   and <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/httpapi/handler.go#L337-L347"><code>handler.go#L337-L347</code></a>.</li>
 <li>The tests are in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/service_test.go#L85-L125"><code>service_test.go#L85-L125</code></a>,
@@ -6794,7 +6805,7 @@ of the data service is then the limit.</p>
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/httpapi/style_test.go#L145"><code>style_test.go#L145</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/token_test.go#L111"><code>token_test.go#L111</code></a>,
   and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/token_test.go#L233"><code>#L233</code></a>.</li>
-<li>Code at v0.9.0 for the ASIP:
+<li>Code at v0.9.0 for the <abbr title="Authentic Source Interface Provider">ASIP</abbr>:
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L346-L356"><code>handler.go#L346-L356</code></a>.</li>
 </ul>
 </li>
@@ -6811,7 +6822,7 @@ of the data service is then the limit.</p>
   <code>authorization_details</code> of the provisional type
   <code>https://gbo.example/authorization-details/authentic-source-attributes</code>.
   It has these fields:</p>
-<p>Only parties that know that type can use the binding. A QTSP that
+<p>Only parties that know that type can use the binding. A <abbr title="Qualified Trust Service Provider">QTSP</abbr> that
 implements only ETSI connects without a list. In the demo,
 <code>AZSP_REQUIRE_AUTHORIZATION_DETAILS=true</code> makes the list mandatory.
 Whether the Netherlands imposes the binding is <a href="../../traceability/open-questions/#q-33">Q-33</a>. ETSI does
@@ -6819,11 +6830,11 @@ not provide the binding (<a href="../../traceability/standards-feedback/#e5">E5<
 </li>
 </ul>
 </details>
-<h2 id="req-112">REQ-112: The ASIP offers the clause 6.1 interface<a class="headerlink" href="#req-112" title="Permanent link">&para;</a></h2>
+<h2 id="req-112">REQ-112: The <abbr title="Authentic Source Interface Provider">ASIP</abbr> offers the clause 6.1 interface<a class="headerlink" href="#req-112" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>The ASIP MUST offer the interface of ETSI TS 119 478 clause 6.1: verify
+<p>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST offer the interface of ETSI TS 119 478 clause 6.1: verify
 and retrieve over HTTP, with authorization according to OAuth 2.0. Until
-<a href="../../traceability/open-questions/#q-64">Q-64</a> decides otherwise, the ASIP does not offer the interface of
+<a href="../../traceability/open-questions/#q-64">Q-64</a> decides otherwise, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not offer the interface of
 clause 6.2 (ISO 15000).</p>
 </blockquote>
 <ul>
@@ -6833,35 +6844,37 @@ clause 6.2 (ISO 15000).</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-ASIP-4.3-04. The ASIP chooses clause 6.1,
+<li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-4.3-04. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> chooses clause 6.1,
   clause 6.2, or both.</li>
 <li>Annex IV of Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj">2026/1735</a>. For verify,
   it designates clause 6.1.1, or 6.2.3, or both.</li>
-<li>"Afspraken en standaarden" of <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("ETSI TS 119 478
-  V1.1.1 voor de inrichting van de ASI-provider").</li>
+<li>The section on agreements and standards ("Afspraken en
+  standaarden") of <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. It names ETSI TS 119 478 V1.1.1
+  for the setup of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider ("ETSI TS 119 478
+  V1.1.1 voor de inrichting van de <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>-provider").</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the ASIP. Interface agreement.</li>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. Interface agreement.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a>, <a href="https://github.com/ICTU/GBO-demo/pull/540">PR #540</a>, <a href="https://github.com/ICTU/GBO-demo/pull/574">PR #574</a>.
-  The demo ASIP offers only clause 6.1
+  The demo <abbr title="Authentic Source Interface Provider">ASIP</abbr> offers only clause 6.1
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/asi-route.md#L98"><code>asi-route.md#L98</code></a>). The conformance matrix
   marks clause 6.2 as a group that is not applicable
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/conformance/etsi-ts-119478.yaml#L9-L11"><code>etsi-ts-119478.yaml#L9-L11</code></a>).
-  It marks REQ-ASIP-4.3-04 as passed
+  It marks REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-4.3-04 as passed
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/conformance/etsi-ts-119478.yaml#L38-L42"><code>#L38-L42</code></a>).</li>
 <li><strong>Related</strong>: <a href="../../traceability/findings/#f-80">F-80</a>, <a href="../../traceability/open-questions/#q-64">Q-64</a>,
   <a href="../../decisions/0037-asi-oauth-front-door/">ADR 0037</a>.</li>
-<li><strong>Notes</strong>: this requirement is a choice within REQ-ASIP-4.3-04. The
+<li><strong>Notes</strong>: this requirement is a choice within REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-4.3-04. The
   <a href="#asi-profile">profile</a> records it. <a href="../../traceability/open-questions/#q-64">Q-64</a> asks whether clause 6.2
   becomes necessary later, also for deferred responses.</li>
 </ul>
 </details>
 <h2 id="req-113">REQ-113: Fuzzy matching only on free text, with documented rules<a class="headerlink" href="#req-113" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>An ASIP that supports fuzzy matching (REQ-ASIP-6.1.1.1-10) MUST apply it
+<p>An <abbr title="Authentic Source Interface Provider">ASIP</abbr> that supports fuzzy matching (REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-10) MUST apply it
 only to free text, such as names and address lines. It MUST NOT apply it
 to dates, codes, and numbers. It MUST publish the rules that it applies. A
-QTSP then knows when it can get <code>MatchWithVariation</code>.</p>
+<abbr title="Qualified Trust Service Provider">QTSP</abbr> then knows when it can get <code>MatchWithVariation</code>.</p>
 </blockquote>
 <table>
 <thead>
@@ -6888,12 +6901,12 @@ QTSP then knows when it can get <code>MatchWithVariation</code>.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design. The source is <a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a>
-  REQ-ASIP-6.1.1.1-10. It leaves fuzzy matching free. It names
+  REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-10. It leaves fuzzy matching free. It names
   differences in transliteration, spaces, hyphens, and compounding "and
   similar orthographic variations". These differences fit text and do not
   fit a date or a code. ETSI prescribes no rules, and this requirement
   makes that stricter.</li>
-<li><strong>Addressee</strong>: interface agreement: every ASIP that offers fuzzy
+<li><strong>Addressee</strong>: interface agreement: every <abbr title="Authentic Source Interface Provider">ASIP</abbr> that offers fuzzy
   matching.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a>. Code and tests:<ul>
 <li>Historical code: the rules are documented
@@ -6903,7 +6916,7 @@ QTSP then knows when it can get <code>MatchWithVariation</code>.</p>
   The test is in <a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/httpapi/handler_test.go#L119-L136"><code>handler_test.go#L119-L136</code></a>.
   At that commit, the demo normalized every string
   (<a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/verification/match.go#L44-L48"><code>match.go#L44-L48</code></a>).</li>
-<li>Code at v0.9.0: since step 5 of <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/GBO-demo#592</a>
+<li>Code at v0.9.0: since step 5 of <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#592</a>
   (<a href="https://github.com/ICTU/GBO-demo/pull/624">PR #624</a>), a string with a <code>format</code> in the value schema
   matches exactly or not. An example is the birth date
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/verification/match.go#L27-L54"><code>match.go#L27-L54</code></a>,
@@ -6917,7 +6930,7 @@ QTSP then knows when it can get <code>MatchWithVariation</code>.</p>
   <a href="../../decisions/0039-asi-source-described-attributes/">ADR 0039</a>.</li>
 <li><strong>Notes</strong>:<ul>
 <li>The value schema of an attribute marks what free text is. The
-  source metadata define this (<a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/GBO-demo#592</a>: "fuzzy matching
+  source metadata define this (<a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#592</a>: "fuzzy matching
   follows the type", through <code>value_schema</code>). In v0.9.0, the marker
   is the JSON Schema <code>format</code>.</li>
 <li>The demo still normalizes a code without a <code>format</code>. Nationality
@@ -6932,7 +6945,7 @@ QTSP then knows when it can get <code>MatchWithVariation</code>.</p>
 </details>
 <h2 id="req-114">REQ-114: A request on behalf of another person gets 501<a class="headerlink" href="#req-114" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Until <a href="../../traceability/open-questions/#q-65">Q-65</a> decides otherwise, the ASIP MUST NOT support verify and
+<p>Until <a href="../../traceability/open-questions/#q-65">Q-65</a> decides otherwise, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST NOT support verify and
 retrieve requests on behalf of another subject (<code>mandate</code>). It MUST
 answer them with 501, without asking the source anything.</p>
 </blockquote>
@@ -6946,11 +6959,11 @@ answer them with 501, without asking the source anything.</p>
 <tbody>
 <tr>
 <td>Verify with <code>mandate</code></td>
-<td>501, and the ASIP does not ask the source (code)</td>
+<td>501, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not ask the source (code)</td>
 </tr>
 <tr>
 <td>Retrieve with <code>mandate</code></td>
-<td>501, and the ASIP does not ask the source (code)</td>
+<td>501, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not ask the source (code)</td>
 </tr>
 <tr>
 <td>Malformed request with <code>mandate</code></td>
@@ -6965,10 +6978,10 @@ answer them with 501, without asking the source anything.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design. The source is <a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a>
-  REQ-ASIP-6.1.1.1-12, which leaves support of <code>mandate</code> free. The 501
-  then follows from REQ-ASIP-6.1.1.1-13. ETSI leaves the content of
+  REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-12, which leaves support of <code>mandate</code> free. The 501
+  then follows from REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-13. ETSI leaves the content of
   <code>mandate</code> outside the specification (NOTE 3).</li>
-<li><strong>Addressee</strong>: GBO-delivered component: the ASIP. Interface agreement.</li>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. Interface agreement.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a>, <a href="https://github.com/ICTU/GBO-demo/pull/542">PR #542</a>. Code and tests:<ul>
 <li>Historical code: the demo refuses before it asks the source
   (<a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/verification/service.go#L107-L109"><code>service.go#L107-L109</code></a>,
@@ -6987,16 +7000,16 @@ answer them with 501, without asking the source anything.</p>
 <li><strong>Related</strong>: <a href="#req-112">REQ-112</a>,
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel">PSA S04</a>
   (representation), <a href="../../traceability/open-questions/#q-65">Q-65</a>.</li>
-<li><strong>Notes</strong>: this requirement is a choice within REQ-ASIP-6.1.1.1-12. The
+<li><strong>Notes</strong>: this requirement is a choice within REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-12. The
   <a href="#asi-profile">profile</a> records it. <a href="../../traceability/open-questions/#q-65">Q-65</a> asks whether representation
   becomes necessary later, and where the evidence then comes from.</li>
 </ul>
 </details>
-<h2 id="req-115">REQ-115: The ASIP verifies attribute fragments<a class="headerlink" href="#req-115" title="Permanent link">&para;</a></h2>
+<h2 id="req-115">REQ-115: The <abbr title="Authentic Source Interface Provider">ASIP</abbr> verifies attribute fragments<a class="headerlink" href="#req-115" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>The ASIP MUST support the verification of attribute fragments
-(REQ-ASIP-6.1.1.1-07, -08). The contract of every data service MUST
-describe which JSONPath expressions (RFC 9535) the ASIP accepts for a
+<p>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> MUST support the verification of attribute fragments
+(REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-07, -08). The contract of every data service MUST
+describe which JSONPath expressions (RFC 9535) the <abbr title="Authentic Source Interface Provider">ASIP</abbr> accepts for a
 fragment.</p>
 </blockquote>
 <table>
@@ -7028,12 +7041,12 @@ fragment.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design. <a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> leaves fragments free
-  (REQ-ASIP-6.1.1.1-08-01). If the ASIP does not support fragments, it
-  gives 501 (REQ-ASIP-6.1.1.1-09). With fragments, a QTSP can have one
+  (REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-08-01). If the <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not support fragments, it
+  gives 501 (REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.1-09). With fragments, a <abbr title="Qualified Trust Service Provider">QTSP</abbr> can have one
   part of an attribute verified without sending the rest. An example is
   the town of an address.</li>
-<li><strong>Addressee</strong>: GBO-delivered component: the ASIP. Interface agreement.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/608">ICTU/GBO-demo#608</a> is not built in demo v0.9.0. The
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. Interface agreement.</li>
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/608">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#608</a> is not built in demo v0.9.0. The
   built part comes from <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a>. Code and tests:<ul>
 <li>Historical code: the demo supports a subset of JSONPath
   (<a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/verification/match.go#L149-L210"><code>match.go#L149-L210</code></a>,
@@ -7056,11 +7069,11 @@ fragment.</p>
   requirement.</li>
 <li>The demo answers an expression outside its subset with 400
   (<a href="https://github.com/ICTU/GBO-demo/blob/819f3eb7dc7469cd59665ca61be1aff497cecf63/services/asi-provider/internal/verification/service.go#L220-L221"><code>service.go#L220-L221</code></a>).
-  There is no decision whether an expression that the ASIP does not
+  There is no decision whether an expression that the <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not
   support gives 400 or 501.</li>
 <li>In v0.9.0, a fragment can point to a member that the source
   description does not provide, or provides as a constant. That
-  fragment gets <code>Unknown</code>, and the ASIP does not ask the source
+  fragment gets <code>Unknown</code>, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not ask the source
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/verification/service.go#L140-L161"><code>service.go#L140-L161</code></a>).</li>
 </ul>
 </li>
@@ -7074,13 +7087,14 @@ fragment.</p>
   <a href="../authorization/#req-48">REQ-48</a>, <a href="../authorization/#req-74">REQ-74</a>,
   <a href="../authorization/#req-97">REQ-97</a>, <a href="../pseudonymization/#req-79">REQ-79</a>,
   and <a href="../authorization/#req-17">REQ-17</a>.</li>
-<li>REQ-104: removed. The QTSP identifies the citizen itself, as a duty of
-  the QTSP under ETSI and eIDAS (<a href="#req-88">REQ-88</a>). See also
+<li>REQ-104: removed. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> identifies the citizen itself, as a duty of
+  the <abbr title="Qualified Trust Service Provider">QTSP</abbr> under ETSI and eIDAS (<a href="#req-88">REQ-88</a>). See also
   <a href="../../traceability/findings/#f-93">F-93</a> and <a href="../../traceability/open-questions/#q-40">Q-40</a>.</li>
-<li>REQ-105: removed. The QTSP issues an attestation only to the citizen
-  that it identified, as a duty of the QTSP under ETSI and eIDAS
+<li>REQ-105: removed. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues an attestation only to the citizen
+  that it identified, as a duty of the <abbr title="Qualified Trust Service Provider">QTSP</abbr> under ETSI and eIDAS
   (<a href="#req-88">REQ-88</a>).</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

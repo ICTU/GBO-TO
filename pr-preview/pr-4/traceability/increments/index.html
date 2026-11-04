@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1298,7 +1298,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4490,7 +4490,7 @@
   <a href="#sl-22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SL-22: Source sidecar de-pseudonymization (DvTP)
+        SL-22: Source gateway de-pseudonymization (DvTP)
       
     </span>
   </a>
@@ -4710,7 +4710,7 @@
   <a href="#sl-39" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SL-39: eudi-adapter to real FSC Outway
+        SL-39: Eudi-adapter to real FSC Outway
       
     </span>
   </a>
@@ -4721,7 +4721,7 @@
   <a href="#sl-40" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SL-40: pdp-service as AuthZEN endpoint behind FSC Inway (EUDI)
+        SL-40: Pdp-service as AuthZEN endpoint behind FSC Inway (EUDI)
       
     </span>
   </a>
@@ -5178,12 +5178,12 @@ and open questions. The IDs are stable anchors: the
 <a href="../matrix/">design to demo matrix</a>, the <a href="../findings/">findings</a>, the
 <a href="../open-questions/">open questions</a>, and the requirement pages refer to
 them. The issues and pull requests of
-<a href="https://github.com/ICTU/GBO-demo">ICTU/GBO-demo</a> track the work itself.</p>
+<a href="https://github.com/ICTU/GBO-demo">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo</a> track the work itself.</p>
 <p>Each increment entry uses the same fields:</p>
 <ul>
 <li><strong>Status values</strong>: done, planned, blocked, dropped, merged, or partly
   covered.</li>
-<li><strong>Demo work</strong>: links go to ICTU/GBO-demo only. The public repository
+<li><strong>Demo work</strong>: links go to ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo only. The public repository
   started with v0.1.0 on July 20, 2026. Increments SL-01a to SL-42 were
   built before that date, so they have no public pull request. The code
   that they produced is in the public history from v0.1.0.</li>
@@ -5198,7 +5198,7 @@ that was not part of an increment.</p>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the consent register sets an expiry time, and the
+<li><strong>What it showed</strong>: the consent register (toestemmingsregister) sets an expiry time, and the
   policy denies an expired consent. If the expiry time is missing or
   unreadable, the policy also denies. The policy gives a separate reason
   code for each failed check (not found, withdrawn, expired, scope
@@ -5214,7 +5214,7 @@ that was not part of an increment.</p>
 <li><strong>Demo work</strong>: none.</li>
 <li><strong>What it showed</strong>: not built. The increment waited on
   <a href="../answered-questions/#q-04">Q-04</a> (single use or repeatable). Q-04 is
-  answered: FR-DvTP v0.9 makes a consent repeatable within its validity
+  answered: FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 makes a consent repeatable within its validity
   period, so single use is not necessary. The status
   "retrieved" from FR-22 is open: <a href="../open-questions/#q-42">Q-42</a> asks
   who marks a consent as retrieved, and when.</li>
@@ -5226,14 +5226,14 @@ that was not part of an increment.</p>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the demo kept the BSN away from private consumers
+<li><strong>What it showed</strong>: the demo kept the <abbr title="Burgerservicenummer">BSN</abbr> away from private consumers
   without a decision on the pseudonym form (<a href="../open-questions/#q-01">Q-01</a>).
-  The consent register stored a polymorphic identity (PI) instead of the
-  BSN. The PEP resolved the BSN only after an allow. For a denied
-  request, the PEP did not resolve the BSN at all.</li>
+  The consent register stored a polymorphic identity (<abbr title="Polymorphic identity">PI</abbr>) instead of the
+  <abbr title="Burgerservicenummer">BSN</abbr>. The <abbr title="Policy Enforcement Point">PEP</abbr> resolved the <abbr title="Burgerservicenummer">BSN</abbr> only after an allow. For a denied
+  request, the <abbr title="Policy Enforcement Point">PEP</abbr> did not resolve the <abbr title="Burgerservicenummer">BSN</abbr> at all.</li>
 <li><strong>Produced</strong>: <a href="../../requirements/pseudonymization/#req-20">REQ-20</a> and
   <a href="../../requirements/pseudonymization/#req-21">REQ-21</a>. Later, the
-  conversion moved to the source sidecar (<a href="#sl-22">SL-22</a>). Since
+  conversion moved to the source gateway (<a href="#sl-22">SL-22</a>). Since
   <a href="#sl-51">SL-51</a>, the proof carries a value per source, and the source
   decrypts it after the decision.</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/pseudonymization/">Pseudonymization</a></li>
@@ -5243,7 +5243,7 @@ that was not part of an increment.</p>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: the policy parses the real GraphQL query, with
-  schema validation, instead of a regex in the PEP. The fields in the
+  schema validation, instead of a regex in the <abbr title="Policy Enforcement Point">PEP</abbr>. The fields in the
   query must be a subset of the allowed fields of the scope. If a query
   does not parse, it gets a deny.</li>
 <li><strong>Produced</strong>: <a href="../../requirements/authorization/#req-17">REQ-17</a>, and
@@ -5256,13 +5256,13 @@ that was not part of an increment.</p>
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: the policy checked that the query carried the
   consent ID and that it matched the authorization context. A
-  consumer-facing schema without BSN stood next to the internal source
-  schema, and the PEP translated between them.</li>
+  consumer-facing schema without <abbr title="Burgerservicenummer">BSN</abbr> stood next to the internal source
+  schema, and the <abbr title="Policy Enforcement Point">PEP</abbr> translated between them.</li>
 <li><strong>Produced</strong>: REQ-25 to REQ-27 (removed later, successors
   <a href="../../requirements/pseudonymization/#req-79">REQ-79</a> and
   <a href="../../requirements/authorization/#req-17">REQ-17</a>), and
   <a href="../../requirements/authorization/#req-06">REQ-06</a> (new reason codes).
-  Later, the query translation moved to the source sidecar
+  Later, the query translation moved to the source gateway
   (<a href="#sl-42">SL-42</a>).</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/authorization/">Authorization</a></li>
 </ul>
@@ -5270,7 +5270,7 @@ that was not part of an increment.</p>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the PDP logs every decision with a decision ID, the
+<li><strong>What it showed</strong>: the <abbr title="Policy Decision Point">PDP</abbr> logs every decision with a decision ID, the
   reason, and the trace ID of the request. Loki stores the log, and a
   Grafana panel links each decision to its trace.</li>
 <li><strong>Produced</strong>: <a href="../../requirements/logging-audit/#req-32">REQ-32</a>
@@ -5278,13 +5278,13 @@ that was not part of an increment.</p>
   and the audit part of <a href="../findings-closed/#f-07">F-07</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/logging/">Logging</a></li>
 </ul>
-<h3 id="sl-05">SL-05: FSC sector-grant check<a class="headerlink" href="#sl-05" title="Permanent link">&para;</a></h3>
+<h3 id="sl-05">SL-05: <abbr title="Federated Service Connectivity">FSC</abbr> sector-grant check<a class="headerlink" href="#sl-05" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: organization permission is an authorization concern
   of its own, next to the legal basis. The demo checked a sector-level
-  grant per service. FSC has no sector concept (<a href="../findings-closed/#f-36">F-36</a>).
+  grant per service. <abbr title="Federated Service Connectivity">FSC</abbr> has no sector concept (<a href="../findings-closed/#f-36">F-36</a>).
   <a href="https://github.com/ICTU/GBO-demo/issues/378">#378</a> removed the
   <code>sector-pip</code>. Since <a href="#sl-45">SL-45</a>, a register gives the admission.</li>
 <li><strong>Produced</strong>: part of <a href="../findings-closed/#f-08">F-08</a> (REQ-33 and REQ-34,
@@ -5296,8 +5296,8 @@ that was not part of an increment.</p>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: a citizen goes from a mock dienstverlener website
-  to the consent portal inside a MijnOverheid shell. He logs in with a
+<li><strong>What it showed</strong>: a citizen goes from a mock service provider (dienstverlener) website
+  to the consent portal (toestemmingsportaal) inside a MijnOverheid shell. He logs in with a
   DigiD mock, gives consent, and returns. The redirect carries the
   consumer, the service, the purpose, the data sets, and the return
   address. The result page fetches real data through the whole chain.</li>
@@ -5335,11 +5335,11 @@ that was not part of an increment.</p>
   <a href="../../requirements/logging-audit/#req-55">REQ-55</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/logging/">Logging</a></li>
 </ul>
-<h3 id="sl-08">SL-08: Consent PIP through PEP pre-fetch<a class="headerlink" href="#sl-08" title="Permanent link">&para;</a></h3>
+<h3 id="sl-08">SL-08: Consent <abbr title="Policy Information Point">PIP</abbr> through <abbr title="Policy Enforcement Point">PEP</abbr> pre-fetch<a class="headerlink" href="#sl-08" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the PEP fetched the consent record and gave it to
+<li><strong>What it showed</strong>: the <abbr title="Policy Enforcement Point">PEP</abbr> fetched the consent record and gave it to
   the policy as input, so the policy engine made no network call. Since
   <a href="https://github.com/ICTU/GBO-demo/pull/371">PR #371</a>, the flow is
   reversed: the policy verifies the signed consent proof and asks the
@@ -5354,7 +5354,7 @@ that was not part of an increment.</p>
 <li><strong>Status</strong>: partly covered</li>
 <li><strong>Demo work</strong>: covered by <a href="#sl-45">SL-45</a>.</li>
 <li><strong>What it showed</strong>: <a href="#sl-45">SL-45</a> delivered the admission register and
-  the contract decision by the PDP. Missing: an onboarding interface for
+  the contract decision by the <abbr title="Policy Decision Point">PDP</abbr>. Missing: an onboarding interface for
   consumers, and the test of the connection conditions
   (<a href="../open-questions/#q-74">Q-74</a>). <a href="../answered-questions/#q-22">Q-22</a>
   answers who keeps the register and on which grounds.</li>
@@ -5380,7 +5380,7 @@ that was not part of an increment.</p>
 <li><strong>What it showed</strong>: the consent portal (PSA S02) became a service of
   its own, apart from the consent register (S01). The DigiD mock gives a
   token, and the backend takes the citizen identity only from that token.
-  The backend calls BSNk, so the register gets no BSN.</li>
+  The backend calls BSNk, so the register gets no <abbr title="Burgerservicenummer">BSN</abbr>.</li>
 <li><strong>Produced</strong>: <a href="../../requirements/consent/#req-23">REQ-23</a>,
   <a href="../../requirements/consent/#req-24">REQ-24</a> (REQ-22 and REQ-35
   were removed later).</li>
@@ -5443,20 +5443,20 @@ that was not part of an increment.</p>
 <li><strong>Produced</strong>: no requirement.</li>
 <li><strong>Explained in</strong>: <a href="../../building-blocks/components/">Building blocks</a></li>
 </ul>
-<h3 id="sl-17">SL-17: AuthZEN envelope adoption<a class="headerlink" href="#sl-17" title="Permanent link">&para;</a></h3>
+<h3 id="sl-17">SL-17: <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> envelope adoption<a class="headerlink" href="#sl-17" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the PDP answers in the AuthZEN decision envelope,
+<li><strong>What it showed</strong>: the <abbr title="Policy Decision Point">PDP</abbr> answers in the <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> decision envelope,
   with a reason code for the operator on a deny. At that time, the wire
-  shape between PEP and PDP did not follow the GBO profile
+  shape between <abbr title="Policy Enforcement Point">PEP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> did not follow the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> profile
   (<a href="../findings-closed/#f-27">F-27</a>).</li>
 <li><strong>Produced</strong>: <a href="../findings-closed/#f-27">F-27</a>,
   <a href="../../requirements/authorization/#req-42">REQ-42</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/authorization/">Authorization</a>,
   <a href="../../decisions/0002-opa-rego-authzen/">ADR-0002</a></li>
 </ul>
-<h3 id="sl-18">SL-18: RFC0052-GBO policy refactor and PDP handler<a class="headerlink" href="#sl-18" title="Permanent link">&para;</a></h3>
+<h3 id="sl-18">SL-18: RFC0052-<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> policy refactor and <abbr title="Policy Decision Point">PDP</abbr> handler<a class="headerlink" href="#sl-18" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
@@ -5464,7 +5464,7 @@ that was not part of an increment.</p>
   parses the GraphQL request. The policy has named rules that bind to
   types and fields, and it decides per field. Each decision lists the
   rules that it evaluated. The handler became the request mapper inside
-  the OpenFTV PDP.</li>
+  the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> <abbr title="Policy Decision Point">PDP</abbr>.</li>
 <li><strong>Produced</strong>: <a href="../findings-closed/#f-27">F-27</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/authorization/">Authorization</a>,
   <a href="../../decisions/0013-pdp-request-mapper/">ADR-0013</a></li>
@@ -5475,18 +5475,18 @@ that was not part of an increment.</p>
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: the issuance server of nl-wallet runs in the demo
   compose stack. A pre-production wallet received a real attestation from
-  the demo, without the GBO chain.</li>
+  the demo, without the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> chain.</li>
 <li><strong>Produced</strong>: <a href="../open-questions/#q-17">Q-17</a>,
   <a href="../open-questions/#q-18">Q-18</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../runtime/eudi-issuance/">EUDI issuance</a>,
   <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a></li>
 </ul>
-<h3 id="sl-20">SL-20: EUDI adapter with AuthZEN dispatch through the PEP<a class="headerlink" href="#sl-20" title="Permanent link">&para;</a></h3>
+<h3 id="sl-20">SL-20: EUDI adapter with <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> dispatch through the <abbr title="Policy Enforcement Point">PEP</abbr><a class="headerlink" href="#sl-20" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: a thin adapter between the issuance server and the
-  source sends EUDI requests through the same PDP as DvTP. One generic
+  source sends EUDI requests through the same <abbr title="Policy Decision Point">PDP</abbr> as <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>. One generic
   chain serves two front doors. The <code>flow</code> field in the body that chose
   the regime was an interim solution (<a href="../findings-closed/#f-32">F-32</a>).</li>
 <li><strong>Produced</strong>:<ul>
@@ -5509,15 +5509,15 @@ that was not part of an increment.</p>
 <li><strong>Produced</strong>: none.</li>
 <li><strong>Explained in</strong>: no page.</li>
 </ul>
-<h3 id="sl-22">SL-22: Source sidecar de-pseudonymization (DvTP)<a class="headerlink" href="#sl-22" title="Permanent link">&para;</a></h3>
+<h3 id="sl-22">SL-22: Source gateway de-pseudonymization (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)<a class="headerlink" href="#sl-22" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository. It was built together
   with <a href="#sl-23">SL-23</a> in <a href="#sl-42">SL-42</a>.</li>
-<li><strong>What it showed</strong>: the conversion from pseudonym to BSN moved from the
-  PEP to a sidecar at the source, with the keys of the source. Since
-  then, the GBO core (PEP, PDP, and policy engine) handles no BSN in the
-  DvTP path.</li>
+<li><strong>What it showed</strong>: the conversion from pseudonym to <abbr title="Burgerservicenummer">BSN</abbr> moved from the
+  <abbr title="Policy Enforcement Point">PEP</abbr> to a source gateway at the source, with the keys of the source. Since
+  then, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> core (<abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, and policy engine) handles no <abbr title="Burgerservicenummer">BSN</abbr> in the
+  <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> path.</li>
 <li><strong>Produced</strong>: <a href="../findings-closed/#f-30">F-30</a>,
   <a href="../../requirements/pseudonymization/#req-21">REQ-21</a> (place of the
   conversion).</li>
@@ -5544,9 +5544,9 @@ that was not part of an increment.</p>
 <ul>
 <li><strong>Status</strong>: dropped</li>
 <li><strong>Demo work</strong>: none of its own.</li>
-<li><strong>What it showed</strong>: the plan was to derive the regime (consent or PID)
+<li><strong>What it showed</strong>: the plan was to derive the regime (consent or <abbr title="Person Identification Data">PID</abbr>)
   from verified component identity instead of a declared <code>flow</code> field.
-  First, signed FSC grant properties replaced the plan. Since
+  First, signed <abbr title="Federated Service Connectivity">FSC</abbr> grant properties replaced the plan. Since
   <a href="https://github.com/ICTU/GBO-demo/pull/363">PR #363</a>, the regime
   follows from the evidence that a request carries.</li>
 <li><strong>Produced</strong>: replaced by
@@ -5555,24 +5555,24 @@ that was not part of an increment.</p>
   <a href="../answered-questions/#q-15">Q-15</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a></li>
 </ul>
-<h3 id="sl-25">SL-25: PID signature verification in the EDI adapter<a class="headerlink" href="#sl-25" title="Permanent link">&para;</a></h3>
+<h3 id="sl-25">SL-25: <abbr title="Person Identification Data">PID</abbr> signature verification in the EDI adapter<a class="headerlink" href="#sl-25" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: dropped</li>
 <li><strong>Demo work</strong>: none.</li>
 <li><strong>What it showed</strong>: not necessary. The issuance server verifies the
-  PID, and the adapter gets plain JSON attributes. One gap stays: the
+  <abbr title="Person Identification Data">PID</abbr>, and the adapter gets plain JSON attributes. One gap stays: the
   callback from the issuance server to the adapter has no authentication
   (<a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>).</li>
 <li><strong>Produced</strong>: input for <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>
   and <a href="../findings/#f-70">F-70</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../runtime/eudi-issuance/">EUDI issuance</a></li>
 </ul>
-<h3 id="sl-26">SL-26: EDI issuer through an FSC Outway (OIN): PuB-EAA route<a class="headerlink" href="#sl-26" title="Permanent link">&para;</a></h3>
+<h3 id="sl-26">SL-26: EDI issuer through an <abbr title="Federated Service Connectivity">FSC</abbr> Outway (<abbr title="Organisatie-identificatienummer">OIN</abbr>): <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route<a class="headerlink" href="#sl-26" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the issuer fetches source data through an FSC
-  Outway under its own OIN. EUDI and DvTP arrive at the source in the
+<li><strong>What it showed</strong>: the issuer fetches source data through an <abbr title="Federated Service Connectivity">FSC</abbr>
+  Outway under its own <abbr title="Organisatie-identificatienummer">OIN</abbr>. EUDI and <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> arrive at the source in the
   same way. The access basis stays different per route.</li>
 <li><strong>Produced</strong>: <a href="../../requirements/sources-identity/#req-46">REQ-46</a>
   (REQ-47 removed).</li>
@@ -5590,18 +5590,18 @@ that was not part of an increment.</p>
 <li><strong>Produced</strong>: see <a href="#sl-47">SL-47</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../decisions/0032-consent-proof/">ADR-0032</a></li>
 </ul>
-<h3 id="sl-28">SL-28: Authentic Source Interface (QTSP verification)<a class="headerlink" href="#sl-28" title="Permanent link">&para;</a></h3>
+<h3 id="sl-28">SL-28: Authentic Source Interface (<abbr title="Qualified Trust Service Provider">QTSP</abbr> verification)<a class="headerlink" href="#sl-28" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
-<li><strong>Demo work</strong>: epic <a href="https://github.com/ICTU/GBO-demo/issues/336">ICTU/GBO-demo#336</a>,
+<li><strong>Demo work</strong>: epic <a href="https://github.com/ICTU/GBO-demo/issues/336">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#336</a>,
   closed on October 27, 2026. The numbered list after this entry gives
   the parts of the epic.</li>
-<li><strong>What it showed</strong>: an ASIP mock to ETSI TS 119 478 clause 6.1, with its
-  own authorization server, a reference QTSP, and a conformance matrix in
-  CI. The QTSP is not an FSC participant. The generic chain (FSC, PDP,
-  sidecar, and source) starts behind the ASIP (<a href="../findings/#f-87">F-87</a>).
+<li><strong>What it showed</strong>: an <abbr title="Authentic Source Interface Provider">ASIP</abbr> mock to ETSI TS 119 478 clause 6.1, with its
+  own authorization server, a reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>, and a conformance matrix in
+  CI. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> is not an <abbr title="Federated Service Connectivity">FSC</abbr> participant. The generic chain (<abbr title="Federated Service Connectivity">FSC</abbr>, <abbr title="Policy Decision Point">PDP</abbr>,
+  source gateway, and source) starts behind the <abbr title="Authentic Source Interface Provider">ASIP</abbr> (<a href="../findings/#f-87">F-87</a>).
   The citizen logs in with a DigiD mock or the NL Wallet.</li>
-<li><strong>Explained in</strong>: <a href="../../runtime/asi-verification/">QTSP verification (ASI route)</a>,
+<li><strong>Explained in</strong>: <a href="../../runtime/asi-verification/"><abbr title="Qualified Trust Service Provider">QTSP</abbr> verification (<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route)</a>,
   <a href="../../decisions/0037-asi-oauth-front-door/">ADR-0037</a>,
   <a href="../../decisions/0038-asi-data-service-per-source/">ADR-0038</a>,
   <a href="../../decisions/0039-asi-source-described-attributes/">ADR-0039</a>,
@@ -5611,7 +5611,7 @@ that was not part of an increment.</p>
 <ol>
 <li><strong>Verify and retrieve with a seal</strong>
    (<a href="https://github.com/ICTU/GBO-demo/issues/498">#498</a>,
-   <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a>). The ASIP
+   <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a>). The <abbr title="Authentic Source Interface Provider">ASIP</abbr>
    verifies and retrieves against an in-memory source. It gives the four
    verification results, the published contract, and a seal on each
    result. Produced: <a href="../../requirements/asi/#req-83">REQ-83</a>,
@@ -5624,7 +5624,7 @@ that was not part of an increment.</p>
    <a href="https://github.com/ICTU/GBO-demo/pull/522">PR #522</a>, and refactor
    <a href="https://github.com/ICTU/GBO-demo/pull/505">PR #505</a>). The
    authorization server implements clause 6.1.3 with PKCE,
-   <code>private_key_jwt</code>, DPoP, and JWT tokens. It also has dynamic client
+   <code>private_key_jwt</code>, <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr>, and JWT tokens. It also has dynamic client
    registration with a sealed software statement, a stub register, and a
    periodic re-check. Produced: <a href="../../requirements/asi/#req-86">REQ-86</a> to
    <a href="../../requirements/asi/#req-89">REQ-89</a>, <a href="../findings/#f-84">F-84</a>,
@@ -5635,17 +5635,17 @@ that was not part of an increment.</p>
    (<a href="https://github.com/ICTU/GBO-demo/issues/523">#523</a>,
    <a href="https://github.com/ICTU/GBO-demo/pull/524">PR #524</a>). The transaction
    is one-time, short-lived, and bound to the browser. The token carries
-   PID attributes. Produced: <a href="../../requirements/asi/#req-90">REQ-90</a>,
+   <abbr title="Person Identification Data">PID</abbr> attributes. Produced: <a href="../../requirements/asi/#req-90">REQ-90</a>,
    <a href="../../requirements/asi/#req-91">REQ-91</a>,
    <a href="../findings/#f-88">F-88</a>, and <a href="../open-questions/#q-36">Q-36</a>.</li>
-<li><strong>Chain behind the ASIP</strong>
+<li><strong>Chain behind the <abbr title="Authentic Source Interface Provider">ASIP</abbr></strong>
    (<a href="https://github.com/ICTU/GBO-demo/issues/525">#525</a>,
    <a href="https://github.com/ICTU/GBO-demo/pull/526">PR #526</a>,
    <a href="https://github.com/ICTU/GBO-demo/pull/527">PR #527</a>,
    <a href="https://github.com/ICTU/GBO-demo/pull/529">PR #529</a>,
    <a href="https://github.com/ICTU/GBO-demo/pull/530">PR #530</a>,
-   <a href="https://github.com/ICTU/GBO-demo/pull/532">PR #532</a>). The ASIP is an
-   FSC peer and asks the BRP over FSC under rule ASI0001. Each source has
+   <a href="https://github.com/ICTU/GBO-demo/pull/532">PR #532</a>). The <abbr title="Authentic Source Interface Provider">ASIP</abbr> is an
+   <abbr title="Federated Service Connectivity">FSC</abbr> peer and asks the BRP over <abbr title="Federated Service Connectivity">FSC</abbr> under rule ASI0001. Each source has
    one data service and one token, each request causes one source
    request, and every rule names its services. Produced:
    <a href="../../requirements/asi/#req-92">REQ-92</a> to
@@ -5668,7 +5668,7 @@ that was not part of an increment.</p>
    <a href="https://github.com/ICTU/GBO-demo/pull/541">PR #541</a>,
    <a href="https://github.com/ICTU/GBO-demo/pull/542">PR #542</a>). The part added
    a record per data service for the Discover Interface, and a reference
-   QTSP. It also added a conformance matrix per ETSI requirement with a
+   <abbr title="Qualified Trust Service Provider">QTSP</abbr>. It also added a conformance matrix per ETSI requirement with a
    check in CI, and a 404 for a retrieve without a value. Produced:
    <a href="../../requirements/asi/#req-99">REQ-99</a> to
    <a href="../../requirements/asi/#req-101">REQ-101</a>, <a href="../findings/#f-91">F-91</a>,
@@ -5678,8 +5678,8 @@ that was not part of an increment.</p>
    (<a href="https://github.com/ICTU/GBO-demo/issues/546">#546</a>,
    <a href="https://github.com/ICTU/GBO-demo/pull/550">PR #550</a>,
    <a href="https://github.com/ICTU/GBO-demo/pull/551">PR #551</a>,
-   <a href="https://github.com/ICTU/GBO-demo/pull/552">PR #552</a>). The ASI route
-   uses OpenID4VP with the verifier of nl-wallet. A run with the real NL
+   <a href="https://github.com/ICTU/GBO-demo/pull/552">PR #552</a>). The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route
+   uses <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> with the verifier of nl-wallet. A run with the real NL
    Wallet is recorded. Produced:
    <a href="../../requirements/asi/#req-102">REQ-102</a>,
    <a href="../findings/#f-93">F-93</a>, <a href="../findings/#f-94">F-94</a>, and
@@ -5691,13 +5691,13 @@ that was not part of an increment.</p>
    <a href="../findings/#f-96">F-96</a>, <a href="../open-questions/#q-41">Q-41</a>,
    <a href="../findings/#f-84">F-84</a> (extended), and the
    <a href="../standards-feedback/">ETSI feedback list</a>.</li>
-<li><strong>Protect the BSN in the token</strong>: not done.
+<li><strong>Protect the <abbr title="Burgerservicenummer">BSN</abbr> in the token</strong>: not done.
    <a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a> tracks the
    follow-up.</li>
 <li><strong>DigiD mock and one request screen</strong>
     (<a href="https://github.com/ICTU/GBO-demo/issues/544">#544</a>,
     <a href="https://github.com/ICTU/GBO-demo/pull/545">PR #545</a>). The legal name
-    of the QTSP comes from the register. The consent is fixed only after
+    of the <abbr title="Qualified Trust Service Provider">QTSP</abbr> comes from the register. The consent is fixed only after
     a successful identification. The token carries the means
     (<code>acr</code>/<code>amr</code>). Produced:
     <a href="../../requirements/asi/#req-86">REQ-86</a>,
@@ -5717,20 +5717,20 @@ that was not part of an increment.</p>
     <a href="../findings/#f-95">F-95</a>, and <a href="../open-questions/#q-33">Q-33</a>.</li>
 <li><strong>Same-device login with the NL Wallet</strong>
     (<a href="https://github.com/ICTU/GBO-demo/issues/548">#548</a>,
-    <a href="https://github.com/ICTU/GBO-demo/pull/573">PR #573</a>). The ASI route
+    <a href="https://github.com/ICTU/GBO-demo/pull/573">PR #573</a>). The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route
     accepts the return only in the browser of the transaction. Produced:
     <a href="../../requirements/asi/#req-102">REQ-102</a> and
     <a href="../findings/#f-93">F-93</a>. <a href="https://github.com/ICTU/GBO-demo/issues/596">#596</a>
     tracks the real run on one phone.</li>
-<li><strong>Wallet issuance by the reference QTSP</strong>
+<li><strong>Wallet issuance by the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr></strong>
     (<a href="https://github.com/ICTU/GBO-demo/issues/549">#549</a>,
     <a href="https://github.com/ICTU/GBO-demo/pull/570">PR #570</a>, and tools
     <a href="https://github.com/ICTU/GBO-demo/pull/566">PR #566</a>,
     <a href="https://github.com/ICTU/GBO-demo/pull/567">PR #567</a>). After a
-    successful result, the reference QTSP issues a marked test
+    successful result, the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues a marked test
     attestation. Produced: <a href="../findings/#f-93">F-93</a>. REQ-105 was
     removed.</li>
-<li><strong>Citizen logs in at the reference QTSP</strong>
+<li><strong>Citizen logs in at the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr></strong>
     (<a href="https://github.com/ICTU/GBO-demo/issues/560">#560</a>,
     <a href="https://github.com/ICTU/GBO-demo/pull/562">PR #562</a>,
     <a href="https://github.com/ICTU/GBO-demo/pull/563">PR #563</a>,
@@ -5741,10 +5741,10 @@ that was not part of an increment.</p>
 <p>The close of the epic (<a href="https://github.com/ICTU/GBO-demo/pull/590">PR #590</a>,
 <a href="https://github.com/ICTU/GBO-demo/pull/591">PR #591</a>,
 <a href="https://github.com/ICTU/GBO-demo/pull/593">PR #593</a>) made the consent
-page name the QTSP that gets consent
-(<a href="../../requirements/asi/#req-91">REQ-91</a>). On October 28, 2026, the GBO
+page name the <abbr title="Qualified Trust Service Provider">QTSP</abbr> that gets consent
+(<a href="../../requirements/asi/#req-91">REQ-91</a>). On October 28, 2026, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 profile on ETSI TS 119 478 followed
-(<a href="../../requirements/asi/#asi-profile">ASI profile</a>). The profile produced
+(<a href="../../requirements/asi/#asi-profile"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> profile</a>). The profile produced
 <a href="../../requirements/asi/#req-112">REQ-112</a> to
 <a href="../../requirements/asi/#req-115">REQ-115</a> and
 <a href="../open-questions/#q-64">Q-64</a> to <a href="../open-questions/#q-67">Q-67</a>.</p>
@@ -5754,24 +5754,24 @@ profile on ETSI TS 119 478 followed
   describes its attributes in its source metadata. Steps 1 to 5 are in
   v0.9.0 (<a href="https://github.com/ICTU/GBO-demo/pull/623">PR #623</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/624">PR #624</a>, and earlier). In
-  demo v0.9.0, every ASI data service names an authentic source
+  demo v0.9.0, every <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> data service names an authentic source
   (<a href="../open-questions/#q-38">Q-38</a>,
   <a href="../../decisions/0039-asi-source-described-attributes/">ADR-0039</a>).</li>
-<li><a href="https://github.com/ICTU/GBO-demo/issues/594">#594</a>: the ASI route in
-  the simulation environment, and an external QTSP.</li>
-<li><a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>: protect the BSN in
+<li><a href="https://github.com/ICTU/GBO-demo/issues/594">#594</a>: the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route in
+  the simulation environment, and an external <abbr title="Qualified Trust Service Provider">QTSP</abbr>.</li>
+<li><a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>: protect the <abbr title="Burgerservicenummer">BSN</abbr> in
   the token (<a href="../findings/#f-86">F-86</a>).</li>
 <li><a href="https://github.com/ICTU/GBO-demo/issues/596">#596</a>: the real run of
   same-device login.</li>
 </ul>
-<h3 id="sl-29">SL-29: BSN out of the EDI decision logs<a class="headerlink" href="#sl-29" title="Permanent link">&para;</a></h3>
+<h3 id="sl-29">SL-29: <abbr title="Burgerservicenummer">BSN</abbr> out of the EDI decision logs<a class="headerlink" href="#sl-29" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: a masking rule kept the BSN out of the decision log.
+<li><strong>What it showed</strong>: a masking rule kept the <abbr title="Burgerservicenummer">BSN</abbr> out of the decision log.
   <a href="#sl-44">SL-44</a> showed that the masking rule did not work in the
-  OpenFTV PDP (<a href="../findings/#f-54">F-54</a>). Since
-  <a href="https://github.com/ICTU/GBO-demo/pull/370">PR #370</a>, the EUDI BSN is
+  <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> <abbr title="Policy Decision Point">PDP</abbr> (<a href="../findings/#f-54">F-54</a>). Since
+  <a href="https://github.com/ICTU/GBO-demo/pull/370">PR #370</a>, the EUDI <abbr title="Burgerservicenummer">BSN</abbr> is
   in both decision logs. It stays there until a decision on
   <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>.</li>
 <li><strong>Produced</strong>: input for <a href="../../requirements/logging-audit/#req-60">REQ-60</a>
@@ -5784,11 +5784,11 @@ profile on ETSI TS 119 478 followed
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: the developer portal shows the EUDI issuance chain
-  next to the two DvTP chains, with trace links and history.</li>
+  next to the two <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> chains, with trace links and history.</li>
 <li><strong>Produced</strong>: input for <a href="../open-questions/#q-08">Q-08</a> (wallet side).</li>
 <li><strong>Explained in</strong>: <a href="../../building-blocks/components/">Building blocks</a></li>
 </ul>
-<h3 id="sl-31">SL-31: FSC Inway payload is pure GraphQL and a token, with no envelope<a class="headerlink" href="#sl-31" title="Permanent link">&para;</a></h3>
+<h3 id="sl-31">SL-31: <abbr title="Federated Service Connectivity">FSC</abbr> Inway payload is pure GraphQL and a token, with no envelope<a class="headerlink" href="#sl-31" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
@@ -5816,20 +5816,20 @@ profile on ETSI TS 119 478 followed
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: every policy path checks actor and scope itself.
-  The DvTP rule checks that the consent covers the scope. The EUDI rule
+  The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> rule checks that the consent covers the scope. The EUDI rule
   declares which actors and scopes it allows.</li>
 <li><strong>Produced</strong>: <a href="../../requirements/authorization/#req-48">REQ-48</a>, and
   model B for both paths (<a href="../open-questions/#q-14">Q-14</a>).</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/authorization/">Authorization</a></li>
 </ul>
-<h3 id="sl-34">SL-34: FSC exploration<a class="headerlink" href="#sl-34" title="Permanent link">&para;</a></h3>
+<h3 id="sl-34">SL-34: <abbr title="Federated Service Connectivity">FSC</abbr> exploration<a class="headerlink" href="#sl-34" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: an analysis of OpenFSC v2.4.0. The Inway has an
-  AuthZEN plugin, so a separate PEP service duplicates its role. FSC has
+  <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> plugin, so a separate <abbr title="Policy Enforcement Point">PEP</abbr> service duplicates its role. <abbr title="Federated Service Connectivity">FSC</abbr> has
   no sector grant. Data transformation after the decision belongs in the
-  source gateway instead of the PDP.</li>
+  source gateway instead of the <abbr title="Policy Decision Point">PDP</abbr>.</li>
 <li><strong>Produced</strong>:<ul>
 <li>findings <a href="../findings-closed/#f-35">F-35</a>, <a href="../findings-closed/#f-36">F-36</a>, and
   <a href="../findings-closed/#f-37">F-37</a></li>
@@ -5847,7 +5847,7 @@ profile on ETSI TS 119 478 followed
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: the demo runs its own root CA with a certificate
-  portal, so FSC peers get certificates without an external CA.</li>
+  portal, so <abbr title="Federated Service Connectivity">FSC</abbr> peers get certificates without an external CA.</li>
 <li><strong>Produced</strong>: no requirement. The result is input for
   <a href="../answered-questions/#q-07">Q-07</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/identity-trust/">Organization identity and trust</a>,
@@ -5857,7 +5857,7 @@ profile on ETSI TS 119 478 followed
 <ul>
 <li><strong>Status</strong>: merged</li>
 <li><strong>Demo work</strong>: covered by <a href="#sl-34a">SL-34a</a> and <a href="#sl-34c">SL-34c</a>.</li>
-<li><strong>What it showed</strong>: the plan was to run one FSC organization before the
+<li><strong>What it showed</strong>: the plan was to run one <abbr title="Federated Service Connectivity">FSC</abbr> organization before the
   roll-out. <a href="#sl-34a">SL-34a</a> and <a href="#sl-34c">SL-34c</a> covered the purpose.
   Step 2 of the plan was removed.</li>
 <li><strong>Produced</strong>: none.</li>
@@ -5867,30 +5867,30 @@ profile on ETSI TS 119 478 followed
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the demo runs its own FSC directory peer with a
+<li><strong>What it showed</strong>: the demo runs its own <abbr title="Federated Service Connectivity">FSC</abbr> directory peer with a
   user interface, so it does not depend on an external directory.</li>
 <li><strong>Produced</strong>: no requirement.</li>
 <li><strong>Explained in</strong>: <a href="../../deployment/">Deployment</a></li>
 </ul>
-<h3 id="sl-35">SL-35: Bootstrap of the FSC organization EDI issuer (consumer)<a class="headerlink" href="#sl-35" title="Permanent link">&para;</a></h3>
+<h3 id="sl-35">SL-35: Bootstrap of the <abbr title="Federated Service Connectivity">FSC</abbr> organization EDI issuer (consumer)<a class="headerlink" href="#sl-35" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the EUDI issuer runs as an FSC consumer
+<li><strong>What it showed</strong>: the EUDI issuer runs as an <abbr title="Federated Service Connectivity">FSC</abbr> consumer
   organization of its own, with its own peer and certificate.</li>
 <li><strong>Produced</strong>: no requirement.</li>
 <li><strong>Explained in</strong>: <a href="../../deployment/">Deployment</a></li>
 </ul>
-<h3 id="sl-36">SL-36: Bootstrap of the FSC organization Belastingdienst mock (provider)<a class="headerlink" href="#sl-36" title="Permanent link">&para;</a></h3>
+<h3 id="sl-36">SL-36: Bootstrap of the <abbr title="Federated Service Connectivity">FSC</abbr> organization Belastingdienst mock (provider)<a class="headerlink" href="#sl-36" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the Belastingdienst mock runs as an FSC provider
+<li><strong>What it showed</strong>: the Belastingdienst mock runs as an <abbr title="Federated Service Connectivity">FSC</abbr> provider
   organization of its own, with its own Manager and Inway.</li>
 <li><strong>Produced</strong>: no requirement.</li>
 <li><strong>Explained in</strong>: <a href="../../deployment/">Deployment</a></li>
 </ul>
-<h3 id="sl-37">SL-37: FSC service bri and contract negotiation between organizations<a class="headerlink" href="#sl-37" title="Permanent link">&para;</a></h3>
+<h3 id="sl-37">SL-37: <abbr title="Federated Service Connectivity">FSC</abbr> service bri and contract negotiation between organizations<a class="headerlink" href="#sl-37" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository. Seed automation came
@@ -5902,13 +5902,13 @@ profile on ETSI TS 119 478 followed
 <li><strong>Produced</strong>: <a href="../findings-closed/#f-36">F-36</a> (detail).</li>
 <li><strong>Explained in</strong>: <a href="../../runtime/admission/">Contract admission and source activation</a></li>
 </ul>
-<h3 id="sl-38">SL-38: FSC txlog observability and trace ID equal to Fsc-Transaction-Id<a class="headerlink" href="#sl-38" title="Permanent link">&para;</a></h3>
+<h3 id="sl-38">SL-38: <abbr title="Federated Service Connectivity">FSC</abbr> txlog observability and trace ID equal to Fsc-Transaction-Id<a class="headerlink" href="#sl-38" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: FSC v2.4.0 does not propagate trace context, and its
+<li><strong>What it showed</strong>: <abbr title="Federated Service Connectivity">FSC</abbr> v2.4.0 does not propagate trace context, and its
   plugins drop the request context. The demo made the trace ID equal to
-  the FSC transaction ID and read the FSC transaction logs. <a href="#sl-50">SL-50</a>
+  the <abbr title="Federated Service Connectivity">FSC</abbr> transaction ID and read the <abbr title="Federated Service Connectivity">FSC</abbr> transaction logs. <a href="#sl-50">SL-50</a>
   reversed the key: W3C Trace Context is the key, and the demo records
   the transaction ID next to it (<a href="../findings-closed/#f-67">F-67</a>).</li>
 <li><strong>Produced</strong>: <a href="../findings-closed/#f-39">F-39</a>, <a href="../findings-closed/#f-40">F-40</a>,
@@ -5918,11 +5918,11 @@ profile on ETSI TS 119 478 followed
 <li><strong>Explained in</strong>: <a href="../../concepts/logging/">Logging</a>,
   <a href="../../decisions/0035-w3c-trace-context/">ADR-0035</a></li>
 </ul>
-<h3 id="sl-39">SL-39: eudi-adapter to real FSC Outway<a class="headerlink" href="#sl-39" title="Permanent link">&para;</a></h3>
+<h3 id="sl-39">SL-39: Eudi-adapter to real <abbr title="Federated Service Connectivity">FSC</abbr> Outway<a class="headerlink" href="#sl-39" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the EUDI adapter calls the source through a real FSC
+<li><strong>What it showed</strong>: the EUDI adapter calls the source through a real <abbr title="Federated Service Connectivity">FSC</abbr>
   Outway, with mTLS and contract-based authorization up to the Inway. The
   scope header is an untrusted catalog index, and the policy checks it
   independently (<a href="../findings-closed/#f-14">F-14</a>).</li>
@@ -5930,32 +5930,32 @@ profile on ETSI TS 119 478 followed
   <a href="../findings-closed/#f-14">F-14</a> (resolved).</li>
 <li><strong>Explained in</strong>: <a href="../../runtime/eudi-issuance/">EUDI issuance</a></li>
 </ul>
-<h3 id="sl-40">SL-40: pdp-service as AuthZEN endpoint behind FSC Inway (EUDI)<a class="headerlink" href="#sl-40" title="Permanent link">&para;</a></h3>
+<h3 id="sl-40">SL-40: Pdp-service as <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> endpoint behind <abbr title="Federated Service Connectivity">FSC</abbr> Inway (EUDI)<a class="headerlink" href="#sl-40" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the AuthZEN plugin of the FSC Inway calls the PDP
-  directly. No separate PEP is necessary in the FSC chain.</li>
+<li><strong>What it showed</strong>: the <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> plugin of the <abbr title="Federated Service Connectivity">FSC</abbr> Inway calls the <abbr title="Policy Decision Point">PDP</abbr>
+  directly. No separate <abbr title="Policy Enforcement Point">PEP</abbr> is necessary in the <abbr title="Federated Service Connectivity">FSC</abbr> chain.</li>
 <li><strong>Produced</strong>: <a href="../findings-closed/#f-35">F-35</a> (shown live),
   <a href="../../requirements/authorization/#req-42">REQ-42</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../decisions/0002-opa-rego-authzen/">ADR-0002</a></li>
 </ul>
-<h3 id="sl-41">SL-41: Documentation and developer portal update: real FSC nodes<a class="headerlink" href="#sl-41" title="Permanent link">&para;</a></h3>
+<h3 id="sl-41">SL-41: Documentation and developer portal update: real <abbr title="Federated Service Connectivity">FSC</abbr> nodes<a class="headerlink" href="#sl-41" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: the documentation and the developer portal show the
-  real FSC nodes instead of the <code>fsc-mock</code>.</li>
+  real <abbr title="Federated Service Connectivity">FSC</abbr> nodes instead of the <code>fsc-mock</code>.</li>
 <li><strong>Produced</strong>: no requirement. <a href="../findings-closed/#f-31">F-31</a> stays valid.</li>
 <li><strong>Explained in</strong>: <a href="../../building-blocks/components/">Building blocks</a></li>
 </ul>
-<h3 id="sl-42">SL-42: Follow-up: fully phase out fsc-mock (option B, DvTP)<a class="headerlink" href="#sl-42" title="Permanent link">&para;</a></h3>
+<h3 id="sl-42">SL-42: Follow-up: fully phase out fsc-mock (option B, <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)<a class="headerlink" href="#sl-42" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: DvTP runs over real FSC too, with a second consumer
-  organization. The demo removed the <code>fsc-mock</code> and the PEP service. The
-  PDP is the only policy endpoint for DvTP and EUDI. The source sidecar
+<li><strong>What it showed</strong>: <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> runs over real <abbr title="Federated Service Connectivity">FSC</abbr> too, with a second consumer
+  organization. The demo removed the <code>fsc-mock</code> and the <abbr title="Policy Enforcement Point">PEP</abbr> service. The
+  <abbr title="Policy Decision Point">PDP</abbr> is the only policy endpoint for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> and EUDI. The source gateway
   does the conversion after the decision (<a href="#sl-22">SL-22</a>,
   <a href="#sl-23">SL-23</a>).</li>
 <li><strong>Produced</strong>:<ul>
@@ -5973,9 +5973,9 @@ profile on ETSI TS 119 478 followed
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/125">PR #125</a></li>
 <li><strong>What it showed</strong>: a second source (BRP) and a second attestation. A
-  surviving partner discloses his PID and gets the death certificate of
+  surviving partner discloses his <abbr title="Person Identification Data">PID</abbr> and gets the death certificate of
   the partner. The subject of the attestation is not the person who
-  discloses. Each source holder needs its own certificate set for
+  discloses. Each bronhouder needs its own certificate set for
   issuance.</li>
 <li><strong>Produced</strong>:<ul>
 <li>findings <a href="../findings/#f-47">F-47</a>, <a href="../findings-closed/#f-49">F-49</a>, and
@@ -5988,12 +5988,12 @@ profile on ETSI TS 119 478 followed
 </li>
 <li><strong>Explained in</strong>: <a href="../../runtime/eudi-issuance/">EUDI issuance</a></li>
 </ul>
-<h3 id="sl-44">SL-44: OpenFTV Manager: policy management and distribution through bundles (PAP)<a class="headerlink" href="#sl-44" title="Permanent link">&para;</a></h3>
+<h3 id="sl-44">SL-44: <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager: policy management and distribution through bundles (<abbr title="Policy Administration Point">PAP</abbr>)<a class="headerlink" href="#sl-44" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/208">PR #208</a></li>
-<li><strong>What it showed</strong>: the PAP runs at the source side. Git stays the
-  source of truth, and policy goes to the PDP as an identified, versioned
+<li><strong>What it showed</strong>: the <abbr title="Policy Administration Point">PAP</abbr> runs at the source side. Git stays the
+  source of truth, and policy goes to the <abbr title="Policy Decision Point">PDP</abbr> as an identified, versioned
   bundle. The management API has its own policy set. If the store is
   empty, the management API denies. Push distribution, delete, and
   masking of decision logs do not work in this configuration.</li>
@@ -6012,16 +6012,16 @@ profile on ETSI TS 119 478 followed
   <a href="../../concepts/policy-lifecycle/">Policy lifecycle</a>,
   <a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a></li>
 </ul>
-<h3 id="sl-45">SL-45: Admission as a register and contract decision by the PDP<a class="headerlink" href="#sl-45" title="Permanent link">&para;</a></h3>
+<h3 id="sl-45">SL-45: Admission as a register and contract decision by the <abbr title="Policy Decision Point">PDP</abbr><a class="headerlink" href="#sl-45" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/228">PR #228</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/239">PR #239</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/241">PR #241</a></li>
 <li><strong>What it showed</strong>: admission is a registration instead of a policy
-  rule. The PDP decides each contract proposal in a policy tree of its
+  rule. The <abbr title="Policy Decision Point">PDP</abbr> decides each contract proposal in a policy tree of its
   own, with machine-readable reason codes. An automatic "no" leaves the
-  proposal pending, so it is recoverable. Admission is per source holder.
+  proposal pending, so it is recoverable. Admission is per bronhouder.
   The demo has no admission per service.</li>
 <li><strong>Produced</strong>:<ul>
 <li>findings <a href="../findings-closed/#f-55">F-55</a> and <a href="../findings-closed/#f-56">F-56</a></li>
@@ -6034,7 +6034,7 @@ profile on ETSI TS 119 478 followed
 <li><strong>Explained in</strong>: <a href="../../runtime/admission/">Contract admission and source activation</a>,
   <a href="../../decisions/0015-contract-acceptance-by-policy/">ADR-0015</a></li>
 </ul>
-<h3 id="sl-46">SL-46: Generic source metadata: source publishes, GBO validates and activates<a class="headerlink" href="#sl-46" title="Permanent link">&para;</a></h3>
+<h3 id="sl-46">SL-46: Generic source metadata: source publishes, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates and activates<a class="headerlink" href="#sl-46" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/219">PR #219</a>,
@@ -6044,7 +6044,7 @@ profile on ETSI TS 119 478 followed
   <a href="https://github.com/ICTU/GBO-demo/pull/276">PR #276</a></li>
 <li><strong>What it showed</strong>: each source publishes its service description on
   <code>/.well-known/gbo</code>: query, parameters, mapping, attestation schema, and
-  offers. GBO validates the description against a profile and activates
+  offers. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates the description against a profile and activates
   it as an explicit step. A valid contract does not activate the
   description. If a description is bad or old, it fails closed per
   source, and it can be rolled back.</li>
@@ -6058,9 +6058,9 @@ profile on ETSI TS 119 478 followed
 <li>a direction for <a href="../findings-closed/#f-21">F-21</a>, <a href="../findings-closed/#f-22">F-22</a>,
   and <a href="../findings-closed/#f-23">F-23</a></li>
 <li><a href="../open-questions/#q-17">Q-17</a> (sub-question 6)</li>
-<li>in demo v0.9.0, REQ-64 built for EUDI and the ASIP
+<li>in demo v0.9.0, REQ-64 built for EUDI and the <abbr title="Authentic Source Interface Provider">ASIP</abbr>
   (<a href="https://github.com/ICTU/GBO-demo/issues/592">#592</a>) and not for
-  DvTP</li>
+  <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></li>
 </ul>
 </li>
 <li><strong>Explained in</strong>: <a href="../../concepts/source-onboarding/">Source onboarding</a>,
@@ -6098,15 +6098,15 @@ profile on ETSI TS 119 478 followed
   <a href="../../requirements/authorization/#req-74">REQ-74</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a></li>
 </ul>
-<h3 id="sl-49">SL-49: Identity separation: FSC Peer ID separate from source OIN<a class="headerlink" href="#sl-49" title="Permanent link">&para;</a></h3>
+<h3 id="sl-49">SL-49: Identity separation: <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID separate from source <abbr title="Organisatie-identificatienummer">OIN</abbr><a class="headerlink" href="#sl-49" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/242">PR #242</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/244">PR #244</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/247">PR #247</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/277">PR #277</a></li>
-<li><strong>What it showed</strong>: the FSC Peer ID (transport identity) and the OIN of
-  the source (legal identity) are recorded apart. The OIN and the name of
+<li><strong>What it showed</strong>: the <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID (transport identity) and the <abbr title="Organisatie-identificatienummer">OIN</abbr> of
+  the source (legal identity) are recorded apart. The <abbr title="Organisatie-identificatienummer">OIN</abbr> and the name of
   the organization come from the verified issuer certificate. CA private
   keys stay out of the application runtime.</li>
 <li><strong>Produced</strong>: <a href="../findings-closed/#f-60">F-60</a> and
@@ -6115,16 +6115,16 @@ profile on ETSI TS 119 478 followed
   <a href="../answered-questions/#q-07">Q-07</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/identity-trust/">Organization identity and trust</a></li>
 </ul>
-<h3 id="sl-50">SL-50: LDV and ADL exploration: three logging standards, one trace ID<a class="headerlink" href="#sl-50" title="Permanent link">&para;</a></h3>
+<h3 id="sl-50">SL-50: <abbr title="Logboek Dataverwerkingen">LDV</abbr> and <abbr title="Authorization Decision Log">ADL</abbr> exploration: three logging standards, one trace ID<a class="headerlink" href="#sl-50" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: build in <a href="https://github.com/ICTU/GBO-demo/issues/302">#302</a>,
   and review and correction in
   <a href="https://github.com/ICTU/GBO-demo/pull/366">PR #366</a>.</li>
 <li><strong>What it showed</strong>: three related logging standards apply. The decision
-  log already implements the Authorization Decision Log (ADL). The gap is
-  at the processing: each GBO component that processes personal data
-  writes a Logboek Dataverwerkingen (LDV) log line at its controller
+  log already implements the Authorization Decision Log (<abbr title="Authorization Decision Log">ADL</abbr>). The gap is
+  at the processing: each <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component that processes personal data
+  writes a Logboek Dataverwerkingen (<abbr title="Logboek Dataverwerkingen">LDV</abbr>) log line at its controller
   (Verantwoordelijke). The trace ID from <code>traceparent</code> links the logs,
   and each controller logs its own pseudonym.</li>
 <li><strong>Produced</strong>:<ul>
@@ -6150,7 +6150,7 @@ profile on ETSI TS 119 478 followed
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>:<ul>
-<li><a href="https://github.com/ICTU/GBO-demo/issues/468">ICTU/GBO-demo#468</a>
+<li><a href="https://github.com/ICTU/GBO-demo/issues/468">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#468</a>
   and <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>, the first
   part of <a href="https://github.com/ICTU/GBO-demo/issues/364">#364</a>, on the
   BSNk mock from <a href="https://github.com/ICTU/GBO-demo/pull/466">PR #466</a>.</li>
@@ -6160,14 +6160,14 @@ profile on ETSI TS 119 478 followed
   <a href="https://github.com/ICTU/GBO-demo/pull/476">PR #476</a> added two
   placeholders, one per form.
   <a href="https://github.com/ICTU/GBO-demo/pull/477">PR #477</a> added a
-  pseudonym for each source, an identity for a source on the BSN
+  pseudonym for each source, an identity for a source on the <abbr title="Burgerservicenummer">BSN</abbr>
   authorization list, and more than four parties.</li>
 </ul>
 </li>
 <li><strong>What it showed</strong>: the design works with the BSNk interface. At the
   consent, the portal backend activates and transforms. The proof carries
   an encrypted value per source, and the consumer sends a placeholder.
-  The PDP decides on that placeholder. Only after an allow, the source
+  The <abbr title="Policy Decision Point">PDP</abbr> decides on that placeholder. Only after an allow, the source
   decrypts its own value, without a call to BSNk.</li>
 <li><strong>Produced</strong>:<ul>
 <li>findings <a href="../findings/#f-76">F-76</a>, <a href="../findings/#f-77">F-77</a>,
@@ -6217,22 +6217,22 @@ instead of an increment. This work produced the following IDs:</p>
   asks for the status. Produced:
   <a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../findings-closed/#f-61">F-61</a>,
   <a href="../answered-questions/#q-05">Q-05</a>, <a href="../answered-questions/#q-23">Q-23</a>, and
-  <a href="../open-questions/#q-25">Q-25</a>. The BSN is in both decision logs on
+  <a href="../open-questions/#q-25">Q-25</a>. The <abbr title="Burgerservicenummer">BSN</abbr> is in both decision logs on
   purpose, so <a href="../../requirements/logging-audit/#req-60">REQ-60</a> is not
   met (<a href="../findings/#f-54">F-54</a>).</li>
 <li><a href="https://github.com/ICTU/GBO-demo/pull/372">PR #372</a>: <code>make
   policy-check</code> is a local safety net. Produced:
   <a href="../../requirements/authorization/#rl-05">RL-05</a> and
   <a href="../findings/#f-52">F-52</a>.</li>
-<li><a href="https://github.com/ICTU/GBO-demo/pull/373">PR #373</a>: the ADL is the
+<li><a href="https://github.com/ICTU/GBO-demo/pull/373">PR #373</a>: the <abbr title="Authorization Decision Log">ADL</abbr> is the
   audit source. Produced: <a href="../findings/#f-72">F-72</a> and
   <a href="../../requirements/logging-audit/#req-71">REQ-71</a>. The rest of
   <a href="../findings-closed/#f-53">F-53</a> and <a href="../findings-closed/#f-63">F-63</a> is done. A check
   against a running stack showed the gap of
   <a href="../../requirements/logging-audit/#req-59">REQ-59</a>: the records carry
   no policy version.</li>
-<li><a href="https://github.com/ICTU/GBO-demo/pull/337">PR #337</a>: OpenFTV v0.1.0
-  makes the ADL mandatory
+<li><a href="https://github.com/ICTU/GBO-demo/pull/337">PR #337</a>: <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> v0.1.0
+  makes the <abbr title="Authorization Decision Log">ADL</abbr> mandatory
   (<a href="../../requirements/logging-audit/#req-71">REQ-71</a>). A silent bundle
   403 led to <a href="../findings/#f-52">F-52</a> and
   <a href="../../requirements/authorization/#rl-05">RL-05</a>.</li>
@@ -6247,7 +6247,7 @@ instead of an increment. This work produced the following IDs:</p>
 </ul>
 <p>The same round recorded three observations in issues:</p>
 <ul>
-<li><a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>: the ADL record
+<li><a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>: the <abbr title="Authorization Decision Log">ADL</abbr> record
   behind the Inway has no trace and no transaction ID. Related:
   <a href="../findings-closed/#f-41">F-41</a>,
   <a href="../../requirements/logging-audit/#req-55">REQ-55</a>, and
@@ -6262,7 +6262,7 @@ instead of an increment. This work produced the following IDs:</p>
 </ul>
 <p>Later, <a href="https://github.com/ICTU/GBO-demo/pull/464">PR #464</a>
 (<a href="https://github.com/ICTU/GBO-demo/issues/379">#379</a>) added more demo
-work outside increments. An integrator calls under FSC delegation, and
+work outside increments. An integrator calls under <abbr title="Federated Service Connectivity">FSC</abbr> delegation, and
 the consent binds the represented party. Produced:
 <a href="../../requirements/consent/#req-106">REQ-106</a>,
 <a href="../findings-closed/#f-73">F-73</a>, <a href="../open-questions/#q-46">Q-46</a>, and
@@ -6276,6 +6276,7 @@ the consent binds the represented party. Produced:
   questions, see <a href="../open-questions/">Open questions</a>.</li>
 <li>Design coverage: <a href="../matrix/">Design to demo matrix</a>.</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

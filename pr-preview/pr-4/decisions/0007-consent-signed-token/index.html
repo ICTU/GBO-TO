@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4584,17 +4584,17 @@
 <li>Supersedes: <a href="../0006-consent-register-as-pip/">ADR-0006</a></li>
 <li>Superseded by: <a href="../0032-consent-proof/">ADR-0032</a></li>
 <li>Deliberation: signed, actor-bound consent proof (<a href="https://github.com/ICTU/GBO-demo/pull/238">PR #238</a>, <a href="../../traceability/increments/#sl-47">SL-47</a>)</li>
-<li>Implemented in: changed in gbo-demo. Since <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>, the token does not carry <code>pi</code>. Verification moved from the request mapper into the policy (<a href="https://github.com/ICTU/GBO-demo/issues/330">#330</a>, <a href="https://github.com/ICTU/GBO-demo/pull/371">PR #371</a>). The status goes over FSC (<a href="https://github.com/ICTU/GBO-demo/issues/383">#383</a>).</li>
+<li>Implemented in: changed in gbo-demo. Since <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>, the token does not carry <code>pi</code>. Verification moved from the request mapper into the policy (<a href="https://github.com/ICTU/GBO-demo/issues/330">#330</a>, <a href="https://github.com/ICTU/GBO-demo/pull/371">PR #371</a>). The status goes over <abbr title="Federated Service Connectivity">FSC</abbr> (<a href="https://github.com/ICTU/GBO-demo/issues/383">#383</a>).</li>
 </ul>
 <h2 id="why-superseded">Why superseded<a class="headerlink" href="#why-superseded" title="Permanent link">&para;</a></h2>
 <p>The demo changed three parts of this decision:</p>
 <ul>
-<li>The token carries no PI. It carries an encrypted value for each source
+<li>The token carries no <abbr title="Polymorphic identity">PI</abbr>. It carries an encrypted value for each source
   (<code>encrypted_subject</code>). The consumer names the citizen with a placeholder
   (<a href="../../traceability/increments/#sl-51">SL-51</a>).</li>
 <li>The policy verifies the token and gets the status itself. The request
   mapper only maps.</li>
-<li>The PDP asks for the status over FSC, through its own Outway, and not
+<li>The <abbr title="Policy Decision Point">PDP</abbr> asks for the status over <abbr title="Federated Service Connectivity">FSC</abbr>, through its own Outway, and not
   directly at the register.</li>
 </ul>
 <p>For this reason, <a href="../0032-consent-proof/">ADR-0032</a> records the consent
@@ -4602,11 +4602,11 @@ proof again. The signed token, the live status check for each request, and
 the bearer-token consequence stay. The following sections keep the
 original decision as history.</p>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>The PDP needs consent evidence that it can verify and that can be revoked.
-The evidence must work without exposing the BSN. Also, one consent must
+<p>The <abbr title="Policy Decision Point">PDP</abbr> needs consent evidence that it can verify and that can be revoked.
+The evidence must work without exposing the <abbr title="Burgerservicenummer">BSN</abbr>. Also, one consent must
 cover more than one bronhouder.</p>
 <h2 id="decision-superseded">Decision (superseded)<a class="headerlink" href="#decision-superseded" title="Permanent link">&para;</a></h2>
-<p>The toestemmingsregister issues an ES256-signed JWT of type
+<p>The consent register (toestemmingsregister) issues an ES256-signed JWT of type
 <code>gbo-consent+jwt</code> with these claims:</p>
 <ul>
 <li><code>consent_id</code></li>
@@ -4616,26 +4616,26 @@ cover more than one bronhouder.</p>
 <li><code>dienstverlener_oin</code></li>
 <li><code>valid_until</code> (= <code>exp</code>)</li>
 </ul>
-<p>The dienstverlener presents the token in the <code>X-Gbo-Consent-Token</code> header.
-For each request, the PDP does three things:</p>
+<p>The service provider (dienstverlener) presents the token in the <code>X-Gbo-Consent-Token</code> header.
+For each request, the <abbr title="Policy Decision Point">PDP</abbr> does three things:</p>
 <ol>
 <li>It verifies the signature against the JWKS of the register.</li>
 <li>It cross-checks the claims.</li>
 <li>It gets the live status of exactly that <code>consent_id</code>. Thus a
    revocation takes effect immediately.</li>
 </ol>
-<p>The register stores no BSN and no PI.</p>
+<p>The register stores no <abbr title="Burgerservicenummer">BSN</abbr> and no <abbr title="Polymorphic identity">PI</abbr>.</p>
 <h2 id="consequences-at-the-time">Consequences (at the time)<a class="headerlink" href="#consequences-at-the-time" title="Permanent link">&para;</a></h2>
 <ul>
 <li>The decision binds to verified claims:<ul>
 <li>actor binding (<code>subject.id == dienstverlener_oin</code>)</li>
-<li>subject binding (the PI in the query equals the PI in the token)</li>
+<li>subject binding (the <abbr title="Polymorphic identity">PI</abbr> in the query equals the <abbr title="Polymorphic identity">PI</abbr> in the token)</li>
 <li>scope and year coverage</li>
 </ul>
 </li>
 <li>The token is a bearer token. Actor binding blocks use by another
   consumer. It does not block replay by the same consumer. Production
-  needs a shorter validity and a proof-of-possession binding to the FSC
+  needs a shorter validity and a proof-of-possession binding to the <abbr title="Federated Service Connectivity">FSC</abbr>
   identity. <a href="../../risks/">Risks and technical debt</a> tracks this.</li>
 <li>The register stays a runtime dependency only for the status check. This
   check fails closed (<code>CONSENT_STATUS_UNAVAILABLE</code>).</li>
@@ -4647,6 +4647,7 @@ For each request, the PDP does three things:</p>
 <li>Open questions: <a href="../../traceability/answered-questions/#q-05">Q-05</a> (answered)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-23">SL-23</a> (done), <a href="../../traceability/increments/#sl-47">SL-47</a> (done), <a href="../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 
