@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4694,7 +4694,7 @@ proof that carries the values, see <a href="../consent/">Consent</a>.</p>
 <tr>
 <td><code>consent_id</code></td>
 <td>The consent record</td>
-<td>Toestemmingsregister</td>
+<td>Consent register (toestemmingsregister)</td>
 <td>Consumer: its only handle on "this person"</td>
 </tr>
 </tbody>
@@ -4705,12 +4705,12 @@ the mock does not encrypt. For more information, see
 <a href="#demo-mock-and-production-bsnk">Demo mock and production BSNk</a>.</p>
 <h2 id="where-each-identifier-lives">Where each identifier lives<a class="headerlink" href="#where-each-identifier-lives" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
-    subgraph PORTAL[Toestemmingsportaal backend]
+    subgraph PORTAL[Consent portal backend]
         B1[BSN from login]
         REF[subject_ref = HMAC]
     end
     BSNK[BSNk]
-    subgraph CR[Toestemmingsregister]
+    subgraph CR[Consent register]
         PP[PI + PP under subject_ref]
         PROOF[Signed proof:&lt;br/&gt;VI/VP per source]
     end
@@ -4792,7 +4792,7 @@ values at consent, so the proof freezes. For more information, see
 <a href="../consent/#the-proof-freezes-at-consent">Consent</a>
 (<a href="../../traceability/findings/#f-78">F-78</a>).</p>
 <h2 id="citizen-recognition-route-d">Citizen recognition: route D<a class="headerlink" href="#citizen-recognition-route-d" title="Permanent link">&para;</a></h2>
-<p>To show and revoke the consents of a citizen without a <abbr title="Burgerservicenummer">BSN</abbr>, the toestemmingsvoorziening needs a stable key. A stored <abbr title="Polymorphic identity">PI</abbr> or <abbr title="Polymorphic pseudonym">PP</abbr> is not a stable key, because
+<p>To show and revoke the consents of a citizen without a <abbr title="Burgerservicenummer">BSN</abbr>, the consent facility (toestemmingsvoorziening) needs a stable key. A stored <abbr title="Polymorphic identity">PI</abbr> or <abbr title="Polymorphic pseudonym">PP</abbr> is not a stable key, because
 BSNk gives other values at every activation. The proposed solution is route
 D (<a href="../../decisions/0040-route-d-citizen-recognition/">ADR-0040</a>, proposed,
 <a href="../../requirements/pseudonymization/#route-d">route D</a>). Route D works as

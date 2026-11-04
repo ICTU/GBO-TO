@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4613,7 +4613,7 @@ five steps:</p>
 <li>The adapter projects the answer with gbo-simple-v1
    (<a href="../0017-gbo-simple-v1/">ADR-0017</a>). The server issues the credential
    as <code>dc+sd-jwt</code> with immutable type metadata. It uses the certificate
-   set of the bronhouder (<a href="../0016-source-owned-metadata/">ADR-0016</a>).</li>
+   set of the source holder (bronhouder) (<a href="../0016-source-owned-metadata/">ADR-0016</a>).</li>
 </ol>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4679,7 +4679,7 @@ check of the <abbr title="Person Identification Data">PID</abbr> is a recommenda
   fixed values
   (<a href="https://github.com/ICTU/GBO-demo/issues/425">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#425</a>).</p>
 </li>
-<li>Validity and revocation for each type. The bronhouder sets them. If an
+<li>Validity and revocation for each type. The source holder sets them. If an
   attestation is valid for more than 24 hours and the source data changes,
   the attestation must be revoked. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has no change feed
   (<a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>,

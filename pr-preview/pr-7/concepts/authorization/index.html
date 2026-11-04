@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4737,7 +4737,7 @@ also has a part at request time: the mandate check
 <h2 id="pep-pdp-pip"><abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, <abbr title="Policy Information Point">PIP</abbr><a class="headerlink" href="#pep-pdp-pip" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
     C[Consumer Outway] --&gt;|mTLS + FSC token| IN
-    subgraph SRC[Bronhouder]
+    subgraph SRC[Source holder]
         IN[FSC Inway = PEP]
         subgraph PDP[OpenFTV PDP v0.1.0]
             MAP[FTV GraphQL mapper]
@@ -4748,7 +4748,7 @@ also has a part at request time: the mandate check
         API[Source API]
     end
     REG[(Admission register)]
-    CR[(Toestemmingsregister)]
+    CR[(Consent register)]
     IN --&gt;|AuthZEN evaluation, raw body| MAP
     MAP --&gt;|field list| POL
     POL --&gt;|status over FSC| OUT
@@ -4792,7 +4792,7 @@ also has a part at request time: the mandate check
   It does not verify consent, does not call BSNk, and reads no flow. The
   policy establishes every fact that it decides on
   (<a href="../../requirements/authorization/#req-18">REQ-18</a>).</li>
-<li><abbr title="Policy Information Point">PIP</abbr> 1 is the toestemmingsregister. During evaluation, the policy calls
+<li><abbr title="Policy Information Point">PIP</abbr> 1 is the consent register (toestemmingsregister). During evaluation, the policy calls
   the register for the status of the consent. The call goes over <abbr title="Federated Service Connectivity">FSC</abbr>,
   through the own Outway of the <abbr title="Policy Decision Point">PDP</abbr>
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L141-L142"><code>docker-compose.yml#L141-L142</code></a>).
@@ -5228,7 +5228,7 @@ by trying names. The two layers differ in audience, route, and codes:</p>
 <td>the same code</td>
 </tr>
 <tr>
-<td><code>PIP_UNAVAILABLE</code> (the toestemmingsregister, its keys, or the admission register did not answer)</td>
+<td><code>PIP_UNAVAILABLE</code> (the consent register, its keys, or the admission register did not answer)</td>
 <td><code>ACCESS_DENIED</code></td>
 </tr>
 <tr>

@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4647,7 +4647,7 @@
 source must establish three facts itself
 (<a href="../../requirements/consent/#req-68">REQ-68</a>):</p>
 <ul>
-<li>The consent comes from the toestemmingsregister and is unchanged.</li>
+<li>The consent comes from the consent register (toestemmingsregister) and is unchanged.</li>
 <li>The consent is bound to this consumer, this data set, and this
   citizen.</li>
 <li>The consent is valid at the time of the request, also after a
@@ -4663,7 +4663,7 @@ reason, the register must make every value that a source needs at
 consent time. These values travel with the proof.</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <h3 id="the-proof">The proof<a class="headerlink" href="#the-proof" title="Permanent link">&para;</a></h3>
-<p>When the citizen gives consent, the toestemmingsregister signs a JWT
+<p>When the citizen gives consent, the consent register signs a JWT
 with these properties:</p>
 <ul>
 <li>The algorithm is ES256. The header has <code>typ=gbo-consent+jwt</code> and

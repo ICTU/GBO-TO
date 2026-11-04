@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4604,19 +4604,19 @@ original decision as history.</p>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
 <p>The <abbr title="Policy Decision Point">PDP</abbr> needs consent evidence that it can verify and that can be revoked.
 The evidence must work without exposing the <abbr title="Burgerservicenummer">BSN</abbr>. Also, one consent must
-cover more than one bronhouder.</p>
+cover more than one source holder (bronhouder).</p>
 <h2 id="decision-superseded">Decision (superseded)<a class="headerlink" href="#decision-superseded" title="Permanent link">&para;</a></h2>
-<p>The toestemmingsregister issues an ES256-signed JWT of type
+<p>The consent register (toestemmingsregister) issues an ES256-signed JWT of type
 <code>gbo-consent+jwt</code> with these claims:</p>
 <ul>
 <li><code>consent_id</code></li>
 <li><code>pi</code></li>
 <li><code>scopes</code></li>
-<li><code>scope_entries</code> (per bronhouder)</li>
+<li><code>scope_entries</code> (per source holder)</li>
 <li><code>dienstverlener_oin</code></li>
 <li><code>valid_until</code> (= <code>exp</code>)</li>
 </ul>
-<p>The dienstverlener presents the token in the <code>X-Gbo-Consent-Token</code> header.
+<p>The service provider (dienstverlener) presents the token in the <code>X-Gbo-Consent-Token</code> header.
 For each request, the <abbr title="Policy Decision Point">PDP</abbr> does three things:</p>
 <ol>
 <li>It verifies the signature against the JWKS of the register.</li>

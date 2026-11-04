@@ -1148,7 +1148,7 @@
   <a href="#guidelines-for-bronhouders" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Guidelines for bronhouders
+        Guidelines for source holders
       
     </span>
   </a>
@@ -1327,7 +1327,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4611,7 +4611,7 @@
 
 <h1 id="policy-rules-and-their-management">Policy rules and their management<a class="headerlink" href="#policy-rules-and-their-management" title="Permanent link">&para;</a></h1>
 <p>The Globaal Ontwerp names "Beleidsregels" as a block of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis: policy
-rules decide who can get which data. Each bronhouder owns, writes and
+rules decide who can get which data. Each source holder (bronhouder) owns, writes and
 publishes the policy that its own <abbr title="Policy Decision Point">PDP</abbr> evaluates. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> supplies a reference
 policy set, the engine choice, and five guidelines, but no central policy
 service (<a href="../../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>).
@@ -4705,7 +4705,7 @@ set has four parts:</p>
 </tbody>
 </table>
 <p>A new access verdict is a new rule file with tests. The engine does not
-change. The policy is data for the <abbr title="Policy Decision Point">PDP</abbr>, so a bronhouder changes it
+change. The policy is data for the <abbr title="Policy Decision Point">PDP</abbr>, so a source holder changes it
 without a new build. The contract policy is a separate rule set from the
 request policy, in the same bundle
 (<a href="../../../requirements/admission/#req-62">REQ-62</a>).</p>
@@ -4717,8 +4717,8 @@ with each request.</p>
 <h2 id="ownership">Ownership<a class="headerlink" href="#ownership" title="Permanent link">&para;</a></h2>
 <p>The policy belongs to the source
 (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>). The
-question who can manage and publish the policy of a bronhouder has an
-answer: the bronhouder itself
+question who can manage and publish the policy of a source holder has an
+answer: the source holder itself
 (<a href="../../../traceability/answered-questions/#q-21">Q-21</a>, October 28,
 2026). Each party has a fixed role:</p>
 <table>
@@ -4731,7 +4731,7 @@ answer: the bronhouder itself
 </thead>
 <tbody>
 <tr>
-<td>Bronhouder</td>
+<td>Source holder</td>
 <td>Writes, approves and publishes its own policy. Runs its own <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr>.</td>
 <td>Hands its policy to a central <abbr title="Policy Administration Point">PAP</abbr></td>
 </tr>
@@ -4914,13 +4914,13 @@ the content in both.</em></p>
   writes and publishes.</li>
 <li>The bundle has no signature. Inside one organization, signing is not
   planned (<a href="https://github.com/ICTU/GBO-demo/issues/426">#426</a>). If a
-  bronhouder lets another organization build or host its bundles,
+  source holder lets another organization build or host its bundles,
   signing and verification become a requirement
   (<a href="../../../traceability/findings-closed/#f-09">F-09</a>).</li>
 </ul>
 <p>Two components have the name Manager. The <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager manages policy.
 The <abbr title="Federated Service Connectivity">FSC</abbr> Manager manages contracts and issues access tokens.</p>
-<h2 id="guidelines-for-bronhouders">Guidelines for bronhouders<a class="headerlink" href="#guidelines-for-bronhouders" title="Permanent link">&para;</a></h2>
+<h2 id="guidelines-for-bronhouders">Guidelines for source holders<a class="headerlink" href="#guidelines-for-bronhouders" title="Permanent link">&para;</a></h2>
 <p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> gives five guidelines for policy management. Each guideline has a
 status in demo v0.9.0:</p>
 <table>
@@ -4972,8 +4972,8 @@ lifecycle is a backlog item.</p>
 <tbody>
 <tr>
 <td>Place of the <abbr title="Policy Administration Point">PAP</abbr></td>
-<td>A <abbr title="Policy Administration Point">PAP</abbr> manages the policies and distributes them to the PDPs of the bronhouders</td>
-<td>A <abbr title="Policy Administration Point">PAP</abbr> and a <abbr title="Policy Decision Point">PDP</abbr> at each bronhouder. No central <abbr title="Policy Administration Point">PAP</abbr> (<a href="../../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>)</td>
+<td>A <abbr title="Policy Administration Point">PAP</abbr> manages the policies and distributes them to the PDPs of the source holders</td>
+<td>A <abbr title="Policy Administration Point">PAP</abbr> and a <abbr title="Policy Decision Point">PDP</abbr> at each source holder. No central <abbr title="Policy Administration Point">PAP</abbr> (<a href="../../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>)</td>
 </tr>
 <tr>
 <td>Bundles</td>

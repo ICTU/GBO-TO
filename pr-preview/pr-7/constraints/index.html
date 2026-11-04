@@ -1334,7 +1334,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4612,8 +4612,8 @@ The following principles constrain the technical design most directly:</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a></td>
-<td>Data sovereignty: the bronhouder keeps control</td>
-<td>Sources own their schema, service description, decryption keys, and policy. <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> are at the bronhouder (<a href="../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>).</td>
+<td>Data sovereignty: the source holder (bronhouder) keeps control</td>
+<td>Sources own their schema, service description, decryption keys, and policy. <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> are at the source holder (<a href="../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-12</a></td>
@@ -4651,7 +4651,7 @@ The following design principles constrain the TO most directly:</p>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-01</a></td>
 <td>Decentral where possible, central where necessary</td>
-<td>Each bronhouder has its own <abbr title="Policy Decision Point">PDP</abbr> and <abbr title="Policy Administration Point">PAP</abbr>. Each provider issues its own tokens. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has central components only where they are necessary: the toestemmingsvoorziening and the admission register.</td>
+<td>Each source holder has its own <abbr title="Policy Decision Point">PDP</abbr> and <abbr title="Policy Administration Point">PAP</abbr>. Each provider issues its own tokens. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has central components only where they are necessary: the consent facility (toestemmingsvoorziening) and the admission register.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-03</a></td>
@@ -4671,7 +4671,7 @@ The following design principles constrain the TO most directly:</p>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-09</a></td>
 <td>API-first</td>
-<td>All koppelvlakken are specified APIs. See <a href="../context/">Context and scope</a>.</td>
+<td>All interfaces (koppelvlakken) are specified APIs. See <a href="../context/">Context and scope</a>.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-11</a></td>
@@ -4695,9 +4695,9 @@ or FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverlener
 arc42 sections explain how the design meets the requirements. The status
 of each requirement is one of these words: draft, ready for review,
 approved, covered, or withdrawn.</p>
-<p>The requirements page also lists the guidelines for bronhouders
+<p>The requirements page also lists the guidelines for source holders
 (<a href="../requirements/authorization/#policy-management">RL-01 to RL-05</a>). A guideline is a
-recommendation for bronhouders. It puts no demand on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</p>
+recommendation for source holders. It puts no demand on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</p>
 <h2 id="connection-conditions-candidates">Connection conditions (candidates)<a class="headerlink" href="#connection-conditions-candidates" title="Permanent link">&para;</a></h2>
 <p>Some demands fall on the parties that connect to <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> itself does
 not carry them. The TO collects these demands as candidate connection
@@ -4716,14 +4716,14 @@ connection conditions
 <tbody>
 <tr>
 <td>Consumer</td>
-<td><a href="../requirements/admission/#av-01">AV-01</a> trace context, <a href="../requirements/admission/#av-02">AV-02</a> <abbr title="Logboek Dataverwerkingen">LDV</abbr>, <a href="../requirements/admission/#av-03">AV-03</a> toestemmingsvoorziening and BSNk <abbr title="Polymorphic pseudonym">PP</abbr>, <a href="../requirements/admission/#av-04">AV-04</a> own <abbr title="Federated Service Connectivity">FSC</abbr> peer. <a href="../requirements/admission/#av-05">AV-05</a> proof sent unchanged, <a href="../requirements/admission/#av-14">AV-14</a> contact details for GDPR rights, <a href="../requirements/admission/#av-15">AV-15</a> equivalent alternative.</td>
+<td><a href="../requirements/admission/#av-01">AV-01</a> trace context, <a href="../requirements/admission/#av-02">AV-02</a> <abbr title="Logboek Dataverwerkingen">LDV</abbr>, <a href="../requirements/admission/#av-03">AV-03</a> consent facility and BSNk <abbr title="Polymorphic pseudonym">PP</abbr>, <a href="../requirements/admission/#av-04">AV-04</a> own <abbr title="Federated Service Connectivity">FSC</abbr> peer. <a href="../requirements/admission/#av-05">AV-05</a> proof sent unchanged, <a href="../requirements/admission/#av-14">AV-14</a> contact details for GDPR rights, <a href="../requirements/admission/#av-15">AV-15</a> equivalent alternative.</td>
 </tr>
 <tr>
 <td>Integrator</td>
 <td><a href="../requirements/admission/#av-06">AV-06</a> admitted separately, acts as processor</td>
 </tr>
 <tr>
-<td>Bronhouder</td>
+<td>Source holder</td>
 <td><a href="../requirements/admission/#av-07">AV-07</a> to <a href="../requirements/admission/#av-13">AV-13</a>: service description, consent to a taken-over description, old decryption keys, <abbr title="Logboek Dataverwerkingen">LDV</abbr> for relation attestations, and validity and revocation policy</td>
 </tr>
 </tbody>
@@ -4736,11 +4736,11 @@ requirements on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>. Thr
 <ul>
 <li>Transformation is possible only while the citizen is logged in
   (<a href="../requirements/pseudonymization/#bsnk-04">BSNK-04</a>). As a result,
-  the toestemmingsvoorziening makes all values at consent time, and the proof
+  the consent facility makes all values at consent time, and the proof
   freezes at consent (<a href="../traceability/findings/#f-78">F-78</a>).</li>
 <li>Only a recognized party can activate and transform
   (<a href="../requirements/pseudonymization/#bsnk-01">BSNK-01</a>). It is open
-  whether the toestemmingsvoorziening can be such a party
+  whether the consent facility can be such a party
   (<a href="../traceability/open-questions/#q-26">Q-26</a>,
   <a href="../traceability/open-questions/#q-49">Q-49</a>).</li>
 <li>The interfaces are SOAP with PKIoverheid
@@ -4783,7 +4783,7 @@ constrain this design:</p>
 <tr>
 <td><abbr title="Algemene verordening gegevensbescherming (GDPR)">AVG</abbr> (GDPR)</td>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA architectuurprincipes</a>, kader 1</td>
-<td>Data minimization, doelbinding, and grondslag. Each controller (Verantwoordelijke) logs its own processing (<a href="../decisions/0026-ldv-integration/">ADR-0026</a>).</td>
+<td>Data minimization, purpose limitation (doelbinding), and legal basis (grondslag). Each controller (Verantwoordelijke) logs its own processing (<a href="../decisions/0026-ldv-integration/">ADR-0026</a>).</td>
 </tr>
 <tr>
 <td>Wdo and PKIoverheid</td>
@@ -4819,7 +4819,7 @@ constrain this design:</p>
 </table>
 <h2 id="standards">Standards<a class="headerlink" href="#standards" title="Permanent link">&para;</a></h2>
 <p>The capabilities chapter of the PSA lists the afspraken, standards, and
-voorzieningen per capability, with their gaps. See
+facilities (voorzieningen) per capability, with their gaps. See
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/">capabilities S01 to S11</a>.
 The design builds directly on the following standards:</p>
 <ul>

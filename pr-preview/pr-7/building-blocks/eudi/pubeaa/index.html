@@ -1190,7 +1190,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4635,7 +4635,7 @@
 <p>The <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider issues an attestation with source data to the EUDI
 wallet of the citizen. It is flow A of interaction pattern A in the
 <a href="https://ictu.github.io/GBO-GO/main/#patroon-a-burger-gebruikt-eudi-wallet">Globaal Ontwerp</a>.
-<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical issuance facility, and each bronhouder stays
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical issuance facility, and each source holder (bronhouder) stays
 the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider of its own attestations
 (<a href="../../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed). The
 facility runs on the nl-wallet issuance server
@@ -5065,17 +5065,17 @@ values (<a href="https://github.com/ICTU/GBO-demo/issues/425">#425</a>,
 <a href="../../../traceability/open-questions/#q-14">Q-14</a>). In demo v0.9.0, a
 caller can ask for the akte of any <abbr title="Burgerservicenummer">BSN</abbr>, because of the callback gap.</p>
 <h2 id="trust-roles-and-the-pub-eaa-provider">Trust roles and the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider<a class="headerlink" href="#trust-roles-and-the-pub-eaa-provider" title="Permanent link">&para;</a></h2>
-<p>Each bronhouder needs its own certificate per role, and one certificate
+<p>Each source holder needs its own certificate per role, and one certificate
 never fills two roles. The following figure shows the roles around one
-bronhouder:</p>
+source holder:</p>
 <div class="mermaid">flowchart LR
   subgraph legal["Legal role"]
-    bh["Bronhouder&lt;br/&gt;PuB-EAA provider"]
+    bh["Source holder&lt;br/&gt;PuB-EAA provider"]
   end
   subgraph tech["Technical role"]
     fac("GBO issuance facility&lt;br/&gt;probably the EEAIssuer")
   end
-  subgraph certs["Certificate set of one bronhouder"]
+  subgraph certs["Certificate set of one source holder"]
     direction TB
     iss[("Issuer certificate&lt;br/&gt;production: qualified seal&lt;br/&gt;in a QSCD")]
     rdr[("Reader certificate&lt;br/&gt;production: access certificate")]
@@ -5117,10 +5117,10 @@ bronhouder:</p>
 <p class="caption"><em>Figure 7: Trust roles in <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance. Dashed: not built or not
 decided.</em></p>
 <p><a href="../../../decisions/0028-pubeaa-productization/">ADR-0028</a> (proposed)
-divides the roles. The bronhouder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider and stays
+divides the roles. The source holder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider and stays
 legally responsible for content, validity and revocation. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the
 technical issuance facility and is probably the <code>EEAIssuer</code> in the
-notification of each bronhouder. The facility is optional: a bronhouder
+notification of each source holder. The facility is optional: a source holder
 can run its own credential issuer.</p>
 <p>Since August 2026, <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance falls under the same standard as <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr>
 issuance (<a href="../../../traceability/findings/#f-81">F-81</a>). That frame asks
@@ -5152,11 +5152,11 @@ For the certificate roles, see
 <tr>
 <td>Role of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr></td>
 <td>A technical, central and optional facility. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> is not a <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider.</td>
-<td>The same. The bronhouder is the provider (<a href="../../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed).</td>
+<td>The same. The source holder is the provider (<a href="../../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed).</td>
 </tr>
 <tr>
 <td>Authorization</td>
-<td>An Autorisatievoorziening authorizes the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> voorziening after a <abbr title="Person Identification Data">PID</abbr> login.</td>
+<td>An Autorisatievoorziening authorizes the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> facility (voorziening) after a <abbr title="Person Identification Data">PID</abbr> login.</td>
 <td>The issuance server checks the <abbr title="Person Identification Data">PID</abbr> itself. No separate authorization service exists.</td>
 </tr>
 <tr>

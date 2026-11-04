@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4590,7 +4590,7 @@ Installatie Register to LVG.</p>
 <a href="../../concepts/pseudonymization/#where-the-boundary-is-enforced">Pseudonymization</a>.
 For the components, see
 <a href="../../building-blocks/components/#level-2-authorization-chain">Level 2: authorization chain</a>
-and <a href="../../building-blocks/components/#level-2-bronhouder">Level 2: bronhouder</a>. The main
+and <a href="../../building-blocks/components/#level-2-bronhouder">Level 2: source holder (bronhouder)</a>. The main
 decisions are <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>,
 <a href="../../decisions/0032-consent-proof/">ADR-0032</a>, and
 <a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>.</p>
@@ -4615,7 +4615,7 @@ decision of the same <abbr title="Policy Decision Point">PDP</abbr>
       participant CRIN as Register Inway
     end
     box rgb(254,220,216) DvTP
-      participant CR as Toestemmingsregister
+      participant CR as Consent register
     end
     box rgb(220,252,231) GBO Basis at the source
       participant SC as bron-sidecar
@@ -4926,11 +4926,11 @@ It is open whether the proof must name the integrator
 <p>The LVG pilot uses the same consent pattern with a different consumer and
 a different source
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/lvg-ir.md"><code>lvg-ir.md</code></a>).
-The Installatie Register (IR) asks the Landelijke Voorziening Gebouwen
+The Installatie Register (IR) asks the Landelijke facility (voorziening) Gebouwen
 (LVG) whether a building unit belongs to the citizen. The citizen gives two
 consents:</p>
 <ul>
-<li>One consent to IR in the toestemmingsportaal (scope <code>lvg:vbo:eigendom</code>).
+<li>One consent to IR in the consent portal (toestemmingsportaal) (scope <code>lvg:vbo:eigendom</code>).
   This consent is in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</li>
 <li>One consent to the installer inside IR. This consent is not in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</li>
 </ul>

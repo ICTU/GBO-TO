@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -2028,7 +2028,7 @@
   <a href="#ownership-per-source-holder" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ownership per bronhouder
+        Ownership per source holder
       
     </span>
   </a>
@@ -2083,7 +2083,7 @@
   <a href="#guidelines-for-source-holders" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Guidelines for bronhouders
+        Guidelines for source holders
       
     </span>
   </a>
@@ -4601,7 +4601,7 @@
 
 
 <h1 id="policy-lifecycle">Policy lifecycle<a class="headerlink" href="#policy-lifecycle" title="Permanent link">&para;</a></h1>
-<p>Each bronhouder owns, writes, and publishes the policy that its own <abbr title="Policy Decision Point">PDP</abbr>
+<p>Each source holder (bronhouder) owns, writes, and publishes the policy that its own <abbr title="Policy Decision Point">PDP</abbr>
 evaluates. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> supplies a reference policy set, an engine choice, and
 guidelines. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not supply a central policy service. The following
 sections show how a policy travels from version control to a decision in
@@ -4613,13 +4613,13 @@ The decision is
 <a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>. For the
 management-plane scenario, see
 <a href="../../runtime/policy-distribution/">Policy distribution</a>.</p>
-<h2 id="ownership-per-source-holder">Ownership per bronhouder<a class="headerlink" href="#ownership-per-source-holder" title="Permanent link">&para;</a></h2>
-<p>The <abbr title="Policy Administration Point">PAP</abbr> and the <abbr title="Policy Decision Point">PDP</abbr> are at each bronhouder. The <abbr title="Policy Decision Point">PDP</abbr> is behind the <abbr title="Federated Service Connectivity">FSC</abbr>
-Inway of the bronhouder, and the management function serves only that
+<h2 id="ownership-per-source-holder">Ownership per source holder<a class="headerlink" href="#ownership-per-source-holder" title="Permanent link">&para;</a></h2>
+<p>The <abbr title="Policy Administration Point">PAP</abbr> and the <abbr title="Policy Decision Point">PDP</abbr> are at each source holder. The <abbr title="Policy Decision Point">PDP</abbr> is behind the <abbr title="Federated Service Connectivity">FSC</abbr>
+Inway of the source holder, and the management function serves only that
 <abbr title="Policy Decision Point">PDP</abbr>. The policy belongs to the source
 (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>).</p>
-<p>The question of who can manage and publish the policy of a bronhouder
-has an answer: the bronhouder itself
+<p>The question of who can manage and publish the policy of a source holder
+has an answer: the source holder itself
 (<a href="../../traceability/answered-questions/#q-21">Q-21</a>, October 28, 2026). PSA S06
 sets the norm for publication control. The norm asks for these items:</p>
 <ul>
@@ -4811,7 +4811,7 @@ An administrator in the management interface uses the same path.</p>
   gets a signature only when it crosses an organization boundary. Inside
   one organization, signing is not planned
   (<a href="https://github.com/ICTU/GBO-demo/issues/426">#426</a>, closed as not
-  planned). If a bronhouder lets another organization build or host
+  planned). If a source holder lets another organization build or host
   its bundles, signing and verification become a requirement
   (<a href="../../traceability/findings-closed/#f-09">F-09</a>).</li>
 </ul>
@@ -4860,7 +4860,7 @@ stay disjoint from the consent consumers
 (<a href="../../traceability/findings/#f-70">F-70</a>,
 <a href="../authorization/#regime-selection">Authorization</a>). In demo v0.9.0, the
 lists are policy data and not register data.</p>
-<h2 id="guidelines-for-source-holders">Guidelines for bronhouders<a class="headerlink" href="#guidelines-for-source-holders" title="Permanent link">&para;</a></h2>
+<h2 id="guidelines-for-source-holders">Guidelines for source holders<a class="headerlink" href="#guidelines-for-source-holders" title="Permanent link">&para;</a></h2>
 <p>Each guideline has a demo status in demo v0.9.0:</p>
 <table>
 <thead>
@@ -4892,7 +4892,7 @@ lists are policy data and not register data.</p>
 </tr>
 </tbody>
 </table>
-<p>Each guideline is a SHOULD for the bronhouder. A promotion rule names
+<p>Each guideline is a SHOULD for the source holder. A promotion rule names
 when the guideline becomes a requirement.</p>
 <h2 id="policy-version-and-the-decision-record">Policy version and the decision record<a class="headerlink" href="#policy-version-and-the-decision-record" title="Permanent link">&para;</a></h2>
 <p>The decision record must name the policy version that decided

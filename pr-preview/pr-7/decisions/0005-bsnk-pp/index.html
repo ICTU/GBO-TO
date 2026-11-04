@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4581,13 +4581,13 @@ encryption of the <abbr title="Burgerservicenummer">BSN</abbr> still gives them 
 <p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> uses the BSNk <abbr title="Polymorphic pseudonym">PP</abbr> polymorphic pseudonym infrastructure and calls it
 only at consent time. The decision has these parts:</p>
 <ul>
-<li>The toestemmingsvoorziening activates the <abbr title="Burgerservicenummer">BSN</abbr> of the citizen once, into a <abbr title="Polymorphic identity">PI</abbr>
-  and a <abbr title="Polymorphic pseudonym">PP</abbr>. These belong to the toestemmingsvoorziening only
+<li>The consent facility (toestemmingsvoorziening) activates the <abbr title="Burgerservicenummer">BSN</abbr> of the citizen once, into a <abbr title="Polymorphic identity">PI</abbr>
+  and a <abbr title="Polymorphic pseudonym">PP</abbr>. These belong to the consent facility only
   (<a href="../../requirements/pseudonymization/#bsnk-03">BSNK-03</a>).
   <a href="../0040-route-d-citizen-recognition/">ADR-0040</a> (proposed) describes how
-  the toestemmingsvoorziening recognizes the citizen later.</li>
+  the consent facility recognizes the citizen later.</li>
 <li>At each consent, while the citizen is logged in
-  (<a href="../../requirements/pseudonymization/#bsnk-04">BSNK-04</a>), the toestemmingsvoorziening asks BSNk to transform the <abbr title="Polymorphic identity">PI</abbr> and the <abbr title="Polymorphic pseudonym">PP</abbr>. BSNk returns values
+  (<a href="../../requirements/pseudonymization/#bsnk-04">BSNK-04</a>), the consent facility asks BSNk to transform the <abbr title="Polymorphic identity">PI</abbr> and the <abbr title="Polymorphic pseudonym">PP</abbr>. BSNk returns values
   for each recipient <abbr title="Organisatie-identificatienummer">OIN</abbr>:<ul>
 <li>an encrypted pseudonym (<abbr title="Encrypted pseudonym">VP</abbr>) for every source</li>
 <li>an encrypted identity (<abbr title="Encrypted identity">VI</abbr>) only for a source on the <abbr title="Burgerservicenummer">BSN</abbr>
@@ -4595,7 +4595,7 @@ only at consent time. The decision has these parts:</p>
   (<a href="../../requirements/pseudonymization/#bsnk-06">BSNK-06</a>)</li>
 </ul>
 </li>
-<li>The toestemmingsvoorziening splits the call into requests of four parties at
+<li>The consent facility splits the call into requests of four parties at
   most (<a href="../../requirements/pseudonymization/#bsnk-05">BSNK-05</a>).</li>
 <li>The values travel in the consent proof
   (<a href="../0032-consent-proof/">ADR-0032</a>). After the allow, each recipient
@@ -4607,7 +4607,7 @@ only at consent time. The decision has these parts:</p>
 <ul>
 <li>The values of different parties cannot be linked. No party outside
   government can derive the <abbr title="Burgerservicenummer">BSN</abbr>.</li>
-<li>The toestemmingsvoorziening must be a recognized BSNk participant
+<li>The consent facility must be a recognized BSNk participant
   (<a href="../../requirements/pseudonymization/#bsnk-01">BSNK-01</a>,
   <a href="../../traceability/findings/#f-75">F-75</a>,
   <a href="../../traceability/open-questions/#q-26">Q-26</a>).</li>

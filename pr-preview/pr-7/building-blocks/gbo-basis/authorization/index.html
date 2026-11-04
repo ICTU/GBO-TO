@@ -1327,7 +1327,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4690,7 +4690,7 @@ authorization server exists.</p>
 <p>The <abbr title="Policy Enforcement Point">PEP</abbr>, the <abbr title="Policy Decision Point">PDP</abbr> and two PIPs work together as follows:</p>
 <div class="mermaid">flowchart LR
   out["Outway of&lt;br/&gt;the caller"]
-  subgraph src["At the bronhouder"]
+  subgraph src["At the source holder"]
     direction LR
     pep("FSC Inway&lt;br/&gt;PEP")
     subgraph pdp["PDP: OpenFTV v0.1.0"]
@@ -4702,7 +4702,7 @@ authorization server exists.</p>
     gw("Source gateway")
   end
   adm[("PIP: admission register&lt;br/&gt;parties, mandates")]
-  tr[("PIP: toestemmingsregister&lt;br/&gt;keys, consent status")]
+  tr[("PIP: consent register&lt;br/&gt;keys, consent status")]
   adl[("ADL")]
 
   out -- "request + raw body" --&gt; pep
@@ -4755,10 +4755,10 @@ authorization server exists.</p>
 </tr>
 <tr>
 <td>Policy</td>
-<td>Rego code that selects the regime, checks the consent proof and decides each field. The policy is data for the <abbr title="Policy Decision Point">PDP</abbr>, so a bronhouder changes it without a new build.</td>
+<td>Rego code that selects the regime, checks the consent proof and decides each field. The policy is data for the <abbr title="Policy Decision Point">PDP</abbr>, so a source holder (bronhouder) changes it without a new build.</td>
 </tr>
 <tr>
-<td><abbr title="Policy Information Point">PIP</abbr>: toestemmingsregister</td>
+<td><abbr title="Policy Information Point">PIP</abbr>: consent register (toestemmingsregister)</td>
 <td>Gives the status of a consent for every request, over <abbr title="Federated Service Connectivity">FSC</abbr>. Gives the keys to check the proof. <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> only.</td>
 </tr>
 <tr>

@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4714,12 +4714,12 @@ defines the consent proof in five points:</p>
 </thead>
 <tbody>
 <tr>
-<td>Toestemmingsportaal (S02)</td>
-<td><code>toestemmingsportaal-frontend</code>, toestemmingsportaal backend</td>
+<td>Consent portal (S02)</td>
+<td><code>toestemmingsportaal-frontend</code>, consent portal backend</td>
 <td>Shows the request, logs the citizen in, makes the values per source at BSNk, and lets the citizen view and revoke consents</td>
 </tr>
 <tr>
-<td>Toestemmingsregister (S01)</td>
+<td>Consent register (S01)</td>
 <td><code>consent-register</code></td>
 <td>Stores the consent record, signs the proof, and answers the status over <abbr title="Federated Service Connectivity">FSC</abbr></td>
 </tr>
@@ -4769,9 +4769,9 @@ Within a set, the citizen does not pick fields
 (<a href="../../requirements/consent/#req-10">REQ-10</a>). The portal shows only the
 data sets that the consumer asks for. It refuses a data set that it
 cannot describe. For the record model, see
-<a href="../../requirements/consent/#consent-register">Toestemmingsregister</a>.</p>
+<a href="../../requirements/consent/#consent-register">consent register</a>.</p>
 <h2 id="the-consent-proof">The consent proof<a class="headerlink" href="#the-consent-proof" title="Permanent link">&para;</a></h2>
-<p>When the citizen gives consent, the toestemmingsregister signs a JWT with
+<p>When the citizen gives consent, the consent register signs a JWT with
 these parts
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L130-L152"><code>consent_token.go#L130-L152</code></a>):</p>
 <table>
@@ -4872,7 +4872,7 @@ The policy verifies the proof and gets the status in this sequence:</p>
       participant CRIN as Register Inway
     end
     box rgb(254,220,216) DvTP
-      participant CR as Toestemmingsregister
+      participant CR as Consent register
     end
     IN-&gt;&gt;PDP: AuthZEN evaluation with X-GBO-Consent-Token
     opt JWKS not cached, older than 300 s, or unknown kid

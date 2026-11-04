@@ -1360,7 +1360,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4655,7 +4655,7 @@ detail and the links to the code.</p>
 <h2 id="components-behind-the-pep">Components behind the <abbr title="Policy Enforcement Point">PEP</abbr><a class="headerlink" href="#components-behind-the-pep" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
   out["Outway of&lt;br/&gt;the caller"]
-  subgraph bh["At the bronhouder"]
+  subgraph bh["At the source holder"]
     direction LR
     pep("FSC Inway&lt;br/&gt;PEP")
     subgraph pdpg["PDP"]
@@ -4791,7 +4791,7 @@ citizen after the allow:</p>
 <div class="mermaid">sequenceDiagram
   autonumber
   box rgb(241,239,232) Consumer
-    participant DV as Dienstverlener
+    participant DV as Service provider
   end
   box rgb(220,252,231) GBO Basis at the source
     participant IN as FSC Inway (PEP)
@@ -5123,7 +5123,7 @@ queries. It differs in three places:</p>
 <tbody>
 <tr>
 <td>Allowed queries</td>
-<td>A dienstencatalogus lists the allowed queries per application</td>
+<td>A service catalog (dienstencatalogus) lists the allowed queries per application</td>
 <td>The rules are the catalog: a field that no rule names is denied (<a href="../../../decisions/0009-closed-world-rules/">ADR-0009</a>)</td>
 </tr>
 <tr>
@@ -5133,7 +5133,7 @@ queries. It differs in three places:</p>
 </tr>
 <tr>
 <td>From proof to <abbr title="Burgerservicenummer">BSN</abbr></td>
-<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> keeps the <abbr title="Burgerservicenummer">BSN</abbr> away from the private dienstverlener</td>
+<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> keeps the <abbr title="Burgerservicenummer">BSN</abbr> away from the private service provider (dienstverlener)</td>
 <td>The same, and the source gateway converts its own value after the allow. BSNk is not in the query path</td>
 </tr>
 </tbody>

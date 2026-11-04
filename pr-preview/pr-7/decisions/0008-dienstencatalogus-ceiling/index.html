@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-0008-dienstencatalogus-as-a-data-driven-policy-ceiling" class="md-skip">
+        <a href="#adr-0008-service-catalog-as-a-data-driven-policy-ceiling" class="md-skip">
           Ga naar inhoud
         </a>
       
@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4565,7 +4565,7 @@
   
 
 
-<h1 id="adr-0008-dienstencatalogus-as-a-data-driven-policy-ceiling">ADR-0008: Dienstencatalogus as a data-driven policy ceiling<a class="headerlink" href="#adr-0008-dienstencatalogus-as-a-data-driven-policy-ceiling" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0008-service-catalog-as-a-data-driven-policy-ceiling">ADR-0008: Service catalog as a data-driven policy ceiling<a class="headerlink" href="#adr-0008-service-catalog-as-a-data-driven-policy-ceiling" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: superseded by <a href="../0009-closed-world-rules/">ADR-0009</a></li>
 <li>Date: 2026-08-24 (ported from reference architecture v0.6.2)</li>
@@ -4577,10 +4577,10 @@
 <p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> needs a ceiling that applies to all individual consents. The ceiling
 limits what a consent screen can ask for and what a query can select.</p>
 <h2 id="decision-superseded">Decision (superseded)<a class="headerlink" href="#decision-superseded" title="Permanent link">&para;</a></h2>
-<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> keeps a wettelijke dienstencatalogus as a separate register with a
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> keeps a wettelijke service catalog (dienstencatalogus) as a separate register with a
 legal anchor. The register maps each scope to its allowed fields
 (<code>data.dienstencatalogus[scope].allowed_fields</code>). The <abbr title="Policy Decision Point">PDP</abbr> checks every
-query against the catalog. The toestemmingsportaal shows only catalog entries.</p>
+query against the catalog. The consent portal (toestemmingsportaal) shows only catalog entries.</p>
 <h2 id="why-it-was-superseded">Why it was superseded<a class="headerlink" href="#why-it-was-superseded" title="Permanent link">&para;</a></h2>
 <p>A separate catalog is a second authorization source. It can drift away
 from the rules that enforce it. The implemented model puts the ceiling

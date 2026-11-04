@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -3997,7 +3997,7 @@
   <a href="#r37" class="md-nav__link">
     <span class="md-ellipsis">
       
-        R37: BSNk recognition of the toestemmingsvoorziening is not settled
+        R37: BSNk recognition of the consent facility is not settled
       
     </span>
   </a>
@@ -4064,7 +4064,7 @@
   <a href="#r10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        R10: The toestemmingsregister is a dependency of every DvTP decision
+        R10: The consent register is a dependency of every DvTP decision
       
     </span>
   </a>
@@ -4136,7 +4136,7 @@
   <a href="#r15" class="md-nav__link">
     <span class="md-ellipsis">
       
-        R15: The legal ceiling of the dienstencatalogus has no technical counterpart
+        R15: The legal ceiling of the service catalog has no technical counterpart
       
     </span>
   </a>
@@ -4191,7 +4191,7 @@
   <a href="#r20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        R20: Onboarding cost for small bronhouders
+        R20: Onboarding cost for small source holders
       
     </span>
   </a>
@@ -5098,7 +5098,7 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
 </tr>
 <tr>
 <td><a href="#r10">R10</a></td>
-<td>The toestemmingsregister is a dependency of every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> decision</td>
+<td>The consent register (toestemmingsregister) is a dependency of every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> decision</td>
 <td>Production readiness</td>
 </tr>
 <tr>
@@ -5123,7 +5123,7 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
 </tr>
 <tr>
 <td><a href="#r15">R15</a></td>
-<td>The legal ceiling of the dienstencatalogus has no technical counterpart</td>
+<td>The legal ceiling of the service catalog (dienstencatalogus) has no technical counterpart</td>
 <td>Governance</td>
 </tr>
 <tr>
@@ -5148,7 +5148,7 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
 </tr>
 <tr>
 <td><a href="#r20">R20</a></td>
-<td>Onboarding cost for small bronhouders</td>
+<td>Onboarding cost for small source holders (bronhouders)</td>
 <td>Governance</td>
 </tr>
 <tr>
@@ -5233,7 +5233,7 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
 </tr>
 <tr>
 <td><a href="#r37">R37</a></td>
-<td>BSNk recognition of the toestemmingsvoorziening is not settled</td>
+<td>BSNk recognition of the consent facility (toestemmingsvoorziening) is not settled</td>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 </tr>
 </tbody>
@@ -5290,7 +5290,7 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
 <h3 id="r3">R3: No <abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr> regime and no positive evidence for it<a class="headerlink" href="#r3" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Risk</strong>: The <abbr title="Policy Decision Point">PDP</abbr> knows two regimes: consent and <abbr title="Person Identification Data">PID</abbr>. No legal-basis
-  regime, rule set, or grondslag data exists. A request without a consent
+  regime, rule set, or legal basis (grondslag) data exists. A request without a consent
   proof falls in the <abbr title="Person Identification Data">PID</abbr> regime
   (<a href="../decisions/0031-regime-from-evidence/">ADR-0031</a>).</li>
 <li><strong>Impact</strong>: The two-path access-basis model of
@@ -5437,7 +5437,7 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
 <h3 id="r32">R32: Only the network protects the register listener<a class="headerlink" href="#r32" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Risk</strong>: The register listener for create, list, read, and revoke has
-  no caller authentication. The toestemmingsportaal backend is its only
+  no caller authentication. The consent portal (toestemmingsportaal) backend is its only
   intended caller (<a href="../requirements/consent/#req-39">REQ-39</a>). In
   Compose, the register is on <code>backend</code>
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L737-L740"><code>docker-compose.yml#L737-L740</code></a>).</li>
@@ -5636,11 +5636,11 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
 <li><strong>Related</strong>: <a href="../traceability/findings-closed/#f-11">F-11</a>,
   <a href="../requirements/consent/#req-19">REQ-19</a>.</li>
 </ul>
-<h3 id="r37">R37: BSNk recognition of the toestemmingsvoorziening is not settled<a class="headerlink" href="#r37" title="Permanent link">&para;</a></h3>
+<h3 id="r37">R37: BSNk recognition of the consent facility is not settled<a class="headerlink" href="#r37" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Risk</strong>: Only a recognized party can activate and transform
   (<a href="../requirements/pseudonymization/#bsnk-01">BSNK-01</a>). It is open
-  whether the toestemmingsvoorziening can be that party, and in which role. The
+  whether the consent facility can be that party, and in which role. The
   demo assumes route D: the backend derives and activates, and the
   register stores <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr>.</li>
 <li><strong>Impact</strong>: Route D works only under one condition: the backend and the
@@ -5671,7 +5671,7 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
 <h2 id="production-readiness">Production readiness<a class="headerlink" href="#production-readiness" title="Permanent link">&para;</a></h2>
 <h3 id="r9">R9: Demo-grade shared services<a class="headerlink" href="#r9" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Risk</strong>: The shared services are demo grade: the toestemmingsregister runs
+<li><strong>Risk</strong>: The shared services are demo grade: the consent register runs
   in memory by default, DigiD is a mock, and the PKI is self-generated.
   The BSNk mock follows the BSNk interface (as JSON), but it encrypts
   nothing. The three demo sources share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decryption
@@ -5684,7 +5684,7 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
 <li><strong>Related</strong>: <a href="../traceability/open-questions/#q-54">Q-54</a>,
   <a href="../concepts/pseudonymization/#demo-mock-and-production-bsnk">demo mock and production BSNk</a>.</li>
 </ul>
-<h3 id="r10">R10: The toestemmingsregister is a dependency of every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> decision<a class="headerlink" href="#r10" title="Permanent link">&para;</a></h3>
+<h3 id="r10">R10: The consent register is a dependency of every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> decision<a class="headerlink" href="#r10" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Risk</strong>: For every request, the policy asks for the consent status
   online, without a cache.</li>
@@ -5698,10 +5698,10 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
 </ul>
 <h3 id="r11">R11: The demo runs one <abbr title="Policy Decision Point">PDP</abbr> for all providers<a class="headerlink" href="#r11" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Risk</strong>: The target model has a <abbr title="Policy Administration Point">PAP</abbr> and a <abbr title="Policy Decision Point">PDP</abbr> at each bronhouder
+<li><strong>Risk</strong>: The target model has a <abbr title="Policy Administration Point">PAP</abbr> and a <abbr title="Policy Decision Point">PDP</abbr> at each source holder
   (<a href="../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>). The demo
   runs one shared <abbr title="Policy Decision Point">PDP</abbr>.</li>
-<li><strong>Impact</strong>: The demo does not show policy separation between bronhouders.</li>
+<li><strong>Impact</strong>: The demo does not show policy separation between source holders.</li>
 <li><strong>Follow-up</strong>: Run a <abbr title="Policy Decision Point">PDP</abbr> per provider in the simulation deployment.</li>
 <li><strong>Related</strong>: <a href="../traceability/answered-questions/#q-21">Q-21</a> (answered).</li>
 </ul>
@@ -5743,7 +5743,7 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
 <li><strong>Related</strong>: <a href="../requirements/sources-identity/#req-64">REQ-64</a>.</li>
 </ul>
 <h2 id="governance-and-standards">Governance and standards<a class="headerlink" href="#governance-and-standards" title="Permanent link">&para;</a></h2>
-<h3 id="r15">R15: The legal ceiling of the dienstencatalogus has no technical counterpart<a class="headerlink" href="#r15" title="Permanent link">&para;</a></h3>
+<h3 id="r15">R15: The legal ceiling of the service catalog has no technical counterpart<a class="headerlink" href="#r15" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Risk</strong>: Rule coverage replaced the catalog artifact. The legally
   anchored ceiling and its governance (the Bureau <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> process) are not
@@ -5825,7 +5825,7 @@ questions (Q), requirements (REQ), and decisions (ADR) that it rests on.</p>
   <a href="../traceability/findings-closed/#f-64">F-64</a>,
   <a href="../traceability/increments/#sl-50">SL-50</a>.</li>
 </ul>
-<h3 id="r20">R20: Onboarding cost for small bronhouders<a class="headerlink" href="#r20" title="Permanent link">&para;</a></h3>
+<h3 id="r20">R20: Onboarding cost for small source holders<a class="headerlink" href="#r20" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Risk</strong>: The cost to connect a source stays high for small
   organizations.</li>

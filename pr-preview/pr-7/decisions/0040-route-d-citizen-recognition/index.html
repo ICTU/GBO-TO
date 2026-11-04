@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4590,7 +4590,7 @@
 </li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>The toestemmingsvoorziening needs two things from a citizen who logged in:</p>
+<p>The consent facility (toestemmingsvoorziening) needs two things from a citizen who logged in:</p>
 <ol>
 <li>A stable key for its own administration. With this key, the service
    shows and revokes the consents of the citizen without a <abbr title="Burgerservicenummer">BSN</abbr>
@@ -4608,7 +4608,7 @@ recognized BSNk participant can activate and transform
 (<a href="../../requirements/pseudonymization/#bsnk-01">BSNK-01</a>).</p>
 <p>Two points are open (<a href="../../traceability/open-questions/#q-49">Q-49</a>):</p>
 <ul>
-<li>Are the toestemmingsregister and the toestemmingsportaal backend one system?</li>
+<li>Are the consent register (toestemmingsregister) and the consent portal (toestemmingsportaal) backend one system?</li>
 <li>Which of them is the BSNk participant?</li>
 </ul>
 <p>The working assumption puts the BSNk calls at the register. The demo
@@ -4618,7 +4618,7 @@ point (REQ-22) until a decision on Q-49.</p>
 <p>The proposal is route D, under the working assumption that MijnOverheid
 passes the <abbr title="Burgerservicenummer">BSN</abbr>:</p>
 <ul>
-<li>The toestemmingsvoorziening recognizes the citizen by an HMAC of the <abbr title="Burgerservicenummer">BSN</abbr>, with
+<li>The consent facility recognizes the citizen by an HMAC of the <abbr title="Burgerservicenummer">BSN</abbr>, with
   a secret, versioned key:<ul>
 <li>The key is in an HSM or KMS.</li>
 <li>The input has a fixed prefix and nine digits with leading zeros.</li>
@@ -4640,7 +4640,7 @@ describes the routes in full. The design weighed four options:</p>
 <ol>
 <li>Route D: an own pseudonym from the <abbr title="Burgerservicenummer">BSN</abbr> (proposed). BSNk is necessary
    only at the first activation. The route needs the <abbr title="Burgerservicenummer">BSN</abbr> from
-   MijnOverheid and a grondslag for the register.</li>
+   MijnOverheid and a legal basis (grondslag) for the register.</li>
 <li><a href="../../requirements/pseudonymization/#route-a">Route A</a>: an own
    pseudonym through BSNk. The service activates and transforms at every
    login, also to show consents. Every login goes into the
@@ -4660,14 +4660,14 @@ describes the routes in full. The design weighed four options:</p>
   purpose from FR-35, criterion 1
   (<a href="../../traceability/findings/#f-98">F-98</a>).</li>
 <li>The service processes the <abbr title="Burgerservicenummer">BSN</abbr> briefly at every login, and that needs a
-  grondslag. For every <abbr title="Burgerservicenummer">BSN</abbr>, the service can compute whether consents
+  legal basis. For every <abbr title="Burgerservicenummer">BSN</abbr>, the service can compute whether consents
   exist, without a trace elsewhere.</li>
 <li>The secret key is the whole protection. Without the key, anyone can
   compute every reference back from the small <abbr title="Burgerservicenummer">BSN</abbr> space.</li>
 <li>A new key gives every citizen a new reference. A migration of existing
   records is not built
   (<a href="../../traceability/open-questions/#q-56">Q-56</a>).</li>
-<li>The toestemmingsvoorziening must become a recognized BSNk participant
+<li>The consent facility must become a recognized BSNk participant
   (<a href="../../traceability/findings/#f-75">F-75</a>,
   <a href="../../traceability/open-questions/#q-26">Q-26</a>).</li>
 </ul>

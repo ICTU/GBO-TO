@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4579,7 +4579,7 @@
 <h1 id="adr-0028-pubeaa-provider-productization">ADR-0028: PubEAA Provider productization<a class="headerlink" href="#adr-0028-pubeaa-provider-productization" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: proposed</li>
-<li>Date: 2026-08-24, rewritten on 2026-11-02. The rewrite made the bronhouder the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> the technical issuance facility, and added the regulatory frame of F-81.</li>
+<li>Date: 2026-08-24, rewritten on 2026-11-02. The rewrite made the source holder (bronhouder) the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> the technical issuance facility, and added the regulatory frame of F-81.</li>
 <li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">S11</a>, <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-06</a>, <a href="https://ictu.github.io/GBO-GO/main/#uitgifte-van-attestaties-voor-de-eudi-wallet-pubeaa-uitgifte">GO: <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr>-uitgifte</a></li>
 <li>Deliberation: reference architecture v0.6.2, gap 7 (archived and unpublished), <a href="../../traceability/findings/#f-81">F-81</a>, <a href="../../traceability/findings/#f-82">F-82</a>, <a href="../../requirements/eudi-issuance/#req-77">REQ-77</a></li>
 <li>Implemented in: demo grade. The issuance chain of <a href="../0018-eudi-disclosure-issuance/">ADR-0018</a> works end to end with development CAs. <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_config.go#L166-L168">issuance_config.go#L166-L168</a> fixes the validity at 365 days.</li>
@@ -4596,11 +4596,11 @@ regulation or the GO:</p>
 <li>eIDAS article 3(46) names two possible issuers. One is the body that
   is responsible for the authentic source. The other is a public sector
   body that the member state designates on behalf of that body.</li>
-<li>The notification specification (EUDI TS2) assumes that the bronhouder
-  is the provider. A party that issues on behalf of the bronhouder goes
+<li>The notification specification (EUDI TS2) assumes that the source holder
+  is the provider. A party that issues on behalf of the source holder goes
   in the field <code>EEAIssuer</code>.</li>
 <li>The GO describes <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> as a technical, central, and optional issuance
-  facility. Legally, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> is not a <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. The bronhouder stays
+  facility. Legally, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> is not a <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. The source holder stays
   legally responsible (PSA S11).</li>
 </ul>
 <p>Since August 2026, <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance also falls under the same standard as
@@ -4608,9 +4608,9 @@ regulation or the GO:</p>
 <h2 id="proposed-decision">Proposed decision<a class="headerlink" href="#proposed-decision" title="Permanent link">&para;</a></h2>
 <p>The proposal has seven parts:</p>
 <ol>
-<li>Roles. Each bronhouder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider of its attestations.
+<li>Roles. Each source holder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider of its attestations.
    <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical issuance facility. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> is probably the
-   <code>EEAIssuer</code> in the notification of each bronhouder. The designation
+   <code>EEAIssuer</code> in the notification of each source holder. The designation
    of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> or the management organization under article 3(46) is an open
    decision (<a href="../../traceability/open-questions/#q-28">Q-28</a>).</li>
 <li>Conformity. The facility conforms to ETSI TS 119 471 with EN 319 401.
@@ -4618,7 +4618,7 @@ regulation or the GO:</p>
    providers. Issuance follows <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> as ETSI TS 119 472-3 specifies.
    The issuance checks the wallet instance attestation and the key
    attestation.</li>
-<li>Certificates per bronhouder:<ul>
+<li>Certificates per source holder:<ul>
 <li>The facility seals the attestation in a QSCD, with a qualified seal
   certificate as ETSI TS 119 412-6 clause 8 specifies. The
   certificate names the authentic source and the legal basis (eIDAS
@@ -4632,12 +4632,12 @@ regulation or the GO:</p>
 </li>
 <li>Rulebook per type. Each Dutch attestation type gets a rulebook. The
    rulebook uses the template of the rulebooks catalogue.</li>
-<li>Validity and revocation per type. The bronhouder sets them
+<li>Validity and revocation per type. The source holder sets them
    (<a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>):<ul>
 <li>If an attestation is valid for more than 24 hours, it carries a
   status reference.</li>
 <li>The facility revokes the attestation on instruction of the
-  bronhouder, and when the source data changes.</li>
+  source holder, and when the source data changes.</li>
 <li><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> only queries and gets no change signal
   (<a href="../../traceability/findings/#f-82">F-82</a>). For this reason, each
   type chooses one of two forms: short-lived (less than 24 hours),
@@ -4647,16 +4647,16 @@ regulation or the GO:</p>
 <li>The callback gap of <a href="../0018-eudi-disclosure-issuance/">ADR-0018</a> is
    closed with positive <abbr title="Person Identification Data">PID</abbr> evidence and an authenticated callback
    (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>).</li>
-<li>The facility is optional per bronhouder. Sources with capacity can
+<li>The facility is optional per source holder. Sources with capacity can
    run their own credential issuer.</li>
 </ol>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>The legal responsibility for content, validity, and revocation stays
-  with the bronhouder. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> revokes technically, on instruction of the
-  bronhouder (<a href="../../requirements/admission/#av-12">AV-12</a>,
+  with the source holder. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> revokes technically, on instruction of the
+  source holder (<a href="../../requirements/admission/#av-12">AV-12</a>,
   <a href="../../requirements/admission/#av-13">AV-13</a>).</li>
-<li>Notification and registration happen per bronhouder. They do not
+<li>Notification and registration happen per source holder. They do not
   happen once for <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</li>
 <li>Nobody tested the demo against ETSI TS 119 471, the certificate
   profile, or the checks of ETSI TS 119 472-3.</li>
@@ -4669,10 +4669,10 @@ regulation or the GO:</p>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
 <p>These points are open:</p>
 <ul>
-<li>Who holds and uses the seal and status-list keys of a bronhouder
+<li>Who holds and uses the seal and status-list keys of a source holder
   (<a href="../../traceability/open-questions/#q-17">Q-17</a>)? The options are the
   central facility, a remote signing service, or an HSM at the
-  bronhouder.</li>
+  source holder.</li>
 <li>Who designates the Dutch <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuer, and who supervises
   (<a href="../../traceability/open-questions/#q-28">Q-28</a>)?</li>
 <li>On which trust list do <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> providers appear: a List of Trusted

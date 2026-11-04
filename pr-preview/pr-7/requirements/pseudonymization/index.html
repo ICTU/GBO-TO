@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4017,7 +4017,7 @@
   <a href="#req-69" class="md-nav__link">
     <span class="md-ellipsis">
       
-        REQ-69: The toestemmingsregister stores the polymorphic values under its own reference and no encrypted values per party
+        REQ-69: The consent register stores the polymorphic values under its own reference and no encrypted values per party
       
     </span>
   </a>
@@ -4061,7 +4061,7 @@
   <a href="#req-82" class="md-nav__link">
     <span class="md-ellipsis">
       
-        REQ-82: When consent is given, the toestemmingsvoorziening knows the OIN, the key version, and the BSN authorization of each source
+        REQ-82: When consent is given, the consent facility knows the OIN, the key version, and the BSN authorization of each source
       
     </span>
   </a>
@@ -4862,17 +4862,17 @@ requirements on this page cover four topics:</p>
 <li>what the consent proof carries about the citizen</li>
 <li>how a request names the subject</li>
 <li>where the value from the proof becomes a <abbr title="Burgerservicenummer">BSN</abbr> or a source pseudonym</li>
-<li>what the toestemmingsvoorziening must know to make those values</li>
+<li>what the consent facility (toestemmingsvoorziening) must know to make those values</li>
 </ul>
 <p>The design of demo increment <a href="../../traceability/increments/#sl-51">SL-51</a>
 works in four steps:</p>
 <ol>
-<li>At consent time, the toestemmingsportaal backend asks BSNk <abbr title="Polymorphic pseudonym">PP</abbr> for a value
+<li>At consent time, the consent portal (toestemmingsportaal) backend asks BSNk <abbr title="Polymorphic pseudonym">PP</abbr> for a value
    for each receiving source. Every source gets an encrypted pseudonym
    (<abbr title="Encrypted pseudonym">VP</abbr>). Only a source on the <abbr title="Burgerservicenummer">BSN</abbr> Authorization List (Autorisatielijst <abbr title="Burgerservicenummer">BSN</abbr>)
    also gets an encrypted identity (<abbr title="Encrypted identity">VI</abbr>). BSNk transforms only while the
    citizen is logged in (<a href="./#bsnk-04">BSNK-04</a>).</li>
-<li>The toestemmingsregister signs these values into the proof as
+<li>The consent register (toestemmingsregister) signs these values into the proof as
    <code>encrypted_subject</code>, keyed by the <abbr title="Organisatie-identificatienummer">OIN</abbr> of each source. It does not keep
    the values. It keeps the polymorphic identity (<abbr title="Polymorphic identity">PI</abbr>) and the polymorphic
    pseudonym (<abbr title="Polymorphic pseudonym">PP</abbr>) of the portal under a reference to the citizen.</li>
@@ -4895,7 +4895,7 @@ encrypt. As a result, anyone can read the values. The three demo sources
 share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decryption component.</p>
 <h3 id="req-20">REQ-20: In the consent path the consumer gets no <abbr title="Burgerservicenummer">BSN</abbr> in the proof or in the response<a class="headerlink" href="#req-20" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>In the consent path, the consumer MUST NOT receive a <abbr title="Burgerservicenummer">BSN</abbr>. The <abbr title="Burgerservicenummer">BSN</abbr> MUST NOT be in the consent proof, in another value from the toestemmingsvoorziening, or in the answer of the source. The consumer MUST be able to make a request without knowing an identifier of the citizen. A rule in the consent regime MUST NOT allow a field that returns the <abbr title="Burgerservicenummer">BSN</abbr>. A policy set MUST enforce that with a test per rule.</p>
+<p>In the consent path, the consumer MUST NOT receive a <abbr title="Burgerservicenummer">BSN</abbr>. The <abbr title="Burgerservicenummer">BSN</abbr> MUST NOT be in the consent proof, in another value from the consent facility, or in the answer of the source. The consumer MUST be able to make a request without knowing an identifier of the citizen. A rule in the consent regime MUST NOT allow a field that returns the <abbr title="Burgerservicenummer">BSN</abbr>. A policy set MUST enforce that with a test per rule.</p>
 </blockquote>
 <table>
 <thead>
@@ -4926,10 +4926,10 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">PSA S03</a>
   ("voorkomen dat onbevoegde afnemers het <abbr title="Burgerservicenummer">BSN</abbr> ontvangen"),
   <a href="https://ictu.github.io/GBO-GO/main/#bouwstenen-die-hergebruikt-worden">GO, building blocks</a>
-  (BSNk <abbr title="Polymorphic pseudonym">PP</abbr> for all <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> requests, before a private dienstverlener receives
+  (BSNk <abbr title="Polymorphic pseudonym">PP</abbr> for all <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> requests, before a private service provider (dienstverlener) receives
   data), and FR-35 criteria 2 and 3.</li>
-<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the toestemmingsportaal and the
-  toestemmingsregister (what the proof carries), and the reference policy
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the consent portal and the
+  consent register (what the proof carries), and the reference policy
   of the <abbr title="Policy Decision Point">PDP</abbr> (which fields are allowed under consent). Interface
   agreement: what the consumer sees.</li>
 <li><strong>Evidence</strong>: to build:
@@ -5027,7 +5027,7 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">PSA S03</a>
   ("de inrichting voert identiteitsvertaling alleen uit voor een
   toegestane dienst en gegevensvraag"), with the provision "veilige
-  omzetting aan de kant van de bronhouder"</li>
+  omzetting aan de kant van de source holder (bronhouder)"</li>
 <li>FR-35 criterion 3</li>
 <li>precondition <a href="./#bsnk-04">BSNK-04</a>: BSNk
   transforms only while the citizen is logged in, so it does not
@@ -5085,9 +5085,9 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
 </li>
 </ul>
 </details>
-<h3 id="req-69">REQ-69: The toestemmingsregister stores the polymorphic values under its own reference and no encrypted values per party<a class="headerlink" href="#req-69" title="Permanent link">&para;</a></h3>
+<h3 id="req-69">REQ-69: The consent register stores the polymorphic values under its own reference and no encrypted values per party<a class="headerlink" href="#req-69" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>The toestemmingsregister MUST NOT record more identifying data about the citizen than it needs to manage and show consents. It MAY keep the polymorphic identity and the polymorphic pseudonym of the first activation under its own reference to the citizen. This reference is not a <abbr title="Burgerservicenummer">BSN</abbr>. It MUST NOT keep the encrypted identity and the encrypted pseudonym for a receiving party. Those values travel in the signed proof to that party.</p>
+<p>The consent register MUST NOT record more identifying data about the citizen than it needs to manage and show consents. It MAY keep the polymorphic identity and the polymorphic pseudonym of the first activation under its own reference to the citizen. This reference is not a <abbr title="Burgerservicenummer">BSN</abbr>. It MUST NOT keep the encrypted identity and the encrypted pseudonym for a receiving party. Those values travel in the signed proof to that party.</p>
 </blockquote>
 <ul>
 <li><strong>Status</strong>: ready for review</li>
@@ -5103,7 +5103,7 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
   and FR-35 criterion 1. The design tightens FR-35 criterion 1 and
   deliberately fills it in differently (see the notes). Precondition:
   <a href="./#bsnk-03">BSNK-03</a>.</li>
-<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the toestemmingsregister (S01).</li>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the consent register (S01).</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/238">PR #238</a> and
   <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a> give this evidence:<ul>
 <li>The stored model knows only the reference
@@ -5294,7 +5294,7 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
 </details>
 <h3 id="req-80">REQ-80: The proof carries a value per party that only that party can read, and the recipient checks that the value is meant for it<a class="headerlink" href="#req-80" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>The consent proof MUST name the citizen only in values that are made per receiving party. Each value carries the identification of that party and the version of its keys. A recipient MUST decrypt its value itself, with keys that it received in advance. A recipient MUST refuse a value that, according to the value itself, was made for another party. The toestemmingsregister and the consumer MUST NOT be able to read the values.</p>
+<p>The consent proof MUST name the citizen only in values that are made per receiving party. Each value carries the identification of that party and the version of its keys. A recipient MUST decrypt its value itself, with keys that it received in advance. A recipient MUST refuse a value that, according to the value itself, was made for another party. The consent register and the consumer MUST NOT be able to read the values.</p>
 </blockquote>
 <table>
 <thead>
@@ -5452,7 +5452,7 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
   <abbr title="Policy Enforcement Point">PEP</abbr> has a real proof converted without a decision. A consumer has such
   proofs.</li>
 <li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the source gateway and the
-  deployment that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers with it. Guideline for bronhouders: the
+  deployment that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers with it. Guideline for source holders: the
   isolation in their own network.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a> gives
   this evidence:<ul>
@@ -5496,9 +5496,9 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
 </li>
 </ul>
 </details>
-<h3 id="req-82">REQ-82: When consent is given, the toestemmingsvoorziening knows the <abbr title="Organisatie-identificatienummer">OIN</abbr>, the key version, and the <abbr title="Burgerservicenummer">BSN</abbr> authorization of each source<a class="headerlink" href="#req-82" title="Permanent link">&para;</a></h3>
+<h3 id="req-82">REQ-82: When consent is given, the consent facility knows the <abbr title="Organisatie-identificatienummer">OIN</abbr>, the key version, and the <abbr title="Burgerservicenummer">BSN</abbr> authorization of each source<a class="headerlink" href="#req-82" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>Some sources need to find the citizen under a consent. When the consent is given, the toestemmingsvoorziening MUST know the identification (<abbr title="Organisatie-identificatienummer">OIN</abbr>) of each of these sources. It MUST also know the current version of the keys of each source and its authorization to process the <abbr title="Burgerservicenummer">BSN</abbr>. The toestemmingsvoorziening MUST have a value made for each source, in the form that belongs to that authorization. If no value can be made for one of those sources, a consent MUST NOT be given. If it is not established at that moment which sources are allowed to process the <abbr title="Burgerservicenummer">BSN</abbr>, a consent MUST NOT be given either.</p>
+<p>Some sources need to find the citizen under a consent. When the consent is given, the consent facility MUST know the identification (<abbr title="Organisatie-identificatienummer">OIN</abbr>) of each of these sources. It MUST also know the current version of the keys of each source and its authorization to process the <abbr title="Burgerservicenummer">BSN</abbr>. The consent facility MUST have a value made for each source, in the form that belongs to that authorization. If no value can be made for one of those sources, a consent MUST NOT be given. If it is not established at that moment which sources are allowed to process the <abbr title="Burgerservicenummer">BSN</abbr>, a consent MUST NOT be given either.</p>
 </blockquote>
 <table>
 <thead>
@@ -5545,7 +5545,7 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
   Preconditions: <a href="./#bsnk-06">BSNK-06</a>,
   <a href="./#bsnk-07">BSNK-07</a>, and
   <a href="./#bsnk-08">BSNK-08</a>.</li>
-<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the toestemmingsportaal (S02),
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the consent portal (S02),
   which has the values made at BSNk.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a> and
   <a href="https://github.com/ICTU/GBO-demo/pull/477">PR #477</a> give this evidence:<ul>
@@ -5609,7 +5609,7 @@ Logius runs it. BSNk <abbr title="Polymorphic pseudonym">PP</abbr> sets precondi
 (<a href="https://github.com/ICTU/GBO-demo/issues/364">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#364</a>). In
 that design, the consent proof holds an encrypted value per party. The
 source decrypts its value itself, after the authorization decision.</p>
-<p>This page also holds the analysis of how the toestemmingsvoorziening recognizes a
+<p>This page also holds the analysis of how the consent facility recognizes a
 citizen at a later login (routes A, B, C, and D). That analysis is the
 basis of <a href="../../decisions/0040-route-d-citizen-recognition/">ADR 0040</a>.</p>
 <p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not set the preconditions. BSNk sets them for <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>. They follow
@@ -5629,15 +5629,15 @@ September 30, 2026. The working assumptions date from October 5, 2026.</p>
 <ul>
 <li>The design is the one of
   <a href="https://github.com/ICTU/GBO-demo/issues/364">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#364</a>.</li>
-<li>The citizen logs in at MijnOverheid. The toestemmingsportaal and the
-  toestemmingsregister are behind MijnOverheid.</li>
-<li>After the login, MijnOverheid passes the <abbr title="Burgerservicenummer">BSN</abbr> to the toestemmingsportaal.
+<li>The citizen logs in at MijnOverheid. The consent portal and the
+  consent register are behind MijnOverheid.</li>
+<li>After the login, MijnOverheid passes the <abbr title="Burgerservicenummer">BSN</abbr> to the consent portal.
   The variant in which MijnOverheid passes the <abbr title="Burgerservicenummer">BSN</abbr> encrypted for BSNk is
   part of the <a href="#recognition">open design choice</a>.</li>
-<li>The toestemmingsregister becomes a recognized BSNk participant and
+<li>The consent register becomes a recognized BSNk participant and
   requests activation and transformation itself.</li>
 </ul>
-<p>In the demo, the toestemmingsportaal backend activates and transforms, and the
+<p>In the demo, the consent portal backend activates and transforms, and the
 register stores the polymorphic values. In the rest of this page, "the
 register" means the party that talks to BSNk. Which component that is, is
 open (<a href="../../traceability/open-questions/#q-49">Q-49</a>).</p>
@@ -5658,13 +5658,13 @@ open (<a href="../../traceability/open-questions/#q-49">Q-49</a>).</p>
 <td>p. 24, 34</td>
 </tr>
 <tr>
-<td>Dienstverlener</td>
-<td>Receives and decrypts. A dienstverlener is not a Participant</td>
+<td>Service provider</td>
+<td>Receives and decrypts. A service provider is not a Participant</td>
 <td>p. 38</td>
 </tr>
 <tr>
 <td>Key Requester (Sleutelaanvrager)</td>
-<td>A Participant that requests the keys at BSNk for a dienstverlener. It has no other role in login or connection</td>
+<td>A Participant that requests the keys at BSNk for a service provider. It has no other role in login or connection</td>
 <td>p. 26, 37</td>
 </tr>
 <tr>
@@ -5720,7 +5720,7 @@ step:</p>
       participant MO as MijnOverheid
     end
     box rgb(254,220,216) DvTP
-      participant TR as Toestemmingsregister
+      participant TR as Consent register
     end
     box rgb(241,239,232) External
       participant K as BSNk
@@ -5856,7 +5856,7 @@ from those three or an Authenticatiedienst.</p>
   citizen, so BSNk admits only assessed parties.</li>
 <li><strong>Consequence for the design</strong>: BZK must recognize the register as a
   Middelenuitgever or Machtigingsdienst. Neither role is written for a
-  toestemmingsvoorziening. The specification names future roles, among them
+  consent facility. The specification names future roles, among them
   attribute services, but does not work them out (p. 34). After the
   register requests recognition, trials in the test environment are
   possible.</li>
@@ -5909,8 +5909,8 @@ identity. BSNk checks the <abbr title="Burgerservicenummer">BSN</abbr> with name
 </ul>
 </li>
 <li><strong>To check</strong>:<ul>
-<li>Is MijnOverheid allowed to pass the <abbr title="Burgerservicenummer">BSN</abbr> to the toestemmingsportaal?</li>
-<li>On which grondslag does the register process the <abbr title="Burgerservicenummer">BSN</abbr>?</li>
+<li>Is MijnOverheid allowed to pass the <abbr title="Burgerservicenummer">BSN</abbr> to the consent portal?</li>
+<li>On which legal basis (grondslag) does the register process the <abbr title="Burgerservicenummer">BSN</abbr>?</li>
 <li>Can the register get on the exception list?</li>
 </ul>
 </li>
@@ -6086,9 +6086,9 @@ derived from that <abbr title="Organisatie-identificatienummer">OIN</abbr>.</p>
   <code>TransactionID</code> are "reserved for future use" (p. 135).</li>
 </ul>
 </li>
-<li><strong>Why</strong>: compartmentalization is a design goal. A dienstverlener cannot
+<li><strong>Why</strong>: compartmentalization is a design goal. A service provider cannot
   recognize a citizen by the pseudonym of that citizen at another
-  dienstverlener (p. 69).</li>
+  service provider (p. 69).</li>
 <li><strong>Consequence for the design</strong>: this precondition answers the open point
   in #364 about more than one peer.<ul>
 <li>Two peers with the same <abbr title="Organisatie-identificatienummer">OIN</abbr> share one <abbr title="Encrypted identity">VI</abbr> and one key.</li>
@@ -6118,7 +6118,7 @@ version is the issue date of its certificate.</p>
 <li><strong>What the specification says</strong>:<ul>
 <li>The transformation request names the key version per recipient
   (p. 134).</li>
-<li>For a dienstverlener, the key version is the issue date of the
+<li>For a service provider, the key version is the issue date of the
   certificate with which it requested the keys, as YYYYMMDD (p. 170,
   192).</li>
 <li>The closing key sets the pseudonym. It has its own version (p. 183).</li>
@@ -6158,12 +6158,12 @@ version is the issue date of its certificate.</p>
 <ul>
 <li><strong>What the specification says</strong>:<ul>
 <li>Only a Toegangsdienst or Sleutelaanvrager calls <code>provideDVKeys</code>, and
-  only for a contracted dienstverlener (p. 146, 155).</li>
-<li>The dienstverlener needs a PKIoverheid certificate with the <abbr title="Organisatie-identificatienummer">OIN</abbr>
+  only for a contracted service provider (p. 146, 155).</li>
+<li>The service provider needs a PKIoverheid certificate with the <abbr title="Organisatie-identificatienummer">OIN</abbr>
   (p. 154). The keys come encrypted for that certificate (p. 185 to
   186).</li>
 <li>BSNk publishes every provision with <abbr title="Organisatie-identificatienummer">OIN</abbr> and name (p. 231).</li>
-<li>The dienstverlener needs no HSM (p. 27).</li>
+<li>The service provider needs no HSM (p. 27).</li>
 </ul>
 </li>
 <li><strong>Why</strong>: the public list is there for transparency, "like Certificate
@@ -6211,7 +6211,7 @@ date.</p>
 <li><strong>Why</strong>: the Inzageregister exists so that citizens can see if a party
   issued something in their name without their knowledge (p. 44).</li>
 <li><strong>Consequence for the design</strong>:<ul>
-<li>The toestemmingsregister appears in the overview of login means and
+<li>The consent register appears in the overview of login means and
   authorizations of the citizen. The register must report status
   changes.</li>
 <li>That overview is not made for consent. For this reason, the
@@ -6286,7 +6286,7 @@ shows route D:</p>
       participant MO as MijnOverheid
     end
     box rgb(254,220,216) DvTP
-      participant TR as Toestemmingsregister
+      participant TR as Consent register
     end
     box rgb(241,239,232) External
       participant K as BSNk
@@ -6329,7 +6329,7 @@ shows route D:</p>
   register must activate again (<a href="#route-a">route A</a>), or MijnOverheid must
   pass the <abbr title="Encrypted pseudonym">VP</abbr> (<a href="#route-b">route B</a>). Route D needs neither.</li>
 <li>Route D has a cost. The register processes the <abbr title="Burgerservicenummer">BSN</abbr> for a short time at
-  every login, and that needs a grondslag. Also, the register can compute
+  every login, and that needs a legal basis. Also, the register can compute
   for every <abbr title="Burgerservicenummer">BSN</abbr> itself whether consents exist, without a trace elsewhere.
   In route A, that is possible only through BSNk, and every activation goes
   into the Inzageregister (<a href="#bsnk-10">BSNK-10</a>).</li>
@@ -6337,11 +6337,11 @@ shows route D:</p>
 <p>The demo builds route D
 (<a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>):</p>
 <ul>
-<li>The toestemmingsportaal backend derives its stable key with an HMAC of the
+<li>The consent portal backend derives its stable key with an HMAC of the
   <abbr title="Burgerservicenummer">BSN</abbr> under its own secret key (<code>SUBJECT_REF_KEY</code>, versioned,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/subjectref.go#L40"><code>subjectref.go#L40</code></a>).</li>
 <li>At the first consent, the backend activates and keeps <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> under
-  that key in the toestemmingsregister. At every later consent, it only has
+  that key in the consent register. At every later consent, it only has
   values transformed
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L298-L314"><code>portal.go#L298-L314</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/polymorphic.go#L10-L17"><code>polymorphic.go#L10-L17</code></a>).</li>
@@ -6410,7 +6410,7 @@ must have such a reference and be allowed to pass it on.</p>
 <td><a href="#route-d">D</a>. Own pseudonym from the <abbr title="Burgerservicenummer">BSN</abbr></td>
 <td>HMAC of the plain <abbr title="Burgerservicenummer">BSN</abbr></td>
 <td>No (only the first activation)</td>
-<td>MijnOverheid passes the <abbr title="Burgerservicenummer">BSN</abbr>, and the register has a grondslag</td>
+<td>MijnOverheid passes the <abbr title="Burgerservicenummer">BSN</abbr>, and the register has a legal basis</td>
 </tr>
 </tbody>
 </table>
@@ -6422,7 +6422,7 @@ must have such a reference and be allowed to pass it on.</p>
   Authenticatiemiddel" (p. 29).</li>
 <li>B already exists for another register. MijnOverheid lets the citizen log
   in "voor zichzelf en voor het Inzageregister", and so gets a value for
-  that register (p. 39). The toestemmingsregister is as fixed at login as
+  that register (p. 39). The consent register is as fixed at login as
   the Inzageregister.</li>
 <li>For A and B, the register needs its own keys to decrypt a <abbr title="Encrypted pseudonym">VP</abbr>
   (<a href="#bsnk-09">BSNK-09</a>). In route A, the register counts as one of the four
@@ -6467,12 +6467,12 @@ following table:</p>
 </thead>
 <tbody>
 <tr>
-<td>Is MijnOverheid allowed to pass the <abbr title="Burgerservicenummer">BSN</abbr> to the toestemmingsportaal, and on which grondslag does the register process it?</td>
+<td>Is MijnOverheid allowed to pass the <abbr title="Burgerservicenummer">BSN</abbr> to the consent portal, and on which legal basis does the register process it?</td>
 <td>D</td>
 <td>MijnOverheid, lawyer, BZK</td>
 </tr>
 <tr>
-<td>Can MijnOverheid get a <abbr title="Encrypted pseudonym">VP</abbr> for the toestemmingsregister at the login, as for the Inzageregister?</td>
+<td>Can MijnOverheid get a <abbr title="Encrypted pseudonym">VP</abbr> for the consent register at the login, as for the Inzageregister?</td>
 <td>B</td>
 <td>MijnOverheid, Logius</td>
 </tr>
@@ -6600,8 +6600,8 @@ match (p. 195).</p>
 <p>The party that requests the keys has duties. The specification states the
 following duties for a Toegangsdienst (p. 155):</p>
 <ul>
-<li>It requests keys only for a contracted dienstverlener.</li>
-<li>It establishes that the request comes from that dienstverlener, and
+<li>It requests keys only for a contracted service provider.</li>
+<li>It establishes that the request comes from that service provider, and
   records this in a way that it can prove.</li>
 <li>It checks that the certificate is valid.</li>
 <li>It makes sure that a party that wants to decrypt the <abbr title="Burgerservicenummer">BSN</abbr> is on the
@@ -6627,7 +6627,7 @@ this as follows: the same duties then apply to a Sleutelaanvrager.</p>
 <p>Two points about the key request are open:</p>
 <ul>
 <li>Who requests the keys for sources and consumers:<ul>
-<li>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> parties talk to MijnOverheid and the toestemmingsregister.
+<li>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> parties talk to MijnOverheid and the consent register.
   They do not talk to BSNk.</li>
 <li>Thus one of the parties that does talk to BSNk must be Toegangsdienst
   or Sleutelaanvrager. As an alternative, an existing Sleutelaanvrager
@@ -6665,7 +6665,7 @@ this as follows: the same duties then apply to a Sleutelaanvrager.</p>
   delivers it.</li>
 </ul>
 </li>
-<li>A role for a toestemmingsvoorziening (p. 34).</li>
+<li>A role for a consent facility (p. 34).</li>
 </ul>
 <h3 id="spec-extras">What the specification offers in addition<a class="headerlink" href="#spec-extras" title="Permanent link">&para;</a></h3>
 <p>The specification offers two things that touch an open point from #364.
@@ -6685,10 +6685,10 @@ That point is whether the source checks the signature of the proof again.</p>
 <h3 id="open-administrative-and-legal">Open: administrative and legal<a class="headerlink" href="#open-administrative-and-legal" title="Permanent link">&para;</a></h3>
 <p>The following administrative and legal points are open:</p>
 <ul>
-<li>The recognition of the toestemmingsregister, and in which role
+<li>The recognition of the consent register, and in which role
   (<a href="#bsnk-01">BSNK-01</a>, <a href="../../traceability/open-questions/#q-26">Q-26</a>).</li>
 <li>A private consumer outside the public domain. The specification is
-  written for dienstverleners with a public task (p. 26). This point
+  written for service providers with a public task (p. 26). This point
   matters only if the consumer gets a <abbr title="Encrypted pseudonym">VP</abbr>. In #364, the <abbr title="Encrypted pseudonym">VP</abbr> for the consumer
   is optional (<a href="../../traceability/open-questions/#q-01">Q-01</a>).</li>
 <li>The consumer carries an encrypted <abbr title="Burgerservicenummer">BSN</abbr>. The <abbr title="Encrypted identity">VI</abbr> for the source is in the
@@ -6699,7 +6699,7 @@ That point is whether the source checks the signature of the proof again.</p>
 <h3 id="not-verified">Not verified<a class="headerlink" href="#not-verified" title="Permanent link">&para;</a></h3>
 <p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> team did not verify the following points:</p>
 <ul>
-<li>Is MijnOverheid allowed to pass the <abbr title="Burgerservicenummer">BSN</abbr> to the toestemmingsportaal, or
+<li>Is MijnOverheid allowed to pass the <abbr title="Burgerservicenummer">BSN</abbr> to the consent portal, or
   can it encrypt the <abbr title="Burgerservicenummer">BSN</abbr> for BSNk?</li>
 <li>Can the register get on the exception list for the BRP check?</li>
 <li>Does the login at MijnOverheid meet <a href="#bsnk-04">BSNK-04</a>?</li>
@@ -6707,7 +6707,7 @@ That point is whether the source checks the signature of the proof again.</p>
   input for activation (p. 93)?</li>
 <li>How long does a <abbr title="Encrypted identity">VI</abbr> stay usable? It carries an issue month and no end
   date (p. 177). The specification says nothing about this.</li>
-<li>Do bronhouders already have BSNk keys from their DigiD connection?</li>
+<li>Do source holders already have BSNk keys from their DigiD connection?</li>
 <li>Can a party use the certificate that it already has for <abbr title="Federated Service Connectivity">FSC</abbr> for the key
   request? The certificate must have the <abbr title="Organisatie-identificatienummer">OIN</abbr> in <code>Subject.serialNumber</code>
   and allow keyEncipherment (p. 154).</li>

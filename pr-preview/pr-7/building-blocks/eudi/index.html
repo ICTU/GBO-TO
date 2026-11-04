@@ -1190,7 +1190,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4714,7 +4714,7 @@ channel, with <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis 
 <tbody>
 <tr>
 <td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</td>
-<td>The technical issuance facility. The issuance server asks the wallet for the <abbr title="Person Identification Data">PID</abbr>. The EUDI adapter gets the source data and turns it into claims. The bronhouder stays the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider (<a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed).</td>
+<td>The technical issuance facility. The issuance server asks the wallet for the <abbr title="Person Identification Data">PID</abbr>. The EUDI adapter gets the source data and turns it into claims. The source holder (bronhouder) stays the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider (<a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed).</td>
 <td><a href="pubeaa/"><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</a></td>
 </tr>
 <tr>
@@ -4778,7 +4778,7 @@ issuer:</p>
 <p class="caption"><em>Figure 2: Flow A, at essence level. The runtime page has every hop.</em></p>
 <p>The facility signs with the certificate set of the source. The wallet shows
 the source as the issuer. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> plays no part when the citizen later presents
-the attestation to a dienstverlener. For every hop, with the data and the
+the attestation to a service provider (dienstverlener). For every hop, with the data and the
 error paths, see <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.</p>
 <h2 id="flow-b-a-qtsp-verifies-at-the-source">Flow B: a <abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies at the source<a class="headerlink" href="#flow-b-a-qtsp-verifies-at-the-source" title="Permanent link">&para;</a></h2>
 <p>In flow B, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> asks the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider to verify or retrieve attributes
@@ -4957,12 +4957,12 @@ wallet approval cannot replace each other. For the detail, see
 <tbody>
 <tr>
 <td>Start of flow A</td>
-<td>The wallet sends a credential request to the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> voorziening.</td>
+<td>The wallet sends a credential request to the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> facility (voorziening).</td>
 <td>The citizen scans a QR code. The issuance server first asks for the <abbr title="Person Identification Data">PID</abbr> (disclosure-based issuance, <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>).</td>
 </tr>
 <tr>
 <td>Authorization in flow A</td>
-<td>An Autorisatievoorziening asks the wallet for the <abbr title="Person Identification Data">PID</abbr> and authorizes the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> voorziening.</td>
+<td>An Autorisatievoorziening asks the wallet for the <abbr title="Person Identification Data">PID</abbr> and authorizes the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> facility.</td>
 <td>No separate service. The nl-wallet issuance server checks the <abbr title="Person Identification Data">PID</abbr> and calls the adapter. The adapter does not authenticate that call.</td>
 </tr>
 <tr>

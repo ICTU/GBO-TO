@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4033,7 +4033,7 @@
   <a href="#req-58" class="md-nav__link">
     <span class="md-ellipsis">
       
-        REQ-58: Every bronhouder has its own certificate set for issuance, and missing material fails
+        REQ-58: Every source holder has its own certificate set for issuance, and missing material fails
       
     </span>
   </a>
@@ -4044,7 +4044,7 @@
   <a href="#req-77" class="md-nav__link">
     <span class="md-ellipsis">
       
-        REQ-77: An attestation gets the validity and revocation policy of the bronhouder
+        REQ-77: An attestation gets the validity and revocation policy of the source holder
       
     </span>
   </a>
@@ -4599,7 +4599,7 @@ wallet (the <abbr title="Public Body Electronic Attestation of Attributes">PuB-E
 The nl-wallet issuance server verifies the disclosure and calls the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 EUDI adapter. The adapter queries the source over <abbr title="Federated Service Connectivity">FSC</abbr> through the generic
 <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> chain. Then the issuance server issues the attestation under the
-certificate set of the bronhouder.</p>
+certificate set of the source holder (bronhouder).</p>
 <p>This route exposed a generic basis. The generic pages hold that basis:</p>
 <ul>
 <li>the regime from evidence (<a href="../authorization/#req-74">REQ-74</a>)</li>
@@ -4842,9 +4842,9 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </li>
 </ul>
 </details>
-<h2 id="req-58">REQ-58: Every bronhouder has its own certificate set for issuance, and missing material fails<a class="headerlink" href="#req-58" title="Permanent link">&para;</a></h2>
+<h2 id="req-58">REQ-58: Every source holder has its own certificate set for issuance, and missing material fails<a class="headerlink" href="#req-58" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST keep a certificate set of its own per bronhouder. The set holds a certificate that signs attestations, and an access certificate with which issuance shows itself to the wallet. The facility MUST NOT sign an attestation or a request to the wallet with the set of another bronhouder, in any case. If the set of a source is missing, incomplete, or differs from what is activated, issuance MUST refuse for that source. Issuance MUST NOT fall back to another set.</p>
+<p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST keep a certificate set of its own per source holder. The set holds a certificate that signs attestations, and an access certificate with which issuance shows itself to the wallet. The facility MUST NOT sign an attestation or a request to the wallet with the set of another source holder, in any case. If the set of a source is missing, incomplete, or differs from what is activated, issuance MUST refuse for that source. Issuance MUST NOT fall back to another set.</p>
 </blockquote>
 <table>
 <thead>
@@ -4946,9 +4946,9 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </li>
 </ul>
 </details>
-<h2 id="req-77">REQ-77: An attestation gets the validity and revocation policy of the bronhouder<a class="headerlink" href="#req-77" title="Permanent link">&para;</a></h2>
+<h2 id="req-77">REQ-77: An attestation gets the validity and revocation policy of the source holder<a class="headerlink" href="#req-77" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>For each attestation type, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST apply the validity period that the bronhouder records. The facility MUST NOT apply a value from its own code. An attestation that is valid for more than 24 hours MUST carry a status reference with which it can be revoked. On instruction of the bronhouder, the facility MUST be able to revoke an issued attestation, without an action of the holder.</p>
+<p>For each attestation type, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST apply the validity period that the source holder records. The facility MUST NOT apply a value from its own code. An attestation that is valid for more than 24 hours MUST carry a status reference with which it can be revoked. On instruction of the source holder, the facility MUST be able to revoke an issued attestation, without an action of the holder.</p>
 </blockquote>
 <table>
 <thead>
@@ -4959,7 +4959,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </thead>
 <tbody>
 <tr>
-<td>Validity recorded by the bronhouder</td>
+<td>Validity recorded by the source holder</td>
 <td>issued with that validity (<em>proposal, demo v0.9.0 uses 365 days for every source</em>)</td>
 </tr>
 <tr>
@@ -4971,7 +4971,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <td>revoked (<em>proposal, who signals the change is open</em>)</td>
 </tr>
 <tr>
-<td>Bronhouder revokes</td>
+<td>Source holder revokes</td>
 <td>status set to revoked (<em>proposal</em>)</td>
 </tr>
 </tbody>
@@ -5026,10 +5026,10 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     <a href="../../traceability/open-questions/#q-18">Q-18</a>,
     <a href="../../decisions/0028-pubeaa-productization/">ADR 0028</a>.</li>
 <li><strong>Notes</strong>:<ul>
-<li>The policy itself (paragraph 1) belongs to the bronhouder as
+<li>The policy itself (paragraph 1) belongs to the source holder as
     provider. That policy is a candidate connection condition
     (<a href="../admission/#av-12">AV-12</a>) and no requirement on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.
-    The facility revokes technically, on instruction of the bronhouder
+    The facility revokes technically, on instruction of the source holder
     (<a href="../admission/#av-13">AV-13</a>).
     <a href="../../traceability/open-questions/#q-17">Q-17</a> covers who holds the
     key of the status list.</li>
@@ -5086,7 +5086,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     disclosable),
     <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>
     ("attestations follow an established attestation rulebook and schema",
-    and the bronhouder records mapping and attestation schema in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
+    and the source holder records mapping and attestation schema in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
     configuration), and
     <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>.</li>
 <li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the mapping profile and the
@@ -5118,7 +5118,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </details>
 <h2 id="req-116">REQ-116: An attestation contains only what the source answered, per its mapping, and an answer that does not fit gives no attestation<a class="headerlink" href="#req-116" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST take every claim of an attestation from the answer of the source. It MUST use the mapping that the bronhouder records in its service description (<a href="../sources-identity/#req-64">REQ-64</a>). It MUST NOT round, convert, add, or derive a source value beyond what that mapping prescribes.</p>
+<p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST take every claim of an attestation from the answer of the source. It MUST use the mapping that the source holder records in its service description (<a href="../sources-identity/#req-64">REQ-64</a>). It MUST NOT round, convert, add, or derive a source value beyond what that mapping prescribes.</p>
 <p>An answer does not fit the mapping if a mandatory claim is missing or empty. It also does not fit if a value does not have the recorded type, or if the answer holds more than one result. If the answer does not fit the mapping, the facility MUST NOT issue an attestation. That includes an attestation with only the claims that do fit. An answer without a result MUST end as "not found", distinct from an error.</p>
 </blockquote>
 <table>
@@ -5166,9 +5166,9 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>
-    ("the bronhouder stays legally and substantively responsible for the
+    ("the source holder stays legally and substantively responsible for the
     public attributes issued", "if attestation issuance needs a semantic
-    mapping, the bronhouder records in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration which mapping
+    mapping, the source holder records in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration which mapping
     … applies"),
     <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">PSA S10</a>
     ("the set-up applies validation rules before delivery"), and
@@ -5223,7 +5223,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </details>
 <h2 id="req-124">REQ-124: For every attestation, the versions of the mapping, the source schema, and the attestation schema are traceable<a class="headerlink" href="#req-124" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>For every issued attestation, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST make the applied versions traceable. These are the versions of the mapping of the bronhouder, of the source schema, and of the attestation schema. The facility MUST apply only the mapping that the bronhouder recorded for that data service in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration (<a href="#req-116">REQ-116</a>). If the bronhouder recorded no mapping, the facility MUST convert nothing.</p>
+<p>For every issued attestation, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST make the applied versions traceable. These are the versions of the mapping of the source holder, of the source schema, and of the attestation schema. The facility MUST apply only the mapping that the source holder recorded for that data service in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration (<a href="#req-116">REQ-116</a>). If the source holder recorded no mapping, the facility MUST convert nothing.</p>
 </blockquote>
 <table>
 <thead>
@@ -5257,11 +5257,11 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     ("mappings to <abbr title="Once-Only Technical System">OOTS</abbr>-EDM and attestation schemas are explicit. They can be
     traced to the source and target versions used"),
     <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>
-    (the bronhouder records in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration which mapping applies),
+    (the source holder records in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration which mapping applies),
     and <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-14</a>.</li>
 <li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: issuance (the EUDI adapter).</li>
 <li><strong>Evidence</strong>: <a href="#req-116">REQ-116</a> gives the evidence that only the
-    mapping of the bronhouder is applied. The traceability of the versions
+    mapping of the source holder is applied. The traceability of the versions
     is not checked.</li>
 <li><strong>Related</strong>: <a href="../logging-audit/#req-59">REQ-59</a>,
     <a href="../sources-identity/#req-64">REQ-64</a>,

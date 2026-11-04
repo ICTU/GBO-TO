@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4646,7 +4646,7 @@ recognition and the BSNk participant.</p>
 <h3 id="part-a-organization-identity-accepted">Part A: organization identity (accepted)<a class="headerlink" href="#part-a-organization-identity-accepted" title="Permanent link">&para;</a></h3>
 <p>The decision for organization identity has five parts:</p>
 <ol>
-<li>The legal identity of a bronhouder (<abbr title="Organisatie-identificatienummer">OIN</abbr> and organization name) comes
+<li>The legal identity of a source holder (bronhouder) (<abbr title="Organisatie-identificatienummer">OIN</abbr> and organization name) comes
    from its verified certificate material. It does not come from
    configuration (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>).
    The <abbr title="Organisatie-identificatienummer">OIN</abbr> is the 20-digit <code>serialNumber</code>. The name is exactly one <code>O</code>
@@ -4656,14 +4656,14 @@ recognition and the BSNk participant.</p>
    or without exactly one organization name.</li>
 <li>The configuration holds the <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID separately from the <abbr title="Organisatie-identificatienummer">OIN</abbr>
    (<code>provider_peer_id</code>). One peer can offer services of more than one
-   bronhouder.</li>
+   source holder.</li>
 <li>The runtime gets leaf material and public CA certificates, never CA
    private keys. A separate privileged command does the provisioning.</li>
 <li><abbr title="Federated Service Connectivity">FSC</abbr> participants use PKIoverheid certificates
    (<a href="../0003-fsc-connectivity/">ADR-0003</a>).</li>
 </ol>
 <h3 id="part-b-eudi-certificate-roles-proposed">Part B: EUDI certificate roles (proposed)<a class="headerlink" href="#part-b-eudi-certificate-roles-proposed" title="Permanent link">&para;</a></h3>
-<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issues attestations for a bronhouder. Each such bronhouder needs its
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issues attestations for a source holder. Each such source holder needs its
 own certificates, one per role. One certificate never fills two roles.
 The roles are as follows:</p>
 <table>
@@ -4715,7 +4715,7 @@ only, and it never signs attestations.
 set per source fail-hard (<a href="../0016-source-owned-metadata/">ADR-0016</a>).</p>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>An attestation and a decision record name the bronhouder with an
+<li>An attestation and a decision record name the source holder with an
   identity that an operator cannot fill in freely.</li>
 <li>Consents are bound to the identity of the consumer. If that identity
   changes, the consents become unusable. The migration in
@@ -4724,7 +4724,7 @@ set per source fail-hard (<a href="../0016-source-owned-metadata/">ADR-0016</a>)
   binding is real.</li>
 <li>In the default demo onboarding, the demo publishes RvIG through the
   Belastingdienst peer with the Belastingdienst <abbr title="Organisatie-identificatienummer">OIN</abbr>. That is a demo
-  shortcut, so it does not show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per bronhouder. The certificate
+  shortcut, so it does not show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per source holder. The certificate
   sets still differ per source.</li>
 <li>The demo development CA stands in for all EUDI roles at once.
   Production separates the roles.</li>
@@ -4743,7 +4743,7 @@ set per source fail-hard (<a href="../0016-source-owned-metadata/">ADR-0016</a>)
   specifications contradict each other
   (<a href="../../traceability/open-questions/#q-30">Q-30</a>).</li>
 <li>Who holds the keys of the seal and status-list certificates: the
-  bronhouder, or the central issuance facility
+  source holder, or the central issuance facility
   (<a href="../../traceability/open-questions/#q-17">Q-17</a>)?</li>
 <li>How does the migration from the self-generated CAs of the demo work?</li>
 </ul>

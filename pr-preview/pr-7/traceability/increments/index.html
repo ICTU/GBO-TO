@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4369,7 +4369,7 @@
   <a href="#sl-11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SL-11: Toestemmingsportaal backend (S02)
+        SL-11: Consent portal backend (S02)
       
     </span>
   </a>
@@ -4380,7 +4380,7 @@
   <a href="#sl-12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SL-12: Toestemmingsregister persistence
+        SL-12: Consent register persistence
       
     </span>
   </a>
@@ -4710,7 +4710,7 @@
   <a href="#sl-39" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SL-39: eudi-adapter to real FSC Outway
+        SL-39: Eudi-adapter to real FSC Outway
       
     </span>
   </a>
@@ -4721,7 +4721,7 @@
   <a href="#sl-40" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SL-40: pdp-service as AuthZEN endpoint behind FSC Inway (EUDI)
+        SL-40: Pdp-service as AuthZEN endpoint behind FSC Inway (EUDI)
       
     </span>
   </a>
@@ -5198,7 +5198,7 @@ that was not part of an increment.</p>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the toestemmingsregister sets an expiry time, and the
+<li><strong>What it showed</strong>: the consent register (toestemmingsregister) sets an expiry time, and the
   policy denies an expired consent. If the expiry time is missing or
   unreadable, the policy also denies. The policy gives a separate reason
   code for each failed check (not found, withdrawn, expired, scope
@@ -5228,7 +5228,7 @@ that was not part of an increment.</p>
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: the demo kept the <abbr title="Burgerservicenummer">BSN</abbr> away from private consumers
   without a decision on the pseudonym form (<a href="../open-questions/#q-01">Q-01</a>).
-  The toestemmingsregister stored a polymorphic identity (<abbr title="Polymorphic identity">PI</abbr>) instead of the
+  The consent register stored a polymorphic identity (<abbr title="Polymorphic identity">PI</abbr>) instead of the
   <abbr title="Burgerservicenummer">BSN</abbr>. The <abbr title="Policy Enforcement Point">PEP</abbr> resolved the <abbr title="Burgerservicenummer">BSN</abbr> only after an allow. For a denied
   request, the <abbr title="Policy Enforcement Point">PEP</abbr> did not resolve the <abbr title="Burgerservicenummer">BSN</abbr> at all.</li>
 <li><strong>Produced</strong>: <a href="../../requirements/pseudonymization/#req-20">REQ-20</a> and
@@ -5296,8 +5296,8 @@ that was not part of an increment.</p>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: a citizen goes from a mock dienstverlener website
-  to the toestemmingsportaal inside a MijnOverheid shell. He logs in with a
+<li><strong>What it showed</strong>: a citizen goes from a mock service provider (dienstverlener) website
+  to the consent portal (toestemmingsportaal) inside a MijnOverheid shell. He logs in with a
   DigiD mock, gives consent, and returns. The redirect carries the
   consumer, the service, the purpose, the data sets, and the return
   address. The result page fetches real data through the whole chain.</li>
@@ -5373,12 +5373,12 @@ that was not part of an increment.</p>
   correlation part of <a href="../findings-closed/#f-07">F-07</a>.</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/logging/">Logging</a></li>
 </ul>
-<h3 id="sl-11">SL-11: Toestemmingsportaal backend (S02)<a class="headerlink" href="#sl-11" title="Permanent link">&para;</a></h3>
+<h3 id="sl-11">SL-11: Consent portal backend (S02)<a class="headerlink" href="#sl-11" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
-<li><strong>What it showed</strong>: the toestemmingsportaal (PSA S02) became a service of
-  its own, apart from the toestemmingsregister (S01). The DigiD mock gives a
+<li><strong>What it showed</strong>: the consent portal (PSA S02) became a service of
+  its own, apart from the consent register (S01). The DigiD mock gives a
   token, and the backend takes the citizen identity only from that token.
   The backend calls BSNk, so the register gets no <abbr title="Burgerservicenummer">BSN</abbr>.</li>
 <li><strong>Produced</strong>: <a href="../../requirements/consent/#req-23">REQ-23</a>,
@@ -5387,7 +5387,7 @@ that was not part of an increment.</p>
 <li><strong>Explained in</strong>: <a href="../../building-blocks/components/">Building blocks</a>,
   <a href="../../runtime/dvtp-consent/">Citizen grants consent</a></li>
 </ul>
-<h3 id="sl-12">SL-12: Toestemmingsregister persistence<a class="headerlink" href="#sl-12" title="Permanent link">&para;</a></h3>
+<h3 id="sl-12">SL-12: Consent register persistence<a class="headerlink" href="#sl-12" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: planned</li>
 <li><strong>Demo work</strong>: none as an increment.</li>
@@ -5918,7 +5918,7 @@ profile on ETSI TS 119 478 followed
 <li><strong>Explained in</strong>: <a href="../../concepts/logging/">Logging</a>,
   <a href="../../decisions/0035-w3c-trace-context/">ADR-0035</a></li>
 </ul>
-<h3 id="sl-39">SL-39: eudi-adapter to real <abbr title="Federated Service Connectivity">FSC</abbr> Outway<a class="headerlink" href="#sl-39" title="Permanent link">&para;</a></h3>
+<h3 id="sl-39">SL-39: Eudi-adapter to real <abbr title="Federated Service Connectivity">FSC</abbr> Outway<a class="headerlink" href="#sl-39" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
@@ -5930,7 +5930,7 @@ profile on ETSI TS 119 478 followed
   <a href="../findings-closed/#f-14">F-14</a> (resolved).</li>
 <li><strong>Explained in</strong>: <a href="../../runtime/eudi-issuance/">EUDI issuance</a></li>
 </ul>
-<h3 id="sl-40">SL-40: pdp-service as <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> endpoint behind <abbr title="Federated Service Connectivity">FSC</abbr> Inway (EUDI)<a class="headerlink" href="#sl-40" title="Permanent link">&para;</a></h3>
+<h3 id="sl-40">SL-40: Pdp-service as <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> endpoint behind <abbr title="Federated Service Connectivity">FSC</abbr> Inway (EUDI)<a class="headerlink" href="#sl-40" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository.</li>
@@ -5975,7 +5975,7 @@ profile on ETSI TS 119 478 followed
 <li><strong>What it showed</strong>: a second source (BRP) and a second attestation. A
   surviving partner discloses his <abbr title="Person Identification Data">PID</abbr> and gets the death certificate of
   the partner. The subject of the attestation is not the person who
-  discloses. Each bronhouder needs its own certificate set for
+  discloses. Each source holder (bronhouder) needs its own certificate set for
   issuance.</li>
 <li><strong>Produced</strong>:<ul>
 <li>findings <a href="../findings/#f-47">F-47</a>, <a href="../findings-closed/#f-49">F-49</a>, and
@@ -6021,7 +6021,7 @@ profile on ETSI TS 119 478 followed
 <li><strong>What it showed</strong>: admission is a registration instead of a policy
   rule. The <abbr title="Policy Decision Point">PDP</abbr> decides each contract proposal in a policy tree of its
   own, with machine-readable reason codes. An automatic "no" leaves the
-  proposal pending, so it is recoverable. Admission is per bronhouder.
+  proposal pending, so it is recoverable. Admission is per source holder.
   The demo has no admission per service.</li>
 <li><strong>Produced</strong>:<ul>
 <li>findings <a href="../findings-closed/#f-55">F-55</a> and <a href="../findings-closed/#f-56">F-56</a></li>
@@ -6070,7 +6070,7 @@ profile on ETSI TS 119 478 followed
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/238">PR #238</a></li>
-<li><strong>What it showed</strong>: the toestemmingsregister issues a signed consent proof
+<li><strong>What it showed</strong>: the consent register issues a signed consent proof
   (ES256, with a JWKS). The policy verifies the signature and binds the
   consumer in the proof to the verified caller. The status check stays
   online and fails closed. The validity period is in the signed proof, so

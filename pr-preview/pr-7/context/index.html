@@ -808,12 +808,12 @@
   <a href="#koppelvlak-inventory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Koppelvlak inventory
+        Interface inventory
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Koppelvlak inventory">
+    <nav class="md-nav" aria-label="Interface inventory">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -842,7 +842,7 @@
   <a href="#bronhouder" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Bronhouder
+        Source holder
       
     </span>
   </a>
@@ -1362,7 +1362,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4585,7 +4585,7 @@
 
 <h1 id="context-and-scope">Context and scope<a class="headerlink" href="#context-and-scope" title="Permanent link">&para;</a></h1>
 <p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> technical system connects to external actors and systems. This
-chapter lists every koppelvlak on the system boundary and between <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
+chapter lists every interface (koppelvlak) on the system boundary and between <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 components. It covers the technical context only. The
 <a href="https://ictu.github.io/GBO-GO/main/#2-voorgestelde-oplossingsrichting">GO solution direction</a>
 and the
@@ -4610,7 +4610,7 @@ not built. Click a block to zoom in.</p>
   end
   subgraph ch["GBO channels"]
     direction LR
-    tv("Toestemmingsvoorziening&lt;br/&gt;portal + register")
+    tv("Consent facility&lt;br/&gt;portal + register")
     pub("PuB-EAA provider&lt;br/&gt;adapter + issuance server")
     asi("ASI provider&lt;br/&gt;authorization server + ASIP")
     oots("OOTS adapter")
@@ -4624,7 +4624,7 @@ not built. Click a block to zoom in.</p>
   subgraph basis["GBO Basis at the source"]
     direction LR
     pep("FSC Inway = PEP&lt;br/&gt;+ PDP")
-    src[("Bronhouder: source&lt;br/&gt;gateway + GraphQL API")]
+    src[("Source holder: source&lt;br/&gt;gateway + GraphQL API")]
   end
 
   gov ~~~ dv ~~~ cit ~~~ wallet ~~~ qtsp ~~~ eu
@@ -4690,10 +4690,10 @@ the decision record, and decides on contracts as well as on requests:</p>
   subgraph reg["Registers and records"]
     direction TB
     adm[("Admission register")]
-    tr[("Toestemmingsregister")]
+    tr[("Consent register")]
     adl[("ADL&lt;br/&gt;decision records")]
   end
-  subgraph src["At the bronhouder"]
+  subgraph src["At the source holder"]
     direction TB
     gw("Source gateway")
     dec("Decryption&lt;br/&gt;component")
@@ -4742,7 +4742,7 @@ the decision record, and decides on contracts as well as on requests:</p>
   click sreg "../building-blocks/gbo-basis/source-configuration/" "Source configuration"
   click adl "../building-blocks/gbo-basis/records/" "Records"</div>
 <p class="caption"><em>Figure 2: The interfaces between <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components.</em></p>
-<p>The <a href="#koppelvlak-inventory">koppelvlak inventory</a> lists every interface
+<p>The <a href="#koppelvlak-inventory">interface inventory</a> lists every interface
 with its protocol and code. The
 <a href="../building-blocks/">building block view</a> zooms in per channel.</p>
 <p>Four points in these diagrams are easy to misread:</p>
@@ -4766,7 +4766,7 @@ with its protocol and code. The
   operates the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and the authorization server
   (<a href="../traceability/open-questions/#q-37">Q-37</a>).</li>
 </ul>
-<h2 id="koppelvlak-inventory">Koppelvlak inventory<a class="headerlink" href="#koppelvlak-inventory" title="Permanent link">&para;</a></h2>
+<h2 id="koppelvlak-inventory">Interface inventory<a class="headerlink" href="#koppelvlak-inventory" title="Permanent link">&para;</a></h2>
 <p>Every interface has a row in one of the tables in the following sections.
 A row gives the standard that the interface follows and its implementation
 in gbo-demo. Rows marked <em>designed</em> are not built in demo v0.9.0. Paths in
@@ -4777,7 +4777,7 @@ the last column are relative to
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -4786,19 +4786,19 @@ the last column are relative to
 <tbody>
 <tr>
 <td>Consent initiation</td>
-<td>Consumer → toestemmingsportaal, and back</td>
+<td>Consumer → consent portal (toestemmingsportaal), and back</td>
 <td>HTTPS redirect with consumer, scopes, purpose, and return URL. The return carries the consent proof in the URL fragment, or <code>status=denied</code> (<a href="../requirements/consent/#req-37">REQ-37</a>, <a href="../requirements/consent/#req-119">REQ-119</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/toestemmingsportaal-frontend">toestemmingsportaal-frontend</a></td>
 </tr>
 <tr>
 <td>Citizen login</td>
-<td>Citizen ↔ toestemmingsportaal</td>
+<td>Citizen ↔ consent portal</td>
 <td>DigiD (mock): the citizen types a test <abbr title="Burgerservicenummer">BSN</abbr>, and the backend signs a portal token with the <abbr title="Burgerservicenummer">BSN</abbr> in <code>sub</code>. Real DigiD gives the identity in an assertion (<a href="../requirements/consent/#req-24">REQ-24</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-portal-backend/portalhttp">portalhttp</a></td>
 </tr>
 <tr>
 <td>Consent registration</td>
-<td>Portal backend ↔ toestemmingsregister</td>
+<td>Portal backend ↔ consent register (toestemmingsregister)</td>
 <td>REST: <code>POST /consents</code>, <code>GET /consents?subject_ref=…</code>, <code>GET</code> and <code>DELETE /consents/{id}</code>, <code>GET</code> and <code>PUT /subjects/{ref}/polymorphic</code>. No <abbr title="Burgerservicenummer">BSN</abbr> crosses this interface (<a href="../requirements/consent/#req-23">REQ-23</a>, <a href="../requirements/consent/#req-39">REQ-39</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/main.go#L350-L376">consent-register/main.go</a></td>
 </tr>
@@ -4816,7 +4816,7 @@ the last column are relative to
 </tr>
 <tr>
 <td>Consent keys</td>
-<td><abbr title="Policy Decision Point">PDP</abbr> → toestemmingsregister</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → consent register</td>
 <td><code>GET /.well-known/jwks.json</code>, cached for 300 s</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego">consent.rego</a></td>
 </tr>
@@ -4833,7 +4833,7 @@ the last column are relative to
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -4842,13 +4842,13 @@ the last column are relative to
 <tbody>
 <tr>
 <td>Data request</td>
-<td>Consumer Outway ↔ bronhouder Inway</td>
+<td>Consumer Outway ↔ source holder (bronhouder) Inway</td>
 <td><abbr title="Federated Service Connectivity">FSC</abbr> (OpenFSC v2.4.0): mTLS, access token, and grant hash. Grants carry no properties.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml">fsc-infra</a></td>
 </tr>
 <tr>
 <td>Delegated data request</td>
-<td>Integrator Outway ↔ bronhouder Inway</td>
+<td>Integrator Outway ↔ source holder Inway</td>
 <td><abbr title="Federated Service Connectivity">FSC</abbr> <code>DelegatedServiceConnectionGrant</code>, signed by the integrator, the represented consumer, and the provider (<a href="../requirements/consent/#req-106">REQ-106</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-delegation-int.sh">seed-bri-delegation-int.sh</a></td>
 </tr>
@@ -4872,12 +4872,12 @@ the last column are relative to
 </tr>
 </tbody>
 </table>
-<h3 id="bronhouder">Bronhouder<a class="headerlink" href="#bronhouder" title="Permanent link">&para;</a></h3>
-<p>The bronhouder uses these interfaces:</p>
+<h3 id="bronhouder">Source holder<a class="headerlink" href="#bronhouder" title="Permanent link">&para;</a></h3>
+<p>The source holder uses these interfaces:</p>
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -4909,7 +4909,7 @@ the last column are relative to
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -4959,7 +4959,7 @@ the last column are relative to
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -5039,7 +5039,7 @@ the last column are relative to
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -5089,7 +5089,7 @@ the last column are relative to
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -5104,7 +5104,7 @@ the last column are relative to
 </tr>
 <tr>
 <td>Government data request</td>
-<td>Government consumer ↔ bronhouder Inway</td>
+<td>Government consumer ↔ source holder Inway</td>
 <td><abbr title="Federated Service Connectivity">FSC</abbr> with its own positive evidence. This interface is <em>designed</em>. For more information, see <a href="../runtime/design-level/">design-level scenarios</a>.</td>
 <td>—</td>
 </tr>
@@ -5133,7 +5133,7 @@ the last column are relative to
 </ul>
 <p>The following parts are out of scope:</p>
 <ul>
-<li>the internal architecture of bronhouder systems behind the GraphQL API</li>
+<li>the internal architecture of source holder systems behind the GraphQL API</li>
 <li>the EUDI wallet, DigiD, and BSNk themselves</li>
 <li>the <abbr title="Qualified Trust Service Provider">QTSP</abbr>, the Discover Interface, and the national register of relying
   parties</li>

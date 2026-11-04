@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-0027-bronhouder-onboarding-toolkit" class="md-skip">
+        <a href="#adr-0027-source-holder-onboarding-toolkit" class="md-skip">
           Ga naar inhoud
         </a>
       
@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4565,7 +4565,7 @@
   
 
 
-<h1 id="adr-0027-bronhouder-onboarding-toolkit">ADR-0027: Bronhouder onboarding toolkit<a class="headerlink" href="#adr-0027-bronhouder-onboarding-toolkit" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0027-source-holder-onboarding-toolkit">ADR-0027: Source holder onboarding toolkit<a class="headerlink" href="#adr-0027-source-holder-onboarding-toolkit" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: proposed</li>
 <li>Date: 2026-08-24, updated on 2026-11-02</li>
@@ -4575,8 +4575,8 @@
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
 <p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has one API and one connectivity stack. Even so, the connection of a
-bronhouder involves PKI, <abbr title="Federated Service Connectivity">FSC</abbr> components, a source gateway, policies, and
-metadata. Smaller bronhouders (gemeenten) can lack the capacity for this
+source holder (bronhouder) involves PKI, <abbr title="Federated Service Connectivity">FSC</abbr> components, a source gateway, policies, and
+metadata. Smaller source holders (gemeenten) can lack the capacity for this
 work.</p>
 <h2 id="proposed-decision">Proposed decision<a class="headerlink" href="#proposed-decision" title="Permanent link">&para;</a></h2>
 <p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> packages the source-side stack as a deployable toolkit. The toolkit
@@ -4595,7 +4595,7 @@ has these parts:</p>
 <p>These points are open:</p>
 <ul>
 <li>Who operates the shared instances of the vertaallaag?</li>
-<li>The policy templates are guidance. Each bronhouder owns and
+<li>The policy templates are guidance. Each source holder owns and
   publishes its own policy (<a href="../0021-central-pap-signed-bundles/">ADR-0021</a>).</li>
 <li>How does a source get its BSNk decryption keys as an onboarding step
   (<a href="../../requirements/pseudonymization/#bsnk-09">BSNK-09</a>,

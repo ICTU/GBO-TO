@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4606,7 +4606,7 @@ production.</p>
 </tbody>
 </table>
 <p>Compose profiles switch on optional parts. The base (no profile) runs the
-<abbr title="Policy Decision Point">PDP</abbr> and its databases, the admission register, and the toestemmingsregister.
+<abbr title="Policy Decision Point">PDP</abbr> and its databases, the admission register, and the consent register (toestemmingsregister).
 It also runs the BD and BRP sources with their gateways, the BSNk mock, the
 decryption component, the <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbooks, the developer portal, and
 observability. Each profile adds parts to the base:</p>
@@ -4621,7 +4621,7 @@ observability. Each profile adds parts to the base:</p>
 <tbody>
 <tr>
 <td><code>dvtp</code></td>
-<td>Toestemmingsportaal, consumer backends and frontends (Hypotheek-BV, Installatie Register with <code>keyper-mock</code>), and the LVG source and gateway</td>
+<td>Consent portal (toestemmingsportaal), consumer backends and frontends (Hypotheek-BV, Installatie Register with <code>keyper-mock</code>), and the LVG source and gateway</td>
 <td><code>demo-dvtp</code></td>
 </tr>
 <tr>
@@ -4725,7 +4725,7 @@ Two limits apply to this isolation:</p>
 <li>The chart has no NetworkPolicy. A Kubernetes deployment needs one, or an
   equivalent control (<a href="../traceability/findings/#f-79">F-79</a>).</li>
 </ul>
-<p>The toestemmingsregister also relies on network placement. Its portal API
+<p>The consent register also relies on network placement. Its portal API
 must serve only the portal backend
 (<a href="../requirements/consent/#req-39">REQ-39</a>). The API does not
 authenticate the caller. It is open whether it must
@@ -4851,7 +4851,7 @@ certificate portal serve the group. The group has these peers:</p>
 <td>Provider peer with its own <abbr title="Policy Enforcement Point">PEP</abbr> and contract decision. The default demo publishes RvIG on <code>…0200</code> instead. <code>make fsc-seed-brp</code> publishes <code>brp</code> here.</td>
 </tr>
 <tr>
-<td>Toestemmingsregister (<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>)</td>
+<td>Consent register (<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>)</td>
 <td><code>…0700</code></td>
 <td><code>cr-manager</code>, <code>cr-inway</code>, <code>cr-controller</code>, <code>cr-txlog-api</code></td>
 <td>Provider of <code>consent-status</code>. The Inway has no <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> hook. The Manager decides contracts through the <abbr title="Policy Decision Point">PDP</abbr>.</td>
@@ -4886,7 +4886,7 @@ certificate portal serve the group. The group has these peers:</p>
 the RvIG and LVG sources use the Belastingdienst peer <code>…0200</code> and its <abbr title="Organisatie-identificatienummer">OIN</abbr>.
 Each source still has its own service, gateway, metadata document, and
 certificate set. This shared peer is a demo shortcut. The demo therefore
-does not show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per bronhouder
+does not show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per source holder (bronhouder)
 (<a href="../requirements/sources-identity/#req-67">REQ-67</a>).</p>
 <h3 id="asi-units"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> units<a class="headerlink" href="#asi-units" title="Permanent link">&para;</a></h3>
 <p>The <code>asi</code> profile runs these units:</p>
@@ -4981,8 +4981,8 @@ key. The demo has the following certificate and key material:</p>
 </tr>
 <tr>
 <td>Consent proof signing key</td>
-<td>Toestemmingsregister at start, or a mounted file (<code>CONSENT_SIGNING_KEY_PATH</code>, required with a persistent store)</td>
-<td>Toestemmingsregister</td>
+<td>Consent register at start, or a mounted file (<code>CONSENT_SIGNING_KEY_PATH</code>, required with a persistent store)</td>
+<td>Consent register</td>
 <td>Managed key. Key rotation is an open question (<a href="../traceability/open-questions/#q-55">Q-55</a>).</td>
 </tr>
 <tr>
@@ -5036,7 +5036,7 @@ the development issuer CA and the issuer CA of every source. This list is
 too broad (<a href="../requirements/eudi-issuance/#req-45">REQ-45</a>). The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> wallet
 verifier trusts a fixed list: the pre-production <abbr title="Person Identification Data">PID</abbr> issuer and the
 development issuer CA. Neither list is the EU Trusted List.</p>
-<p>Production needs separate certificate roles per bronhouder for EUDI:
+<p>Production needs separate certificate roles per source holder for EUDI:
 access, registration, qualified seal, and status list. It is open which
 trust list anchors <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> providers
 (<a href="../traceability/open-questions/#q-30">Q-30</a>). <a href="../concepts/identity-trust/">Identity and
@@ -5054,7 +5054,7 @@ trust</a> and
 </thead>
 <tbody>
 <tr>
-<td>Toestemmingsregister</td>
+<td>Consent register</td>
 <td>In memory by default. Postgres is optional.</td>
 <td>Consent records and the portal's <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> per <code>subject_ref</code> (<a href="../requirements/pseudonymization/#req-69">REQ-69</a>). No <abbr title="Burgerservicenummer">BSN</abbr>, no <abbr title="Encrypted identity">VI</abbr>, and no <abbr title="Encrypted pseudonym">VP</abbr>.</td>
 </tr>
@@ -5152,7 +5152,7 @@ The demo-grade choices in the following lists must change for production.
 <a href="../risks/">Risks and technical debt</a> tracks them.</p>
 <p>Authorization and consent have these demo-grade choices:</p>
 <ul>
-<li>One <abbr title="Policy Decision Point">PDP</abbr> serves all providers. The target is a <abbr title="Policy Decision Point">PDP</abbr> per bronhouder
+<li>One <abbr title="Policy Decision Point">PDP</abbr> serves all providers. The target is a <abbr title="Policy Decision Point">PDP</abbr> per source holder
   (<a href="../decisions/0004-federated-authorization/">ADR-0004</a>). The <abbr title="Policy Decision Point">PDP</abbr> does not
   start without its <abbr title="Authorization Decision Log">ADL</abbr> database, so <code>postgres-ftv</code> runs in every profile.</li>
 <li>Every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> decision needs the consent status, live, over <abbr title="Federated Service Connectivity">FSC</abbr>. By

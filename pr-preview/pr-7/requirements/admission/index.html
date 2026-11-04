@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4016,7 +4016,7 @@
   <a href="#av-03" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AV-03: Consumer uses the toestemmingsvoorziening and BSNk PP
+        AV-03: Consumer uses the consent facility and BSNk PP
       
     </span>
   </a>
@@ -4060,7 +4060,7 @@
   <a href="#av-07" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AV-07: Bronhouder publishes a machine-readable description for each data service
+        AV-07: Source holder publishes a machine-readable description for each data service
       
     </span>
   </a>
@@ -4071,7 +4071,7 @@
   <a href="#av-08" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AV-08: Bronhouder without its own endpoint provably agrees with a taken-over description
+        AV-08: Source holder without its own endpoint provably agrees with a taken-over description
       
     </span>
   </a>
@@ -4082,7 +4082,7 @@
   <a href="#av-09" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AV-09: Bronhouder keeps decryption keys of an older version while proofs for that version are valid
+        AV-09: Source holder keeps decryption keys of an older version while proofs for that version are valid
       
     </span>
   </a>
@@ -4093,7 +4093,7 @@
   <a href="#av-10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AV-10: Bronhouder logs every living data subject of a relation attestation
+        AV-10: Source holder logs every living data subject of a relation attestation
       
     </span>
   </a>
@@ -4104,7 +4104,7 @@
   <a href="#av-11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AV-11: Bronhouder tests its view for relation attestations
+        AV-11: Source holder tests its view for relation attestations
       
     </span>
   </a>
@@ -4115,7 +4115,7 @@
   <a href="#av-12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AV-12: Bronhouder as provider has a public validity and revocation policy
+        AV-12: Source holder as provider has a public validity and revocation policy
       
     </span>
   </a>
@@ -4126,7 +4126,7 @@
   <a href="#av-13" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AV-13: Bronhouder gives the instruction to revoke an attestation
+        AV-13: Source holder gives the instruction to revoke an attestation
       
     </span>
   </a>
@@ -4779,7 +4779,7 @@
 </ul>
 <h2 id="admission">Admission register and contracts<a class="headerlink" href="#admission" title="Permanent link">&para;</a></h2>
 <p>The admission requirements cover the step before a request. They answer
-three questions: can this party connect, to which bronhouder, and who
+three questions: can this party connect, to which source holder (bronhouder), and who
 decides that. The requirements are generic. They apply to every party that
 connects through <abbr title="Federated Service Connectivity">FSC</abbr>: in <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI issuance, and the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route.
 <a href="../authorization/">Authorization</a> covers the authorization of one request.</p>
@@ -4795,9 +4795,9 @@ The design decision is
 <blockquote>
 <p>The admission of a participant MUST come from a participant register
 that the <abbr title="Policy Decision Point">PDP</abbr> consults as an information source. Admission covers whether
-a party is allowed to connect, to which bronhouder, and whether that
+a party is allowed to connect, to which source holder, and whether that
 admission is active. If a party is not actively admitted there to the
-bronhouder, it MUST NOT get a new contract. It MUST be possible to add,
+source holder, it MUST NOT get a new contract. It MUST be possible to add,
 suspend, extend, or withdraw an admission without a change of decision
 policy and without a restart of the <abbr title="Policy Decision Point">PDP</abbr>. The reference policy MAY
 co-sign only for grants that the admission decision covers. These grants
@@ -4813,7 +4813,7 @@ registered representation (<a href="../consent/#req-106">REQ-106</a>).</p>
 </thead>
 <tbody>
 <tr>
-<td>Party actively admitted to this bronhouder</td>
+<td>Party actively admitted to this source holder</td>
 <td>contract co-signed</td>
 </tr>
 <tr>
@@ -4825,7 +4825,7 @@ registered representation (<a href="../consent/#req-106">REQ-106</a>).</p>
 <td>refused: <code>PARTY_NOT_ACTIVE</code></td>
 </tr>
 <tr>
-<td>Party admitted, but not to this bronhouder</td>
+<td>Party admitted, but not to this source holder</td>
 <td>refused: <code>SOURCE_NOT_ALLOWED</code></td>
 </tr>
 <tr>
@@ -5170,7 +5170,7 @@ in the demo, the PSA, or the FR, as input for the decision. A candidate can
 refer to a requirement (REQ) that enforces the same behavior on the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 side.</p>
 <p>The connection conditions name three participant groups: private
-consumer, integrator, and bronhouder. Each channel puts its candidates
+consumer, integrator, and source holder. Each channel puts its candidates
 on one of these groups:</p>
 <table>
 <thead>
@@ -5183,7 +5183,7 @@ on one of these groups:</p>
 <tbody>
 <tr>
 <td>All channels</td>
-<td>bronhouder</td>
+<td>source holder</td>
 <td><a href="#av-07">AV-07</a></td>
 </tr>
 <tr>
@@ -5198,12 +5198,12 @@ on one of these groups:</p>
 </tr>
 <tr>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
-<td>bronhouder</td>
+<td>source holder</td>
 <td><a href="#av-09">AV-09</a></td>
 </tr>
 <tr>
 <td>EUDI</td>
-<td>bronhouder</td>
+<td>source holder</td>
 <td><a href="#av-08">AV-08</a>, <a href="#av-10">AV-10</a>, <a href="#av-11">AV-11</a>, <a href="#av-12">AV-12</a>, <a href="#av-13">AV-13</a></td>
 </tr>
 </tbody>
@@ -5253,7 +5253,7 @@ source, and SHOULD record the <code>Fsc-Transaction-Id</code>.</p>
   (<a href="../consent/#req-75">REQ-75</a>).</li>
 </ul>
 </details>
-<h3 id="av-03">AV-03: Consumer uses the toestemmingsvoorziening and BSNk <abbr title="Polymorphic pseudonym">PP</abbr><a class="headerlink" href="#av-03" title="Permanent link">&para;</a></h3>
+<h3 id="av-03">AV-03: Consumer uses the consent facility and BSNk <abbr title="Polymorphic pseudonym">PP</abbr><a class="headerlink" href="#av-03" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>A private consumer that takes part in <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> SHOULD use the central
 consent function and BSNk <abbr title="Polymorphic pseudonym">PP</abbr>.</p>
@@ -5324,8 +5324,8 @@ identifier of the citizen as it is in the proof.</p>
 <blockquote>
 <p>An integrator SHOULD be admitted separately, with its own organization
 identity means. It SHOULD have a processing agreement with the
-dienstverlener, and SHOULD NOT store personal data persistently. It
-SHOULD have a registration for each dienstverlener and use case.</p>
+service provider (dienstverlener), and SHOULD NOT store personal data persistently. It
+SHOULD have a registration for each service provider and use case.</p>
 </blockquote>
 <ul>
 <li><strong>Status</strong>: candidate</li>
@@ -5349,15 +5349,15 @@ SHOULD have a registration for each dienstverlener and use case.</p>
   <a href="../../decisions/0034-integrator-delegation/">ADR 0034</a></li>
 </ul>
 </details>
-<h3 id="av-07">AV-07: Bronhouder publishes a machine-readable description for each data service<a class="headerlink" href="#av-07" title="Permanent link">&para;</a></h3>
+<h3 id="av-07">AV-07: Source holder publishes a machine-readable description for each data service<a class="headerlink" href="#av-07" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>A bronhouder SHOULD publish a machine-readable and versionable
+<p>A source holder SHOULD publish a machine-readable and versionable
 description at the fixed location. It SHOULD publish one for each data
 service and for every data flow in which it offers that service. The
 description contains the schema and its version, a reference to the
 concept framework, the error messages, and the availability
 properties. It also contains quality properties and provenance
-information. It also holds the mappings that the bronhouder fixes for that flow, and the URL
+information. It also holds the mappings that the source holder fixes for that flow, and the URL
 of the <abbr title="Logboek Dataverwerkingen">LDV</abbr> read API of its logbook. Where possible, the description
 SHOULD refer to managed objects (the service in the catalog, the schema,
 the mapping) instead of repeating them.</p>
@@ -5368,7 +5368,7 @@ the mapping) instead of repeating them.</p>
 <details class="note">
 <summary>Source, evidence and notes</summary>
 <ul>
-<li><strong>Obliged party</strong>: bronhouder</li>
+<li><strong>Obliged party</strong>: source holder</li>
 <li><strong>Channel</strong>: all channels</li>
 <li><strong>Source</strong>:<ul>
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">PSA S07</a>
@@ -5386,9 +5386,9 @@ the mapping) instead of repeating them.</p>
   issuance, <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>, and <abbr title="Once-Only Technical System">OOTS</abbr>.</li>
 </ul>
 </details>
-<h3 id="av-08">AV-08: Bronhouder without its own endpoint provably agrees with a taken-over description<a class="headerlink" href="#av-08" title="Permanent link">&para;</a></h3>
+<h3 id="av-08">AV-08: Source holder without its own endpoint provably agrees with a taken-over description<a class="headerlink" href="#av-08" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>A bronhouder that publishes no metadata endpoint of its own SHOULD
+<p>A source holder that publishes no metadata endpoint of its own SHOULD
 provably agree with the service description that the operator keeps on
 its behalf.</p>
 </blockquote>
@@ -5398,16 +5398,16 @@ its behalf.</p>
 <details class="note">
 <summary>Source, evidence and notes</summary>
 <ul>
-<li><strong>Obliged party</strong>: bronhouder</li>
+<li><strong>Obliged party</strong>: source holder</li>
 <li><strong>Channel</strong>: EUDI</li>
 <li><strong>Source</strong>: <a href="../../traceability/findings/#f-71">F-71</a> and the exception
   in <a href="../sources-identity/#req-64">REQ-64</a>.</li>
 <li><strong>Related</strong>: <a href="../sources-identity/#req-64">REQ-64</a></li>
 </ul>
 </details>
-<h3 id="av-09">AV-09: Bronhouder keeps decryption keys of an older version while proofs for that version are valid<a class="headerlink" href="#av-09" title="Permanent link">&para;</a></h3>
+<h3 id="av-09">AV-09: Source holder keeps decryption keys of an older version while proofs for that version are valid<a class="headerlink" href="#av-09" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>A bronhouder SHOULD keep the keys with which it decrypts the values in a
+<p>A source holder SHOULD keep the keys with which it decrypts the values in a
 consent proof. It SHOULD keep a key version as long as valid proofs made
 with that key version exist.</p>
 </blockquote>
@@ -5417,7 +5417,7 @@ with that key version exist.</p>
 <details class="note">
 <summary>Source, evidence and notes</summary>
 <ul>
-<li><strong>Obliged party</strong>: bronhouder</li>
+<li><strong>Obliged party</strong>: source holder</li>
 <li><strong>Channel</strong>: <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></li>
 <li><strong>Source</strong>: <a href="../pseudonymization/#req-82">REQ-82</a> and
   <a href="../pseudonymization/#bsnk-08">BSNK-08</a> (an encrypted value belongs to
@@ -5426,10 +5426,10 @@ with that key version exist.</p>
   <a href="../../traceability/findings/#f-78">F-78</a></li>
 </ul>
 </details>
-<h3 id="av-10">AV-10: Bronhouder logs every living data subject of a relation attestation<a class="headerlink" href="#av-10" title="Permanent link">&para;</a></h3>
+<h3 id="av-10">AV-10: Source holder logs every living data subject of a relation attestation<a class="headerlink" href="#av-10" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>An attestation can hold data about someone other than the requester. For
-such an attestation, a bronhouder SHOULD record in its processing log
+such an attestation, a source holder SHOULD record in its processing log
 every living data subject whose data it supplies. A record of the
 requester alone is not enough.</p>
 </blockquote>
@@ -5439,7 +5439,7 @@ requester alone is not enough.</p>
 <details class="note">
 <summary>Source, evidence and notes</summary>
 <ul>
-<li><strong>Obliged party</strong>: bronhouder</li>
+<li><strong>Obliged party</strong>: source holder</li>
 <li><strong>Channel</strong>: EUDI</li>
 <li><strong>Source</strong>: <a href="../eudi-issuance/#req-57">REQ-57</a> and
   <a href="../logging-audit/#req-72">REQ-72</a>.</li>
@@ -5447,9 +5447,9 @@ requester alone is not enough.</p>
   <a href="../logging-audit/#req-72">REQ-72</a></li>
 </ul>
 </details>
-<h3 id="av-11">AV-11: Bronhouder tests its view for relation attestations<a class="headerlink" href="#av-11" title="Permanent link">&para;</a></h3>
+<h3 id="av-11">AV-11: Source holder tests its view for relation attestations<a class="headerlink" href="#av-11" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>A bronhouder can supply a relation (for example a marriage) through a
+<p>A source holder can supply a relation (for example a marriage) through a
 view of its own. It SHOULD then prove with tests that this view returns
 only the relation of the identified citizen.</p>
 </blockquote>
@@ -5459,15 +5459,15 @@ only the relation of the identified citizen.</p>
 <details class="note">
 <summary>Source, evidence and notes</summary>
 <ul>
-<li><strong>Obliged party</strong>: bronhouder</li>
+<li><strong>Obliged party</strong>: source holder</li>
 <li><strong>Channel</strong>: EUDI</li>
 <li><strong>Source</strong>: <a href="../eudi-issuance/#req-57">REQ-57</a>.</li>
 <li><strong>Related</strong>: <a href="../eudi-issuance/#req-57">REQ-57</a></li>
 </ul>
 </details>
-<h3 id="av-12">AV-12: Bronhouder as provider has a public validity and revocation policy<a class="headerlink" href="#av-12" title="Permanent link">&para;</a></h3>
+<h3 id="av-12">AV-12: Source holder as provider has a public validity and revocation policy<a class="headerlink" href="#av-12" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>A bronhouder that has attestations issued SHOULD have a written and
+<p>A source holder that has attestations issued SHOULD have a written and
 public policy for validity and revocation. It SHOULD publish the validity
 period for each attestation type in its configuration.</p>
 </blockquote>
@@ -5477,7 +5477,7 @@ period for each attestation type in its configuration.</p>
 <details class="note">
 <summary>Source, evidence and notes</summary>
 <ul>
-<li><strong>Obliged party</strong>: bronhouder</li>
+<li><strong>Obliged party</strong>: source holder</li>
 <li><strong>Channel</strong>: EUDI</li>
 <li><strong>Source</strong>: Implementing Regulation (EU)
   <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj">2025/1569</a>,
@@ -5487,9 +5487,9 @@ period for each attestation type in its configuration.</p>
   <a href="../sources-identity/#req-64">REQ-64</a></li>
 </ul>
 </details>
-<h3 id="av-13">AV-13: Bronhouder gives the instruction to revoke an attestation<a class="headerlink" href="#av-13" title="Permanent link">&para;</a></h3>
+<h3 id="av-13">AV-13: Source holder gives the instruction to revoke an attestation<a class="headerlink" href="#av-13" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>If the data in an issued attestation is no longer correct, a bronhouder
+<p>If the data in an issued attestation is no longer correct, a source holder
 SHOULD tell the issuance function that the attestation must be revoked.</p>
 </blockquote>
 <ul>
@@ -5498,7 +5498,7 @@ SHOULD tell the issuance function that the attestation must be revoked.</p>
 <details class="note">
 <summary>Source, evidence and notes</summary>
 <ul>
-<li><strong>Obliged party</strong>: bronhouder</li>
+<li><strong>Obliged party</strong>: source holder</li>
 <li><strong>Channel</strong>: EUDI</li>
 <li><strong>Source</strong>: Implementing Regulation (EU)
   <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj">2025/1569</a>,

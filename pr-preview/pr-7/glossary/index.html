@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4534,22 +4534,26 @@
 
 
 <h1 id="glossary">Glossary<a class="headerlink" href="#glossary" title="Permanent link">&para;</a></h1>
-<p>The TO uses one term for each concept. The following tables give that
-term, its meaning, and the words that the TO does not use for the same
-concept. The style linter (<code>scripts/style_lint.py</code>) reports every word
-from a "Do not use" column in running text, so the terms stay consistent.
-Code names, quotes from sources, and IDs are exempt.</p>
-<p>The TO keeps the Dutch names of the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> facilities, as the
-<a href="https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing">Globaal Ontwerp</a>
-uses them. For the full begrippenlijst of the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> stelsel, see the
+<p>The TO is written in English. Each concept has one English term. On its
+first use on a page, the term gets the Dutch name of the Globaal Ontwerp
+in parentheses, for example "consent register (toestemmingsregister)".
+After that, the page uses the English term only. Proper names stay as
+they are: MijnOverheid, DigiD, Logius, <abbr title="Burgerservicenummer">BSN</abbr>, Autorisatielijst <abbr title="Burgerservicenummer">BSN</abbr>,
+Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr>, Logboek Dataverwerkingen.</p>
+<p>The following tables give each term, the Dutch name, its meaning, and the
+words that the TO does not use for the same concept. The style linter
+(<code>scripts/style_lint.py</code>) reports every word from a "Do not use" column
+in running text. A Dutch name directly inside parentheses is allowed.
+Code names, quotes from sources, and IDs are exempt. For the full
+begrippenlijst of the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> stelsel, see the
 <a href="https://ictu.github.io/GBO-GO/main/bijlage_begrippenlijst/">GO begrippenlijst</a>.</p>
 <h2 id="building-blocks-and-channels">Building blocks and channels<a class="headerlink" href="#building-blocks-and-channels" title="Permanent link">&para;</a></h2>
-<p>These terms follow the
-<a href="../building-blocks/">building block view</a>:</p>
+<p>These terms follow the <a href="../building-blocks/">building block view</a>:</p>
 <table>
 <thead>
 <tr>
 <th>Term</th>
+<th>Dutch (GO)</th>
 <th>Meaning</th>
 <th>Do not use</th>
 </tr>
@@ -4557,124 +4561,160 @@ uses them. For the full begrippenlijst of the <abbr title="Gemeenschappelijke Br
 <tbody>
 <tr>
 <td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
-<td>The part of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> at every bronhouder: <abbr title="Federated Service Connectivity">FSC</abbr>, the <abbr title="Policy Enforcement Point">PEP</abbr> and the <abbr title="Policy Decision Point">PDP</abbr>, the source gateway, source configuration, and the records. It feeds every channel (<a href="../building-blocks/gbo-basis/"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a>).</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
+<td>The part of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> at every source holder: <abbr title="Federated Service Connectivity">FSC</abbr>, the <abbr title="Policy Enforcement Point">PEP</abbr> and the <abbr title="Policy Decision Point">PDP</abbr>, the source gateway, source configuration, and the records. It feeds every channel (<a href="../building-blocks/gbo-basis/"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a>).</td>
 <td>—</td>
 </tr>
 <tr>
 <td>Channel</td>
-<td>A way in which <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> serves one kind of consumer (kanaal in the GO). The three channels are <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI wallet, and <abbr title="Once-Only Technical System">OOTS</abbr>.</td>
+<td>kanaal</td>
+<td>A way in which <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> serves one kind of consumer. The three channels are <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI wallet, and <abbr title="Once-Only Technical System">OOTS</abbr>.</td>
 <td>trajectory</td>
 </tr>
 <tr>
 <td>Route</td>
+<td>—</td>
 <td>One end-to-end flow through a channel: the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> route, the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route, the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route, the SDG-<abbr title="Once-Only Technical System">OOTS</abbr> route, and the <abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr> route.</td>
 <td>trajectory</td>
 </tr>
 <tr>
-<td>Toestemmingsvoorziening</td>
-<td>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> facility of the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel where the citizen gives, views, and revokes consent. It consists of the toestemmingsportaal and the toestemmingsregister (<a href="../building-blocks/dvtp/consent-service/">Toestemmingsvoorziening</a>).</td>
-<td>consent service</td>
+<td>Facility</td>
+<td>voorziening</td>
+<td>A shared function that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> or another party provides, for example the consent facility.</td>
+<td>voorziening</td>
 </tr>
 <tr>
-<td>Toestemmingsportaal</td>
-<td>The citizen-facing application of the toestemmingsvoorziening (PSA S02). It has a frontend and a backend. The short form "portal backend" is allowed.</td>
-<td>consent portal</td>
+<td>Consent facility</td>
+<td>toestemmingsvoorziening</td>
+<td>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> facility of the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel where the citizen gives, views, and revokes consent. It consists of the consent portal and the consent register (<a href="../building-blocks/dvtp/consent-service/">Consent facility</a>).</td>
+<td>toestemmingsvoorziening, consent service</td>
 </tr>
 <tr>
-<td>Toestemmingsregister</td>
+<td>Consent portal</td>
+<td>toestemmingsportaal</td>
+<td>The citizen-facing application of the consent facility (PSA S02). It has a frontend and a backend. The short form "portal backend" is allowed.</td>
+<td>toestemmingsportaal</td>
+</tr>
+<tr>
+<td>Consent register</td>
+<td>toestemmingsregister</td>
 <td>The register of consents (PSA S01). It signs the consent proof and answers the consent status.</td>
-<td>consent register</td>
+<td>toestemmingsregister</td>
 </tr>
 <tr>
-<td>Pseudonimiseervoorziening</td>
-<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> as the GO names it: the Logius facility that the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel uses at consent time.</td>
-<td>—</td>
+<td>Pseudonymization facility</td>
+<td>pseudonimiseervoorziening</td>
+<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr>: the Logius facility that the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel uses at consent time.</td>
+<td>pseudonimiseervoorziening</td>
 </tr>
 <tr>
 <td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</td>
-<td>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> block of the EUDI wallet channel that issues an attestation from source data to the wallet (<a href="../building-blocks/eudi/pubeaa/"><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</a>). Legally, the bronhouder is the provider.</td>
+<td>PubEAA-voorziening</td>
+<td>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> block of the EUDI wallet channel that issues an attestation from source data to the wallet (<a href="../building-blocks/eudi/pubeaa/"><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</a>). Legally, the source holder is the provider.</td>
 <td>PubEAA</td>
 </tr>
 <tr>
 <td>Issuance facility</td>
+<td>—</td>
 <td>The technical part of the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> runs: the issuance server and the EUDI adapter (<a href="../decisions/0028-pubeaa-productization/">ADR-0028</a>).</td>
 <td>—</td>
 </tr>
 <tr>
 <td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr></td>
+<td>—</td>
 <td>Authentic Source Interface: the interface of ETSI TS 119 478 through which a <abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies or retrieves attributes at an authentic source (eIDAS article 45e).</td>
 <td>—</td>
 </tr>
 <tr>
 <td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>-provider</td>
 <td>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> block of the EUDI wallet channel that offers the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>. It consists of the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server (<a href="../building-blocks/eudi/asi/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</a>).</td>
 <td>—</td>
 </tr>
 <tr>
 <td><abbr title="Once-Only Technical System">OOTS</abbr> adapter</td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr>-adapter</td>
 <td>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> block of the <abbr title="Once-Only Technical System">OOTS</abbr> channel that answers EU evidence requests. Design only (<a href="../building-blocks/oots/"><abbr title="Once-Only Technical System">OOTS</abbr> channel</a>).</td>
 <td>—</td>
 </tr>
 <tr>
 <td>Source gateway</td>
+<td>—</td>
 <td>The component in front of a source API (code name <code>bron-sidecar</code>). After the allow decision, it decrypts the value for its own <abbr title="Organisatie-identificatienummer">OIN</abbr> (<a href="../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>).</td>
 <td>sidecar</td>
 </tr>
 <tr>
 <td>Decryption component</td>
+<td>—</td>
 <td>The component of a source that reads the <abbr title="Encrypted identity">VI</abbr> or <abbr title="Encrypted pseudonym">VP</abbr> for that source with its own keys. The source gateway calls it after the allow decision.</td>
 <td>—</td>
 </tr>
 <tr>
 <td>Admission register</td>
+<td>toelatingsregister</td>
 <td>The register of admitted participants and integrator mandates. The <abbr title="Policy Decision Point">PDP</abbr> pulls it as a <abbr title="Policy Information Point">PIP</abbr> (code name <code>dvtp-onboarding-register</code>).</td>
 <td>onboarding register</td>
 </tr>
 <tr>
 <td>Source registry</td>
+<td>—</td>
 <td>The store of source descriptions: candidates, immutable releases, and the active release.</td>
 <td>—</td>
 </tr>
 <tr>
 <td>Source metadata</td>
+<td>—</td>
 <td>The description that a source publishes of its own services, at <code>/.well-known/gbo</code> (<a href="../building-blocks/gbo-basis/source-configuration/">Source configuration</a>).</td>
 <td>—</td>
 </tr>
 <tr>
 <td>EUDI adapter</td>
+<td>—</td>
 <td>The component between the issuance server and the <abbr title="Federated Service Connectivity">FSC</abbr> chain. In the demo, its <abbr title="Federated Service Connectivity">FSC</abbr> peer is called "EDI issuer" (<code>edi-…</code>).</td>
 <td>—</td>
 </tr>
 <tr>
 <td>Wallet verifier</td>
+<td>—</td>
 <td>The nl-wallet verification server that the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server uses for a login with the NL Wallet.</td>
 <td>—</td>
 </tr>
 <tr>
 <td>Integrator</td>
+<td>integrator</td>
 <td>A software party that calls a source on behalf of a consumer, under an <abbr title="Federated Service Connectivity">FSC</abbr> delegated grant and a registered mandate (<a href="../decisions/0034-integrator-delegation/">ADR-0034</a>).</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
 <h2 id="domain-terms">Domain terms<a class="headerlink" href="#domain-terms" title="Permanent link">&para;</a></h2>
-<p>The TO uses these English words for Dutch domain terms. Some Dutch terms
-stay in Dutch because the GO and the PSA use them as names:</p>
 <table>
 <thead>
 <tr>
 <th>Term</th>
-<th>Dutch</th>
+<th>Dutch (GO)</th>
 <th>Meaning</th>
 <th>Do not use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Bronhouder</td>
+<td>Source holder</td>
 <td>bronhouder</td>
-<td>The organization responsible for an authentic register and its ontsluiting.</td>
-<td>source holder</td>
+<td>The organization responsible for an authentic register and the access to it.</td>
+<td>bronhouder</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>bron</td>
+<td>A system of a source holder that answers queries.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Source access</td>
+<td>bronontsluiting</td>
+<td>The provision of register data through a standard interface.</td>
+<td>bronontsluiting</td>
 </tr>
 <tr>
 <td>Citizen</td>
@@ -4691,19 +4731,19 @@ stay in Dutch because the GO and the PSA use them as names:</p>
 <tr>
 <td>Consumer</td>
 <td>afnemer</td>
-<td>An organization that asks a bronhouder for data, in any channel.</td>
-<td>—</td>
+<td>An organization that asks a source holder for data, in any channel.</td>
+<td>afnemer</td>
+</tr>
+<tr>
+<td>Service provider</td>
+<td>dienstverlener</td>
+<td>The private party that is the consumer in the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel.</td>
+<td>dienstverlener</td>
 </tr>
 <tr>
 <td>Controller</td>
 <td>Verantwoordelijke</td>
 <td>The party that decides on a processing (<abbr title="Algemene verordening gegevensbescherming (GDPR)">AVG</abbr>). Under <abbr title="Logboek Dataverwerkingen">LDV</abbr>, each controller keeps its own logbook.</td>
-<td>—</td>
-</tr>
-<tr>
-<td>Data set</td>
-<td>gegevensset</td>
-<td>A named group of fields that a consent covers as a whole (<a href="../requirements/consent/#req-10">REQ-10</a>).</td>
 <td>—</td>
 </tr>
 <tr>
@@ -4713,45 +4753,45 @@ stay in Dutch because the GO and the PSA use them as names:</p>
 <td>—</td>
 </tr>
 <tr>
-<td>Dienstverlener</td>
-<td>dienstverlener</td>
-<td>The private party that is the consumer in the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel.</td>
-<td>service provider</td>
+<td>Data set</td>
+<td>gegevensset</td>
+<td>A named group of fields that a consent covers as a whole (<a href="../requirements/consent/#req-10">REQ-10</a>).</td>
+<td>gegevensset</td>
 </tr>
 <tr>
-<td>Dienstencatalogus</td>
+<td>Service catalog</td>
 <td>dienstencatalogus</td>
 <td>The legally anchored register of the maximum scope that a consumer can ask for per use case. See <a href="../decisions/0008-dienstencatalogus-ceiling/">ADR-0008</a>.</td>
-<td>—</td>
+<td>dienstencatalogus</td>
 </tr>
 <tr>
-<td>Doelbinding</td>
+<td>Purpose limitation</td>
 <td>doelbinding</td>
 <td>Processing of data is allowed only for the stated purpose.</td>
 <td>—</td>
 </tr>
 <tr>
-<td>Grondslag</td>
+<td>Legal basis</td>
 <td>grondslag</td>
-<td>The legal ground for a processing or a provision of data. A grondslag set directly by law is a wettelijke grondslag.</td>
-<td>—</td>
+<td>The legal ground for a processing or a provision of data. A legal basis set directly by law is a statutory basis (wettelijke grondslag).</td>
+<td>grondslag</td>
 </tr>
 <tr>
-<td>Koppelvlak</td>
+<td>Interface</td>
 <td>koppelvlak</td>
 <td>A specified technical interface between parties or components.</td>
-<td>—</td>
+<td>koppelvlak</td>
+</tr>
+<tr>
+<td>Interaction pattern</td>
+<td>interactiepatroon</td>
+<td>One of the patterns of the GO: A (EUDI wallet), B (<abbr title="Once-Only Technical System">OOTS</abbr>), C (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>).</td>
+<td>interactiepatronen</td>
 </tr>
 <tr>
 <td>Processing</td>
 <td>verwerking</td>
 <td>Any operation on personal data (<abbr title="Algemene verordening gegevensbescherming (GDPR)">AVG</abbr> term).</td>
-<td>—</td>
-</tr>
-<tr>
-<td>Source</td>
-<td>bron</td>
-<td>A system of a bronhouder that answers queries.</td>
 <td>—</td>
 </tr>
 </tbody>

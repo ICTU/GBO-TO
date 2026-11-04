@@ -1301,7 +1301,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4544,7 +4544,7 @@ every pillar that is marked "built".</p>
 <tbody>
 <tr>
 <td>Data access</td>
-<td>Each bronhouder has one GraphQL API. The query is the authorization object.</td>
+<td>Each source holder (bronhouder) has one GraphQL API. The query is the authorization object.</td>
 <td><a href="../decisions/0001-graphql-source-access/">ADR-0001</a>, <a href="../decisions/0025-graphql-fds-datadienst/">ADR-0025</a></td>
 <td><a href="../building-blocks/components/">Building blocks</a></td>
 </tr>
@@ -4556,7 +4556,7 @@ every pillar that is marked "built".</p>
 </tr>
 <tr>
 <td>Authorization</td>
-<td>The <abbr title="Federated Service Connectivity">FSC</abbr> Inway is the <abbr title="Policy Enforcement Point">PEP</abbr>. OPA/Rego in <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> is the <abbr title="Policy Decision Point">PDP</abbr>, behind <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> with the <abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL profile. Authorization has five separable concerns and one <abbr title="Policy Decision Point">PDP</abbr> per bronhouder. There is no central authorization server. Rules are plain Rego, bound by regime, <abbr title="Federated Service Connectivity">FSC</abbr> service, and field.</td>
+<td>The <abbr title="Federated Service Connectivity">FSC</abbr> Inway is the <abbr title="Policy Enforcement Point">PEP</abbr>. OPA/Rego in <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> is the <abbr title="Policy Decision Point">PDP</abbr>, behind <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> with the <abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL profile. Authorization has five separable concerns and one <abbr title="Policy Decision Point">PDP</abbr> per source holder. There is no central authorization server. Rules are plain Rego, bound by regime, <abbr title="Federated Service Connectivity">FSC</abbr> service, and field.</td>
 <td><a href="../decisions/0002-opa-rego-authzen/">ADR-0002</a>, <a href="../decisions/0004-federated-authorization/">ADR-0004</a>, <a href="../decisions/0009-closed-world-rules/">ADR-0009</a>, <a href="../decisions/0013-pdp-request-mapper/">ADR-0013</a></td>
 <td><a href="../concepts/authorization/">Authorization</a></td>
 </tr>
@@ -4574,7 +4574,7 @@ every pillar that is marked "built".</p>
 </tr>
 <tr>
 <td>Policy management</td>
-<td>Each bronhouder manages and distributes its own policy. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> supplies a reference policy set and guidelines (RL-01 to RL-05). <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not supply a central <abbr title="Policy Administration Point">PAP</abbr>.</td>
+<td>Each source holder manages and distributes its own policy. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> supplies a reference policy set and guidelines (RL-01 to RL-05). <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not supply a central <abbr title="Policy Administration Point">PAP</abbr>.</td>
 <td><a href="../decisions/0021-central-pap-signed-bundles/">ADR-0021</a></td>
 <td><a href="../concepts/policy-lifecycle/">Policy lifecycle</a></td>
 </tr>
@@ -4605,7 +4605,7 @@ every pillar that is marked "built".</p>
 </tr>
 <tr>
 <td>Pseudonymization</td>
-<td>The design uses BSNk <abbr title="Polymorphic pseudonym">PP</abbr> only at consent time. After the allow decision, the source gateway decrypts the value for its own <abbr title="Organisatie-identificatienummer">OIN</abbr>. Only the <abbr title="Federated Service Connectivity">FSC</abbr> Inway reaches the gateway. The toestemmingsvoorziening recognizes the citizen by its own keyed reference (route D, proposed).</td>
+<td>The design uses BSNk <abbr title="Polymorphic pseudonym">PP</abbr> only at consent time. After the allow decision, the source gateway decrypts the value for its own <abbr title="Organisatie-identificatienummer">OIN</abbr>. Only the <abbr title="Federated Service Connectivity">FSC</abbr> Inway reaches the gateway. The consent facility (toestemmingsvoorziening) recognizes the citizen by its own keyed reference (route D, proposed).</td>
 <td><a href="../decisions/0005-bsnk-pp/">ADR-0005</a>, <a href="../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>, <a href="../decisions/0040-route-d-citizen-recognition/">ADR-0040</a></td>
 <td><a href="../concepts/pseudonymization/">Pseudonymization</a></td>
 </tr>
@@ -4624,7 +4624,7 @@ every pillar that is marked "built".</p>
 <tbody>
 <tr>
 <td>EUDI issuance</td>
-<td>Issuance is disclosure-based <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> on the nl-wallet stack. Sources feed it over <abbr title="Federated Service Connectivity">FSC</abbr> under the <abbr title="Person Identification Data">PID</abbr> regime. The bronhouder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the facility. Built. The PSA treats wallet support (P-06) as a hook outside version 1.</td>
+<td>Issuance is disclosure-based <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> on the nl-wallet stack. Sources feed it over <abbr title="Federated Service Connectivity">FSC</abbr> under the <abbr title="Person Identification Data">PID</abbr> regime. The source holder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the facility. Built. The PSA treats wallet support (P-06) as a hook outside version 1.</td>
 <td><a href="../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>, <a href="../decisions/0017-gbo-simple-v1/">ADR-0017</a>, <a href="../decisions/0028-pubeaa-productization/">ADR-0028</a></td>
 <td><a href="../runtime/eudi-issuance/">EUDI issuance</a></td>
 </tr>

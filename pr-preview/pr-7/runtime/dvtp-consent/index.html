@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4558,8 +4558,8 @@
 
 <h1 id="dvtp-the-citizen-gives-consent"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: the citizen gives consent<a class="headerlink" href="#dvtp-the-citizen-gives-consent" title="Permanent link">&para;</a></h1>
 <p>A citizen at a private consumer (dienstverlener) goes to the
-toestemmingsportaal, logs in, and gives consent for one or more data sets.
-The result is a consent record in the toestemmingsregister and a signed
+consent portal (toestemmingsportaal), logs in, and gives consent for one or more data sets.
+The result is a consent record in the consent register (toestemmingsregister) and a signed
 consent proof. The proof goes back to the consumer. The consumer uses the
 proof in <a href="../dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a>.</p>
 <p>For the concepts, see <a href="../../concepts/consent/">Consent</a> and
@@ -4578,10 +4578,10 @@ proposed).</p>
     box rgb(241,239,232) Consumer
       participant DVF as Consumer frontend
     end
-    box rgb(254,220,216) Toestemmingsvoorziening
+    box rgb(254,220,216) Consent facility
       participant PF as Portal frontend
-      participant PB as Toestemmingsportaal backend
-      participant CR as Toestemmingsregister
+      participant PB as Consent portal backend
+      participant CR as Consent register
     end
     box rgb(241,239,232) External
       participant BSNK as BSNk mock
@@ -4943,7 +4943,7 @@ browser is a demo shortcut.</p>
   (<a href="../../requirements/pseudonymization/#req-82">REQ-82</a>).</li>
 <li><strong>BSNk recognition is open.</strong> Only a recognized party can activate and
   transform (<a href="../../requirements/pseudonymization/#bsnk-01">BSNK-01</a>).
-  It is open whether the toestemmingsvoorziening can be a recognized party. It is
+  It is open whether the consent facility (toestemmingsvoorziening) can be a recognized party. It is
   also open whether the register and the portal backend are one BSNk
   participant
   (<a href="../../traceability/findings/#f-75">F-75</a>,

@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4603,7 +4603,7 @@ v0.9.0 implements. The decisions behind the model are
 and <a href="../../decisions/0026-ldv-integration/">ADR-0026</a> (processing records).</p>
 <p>The term "controller (Verantwoordelijke)" means the organization that is
 responsible for a processing under the GDPR. The term "data subject"
-means the Betrokkene.</p>
+means the data subject (Betrokkene).</p>
 <h2 id="three-records-one-chain">Three records, one chain<a class="headerlink" href="#three-records-one-chain" title="Permanent link">&para;</a></h2>
 <p>Logius maintains three related logging standards. Each standard records a
 different thing. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> uses all three, together with traces and logs
@@ -4680,7 +4680,7 @@ The components write their records to these stores:</p>
     C[Consumer backend] --&gt;|traceparent T&lt;br/&gt;Fsc-Transaction-Id X1| OW[Consumer Outway]
     OW --&gt; IW[Source Inway]
     IW --&gt;|AuthZEN| PDP
-    PDP --&gt;|status lookup&lt;br/&gt;T, X1| CR[Toestemmingsregister]
+    PDP --&gt;|status lookup&lt;br/&gt;T, X1| CR[Consent register]
     IW --&gt; GW[Source gateway] --&gt; SRC[Source GraphQL]
 
     C -.-&gt; LA[(Consumer logbook&lt;br/&gt;LDV)]
@@ -4770,7 +4770,7 @@ the Inway calls the <abbr title="Policy Decision Point">PDP</abbr> over <abbr ti
 <code>X-Request-Id</code> (<a href="../../traceability/findings-closed/#f-39">F-39</a>,
 <a href="../../traceability/findings-closed/#f-41">F-41</a>).</p>
 <p>The Inway copies the headers of the original request into the <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr>
-context. When the policy calls the toestemmingsregister for a status, it
+context. When the policy calls the consent register (toestemmingsregister) for a status, it
 reads the trace from this context. The status request carries the trace
 ID of the request with a new span. It also carries the transaction ID
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L190-L245"><code>consent.rego#L190-L245</code></a>).
@@ -4929,8 +4929,8 @@ also decodes <abbr title="Federated Service Connectivity">FSC</abbr> claims and 
 </tr>
 <tr>
 <td><code>portal-subject</code></td>
-<td>the reference that the toestemmingsportaal derives</td>
-<td>toestemmingsregister and portal</td>
+<td>the reference that the consent portal (toestemmingsportaal) derives</td>
+<td>consent register and portal</td>
 </tr>
 <tr>
 <td><code>brp-persoon-id</code></td>
@@ -4955,7 +4955,7 @@ also decodes <abbr title="Federated Service Connectivity">FSC</abbr> claims and 
   placeholder, because the BSNk mock has no read API.</li>
 <li>The calling party: on a lookup over <abbr title="Federated Service Connectivity">FSC</abbr>,
   <code>dpl.core.foreign_operation.processor</code> names the <abbr title="Federated Service Connectivity">FSC</abbr> peer of the caller.
-  At the toestemmingsregister, this is the peer verified from
+  At the consent register, this is the peer verified from
   <code>Fsc-Authorization</code>
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-client/client.go#L441-L452"><code>client.go#L441-L452</code></a>,
   <a href="../../requirements/consent/#req-76">REQ-76</a>).</li>
@@ -4991,7 +4991,7 @@ also decodes <abbr title="Federated Service Connectivity">FSC</abbr> claims and 
 processing. The reason is that a withheld response does not undo a
 processing that already happened. The primary key
 <code>(trace_id, span_id)</code> makes a replay idempotent.</p>
-<p>The toestemmingsregister keeps its outbox as a table in the same database
+<p>The consent register keeps its outbox as a table in the same database
 as the consents. So a consent and its record commit in one
 transaction.</p>
 </li>
@@ -4999,7 +4999,7 @@ transaction.</p>
 <p>Separate write and read tokens: a component that can write cannot read
   with that token.</p>
 </li>
-<li>A local extension: the toestemmingsregister, the portal, and the EUDI
+<li>A local extension: the consent register, the portal, and the EUDI
   adapter write <code>dpl.gbo.*</code> attributes. This extension has no approval
   from Logius. The honest claim is "<abbr title="Logboek Dataverwerkingen">LDV</abbr> core with a local extension"
   (<a href="../../traceability/open-questions/#q-72">Q-72</a>).</li>

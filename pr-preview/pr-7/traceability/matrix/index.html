@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4896,7 +4896,7 @@ These principles are invariants: the demo must not break them.</p>
 <td>Recognized authentication means at an adequate level of assurance</td>
 <td>Base</td>
 <td>○</td>
-<td>DigiD mock in the toestemmingsportaal (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/DigiDAuth.tsx"><code>DigiDAuth.tsx</code></a>), <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server with DigiD mock and NL Wallet (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/client.go#L119"><code>client.go#L119</code></a>)</td>
+<td>DigiD mock in the consent portal (toestemmingsportaal) (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/DigiDAuth.tsx"><code>DigiDAuth.tsx</code></a>), <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server with DigiD mock and NL Wallet (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/client.go#L119"><code>client.go#L119</code></a>)</td>
 <td>The demo has no real means at a set level of assurance. Real means are out of scope. <a href="../open-questions/#q-36">Q-36</a> asks which level ETSI TS 119 461 requires for the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route, and if DigiD meets it.</td>
 </tr>
 <tr>
@@ -4933,7 +4933,7 @@ These principles are invariants: the demo must not break them.</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a></td>
-<td>Data sovereignty: the bronhouder keeps control</td>
+<td>Data sovereignty: the source holder (bronhouder) keeps control</td>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L101"><code>source_metadata.go#L101</code></a> (validation of the source description), <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L171"><code>autosign.rego#L171</code></a></td>
@@ -5009,7 +5009,7 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L773"><code>fsc-infra/docker-compose.yml#L773</code></a> (one shared <abbr title="Policy Decision Point">PDP</abbr>)</td>
-<td>One shared <abbr title="Policy Decision Point">PDP</abbr> behind all Inways is a demo shortcut. A <abbr title="Policy Decision Point">PDP</abbr> per source is possible with bundles (<a href="../increments/#sl-44">SL-44</a>). <a href="../answered-questions/#q-02">Q-02</a> is answered: federated, per bronhouder.</td>
+<td>One shared <abbr title="Policy Decision Point">PDP</abbr> behind all Inways is a demo shortcut. A <abbr title="Policy Decision Point">PDP</abbr> per source is possible with bundles (<a href="../increments/#sl-44">SL-44</a>). <a href="../answered-questions/#q-02">Q-02</a> is answered: federated, per source holder.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-02</a></td>
@@ -5222,7 +5222,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal">S02</a></td>
-<td>Toestemmingsportaal (citizen interaction)</td>
+<td>Consent portal (citizen interaction)</td>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="../../requirements/consent/#req-38">REQ-38</a>, <a href="../../requirements/consent/#req-39">REQ-39</a>, <a href="../../requirements/consent/#req-40">REQ-40</a></td>
@@ -5258,7 +5258,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml"><code>gbo-pdp.yaml</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/seed-openftv-manager.py"><code>seed-openftv-manager.py</code></a></td>
-<td>The <abbr title="Policy Administration Point">PAP</abbr> runs at the source side and distributes versioned bundles (<a href="../../requirements/authorization/#rl-01">RL-01</a> to <a href="../../requirements/authorization/#rl-04">RL-04</a>). These RL items are guidelines: management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>). Open: validation before activation (<a href="../findings/#f-52">F-52</a>, <a href="../../requirements/authorization/#rl-05">RL-05</a>), push distribution (<a href="../findings/#f-51">F-51</a>), and the policy version in the decision record (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>).</td>
+<td>The <abbr title="Policy Administration Point">PAP</abbr> runs at the source side and distributes versioned bundles (<a href="../../requirements/authorization/#rl-01">RL-01</a> to <a href="../../requirements/authorization/#rl-04">RL-04</a>). These RL items are guidelines: management stays with each source holder (<a href="../answered-questions/#q-21">Q-21</a>). Open: validation before activation (<a href="../findings/#f-52">F-52</a>, <a href="../../requirements/authorization/#rl-05">RL-05</a>), push distribution (<a href="../findings/#f-51">F-51</a>), and the policy version in the decision record (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">S07</a></td>
@@ -5335,7 +5335,7 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PAT-C</a></td>
-<td>Data request by a private dienstverlener (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</td>
+<td>Data request by a private service provider (dienstverlener) (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</td>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../../requirements/consent/#req-14">REQ-14</a>, <a href="../../requirements/consent/#req-19">REQ-19</a></td>
@@ -5511,7 +5511,7 @@ cannot try out have the status "—".</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="../../requirements/authorization/#rl-03">RL-03</a></td>
-<td>PSA direction: content ownership apart from technical management. The <abbr title="Policy Administration Point">PAP</abbr> splits read, write and publish (<a href="../increments/#sl-44">SL-44</a>). Management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
+<td>PSA direction: content ownership apart from technical management. The <abbr title="Policy Administration Point">PAP</abbr> splits read, write and publish (<a href="../increments/#sl-44">SL-44</a>). Management stays with each source holder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-06</a></td>
@@ -5575,7 +5575,7 @@ cannot try out have the status "—".</p>
 <td>EUDI</td>
 <td>◐</td>
 <td><a href="../../requirements/eudi-issuance/#req-58">REQ-58</a></td>
-<td>The demo has a central issuance facility with a certificate set per source. Key management and seal are open (<a href="../open-questions/#q-17">Q-17</a>, <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a>). The issuer is the bronhouder or a designated body (<a href="../findings/#f-81">F-81</a>, <a href="../open-questions/#q-28">Q-28</a>).</td>
+<td>The demo has a central issuance facility with a certificate set per source. Key management and seal are open (<a href="../open-questions/#q-17">Q-17</a>, <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a>). The issuer is the source holder or a designated body (<a href="../findings/#f-81">F-81</a>, <a href="../open-questions/#q-28">Q-28</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-14</a></td>
@@ -5662,7 +5662,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 </tr>
 <tr>
 <td>FR-03</td>
-<td>Authentication of the private dienstverlener with eHerkenning</td>
+<td>Authentication of the private service provider with eHerkenning</td>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>○</td>
 <td>—</td>
@@ -5674,7 +5674,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/components/MijnOverheidLayout.tsx"><code>MijnOverheidLayout.tsx</code></a></td>
-<td>The consent screens are inside a MijnOverheid shell on their own origin, apart from the dienstverlener (<a href="../increments/#sl-06a">SL-06a</a>, <a href="../increments/#sl-11">SL-11</a>).</td>
+<td>The consent screens are inside a MijnOverheid shell on their own origin, apart from the service provider (<a href="../increments/#sl-06a">SL-06a</a>, <a href="../increments/#sl-11">SL-11</a>).</td>
 </tr>
 <tr>
 <td>FR-05</td>
@@ -5738,7 +5738,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/pages/Start.tsx"><code>Start.tsx</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/lib/buildPortalUrl.ts"><code>buildPortalUrl.ts</code></a></td>
-<td>The mock dienstverlener website redirects the citizen to the portal, with context (<a href="../../requirements/consent/#req-37">REQ-37</a>).</td>
+<td>The mock service provider website redirects the citizen to the portal, with context (<a href="../../requirements/consent/#req-37">REQ-37</a>).</td>
 </tr>
 <tr>
 <td>FR-13</td>
@@ -5770,7 +5770,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../../requirements/authorization/#req-74">REQ-74</a></td>
-<td>Identity (<abbr title="Federated Service Connectivity">FSC</abbr> peer with mTLS), admission (<a href="../increments/#sl-45">SL-45</a>), and consent binding work. An integrator can act for a dienstverlener (<a href="../../requirements/consent/#req-106">REQ-106</a>). Missing: admission per service (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
+<td>Identity (<abbr title="Federated Service Connectivity">FSC</abbr> peer with mTLS), admission (<a href="../increments/#sl-45">SL-45</a>), and consent binding work. An integrator can act for a service provider (<a href="../../requirements/consent/#req-106">REQ-106</a>). Missing: admission per service (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
 </tr>
 <tr>
 <td>FR-17</td>
@@ -5786,7 +5786,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/internal/onboarding/service.go#L50"><code>service.go#L50</code></a> (<code>acts_for</code>)</td>
-<td>The integrator calls under <abbr title="Federated Service Connectivity">FSC</abbr> delegation with a registered mandate, and the consent binds the dienstverlener (<a href="../../requirements/consent/#req-106">REQ-106</a>, <a href="../findings-closed/#f-73">F-73</a>). Not enforced: the processor agreement and the rule of no storage (<a href="../../requirements/admission/#av-06">AV-06</a>). <a href="../open-questions/#q-46">Q-46</a> covers the integrator in the proof.</td>
+<td>The integrator calls under <abbr title="Federated Service Connectivity">FSC</abbr> delegation with a registered mandate, and the consent binds the service provider (<a href="../../requirements/consent/#req-106">REQ-106</a>, <a href="../findings-closed/#f-73">F-73</a>). Not enforced: the processor agreement and the rule of no storage (<a href="../../requirements/admission/#av-06">AV-06</a>). <a href="../open-questions/#q-46">Q-46</a> covers the integrator in the proof.</td>
 </tr>
 <tr>
 <td>FR-19</td>
@@ -5874,7 +5874,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a></td>
-<td>The operator can admit, pause, widen and reconnect a dienstverlener without a policy change (<a href="../../requirements/admission/#req-61">REQ-61</a>). Missing: the applicant side (<a href="../open-questions/#q-74">Q-74</a>). <a href="../answered-questions/#q-22">Q-22</a> answers the grounds.</td>
+<td>The operator can admit, pause, widen and reconnect a service provider without a policy change (<a href="../../requirements/admission/#req-61">REQ-61</a>). Missing: the applicant side (<a href="../open-questions/#q-74">Q-74</a>). <a href="../answered-questions/#q-22">Q-22</a> answers the grounds.</td>
 </tr>
 <tr>
 <td>FR-30</td>
@@ -5898,7 +5898,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001.rego"><code>dvt0001.rego</code></a></td>
-<td>Scopes are configurable. There is no legal ceiling per use case and no link to dienstverleners (<a href="../findings/#f-74">F-74</a>, <a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
+<td>Scopes are configurable. There is no legal ceiling per use case and no link to service providers (<a href="../findings/#f-74">F-74</a>, <a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
 </tr>
 <tr>
 <td>FR-33</td>
@@ -5914,11 +5914,11 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="../../requirements/authorization/#req-74">REQ-74</a></td>
-<td>The runtime identity comes from mTLS and the contract. There is no regime header and no default regime (<a href="../increments/#sl-48">SL-48</a>). Open: criterion 1, because nothing proves that the browser start comes from the dienstverlener (<a href="https://github.com/ICTU/GBO-demo/issues/427">#427</a>, <a href="../../requirements/consent/#req-111">REQ-111</a>, <a href="../open-questions/#q-60">Q-60</a>).</td>
+<td>The runtime identity comes from mTLS and the contract. There is no regime header and no default regime (<a href="../increments/#sl-48">SL-48</a>). Open: criterion 1, because nothing proves that the browser start comes from the service provider (<a href="https://github.com/ICTU/GBO-demo/issues/427">#427</a>, <a href="../../requirements/consent/#req-111">REQ-111</a>, <a href="../open-questions/#q-60">Q-60</a>).</td>
 </tr>
 <tr>
 <td>FR-35</td>
-<td><abbr title="Burgerservicenummer">BSN</abbr>-free delivery to a private dienstverlener</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr>-free delivery to a private service provider</td>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L47"><code>consent_token.go#L47</code></a></td>
@@ -5946,7 +5946,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>○</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/main.go#L83"><code>main.go#L83</code></a> (one source per backend)</td>
-<td>The demo does not try out one consent with a rule per bronhouder. Each consumer backend calls one source (BD or LVG). For more information, see <a href="../findings/#f-68">F-68</a> and <a href="../open-questions/#q-76">Q-76</a>.</td>
+<td>The demo does not try out one consent with a rule per source holder. Each consumer backend calls one source (BD or LVG). For more information, see <a href="../findings/#f-68">F-68</a> and <a href="../open-questions/#q-76">Q-76</a>.</td>
 </tr>
 <tr>
 <td>FR-39</td>
@@ -5954,7 +5954,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml"><code>gbo-pdp.yaml</code></a></td>
-<td>The demo has a <abbr title="Policy Administration Point">PAP</abbr> and bundles with split roles (<a href="../increments/#sl-44">SL-44</a>). It has no signed bundles and no policy authority. Management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
+<td>The demo has a <abbr title="Policy Administration Point">PAP</abbr> and bundles with split roles (<a href="../increments/#sl-44">SL-44</a>). It has no signed bundles and no policy authority. Management stays with each source holder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
 </tr>
 </tbody>
 </table>
@@ -6063,7 +6063,7 @@ decision that it was ported to:</p>
 </tr>
 <tr>
 <td>RAGAP-6</td>
-<td>Bronhouder onboarding toolkit</td>
+<td>Source holder onboarding toolkit</td>
 <td>—</td>
 <td><a href="../../decisions/0027-onboarding-toolkit/">ADR-0027</a></td>
 <td>Not in v1. Source metadata and activation cover a part of it (<a href="../increments/#sl-46">SL-46</a>).</td>

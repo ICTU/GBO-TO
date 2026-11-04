@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4391,7 +4391,7 @@
   <a href="#f-17" class="md-nav__link">
     <span class="md-ellipsis">
       
-        F-17: Scope descriptions in the toestemmingsportaal are hard-coded
+        F-17: Scope descriptions in the consent portal are hard-coded
       
     </span>
   </a>
@@ -5138,7 +5138,7 @@
 <ul>
 <li><strong>Status</strong>: closed</li>
 <li><strong>Point</strong>: one policy engine served every request. So the demo implied a central <abbr title="Policy Decision Point">PDP</abbr>, while <abbr title="Policy Decision Point">PDP</abbr> placement was an open design question.</li>
-<li><strong>Outcome</strong>: <a href="../answered-questions/#q-02">Q-02</a> set the direction: federated by default, with a <abbr title="Policy Decision Point">PDP</abbr> per bronhouder, and a central adapter variant as fallback. In demo v0.9.0, the <abbr title="Policy Decision Point">PDP</abbr> sits behind the Inway of each source.</li>
+<li><strong>Outcome</strong>: <a href="../answered-questions/#q-02">Q-02</a> set the direction: federated by default, with a <abbr title="Policy Decision Point">PDP</abbr> per source holder (bronhouder), and a central adapter variant as fallback. In demo v0.9.0, the <abbr title="Policy Decision Point">PDP</abbr> sits behind the Inway of each source.</li>
 <li><strong>Landed in</strong>: <a href="../../decisions/0004-federated-authorization/">ADR-0004</a>, <a href="../answered-questions/#q-02">Q-02</a>.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml"><code>docker-compose.yml</code></a></li>
 </ul>
@@ -5182,7 +5182,7 @@
 <li>The legal identity comes from the certificate (<a href="#f-60">F-60</a>).</li>
 <li><a href="../answered-questions/#q-07">Q-07</a> answers the question of the PKIoverheid anchor.</li>
 <li>No source asks for a certificate-bound token (RFC 8705). FR-34 v0.9 asks for a binding only outside the secure connection.</li>
-<li>The review found a further gap: nothing proves that the browser initiation comes from the dienstverlener (FR-34, criterion 1). Demo issue <a href="https://github.com/ICTU/GBO-demo/issues/427">#427</a>, <a href="../../requirements/consent/#req-111">REQ-111</a>, and <a href="../open-questions/#q-60">Q-60</a> record this gap.</li>
+<li>The review found a further gap: nothing proves that the browser initiation comes from the service provider (dienstverlener) (FR-34, criterion 1). Demo issue <a href="https://github.com/ICTU/GBO-demo/issues/427">#427</a>, <a href="../../requirements/consent/#req-111">REQ-111</a>, and <a href="../open-questions/#q-60">Q-60</a> record this gap.</li>
 </ul>
 </li>
 <li><strong>Landed in</strong>: <a href="../../requirements/sources-identity/#req-46">REQ-46</a>, <a href="../../requirements/sources-identity/#req-67">REQ-67</a>, <a href="../../decisions/0003-fsc-connectivity/">ADR-0003</a>, <a href="../../decisions/0023-identity-convergence/">ADR-0023</a>.</li>
@@ -5223,7 +5223,7 @@
 <ul>
 <li><strong>Status</strong>: closed</li>
 <li><strong>Point</strong>: the claim was that the DigiD token and the pseudonym must not reach the consumer either. By that claim, REQ-20 was too narrow.</li>
-<li><strong>Outcome</strong>: the GO and <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">PSA S03</a> say that the dienstverlener never gets the <abbr title="Burgerservicenummer">BSN</abbr>. It gets only a party-specific pseudonym. So REQ-20 is correct. In demo v0.9.0, the return redirect carries the signed consent proof. <a href="../open-questions/#q-01">Q-01</a> covers the form of the pseudonym.</li>
+<li><strong>Outcome</strong>: the GO and <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">PSA S03</a> say that the service provider never gets the <abbr title="Burgerservicenummer">BSN</abbr>. It gets only a party-specific pseudonym. So REQ-20 is correct. In demo v0.9.0, the return redirect carries the signed consent proof. <a href="../open-questions/#q-01">Q-01</a> covers the form of the pseudonym.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/pseudonymization/#req-20">REQ-20</a>, <a href="../../requirements/pseudonymization/#req-80">REQ-80</a>.</li>
 </ul>
 <h3 id="f-16">F-16: No single trace across consent issuance and the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query<a class="headerlink" href="#f-16" title="Permanent link">&para;</a></h3>
@@ -5233,7 +5233,7 @@
 <li><strong>Outcome</strong>: the two are separate units of work, often hours or days apart. One trace for both conflicts with OTel semantics. The audit axis between them is <code>consent_id</code>. The decision record carries <code>consent_id</code> next to the trace ID.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/logging-audit/#req-55">REQ-55</a>, <a href="../../requirements/logging-audit/#req-71">REQ-71</a>, <a href="../../decisions/0035-w3c-trace-context/">ADR-0035</a>.</li>
 </ul>
-<h3 id="f-17">F-17: Scope descriptions in the toestemmingsportaal are hard-coded<a class="headerlink" href="#f-17" title="Permanent link">&para;</a></h3>
+<h3 id="f-17">F-17: Scope descriptions in the consent portal are hard-coded<a class="headerlink" href="#f-17" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: closed</li>
 <li><strong>Point</strong>: the portal shows hard-coded scope texts, separate from what policy enforces. The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> scopes are spread over policy, a generated field map, and <code>scopeGroups.ts</code>.</li>
@@ -5448,7 +5448,7 @@
 <ul>
 <li><strong>Status</strong>: closed</li>
 <li><strong>Point</strong>: a fallback to another source's certificates made the wallet show the wrong issuer and purpose (<a href="https://github.com/ICTU/GBO-demo/pull/125">PR #125</a>).</li>
-<li><strong>Outcome</strong>: built. Every bronhouder has its own certificate set. Missing material causes a hard failure. <a href="../open-questions/#q-17">Q-17</a> and demo issue <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a> cover key management and the status list.</li>
+<li><strong>Outcome</strong>: built. Every source holder has its own certificate set. Missing material causes a hard failure. <a href="../open-questions/#q-17">Q-17</a> and demo issue <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a> cover key management and the status list.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>, <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>.</li>
 </ul>
 <h3 id="f-53">F-53: Two decision logs side by side and no designated audit source<a class="headerlink" href="#f-53" title="Permanent link">&para;</a></h3>
@@ -5469,7 +5469,7 @@
 <h3 id="f-56">F-56: The contract payload is thin: the decider sees who, not what<a class="headerlink" href="#f-56" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: closed</li>
-<li><strong>Point</strong>: the <abbr title="Federated Service Connectivity">FSC</abbr> Manager sends only the hash, the grant types, and the peer IDs to the contract decision. As a result, admission per service is not possible. Admission is per bronhouder.</li>
+<li><strong>Point</strong>: the <abbr title="Federated Service Connectivity">FSC</abbr> Manager sends only the hash, the grant types, and the peer IDs to the contract decision. As a result, admission per service is not possible. Admission is per source holder.</li>
 <li><strong>Outcome</strong>: accepted on purpose (decision of September 2, 2026). Every regime authorizes the actor and the basis per request (<a href="../../requirements/authorization/#req-48">REQ-48</a>). Since <a href="https://github.com/ICTU/GBO-demo/pull/363">PR #363</a>, no grant property authorizes anything. Admission per service runs through the catalog and the consent (<a href="../answered-questions/#q-22">Q-22</a>, demo issue <a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>). Demo issue <a href="https://github.com/ICTU/GBO-demo/issues/240">#240</a> lists the triggers to reopen this point.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/admission/#req-61">REQ-61</a>, <a href="../../decisions/0015-contract-acceptance-by-policy/">ADR-0015</a>.</li>
 </ul>
@@ -5529,7 +5529,7 @@
 <ul>
 <li><strong>Status</strong>: closed</li>
 <li><strong>Point</strong>: <abbr title="Logboek Dataverwerkingen">LDV</abbr> puts the data subject in <code>dpl.core.data_subject_id</code>. <abbr title="Logboek Dataverwerkingen">LDV</abbr> recommends a pseudonym, with an explicit type field. The read extension builds a chain from the starting application through <code>nextLogbookId</code>.</li>
-<li><strong>Outcome</strong>: this supports <a href="../../requirements/logging-audit/#req-60">REQ-60</a>: a pseudonym in the log is the recommended form. With recipient-specific pseudonyms, access across organizations can search only on the trace ID. A search on the subject is not possible. The idea that the toestemmingsportaal reads the whole chain through <code>nextLogbookId</code> does not work in <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, because <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not start the chain (<a href="../findings/#f-68">F-68</a>). Citizen access goes per controller (GDPR art. 15). Each controller logs under its own pseudonym (<a href="#f-69">F-69</a>).</li>
+<li><strong>Outcome</strong>: this supports <a href="../../requirements/logging-audit/#req-60">REQ-60</a>: a pseudonym in the log is the recommended form. With recipient-specific pseudonyms, access across organizations can search only on the trace ID. A search on the subject is not possible. The consent portal (toestemmingsportaal) cannot read the whole chain through <code>nextLogbookId</code> in <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, because <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not start the chain (<a href="../findings/#f-68">F-68</a>). Citizen access goes per controller (GDPR art. 15). Each controller logs under its own pseudonym (<a href="#f-69">F-69</a>).</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/logging-audit/#req-60">REQ-60</a>, <a href="../../requirements/logging-audit/#req-72">REQ-72</a>, <a href="../open-questions/#q-01">Q-01</a>, <a href="../open-questions/#q-08">Q-08</a>, <a href="../../decisions/0026-ldv-integration/">ADR-0026</a>.</li>
 </ul>
 <h3 id="f-66">F-66: Erratum: the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> seal and the Access CA were confused with PKIoverheid<a class="headerlink" href="#f-66" title="Permanent link">&para;</a></h3>
@@ -5562,7 +5562,7 @@
 <h3 id="f-73">F-73: The actor binding of consent assumes that the consumer calls itself, and an integrator breaks that assumption<a class="headerlink" href="#f-73" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: closed</li>
-<li><strong>Point</strong>: the consent proof binds the consumer to the transport caller. FR-18 and FR-37 v0.9 let an integrator call as a processor for the dienstverlener, with its own identity. In that case, the binding fails, or it needs an exception that empties it.</li>
+<li><strong>Point</strong>: the consent proof binds the consumer to the transport caller. FR-18 and FR-37 v0.9 let an integrator call as a processor for the service provider, with its own identity. In that case, the binding fails, or it needs an exception that empties it.</li>
 <li><strong>Outcome</strong>: FR-37 v0.9, criterion 4, and <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a> answer the design: the decision uses both the acting party and the represented party. The consent binds the represented party. The integrator connects under an <abbr title="Federated Service Connectivity">FSC</abbr> delegated grant and needs a registered mandate. Demo issue <a href="https://github.com/ICTU/GBO-demo/issues/379">#379</a> built this. In demo v0.9.0, the autosign policy admits a registered delegation pair. The broad representation model stays with PSA B-19.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/consent/#req-106">REQ-106</a>, <a href="../../requirements/admission/#av-06">AV-06</a>, <a href="../answered-questions/#q-12">Q-12</a>, <a href="../open-questions/#q-46">Q-46</a>, <a href="../../decisions/0034-integrator-delegation/">ADR-0034</a>.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/integrator.md"><code>docs/integrator.md</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L119-L124"><code>policies/fsc/autosign.rego#L119-L124</code></a></li>
@@ -5571,7 +5571,7 @@
 <ul>
 <li><strong>Status</strong>: resolved in demo</li>
 <li><strong>Point</strong>: the <abbr title="Policy Decision Point">PDP</abbr> bound rules to field keys <code>Type.field</code> (<a href="../../requirements/authorization/#req-17">REQ-17</a>), without the service. <code>Query.ingeschrevenPersoon</code> is in the <code>bri</code> schema and in the <code>brp</code> schema. As a result, EUD0001 also applied on <code>brp</code>. A designated issuer that asked only <code>__typename</code> there learned whether a person exists and is a resident.</li>
-<li><strong>Outcome</strong>: since <a href="https://github.com/ICTU/GBO-demo/pull/527">PR #527</a>, every rule names the <abbr title="Federated Service Connectivity">FSC</abbr> services it applies to, and a test enforces this. Regime and fields decide which rule judges a field, and the service is the third axis. A <abbr title="Policy Decision Point">PDP</abbr> that serves one source with several schemas also needs this axis. The TO proposes it for PSA S05 and for the guideline for bronhouders.</li>
+<li><strong>Outcome</strong>: since <a href="https://github.com/ICTU/GBO-demo/pull/527">PR #527</a>, every rule names the <abbr title="Federated Service Connectivity">FSC</abbr> services it applies to, and a test enforces this. Regime and fields decide which rule judges a field, and the service is the third axis. A <abbr title="Policy Decision Point">PDP</abbr> that serves one source with several schemas also needs this axis. The TO proposes it for PSA S05 and for the guideline for source holders.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/authorization/#req-97">REQ-97</a>, <a href="../../requirements/authorization/#req-74">REQ-74</a>, <a href="../../decisions/0009-closed-world-rules/">ADR-0009</a>.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L497"><code>policies/gbo/engine_test.rego#L497</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego#L23"><code>asi0001.rego#L23</code></a></li>
 </ul>

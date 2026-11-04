@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-0024-canonical-semantic-models-per-bronhouder" class="md-skip">
+        <a href="#adr-0024-canonical-semantic-models-per-source-holder" class="md-skip">
           Ga naar inhoud
         </a>
       
@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -4565,13 +4565,13 @@
   
 
 
-<h1 id="adr-0024-canonical-semantic-models-per-bronhouder">ADR-0024: Canonical semantic models per bronhouder<a class="headerlink" href="#adr-0024-canonical-semantic-models-per-bronhouder" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0024-canonical-semantic-models-per-source-holder">ADR-0024: Canonical semantic models per source holder<a class="headerlink" href="#adr-0024-canonical-semantic-models-per-source-holder" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: proposed</li>
 <li>Date: 2026-08-24</li>
 <li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">S10</a>, <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-14</a>, <a href="https://ictu.github.io/GBO-GO/main/#f4-semantiek-eenheid-van-taal">GO F4</a></li>
 <li>Deliberation: reference architecture v0.6.2, gap 3 (archived and unpublished)</li>
-<li>Implemented in: partially. The GraphQL schemas of the sources come from the <a href="https://github.com/ICTU/gbo-semantiek">gbo-semantiek bronprofielen</a>. No route serializations other than SD-JWT VC exist.</li>
+<li>Implemented in: partially. The GraphQL schemas of the sources come from the <a href="https://github.com/ICTU/gbo-semantiek">gbo-semantiek source profiles (bronprofielen)</a>. No route serializations other than SD-JWT VC exist.</li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
 <p>The same gegevens must appear in three forms:</p>
@@ -4583,7 +4583,7 @@
 <p>If no canonical model per source exists, every route grows its own
 mapping.</p>
 <h2 id="proposed-decision">Proposed decision<a class="headerlink" href="#proposed-decision" title="Permanent link">&para;</a></h2>
-<p>The bronprofiel GraphQL schema is the canonical model per source. The
+<p>The source profile GraphQL schema is the canonical model per source. The
 <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-Semantiek track maintains this schema. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> generates or defines the
 route serializations from it:</p>
 <ul>
@@ -4595,7 +4595,7 @@ route serializations from it:</p>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
 <p>These points are open:</p>
 <ul>
-<li>The governance between the schemas of the bronhouders and the central
+<li>The governance between the schemas of the source holders (bronhouders) and the central
   semantics track.</li>
 <li>The mapping coverage for the evidence types of the <abbr title="Once-Only Technical System">OOTS</abbr> Semantic
   Repository.</li>
