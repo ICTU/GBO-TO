@@ -4802,7 +4802,7 @@ citizen or company through the Once-Only Technical System. The design is
 an <abbr title="Once-Only Technical System">OOTS</abbr> adapter at the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> edge
 (<a href="../../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>,
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter">PSA S08</a>).
-eDelivery AS4 exists only at the edge. The source holder (bronhouder) sees a normal <abbr title="Federated Service Connectivity">FSC</abbr>
+eDelivery AS4 exists only at the edge. The bronhouder sees a normal <abbr title="Federated Service Connectivity">FSC</abbr>
 request through the standard <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> chain. It is open who builds the
 adapter (<a href="../../traceability/open-questions/#q-79">Q-79</a>).</p>
 <div class="mermaid">sequenceDiagram
@@ -4889,7 +4889,8 @@ enters the <abbr title="Person Identification Data">PID</abbr> regime and fails 
 <p>The <abbr title="Once-Only Technical System">OOTS</abbr> design has these open points:</p>
 <ul>
 <li>It is open who builds the adapter: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, or the <abbr title="Once-Only Technical System">OOTS</abbr>-V operator with the
-  <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> interface (<a href="../../traceability/open-questions/#q-79">Q-79</a>).</li>
+  <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> interface (<a href="../../traceability/open-questions/#q-79">Q-79</a>). <abbr title="Once-Only Technical System">OOTS</abbr>-V
+  is the part of the Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr> that receives evidence requests.</li>
 <li>The regime and the evidence for an <abbr title="Once-Only Technical System">OOTS</abbr> request are open
   (<a href="../../requirements/authorization/#req-74">REQ-74</a>,
   <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>). If an <abbr title="Once-Only Technical System">OOTS</abbr>
@@ -4977,7 +4978,7 @@ carries no presentation load. For the issuance itself, see
 <li>Trust uses the development CA chain. The test wallet and the demo
   verifiers trust the development issuer CA.</li>
 <li>Every attestation is valid for 365 days. A status list exists per type,
-  but revocation on instruction of the source holder is not built
+  but revocation on instruction of the bronhouder is not built
   (<a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>).</li>
 </ul>
 <h3 id="open-points_2">Open points<a class="headerlink" href="#open-points_2" title="Permanent link">&para;</a></h3>
@@ -4987,7 +4988,7 @@ carries no presentation load. For the issuance itself, see
   (<a href="../../traceability/open-questions/#q-30">Q-30</a>) and the designation of
   the Dutch <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuer (<a href="../../traceability/open-questions/#q-28">Q-28</a>)
   are open. In production, the relying party verifies the seal of the
-  source holder as <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical facility
+  bronhouder as <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical facility
   (<a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>).
   <a href="../../decisions/0023-identity-convergence/">ADR-0023</a> proposes the EUDI
   certificate roles.</li>

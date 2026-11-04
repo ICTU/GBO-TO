@@ -5138,7 +5138,7 @@
 <ul>
 <li><strong>Status</strong>: closed</li>
 <li><strong>Point</strong>: one policy engine served every request. So the demo implied a central <abbr title="Policy Decision Point">PDP</abbr>, while <abbr title="Policy Decision Point">PDP</abbr> placement was an open design question.</li>
-<li><strong>Outcome</strong>: <a href="../answered-questions/#q-02">Q-02</a> set the direction: federated by default, with a <abbr title="Policy Decision Point">PDP</abbr> per source holder (bronhouder), and a central adapter variant as fallback. In demo v0.9.0, the <abbr title="Policy Decision Point">PDP</abbr> sits behind the Inway of each source.</li>
+<li><strong>Outcome</strong>: <a href="../answered-questions/#q-02">Q-02</a> set the direction: federated by default, with a <abbr title="Policy Decision Point">PDP</abbr> per bronhouder, and a central adapter variant as fallback. In demo v0.9.0, the <abbr title="Policy Decision Point">PDP</abbr> sits behind the Inway of each source.</li>
 <li><strong>Landed in</strong>: <a href="../../decisions/0004-federated-authorization/">ADR-0004</a>, <a href="../answered-questions/#q-02">Q-02</a>.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml"><code>docker-compose.yml</code></a></li>
 </ul>
@@ -5259,7 +5259,7 @@
 <ul>
 <li><strong>Status</strong>: closed</li>
 <li><strong>Point</strong>: the PSA named no <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component that consumes the catalog (a "catalog broker").</li>
-<li><strong>Outcome</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has no catalog broker. PSA B-03 sets federated content management with a common profile for findability (<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">PSA vraagstukken</a>). S07 and <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">S10</a> agree. The source owns its service description (<a href="../findings/#f-57">F-57</a>). The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> catalog follows <a href="../findings/#f-74">F-74</a>.</li>
+<li><strong>Outcome</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has no catalog broker. PSA B-03 sets federated content management with a common profile for findability (<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">PSA open decisions</a>). S07 and <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">S10</a> agree. The source owns its service description (<a href="../findings/#f-57">F-57</a>). The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> catalog follows <a href="../findings/#f-74">F-74</a>.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a>.</li>
 </ul>
 <h3 id="f-22">F-22: The catalog runtime pattern for the <abbr title="Policy Decision Point">PDP</abbr> was undecided<a class="headerlink" href="#f-22" title="Permanent link">&para;</a></h3>
@@ -5361,7 +5361,7 @@
 <ul>
 <li><strong>Status</strong>: resolved in demo</li>
 <li><strong>Point</strong>: <abbr title="Federated Service Connectivity">FSC</abbr> grants are per service and per peer. A sector grant needs a contract per peer or a policy attribute.</li>
-<li><strong>Outcome</strong>: the demo did not continue the sector branch. The removed REQ-33 and REQ-34 carried it. Admission comes from the admission register and the contract decision of the <abbr title="Policy Decision Point">PDP</abbr> (<a href="#f-55">F-55</a>). Demo issue <a href="https://github.com/ICTU/GBO-demo/issues/378">#378</a> removed <code>sector-pip</code>.</li>
+<li><strong>Outcome</strong>: the demo did not continue the sector branch. The removed REQ-33 and REQ-34 carried it. Admission comes from the admission register (toelatingsregister) and the contract decision of the <abbr title="Policy Decision Point">PDP</abbr> (<a href="#f-55">F-55</a>). Demo issue <a href="https://github.com/ICTU/GBO-demo/issues/378">#378</a> removed <code>sector-pip</code>.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/admission/#req-61">REQ-61</a>, <a href="../../decisions/0022-sector-grants/">ADR-0022</a> (history).</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/CHANGELOG.md#L779-L786"><code>CHANGELOG.md#L779-L786</code></a></li>
 </ul>
@@ -5448,7 +5448,7 @@
 <ul>
 <li><strong>Status</strong>: closed</li>
 <li><strong>Point</strong>: a fallback to another source's certificates made the wallet show the wrong issuer and purpose (<a href="https://github.com/ICTU/GBO-demo/pull/125">PR #125</a>).</li>
-<li><strong>Outcome</strong>: built. Every source holder has its own certificate set. Missing material causes a hard failure. <a href="../open-questions/#q-17">Q-17</a> and demo issue <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a> cover key management and the status list.</li>
+<li><strong>Outcome</strong>: built. Every bronhouder has its own certificate set. Missing material causes a hard failure. <a href="../open-questions/#q-17">Q-17</a> and demo issue <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a> cover key management and the status list.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>, <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>.</li>
 </ul>
 <h3 id="f-53">F-53: Two decision logs side by side and no designated audit source<a class="headerlink" href="#f-53" title="Permanent link">&para;</a></h3>
@@ -5469,7 +5469,7 @@
 <h3 id="f-56">F-56: The contract payload is thin: the decider sees who, not what<a class="headerlink" href="#f-56" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: closed</li>
-<li><strong>Point</strong>: the <abbr title="Federated Service Connectivity">FSC</abbr> Manager sends only the hash, the grant types, and the peer IDs to the contract decision. As a result, admission per service is not possible. Admission is per source holder.</li>
+<li><strong>Point</strong>: the <abbr title="Federated Service Connectivity">FSC</abbr> Manager sends only the hash, the grant types, and the peer IDs to the contract decision. As a result, admission per service is not possible. Admission is per bronhouder.</li>
 <li><strong>Outcome</strong>: accepted on purpose (decision of September 2, 2026). Every regime authorizes the actor and the basis per request (<a href="../../requirements/authorization/#req-48">REQ-48</a>). Since <a href="https://github.com/ICTU/GBO-demo/pull/363">PR #363</a>, no grant property authorizes anything. Admission per service runs through the catalog and the consent (<a href="../answered-questions/#q-22">Q-22</a>, demo issue <a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>). Demo issue <a href="https://github.com/ICTU/GBO-demo/issues/240">#240</a> lists the triggers to reopen this point.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/admission/#req-61">REQ-61</a>, <a href="../../decisions/0015-contract-acceptance-by-policy/">ADR-0015</a>.</li>
 </ul>
@@ -5555,7 +5555,7 @@
 <h3 id="f-69">F-69: A pseudonym that travels across the chain lands in the logbooks of two controllers<a class="headerlink" href="#f-69" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: resolved in demo</li>
-<li><strong>Point</strong>: the source source gateway logged the <abbr title="Polymorphic identity">PI</abbr> that it received from the consumer. The same <abbr title="Polymorphic identity">PI</abbr> was then in the consumer logbook and in the source logbook. A reader with access to both logbooks can join them on the person as well as on the trace.</li>
+<li><strong>Point</strong>: the source gateway logged the <abbr title="Polymorphic identity">PI</abbr> that it received from the consumer. The same <abbr title="Polymorphic identity">PI</abbr> was then in the consumer logbook and in the source logbook. A reader with access to both logbooks can join them on the person as well as on the trace.</li>
 <li><strong>Outcome</strong>: <a href="../../requirements/logging-audit/#req-72">REQ-72</a> states that each controller logs under a pseudonym from its own pseudonym space. A controller never logs under an identifier that the caller sends. The demo fixed this in demo issue <a href="https://github.com/ICTU/GBO-demo/issues/367">#367</a> through <a href="https://github.com/ICTU/GBO-demo/pull/366">PR #366</a>. Since <a href="../increments/#sl-51">SL-51</a>, the cause is gone. No pseudonym travels: the consumer sends a placeholder (<a href="../findings/#f-76">F-76</a>).</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/logging-audit/#req-72">REQ-72</a>, <a href="../../decisions/0026-ldv-integration/">ADR-0026</a>.</li>
 </ul>
@@ -5571,7 +5571,7 @@
 <ul>
 <li><strong>Status</strong>: resolved in demo</li>
 <li><strong>Point</strong>: the <abbr title="Policy Decision Point">PDP</abbr> bound rules to field keys <code>Type.field</code> (<a href="../../requirements/authorization/#req-17">REQ-17</a>), without the service. <code>Query.ingeschrevenPersoon</code> is in the <code>bri</code> schema and in the <code>brp</code> schema. As a result, EUD0001 also applied on <code>brp</code>. A designated issuer that asked only <code>__typename</code> there learned whether a person exists and is a resident.</li>
-<li><strong>Outcome</strong>: since <a href="https://github.com/ICTU/GBO-demo/pull/527">PR #527</a>, every rule names the <abbr title="Federated Service Connectivity">FSC</abbr> services it applies to, and a test enforces this. Regime and fields decide which rule judges a field, and the service is the third axis. A <abbr title="Policy Decision Point">PDP</abbr> that serves one source with several schemas also needs this axis. The TO proposes it for PSA S05 and for the guideline for source holders.</li>
+<li><strong>Outcome</strong>: since <a href="https://github.com/ICTU/GBO-demo/pull/527">PR #527</a>, every rule names the <abbr title="Federated Service Connectivity">FSC</abbr> services it applies to, and a test enforces this. Regime and fields decide which rule judges a field, and the service is the third axis. A <abbr title="Policy Decision Point">PDP</abbr> that serves one source with several schemas also needs this axis. The TO proposes it for PSA S05 and for the guideline for bronhouders.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/authorization/#req-97">REQ-97</a>, <a href="../../requirements/authorization/#req-74">REQ-74</a>, <a href="../../decisions/0009-closed-world-rules/">ADR-0009</a>.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L497"><code>policies/gbo/engine_test.rego#L497</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego#L23"><code>asi0001.rego#L23</code></a></li>
 </ul>

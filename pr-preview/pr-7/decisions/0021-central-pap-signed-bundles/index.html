@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-0021-policy-management-and-distribution-per-source-holder" class="md-skip">
+        <a href="#adr-0021-policy-management-and-distribution-per-bronhouder" class="md-skip">
           Ga naar inhoud
         </a>
       
@@ -4576,7 +4576,7 @@
   
 
 
-<h1 id="adr-0021-policy-management-and-distribution-per-source-holder">ADR-0021: Policy management and distribution per source holder<a class="headerlink" href="#adr-0021-policy-management-and-distribution-per-source-holder" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0021-policy-management-and-distribution-per-bronhouder">ADR-0021: Policy management and distribution per bronhouder<a class="headerlink" href="#adr-0021-policy-management-and-distribution-per-bronhouder" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: accepted</li>
 <li>Date: 2026-08-24 (proposed as "Policy distribution through a central <abbr title="Policy Administration Point">PAP</abbr> with signed bundles", rewritten and accepted 2026-11-02)</li>
@@ -4585,19 +4585,19 @@
 <li>Implemented in: opt-in Manager profile: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml">bundles/gbo-pdp.yaml</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/pdp-bundle.cedar">authz/pdp-bundle.cedar</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/seed-openftv-manager.py#L116">scripts/seed-openftv-manager.py</a> (retire, never delete), and validation in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L92-L117">Makefile</a> (<code>policy-check</code>, <code>policy-test</code>)</li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>Each source holder (bronhouder) runs its own <abbr title="Policy Decision Point">PDP</abbr>
+<p>Each bronhouder runs its own <abbr title="Policy Decision Point">PDP</abbr>
 (<a href="../0004-federated-authorization/">ADR-0004</a>). Someone must write the
 policy for that <abbr title="Policy Decision Point">PDP</abbr>, publish it, and deliver it to the <abbr title="Policy Decision Point">PDP</abbr> with integrity.
 The earlier proposal put a central <abbr title="Policy Administration Point">PAP</abbr> at <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>: a central registry, signed
-bundles, and governance in the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> gremia.</p>
+bundles, and governance in the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> standards bodies.</p>
 <p><a href="../../traceability/answered-questions/#q-21">Q-21</a> asked who can manage and
-publish the policy of a source holder. The answer is that policy
-management stays with each source holder. The policy belongs to the source
+publish the policy of a bronhouder. The answer is that policy
+management stays with each bronhouder. The policy belongs to the source
 (P-10). Bundle signing inside one organization is not planned
 (<a href="https://github.com/ICTU/GBO-demo/issues/426">#426</a>).</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The <abbr title="Policy Administration Point">PAP</abbr> and the <abbr title="Policy Decision Point">PDP</abbr> are at each source holder. The source holder
+<li>The <abbr title="Policy Administration Point">PAP</abbr> and the <abbr title="Policy Decision Point">PDP</abbr> are at each bronhouder. The bronhouder
   writes, approves, and publishes its own policy. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has no central <abbr title="Policy Administration Point">PAP</abbr>.</li>
 <li><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> supplies guidance and no service. The guidance is a reference
   policy set, the engine choice (<a href="../0002-opa-rego-authzen/">ADR-0002</a>),
@@ -4616,18 +4616,18 @@ management stays with each source holder. The policy belongs to the source
 </ul>
 </li>
 <li>A bundle is signed only when it crosses an organization boundary.
-  Inside one organization, signing is not planned. If a source holder lets
+  Inside one organization, signing is not planned. If a bronhouder lets
   another organization build or host its bundles, signing and
   verification become a requirement.</li>
 </ul>
 <h2 id="considered-options">Considered options<a class="headerlink" href="#considered-options" title="Permanent link">&para;</a></h2>
 <p>This decision compared three options:</p>
 <ol>
-<li>Policy management per source holder (chosen). This option fits P-10
-   and the federated <abbr title="Policy Decision Point">PDP</abbr>. Each source holder carries the governance cost.</li>
+<li>Policy management per bronhouder (chosen). This option fits P-10
+   and the federated <abbr title="Policy Decision Point">PDP</abbr>. Each bronhouder carries the governance cost.</li>
 <li>A central <abbr title="Policy Administration Point">PAP</abbr> with signed bundles (the earlier proposal). This option
    gives one place to author and approve policy. But it puts the policy
-   of the source holder under another organization, and it needs signing
+   of the bronhouder under another organization, and it needs signing
    across that boundary.</li>
 <li>Policy baked into the <abbr title="Policy Decision Point">PDP</abbr> image. This option has no lifecycle: no
    version, no withdrawal, and no validation before activation

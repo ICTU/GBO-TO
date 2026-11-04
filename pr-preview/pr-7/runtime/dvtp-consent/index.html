@@ -4557,8 +4557,9 @@
 
 
 <h1 id="dvtp-the-citizen-gives-consent"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: the citizen gives consent<a class="headerlink" href="#dvtp-the-citizen-gives-consent" title="Permanent link">&para;</a></h1>
-<p>A citizen at a private consumer (dienstverlener) goes to the
-consent portal (toestemmingsportaal), logs in, and gives consent for one or more data sets.
+<p>In <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, the consumer is a private service provider (dienstverlener). A
+citizen at the consumer goes to the consent portal (toestemmingsportaal),
+logs in, and gives consent for one or more data sets.
 The result is a consent record in the consent register (toestemmingsregister) and a signed
 consent proof. The proof goes back to the consumer. The consumer uses the
 proof in <a href="../dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a>.</p>
@@ -4851,7 +4852,7 @@ error paths:</p>
 </tr>
 <tr>
 <td>A requested scope that the portal cannot describe</td>
-<td>No redirect. The citizen sees "Onbekend verzoek" and cannot consent (<a href="../../requirements/consent/#req-119">REQ-119</a> gap)</td>
+<td>No redirect. The citizen sees an unknown request (shown as "Onbekend verzoek") and cannot consent (<a href="../../requirements/consent/#req-119">REQ-119</a> gap)</td>
 <td>The scope is in <code>unknown</code> of <code>requestedScopeGroups</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/tests/scopeGroups.test.mjs#L16"><code>scopeGroups.test.mjs#L16</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L63-L75"><code>PortaalConsent.tsx#L63-L75</code></a></td>
 </tr>

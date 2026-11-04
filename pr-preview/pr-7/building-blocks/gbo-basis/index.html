@@ -1014,7 +1014,7 @@
   <a href="#what-the-bronhouder-runs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What the source holder runs
+        What the bronhouder runs
       
     </span>
   </a>
@@ -4578,10 +4578,10 @@
 
 <h1 id="gbo-basis"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis<a class="headerlink" href="#gbo-basis" title="Permanent link">&para;</a></h1>
 <p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis opens a government source in one standard way, for every
-channel. It runs at the source holder (bronhouder): each source has its own <abbr title="Federated Service Connectivity">FSC</abbr> Inway, its
+channel. It runs at the bronhouder: each source has its own <abbr title="Federated Service Connectivity">FSC</abbr> Inway, its
 own <abbr title="Policy Decision Point">PDP</abbr> and its own source gateway. No central server decides for all
 sources (<a href="../../decisions/0004-federated-authorization/">ADR-0004</a>).
-<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers the components, and the source holder runs them
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers the components, and the bronhouder runs them
 (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>).</p>
 <p><a href="../">Overview</a> › <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</p>
 <h2 id="inside-gbo-basis">Inside <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis<a class="headerlink" href="#inside-gbo-basis" title="Permanent link">&para;</a></h2>
@@ -4590,7 +4590,7 @@ access, configurable authorization, and <abbr title="Gemeenschappelijke Brononts
 shows the components that make up these parts in gbo-demo v0.9.0:</p>
 <div class="mermaid">flowchart LR
   caller["Caller&lt;br/&gt;(any channel)"]
-  subgraph bh["Source holder"]
+  subgraph bh["Bronhouder"]
     direction LR
     subgraph fsc["Standard interface: FSC"]
       direction TB
@@ -4697,7 +4697,7 @@ shows the components that make up these parts in gbo-demo v0.9.0:</p>
 <tr>
 <td>Policy rules</td>
 <td>Policy set, its tests and its distribution</td>
-<td>The rules are data for the <abbr title="Policy Decision Point">PDP</abbr>. Each source holder manages its own set.</td>
+<td>The rules are data for the <abbr title="Policy Decision Point">PDP</abbr>. Each bronhouder manages its own set.</td>
 <td><a href="policy/">Policy rules</a></td>
 </tr>
 <tr>
@@ -4715,7 +4715,7 @@ shows the components that make up these parts in gbo-demo v0.9.0:</p>
 <tr>
 <td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> tools</td>
 <td>Translation layer, onboarding toolkit</td>
-<td>Help a source holder without a GraphQL API. Not built.</td>
+<td>Help a bronhouder without a GraphQL API. Not built.</td>
 <td><a href="../../decisions/0027-onboarding-toolkit/">ADR-0027</a></td>
 </tr>
 </tbody>
@@ -4729,7 +4729,7 @@ work only after an allow:</p>
   box rgb(241,239,232) Channel
     participant C as Caller
   end
-  box rgb(220,252,231) GBO Basis at the source holder
+  box rgb(220,252,231) GBO Basis at the bronhouder
     participant IN as FSC Inway (PEP)
     participant PDP as PDP
     participant GW as Source gateway
@@ -4783,12 +4783,12 @@ work only after an allow:</p>
    (<a href="../../requirements/authorization/#req-08">REQ-08</a>). It logs the
    processing in its own <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook.</li>
 </ol>
-<h2 id="what-the-bronhouder-runs">What the source holder runs<a class="headerlink" href="#what-the-bronhouder-runs" title="Permanent link">&para;</a></h2>
-<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers the components as reference components. The source holder
+<h2 id="what-the-bronhouder-runs">What the bronhouder runs<a class="headerlink" href="#what-the-bronhouder-runs" title="Permanent link">&para;</a></h2>
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers the components as reference components. The bronhouder
 chooses to run them, or a working equivalent that meets the same
 interfaces. The following figure shows who owns what at one source:</p>
 <div class="mermaid">flowchart TB
-  subgraph own["Owned by the source holder"]
+  subgraph own["Owned by the bronhouder"]
     direction LR
     api[("Source API&lt;br/&gt;and schema")]
     meta[("Service description")]
@@ -4796,7 +4796,7 @@ interfaces. The following figure shows who owns what at one source:</p>
     log[("LDV logbook")]
     pol("Policy set&lt;br/&gt;and its management")
   end
-  subgraph deliv["Delivered by GBO, run by the source holder"]
+  subgraph deliv["Delivered by GBO, run by the bronhouder"]
     direction LR
     inway("FSC Inway")
     pdp("PDP")
@@ -4830,7 +4830,7 @@ interfaces. The following figure shows who owns what at one source:</p>
   style run fill:#F4F5F7,stroke:#D1D5DB</div>
 <p class="caption"><em>Figure 3: Ownership at one source.</em></p>
 <p>The <abbr title="Policy Enforcement Point">PEP</abbr>, the <abbr title="Policy Decision Point">PDP</abbr>, policy management and source access are decentral, at
-the source holder. The consent facility (toestemmingsvoorziening) is central and mandatory for
+the bronhouder. The consent facility (toestemmingsvoorziening) is central and mandatory for
 <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> (<a href="../../traceability/answered-questions/#q-10">Q-10</a>,
 <a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>). The PSA
 has not decided who operates the central facilities (open decisions

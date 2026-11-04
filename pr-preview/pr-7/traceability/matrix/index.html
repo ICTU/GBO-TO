@@ -4641,7 +4641,7 @@
 <p>This matrix lists the design elements of four sources:</p>
 <ul>
 <li>the Globaal Ontwerp (GO),</li>
-<li>the Project Start Architectuur (PSA),</li>
+<li>the Projectstartarchitectuur (PSA),</li>
 <li>the functional requirements for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9),</li>
 <li>the EUDI regulation.</li>
 </ul>
@@ -4845,7 +4845,7 @@ with production infrastructure. Three examples of such rows are:</p>
   link.</li>
 </ul>
 <h2 id="architecture-principles">Architecture principles (P-01 to P-16)<a class="headerlink" href="#architecture-principles" title="Permanent link">&para;</a></h2>
-<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA architectuurprincipes</a>.
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA architecture principles</a>.
 These principles are invariants: the demo must not break them.</p>
 <table>
 <thead>
@@ -4933,7 +4933,7 @@ These principles are invariants: the demo must not break them.</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a></td>
-<td>Data sovereignty: the source holder (bronhouder) keeps control</td>
+<td>Data sovereignty: the bronhouder keeps control</td>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L101"><code>source_metadata.go#L101</code></a> (validation of the source description), <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L171"><code>autosign.rego#L171</code></a></td>
@@ -4990,7 +4990,7 @@ These principles are invariants: the demo must not break them.</p>
 </tbody>
 </table>
 <h2 id="design-principles">Design principles (D-01 to D-14)<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h2>
-<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">PSA ontwerpprincipes</a>.</p>
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">PSA design principles</a>.</p>
 <table>
 <thead>
 <tr>
@@ -5009,7 +5009,7 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L773"><code>fsc-infra/docker-compose.yml#L773</code></a> (one shared <abbr title="Policy Decision Point">PDP</abbr>)</td>
-<td>One shared <abbr title="Policy Decision Point">PDP</abbr> behind all Inways is a demo shortcut. A <abbr title="Policy Decision Point">PDP</abbr> per source is possible with bundles (<a href="../increments/#sl-44">SL-44</a>). <a href="../answered-questions/#q-02">Q-02</a> is answered: federated, per source holder.</td>
+<td>One shared <abbr title="Policy Decision Point">PDP</abbr> behind all Inways is a demo shortcut. A <abbr title="Policy Decision Point">PDP</abbr> per source is possible with bundles (<a href="../increments/#sl-44">SL-44</a>). <a href="../answered-questions/#q-02">Q-02</a> is answered: federated, per bronhouder.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-02</a></td>
@@ -5118,7 +5118,7 @@ These principles are invariants: the demo must not break them.</p>
 </tbody>
 </table>
 <h2 id="generic-functions">Generic functions (F1 to F8)<a class="headerlink" href="#generic-functions" title="Permanent link">&para;</a></h2>
-<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/">PSA generieke functies</a>
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/">PSA generic functions</a>
 and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <table>
 <thead>
@@ -5258,7 +5258,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml"><code>gbo-pdp.yaml</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/seed-openftv-manager.py"><code>seed-openftv-manager.py</code></a></td>
-<td>The <abbr title="Policy Administration Point">PAP</abbr> runs at the source side and distributes versioned bundles (<a href="../../requirements/authorization/#rl-01">RL-01</a> to <a href="../../requirements/authorization/#rl-04">RL-04</a>). These RL items are guidelines: management stays with each source holder (<a href="../answered-questions/#q-21">Q-21</a>). Open: validation before activation (<a href="../findings/#f-52">F-52</a>, <a href="../../requirements/authorization/#rl-05">RL-05</a>), push distribution (<a href="../findings/#f-51">F-51</a>), and the policy version in the decision record (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>).</td>
+<td>The <abbr title="Policy Administration Point">PAP</abbr> runs at the source side and distributes versioned bundles (<a href="../../requirements/authorization/#rl-01">RL-01</a> to <a href="../../requirements/authorization/#rl-04">RL-04</a>). These RL items are guidelines: management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>). Open: validation before activation (<a href="../findings/#f-52">F-52</a>, <a href="../../requirements/authorization/#rl-05">RL-05</a>), push distribution (<a href="../findings/#f-51">F-51</a>), and the policy version in the decision record (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">S07</a></td>
@@ -5303,7 +5303,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 </tbody>
 </table>
 <h2 id="interaction-patterns">Interaction patterns<a class="headerlink" href="#interaction-patterns" title="Permanent link">&para;</a></h2>
-<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PSA interactiepatronen</a>
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PSA interaction patterns</a>
 and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <table>
 <thead>
@@ -5335,7 +5335,7 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PAT-C</a></td>
-<td>Data request by a private service provider (dienstverlener) (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</td>
+<td>Data request by a private service provider (dienstverlener) in <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../../requirements/consent/#req-14">REQ-14</a>, <a href="../../requirements/consent/#req-19">REQ-19</a></td>
@@ -5511,7 +5511,7 @@ cannot try out have the status "—".</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="../../requirements/authorization/#rl-03">RL-03</a></td>
-<td>PSA direction: content ownership apart from technical management. The <abbr title="Policy Administration Point">PAP</abbr> splits read, write and publish (<a href="../increments/#sl-44">SL-44</a>). Management stays with each source holder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
+<td>PSA direction: content ownership apart from technical management. The <abbr title="Policy Administration Point">PAP</abbr> splits read, write and publish (<a href="../increments/#sl-44">SL-44</a>). Management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-06</a></td>
@@ -5575,7 +5575,7 @@ cannot try out have the status "—".</p>
 <td>EUDI</td>
 <td>◐</td>
 <td><a href="../../requirements/eudi-issuance/#req-58">REQ-58</a></td>
-<td>The demo has a central issuance facility with a certificate set per source. Key management and seal are open (<a href="../open-questions/#q-17">Q-17</a>, <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a>). The issuer is the source holder or a designated body (<a href="../findings/#f-81">F-81</a>, <a href="../open-questions/#q-28">Q-28</a>).</td>
+<td>The demo has a central issuance facility with a certificate set per source. Key management and seal are open (<a href="../open-questions/#q-17">Q-17</a>, <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a>). The issuer is the bronhouder or a designated body (<a href="../findings/#f-81">F-81</a>, <a href="../open-questions/#q-28">Q-28</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-14</a></td>
@@ -5754,7 +5754,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalBevestiging.tsx"><code>PortaalBevestiging.tsx</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/redirectValidation.ts#L26"><code>redirectValidation.ts#L26</code></a></td>
-<td>The portal returns the citizen with the signed proof in the URL fragment, without <abbr title="Burgerservicenummer">BSN</abbr>. Only the front end checks the return address, against fixed origins (<a href="https://github.com/ICTU/GBO-demo/issues/427">#427</a>, <a href="../../requirements/consent/#req-111">REQ-111</a>). The "Annuleren" button does not return the citizen (<a href="https://github.com/ICTU/GBO-demo/issues/599">#599</a>, <a href="../open-questions/#q-44">Q-44</a>).</td>
+<td>The portal returns the citizen with the signed proof in the URL fragment, without <abbr title="Burgerservicenummer">BSN</abbr>. Only the front end checks the return address, against fixed origins (<a href="https://github.com/ICTU/GBO-demo/issues/427">#427</a>, <a href="../../requirements/consent/#req-111">REQ-111</a>). The cancel button (shown as "Annuleren") does not return the citizen (<a href="https://github.com/ICTU/GBO-demo/issues/599">#599</a>, <a href="../open-questions/#q-44">Q-44</a>).</td>
 </tr>
 <tr>
 <td>FR-15</td>
@@ -5946,7 +5946,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>○</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/main.go#L83"><code>main.go#L83</code></a> (one source per backend)</td>
-<td>The demo does not try out one consent with a rule per source holder. Each consumer backend calls one source (BD or LVG). For more information, see <a href="../findings/#f-68">F-68</a> and <a href="../open-questions/#q-76">Q-76</a>.</td>
+<td>The demo does not try out one consent with a rule per bronhouder. Each consumer backend calls one source (BD or LVG). For more information, see <a href="../findings/#f-68">F-68</a> and <a href="../open-questions/#q-76">Q-76</a>.</td>
 </tr>
 <tr>
 <td>FR-39</td>
@@ -5954,7 +5954,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml"><code>gbo-pdp.yaml</code></a></td>
-<td>The demo has a <abbr title="Policy Administration Point">PAP</abbr> and bundles with split roles (<a href="../increments/#sl-44">SL-44</a>). It has no signed bundles and no policy authority. Management stays with each source holder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
+<td>The demo has a <abbr title="Policy Administration Point">PAP</abbr> and bundles with split roles (<a href="../increments/#sl-44">SL-44</a>). It has no signed bundles and no policy authority. Management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
 </tr>
 </tbody>
 </table>
@@ -6063,7 +6063,7 @@ decision that it was ported to:</p>
 </tr>
 <tr>
 <td>RAGAP-6</td>
-<td>Source holder onboarding toolkit</td>
+<td>Bronhouder onboarding toolkit</td>
 <td>—</td>
 <td><a href="../../decisions/0027-onboarding-toolkit/">ADR-0027</a></td>
 <td>Not in v1. Source metadata and activation cover a part of it (<a href="../increments/#sl-46">SL-46</a>).</td>

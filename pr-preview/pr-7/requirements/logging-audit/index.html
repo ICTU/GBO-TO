@@ -4692,7 +4692,10 @@ ID, but they are no audit source.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>:
+  measures protect log data against unauthorized change and deletion,
+  and agreements set retention, access, inspection, and destruction
+  explicitly
   ("maatregelen beschermen loggegevens tegen ongeautoriseerde wijziging en verwijdering",
   "afspraken regelen bewaartermijnen, toegang, inzage en vernietiging expliciet").</li>
 <li><a href="https://logius-standaarden.github.io/logboek-dataverwerkingen/#gedrag-van-applicatie"><abbr title="Logboek Dataverwerkingen">LDV</abbr>, behavior of the application</a>
@@ -4740,7 +4743,9 @@ version (bundle ID with version, commit hash, image version).</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>:
+  authorization decisions refer to the applied policy version and to
+  relevant information about the legal basis
   ("autorisatiebeslissingen verwijzen naar de toegepaste beleidsversie en relevante informatie over de grondslag").</li>
 <li><a href="https://logius-standaarden.github.io/authorization-decision-log/#adl-core-policies"><abbr title="Authorization Decision Log">ADL</abbr> <code>adl.core.policies</code></a>.</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>
@@ -4785,7 +4790,7 @@ NOT be the only safeguard.</p>
 <tbody>
 <tr>
 <td>Operational log or span</td>
-<td>no <abbr title="Burgerservicenummer">BSN</abbr>. A data subject only as pseudonym or opaque reference</td>
+<td>no <abbr title="Burgerservicenummer">BSN</abbr>. A data subject (Betrokkene) only as pseudonym or opaque reference</td>
 </tr>
 <tr>
 <td><abbr title="Policy Decision Point">PDP</abbr> input, <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
@@ -4809,7 +4814,8 @@ NOT be the only safeguard.</p>
 <ul>
 <li><strong>Source</strong>: design.
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>
-  ("logging bevat niet meer persoonsgegevens dan noodzakelijk") and
+  (logging holds no more personal data than necessary: "logging bevat
+  niet meer persoonsgegevens dan noodzakelijk") and
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-03, P-04</a>.</li>
 <li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components and the
   chain that builds the <abbr title="Policy Decision Point">PDP</abbr> input. It is no requirement on the policy
@@ -4958,16 +4964,15 @@ of personal data. <a href="./#decision-audit">Decision audit</a> covers the deci
 side (<abbr title="Authorization Decision Log">ADL</abbr>). The requirement on this page covers the processing side. It is
 generic and applies to <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI issuance, and the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route.</p>
 <p>The Logius standard Logboek Dataverwerkingen (<abbr title="Logboek Dataverwerkingen">LDV</abbr>) asks for a log record
-for every processing (Dataverwerking), for each controller
-(Verantwoordelijke). Only trace metadata crosses an organization boundary.
+for every processing, for each controller. Only trace metadata crosses an organization boundary.
 The decision of a <abbr title="Policy Decision Point">PDP</abbr> is no processing. A transformation at the source,
 such as the decryption by the source gateway, is a processing
 (<a href="../../traceability/findings-closed/#f-64">F-64</a>).</p>
 <h3 id="req-72">REQ-72: A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component that processes personal data writes an <abbr title="Logboek Dataverwerkingen">LDV</abbr> log record for each processing at its controller<a class="headerlink" href="#req-72" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>Every <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component that processes data of a data subject
-(Betrokkene) MUST write a log record according to Logboek
-Dataverwerkingen for each action. It MUST write the record to the
+MUST write a log record according to
+Logboek Dataverwerkingen for each action. It MUST write the record to the
 logbook of the controller of that processing. The trace ID in that
 record MUST follow from <a href="./#req-55">REQ-55</a>. There MUST be
 a separate log record for each data subject. A further data subject of
@@ -4991,16 +4996,17 @@ party. Only trace metadata crosses an organization boundary.</p>
   and its
   <a href="https://logius-standaarden.github.io/logboek-extensie-lezen/">read extension</a>.</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>
-  (<abbr title="Logboek Dataverwerkingen">LDV</abbr> as functional frame,
+  (<abbr title="Logboek Dataverwerkingen">LDV</abbr> as functional frame, and each component records the events
+  that are relevant for its responsibility:
   "iedere component legt de gebeurtenissen vast die voor zijn verantwoordelijkheid relevant zijn").</li>
 <li><a href="https://ictu.github.io/GBO-GO/main/">GO, reused building blocks</a>.</li>
 <li>FR-31 criterion 1.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: source gateway (source gateway),
-  consent register (toestemmingsregister) and consent portal (toestemmingsportaal), EUDI adapter, and <abbr title="Authentic Source Interface Provider">ASIP</abbr>.
-  The logbook and the source application of a source holder (bronhouder) belong to that
-  source holder (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>).</li>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: source gateway (<code>bron-sidecar</code>),
+  consent register (toestemmingsregister), consent portal (toestemmingsportaal), EUDI adapter, and <abbr title="Authentic Source Interface Provider">ASIP</abbr>.
+  The logbook and the source application of a bronhouder belong to that
+  bronhouder (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>).</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/302">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#302</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/366">PR #366</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>. Code and tests:<ul>
@@ -5114,8 +5120,9 @@ transaction ID next to the trace ID.</p>
 <ul>
 <li><strong>Source</strong>: design:<ul>
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>
-  ("iedere gegevensvraag krijgt een verzoekidentificator die over de hele keten bruikbaar is",
-  standardized correlation and trace context).</li>
+  (each data request gets a request identifier that is usable over
+  the whole chain: "iedere gegevensvraag krijgt een verzoekidentificator die over de hele keten bruikbaar is",
+  and standardized correlation and trace context).</li>
 <li><a href="https://logius-standaarden.github.io/logboek-dataverwerkingen/#trace_id"><abbr title="Logboek Dataverwerkingen">LDV</abbr> <code>trace_id</code></a>.</li>
 <li><a href="https://www.w3.org/TR/trace-context/">W3C Trace Context</a>.</li>
 <li>FR-31 criterion 1 (traceable correlation references across

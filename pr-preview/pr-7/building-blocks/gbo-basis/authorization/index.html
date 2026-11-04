@@ -4690,7 +4690,7 @@ authorization server exists.</p>
 <p>The <abbr title="Policy Enforcement Point">PEP</abbr>, the <abbr title="Policy Decision Point">PDP</abbr> and two PIPs work together as follows:</p>
 <div class="mermaid">flowchart LR
   out["Outway of&lt;br/&gt;the caller"]
-  subgraph src["At the source holder"]
+  subgraph src["At the bronhouder"]
     direction LR
     pep("FSC Inway&lt;br/&gt;PEP")
     subgraph pdp["PDP: OpenFTV v0.1.0"]
@@ -4733,7 +4733,7 @@ authorization server exists.</p>
   style pdp fill:#F4F5F7,stroke:#16A34A
   click map "#from-query-to-decision" "Decision pipeline"
   click eng "#the-rules" "The rules"
-  click tr "../../dvtp/consent-service/" "Toestemmingsvoorziening"
+  click tr "../../dvtp/consent-service/" "Consent facility"
   click adm "#admission-of-parties" "Admission"</div>
 <p class="caption"><em>Figure 2: <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr> and PIPs at one source.</em></p>
 <p>The parts have these roles:</p>
@@ -4755,7 +4755,7 @@ authorization server exists.</p>
 </tr>
 <tr>
 <td>Policy</td>
-<td>Rego code that selects the regime, checks the consent proof and decides each field. The policy is data for the <abbr title="Policy Decision Point">PDP</abbr>, so a source holder (bronhouder) changes it without a new build.</td>
+<td>Rego code that selects the regime, checks the consent proof and decides each field. The policy is data for the <abbr title="Policy Decision Point">PDP</abbr>, so a bronhouder changes it without a new build.</td>
 </tr>
 <tr>
 <td><abbr title="Policy Information Point">PIP</abbr>: consent register (toestemmingsregister)</td>
@@ -4892,13 +4892,13 @@ it serves, and the fields it can grant:</p>
 <td>EUD0001</td>
 <td><abbr title="Person Identification Data">PID</abbr></td>
 <td><code>bri</code></td>
-<td>Inkomensverklaring to the wallet, years 2024 and 2025</td>
+<td>Income statement (inkomensverklaring) to the wallet, years 2024 and 2025</td>
 </tr>
 <tr>
 <td>EUD0002</td>
 <td><abbr title="Person Identification Data">PID</abbr></td>
 <td><code>brp</code></td>
-<td>Akte van overlijden to the wallet</td>
+<td>Death certificate (akte van overlijden) to the wallet</td>
 </tr>
 <tr>
 <td>ASI0001</td>

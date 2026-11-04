@@ -4557,7 +4557,8 @@
 
 
 <h1 id="dvtp-the-citizen-views-and-revokes-consents"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: the citizen views and revokes consents<a class="headerlink" href="#dvtp-the-citizen-views-and-revokes-consents" title="Permanent link">&para;</a></h1>
-<p>A logged-in citizen opens "Mijn toestemmingen" in the consent portal (toestemmingsportaal).
+<p>A logged-in citizen opens the page My consents (shown as "Mijn
+toestemmingen") in the consent portal (toestemmingsportaal).
 The portal shows the consents of the citizen with their status, and the
 citizen revokes one consent. The portal finds the consents through its own
 reference to the citizen, without a BSNk call. A revocation takes effect at
@@ -4585,14 +4586,14 @@ the requirements, see <a href="../../requirements/consent/#citizen-access">Citiz
       participant PDP as OpenFTV PDP
     end
 
-    B-&gt;&gt;PF: Log in (DigiD mock) and open Mijn toestemmingen
+    B-&gt;&gt;PF: Log in (DigiD mock) and open My consents
     PF-&gt;&gt;PB: GET /portal/consents (portal token)
     PB-&gt;&gt;PB: subject_ref = HMAC of the BSN (SUBJECT_REF_KEY)
     PB-&gt;&gt;LB: LDV record bsn-pseudonimisering,&lt;br/&gt;reason toestemmingen-inzien
     PB-&gt;&gt;CR: GET /consents?subject_ref={subject_ref}
     CR--&gt;&gt;PB: Consents of this subject_ref
     PB--&gt;&gt;PF: List with effective_status per consent
-    PF--&gt;&gt;B: Overview with Actief, Verlopen and Ingetrokken
+    PF--&gt;&gt;B: Overview with active, expired, and revoked
     B-&gt;&gt;PF: Revoke consent {id}
     PF-&gt;&gt;PB: DELETE /portal/consents/{id} (portal token)
     PB-&gt;&gt;PB: subject_ref = HMAC of the BSN
@@ -4687,7 +4688,7 @@ carries the following data:</p>
 <td>(UI)</td>
 <td>—</td>
 <td>Overview</td>
-<td>The overview shows the statuses Actief, Verlopen, and Ingetrokken (<a href="../../requirements/consent/#req-38">REQ-38</a>). The status Opgehaald is not built in demo v0.9.0 (<a href="../../traceability/open-questions/#q-42">Q-42</a>, <a href="../../traceability/findings/#f-97">F-97</a>). The overview has no export (<a href="../../requirements/consent/#req-108">REQ-108</a>, <a href="../../traceability/open-questions/#q-52">Q-52</a>)</td>
+<td>The overview shows the statuses active (shown as "Actief"), expired (shown as "Verlopen"), and revoked (shown as "Ingetrokken") (<a href="../../requirements/consent/#req-38">REQ-38</a>). The status retrieved (shown as "Opgehaald") is not built in demo v0.9.0 (<a href="../../traceability/open-questions/#q-42">Q-42</a>, <a href="../../traceability/findings/#f-97">F-97</a>). The overview has no export (<a href="../../requirements/consent/#req-108">REQ-108</a>, <a href="../../traceability/open-questions/#q-52">Q-52</a>)</td>
 </tr>
 <tr>
 <td>9</td>

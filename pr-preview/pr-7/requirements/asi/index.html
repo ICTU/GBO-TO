@@ -4856,9 +4856,9 @@ documentation of the <abbr title="Authentic Source Interface: the interface of E
 If nobody decided on a choice of the demo, the profile records it as an
 open question and does not make it a requirement.</p>
 <ul>
-<li><strong>Source</strong>: design. The source is the line on ETSI TS 119 478 in
-  "Afspraken en standaarden" of <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. The profile fills the open
-  point "PubEAA-/<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>-profielen" from the summary of S11. Matters about the
+<li><strong>Source</strong>: design. The source is the line on ETSI TS 119 478 in the
+  section on agreements and standards ("Afspraken en standaarden") of <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. The profile fills the open
+  point on <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> profiles ("PubEAA-/<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>-profielen") from the summary of S11. Matters about the
   <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider and its conditions belong to PSA open decision
   <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-14</a>.</li>
 </ul>
@@ -5199,7 +5199,8 @@ the designated intermediary.</p>
   <a href="https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj">2026/1735</a> replaces it from January 1, 2027 ("the
   verification result shall be signed or sealed … using at least … an
   advanced electronic seal based on a qualified certificate").</li>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("ETSI-profielen voor gekwalificeerde zegels").</li>
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>, on ETSI profiles for qualified seals
+  ("ETSI-profielen voor gekwalificeerde zegels").</li>
 <li>For retrieve, the requirement serves
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. A <abbr title="Qualified Trust Service Provider">QTSP</abbr> can put a retrieved value in a
   qualified attestation. It must then show in the same way that the
@@ -5461,9 +5462,10 @@ without <abbr title="Burgerservicenummer">BSN</abbr> authority that holds the to
   designate clause 6.1.3. S11 names TS 119 478 as a whole.</li>
 <li>For a <abbr title="Burgerservicenummer">BSN</abbr> that only the <abbr title="Authentic Source Interface Provider">ASIP</abbr> can read:
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">PSA S03</a>
-  ("een private afnemer zonder wettelijke <abbr title="Burgerservicenummer">BSN</abbr>-bevoegdheid ontvangt een
-  partijspecifieke identiteit of pseudoniem") and
-  <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a>.</li>
+  and <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a>.
+  Under S03, a private consumer without a statutory <abbr title="Burgerservicenummer">BSN</abbr> authority
+  gets a party-specific identity or pseudonym ("een private afnemer zonder wettelijke <abbr title="Burgerservicenummer">BSN</abbr>-bevoegdheid ontvangt een
+  partijspecifieke identiteit of pseudoniem").</li>
 <li>For the means in the token, the requirement is derived. It serves
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-05</a>:
   the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and the audit must see with which means, and so at which
@@ -5589,8 +5591,10 @@ give 503.</p>
   of a legitimate user").</li>
 <li><a href="https://www.rfc-editor.org/rfc/rfc9068">RFC 9068</a> §4, and
   <a href="https://www.rfc-editor.org/rfc/rfc9449">RFC 9449</a> §4.3 and §7.</li>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("uitgifte, verificatie en retrieval gebruiken
-  passende authenticatie, autorisatie en logging").</li>
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. Under S11, issuance, verification, and
+  retrieval use appropriate authentication, authorization, and logging
+  ("uitgifte, verificatie en retrieval gebruiken passende
+  authenticatie, autorisatie en logging").</li>
 <li>For the 503, the requirement is derived. It serves
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>: a 401 blames the <abbr title="Qualified Trust Service Provider">QTSP</abbr> for a failure on
   the side of the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
@@ -6252,7 +6256,8 @@ any source anything.</p>
   act on behalf of the authentic source".</li>
 <li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.2-07, -08, and
   REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.2.2-04 (one <code>authenticSource</code>).</li>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("de source holder (bronhouder) blijft juridisch en
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. Under S11, the bronhouder stays responsible
+  for the law and for the content ("de bronhouder blijft juridisch en
   inhoudelijk verantwoordelijk").</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>.</li>
 </ul>
@@ -6418,11 +6423,12 @@ addresses of the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.<
 <li>ETSI figure 3, steps 2 to 5. In these steps, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> finds the data
   service through the Discover Interface.</li>
 <li>The requirement is also derived. It serves
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("aansluiting op relevante vertrouwenslijsten
-  en catalogi") and
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> and
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-11</a>:
   without a record, a <abbr title="Qualified Trust Service Provider">QTSP</abbr> finds no Dutch data service for an
-  attribute.</li>
+  attribute. S11 asks for the connection to relevant trusted lists
+  and catalogues ("aansluiting op relevante vertrouwenslijsten
+  en catalogi").</li>
 </ul>
 </li>
 <li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. Interface agreement:
@@ -6507,7 +6513,8 @@ issuer.</p>
   specify the corresponding metadata of the OAuth 2.0 based
   authorization server".</li>
 <li><a href="https://www.rfc-editor.org/rfc/rfc8414">RFC 8414</a> §3.1 and §3.3.</li>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("ETSI TS 119 478 V1.1.1 voor de inrichting van
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>, which names ETSI TS 119 478 V1.1.1 for the
+  setup of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider ("ETSI TS 119 478 V1.1.1 voor de inrichting van
   de <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>-provider").</li>
 </ul>
 </li>
@@ -6647,7 +6654,8 @@ NOT lead to an identification.</p>
 <li><a href="https://eur-lex.europa.eu/eli/reg/2014/910/oj">eIDAS</a> article 5b(1) to (3). The relying party is registered
   and asks no other data than the registered data.</li>
 <li>Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj">2025/848</a> article 8.</li>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("<abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> voor presentatie of verificatie
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>, which names <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> for presentation or
+  verification where relevant ("<abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> voor presentatie of verificatie
   waar relevant").</li>
 </ul>
 </li>
@@ -6763,9 +6771,12 @@ of the data service is then the limit.</p>
 <li><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf">ETSI TS 119 478</a> clause 6.1.3.2 binds only for each operation
   (<a href="../../traceability/findings/#f-95">F-95</a>).</li>
 <li>The requirement is also derived. It serves
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("uitgifte, verificatie en retrieval gebruiken
-  passende authenticatie, autorisatie en logging") and
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> and
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>.
+  Under S11, issuance, verification, and retrieval use appropriate
+  authentication, authorization, and logging ("uitgifte, verificatie
+  en retrieval gebruiken passende authenticatie, autorisatie en
+  logging").
   Without a binding, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> can ask every attribute from the
   catalogue with the same token, also when the citizen approved
   something else.</li>
@@ -6837,7 +6848,9 @@ clause 6.2 (ISO 15000).</p>
   clause 6.2, or both.</li>
 <li>Annex IV of Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj">2026/1735</a>. For verify,
   it designates clause 6.1.1, or 6.2.3, or both.</li>
-<li>"Afspraken en standaarden" of <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> ("ETSI TS 119 478
+<li>The section on agreements and standards ("Afspraken en
+  standaarden") of <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>. It names ETSI TS 119 478 V1.1.1
+  for the setup of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider ("ETSI TS 119 478
   V1.1.1 voor de inrichting van de <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>-provider").</li>
 </ul>
 </li>

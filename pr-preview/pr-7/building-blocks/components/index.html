@@ -1504,12 +1504,12 @@
   <a href="#level-2-bronhouder" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Level 2: source holder
+        Level 2: bronhouder
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Level 2: source holder">
+    <nav class="md-nav" aria-label="Level 2: bronhouder">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4707,7 +4707,7 @@ feeds, and each block there zooms in to this catalog.</p>
     subgraph AUTHZ["Authorization chain"]
         PDP["OpenFTV PDP v0.1.0&lt;br/&gt;FTV GraphQL mapper + OPA/Rego"]
         POL["Policy set&lt;br/&gt;engine, consent PIP, five rules"]
-        ADM["Admission register&lt;br/&gt;(Admission register)"]
+        ADM["Admission register&lt;br/&gt;(dvtp-onboarding-register)"]
     end
 
     subgraph FSCG["FSC group (per organization)"]
@@ -4718,7 +4718,7 @@ feeds, and each block there zooms in to this catalog.</p>
         TXLOG[Txlog API]
     end
 
-    subgraph SRC["Source holder (per source: BD, RvIG, LVG)"]
+    subgraph SRC["Bronhouder (per source: BD, RvIG, LVG)"]
         SIDE["Source gateway&lt;br/&gt;(bron-sidecar)"]
         DEC[Decryption component]
         GQL[GraphQL source API]
@@ -4858,8 +4858,8 @@ dotted <abbr title="Logboek Dataverwerkingen">LDV</abbr> edges stand for every c
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L167-L174">policies/fsc/autosign.rego</a></td>
 </tr>
 <tr>
-<td>Admission register</td>
-<td>Holds the admitted participants: source holders (bronhouders), <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> system participants (EDI issuer, <abbr title="Policy Decision Point">PDP</abbr>, <abbr title="Authentic Source Interface Provider">ASIP</abbr>), and consumers. Each entry has <code>active</code> and <code>allowed_source_peer_ids</code>. The register also holds integrator mandates (<code>integrations</code>) and serves them as <code>acts_for</code>. <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> pulls it every 5 s over a network that only the <abbr title="Policy Decision Point">PDP</abbr> shares. The register deactivates an entry and never deletes it. It keeps no change log (<a href="../../requirements/admission/#req-123">REQ-123</a>). It is a SQLite database with an admin UI.</td>
+<td>Admission register (toelatingsregister)</td>
+<td>Holds the admitted participants: bronhouders, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> system participants (EDI issuer, <abbr title="Policy Decision Point">PDP</abbr>, <abbr title="Authentic Source Interface Provider">ASIP</abbr>), and consumers. Each entry has <code>active</code> and <code>allowed_source_peer_ids</code>. The register also holds integrator mandates (<code>integrations</code>) and serves them as <code>acts_for</code>. <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> pulls it every 5 s over a network that only the <abbr title="Policy Decision Point">PDP</abbr> shares. The register deactivates an entry and never deletes it. It keeps no change log (<a href="../../requirements/admission/#req-123">REQ-123</a>). It is a SQLite database with an admin UI.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register">services/dvtp-onboarding-register</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml"><abbr title="Policy Information Point">PIP</abbr> pull</a></td>
 </tr>
 </tbody>
@@ -4900,7 +4900,7 @@ apart from the consent consumers. The five rules grant these fields:</p>
 <td>EUD0001</td>
 <td>pid</td>
 <td><code>bri</code></td>
-<td>Inkomensverklaring to the wallet, years 2024 and 2025</td>
+<td>Income statement (inkomensverklaring) to the wallet, years 2024 and 2025</td>
 <td><code>PID_NOT_PRESENT</code>, <code>ACTOR_NOT_ALLOWED</code>, <code>YEAR_NOT_ALLOWED</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001.rego">eud0001.rego</a></td>
 </tr>
@@ -4908,7 +4908,7 @@ apart from the consent consumers. The five rules grant these fields:</p>
 <td>EUD0002</td>
 <td>pid</td>
 <td><code>brp</code></td>
-<td>Akte van overlijden to the wallet</td>
+<td>Death certificate ("akte van overlijden") to the wallet</td>
 <td><code>PID_NOT_PRESENT</code>, <code>ACTOR_NOT_ALLOWED</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego">eud0002.rego</a></td>
 </tr>
@@ -4916,7 +4916,7 @@ apart from the consent consumers. The five rules grant these fields:</p>
 <td>ASI0001</td>
 <td>pid</td>
 <td><code>brp</code></td>
-<td>BRP fields behind the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attributes, for the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer <code>…1200</code> only</td>
+<td>Fields of the Personal Records Database (BRP) behind the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attributes, for the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer <code>…1200</code> only</td>
 <td><code>PID_NOT_PRESENT</code>, <code>ACTOR_NOT_ALLOWED</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego">asi0001.rego</a></td>
 </tr>
@@ -5005,8 +5005,8 @@ section).
 <a href="../../concepts/consent/">Consent</a> explains the record and its lifecycle.
 <a href="../../concepts/pseudonymization/">Pseudonymization</a> explains the values. The
 decision is <a href="../../decisions/0032-consent-proof/">ADR-0032</a>.</p>
-<h2 id="level-2-bronhouder">Level 2: source holder<a class="headerlink" href="#level-2-bronhouder" title="Permanent link">&para;</a></h2>
-<p>The source holder runs the following components:</p>
+<h2 id="level-2-bronhouder">Level 2: bronhouder<a class="headerlink" href="#level-2-bronhouder" title="Permanent link">&para;</a></h2>
+<p>The bronhouder runs the following components:</p>
 <table>
 <thead>
 <tr>
@@ -5018,7 +5018,7 @@ decision is <a href="../../decisions/0032-consent-proof/">ADR-0032</a>.</p>
 <tbody>
 <tr>
 <td>GraphQL source API</td>
-<td>The query endpoint of the source. Sources identify a citizen by <abbr title="Burgerservicenummer">BSN</abbr>. The demo has three sources. Service <code>bri</code> is a Belastingdienst profile with income declarations per year. Service <code>brp</code> is a BRP profile with the persoonslijst and the akte van overlijden view. Service <code>lvg</code> is an LVG mock for the LVG pilot (<code>vbo(bsn, vboId) { vboId }</code>).</td>
+<td>The query endpoint of the source. Sources identify a citizen by <abbr title="Burgerservicenummer">BSN</abbr>. The demo has three sources. Service <code>bri</code> is a Belastingdienst profile with income declarations per year. Service <code>brp</code> is a BRP profile with the personal record (persoonslijst) and the death certificate view. Service <code>lvg</code> is an LVG mock for the LVG pilot (<code>vbo(bsn, vboId) { vboId }</code>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/graphql-server">graphql-server</a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/brp-graphql-server">brp-graphql-server</a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/lvg-graphql-server">lvg-graphql-server</a></td>
 </tr>
 <tr>
@@ -5187,7 +5187,7 @@ has no reference to an <abbr title="Logboek Dataverwerkingen">LDV</abbr> read AP
 <p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration per source is small: one YAML file, named after the
 <code>source_id</code>. The file names where the description comes from and how <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 reaches the data. This is
-<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/sources/configured/belastingdienst.yaml">sources/configured/belastingdienst.yaml</a>:</p>
+<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/sources/configured/belastingdienst.yaml"><code>sources/configured/belastingdienst.yaml</code></a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">metadata_endpoint</span><span class="p">:</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">transport</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fsc</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">provider_peer_id</span><span class="p">:</span><span class="w"> </span><span class="s">"99999999900000000200"</span>
@@ -5197,7 +5197,7 @@ reaches the data. This is
 data leg a different transport than the metadata leg. The <code>file</code> transport
 is an exception for a source without its own endpoint. In that case, the
 operator takes over the description. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not record the agreement of
-the source holder
+the bronhouder
 (<a href="../../traceability/findings/#f-71">F-71</a>, <a href="../../requirements/admission/#av-08">AV-08</a>).</p>
 <p>The legal identity of the source comes from the certificate set with the
 same <code>source_id</code>. The <abbr title="Organisatie-identificatienummer">OIN</abbr> comes from the certificate's <code>serialNumber</code>, and
@@ -5217,7 +5217,7 @@ and <a href="../../runtime/admission/">admission and activation</a> explain the 
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/sources/configured/rvig.yaml">rvig.yaml</a>)
 uses the Belastingdienst peer <code>…0200</code> and the <abbr title="Organisatie-identificatienummer">OIN</abbr> of the Belastingdienst.
 This is a demo shortcut. The demo therefore does not show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per
-source holder.</p>
+bronhouder.</p>
 <h3 id="source-schema-and-the-pdp-copy">Source schema and the <abbr title="Policy Decision Point">PDP</abbr> copy<a class="headerlink" href="#source-schema-and-the-pdp-copy" title="Permanent link">&para;</a></h3>
 <p>The source owns its schema. The <abbr title="Policy Decision Point">PDP</abbr> holds a directive-free copy per <abbr title="Federated Service Connectivity">FSC</abbr>
 service to resolve parent types. The year selector is in the query, so the
@@ -5233,7 +5233,7 @@ shows the <abbr title="Delen van gegevens via Toestemming met Private dienstverl
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="n">ingeschrevenPersoon</span><span class="err">(</span><span class="n">bsn</span><span class="p">:</span><span class="w"> </span><span class="no">BSN</span><span class="err">!)</span><span class="p">:</span><span class="w"> </span><span class="no">IngeschrevenPersoon</span>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
 </code></pre></div>
-<p>The BRP source adds a flat view for the akte van overlijden. The selection
+<p>The BRP source adds a flat view for the death certificate. The selection
 of the deceased partner from the marriage history is a security-sensitive
 invariant. The source holds this selection and its tests. The policy does
 not contain it
@@ -5476,7 +5476,7 @@ chain has the following components:</p>
 </tr>
 <tr>
 <td><abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook</td>
-<td>Demo stand-in for the logbook of each controller (Verantwoordelijke), one instance per controller. It accepts one record per processing (<code>POST /logboek/records</code>) and serves the read extension (<code>POST /data-processing-operations</code>). It keeps a versioned stand-in register of processing activities. It refuses any record with an elfproef-valid run of nine digits. It uses SQLite with <code>synchronous = FULL</code>. Write and read take separate tokens.</td>
+<td>Demo stand-in for the logbook of each controller (Verantwoordelijke), one instance per controller. It accepts one record per processing (<code>POST /logboek/records</code>) and serves the read extension (<code>POST /data-processing-operations</code>). It keeps a versioned stand-in register of processing activities. It refuses any record with a run of nine digits that passes the <abbr title="Burgerservicenummer">BSN</abbr> check digit test (elfproef). It uses SQLite with <code>synchronous = FULL</code>. Write and read take separate tokens.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek">services/ldv-logboek</a></td>
 </tr>
 <tr>

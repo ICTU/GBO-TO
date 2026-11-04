@@ -4569,7 +4569,7 @@
 <ul>
 <li>Status: superseded by <a href="../0009-closed-world-rules/">ADR-0009</a></li>
 <li>Date: 2026-08-24 (ported from reference architecture v0.6.2)</li>
-<li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>, <a href="https://ictu.github.io/GBO-GO/main/bijlage_begrippenlijst/#begrip-dienstencatalogus">GO: dienstencatalogus</a></li>
+<li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>, <a href="https://ictu.github.io/GBO-GO/main/bijlage_begrippenlijst/#begrip-dienstencatalogus">GO: service catalog</a></li>
 <li>Deliberation: Reference architecture v0.6.2, decision 3 (archived and unpublished)</li>
 <li>Implemented in: superseded before implementation</li>
 </ul>
@@ -4577,8 +4577,8 @@
 <p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> needs a ceiling that applies to all individual consents. The ceiling
 limits what a consent screen can ask for and what a query can select.</p>
 <h2 id="decision-superseded">Decision (superseded)<a class="headerlink" href="#decision-superseded" title="Permanent link">&para;</a></h2>
-<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> keeps a wettelijke service catalog (dienstencatalogus) as a separate register with a
-legal anchor. The register maps each scope to its allowed fields
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> keeps a statutory service catalog (dienstencatalogus) as a separate
+register with a legal anchor. The register maps each scope to its allowed fields
 (<code>data.dienstencatalogus[scope].allowed_fields</code>). The <abbr title="Policy Decision Point">PDP</abbr> checks every
 query against the catalog. The consent portal (toestemmingsportaal) shows only catalog entries.</p>
 <h2 id="why-it-was-superseded">Why it was superseded<a class="headerlink" href="#why-it-was-superseded" title="Permanent link">&para;</a></h2>
@@ -4586,7 +4586,7 @@ query against the catalog. The consent portal (toestemmingsportaal) shows only c
 from the rules that enforce it. The implemented model puts the ceiling
 into the rules themselves: the coverage declarations in closed-world rules
 are the catalog (<a href="../0009-closed-world-rules/">ADR-0009</a>).</p>
-<p>The question of the legal anchor stays open: a catalog based on an AMvB,
+<p>The question of the legal anchor stays open: a catalog based on a general administrative order (AMvB),
 with its own governance.
 <a href="../../risks/">Risks and technical debt</a> tracks this question.</p>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>

@@ -4583,7 +4583,7 @@ decision policy (<a href="../../requirements/admission/#req-61">REQ-61</a>).</p>
 <p>The Manager of each provider sends every submitted contract through the
 <abbr title="Policy Decision Point">PDP</abbr>. The <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> autosign call of the Manager evaluates a dedicated
 contract-acceptance policy (package <code>doelbinding.auto_sign_contract</code>).</p>
-<p>The policy reads the Admission register. <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> pulls this register
+<p>The policy reads the admission register (toelatingsregister). <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> pulls this register
 every 5 seconds (attributes <code>name</code>, <code>active</code>, <code>allowed_source_peer_ids</code>,
 <code>acts_for</code>).</p>
 <p>The policy accepts grant type 2 (service connection) and grant type 3

@@ -4680,15 +4680,15 @@
 
 <h1 id="consent">Consent<a class="headerlink" href="#consent" title="Permanent link">&para;</a></h1>
 <p>In <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, the consent of the citizen is the legal basis for delivery of
-source data to a private consumer. A consent proof carries the consent to
+source data to a private consumer (afnemer). A consent proof carries the consent to
 the source, and the <abbr title="Policy Decision Point">PDP</abbr> of the source verifies that proof on every
 request. A consent has a lifecycle of validity, revocation, and repeated
 use.
-The consent model realizes capabilities
+The consent model realizes capability
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie">S01</a>
-(toestemmingsregister) and
+for the consent register (toestemmingsregister) and capability
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal">S02</a>
-(toestemmingsportaal).</p>
+for the consent portal (toestemmingsportaal).</p>
 <p>The main decision is <a href="../../decisions/0032-consent-proof/">ADR-0032</a>. It
 defines the consent proof in five points:</p>
 <ul>
@@ -4724,7 +4724,7 @@ defines the consent proof in five points:</p>
 <td>Stores the consent record, signs the proof, and answers the status over <abbr title="Federated Service Connectivity">FSC</abbr></td>
 </tr>
 <tr>
-<td>Consumer (dienstverlener)</td>
+<td>Consumer</td>
 <td><code>dienstverlener-backend</code></td>
 <td>Starts the request, receives the proof, and sends it unchanged with every query</td>
 </tr>

@@ -4569,7 +4569,7 @@
 <ul>
 <li>Status: accepted (not implemented in gbo-demo v0.9.0)</li>
 <li>Date: 2026-08-24 (ported from the reference architecture)</li>
-<li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter">S08</a>, <a href="https://ictu.github.io/GBO-GO/main/#patroon-b-grensoverschrijdend-verzoek-via-oots">GO patroon B</a>, SDG-verordening (EU 2018/1724)</li>
+<li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter">S08</a>, <a href="https://ictu.github.io/GBO-GO/main/#patroon-b-grensoverschrijdend-verzoek-via-oots">GO pattern B</a>, SDG regulation (EU 2018/1724)</li>
 <li>Deliberation: Reference architecture v0.6.2, decision 7 and <abbr title="Once-Only Technical System">OOTS</abbr> bridge (archived and unpublished)</li>
 <li>Implemented in: not implemented. gbo-demo v0.9.0 has no implementation.</li>
 </ul>
@@ -4579,18 +4579,18 @@ exchange through the Once-Only Technical System (<abbr title="Once-Only Technica
 eDelivery AS4 transport, <abbr title="Once-Only Technical System">OOTS</abbr>-EDM payloads, and SMP discovery. This is an
 EU obligation, so <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has no architectural choice here.</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> builds an <abbr title="Once-Only Technical System">OOTS</abbr>-adapter at its edge. The adapter has three parts:</p>
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> builds an <abbr title="Once-Only Technical System">OOTS</abbr> adapter at its edge. The adapter has three parts:</p>
 <ul>
 <li>A Domibus access point receives AS4 messages.</li>
 <li>An <abbr title="Once-Only Technical System">OOTS</abbr>-EDM adapter maps evidence requests.</li>
-<li>An <abbr title="Federated Service Connectivity">FSC</abbr> translator forwards the requests to source holders (bronhouders) over the standard
+<li>An <abbr title="Federated Service Connectivity">FSC</abbr> translator forwards the requests to bronhouders over the standard
   <abbr title="Federated Service Connectivity">FSC</abbr> and <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> chain.</li>
 </ul>
-<p>The source holder sees a normal <abbr title="Federated Service Connectivity">FSC</abbr> request. AS4 exists only at the edge, in
+<p>The bronhouder sees a normal <abbr title="Federated Service Connectivity">FSC</abbr> request. AS4 exists only at the edge, in
 line with the national Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr>.</p>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Source holders serve cross-border requests without work that is specific
+<li>Bronhouders serve cross-border requests without work that is specific
   to <abbr title="Once-Only Technical System">OOTS</abbr>.</li>
 <li>The mapping of evidence types depends on canonical semantic models
   (<a href="../0024-canonical-semantic-models/">ADR-0024</a>).</li>

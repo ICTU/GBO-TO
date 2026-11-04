@@ -4583,7 +4583,7 @@
 <li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a>, <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a></li>
 <li>Supersedes: <a href="../0010-pep-bsn-resolution/">ADR-0010</a></li>
 <li>Superseded by: <a href="../0033-gateway-decrypts-after-allow/">ADR-0033</a></li>
-<li>Deliberation: source source gateway de-pseudonymization (<a href="../../traceability/increments/#sl-22">SL-22</a>, <a href="../../traceability/findings-closed/#f-30">F-30</a>)</li>
+<li>Deliberation: source gateway de-pseudonymization (<a href="../../traceability/increments/#sl-22">SL-22</a>, <a href="../../traceability/findings-closed/#f-30">F-30</a>)</li>
 <li>Implemented in: changed in gbo-demo. The source gateway does not call BSNk and does not read <code>subject_id_type</code> any more (<a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>, <a href="https://github.com/ICTU/GBO-demo/issues/473">#473</a>). The request mapper does not pseudonymize any more (<a href="https://github.com/ICTU/GBO-demo/issues/364">#364</a>). Code in gbo-demo v0.9.0: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar">services/bron-sidecar</a></li>
 </ul>
 <h2 id="why-superseded">Why superseded<a class="headerlink" href="#why-superseded" title="Permanent link">&para;</a></h2>
@@ -4622,10 +4622,10 @@ flows) before policy evaluation. So the engine input and the decision log
 contain only the <abbr title="Polymorphic identity">PI</abbr>.</p>
 <h2 id="consequences-at-the-time">Consequences (at the time)<a class="headerlink" href="#consequences-at-the-time" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Each role stays separate, in line with datasoevereiniteit:<ul>
+<li>Each role stays separate, in line with data sovereignty:<ul>
 <li>The <abbr title="Policy Enforcement Point">PEP</abbr> stays a pure enforcement point.</li>
 <li>The <abbr title="Policy Decision Point">PDP</abbr> does no data transformation.</li>
-<li>Only the source holder (bronhouder) holds <abbr title="Burgerservicenummer">BSN</abbr> authority.</li>
+<li>Only the bronhouder holds <abbr title="Burgerservicenummer">BSN</abbr> authority.</li>
 </ul>
 </li>
 <li>The meaning of the identifier is a grant property that both peers

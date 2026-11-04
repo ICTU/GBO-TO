@@ -4624,7 +4624,7 @@
 <p>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider lets a qualified trust service provider (<abbr title="Qualified Trust Service Provider">QTSP</abbr>) verify or
 retrieve attributes of a citizen at the authentic source. The exchange
 follows eIDAS article 45e and ETSI TS 119 478, clause 6.1. It is flow B of
-interaction pattern A in the
+interaction pattern (interactiepatroon) A in the
 <a href="https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider">Globaal Ontwerp</a>.
 <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> offers it as an OAuth front door with two services: the Authentic
 Source Interface Provider (<abbr title="Authentic Source Interface Provider">ASIP</abbr>) and its own authorization server
@@ -4807,7 +4807,8 @@ placement does not fit a <abbr title="Qualified Trust Service Provider">QTSP</ab
 </ul>
 <p>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> is an <abbr title="Federated Service Connectivity">FSC</abbr> consumer peer of its own, with a contract for the
 service <code>brp</code> at the source. For the <abbr title="Policy Decision Point">PDP</abbr>, the actor is always the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.
-Rule ASI0001 grants the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer the BRP fields behind the attributes, on
+Rule ASI0001 grants the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer the fields of the Personal Records
+Database (BRP) behind the attributes, on
 <code>brp</code> only. The rule does not check the token or the <abbr title="Qualified Trust Service Provider">QTSP</abbr>. The <abbr title="Policy Decision Point">PDP</abbr> input
 and the <abbr title="Authorization Decision Log">ADL</abbr> hold the <abbr title="Burgerservicenummer">BSN</abbr>
 (<a href="../../../requirements/logging-audit/#req-60">REQ-60</a>).</p>
@@ -5052,7 +5053,7 @@ certificate in production (<a href="../../../traceability/open-questions/#q-28">
 <tbody>
 <tr>
 <td>Authorization</td>
-<td>The verify and retrieve service uses the Autorisatievoorziening of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</td>
+<td>The verify and retrieve service uses the authorization facility (autorisatievoorziening) of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</td>
 <td>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider has its own OAuth authorization server, as ETSI clause 6.1.3 describes (<a href="../../../decisions/0037-asi-oauth-front-door/">ADR-0037</a>).</td>
 </tr>
 <tr>

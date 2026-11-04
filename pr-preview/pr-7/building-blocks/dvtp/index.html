@@ -4605,7 +4605,7 @@ service provider never gets a <abbr title="Burgerservicenummer">BSN</abbr>. This
   end
   subgraph tv["Consent facility"]
     direction LR
-    pf("Portal&lt;br/&gt;frontend") --&gt; pb("Portal&lt;br/&gt;backend") --&gt; tr[("Toestemmings-&lt;br/&gt;register")]
+    pf("Portal&lt;br/&gt;frontend") --&gt; pb("Portal&lt;br/&gt;backend") --&gt; tr[("Consent&lt;br/&gt;register")]
   end
   subgraph ext["External services"]
     direction LR
@@ -4647,9 +4647,9 @@ service provider never gets a <abbr title="Burgerservicenummer">BSN</abbr>. This
   style cons fill:#F4F5F7,stroke:#D1D5DB
   style ext fill:#F4F5F7,stroke:#D1D5DB
 
-  click pf "consent-service/" "Toestemmingsvoorziening"
-  click pb "consent-service/" "Toestemmingsvoorziening"
-  click tr "consent-service/" "Toestemmingsvoorziening"
+  click pf "consent-service/" "Consent facility"
+  click pb "consent-service/" "Consent facility"
+  click tr "consent-service/" "Consent facility"
   click pdp "../gbo-basis/authorization/" "Authorization"
   click bsnk "../../concepts/pseudonymization/" "Pseudonymization"
   click int "../../runtime/dvtp-query/#variant-an-integrator-calls-for-the-consumer" "Integrator variant"</div>
@@ -4668,7 +4668,7 @@ service provider never gets a <abbr title="Burgerservicenummer">BSN</abbr>. This
 <tr>
 <td>Consent facility</td>
 <td>The citizen sees the request, logs in, and gives or refuses consent. Later the citizen views and revokes consents. The register signs a consent proof and answers the status of a consent.</td>
-<td><a href="consent-service/">consent facility</a></td>
+<td><a href="consent-service/">Consent facility</a></td>
 </tr>
 <tr>
 <td>Pseudonymization facility</td>
@@ -4819,7 +4819,7 @@ of three steps:</p>
 </tr>
 <tr>
 <td>Who checks the consent</td>
-<td>The source holder (bronhouder) asks the register</td>
+<td>The bronhouder asks the register</td>
 <td>The <abbr title="Policy Decision Point">PDP</abbr> of the source checks the proof itself, then asks the register for the status over <abbr title="Federated Service Connectivity">FSC</abbr></td>
 </tr>
 </tbody>

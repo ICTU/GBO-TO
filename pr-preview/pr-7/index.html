@@ -4547,13 +4547,13 @@
 Bronontsluiting (<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>). It describes the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> facilities (voorzieningen) and
 interfaces (koppelvlakken). The TO goes one level deeper than the
 <a href="https://ictu.github.io/GBO-GO/main/">Globaal Ontwerp (GO)</a> and stays
-within the kaders of the
+within the frameworks of the
 <a href="https://ictu.github.io/GBO-PSA/main/">Projectstartarchitectuur (PSA)</a>.</p>
 <p>The TO uses the <a href="https://arc42.org/overview">arc42</a> template. It records
 <em>how</em> the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components are built. For <em>why</em> <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> exists and <em>what</em> it
-must do, see the <a href="https://ictu.github.io/GBO-PSA/main/">PSA inleiding</a>
+must do, see the <a href="https://ictu.github.io/GBO-PSA/main/">PSA introduction</a>
 and the
-<a href="https://ictu.github.io/GBO-GO/main/#2-voorgestelde-oplossingsrichting">GO oplossingsrichting</a>.</p>
+<a href="https://ictu.github.io/GBO-GO/main/#2-voorgestelde-oplossingsrichting">GO solution direction</a>.</p>
 <h2 id="baseline-the-demo-at-v090">Baseline: the demo at v0.9.0<a class="headerlink" href="#baseline-the-demo-at-v090" title="Permanent link">&para;</a></h2>
 <p>The reference implementation
 <a href="https://github.com/ICTU/GBO-demo">gbo-demo</a> is the ground truth for the
@@ -4600,7 +4600,7 @@ SL-NN). A reader who knows an old ID finds it under the same number.</p>
 </tr>
 <tr>
 <td><a href="requirements/">Requirements</a></td>
-<td>Testable demands on what <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> builds and on its interfaces (REQ), guidelines for source holders (bronhouders) (RL), candidate connection conditions (AV), and BSNk preconditions (BSNK).</td>
+<td>Testable demands on what <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> builds and on its interfaces (REQ), guidelines for bronhouders (RL), candidate connection conditions (AV), and BSNk preconditions (BSNK).</td>
 </tr>
 <tr>
 <td><a href="traceability/">Traceability</a></td>
@@ -4612,9 +4612,9 @@ SL-NN). A reader who knows an old ID finds it under the same number.</p>
 section lists the requirements, findings, open questions, and demo
 increments that the page explains or depends on.</p>
 <h2 id="trajectories">Routes<a class="headerlink" href="#trajectories" title="Permanent link">&para;</a></h2>
-<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> gives source holders (government source holders) one technical backbone
-for several gegevensstromen. A source holder exposes a GraphQL API behind an
-<abbr title="Federated Service Connectivity">FSC</abbr> Inway. Every request passes the same chain: the <abbr title="Federated Service Connectivity">FSC</abbr> Inway as <abbr title="Policy Enforcement Point">PEP</abbr>, the
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> gives bronhouders one technical backbone for several data flows. A
+bronhouder is a government organization that holds an authentic source.
+A bronhouder exposes a GraphQL API behind an <abbr title="Federated Service Connectivity">FSC</abbr> Inway. Every request passes the same chain: the <abbr title="Federated Service Connectivity">FSC</abbr> Inway as <abbr title="Policy Enforcement Point">PEP</abbr>, the
 <abbr title="Policy Decision Point">PDP</abbr> of the source, the source gateway, and the source API. The
 routes differ at the consumer edge and in the evidence that a
 request carries. The evidence selects the authorization regime
@@ -4622,7 +4622,7 @@ request carries. The evidence selects the authorization regime
 <p>gbo-demo v0.9.0 implements three routes end to end:</p>
 <ul>
 <li><strong><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></strong> (Delen van gegevens via Toestemming met Private
-  service providers (dienstverleners)). A citizen gives consent, and a private consumer
+  dienstverleners). A citizen gives consent, and a private consumer
   requests source data under that consent. The consumer never holds a
   citizen identifier. An integrator can call on behalf of the consumer
   under <abbr title="Federated Service Connectivity">FSC</abbr> delegation
@@ -4632,7 +4632,7 @@ request carries. The evidence selects the authorization regime
   <a href="runtime/dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a>.</li>
 <li><strong>EUDI issuance</strong> (<abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route). A citizen discloses a <abbr title="Person Identification Data">PID</abbr> from the
   EUDI wallet and gets an attestation from a government source. The
-  source holder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical issuance
+  bronhouder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical issuance
   facility (<a href="decisions/0028-pubeaa-productization/">ADR-0028</a>). The
   demo proves this route, but the PSA treats wallet support (P-06) as a
   hook outside version 1. See <a href="runtime/eudi-issuance/">EUDI issuance</a>.</li>
@@ -4692,8 +4692,8 @@ Each goal has the following effect on the design:</p>
 </tr>
 <tr>
 <td>5</td>
-<td>Source holder autonomy</td>
-<td>Sources own their schema, their service description, their decryption keys, and their policy. <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> are at the source holder (<a href="decisions/0021-central-pap-signed-bundles/">ADR-0021</a>). <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> keeps no copy of source data (<a href="requirements/authorization/#req-11">REQ-11</a>). See <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>.</td>
+<td>Bronhouder autonomy</td>
+<td>Sources own their schema, their service description, their decryption keys, and their policy. <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> are at the bronhouder (<a href="decisions/0021-central-pap-signed-bundles/">ADR-0021</a>). <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> keeps no copy of source data (<a href="requirements/authorization/#req-11">REQ-11</a>). See <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -4703,9 +4703,9 @@ Each goal has the following effect on the design:</p>
 The TO has three primary audiences:</p>
 <ul>
 <li>Engineers who build or integrate <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components.</li>
-<li>Source holder teams that connect a source.</li>
+<li>Bronhouder teams that connect a source.</li>
 <li>Reviewers who check that the implementation stays within the PSA
-  kaders.</li>
+  frameworks.</li>
 </ul>
 <h2 id="document-chain">Document chain<a class="headerlink" href="#document-chain" title="Permanent link">&para;</a></h2>
 <p>The TO is level 3 in a chain of five documents:</p>
@@ -4731,7 +4731,7 @@ The TO has three primary audiences:</p>
 <tr>
 <td>2</td>
 <td><a href="https://ictu.github.io/GBO-PSA/main/">Projectstartarchitectuur</a></td>
-<td>Normative principles, kaders, capabilities, and open decisions</td>
+<td>Normative principles, frameworks, capabilities, and open decisions</td>
 </tr>
 <tr>
 <td>3</td>

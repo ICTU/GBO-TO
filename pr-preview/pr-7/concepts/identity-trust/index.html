@@ -4680,9 +4680,9 @@ one request. For more information, see <a href="../authorization/">Authorization
 </tr>
 </tbody>
 </table>
-<p>If the source holder runs its own peer, its Peer ID is its <abbr title="Organisatie-identificatienummer">OIN</abbr>. In other cases,
+<p>If the bronhouder runs its own peer, its Peer ID is its <abbr title="Organisatie-identificatienummer">OIN</abbr>. In other cases,
 the two values can differ. One peer can offer services of more than one
-source holder. Simulation Peer IDs are not OINs, for example
+bronhouder. Simulation Peer IDs are not OINs, for example
 <code>0000009950HYPBV00000</code>. Until <a href="../../traceability/increments/#sl-49">SL-49</a>
 (<a href="https://github.com/ICTU/GBO-demo/pull/242">PR #242</a>), the demo used one
 field for both values. In demo v0.9.0, the source configuration keeps
@@ -4690,9 +4690,9 @@ field for both values. In demo v0.9.0, the source configuration keeps
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_configuration.go#L35-L44"><code>source_configuration.go#L35-L44</code></a>).</p>
 <p>It is open whether policy can read the Peer ID of a consumer as its <abbr title="Organisatie-identificatienummer">OIN</abbr>.
 The alternative is that policy takes that link from the admission register
-(<a href="../../traceability/open-questions/#q-68">Q-68</a>).</p>
+(toelatingsregister) (<a href="../../traceability/open-questions/#q-68">Q-68</a>).</p>
 <h2 id="the-legal-identity-comes-from-the-certificate">The legal identity comes from the certificate<a class="headerlink" href="#the-legal-identity-comes-from-the-certificate" title="Permanent link">&para;</a></h2>
-<p>A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component can put the <abbr title="Organisatie-identificatienummer">OIN</abbr> or name of a source holder in an attestation
+<p>A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component can put the <abbr title="Organisatie-identificatienummer">OIN</abbr> or name of a bronhouder in an attestation
 or a decision record. The component takes that value from verified
 certificate material. A value that an operator can fill in freely is never
 the source (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>,
@@ -4739,7 +4739,7 @@ certificate (<a href="https://github.com/ICTU/GBO-demo/pull/321">PR #321</a>).</
   <a href="https://github.com/ICTU/GBO-demo/pull/277">PR #277</a> showed this.</li>
 <li>In the default demo onboarding, the Belastingdienst peer publishes RvIG
   with the Belastingdienst <abbr title="Organisatie-identificatienummer">OIN</abbr>. This is a demo shortcut, and it does not
-  show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per source holder. The certificate sets still differ per
+  show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per bronhouder. The certificate sets still differ per
   source.</li>
 </ul>
 <h2 id="every-channel-goes-through-fsc">Every channel goes through <abbr title="Federated Service Connectivity">FSC</abbr><a class="headerlink" href="#every-channel-goes-through-fsc" title="Permanent link">&para;</a></h2>
@@ -4772,7 +4772,7 @@ take effect (<a href="../../traceability/open-questions/#q-53">Q-53</a>).</p>
 <p>FR-33 allows an <abbr title="Organisatie-identificatienummer">OIN</abbr> or a KvK number. The link between <abbr title="Organisatie-identificatienummer">OIN</abbr>, KvK, and eIDAS
 identifiers is an open S04 decision. The trust framework for private
 parties as a whole is PSA decision B-09 in the
-<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">besluitregister</a>.</p>
+<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">decision register</a>.</p>
 <p>An integrator connects under <abbr title="Federated Service Connectivity">FSC</abbr> delegation. The consent binds the party
 that the integrator represents
 (<a href="../../decisions/0034-integrator-delegation/">ADR-0034</a>). The consent does
@@ -4795,9 +4795,9 @@ separate:</p>
 <p>Dutch EUDI governance decides which party operates the Dutch access CA.
 This is a dependency outside the decision scope of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</p>
 <h2 id="eudi-issuance-a-certificate-set-per-source">EUDI issuance: a certificate set per source<a class="headerlink" href="#eudi-issuance-a-certificate-set-per-source" title="Permanent link">&para;</a></h2>
-<p>The issuance facility keeps a certificate set per source holder. The set has
+<p>The issuance facility keeps a certificate set per bronhouder. The set has
 issuer, reader (access), and status-list certificates. The facility never
-signs with the set of another source holder
+signs with the set of another bronhouder
 (<a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>). The issuer name and
 the purpose that the wallet shows are bound to these certificates. A
 fallback to the set of another source made the wallet show the wrong issuer
@@ -4805,7 +4805,7 @@ fallback to the set of another source made the wallet show the wrong issuer
 <p>A missing or incomplete set blocks only that source. For the failure cases,
 see <a href="../source-onboarding/#a-certificate-set-per-source">Source onboarding</a>.</p>
 <h2 id="eudi-trust-roles">EUDI trust roles<a class="headerlink" href="#eudi-trust-roles" title="Permanent link">&para;</a></h2>
-<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issues attestations for source holders. Each of these source holders needs
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issues attestations for bronhouders. Each of these bronhouders needs
 its own certificate per role, and one certificate never fills two roles
 (<a href="../../decisions/0023-identity-convergence/">ADR-0023</a>, part B, proposed,
 <a href="../../traceability/findings/#f-81">F-81</a>). The roles are as follows:</p>
@@ -4854,9 +4854,9 @@ its own certificate per role, and one certificate never fills two roles
 <p><a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a> sets the roles and
 responsibilities around these certificates:</p>
 <ul>
-<li>Each source holder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider of its attestations. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates
+<li>Each bronhouder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider of its attestations. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates
   the technical issuance facility. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> is probably the <code>EEAIssuer</code> in the
-  notification of each source holder. It is open who designates the Dutch
+  notification of each bronhouder. It is open who designates the Dutch
   <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuer, and who supervises
   (<a href="../../traceability/open-questions/#q-28">Q-28</a>).</li>
 <li>The issuer registers as relying party with the entitlement
@@ -4867,7 +4867,7 @@ responsibilities around these certificates:</p>
   (<a href="../../traceability/open-questions/#q-30">Q-30</a>). No decision exists for
   either list.</li>
 <li>It is open who holds the seal and status-list keys. The options are the
-  central facility, a remote signing service, or an HSM at the source holder
+  central facility, a remote signing service, or an HSM at the bronhouder
   (<a href="../../traceability/open-questions/#q-17">Q-17</a>). In the demo, the
   central issuance server holds them.</li>
 </ul>
@@ -4946,7 +4946,7 @@ the demo generates them again for each checkout.</p>
 <tr>
 <td>Source leaf certificates</td>
 <td>The development CA provider mints source-bound issuer, reader, and status-list leafs, under a separate privileged command (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L326-L336"><code>Makefile#L326-L336</code></a>)</td>
-<td>Issued per source holder, per role</td>
+<td>Issued per bronhouder, per role</td>
 </tr>
 <tr>
 <td><abbr title="Authentic Source Interface Provider">ASIP</abbr> seal and <abbr title="Qualified Trust Service Provider">QTSP</abbr> client certificates</td>

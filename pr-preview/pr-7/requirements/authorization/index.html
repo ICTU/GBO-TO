@@ -4880,9 +4880,11 @@ the request MUST be denied.</p>
 <ul>
 <li><strong>Source</strong>: design:
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>
-  ("iedere gegevensvraag doorloopt een <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr>-keten", "een <abbr title="Policy Enforcement Point">PEP</abbr> weigert
-  standaard bij ontbrekende of onbetrouwbare beslisinformatie"), and
-  FR-26 criteria 1 and 3.</li>
+  and FR-26 criteria 1 and 3. Under S05, every data request passes a
+  <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> chain. A <abbr title="Policy Enforcement Point">PEP</abbr> denies by default if decision information is
+  missing or not trusted ("iedere gegevensvraag doorloopt een
+  <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr>-keten", "een <abbr title="Policy Enforcement Point">PEP</abbr> weigert standaard bij ontbrekende of
+  onbetrouwbare beslisinformatie").</li>
 <li><strong>Addressee</strong>: interface agreement. The requirement applies to every
   source that connects through <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.
   <a href="../pseudonymization/#req-81">REQ-81</a> works it out for the source
@@ -4938,8 +4940,10 @@ the request MUST be denied.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>
-  ("logging legt de beleidsversie, relevante context en beslissing vast"),
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>,
+  where the log records the policy version, the relevant context, and
+  the decision ("logging legt de beleidsversie, relevante context en
+  beslissing vast"),
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>,
   and <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-12</a>.
   The consumer codes follow the
@@ -5007,10 +5011,12 @@ the request MUST be denied.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>
-  ("de <abbr title="Policy Decision Point">PDP</abbr> kan relevante informatiebronnen raadplegen", "een <abbr title="Policy Enforcement Point">PEP</abbr> weigert
-  standaard bij ontbrekende of onbetrouwbare beslisinformatie"), FR-16
-  criterion 1, and FR-17 criterion 1.</li>
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>,
+  FR-16 criterion 1, and FR-17 criterion 1. Under S05, the <abbr title="Policy Decision Point">PDP</abbr> can
+  consult relevant information sources. A <abbr title="Policy Enforcement Point">PEP</abbr> denies by default if
+  decision information is missing or not trusted ("de <abbr title="Policy Decision Point">PDP</abbr> kan
+  relevante informatiebronnen raadplegen", "een <abbr title="Policy Enforcement Point">PEP</abbr> weigert standaard
+  bij ontbrekende of onbetrouwbare beslisinformatie").</li>
 <li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the reference <abbr title="Policy Decision Point">PDP</abbr> (mapper and
   policy).</li>
 <li><strong>Evidence</strong>: the <abbr title="Policy Decision Point">PDP</abbr> ignores a consent that is sent in the question
@@ -5049,10 +5055,12 @@ the request MUST be denied.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>,
+  with the agreement on the <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> NLGov profile. S05 asks for a
+  standard vocabulary for subject, action, resource, and context. The
+  interface and the policy do not depend on a product
   ("gestandaardiseerd vocabulaire voor subject, actie, resource en
-  context", "de interface en het beleid zijn productonafhankelijk",
-  agreement: <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> NLGov profile).</li>
+  context", "de interface en het beleid zijn productonafhankelijk").</li>
 <li><strong>Addressee</strong>: interface agreement: <abbr title="Policy Enforcement Point">PEP</abbr> to <abbr title="Policy Decision Point">PDP</abbr>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered
   component: the mapper on the <abbr title="Policy Decision Point">PDP</abbr> side.</li>
 <li><strong>Evidence</strong>: the Inway sends the body
@@ -5089,9 +5097,10 @@ the request MUST be denied.</p>
   does not alone decide what a party gets. The single interface follows
   from the design:
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">PSA S07</a>
-  ("een source holder (bronhouder) gebruikt voor de <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-interactiepatronen één logisch
-  interface") and
-  <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-06 and P-08</a>.</li>
+  and <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-06 and P-08</a>.
+  Under S07, a bronhouder uses one logical interface for all <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
+  interaction patterns ("een bronhouder gebruikt
+  voor de <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-interactiepatronen één logisch interface").</li>
 <li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: channel adapters (in demo
   v0.9.0, the EUDI adapter).</li>
 <li><strong>Evidence</strong>: the query and the mapping come from the source metadata,
@@ -5321,8 +5330,9 @@ enforce this for every environment in which the policy runs.</p>
 <ul>
 <li><strong>Source</strong>: derived. The requirement serves
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">PSA S07</a>
-  ("iedere gegevensvraag verwijst eenduidig naar een dienst") and
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>.
+  and <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>.
+  Under S07, every data request refers to exactly one service ("iedere
+  gegevensvraag verwijst eenduidig naar een dienst").
   A field key is unique only within one schema. Without a service
   binding, a rule for one source gives access to another source.</li>
 <li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the reference engine and the
@@ -5438,11 +5448,14 @@ if a rule covers its fields.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>
-  ("de beslissing kan afzonderlijke gegevens of velden toestaan of weigeren",
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>.
+  Under S05, the decision can allow or deny separate data or fields.
+  A <abbr title="Policy Enforcement Point">PEP</abbr> denies by default if decision information is missing or not
+  trusted ("de beslissing kan afzonderlijke gegevens of velden toestaan of weigeren",
   "een <abbr title="Policy Enforcement Point">PEP</abbr> weigert standaard bij ontbrekende of onbetrouwbare beslisinformatie").</li>
 <li>The additional requirements for the source access API in the
-  <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">design principles</a>
+  <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">design principles</a>.
+  A consumer can only run data requests that are allowed in advance
   ("een afnemer kan alleen vooraf toegestane gegevensvragen uitvoeren").</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>
   and <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-11</a>.</li>
@@ -5498,7 +5511,7 @@ if a rule covers its fields.</p>
   bundle.</li>
 <li>In the pipeline of the source, before a schema change goes live.
   For a source with its own release cycle, this part belongs to
-  the source holder.</li>
+  the bronhouder.</li>
 </ul>
 </li>
 </ul>
@@ -5530,8 +5543,10 @@ MUST deliver only those fields.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">PSA S07</a>
-  ("de API ondersteunt vooraf geregistreerde, selectieve gegevensvragen").</li>
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">PSA S07</a>.
+  Under S07, the API supports selective data requests that are
+  registered in advance ("de API ondersteunt vooraf geregistreerde,
+  selectieve gegevensvragen").</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-09</a> and the
   additional requirements for the source access API in the
   <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">design principles</a>.</li>
@@ -5571,9 +5586,10 @@ it handles that request.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design.
-  <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-05</a>
-  ("<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> maakt geen structureel gegevensmagazijn") and
-  <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-08</a>.</li>
+  <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-05</a> and
+  <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-08</a>.
+  Under D-05, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> makes no permanent data warehouse ("<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> maakt geen
+  structureel gegevensmagazijn").</li>
 <li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: channel adapters, <abbr title="Authentic Source Interface Provider">ASIP</abbr>, and
   translation layer.</li>
 <li><strong>Evidence</strong>: the EUDI adapter calls the source through <abbr title="Federated Service Connectivity">FSC</abbr> for every
@@ -5603,16 +5619,16 @@ it handles that request.</p>
 <p>The guidelines (RL-NN) cover the management side of the authorization
 function: how a source manages its policy and rolls it out. They are
 generic and apply to every source, whatever the route (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI,
-<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>). They are guidelines for source holders and are no system requirements.
+<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>). They are guidelines for bronhouders and are no system requirements.
 The design is in
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>.</p>
 <h3 id="why-the-items-are-guidelines-and-not-requirements">Why the items are guidelines and not requirements<a class="headerlink" href="#why-the-items-are-guidelines-and-not-requirements" title="Permanent link">&para;</a></h3>
 <p>The policy administration point (<abbr title="Policy Administration Point">PAP</abbr>) and the <abbr title="Policy Decision Point">PDP</abbr> are at the source. The
-<abbr title="Policy Decision Point">PDP</abbr> is behind the <abbr title="Federated Service Connectivity">FSC</abbr> Inway of the source holder. The management function
+<abbr title="Policy Decision Point">PDP</abbr> is behind the <abbr title="Federated Service Connectivity">FSC</abbr> Inway of the bronhouder. The management function
 (<abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager) serves exactly that <abbr title="Policy Decision Point">PDP</abbr>. The demo runs all of this in
 one compose stack. That is a demo artifact and makes no statement about
 the architecture.</p>
-<p>So all policy management is in the domain of the source holder:</p>
+<p>So all policy management is in the domain of the bronhouder:</p>
 <ul>
 <li>The policy engine is a product that the source chooses. The demo uses
   <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr>, but that is a demo choice and is no rule.</li>
@@ -5625,7 +5641,7 @@ the architecture.</p>
 party. Nobody can enforce it, and it conflicts with the federated
 direction of <a href="../../traceability/answered-questions/#q-02">Q-02</a>. For that
 reason, each item is a guideline, written as SHOULD, with the reason and
-the evidence. A source holder can use a guideline as advice, or as a
+the evidence. A bronhouder can use a guideline as advice, or as a
 selection criterion for an engine choice. A guideline is no testable
 requirement.</p>
 <p>The promotion rule is this: a guideline becomes a requirement (REQ) only
@@ -5662,10 +5678,12 @@ trace.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design.
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>.
+  Under S06, policy is machine-readable and versioned. The recipient can
+  check the authenticity and integrity of published policy sets
   ("beleid is machineleesbaar, versieerbaar",
   "de ontvanger kan de authenticiteit en integriteit van gepubliceerde beleidssets controleren").</li>
-<li><strong>Addressee</strong>: guideline for source holders.</li>
+<li><strong>Addressee</strong>: guideline for bronhouders.</li>
 <li><strong>Evidence</strong>: a bundle with a version
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml#L11-L17"><code>gbo-pdp.yaml#L11-L17</code></a>).
   If <code>PDP_BUNDLE_MANAGER</code> is set, the <abbr title="Policy Decision Point">PDP</abbr> fetches the bundle
@@ -5701,7 +5719,7 @@ SHOULD lead to a denial and SHOULD NOT give open access.</p>
   <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-11</a>. If
   management runs through the decision policy, the outcome is undefined,
   or the decision policy must open the management API.</li>
-<li><strong>Addressee</strong>: guideline for source holders, and a selection criterion for
+<li><strong>Addressee</strong>: guideline for bronhouders, and a selection criterion for
   an engine choice.</li>
 <li><strong>Evidence</strong>: an own Cedar store that fails closed
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L254-L269"><code>docker-compose.yml#L254-L269</code></a>,
@@ -5733,11 +5751,12 @@ shared administrator account or a long-lived key.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design.
-  <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-11</a>
-  ("beheerrechten zijn beperkt, tijdelijk en aantoonbaar toegekend") and
+  <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-11</a> and
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>
-  (owner, approver).</li>
-<li><strong>Addressee</strong>: guideline for source holders.</li>
+  (owner, approver). Under D-11, management rights are limited,
+  temporary, and granted in a way that can be shown ("beheerrechten zijn
+  beperkt, tijdelijk en aantoonbaar toegekend").</li>
+<li><strong>Addressee</strong>: guideline for bronhouders.</li>
 <li><strong>Evidence</strong>: roles
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager-ui/keycloak/realm-gbo.json#L11-L19"><code>realm-gbo.json#L11-L19</code></a>),
   a deployment identity with a short-lived token
@@ -5769,9 +5788,10 @@ from the active set.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design.
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>
-  ("wijzigingshistorie", "een spoedprocedure en terugrolprocedure zijn beschikbaar").</li>
-<li><strong>Addressee</strong>: guideline for source holders.</li>
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>.
+  S06 asks for a change history, an emergency procedure, and a rollback
+  procedure ("wijzigingshistorie", "een spoedprocedure en terugrolprocedure zijn beschikbaar").</li>
+<li><strong>Addressee</strong>: guideline for bronhouders.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/seed-openftv-manager.py#L116"><code>seed-openftv-manager.py#L116</code></a>
   (<code>retire_stale</code>).</li>
 <li><strong>Related</strong>: <a href="../logging-audit/#req-59">REQ-59</a>,
@@ -5799,10 +5819,12 @@ load.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design.
-  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>
+  <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>.
+  Under S06, tests validate changes before publication. On a failure,
+  the components fall back in a controlled way
   ("tests valideren wijzigingen vóór publicatie",
   "bij storingen vallen zij gecontroleerd terug").</li>
-<li><strong>Addressee</strong>: guideline for source holders.</li>
+<li><strong>Addressee</strong>: guideline for bronhouders.</li>
 <li><strong>Evidence</strong>: <code>make policy-check</code> runs before every start
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L92"><code>Makefile#L92</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/372">PR #372</a>, duplicate names in

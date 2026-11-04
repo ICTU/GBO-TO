@@ -4632,10 +4632,10 @@
 
 
 <h1 id="pub-eaa-provider"><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider<a class="headerlink" href="#pub-eaa-provider" title="Permanent link">&para;</a></h1>
-<p>The <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider issues an attestation with source data to the EUDI
+<p>The <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider (PubEAA-voorziening) issues an attestation with source data to the EUDI
 wallet of the citizen. It is flow A of interaction pattern A in the
 <a href="https://ictu.github.io/GBO-GO/main/#patroon-a-burger-gebruikt-eudi-wallet">Globaal Ontwerp</a>.
-<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical issuance facility, and each source holder (bronhouder) stays
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical issuance facility, and each bronhouder stays
 the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider of its own attestations
 (<a href="../../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed). The
 facility runs on the nl-wallet issuance server
@@ -4757,7 +4757,8 @@ Thick border: click to zoom in.</em></p>
 </tbody>
 </table>
 <h2 id="the-issuance-flow">The issuance flow<a class="headerlink" href="#the-issuance-flow" title="Permanent link">&para;</a></h2>
-<p>One issuance of the income declaration for 2024 takes these steps:</p>
+<p>One issuance of the income statement (inkomensverklaring) for 2024 takes
+these steps:</p>
 <div class="mermaid">sequenceDiagram
   autonumber
   actor B as Citizen
@@ -4820,7 +4821,7 @@ its source document. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 <div class="mermaid">flowchart LR
   subgraph doc["Source document: capabilities.eudi"]
     direction TB
-    off["offers&lt;br/&gt;for example jaar 2024"]
+    off["offers&lt;br/&gt;for example year 2024"]
     gq["graphql&lt;br/&gt;query, subject variable,&lt;br/&gt;result_pointer"]
     disp["display&lt;br/&gt;name, summary per language"]
     cl["claims&lt;br/&gt;pointer, datatype, label, sd"]
@@ -4890,14 +4891,14 @@ claims. Nested claims are not built
 </thead>
 <tbody>
 <tr>
-<td>Inkomensverklaring</td>
+<td>Income statement</td>
 <td>Belastingdienst, <code>bri</code></td>
 <td>EUD0001</td>
-<td><code>jaar</code> 2024 and 2025</td>
+<td><code>jaar</code> (year) 2024 and 2025</td>
 <td>The <abbr title="Person Identification Data">PID</abbr> holder</td>
 </tr>
 <tr>
-<td>Akte van overlijden</td>
+<td>Death certificate (akte van overlijden)</td>
 <td>RvIG, <code>brp</code></td>
 <td>EUD0002</td>
 <td>One, without parameters</td>
@@ -5019,7 +5020,7 @@ The <abbr title="Person Identification Data">PID</abbr> trust list of the issuan
 source. Both fixes of REQ-45 need a binding of the disclosure to the
 request.</p>
 <h2 id="related-person-attestation">Related-person attestation<a class="headerlink" href="#related-person-attestation" title="Permanent link">&para;</a></h2>
-<p>The akte van overlijden holds data about the deceased partner of the
+<p>The death certificate holds data about the deceased partner of the
 citizen who shares the <abbr title="Person Identification Data">PID</abbr>. The subject of the claims differs from the
 person who discloses the <abbr title="Person Identification Data">PID</abbr>
 (<a href="../../../traceability/findings/#f-47">F-47</a>,
@@ -5030,7 +5031,7 @@ person who discloses the <abbr title="Person Identification Data">PID</abbr>
   pdp("PDP, rule EUD0002&lt;br/&gt;sees only the flat output")
   brp[("BRP source&lt;br/&gt;resolves the relation")]
   rel["Marriage ended by&lt;br/&gt;the death of the partner"]
-  att["Akte van overlijden&lt;br/&gt;claims about the partner"]
+  att["Death certificate&lt;br/&gt;claims about the partner"]
   holder -- "PID" --&gt; ad
   ad -- "akteVanOverlijden(bsn)" --&gt; pdp
   pdp --&gt; brp
@@ -5063,19 +5064,19 @@ requester and the living parents
 published schema. The policy then requires these arguments with fixed
 values (<a href="https://github.com/ICTU/GBO-demo/issues/425">#425</a>,
 <a href="../../../traceability/open-questions/#q-14">Q-14</a>). In demo v0.9.0, a
-caller can ask for the akte of any <abbr title="Burgerservicenummer">BSN</abbr>, because of the callback gap.</p>
+caller can ask for the death certificate of any <abbr title="Burgerservicenummer">BSN</abbr>, because of the callback gap.</p>
 <h2 id="trust-roles-and-the-pub-eaa-provider">Trust roles and the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider<a class="headerlink" href="#trust-roles-and-the-pub-eaa-provider" title="Permanent link">&para;</a></h2>
-<p>Each source holder needs its own certificate per role, and one certificate
+<p>Each bronhouder needs its own certificate per role, and one certificate
 never fills two roles. The following figure shows the roles around one
-source holder:</p>
+bronhouder:</p>
 <div class="mermaid">flowchart LR
   subgraph legal["Legal role"]
-    bh["Source holder&lt;br/&gt;PuB-EAA provider"]
+    bh["Bronhouder&lt;br/&gt;PuB-EAA provider"]
   end
   subgraph tech["Technical role"]
     fac("GBO issuance facility&lt;br/&gt;probably the EEAIssuer")
   end
-  subgraph certs["Certificate set of one source holder"]
+  subgraph certs["Certificate set of one bronhouder"]
     direction TB
     iss[("Issuer certificate&lt;br/&gt;production: qualified seal&lt;br/&gt;in a QSCD")]
     rdr[("Reader certificate&lt;br/&gt;production: access certificate")]
@@ -5117,10 +5118,10 @@ source holder:</p>
 <p class="caption"><em>Figure 7: Trust roles in <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance. Dashed: not built or not
 decided.</em></p>
 <p><a href="../../../decisions/0028-pubeaa-productization/">ADR-0028</a> (proposed)
-divides the roles. The source holder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider and stays
+divides the roles. The bronhouder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider and stays
 legally responsible for content, validity and revocation. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the
 technical issuance facility and is probably the <code>EEAIssuer</code> in the
-notification of each source holder. The facility is optional: a source holder
+notification of each bronhouder. The facility is optional: a bronhouder
 can run its own credential issuer.</p>
 <p>Since August 2026, <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance falls under the same standard as <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr>
 issuance (<a href="../../../traceability/findings/#f-81">F-81</a>). That frame asks
@@ -5152,11 +5153,11 @@ For the certificate roles, see
 <tr>
 <td>Role of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr></td>
 <td>A technical, central and optional facility. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> is not a <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider.</td>
-<td>The same. The source holder is the provider (<a href="../../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed).</td>
+<td>The same. The bronhouder is the provider (<a href="../../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed).</td>
 </tr>
 <tr>
 <td>Authorization</td>
-<td>An Autorisatievoorziening authorizes the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> facility (voorziening) after a <abbr title="Person Identification Data">PID</abbr> login.</td>
+<td>An authorization facility (autorisatievoorziening) authorizes the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> facility after a <abbr title="Person Identification Data">PID</abbr> login.</td>
 <td>The issuance server checks the <abbr title="Person Identification Data">PID</abbr> itself. No separate authorization service exists.</td>
 </tr>
 <tr>

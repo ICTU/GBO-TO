@@ -4490,7 +4490,7 @@
   <a href="#sl-22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SL-22: Source source gateway de-pseudonymization (DvTP)
+        SL-22: Source gateway de-pseudonymization (DvTP)
       
     </span>
   </a>
@@ -5233,7 +5233,7 @@ that was not part of an increment.</p>
   request, the <abbr title="Policy Enforcement Point">PEP</abbr> did not resolve the <abbr title="Burgerservicenummer">BSN</abbr> at all.</li>
 <li><strong>Produced</strong>: <a href="../../requirements/pseudonymization/#req-20">REQ-20</a> and
   <a href="../../requirements/pseudonymization/#req-21">REQ-21</a>. Later, the
-  conversion moved to the source source gateway (<a href="#sl-22">SL-22</a>). Since
+  conversion moved to the source gateway (<a href="#sl-22">SL-22</a>). Since
   <a href="#sl-51">SL-51</a>, the proof carries a value per source, and the source
   decrypts it after the decision.</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/pseudonymization/">Pseudonymization</a></li>
@@ -5262,7 +5262,7 @@ that was not part of an increment.</p>
   <a href="../../requirements/pseudonymization/#req-79">REQ-79</a> and
   <a href="../../requirements/authorization/#req-17">REQ-17</a>), and
   <a href="../../requirements/authorization/#req-06">REQ-06</a> (new reason codes).
-  Later, the query translation moved to the source source gateway
+  Later, the query translation moved to the source gateway
   (<a href="#sl-42">SL-42</a>).</li>
 <li><strong>Explained in</strong>: <a href="../../concepts/authorization/">Authorization</a></li>
 </ul>
@@ -5509,7 +5509,7 @@ that was not part of an increment.</p>
 <li><strong>Produced</strong>: none.</li>
 <li><strong>Explained in</strong>: no page.</li>
 </ul>
-<h3 id="sl-22">SL-22: Source source gateway de-pseudonymization (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)<a class="headerlink" href="#sl-22" title="Permanent link">&para;</a></h3>
+<h3 id="sl-22">SL-22: Source gateway de-pseudonymization (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)<a class="headerlink" href="#sl-22" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: done</li>
 <li><strong>Demo work</strong>: before the public repository. It was built together
@@ -5955,7 +5955,7 @@ profile on ETSI TS 119 478 followed
 <li><strong>Demo work</strong>: before the public repository.</li>
 <li><strong>What it showed</strong>: <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> runs over real <abbr title="Federated Service Connectivity">FSC</abbr> too, with a second consumer
   organization. The demo removed the <code>fsc-mock</code> and the <abbr title="Policy Enforcement Point">PEP</abbr> service. The
-  <abbr title="Policy Decision Point">PDP</abbr> is the only policy endpoint for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> and EUDI. The source source gateway
+  <abbr title="Policy Decision Point">PDP</abbr> is the only policy endpoint for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> and EUDI. The source gateway
   does the conversion after the decision (<a href="#sl-22">SL-22</a>,
   <a href="#sl-23">SL-23</a>).</li>
 <li><strong>Produced</strong>:<ul>
@@ -5975,7 +5975,7 @@ profile on ETSI TS 119 478 followed
 <li><strong>What it showed</strong>: a second source (BRP) and a second attestation. A
   surviving partner discloses his <abbr title="Person Identification Data">PID</abbr> and gets the death certificate of
   the partner. The subject of the attestation is not the person who
-  discloses. Each source holder (bronhouder) needs its own certificate set for
+  discloses. Each bronhouder needs its own certificate set for
   issuance.</li>
 <li><strong>Produced</strong>:<ul>
 <li>findings <a href="../findings/#f-47">F-47</a>, <a href="../findings-closed/#f-49">F-49</a>, and
@@ -6021,7 +6021,7 @@ profile on ETSI TS 119 478 followed
 <li><strong>What it showed</strong>: admission is a registration instead of a policy
   rule. The <abbr title="Policy Decision Point">PDP</abbr> decides each contract proposal in a policy tree of its
   own, with machine-readable reason codes. An automatic "no" leaves the
-  proposal pending, so it is recoverable. Admission is per source holder.
+  proposal pending, so it is recoverable. Admission is per bronhouder.
   The demo has no admission per service.</li>
 <li><strong>Produced</strong>:<ul>
 <li>findings <a href="../findings-closed/#f-55">F-55</a> and <a href="../findings-closed/#f-56">F-56</a></li>

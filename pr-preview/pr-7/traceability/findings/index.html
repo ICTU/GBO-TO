@@ -5099,7 +5099,7 @@ fails. The demo therefore lets the <abbr title="Policy Decision Point">PDP</abbr
 which meets the PSA. The weak point is in the implementation: every rule
 that allows management sits in the policy for citizen data. The proposal
 is a separate authorization path for management, as a guideline for
-source holders (bronhouders), because each source keeps its own <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr>.</p>
+bronhouders, because each source keeps its own <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr>.</p>
 <details class="note">
 <summary>Evidence, impact and proposal</summary>
 <ul>
@@ -5114,7 +5114,7 @@ source holders (bronhouders), because each source keeps its own <abbr title="Pol
 </ul>
 </li>
 <li><strong>Why it matters</strong>: every rule that allows management sits in the policy that decides on citizen data. Pull meets <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>, which asks only that a component reliably gets a valid policy version. The GO and the PSA have no gap here. The gap is in the implementation.</li>
-<li><strong>Proposal</strong>: a <abbr title="Policy Decision Point">PDP</abbr> needs a separate authorization path for management. Then push works without a wider decision policy (<a href="../../requirements/authorization/#rl-02">RL-02</a>). The point was reported to the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> maintainers. <a href="../answered-questions/#q-21">Q-21</a> keeps <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> at each source. RL-02 therefore stays a guideline for source holders and is no requirement.</li>
+<li><strong>Proposal</strong>: a <abbr title="Policy Decision Point">PDP</abbr> needs a separate authorization path for management. Then push works without a wider decision policy (<a href="../../requirements/authorization/#rl-02">RL-02</a>). The point was reported to the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> maintainers. <a href="../answered-questions/#q-21">Q-21</a> keeps <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> at each source. RL-02 therefore stays a guideline for bronhouders and is no requirement.</li>
 <li><strong>Related</strong>: <a href="../../requirements/authorization/#rl-02">RL-02</a>, <a href="../findings-closed/#f-09">F-09</a>, <a href="#f-52">F-52</a>, <a href="../answered-questions/#q-21">Q-21</a>, <a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>.</li>
 </ul>
 </details>
@@ -5189,7 +5189,7 @@ finds the source through its valid contracts, validates the description,
 and activates it in one step. The issuance configuration and the offers
 in the frontend come from this description, so a source can join without
 a change in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> code. For the EUDI branch, this design gives the GO
-service catalogue a concrete form, which the source holder manages with a
+service catalogue a concrete form, which the bronhouder manages with a
 common profile. Three points stay open: a link to the DCAT-AP-NL
 description, central findability, and a conflict with the wish for no
 fixed <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> queries.</p>
@@ -5205,7 +5205,7 @@ fixed <abbr title="Delen van gegevens via Toestemming met Private dienstverlener
 <li>Two sources (BD, BRP) use the same path, without fallback.</li>
 </ul>
 </li>
-<li><strong>Why it matters</strong>: the GO has two catalogs: a data catalog that follows DCAT-AP-NL, and a service catalog. The service catalog lists the allowed data requests. It is "managed federatively with a common profile and central findability", and the source holder manages it (<a href="https://ictu.github.io/GBO-GO/main/#6-impact-op-betrokken-partijen">GO §6</a>). <code>/.well-known/gbo</code> is that service catalog, and the validation profile of the reconciler is the common profile. This design gives <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a> a concrete form. It answers <a href="../answered-questions/#q-19">Q-19</a> for the EUDI branch.</li>
+<li><strong>Why it matters</strong>: the GO has two catalogs: a data catalog that follows DCAT-AP-NL, and a service catalog. The service catalog lists the allowed data requests. It is "managed federatively with a common profile and central findability", and the bronhouder manages it (<a href="https://ictu.github.io/GBO-GO/main/#6-impact-op-betrokken-partijen">GO §6</a>). <code>/.well-known/gbo</code> is that service catalog, and the validation profile of the reconciler is the common profile. This design gives <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a> a concrete form. It answers <a href="../answered-questions/#q-19">Q-19</a> for the EUDI branch.</li>
 <li>
 <ol>
 <li>The description does not refer to the DCAT-AP-NL description of the data set or data service. This point is an addition to REQ-64.</li>
@@ -5295,7 +5295,7 @@ description in a directory. The operator then decides the query, the
 mapping, and the wallet claims for the product of another party. Four
 bounds stay in place, among them the pinned contract and the check of
 the <abbr title="Organisatie-identificatienummer">OIN</abbr> against the certificate. The design allows this only as an
-exception, with the recorded agreement of the source holder as first
+exception, with the recorded agreement of the bronhouder as first
 condition, and that condition is not built.</p>
 <details class="note">
 <summary>Evidence, impact and proposal</summary>
@@ -5315,7 +5315,7 @@ condition, and that condition is not built.</p>
 </ul>
 </li>
 <li><strong>Why it matters</strong>: <a href="#f-57">F-57</a> and <a href="../../requirements/sources-identity/#req-64">REQ-64</a> put the description at the source (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA P-10</a>). Whoever controls the document decides the query, the mapping, and the wallet claims. With <code>file</code> transport, the operator controls the document. The origin check then falls back to the <abbr title="Organisatie-identificatienummer">OIN</abbr> in the certificate.</li>
-<li><strong>Proposal</strong>: the design is in <a href="../../requirements/sources-identity/#req-64">REQ-64</a>, as an exception clause, and in <a href="../../requirements/admission/#av-08">AV-08</a>. Its first condition is the recorded agreement of the source holder. That condition is not built. Demo issue <a href="https://github.com/ICTU/GBO-demo/issues/221">#221</a> (open) covers the trust model per transport, including an unsecured variant. According to the <a href="../answered-questions/#q-06">Q-06</a> review, this is no governance question.</li>
+<li><strong>Proposal</strong>: the design is in <a href="../../requirements/sources-identity/#req-64">REQ-64</a>, as an exception clause, and in <a href="../../requirements/admission/#av-08">AV-08</a>. Its first condition is the recorded agreement of the bronhouder. That condition is not built. Demo issue <a href="https://github.com/ICTU/GBO-demo/issues/221">#221</a> (open) covers the trust model per transport, including an unsecured variant. According to the <a href="../answered-questions/#q-06">Q-06</a> review, this is no governance question.</li>
 <li><strong>Related</strong>: <a href="#f-57">F-57</a>, <a href="../findings-closed/#f-58">F-58</a>, <a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../../requirements/sources-identity/#req-65">REQ-65</a>, <a href="../../requirements/admission/#av-08">AV-08</a>, <a href="../answered-questions/#q-06">Q-06</a>, <a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a>.</li>
 </ul>
 </details>
@@ -5395,7 +5395,7 @@ must decide who the BSNk participant is.</p>
 <li><strong>Observation</strong>:<ul>
 <li>Five parts of the design fit the specification:<ul>
 <li>An encrypted value per party in the proof is the recipient-specific BSNk form, per <abbr title="Organisatie-identificatienummer">OIN</abbr> (<a href="../../requirements/pseudonymization/#bsnk-07">BSNK-07</a>).</li>
-<li>The choice between identity and pseudonym by authorization is a lookup in the <abbr title="Burgerservicenummer">BSN</abbr> Authorization List (<a href="../../requirements/pseudonymization/#bsnk-06">BSNK-06</a>).</li>
+<li>The choice between identity and pseudonym by authorization is a lookup in the <abbr title="Burgerservicenummer">BSN</abbr> authorization list (Autorisatielijst <abbr title="Burgerservicenummer">BSN</abbr>) (<a href="../../requirements/pseudonymization/#bsnk-06">BSNK-06</a>).</li>
 <li>Transformation happens when the citizen gives consent, the only time when BSNk allows it (<a href="../../requirements/pseudonymization/#bsnk-04">BSNK-04</a>).</li>
 <li>Local decryption at the source, after the <abbr title="Policy Decision Point">PDP</abbr>, is what every BSNk recipient does (<a href="../../requirements/pseudonymization/#bsnk-09">BSNK-09</a>).</li>
 <li>The design makes no BSNk call at query time, so BSNk stays out of the query path.</li>
@@ -5410,7 +5410,7 @@ must decide who the BSNk participant is.</p>
 </li>
 <li>The demo built three parts on the BSNk mock (<a href="../increments/#sl-51">SL-51</a>, <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>, <a href="https://github.com/ICTU/GBO-demo/pull/477">PR #477</a>):<ul>
 <li>an encrypted pseudonym for every source</li>
-<li>an encrypted identity only for a source on the <abbr title="Burgerservicenummer">BSN</abbr> Authorization List</li>
+<li>an encrypted identity only for a source on the <abbr title="Burgerservicenummer">BSN</abbr> authorization list</li>
 <li>requests of at most four parties (<a href="../../requirements/pseudonymization/#bsnk-05">BSNK-05</a>)</li>
 </ul>
 </li>
@@ -5418,7 +5418,7 @@ must decide who the BSNk participant is.</p>
 </ul>
 </li>
 <li><strong>Why it matters</strong>: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA P-04</a>, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie">S01</a>, B-07, and GO §5 make BSNk <abbr title="Polymorphic pseudonym">PP</abbr> mandatory for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>. Nothing technical blocks the design. The remaining work is administrative and legal. The consent facility must become a recognized BSNk party, in a role that BSNk was not written for.</li>
-<li><strong>Proposal</strong>: use <a href="../../requirements/pseudonymization/#bsnk-preconditions">BSNK-01 to BSNK-11</a> as the check for each build step and for the trial with the real BSNk <abbr title="Polymorphic pseudonym">PP</abbr>. Submit the recognition question (<a href="../open-questions/#q-26">Q-26</a>). Decide who the BSNk participant is (<a href="../open-questions/#q-49">Q-49</a>, <a href="../../decisions/0040-route-d-citizen-recognition/">ADR-0040</a>, proposed). Two points stay open in the demo: a pseudonym for the consumer (demo issue <a href="https://github.com/ICTU/GBO-demo/issues/478">#478</a>), and how the <abbr title="Burgerservicenummer">BSN</abbr> Authorization List is delivered in practice (<a href="../open-questions/#q-26">Q-26</a>).</li>
+<li><strong>Proposal</strong>: use <a href="../../requirements/pseudonymization/#bsnk-preconditions">BSNK-01 to BSNK-11</a> as the check for each build step and for the trial with the real BSNk <abbr title="Polymorphic pseudonym">PP</abbr>. Submit the recognition question (<a href="../open-questions/#q-26">Q-26</a>). Decide who the BSNk participant is (<a href="../open-questions/#q-49">Q-49</a>, <a href="../../decisions/0040-route-d-citizen-recognition/">ADR-0040</a>, proposed). Two points stay open in the demo: a pseudonym for the consumer (demo issue <a href="https://github.com/ICTU/GBO-demo/issues/478">#478</a>), and how the <abbr title="Burgerservicenummer">BSN</abbr> authorization list is delivered in practice (<a href="../open-questions/#q-26">Q-26</a>).</li>
 <li><strong>Related</strong>: <a href="#f-76">F-76</a> to <a href="#f-79">F-79</a>, <a href="../../requirements/pseudonymization/#req-20">REQ-20</a>, <a href="../../requirements/pseudonymization/#req-21">REQ-21</a>, <a href="../../requirements/pseudonymization/#req-69">REQ-69</a>, <a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="../open-questions/#q-01">Q-01</a>, <a href="../open-questions/#q-26">Q-26</a>, <a href="../open-questions/#q-49">Q-49</a>, <a href="../../decisions/0005-bsnk-pp/">ADR-0005</a>, <a href="../../decisions/0040-route-d-citizen-recognition/">ADR-0040</a>.</li>
 </ul>
 </details>
@@ -5506,7 +5506,7 @@ the service catalogue, and gives the proof a version.</p>
 <li><strong>Observation</strong>:<ul>
 <li>The portal gets the sources as <code>&lt;OIN&gt;@&lt;key set version&gt;</code> from an environment variable. Without at least one source, the portal gives no consent (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/main.go#L154-L173"><code>consent-portal-backend/main.go#L154-L173</code></a>).</li>
 <li>The source keeps its keys as files at the source gateway. In the demo, the keys are in the image.</li>
-<li>Since <a href="https://github.com/ICTU/GBO-demo/pull/477">PR #477</a>, the portal reads the <abbr title="Burgerservicenummer">BSN</abbr> authorization from the BSNk <abbr title="Burgerservicenummer">BSN</abbr> Authorization List instead of from configuration (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L38"><code>portal.go#L38</code></a>). The authorization is therefore a snapshot too. If a source joins the list after the consent, that consent holds only a pseudonym for the source.</li>
+<li>Since <a href="https://github.com/ICTU/GBO-demo/pull/477">PR #477</a>, the portal reads the <abbr title="Burgerservicenummer">BSN</abbr> authorization from the <abbr title="Burgerservicenummer">BSN</abbr> authorization list of BSNk instead of from configuration (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L38"><code>portal.go#L38</code></a>). The authorization is therefore a snapshot too. If a source joins the list after the consent, that consent holds only a pseudonym for the source.</li>
 <li>A proof in an older form is denied with <code>CONSENT_CONTEXT_INVALID</code>. The proof form changed twice (PR #469, PR #477). Each time, older proofs stopped working.</li>
 </ul>
 </li>
@@ -5599,11 +5599,11 @@ which format, and who is the intermediary stay open.</p>
 <li><strong>Status</strong>: open (the demo is not checked against it)</li>
 </ul>
 <p>Since August 2026, EU law puts <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance under the same standard
-as <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr> issuance. The issuer is the source holder itself or a public sector
+as <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr> issuance. The issuer is the bronhouder itself or a public sector
 body that the member state designates. The issuer needs a qualified seal
 certificate with a fixed profile, a notification by the member state,
 and a registration as relying party. For <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, this probably means one
-notification per source holder, with <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> as the party that issues on its
+notification per bronhouder, with <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> as the party that issues on its
 behalf. The demo is not checked against the standard, and none of the acts in this reading says
 who designates the issuer or who supervises.</p>
 <details class="note">
@@ -5612,12 +5612,12 @@ who designates the issuer or who supervises.</p>
 <li><strong>Type</strong>: external requirement (regulation)</li>
 <li><strong>Trigger</strong>: a reading of the EUDI implementing acts (October 5 to 6, 2026) and the ARF v3.0.0.</li>
 <li><strong>Observation</strong>:<ul>
-<li><strong>Who can issue</strong>: eIDAS art. 3(46) names two options. The issuer is the source holder itself, or "a public sector body that is designated by the Member State" on behalf of source holders.</li>
+<li><strong>Who can issue</strong>: eIDAS art. 3(46) names two options. The issuer is the bronhouder itself, or "a public sector body that is designated by the Member State" on behalf of bronhouders.</li>
 <li><strong>Certificate</strong>: the qualified certificate under the seal names the authentic source and the legal basis (eIDAS art. 45f(1)(b)). The profile is ETSI TS 119 412-6 clause 8, QcType <code>id-etsi-qct-eidaspsbeaa</code> (CIR 2026/1731).</li>
 <li><strong>Standard</strong>: CIR 2026/1735 replaces Annex I of 2025/1569 with ETSI TS 119 471 V1.1.1 and EN 319 401 V3.2.1, for <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr> and <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> providers. This change applies from entry into force (calculated: August 11, 2026). The provider makes the attestation seal in a QSCD.</li>
 <li><strong>Notification and registration</strong>: the member state notifies the issuer with a conformity assessment report (eIDAS art. 45f(3)). The issuer registers as relying party with the entitlement <code>PUB_EAA_Provider</code> (CIR 2025/848, Annex I, point 12(d)). The issuer has an access certificate. Since CIR 2026/1730, it also has a registration certificate.</li>
 <li><strong>Protocol</strong>: <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> per ETSI TS 119 472-3, with checks on the wallet instance attestation and the key attestation (CIR 2026/1731).</li>
-<li>ARF technical specification TS2 assumes that the source holder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. A party that issues on behalf of the source holder goes in the field <code>EEAIssuer</code>. For <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, that probably means one notification per source holder, with <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> as <code>EEAIssuer</code>.</li>
+<li>ARF technical specification TS2 assumes that the bronhouder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. A party that issues on behalf of the bronhouder goes in the field <code>EEAIssuer</code>. For <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, that probably means one notification per bronhouder, with <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> as <code>EEAIssuer</code>.</li>
 <li>The intermediary model of TS5 applies only to relying parties. It does not apply to issuance.</li>
 <li>Under the ARF technical specifications, each registered service needs its own access and registration certificate (Reg_10a, Reg_10c). Each Dutch attestation type needs a rulebook.</li>
 </ul>
@@ -5646,7 +5646,7 @@ long-lived attestations with change notifications from the source.</p>
 <li><strong>Trigger</strong>: a reading of the ARF v3.0.0 (October 6, 2026).</li>
 <li><strong>Observation</strong>: ARF VCR_09 says that a provider "SHALL revoke that <abbr title="Person Identification Data">PID</abbr> or attestation if the value of one or more of the attributes … was changed". This rule applies to a revocable attestation that is valid for 24 hours or more. An attestation that is valid for less than 24 hours does not have to be revocable. If an authentic source sets the value, "the Provider is responsible for ensuring that this third party notifies them about such changes".</li>
 <li><strong>Why it matters</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> is designed for queries. In the demo, the adapter fetches the data from the source at issuance. The source sends no change notifications. A provider of long-lived PuB-EAAs needs such a notification stream. The alternative is short-lived attestations (less than 24 hours) that the provider issues again often.</li>
-<li><strong>Proposal</strong>: add a choice per attestation type to <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> and B-13. The two options are short-lived attestations that the provider issues again often, or long-lived attestations with a change notification stream from the source. The ARF is not binding, but the requirement follows from the duty to revoke on changed data. <a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>, <a href="../../requirements/admission/#av-12">AV-12</a>, and <a href="../../requirements/admission/#av-13">AV-13</a> cover the validity and revocation policy per source holder.</li>
+<li><strong>Proposal</strong>: add a choice per attestation type to <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a> and B-13. The two options are short-lived attestations that the provider issues again often, or long-lived attestations with a change notification stream from the source. The ARF is not binding, but the requirement follows from the duty to revoke on changed data. <a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>, <a href="../../requirements/admission/#av-12">AV-12</a>, and <a href="../../requirements/admission/#av-13">AV-13</a> cover the validity and revocation policy per bronhouder.</li>
 <li><strong>Related</strong>: <a href="#f-81">F-81</a>, <a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>, <a href="../../requirements/admission/#av-12">AV-12</a>, <a href="../../requirements/admission/#av-13">AV-13</a>, <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>.</li>
 </ul>
 </details>
@@ -5848,7 +5848,7 @@ and reports the gap to ETSI.</p>
 <li>The reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> follows this layout. It picks the data service that delivers all requested attributes. If no data service delivers all of them, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> refuses the request before the authorization server and advises to split it (<a href="../../requirements/asi/#req-99">REQ-99</a>, <a href="https://github.com/ICTU/GBO-demo/pull/535">PR #535</a>).</li>
 </ul>
 </li>
-<li><strong>Why it matters</strong>: a token is valid for one data service. Attributes from two sources need two authorizations, with two citizen interactions. <a href="../open-questions/#q-37">Q-37</a> asks whether one <abbr title="Authentic Source Interface Provider">ASIP</abbr> for several sources makes <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> an intermediary, or whether each source holder stays <abbr title="Authentic Source Interface Provider">ASIP</abbr>. The data-service layout fits both answers.</li>
+<li><strong>Why it matters</strong>: a token is valid for one data service. Attributes from two sources need two authorizations, with two citizen interactions. <a href="../open-questions/#q-37">Q-37</a> asks whether one <abbr title="Authentic Source Interface Provider">ASIP</abbr> for several sources makes <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> an intermediary, or whether each bronhouder stays <abbr title="Authentic Source Interface Provider">ASIP</abbr>. The data-service layout fits both answers.</li>
 <li><strong>Proposal</strong>: the demo choice is <a href="../../decisions/0038-asi-data-service-per-source/">ADR-0038</a> (accepted). Record three points in the PSA (S11, B-14): one data service per authentic source, the source in each response, and one token per data service. A possible improvement is several sources in one authorization (RFC 8707 §2.2, one token per resource). Send the gap to ETSI (<a href="../standards-feedback/#e3">E3</a>).</li>
 <li><strong>Related</strong>: <a href="../../requirements/asi/#req-91">REQ-91</a>, <a href="../../requirements/asi/#req-94">REQ-94</a>, <a href="../../requirements/asi/#req-95">REQ-95</a>, <a href="../../requirements/asi/#req-99">REQ-99</a>, <a href="../open-questions/#q-37">Q-37</a>, <a href="../standards-feedback/#e3">E3</a>, <a href="../../decisions/0038-asi-data-service-per-source/">ADR-0038</a>.</li>
 </ul>
@@ -6035,21 +6035,21 @@ the issuer parameter and that the <abbr title="Qualified Trust Service Provider"
 <li><strong>Status</strong>: open</li>
 </ul>
 <p>FR-22 to FR-24 of FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> use different words for the same consent
-statuses. One rationale uses "Openstaand" next to "Actief", and a
-revoked consent is "Geannuleerd" in one place and "ingetrokken" in
-another. The rationale of FR-23 allows revocation only while the status
-is "Open", but its criteria also allow it after retrieval. Builders and
-reviewers therefore get two readings of one rule. The proposal is one
-set of terms, with "Ingetrokken" for a revoked consent, and a rationale
-that matches the criteria.</p>
+statuses. One rationale uses "Openstaand" (pending) next to "Actief"
+(active). A revoked consent is "Geannuleerd" (cancelled) in one place and
+"ingetrokken" (revoked) in another. The rationale of FR-23 allows
+revocation only while the status is "Open", but its criteria also allow
+it after retrieval. Builders and reviewers therefore get two readings of
+one rule. The proposal is one set of terms, with "Ingetrokken" for a
+revoked consent, and a rationale that matches the criteria.</p>
 <details class="note">
 <summary>Evidence, impact and proposal</summary>
 <ul>
 <li><strong>Type</strong>: contradiction in the source (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9)</li>
 <li><strong>Trigger</strong>: a review of the decision points for the build phase, track B (October 27, 2026).</li>
 <li><strong>Observation</strong>:<ul>
-<li>FR-22, criterion 1, names the statuses "Actief", "Opgehaald (nog geldig)", "Verlopen", and "Geannuleerd". The rationale of FR-22 uses "Openstaand" for the same status.</li>
-<li>FR-23 names the action "Intrekken" and the outcome "Geannuleerd". FR-24 uses "ingetrokken".</li>
+<li>FR-22, criterion 1, names the statuses active ("Actief"), retrieved and still valid ("Opgehaald (nog geldig)"), expired ("Verlopen"), and cancelled ("Geannuleerd"). The rationale of FR-22 uses "Openstaand" for the same status.</li>
+<li>FR-23 names the action revoke ("Intrekken") and the outcome "Geannuleerd". FR-24 uses "ingetrokken".</li>
 <li>The rationale of FR-23 says that revocation is possible only when the status is "Open". FR-23, criterion 1, and FR-24, criterion 1, also allow revocation after "Opgehaald", while the consent is valid.</li>
 </ul>
 </li>
@@ -6066,7 +6066,7 @@ that matches the criteria.</p>
 <p>FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 conflicts with decisions or with its own criteria on four
 points, and the PSA is ambiguous on one point. FR-39 and FR-26 put
 policy and a first check at a central place, while the decisions keep
-<abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> at each source holder. FR-25 assumes that revocation ends at
+<abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> at each bronhouder. FR-25 assumes that revocation ends at
 retrieval, and FR-35 describes register contents that differ from the
 chosen design. The PSA calls pseudonymization "transparent" to the
 citizen, which can mean invisible or explained. The FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> owner must
@@ -6078,8 +6078,8 @@ builders do not get two conflicting sources.</p>
 <li><strong>Type</strong>: contradiction in the source</li>
 <li><strong>Trigger</strong>: a design round compared FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 and the PSA with the requirements (November 2, 2026).</li>
 <li><strong>Observation</strong>:<ul>
-<li><strong>FR-39</strong> puts the authorization policy at a central policy authority. Its criteria cover centrally managed, sealed bundles (criteria 1 and 2), an RFC process (3), and governance of the authority (4). Criterion 5 puts the mapping of the service catalogue to scopes in that central policy. The decision in demo issue <a href="https://github.com/ICTU/GBO-demo/issues/426">#426</a> replaced this model (<a href="../answered-questions/#q-21">Q-21</a>, closed October 28, 2026). Under that decision, policy management stays at each source, <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> sit at the source holder, and <a href="../../requirements/authorization/#policy-management">RL-01 to RL-05</a> stay guidelines. Criterion 5 then belongs in the service description (<a href="../../requirements/consent/#req-121">REQ-121</a>) instead of a central policy.</li>
-<li><strong>FR-26</strong>, dependency 2, says: "the bronhouder receives a request only after the central authorization component (FR-17) did the first check". That conflicts with <a href="../answered-questions/#q-02">Q-02</a> (<abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, and <abbr title="Policy Administration Point">PAP</abbr> decentral at the source holder) and with <a href="../../requirements/authorization/#req-04">REQ-04</a> and <a href="../../requirements/consent/#req-68">REQ-68</a>: the <abbr title="Policy Decision Point">PDP</abbr> of the source does the check. The FR-26 criteria themselves are covered.</li>
+<li><strong>FR-39</strong> puts the authorization policy at a central policy authority. Its criteria cover centrally managed, sealed bundles (criteria 1 and 2), an RFC process (3), and governance of the authority (4). Criterion 5 puts the mapping of the service catalogue to scopes in that central policy. The decision in demo issue <a href="https://github.com/ICTU/GBO-demo/issues/426">#426</a> replaced this model (<a href="../answered-questions/#q-21">Q-21</a>, closed October 28, 2026). Under that decision, policy management stays at each source, <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> sit at the bronhouder, and <a href="../../requirements/authorization/#policy-management">RL-01 to RL-05</a> stay guidelines. Criterion 5 then belongs in the service description (<a href="../../requirements/consent/#req-121">REQ-121</a>) instead of a central policy.</li>
+<li><strong>FR-26</strong>, dependency 2, says: "the bronhouder receives a request only after the central authorization component (FR-17) did the first check". That conflicts with <a href="../answered-questions/#q-02">Q-02</a> (<abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, and <abbr title="Policy Administration Point">PAP</abbr> decentral at the bronhouder) and with <a href="../../requirements/authorization/#req-04">REQ-04</a> and <a href="../../requirements/consent/#req-68">REQ-68</a>: the <abbr title="Policy Decision Point">PDP</abbr> of the source does the check. The FR-26 criteria themselves are covered.</li>
 <li><strong>FR-25</strong> applies the pointer to GDPR rights only "when a consent can no longer be cancelled technically (because the data is retrieved)". Its dependency says "only activated when FR-24 is active (revocation no longer possible)". But FR-23 and FR-24, criterion 1, allow revocation after retrieval while the consent is valid (<a href="../../requirements/consent/#req-109">REQ-109</a>). For that reason, <a href="../../requirements/consent/#req-120">REQ-120</a> shows the pointer with every consent and after every revocation.</li>
 <li><strong>FR-35</strong>, criterion 1, says: "only a party-specific identifier in place of the <abbr title="Burgerservicenummer">BSN</abbr> and the consent proof are recorded". The design chooses otherwise on purpose (<a href="../../requirements/pseudonymization/#req-69">REQ-69</a>, <a href="../../requirements/consent/#consent-register">consent register data model</a>, route D in <a href="../../decisions/0040-route-d-citizen-recognition/">ADR-0040</a>). The register keeps the polymorphic <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> under its own reference. It keeps no party-specific values, and it signs the proof without keeping it. Both approaches keep no <abbr title="Burgerservicenummer">BSN</abbr>, but they record different data.</li>
 <li><strong>PSA S02</strong> says: "pseudonymization and technical identifiers are transparent to the citizen. The interface does not present them as a choice of content." The second part is clear and is in <a href="../../requirements/consent/#req-117">REQ-117</a>. "Transparent" can mean two things: the citizen sees nothing of it, or the interface explains it to the citizen (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA P-13</a>).</li>
@@ -6088,7 +6088,7 @@ builders do not get two conflicting sources.</p>
 <li><strong>Why it matters</strong>: the requirements follow the decisions (<a href="../answered-questions/#q-02">Q-02</a>, <a href="../answered-questions/#q-21">Q-21</a>) and the chosen design (route D). If the FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> text stays, builders and reviewers get two conflicting sources. The S02 UI requirement stays incomplete until the meaning of "transparent" is fixed.</li>
 <li><strong>Proposal</strong>:<ul>
 <li>The owner of FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> must make four changes:<ul>
-<li>Rewrite FR-39 to policy at the source holder, with the catalogue-to-set mapping in the service description.</li>
+<li>Rewrite FR-39 to policy at the bronhouder, with the catalogue-to-set mapping in the service description.</li>
 <li>Make FR-26 dependency 2 refer to the <abbr title="Policy Decision Point">PDP</abbr> of the source instead of a central authorization component.</li>
 <li>Detach FR-25 from "revocation no longer possible". Apply it to every consent and after a revocation.</li>
 <li>Make FR-35, criterion 1, describe what the register really keeps: its own reference with <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr>, no party-specific values, and not the proof.</li>
@@ -6109,7 +6109,7 @@ builders do not get two conflicting sources.</p>
 <ul>
 <li><strong>Closed</strong>: <a href="../findings-closed/#f-09">F-09</a> (signing only across an organization boundary, <a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>).</li>
 <li><strong>Open</strong>: <a href="#f-51">F-51</a> (management endpoints behind the decision policy), <a href="#f-52">F-52</a> (cumulative store), and <a href="#f-98">F-98</a> (FR-39 still describes a central policy authority).</li>
-<li><strong>Decided</strong>: policy management stays at each source. <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> sit at the source holder (<a href="../answered-questions/#q-21">Q-21</a>). <a href="../../requirements/authorization/#policy-management">RL-01 to RL-05</a> are guidelines for source holders.</li>
+<li><strong>Decided</strong>: policy management stays at each source. <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> sit at the bronhouder (<a href="../answered-questions/#q-21">Q-21</a>). <a href="../../requirements/authorization/#policy-management">RL-01 to RL-05</a> are guidelines for bronhouders.</li>
 <li><strong>PSA to decide</strong>: whether bundle signing is required when a bundle crosses an organization boundary (<a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>).</li>
 </ul>
 <h3 id="consent-and-its-lifecycle">Consent and its lifecycle<a class="headerlink" href="#consent-and-its-lifecycle" title="Permanent link">&para;</a></h3>
@@ -6142,7 +6142,7 @@ builders do not get two conflicting sources.</p>
 </ul>
 <h3 id="admission-and-service-descriptions">Admission and service descriptions<a class="headerlink" href="#admission-and-service-descriptions" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Open</strong>: <a href="#f-57">F-57</a> (the source owns its description, but the DCAT-AP-NL reference and central findability are missing), and <a href="#f-71">F-71</a> (an operator takes over a description, and the recorded agreement of the source holder is not built).</li>
+<li><strong>Open</strong>: <a href="#f-57">F-57</a> (the source owns its description, but the DCAT-AP-NL reference and central findability are missing), and <a href="#f-71">F-71</a> (an operator takes over a description, and the recorded agreement of the bronhouder is not built).</li>
 <li><strong>Decided</strong>: admission is a register entry instead of a policy rule (<a href="../findings-closed/#f-55">F-55</a>).</li>
 <li><strong>PSA to decide</strong>: accept or reject the role split "the source publishes, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates and activates" (S10), and decide where central findability lives.</li>
 </ul>

@@ -4926,7 +4926,7 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">PSA S03</a>
   ("voorkomen dat onbevoegde afnemers het <abbr title="Burgerservicenummer">BSN</abbr> ontvangen"),
   <a href="https://ictu.github.io/GBO-GO/main/#bouwstenen-die-hergebruikt-worden">GO, building blocks</a>
-  (BSNk <abbr title="Polymorphic pseudonym">PP</abbr> for all <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> requests, before a private service provider (dienstverlener) receives
+  (BSNk <abbr title="Polymorphic pseudonym">PP</abbr> for all <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> requests, before a private service provider receives
   data), and FR-35 criteria 2 and 3.</li>
 <li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the consent portal and the
   consent register (what the proof carries), and the reference policy
@@ -5027,7 +5027,7 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">PSA S03</a>
   ("de inrichting voert identiteitsvertaling alleen uit voor een
   toegestane dienst en gegevensvraag"), with the provision "veilige
-  omzetting aan de kant van de source holder (bronhouder)"</li>
+  omzetting aan de kant van de bronhouder"</li>
 <li>FR-35 criterion 3</li>
 <li>precondition <a href="./#bsnk-04">BSNK-04</a>: BSNk
   transforms only while the citizen is logged in, so it does not
@@ -5137,9 +5137,10 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
   a citizen once and not at every consent
   (<a href="./#route-d">route D</a>).</li>
 <li>This choice deliberately deviates from the text of FR-35
-  criterion 1. That criterion allows the register to record only "een
-  partijspecifiek kenmerk ter vervanging van het <abbr title="Burgerservicenummer">BSN</abbr> en het bewijs van
-  toestemming". The design differs from that text in three ways:<ul>
+  criterion 1. That criterion allows the register to record only a
+  party-specific identifier in place of the <abbr title="Burgerservicenummer">BSN</abbr>, and the consent proof
+  ("een partijspecifiek kenmerk ter vervanging van het <abbr title="Burgerservicenummer">BSN</abbr> en het bewijs
+  van toestemming"). The design differs from that text in three ways:<ul>
 <li>The register keeps <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> under its own reference.</li>
 <li>The register keeps no party-specific values.</li>
 <li>The register does not keep the proof, but signs it.</li>
@@ -5452,7 +5453,7 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
   <abbr title="Policy Enforcement Point">PEP</abbr> has a real proof converted without a decision. A consumer has such
   proofs.</li>
 <li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the source gateway and the
-  deployment that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers with it. Guideline for source holders: the
+  deployment that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers with it. Guideline for bronhouders: the
   isolation in their own network.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a> gives
   this evidence:<ul>
@@ -5509,7 +5510,7 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
 </thead>
 <tbody>
 <tr>
-<td>Source on the Autorisatielijst <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>Source on the <abbr title="Burgerservicenummer">BSN</abbr> Authorization List</td>
 <td>a pseudonym and an identity</td>
 </tr>
 <tr>
@@ -5555,7 +5556,7 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L126-L128"><code>portal.go#L126-L128</code></a>).</li>
 <li>The form follows the authorization
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L197-L224"><code>portal.go#L197-L224</code></a>).</li>
-<li>The Autorisatielijst <abbr title="Burgerservicenummer">BSN</abbr> and its maximum age are in
+<li>The <abbr title="Burgerservicenummer">BSN</abbr> Authorization List and its maximum age are in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/bsnk/bsnk.go#L84-L100"><code>bsnk.go#L84-L100</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L226-L247"><code>portal.go#L226-L247</code></a>,
   and
@@ -5580,7 +5581,7 @@ share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decry
   the portal (<code>CONSENT_SOURCES=&lt;OIN&gt;@&lt;key set version&gt;</code>). Every
   consent gets values for all configured sources, whatever the
   service.</li>
-<li>In the target design, the sources come from a service catalog
+<li>In the target design, the sources come from a service catalog (dienstencatalogus)
   (<a href="https://github.com/ICTU/GBO-demo/issues/382">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#382</a>).
   The keys come from onboarding
   (<a href="https://github.com/ICTU/GBO-demo/issues/467">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#467</a>).</li>
@@ -5654,11 +5655,11 @@ open (<a href="../../traceability/open-questions/#q-49">Q-49</a>).</p>
 <tbody>
 <tr>
 <td>Participant (recognized party)</td>
-<td>A party in the authentication chain that, as the Minister of BZK established, meets the requirements. The roles are Middelenuitgever (means issuer), Authenticatiedienst (authentication service), Machtigingsdienst (authorization service), Toegangsdienst (access service), and Sleutelaanvrager (key requester)</td>
+<td>A party in the authentication chain that, as the Minister of the Interior and Kingdom Relations (BZK) established, meets the requirements. The roles are Means Issuer (Middelenuitgever), Authentication Service (Authenticatiedienst), Authorization Service (Machtigingsdienst), Access Service (Toegangsdienst), and Key Requester</td>
 <td>p. 24, 34</td>
 </tr>
 <tr>
-<td>Service provider</td>
+<td>Service provider (dienstverlener)</td>
 <td>Receives and decrypts. A service provider is not a Participant</td>
 <td>p. 38</td>
 </tr>
@@ -5703,8 +5704,8 @@ open (<a href="../../traceability/open-questions/#q-49">Q-49</a>).</p>
 <td>p. 23</td>
 </tr>
 <tr>
-<td><abbr title="Burgerservicenummer">BSN</abbr> Authorization List (Autorisatielijst <abbr title="Burgerservicenummer">BSN</abbr>)</td>
-<td>A list of RvIG with the parties that are allowed to process the <abbr title="Burgerservicenummer">BSN</abbr>. Logius publishes it per <abbr title="Organisatie-identificatienummer">OIN</abbr> as the Technische Lijst <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td><abbr title="Burgerservicenummer">BSN</abbr> Authorization List</td>
+<td>A list of RvIG with the parties that are allowed to process the <abbr title="Burgerservicenummer">BSN</abbr>. Logius publishes it per <abbr title="Organisatie-identificatienummer">OIN</abbr> as the technical <abbr title="Burgerservicenummer">BSN</abbr> list ("Technische Lijst <abbr title="Burgerservicenummer">BSN</abbr>")</td>
 <td>p. 17, 28</td>
 </tr>
 </tbody>
@@ -5734,7 +5735,7 @@ step:</p>
     MO-&gt;&gt;TR: BSN [BSNK-02]
     TR-&gt;&gt;K: activate [BSNK-01, BSNK-02]
     K--&gt;&gt;TR: PI and PP of the register [BSNK-03]
-    Note over K: activation goes into the Inzageregister [BSNK-10]
+    Note over K: activation goes into the inspection register [BSNK-10]
     B-&gt;&gt;TR: gives consent for consumer and service
     Note over TR: per party: BSN-authorized? [BSNK-06]&lt;br/&gt;which key version? [BSNK-08]
     TR-&gt;&gt;K: transform, citizen is logged in [BSNK-04, BSNK-05]
@@ -5830,9 +5831,9 @@ whether it keeps the <abbr title="Polymorphic identity">PI</abbr>.</p>
 <p>"Fixed" means that the precondition follows directly from the specification.</p>
 <h3 id="bsnk-01">BSNK-01: Only a recognized party can activate and transform<a class="headerlink" href="#bsnk-01" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>BSNk accepts an activation only from a Middelenuitgever, a
-Machtigingsdienst, or the eIDAS message service, and a transformation only
-from those three or an Authenticatiedienst.</p>
+<p>BSNk accepts an activation only from a Means Issuer, an Authorization
+Service, or the eIDAS message service. It accepts a transformation only
+from those three or an Authentication Service.</p>
 </blockquote>
 <ul>
 <li><strong>Status</strong>: fixed, recognition open.</li>
@@ -5855,7 +5856,7 @@ from those three or an Authenticatiedienst.</p>
   it as follows: activation and transformation touch the <abbr title="Burgerservicenummer">BSN</abbr> of every
   citizen, so BSNk admits only assessed parties.</li>
 <li><strong>Consequence for the design</strong>: BZK must recognize the register as a
-  Middelenuitgever or Machtigingsdienst. Neither role is written for a
+  Means Issuer or an Authorization Service. Neither role is written for a
   consent facility. The specification names future roles, among them
   attribute services, but does not work them out (p. 34). After the
   register requests recognition, trials in the test environment are
@@ -5869,7 +5870,8 @@ from those three or an Authenticatiedienst.</p>
 <h3 id="bsnk-02">BSNK-02: Activation needs the <abbr title="Burgerservicenummer">BSN</abbr> and check data<a class="headerlink" href="#bsnk-02" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>BSNk activates on a <abbr title="Burgerservicenummer">BSN</abbr>. It does not activate on an existing polymorphic
-identity. BSNk checks the <abbr title="Burgerservicenummer">BSN</abbr> with name and date of birth against the BRP.</p>
+identity. BSNk checks the <abbr title="Burgerservicenummer">BSN</abbr> with name and date of birth against the
+Personal Records Database (BRP).</p>
 </blockquote>
 <ul>
 <li><strong>Status</strong>: fixed, delivery to check.</li>
@@ -5879,8 +5881,8 @@ identity. BSNk checks the <abbr title="Burgerservicenummer">BSN</abbr> with name
 <ul>
 <li><strong>What the specification says</strong>:<ul>
 <li>The input is a plain <abbr title="Burgerservicenummer">BSN</abbr>, an encrypted <abbr title="Burgerservicenummer">BSN</abbr>, or an encrypted identity
-  (p. 93). An encrypted <abbr title="Burgerservicenummer">BSN</abbr> can be "bij de bron al direct versleuteld"
-  (p. 53).</li>
+  (p. 93). An encrypted <abbr title="Burgerservicenummer">BSN</abbr> can be encrypted directly at the source
+  ("bij de bron al direct versleuteld", p. 53).</li>
 <li>A <abbr title="Burgerservicenummer">BSN</abbr> alone is not sufficient: check data must come with it. If a
   party does the identification itself, it goes on an exception list.
   Then BSNk checks only the <abbr title="Burgerservicenummer">BSN</abbr> (p. 94).</li>
@@ -5930,20 +5932,22 @@ identity. BSNk checks the <abbr title="Burgerservicenummer">BSN</abbr> with name
 <li><strong>What the specification says</strong>:<ul>
 <li>BSNk makes <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> with key material specific to the requester
   (p. 42). The notation is <abbr title="Polymorphic identity">PI</abbr>@MU (p. 25).</li>
-<li>Another party can use them only as an Authenticatiedienst with a
+<li>Another party can use them only as an Authentication Service with a
   registered affiliation (p. 56, 214).</li>
 <li>BSNk signs them, so no other party can make one (p. 42 to 43).</li>
 </ul>
 </li>
-<li><strong>Why</strong>: "Dit verhoogt de robuustheid van de oplossing" (p. 42). A <abbr title="Polymorphic identity">PI</abbr> that
-  leaks is of no use to another party.</li>
+<li><strong>Why</strong>: the specification says that this makes the solution
+  stronger ("Dit verhoogt de robuustheid van de oplossing", p. 42). A <abbr title="Polymorphic identity">PI</abbr>
+  that leaks is of no use to another party.</li>
 <li><strong>Consequence for the design</strong>: the <abbr title="Polymorphic identity">PI</abbr> does not belong in the consent
   proof. The source and the <abbr title="Policy Decision Point">PDP</abbr> can do nothing with it. The design of #364
   agrees with this: the proof holds only values per recipient. The <abbr title="Polymorphic identity">PI</abbr> of
   the DigiD login is not usable for the register either. The register needs
   an activation of its own.</li>
-<li><strong>Storing is allowed</strong>: the party that activates keeps <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> "zodanig
-  dat ze betrouwbaar zijn gekoppeld aan de Natuurlijk persoon" (p. 53).
+<li><strong>Storing is allowed</strong>: the party that activates keeps <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> so
+  that they are reliably linked to the natural person ("zodanig dat ze
+  betrouwbaar zijn gekoppeld aan de Natuurlijk persoon", p. 53).
   Whether storing is useful depends on how the register finds the citizen
   again. For more information, see the
   <a href="#recognition">open design choice</a>.</li>
@@ -5982,7 +5986,7 @@ assurance before it requests a transformation.</p>
 </ul>
 </li>
 <li><strong>To check</strong>: does the login at MijnOverheid count as authentication by
-  the register? The register is not an Authenticatiedienst itself.</li>
+  the register? The register is not an Authentication Service itself.</li>
 <li><strong>Related</strong>: <a href="./#req-21">REQ-21</a>,
   <a href="../consent/#req-24">REQ-24</a>,
   <a href="./#req-82">REQ-82</a>,
@@ -6078,8 +6082,11 @@ derived from that <abbr title="Organisatie-identificatienummer">OIN</abbr>.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>What the specification says</strong>:<ul>
-<li>BSNk uses the <abbr title="Organisatie-identificatienummer">OIN</abbr> "voor het afleiden van de DV-sleutels waarmee de EI
-  en EP vercijferd zijn en voor het DV-unieke pseudoniem" (p. 23).</li>
+<li>BSNk uses the <abbr title="Organisatie-identificatienummer">OIN</abbr> to derive the keys of the service provider that
+  encrypt the EI and EP. BSNk also uses it for the pseudonym that is
+  unique to the service provider ("voor het afleiden van de
+  DV-sleutels waarmee de EI en EP vercijferd zijn en voor het
+  DV-unieke pseudoniem", p. 23).</li>
 <li>Separate administrations within one organization have "their own <abbr title="Organisatie-identificatienummer">OIN</abbr>
   and hence their own Pseudonyms" (p. 108).</li>
 <li>The transformation request has no parameter for a service. <code>Role</code> and
@@ -6122,8 +6129,8 @@ version is the issue date of its certificate.</p>
   certificate with which it requested the keys, as YYYYMMDD (p. 170,
   192).</li>
 <li>The closing key sets the pseudonym. It has its own version (p. 183).</li>
-<li>The public Sleutelverstrekkingslijst (key provision list, p. 231 to
-  232) shows which versions BSNk provided.</li>
+<li>The public key provision list (Sleutelverstrekkingslijst) shows
+  which versions BSNk provided (p. 231 to 232).</li>
 </ul>
 </li>
 <li><strong>Why</strong>: a party requests the keys with its certificate. A new
@@ -6132,7 +6139,7 @@ version is the issue date of its certificate.</p>
   pseudonyms will change" (use case 5).</li>
 <li><strong>Consequence for the design</strong>: the precondition has three consequences:<ul>
 <li>The register must know the current key version per party. The
-  Sleutelverstrekkingslijst gives it.</li>
+  key provision list gives it.</li>
 <li>The source must keep old keys as long as proofs encrypted with them
   are in use. That is as long as the longest consent.</li>
 <li>If a consumer gets a <abbr title="Encrypted pseudonym">VP</abbr>, its pseudonyms change with a new closing
@@ -6157,7 +6164,7 @@ version is the issue date of its certificate.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>What the specification says</strong>:<ul>
-<li>Only a Toegangsdienst or Sleutelaanvrager calls <code>provideDVKeys</code>, and
+<li>Only an Access Service or a Key Requester calls <code>provideDVKeys</code>, and
   only for a contracted service provider (p. 146, 155).</li>
 <li>The service provider needs a PKIoverheid certificate with the <abbr title="Organisatie-identificatienummer">OIN</abbr>
   (p. 154). The keys come encrypted for that certificate (p. 185 to
@@ -6169,8 +6176,8 @@ version is the issue date of its certificate.</p>
 <li><strong>Why</strong>: the public list is there for transparency, "like Certificate
   Transparency" (p. 231).</li>
 <li><strong>Consequence for the design</strong>:<ul>
-<li>Every source needs a connection through a Toegangsdienst or
-  Sleutelaanvrager. If the consumer gets a <abbr title="Encrypted pseudonym">VP</abbr>, it needs such a
+<li>Every source needs a connection through an Access Service or a
+  Key Requester. If the consumer gets a <abbr title="Encrypted pseudonym">VP</abbr>, it needs such a
   connection too. As a result, participation is publicly visible.</li>
 <li>Decryption itself needs no construction work. The Logius decryption
   component is a container without its own storage. It gets all keys
@@ -6188,8 +6195,8 @@ version is the issue date of its certificate.</p>
 </details>
 <h3 id="bsnk-10">BSNK-10: The party that activates has the inspection duty<a class="headerlink" href="#bsnk-10" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>BSNk records every activation in the Inzageregister (inspection
-register). The party that activated must keep the status there up to
+<p>BSNk records every activation in the inspection register
+(Inzageregister). The party that activated must keep the status there up to
 date.</p>
 </blockquote>
 <ul>
@@ -6200,15 +6207,15 @@ date.</p>
 <ul>
 <li><strong>What the specification says</strong>:<ul>
 <li>At activation, BSNk registers the relation between the requester and
-  the citizen in the Inzageregister (p. 54).</li>
-<li>A Middelenuitgever or Machtigingsdienst MUST keep the status up to
+  the citizen in the inspection register (p. 54).</li>
+<li>A Means Issuer or an Authorization Service MUST keep the status up to
   date (p. 61) and implement the interface for it (p. 110).</li>
 <li>The citizen sees the overview in MijnOverheid (p. 39).</li>
 <li>The registration holds a description that the citizen can read
   (p. 119).</li>
 </ul>
 </li>
-<li><strong>Why</strong>: the Inzageregister exists so that citizens can see if a party
+<li><strong>Why</strong>: the inspection register exists so that citizens can see if a party
   issued something in their name without their knowledge (p. 44).</li>
 <li><strong>Consequence for the design</strong>:<ul>
 <li>The consent register appears in the overview of login means and
@@ -6332,7 +6339,7 @@ shows route D:</p>
   every login, and that needs a legal basis. Also, the register can compute
   for every <abbr title="Burgerservicenummer">BSN</abbr> itself whether consents exist, without a trace elsewhere.
   In route A, that is possible only through BSNk, and every activation goes
-  into the Inzageregister (<a href="#bsnk-10">BSNK-10</a>).</li>
+  into the inspection register (<a href="#bsnk-10">BSNK-10</a>).</li>
 </ul>
 <p>The demo builds route D
 (<a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>):</p>
@@ -6418,12 +6425,13 @@ must have such a reference and be allowed to pass it on.</p>
 <ul>
 <li>A and B give the same pseudonym for the same key version
   (<a href="#bsnk-08">BSNK-08</a>). A pseudonym is always the same for one citizen at
-  one recipient, "ongeacht de Authenticatiedienst of het gebruikte
-  Authenticatiemiddel" (p. 29).</li>
+  one recipient, whatever the authentication service or the login means
+  ("ongeacht de Authenticatiedienst of het gebruikte Authenticatiemiddel",
+  p. 29).</li>
 <li>B already exists for another register. MijnOverheid lets the citizen log
-  in "voor zichzelf en voor het Inzageregister", and so gets a value for
-  that register (p. 39). The consent register is as fixed at login as
-  the Inzageregister.</li>
+  in for itself and for the inspection register ("voor zichzelf en voor het
+  Inzageregister"). So it gets a value for that register (p. 39). The
+  consent register is as fixed at login as the inspection register.</li>
 <li>For A and B, the register needs its own keys to decrypt a <abbr title="Encrypted pseudonym">VP</abbr>
   (<a href="#bsnk-09">BSNK-09</a>). In route A, the register counts as one of the four
   recipients (<a href="#bsnk-05">BSNK-05</a>).</li>
@@ -6472,7 +6480,7 @@ following table:</p>
 <td>MijnOverheid, lawyer, BZK</td>
 </tr>
 <tr>
-<td>Can MijnOverheid get a <abbr title="Encrypted pseudonym">VP</abbr> for the consent register at the login, as for the Inzageregister?</td>
+<td>Can MijnOverheid get a <abbr title="Encrypted pseudonym">VP</abbr> for the consent register at the login, as for the inspection register?</td>
 <td>B</td>
 <td>MijnOverheid, Logius</td>
 </tr>
@@ -6482,7 +6490,7 @@ following table:</p>
 <td>MijnOverheid</td>
 </tr>
 <tr>
-<td>How does the Inzageregister handle repeated activation for the same citizen?</td>
+<td>How does the inspection register handle repeated activation for the same citizen?</td>
 <td>A</td>
 <td>Logius</td>
 </tr>
@@ -6559,12 +6567,12 @@ table:</p>
 </tr>
 <tr>
 <td>EI Decryption, to read a <abbr title="Encrypted identity">VI</abbr></td>
-<td>BSNk key management, only for a party on the Technische Lijst <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>BSNk key management, only for a party on the technical <abbr title="Burgerservicenummer">BSN</abbr> list</td>
 <td>The party</td>
 <td>p. 154 to 155</td>
 </tr>
 <tr>
-<td>Sleutelverstrekkingslijst</td>
+<td>Key provision list</td>
 <td>BSNk management organization</td>
 <td>Public</td>
 <td>p. 231</td>
@@ -6587,10 +6595,10 @@ every call (<a href="#bsnk-09">BSNK-09</a>).</p>
     P-&gt;&gt;C: requests certificate with OIN
     C--&gt;&gt;P: certificate, private key stays with the party
     P-&gt;&gt;S: public certificate
-    Note over S: checks certificate and origin,&lt;br/&gt;and the Technische Lijst BSN if a VI is needed
+    Note over S: checks certificate and origin,&lt;br/&gt;and the technical BSN list if a VI is needed
     S-&gt;&gt;K: request keys for this OIN
     K--&gt;&gt;S: key files, encrypted for the certificate
-    Note over K: provision goes on the Sleutelverstrekkingslijst
+    Note over K: provision goes on the key provision list
     S--&gt;&gt;P: encrypted key files
     Note over P: decrypts with its own private key,&lt;br/&gt;checks the key pairs, keeps them</div>
 <p>The party does not talk to BSNk. The Key Requester cannot read the keys,
@@ -6598,18 +6606,19 @@ because every file is encrypted with the certificate of the party (p. 185
 to 186). The party must check that the private and public key in every file
 match (p. 195).</p>
 <p>The party that requests the keys has duties. The specification states the
-following duties for a Toegangsdienst (p. 155):</p>
+following duties for an Access Service (p. 155):</p>
 <ul>
 <li>It requests keys only for a contracted service provider.</li>
 <li>It establishes that the request comes from that service provider, and
   records this in a way that it can prove.</li>
 <li>It checks that the certificate is valid.</li>
 <li>It makes sure that a party that wants to decrypt the <abbr title="Burgerservicenummer">BSN</abbr> is on the
-  Technische Lijst <abbr title="Burgerservicenummer">BSN</abbr>.</li>
+  technical <abbr title="Burgerservicenummer">BSN</abbr> list.</li>
 </ul>
-<p>The Sleutelaanvrager role covers "slechts één specifieke
-verantwoordelijkheid" of the Toegangsdienst (p. 37). The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> team reads
-this as follows: the same duties then apply to a Sleutelaanvrager.</p>
+<p>The Key Requester role covers only one specific responsibility of the
+Access Service ("slechts één specifieke verantwoordelijkheid", p. 37). The
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> team reads this as follows: the same duties then apply to a Key
+Requester.</p>
 <h4 id="when-the-step-comes-back">When the step comes back<a class="headerlink" href="#when-the-step-comes-back" title="Permanent link">&para;</a></h4>
 <p>The key request comes back in three cases:</p>
 <ul>
@@ -6619,7 +6628,7 @@ this as follows: the same duties then apply to a Sleutelaanvrager.</p>
 <li>Another <abbr title="Organisatie-identificatienummer">OIN</abbr>: another <abbr title="Organisatie-identificatienummer">OIN</abbr> needs separate migration keys. The party
   requests them the same way (p. 156).</li>
 <li>A party that becomes <abbr title="Burgerservicenummer">BSN</abbr>-authorized later: BSNk provides the key for a <abbr title="Encrypted identity">VI</abbr>
-  only to a party on the Technische Lijst <abbr title="Burgerservicenummer">BSN</abbr> (p. 154). The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> team reads
+  only to a party on the technical <abbr title="Burgerservicenummer">BSN</abbr> list (p. 154). The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> team reads
   this as follows: if a party gets on the list later, the party must make
   the request again.</li>
 </ul>
@@ -6629,9 +6638,9 @@ this as follows: the same duties then apply to a Sleutelaanvrager.</p>
 <li>Who requests the keys for sources and consumers:<ul>
 <li>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> parties talk to MijnOverheid and the consent register.
   They do not talk to BSNk.</li>
-<li>Thus one of the parties that does talk to BSNk must be Toegangsdienst
-  or Sleutelaanvrager. As an alternative, an existing Sleutelaanvrager
-  comes in between.</li>
+<li>Thus one of the parties that does talk to BSNk must be an Access
+  Service or a Key Requester. As an alternative, an existing Key
+  Requester comes in between.</li>
 <li>A Participant can combine roles (p. 34).</li>
 <li>The register must already be recognized for activation and
   transformation (<a href="#bsnk-01">BSNK-01</a>), and it already admits parties.
@@ -6658,8 +6667,8 @@ this as follows: the same duties then apply to a Sleutelaanvrager.</p>
   pseudonym of a consumer.</li>
 <li>A shorter route through the direct variants:<ul>
 <li>BSNk allows the directly encrypted pseudonym only for separate
-  administrations within an Authenticatiedienst, Middelenuitgever, or
-  Machtigingsdienst. It also needs consultation with BSNk (p. 99,
+  administrations within an Authentication Service, a Means Issuer, or
+  an Authorization Service. It also needs consultation with BSNk (p. 99,
   108).</li>
 <li>The directly encrypted identity is in the notation, but no interface
   delivers it.</li>
@@ -6707,13 +6716,13 @@ That point is whether the source checks the signature of the proof again.</p>
   input for activation (p. 93)?</li>
 <li>How long does a <abbr title="Encrypted identity">VI</abbr> stay usable? It carries an issue month and no end
   date (p. 177). The specification says nothing about this.</li>
-<li>Do source holders already have BSNk keys from their DigiD connection?</li>
+<li>Do bronhouders already have BSNk keys from their DigiD connection?</li>
 <li>Can a party use the certificate that it already has for <abbr title="Federated Service Connectivity">FSC</abbr> for the key
   request? The certificate must have the <abbr title="Organisatie-identificatienummer">OIN</abbr> in <code>Subject.serialNumber</code>
   and allow keyEncipherment (p. 154).</li>
-<li>Which requirements does BZK set for a Sleutelaanvrager? Do the duties of
-  a Toegangsdienst at a key request (p. 155) apply in full to a
-  Sleutelaanvrager?</li>
+<li>Which requirements does BZK set for a Key Requester? Do the duties of
+  an Access Service at a key request (p. 155) apply in full to a Key
+  Requester?</li>
 <li>The questions under <a href="#recognition">questions to answer</a>: what
   MijnOverheid can pass at login, and how BSNk handles repeated activation
   and new keys of the register.</li>

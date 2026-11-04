@@ -4600,9 +4600,9 @@
 this scenario, and no citizen data travels. The management plane decides
 who changes the rules. The decision plane decides who gets which data. The
 two planes are separate (<a href="../../traceability/findings/#f-51">F-51</a>).</p>
-<p>The scenario takes place at the source holder (bronhouder). The <abbr title="Policy Decision Point">PDP</abbr> is behind the <abbr title="Federated Service Connectivity">FSC</abbr>
-Inway of the source holder, and the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager serves exactly that
-<abbr title="Policy Decision Point">PDP</abbr>. Policy management stays with each source holder
+<p>The scenario takes place at the bronhouder. The <abbr title="Policy Decision Point">PDP</abbr> is behind the <abbr title="Federated Service Connectivity">FSC</abbr>
+Inway of the bronhouder, and the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager serves exactly that
+<abbr title="Policy Decision Point">PDP</abbr>. Policy management stays with each bronhouder
 (<a href="../../traceability/answered-questions/#q-21">Q-21</a>,
 <a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>). In the demo,
 everything runs in one compose stack. This setup is a demo artifact and
@@ -4821,7 +4821,7 @@ the compose defaults. Policy distribution uses the following components:</p>
 <tr>
 <td><code>openftv-manager-ui</code></td>
 <td><code>9283:8080</code></td>
-<td>Management interface: policies, deployments, and Logboek (<abbr title="Authorization Decision Log">ADL</abbr>)</td>
+<td>Management interface: policies, deployments, and the <abbr title="Authorization Decision Log">ADL</abbr> (shown as "Logboek")</td>
 </tr>
 <tr>
 <td><code>keycloak</code></td>
@@ -4979,7 +4979,7 @@ the compose defaults. Policy distribution uses the following components:</p>
   has none of these steps. For this reason, RL-05 is a backlog item and
   more than a wish (<a href="../../traceability/findings-closed/#f-59">F-59</a>).</li>
 <li><strong>Read access to the <abbr title="Authorization Decision Log">ADL</abbr> is open.</strong> Read access to the decision log is
-  an authorization question. The <code>auditor</code> role reads the Logboek through
+  an authorization question. The <code>auditor</code> role reads the <abbr title="Authorization Decision Log">ADL</abbr> through
   the management interface. The <abbr title="Authorization Decision Log">ADL</abbr> can hold OINs, and in the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>
   routes also the <abbr title="Burgerservicenummer">BSN</abbr>. It is open who can read the <abbr title="Authorization Decision Log">ADL</abbr>
   (<a href="../../traceability/open-questions/#q-08">Q-08</a>,

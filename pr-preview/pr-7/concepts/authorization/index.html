@@ -4737,7 +4737,7 @@ also has a part at request time: the mandate check
 <h2 id="pep-pdp-pip"><abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, <abbr title="Policy Information Point">PIP</abbr><a class="headerlink" href="#pep-pdp-pip" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
     C[Consumer Outway] --&gt;|mTLS + FSC token| IN
-    subgraph SRC[Source holder]
+    subgraph SRC[Bronhouder]
         IN[FSC Inway = PEP]
         subgraph PDP[OpenFTV PDP v0.1.0]
             MAP[FTV GraphQL mapper]
@@ -4933,14 +4933,14 @@ only reads the request and holds no checks.</p>
 <td>EUD0001</td>
 <td>pid</td>
 <td><code>bri</code></td>
-<td>Inkomensverklaring to the wallet, years 2024 and 2025</td>
+<td>Income statement (inkomensverklaring) to the wallet, years 2024 and 2025</td>
 <td><code>PID_NOT_PRESENT</code>, <code>ACTOR_NOT_ALLOWED</code>, <code>YEAR_NOT_ALLOWED</code></td>
 </tr>
 <tr>
 <td>EUD0002</td>
 <td>pid</td>
 <td><code>brp</code></td>
-<td>Akte van overlijden to the wallet</td>
+<td>Death certificate (akte van overlijden) to the wallet</td>
 <td><code>PID_NOT_PRESENT</code>, <code>ACTOR_NOT_ALLOWED</code></td>
 </tr>
 <tr>
@@ -5012,7 +5012,7 @@ comes from the proof
 <a href="../../traceability/findings/#f-77">F-77</a>).</p>
 </li>
 <li>
-<p>The year check. Every requested <code>belastingjaren</code> value needs a
+<p>The year check. Every requested tax year (<code>belastingjaren</code>) needs a
   consented <code>bd:ib:&lt;year&gt;</code> scope. If a query has no year filter, it fails
   too, because the source then returns every year
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001.rego#L82-L96"><code>dvt0001.rego#L82-L96</code></a>).
@@ -5359,7 +5359,7 @@ do share one availability object: one broken module stops both
   (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>,
   <a href="../source-onboarding/">Source onboarding</a>). The EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> routes
   work this way.</li>
-<li>Demand side: for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, a statutory service catalog sets the legal
+<li>Demand side: for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, a statutory service catalog (dienstencatalogus) sets the legal
   ceiling of what a consumer can request, per use case. The sector need
   defines this catalog.</li>
 </ul>

@@ -4557,7 +4557,7 @@
 
 
 <h1 id="building-block-view">Building block view<a class="headerlink" href="#building-block-view" title="Permanent link">&para;</a></h1>
-<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has one base and three channels. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis sits at every source holder (bronhouder)
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has one base and three channels. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis sits at every bronhouder
 and opens the source in one standard way. The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI and <abbr title="Once-Only Technical System">OOTS</abbr>
 channels each serve a different kind of consumer, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis feeds all
 three. This picture is the overview of the
@@ -4567,7 +4567,7 @@ with the state of gbo-demo v0.9.0 added.</p>
 levels go from this overview, to one page per block, to the
 <a href="components/">component catalog</a> with the code.</p>
 <div class="mermaid">flowchart LR
-  subgraph source holder["Source holder"]
+  subgraph bronhouder["Bronhouder"]
     direction LR
     bron[("Government source&lt;br/&gt;BRP · BD · LVG · …")]
     subgraph gbo["GBO Basis"]
@@ -4633,7 +4633,7 @@ levels go from this overview, to one page per block, to the
   class pp,dv,qtsp,wallet,ootsb,eu ext
   class bron,burger source
   class cfg,core,tv,pp,asi,pubeaa,ootsa zoom
-  style source holder fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
+  style bronhouder fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
   style gbo fill:#F4F5F7,stroke:#16A34A
   style eudi fill:#F4F5F7,stroke:#D1D5DB
   style oots fill:#F4F5F7,stroke:#D1D5DB
@@ -4674,7 +4674,7 @@ Dashed: design only, not built in demo v0.9.0.</em></p>
 </tr>
 <tr>
 <td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> tools</td>
-<td>Help a source holder that cannot offer GraphQL, through a translation layer.</td>
+<td>Help a bronhouder that cannot offer GraphQL, through a translation layer.</td>
 <td>Design only</td>
 <td><a href="../decisions/0027-onboarding-toolkit/">ADR-0027</a></td>
 </tr>
@@ -4704,8 +4704,8 @@ Dashed: design only, not built in demo v0.9.0.</em></p>
 </tr>
 </tbody>
 </table>
-<p>The pseudonymization facility (pseudonimiseervoorziening) (BSNk <abbr title="Polymorphic pseudonym">PP</abbr>) and the <abbr title="Qualified Trust Service Provider">QTSP</abbr> are not <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
-components. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> uses them. The demo runs a mock of BSNk <abbr title="Polymorphic pseudonym">PP</abbr>.</p>
+<p>The pseudonymization facility BSNk <abbr title="Polymorphic pseudonym">PP</abbr> (pseudonimiseervoorziening) and
+the <abbr title="Qualified Trust Service Provider">QTSP</abbr> are not <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> uses them. The demo runs a mock of BSNk <abbr title="Polymorphic pseudonym">PP</abbr>.</p>
 <h2 id="how-gbo-basis-feeds-every-channel">How <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis feeds every channel<a class="headerlink" href="#how-gbo-basis-feeds-every-channel" title="Permanent link">&para;</a></h2>
 <p>Every channel reaches the source in the same way. A channel component
 calls the source through its own <abbr title="Federated Service Connectivity">FSC</abbr> Outway. At the source, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis

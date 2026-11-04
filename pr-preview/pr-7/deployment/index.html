@@ -4600,13 +4600,13 @@ production.</p>
 </tr>
 <tr>
 <td>Simulation</td>
-<td>Kubernetes with the generic <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/deploy/helm/gbo-app">gbo-app Helm chart</a>. Each application is one release with a Deployment or a Job, a Service, and a Gateway API HTTPRoute. It runs in the MinEZK and MinBZK tenants.</td>
-<td>Public demo at <a href="https://gbo.simulatie.datastelsel.nl/">gbo.simulatie.datastelsel.nl</a></td>
+<td>Kubernetes with the generic <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/deploy/helm/gbo-app">gbo-app Helm chart</a>. Each application is one release with a Deployment or a Job, a Service, and a Gateway API HTTPRoute. It runs in two tenants: MinEZK (Ministry of Economic Affairs and Climate Policy) and MinBZK (Ministry of the Interior and Kingdom Relations).</td>
+<td>Public demo at <a href="https://gbo.simulatie.datastelsel.nl/"><code>gbo.simulatie.datastelsel.nl</code></a></td>
 </tr>
 </tbody>
 </table>
 <p>Compose profiles switch on optional parts. The base (no profile) runs the
-<abbr title="Policy Decision Point">PDP</abbr> and its databases, the admission register, and the consent register (toestemmingsregister).
+<abbr title="Policy Decision Point">PDP</abbr> and its databases, the admission register (toelatingsregister), and the consent register (toestemmingsregister).
 It also runs the BD and BRP sources with their gateways, the BSNk mock, the
 decryption component, the <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbooks, the developer portal, and
 observability. Each profile adds parts to the base:</p>
@@ -4839,7 +4839,7 @@ certificate portal serve the group. The group has these peers:</p>
 <td>Provider of <code>bri</code>, <code>brp</code> (RvIG), <code>lvg</code>, <code>gbo-metadata-bd</code>, and <code>gbo-metadata-rvig</code>. Its Manager decides contracts through the <abbr title="Policy Decision Point">PDP</abbr>. Its Inway is the <abbr title="Policy Enforcement Point">PEP</abbr>.</td>
 </tr>
 <tr>
-<td>Hypotheekverlener mock</td>
+<td>Mortgage lender mock (Hypotheek-BV)</td>
 <td><code>…0300</code></td>
 <td><code>hv-manager</code>, <code>hv-outway</code>, <code>hv-controller</code>, <code>hv-txlog-api</code></td>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consumer of <code>bri</code></td>
@@ -4886,7 +4886,7 @@ certificate portal serve the group. The group has these peers:</p>
 the RvIG and LVG sources use the Belastingdienst peer <code>…0200</code> and its <abbr title="Organisatie-identificatienummer">OIN</abbr>.
 Each source still has its own service, gateway, metadata document, and
 certificate set. This shared peer is a demo shortcut. The demo therefore
-does not show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per source holder (bronhouder)
+does not show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per bronhouder
 (<a href="../requirements/sources-identity/#req-67">REQ-67</a>).</p>
 <h3 id="asi-units"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> units<a class="headerlink" href="#asi-units" title="Permanent link">&para;</a></h3>
 <p>The <code>asi</code> profile runs these units:</p>
@@ -5036,7 +5036,7 @@ the development issuer CA and the issuer CA of every source. This list is
 too broad (<a href="../requirements/eudi-issuance/#req-45">REQ-45</a>). The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> wallet
 verifier trusts a fixed list: the pre-production <abbr title="Person Identification Data">PID</abbr> issuer and the
 development issuer CA. Neither list is the EU Trusted List.</p>
-<p>Production needs separate certificate roles per source holder for EUDI:
+<p>Production needs separate certificate roles per bronhouder for EUDI:
 access, registration, qualified seal, and status list. It is open which
 trust list anchors <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> providers
 (<a href="../traceability/open-questions/#q-30">Q-30</a>). <a href="../concepts/identity-trust/">Identity and
@@ -5110,7 +5110,7 @@ trust</a> and
 </tr>
 <tr>
 <td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> attribute catalog</td>
-<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json">schemas/asi-attributes.json</a></td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json"><code>schemas/asi-attributes.json</code></a></td>
 <td><code>value_schema</code> per <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attribute identifier</td>
 </tr>
 <tr>
@@ -5152,7 +5152,7 @@ The demo-grade choices in the following lists must change for production.
 <a href="../risks/">Risks and technical debt</a> tracks them.</p>
 <p>Authorization and consent have these demo-grade choices:</p>
 <ul>
-<li>One <abbr title="Policy Decision Point">PDP</abbr> serves all providers. The target is a <abbr title="Policy Decision Point">PDP</abbr> per source holder
+<li>One <abbr title="Policy Decision Point">PDP</abbr> serves all providers. The target is a <abbr title="Policy Decision Point">PDP</abbr> per bronhouder
   (<a href="../decisions/0004-federated-authorization/">ADR-0004</a>). The <abbr title="Policy Decision Point">PDP</abbr> does not
   start without its <abbr title="Authorization Decision Log">ADL</abbr> database, so <code>postgres-ftv</code> runs in every profile.</li>
 <li>Every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> decision needs the consent status, live, over <abbr title="Federated Service Connectivity">FSC</abbr>. By

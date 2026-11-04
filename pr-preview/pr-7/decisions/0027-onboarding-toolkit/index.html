@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-0027-source-holder-onboarding-toolkit" class="md-skip">
+        <a href="#adr-0027-bronhouder-onboarding-toolkit" class="md-skip">
           Ga naar inhoud
         </a>
       
@@ -4565,37 +4565,37 @@
   
 
 
-<h1 id="adr-0027-source-holder-onboarding-toolkit">ADR-0027: Source holder onboarding toolkit<a class="headerlink" href="#adr-0027-source-holder-onboarding-toolkit" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0027-bronhouder-onboarding-toolkit">ADR-0027: Bronhouder onboarding toolkit<a class="headerlink" href="#adr-0027-bronhouder-onboarding-toolkit" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: proposed</li>
 <li>Date: 2026-08-24, updated on 2026-11-02</li>
-<li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-06</a>, <a href="https://ictu.github.io/GBO-GO/main/#6-impact-op-betrokken-partijen">GO §6: impact op bronhouders</a></li>
+<li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-06</a>, <a href="https://ictu.github.io/GBO-GO/main/#6-impact-op-betrokken-partijen">GO §6: impact on bronhouders</a></li>
 <li>Deliberation: reference architecture v0.6.2, gap 6 "bronhouder onboarding toolkit" (archived and unpublished)</li>
 <li>Implemented in: partially. These parts of the demo are reusable starting points: the <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/deploy/helm/gbo-app">Helm chart</a>, the source metadata contract (<a href="../0016-source-owned-metadata/">ADR-0016</a>), the source gateway (<a href="../0033-gateway-decrypts-after-allow/">ADR-0033</a>), and the <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts">contract seed scripts</a>.</li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
 <p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has one API and one connectivity stack. Even so, the connection of a
-source holder (bronhouder) involves PKI, <abbr title="Federated Service Connectivity">FSC</abbr> components, a source gateway, policies, and
-metadata. Smaller source holders (gemeenten) can lack the capacity for this
-work.</p>
+bronhouder involves PKI, <abbr title="Federated Service Connectivity">FSC</abbr> components, a source gateway, policies, and
+metadata. Smaller bronhouders, for example municipalities, can lack the
+capacity for this work.</p>
 <h2 id="proposed-decision">Proposed decision<a class="headerlink" href="#proposed-decision" title="Permanent link">&para;</a></h2>
 <p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> packages the source-side stack as a deployable toolkit. The toolkit
 has these parts:</p>
 <ul>
 <li><abbr title="Federated Service Connectivity">FSC</abbr> Inway and Manager.</li>
-<li>The bron-sidecar.</li>
+<li>The source gateway (<code>bron-sidecar</code>).</li>
 <li>Contract seeds.</li>
 <li>Policy templates per route.</li>
 <li>A reference onboarding process: certificate, <abbr title="Federated Service Connectivity">FSC</abbr> registration,
   metadata publication, contract, and activation.</li>
 </ul>
 <p>Some sources cannot host their own GraphQL endpoint. For these sources,
-<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> offers a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-vertaallaag as a shared service.</p>
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> offers a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> translation layer (<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-vertaallaag) as a shared service.</p>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
 <p>These points are open:</p>
 <ul>
-<li>Who operates the shared instances of the vertaallaag?</li>
-<li>The policy templates are guidance. Each source holder owns and
+<li>Who operates the shared instances of the translation layer?</li>
+<li>The policy templates are guidance. Each bronhouder owns and
   publishes its own policy (<a href="../0021-central-pap-signed-bundles/">ADR-0021</a>).</li>
 <li>How does a source get its BSNk decryption keys as an onboarding step
   (<a href="../../requirements/pseudonymization/#bsnk-09">BSNK-09</a>,

@@ -4569,7 +4569,7 @@
 <ul>
 <li>Status: accepted</li>
 <li>Date: 2026-08-24 (ported from reference architecture v0.6.2)</li>
-<li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>, <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-09</a>, <a href="https://ictu.github.io/GBO-GO/main/#graphql-als-selectief-bevragingsmechanisme">GO: GraphQL als selectief bevragingsmechanisme</a></li>
+<li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>, <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-09</a>, <a href="https://ictu.github.io/GBO-GO/main/#graphql-als-selectief-bevragingsmechanisme">GO: GraphQL as a selective query mechanism</a></li>
 <li>Deliberation: Reference architecture v0.6.2, decision 1, and its GraphQL + <abbr title="Policy-based access control">PBAC</abbr> proposal (archived and unpublished)</li>
 <li>Implemented in: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/graphql-server">services/graphql-server</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/brp-graphql-server">services/brp-graphql-server</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/lvg-graphql-server">services/lvg-graphql-server</a></li>
 </ul>
@@ -4580,7 +4580,7 @@ separate filter parameters. Policies must then also state who can use
 which filter. As a result, the API layer and the policy layer hold the
 same logic twice.</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Source holders (bronhouders) expose GraphQL endpoints. The selection set of the consumer is
+<p>Bronhouders expose GraphQL endpoints. The selection set of the consumer is
 the data minimization: the query names exactly the fields that the
 consumer wants. The policy engine authorizes that query field by field.</p>
 <p>Selectors that matter for authorization, such as the <code>belastingjaren</code> year
@@ -4592,7 +4592,7 @@ filter, must travel inside the query. Then the <abbr title="Policy Decision Poin
   <a href="../0013-pdp-request-mapper/">ADR-0013</a>.</li>
 <li>GraphQL runs over HTTP, so <abbr title="Federated Service Connectivity">FSC</abbr> proxies it unchanged
   (<a href="../0003-fsc-connectivity/">ADR-0003</a>).</li>
-<li>GraphQL is not a recognized FDS datadienst type.
+<li>GraphQL is not a recognized type of FDS data service (datadienst).
   <a href="../0025-graphql-fds-datadienst/">ADR-0025</a> proposes to standardize it.
   The iWlz/nID production precedent supports the pattern.</li>
 </ul>

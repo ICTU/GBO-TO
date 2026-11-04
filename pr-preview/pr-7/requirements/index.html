@@ -3910,7 +3910,7 @@
   <a href="#guidelines-for-bronhouders-rl" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Guidelines for source holders (RL)
+        Guidelines for bronhouders (RL)
       
     </span>
   </a>
@@ -4730,7 +4730,7 @@ serves. Related choices go into one ADR. The ADRs are in
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>- **Source**: design — PSA S04, FR-34 criterion 1
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>             or: derived — serves PSA S01: why, in one sentence
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>- **Addressee**: GBO-delivered component | interface agreement | guideline for source holders
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>- **Addressee**: GBO-delivered component | interface agreement | guideline for bronhouders
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>- **Evidence**: demo issue or PR, with a permalink to the test or the code;
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>               or: not built — issue
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>- **Related**: links only (REQ, F, Q, ADR)
@@ -4794,8 +4794,8 @@ more information, see <a href="#removed-numbers">Removed numbers</a>.</p>
 <h3 id="addressee">Addressee: a MUST is only about what <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> builds<a class="headerlink" href="#addressee" title="Permanent link">&para;</a></h3>
 <p>The system is federative (<a href="../traceability/answered-questions/#q-02">Q-02</a>),
 and <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>
-puts the source holder (bronhouder) in control. So a requirement that prescribes how a
-source holder configures its own <abbr title="Policy Decision Point">PDP</abbr>, <abbr title="Policy Administration Point">PAP</abbr>, or policy engine is no
+puts the bronhouder in control. So a requirement that prescribes how a
+bronhouder configures its own <abbr title="Policy Decision Point">PDP</abbr>, <abbr title="Policy Administration Point">PAP</abbr>, or policy engine is no
 requirement. Nobody can enforce it in practice. Each requirement names
 its addressee:</p>
 <ul>
@@ -4811,12 +4811,12 @@ its addressee:</p>
   example, you can trace which policy version a decision used. A MUST
   applies, but only to the observable result. It never applies to the
   internal configuration or the product.</li>
-<li><strong>Guideline for source holders</strong>: the internal configuration at a source.
+<li><strong>Guideline for bronhouders</strong>: the internal configuration at a source.
   At most SHOULD, with the reason, or a selection criterion for a product.</li>
 </ul>
 <p>Three other namespaces hold what is not a requirement on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>:</p>
 <ul>
-<li><strong><code>RL-NN</code></strong>: guidelines for source holders, on
+<li><strong><code>RL-NN</code></strong>: guidelines for bronhouders, on
   <a href="authorization/#policy-management">Policy management</a>. Matrix and findings can
   refer to them like a requirement, without the suggestion that they are
   one. Each guideline has a promotion rule: the open question that must
@@ -5071,7 +5071,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="eudi-issuance/#req-58">REQ-58</a></td>
-<td>Every source holder has its own certificate set for issuance, and missing material fails</td>
+<td>Every bronhouder has its own certificate set for issuance, and missing material fails</td>
 <td>EUDI</td>
 <td><a href="eudi-issuance/">EUDI issuance</a></td>
 <td>design</td>
@@ -5143,7 +5143,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="sources-identity/#req-67">REQ-67</a></td>
-<td>The legal identity of a source holder comes from its certificate and not from configuration</td>
+<td>The legal identity of a bronhouder comes from its certificate and not from configuration</td>
 <td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="sources-identity/#identity-trust">Identity and trust</a></td>
 <td>design</td>
@@ -5207,7 +5207,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="eudi-issuance/#req-77">REQ-77</a></td>
-<td>An attestation gets the validity and revocation policy of the source holder</td>
+<td>An attestation gets the validity and revocation policy of the bronhouder</td>
 <td>EUDI</td>
 <td><a href="eudi-issuance/">EUDI issuance</a></td>
 <td>design</td>
@@ -5559,8 +5559,8 @@ another page, its number does not change.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="guidelines-for-bronhouders-rl">Guidelines for source holders (RL)<a class="headerlink" href="#guidelines-for-bronhouders-rl" title="Permanent link">&para;</a></h3>
-<p>The guidelines apply to the internal configuration of a source holder, and each guideline has a promotion rule:</p>
+<h3 id="guidelines-for-bronhouders-rl">Guidelines for bronhouders (RL)<a class="headerlink" href="#guidelines-for-bronhouders-rl" title="Permanent link">&para;</a></h3>
+<p>The guidelines apply to the internal configuration of a bronhouder, and each guideline has a promotion rule:</p>
 <table>
 <thead>
 <tr>
@@ -5679,7 +5679,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="admission/#av-07">AV-07</a></td>
-<td>Source holder publishes a machine-readable description for each data service</td>
+<td>Bronhouder publishes a machine-readable description for each data service</td>
 <td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
@@ -5687,7 +5687,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="admission/#av-08">AV-08</a></td>
-<td>Source holder without its own endpoint provably agrees with a taken-over description</td>
+<td>Bronhouder without its own endpoint provably agrees with a taken-over description</td>
 <td>EUDI</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
@@ -5695,7 +5695,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="admission/#av-09">AV-09</a></td>
-<td>Source holder keeps decryption keys of an older version while proofs for that version are valid</td>
+<td>Bronhouder keeps decryption keys of an older version while proofs for that version are valid</td>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
@@ -5703,7 +5703,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="admission/#av-10">AV-10</a></td>
-<td>Source holder logs every living data subject of a relation attestation</td>
+<td>Bronhouder logs every living data subject of a relation attestation</td>
 <td>EUDI</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
@@ -5711,7 +5711,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="admission/#av-11">AV-11</a></td>
-<td>Source holder tests its view for relation attestations</td>
+<td>Bronhouder tests its view for relation attestations</td>
 <td>EUDI</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
@@ -5719,7 +5719,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="admission/#av-12">AV-12</a></td>
-<td>Source holder as provider has a public validity and revocation policy</td>
+<td>Bronhouder as provider has a public validity and revocation policy</td>
 <td>EUDI</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
@@ -5727,7 +5727,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="admission/#av-13">AV-13</a></td>
-<td>Source holder gives the instruction to revoke an attestation</td>
+<td>Bronhouder gives the instruction to revoke an attestation</td>
 <td>EUDI</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>

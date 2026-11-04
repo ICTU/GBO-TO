@@ -4581,7 +4581,7 @@ names the open points.</p>
   (<a href="../decisions/0004-federated-authorization/">ADR-0004</a>,
   <a href="../decisions/0002-opa-rego-authzen/">ADR-0002</a>), in this order:</p>
 <ol>
-<li>the <abbr title="Federated Service Connectivity">FSC</abbr> Outway of the consumer,</li>
+<li>the <abbr title="Federated Service Connectivity">FSC</abbr> Outway of the consumer (afnemer),</li>
 <li>the <abbr title="Federated Service Connectivity">FSC</abbr> Inway of the source, as <abbr title="Policy Enforcement Point">PEP</abbr>,</li>
 <li>the <abbr title="Policy Decision Point">PDP</abbr> of the source,</li>
 <li>the source gateway,</li>
@@ -4620,7 +4620,7 @@ names the open points.</p>
 <td>Consumer requests data under consent, directly or through an integrator</td>
 <td><a href="dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a></td>
 <td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
-<td>Consumer (dienstverlener) or integrator</td>
+<td>Consumer or integrator</td>
 <td>built</td>
 <td><a href="../decisions/0031-regime-from-evidence/">0031</a>, <a href="../decisions/0032-consent-proof/">0032</a>, <a href="../decisions/0033-gateway-decrypts-after-allow/">0033</a>, <a href="../decisions/0034-integrator-delegation/">0034</a>, <a href="../decisions/0013-pdp-request-mapper/">0013</a></td>
 </tr>
@@ -4660,7 +4660,7 @@ names the open points.</p>
 <td>Policy distribution</td>
 <td><a href="policy-distribution/">Policy distribution</a></td>
 <td>all (management plane)</td>
-<td>Operator of the source holder (bronhouder)</td>
+<td>Operator of the bronhouder</td>
 <td>built (bundle mode is opt-in)</td>
 <td><a href="../decisions/0021-central-pap-signed-bundles/">0021</a>, <a href="../decisions/0002-opa-rego-authzen/">0002</a></td>
 </tr>
@@ -4691,7 +4691,7 @@ names the open points.</p>
 </tbody>
 </table>
 <h2 id="trajectories">Routes<a class="headerlink" href="#trajectories" title="Permanent link">&para;</a></h2>
-<p>A route is a route from a source to a party that uses the data. The
+<p>A route is a path from a source to a party that uses the data. The
 <abbr title="Policy Decision Point">PDP</abbr> of the source judges each request under one regime. The evidence in
 the request selects the regime
 (<a href="../decisions/0031-regime-from-evidence/">ADR-0031</a>,
@@ -4704,7 +4704,7 @@ the request selects the regime
   (<a href="../concepts/consent/">Consent</a>).</li>
 <li><strong>EUDI issuance.</strong> The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility reads source data for a
   citizen who discloses a <abbr title="Person Identification Data">PID</abbr> from the wallet. The request carries no
-  consent proof, so the <abbr title="Policy Decision Point">PDP</abbr> uses the <abbr title="Person Identification Data">PID</abbr> regime. The source holder is the
+  consent proof, so the <abbr title="Policy Decision Point">PDP</abbr> uses the <abbr title="Person Identification Data">PID</abbr> regime. The bronhouder is the
   <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical facility
   (<a href="../decisions/0028-pubeaa-productization/">ADR-0028</a>).</li>
 <li><strong><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification.</strong> A <abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies or retrieves attributes at the

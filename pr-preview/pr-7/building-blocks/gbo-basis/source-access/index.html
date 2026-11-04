@@ -4643,7 +4643,8 @@
 
 
 <h1 id="generic-source-access">Generic source access<a class="headerlink" href="#generic-source-access" title="Permanent link">&para;</a></h1>
-<p>The Globaal Ontwerp calls this part "generieke bronontsluiting". It is the
+<p>The Globaal Ontwerp calls this part "generieke bronontsluiting", which
+means generic source access. It is the
 path behind the <abbr title="Policy Enforcement Point">PEP</abbr>: after the <abbr title="Policy Decision Point">PDP</abbr> allows a request, the source gateway
 passes it to the source API. Under consent, the gateway first puts the
 citizen into the query. The source answers one GraphQL query and returns
@@ -4655,7 +4656,7 @@ detail and the links to the code.</p>
 <h2 id="components-behind-the-pep">Components behind the <abbr title="Policy Enforcement Point">PEP</abbr><a class="headerlink" href="#components-behind-the-pep" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
   out["Outway of&lt;br/&gt;the caller"]
-  subgraph bh["At the source holder"]
+  subgraph bh["At the bronhouder"]
     direction LR
     pep("FSC Inway&lt;br/&gt;PEP")
     subgraph pdpg["PDP"]
@@ -5052,7 +5053,7 @@ and a new policy bundle.</p>
 <h2 id="invariants-that-stay-at-the-source">Invariants that stay at the source<a class="headerlink" href="#invariants-that-stay-at-the-source" title="Permanent link">&para;</a></h2>
 <p>Some rules depend on data that only the source sees. The <abbr title="Policy Decision Point">PDP</abbr> cannot check
 them, so the source holds them and their tests.</p>
-<p>The akte van overlijden is the example in the demo. A surviving partner
+<p>The death certificate (akte van overlijden) is the example in the demo. A surviving partner
 discloses her own <abbr title="Person Identification Data">PID</abbr> and gets an attestation about her deceased partner.
 The BRP source offers the flat view <code>akteVanOverlijden(bsn)</code>. The source
 picks the marriage and the deceased partner. The <abbr title="Policy Decision Point">PDP</abbr> sees only the output
@@ -5088,7 +5089,7 @@ gateway, and its own logbook:</p>
 <tr>
 <td><code>brp</code></td>
 <td>BRP profile of RvIG (<code>brp-graphql-server</code>, <code>brp-sidecar</code>)</td>
-<td>Persoonslijst and the akte van overlijden view</td>
+<td>Personal record (persoonslijst) and the death certificate view</td>
 <td>EUD0002, ASI0001</td>
 <td><code>logboek-brp</code></td>
 </tr>

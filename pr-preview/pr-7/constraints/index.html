@@ -4567,7 +4567,7 @@ conflict:</p>
 <li>an <a href="../decisions/">architecture decision</a>.</li>
 </ul>
 <h2 id="architecture-principles-psa">Architecture principles (PSA)<a class="headerlink" href="#architecture-principles-psa" title="Permanent link">&para;</a></h2>
-<p>The 16 architectuurprincipes of the PSA bind this design. The PSA page
+<p>The 16 architecture principles of the PSA bind this design. The PSA page
 has no anchor per principle. For this reason, each link opens the
 <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">principles page</a>.
 The following principles constrain the technical design most directly:</p>
@@ -4612,8 +4612,8 @@ The following principles constrain the technical design most directly:</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a></td>
-<td>Data sovereignty: the source holder (bronhouder) keeps control</td>
-<td>Sources own their schema, service description, decryption keys, and policy. <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> are at the source holder (<a href="../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>).</td>
+<td>Data sovereignty: the bronhouder keeps control</td>
+<td>Sources own their schema, service description, decryption keys, and policy. <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> are at the bronhouder (<a href="../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-12</a></td>
@@ -4635,7 +4635,7 @@ The following principles constrain the technical design most directly:</p>
 <p>For the full list (P-01 to P-16) and the status of each principle in the
 demo, see the <a href="../traceability/matrix/#architecture-principles">matrix</a>.</p>
 <h2 id="design-principles-psa">Design principles (PSA)<a class="headerlink" href="#design-principles-psa" title="Permanent link">&para;</a></h2>
-<p>The 14 ontwerpprincipes govern how the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components are built. Each
+<p>The 14 design principles govern how the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components are built. Each
 link opens the
 <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">design principles page</a>.
 The following design principles constrain the TO most directly:</p>
@@ -4651,7 +4651,7 @@ The following design principles constrain the TO most directly:</p>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-01</a></td>
 <td>Decentral where possible, central where necessary</td>
-<td>Each source holder has its own <abbr title="Policy Decision Point">PDP</abbr> and <abbr title="Policy Administration Point">PAP</abbr>. Each provider issues its own tokens. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has central components only where they are necessary: the consent facility (toestemmingsvoorziening) and the admission register.</td>
+<td>Each bronhouder has its own <abbr title="Policy Decision Point">PDP</abbr> and <abbr title="Policy Administration Point">PAP</abbr>. Each provider issues its own tokens. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has central components only where they are necessary: the consent facility (toestemmingsvoorziening) and the admission register.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-03</a></td>
@@ -4695,9 +4695,9 @@ or FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverlener
 arc42 sections explain how the design meets the requirements. The status
 of each requirement is one of these words: draft, ready for review,
 approved, covered, or withdrawn.</p>
-<p>The requirements page also lists the guidelines for source holders
+<p>The requirements page also lists the guidelines for bronhouders
 (<a href="../requirements/authorization/#policy-management">RL-01 to RL-05</a>). A guideline is a
-recommendation for source holders. It puts no demand on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</p>
+recommendation for bronhouders. It puts no demand on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</p>
 <h2 id="connection-conditions-candidates">Connection conditions (candidates)<a class="headerlink" href="#connection-conditions-candidates" title="Permanent link">&para;</a></h2>
 <p>Some demands fall on the parties that connect to <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> itself does
 not carry them. The TO collects these demands as candidate connection
@@ -4723,7 +4723,7 @@ connection conditions
 <td><a href="../requirements/admission/#av-06">AV-06</a> admitted separately, acts as processor</td>
 </tr>
 <tr>
-<td>Source holder</td>
+<td>Bronhouder</td>
 <td><a href="../requirements/admission/#av-07">AV-07</a> to <a href="../requirements/admission/#av-13">AV-13</a>: service description, consent to a taken-over description, old decryption keys, <abbr title="Logboek Dataverwerkingen">LDV</abbr> for relation attestations, and validity and revocation policy</td>
 </tr>
 </tbody>
@@ -4769,8 +4769,8 @@ are:</p>
   that the design does not use (<a href="../traceability/findings/#f-98">F-98</a>).</li>
 </ul>
 <h2 id="legal-and-regulatory-constraints">Legal and regulatory constraints<a class="headerlink" href="#legal-and-regulatory-constraints" title="Permanent link">&para;</a></h2>
-<p>The PSA groups its principles by legal kader. The following kaders
-constrain this design:</p>
+<p>The PSA groups its principles by legal framework. The following
+frameworks constrain this design:</p>
 <table>
 <thead>
 <tr>
@@ -4782,17 +4782,17 @@ constrain this design:</p>
 <tbody>
 <tr>
 <td><abbr title="Algemene verordening gegevensbescherming (GDPR)">AVG</abbr> (GDPR)</td>
-<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA architectuurprincipes</a>, kader 1</td>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA architecture principles</a>, framework 1</td>
 <td>Data minimization, purpose limitation (doelbinding), and legal basis (grondslag). Each controller (Verantwoordelijke) logs its own processing (<a href="../decisions/0026-ldv-integration/">ADR-0026</a>).</td>
 </tr>
 <tr>
-<td>Wdo and PKIoverheid</td>
-<td>PSA kader 3</td>
+<td>Digital Government Act (Wdo) and PKIoverheid</td>
+<td>PSA framework 3</td>
 <td>Organization identity through PKI certificates and the <abbr title="Organisatie-identificatienummer">OIN</abbr>.</td>
 </tr>
 <tr>
 <td>eIDAS2 and ARF</td>
-<td>PSA kader 4</td>
+<td>PSA framework 4</td>
 <td>EUDI wallet support. Article 45e: the Authentic Source Interface (<a href="../decisions/0037-asi-oauth-front-door/">ADR-0037</a>).</td>
 </tr>
 <tr>
@@ -4807,18 +4807,18 @@ constrain this design:</p>
 </tr>
 <tr>
 <td><abbr title="Burgerservicenummer">BSN</abbr> legislation (Wabb)</td>
-<td>PSA kader 6</td>
+<td>PSA framework 6</td>
 <td>Private parties must not process the <abbr title="Burgerservicenummer">BSN</abbr>. This rule drives pseudonymization and the <abbr title="Burgerservicenummer">BSN</abbr> exception for the <abbr title="Qualified Trust Service Provider">QTSP</abbr> (<a href="../traceability/findings/#f-86">F-86</a>).</td>
 </tr>
 <tr>
-<td>SDG-verordening (EU 2018/1724)</td>
-<td><a href="https://ictu.github.io/GBO-GO/main/#3-interactiepatronen">GO interactiepatronen</a></td>
+<td>Single Digital Gateway Regulation (EU 2018/1724)</td>
+<td><a href="https://ictu.github.io/GBO-GO/main/#3-interactiepatronen">GO interaction patterns</a></td>
 <td>The <abbr title="Once-Only Technical System">OOTS</abbr> connection over AS4 is an obligation under EU law, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has no choice in it (<a href="../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>).</td>
 </tr>
 </tbody>
 </table>
 <h2 id="standards">Standards<a class="headerlink" href="#standards" title="Permanent link">&para;</a></h2>
-<p>The capabilities chapter of the PSA lists the afspraken, standards, and
+<p>The capabilities chapter of the PSA lists the agreements, standards, and
 facilities (voorzieningen) per capability, with their gaps. See
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/">capabilities S01 to S11</a>.
 The design builds directly on the following standards:</p>

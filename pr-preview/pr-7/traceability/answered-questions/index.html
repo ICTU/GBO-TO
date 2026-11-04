@@ -4326,7 +4326,7 @@
   <a href="#q-02" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Q-02: Central authorization server or distributed PDP (per source holder)?
+        Q-02: Central authorization server or distributed PDP (per bronhouder)?
       
     </span>
   </a>
@@ -4403,7 +4403,7 @@
   <a href="#q-10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Q-10: Which functions must really be central, and which are decentral at each source holder?
+        Q-10: Which functions must really be central, and which are decentral at each bronhouder?
       
     </span>
   </a>
@@ -4480,7 +4480,7 @@
   <a href="#q-21" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Q-21: Who can manage and publish the policy of a source holder, and how is that authority set federatively?
+        Q-21: Who can manage and publish the policy of a bronhouder, and how is that authority set federatively?
       
     </span>
   </a>
@@ -4705,17 +4705,17 @@
 
 <h1 id="answered-questions">Answered questions<a class="headerlink" href="#answered-questions" title="Permanent link">&para;</a></h1>
 <p>These questions have an answer, or they are closed. Each entry gives the answer and where it landed. The questions that are still open are on <a href="../open-questions/">Open questions</a>.</p>
-<h3 id="q-02">Q-02: Central authorization server or distributed <abbr title="Policy Decision Point">PDP</abbr> (per source holder)?<a class="headerlink" href="#q-02" title="Permanent link">&para;</a></h3>
+<h3 id="q-02">Q-02: Central authorization server or distributed <abbr title="Policy Decision Point">PDP</abbr> (per bronhouder)?<a class="headerlink" href="#q-02" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
-<li><strong>Question</strong>: Does one central <abbr title="Policy Decision Point">PDP</abbr> decide for all sources, or does each source holder (bronhouder) run its own <abbr title="Policy Decision Point">PDP</abbr>?</li>
-<li><strong>Answer</strong>: Decentral, at the source holder. The <a href="https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing">GO table of provisions</a> places the source access API, the <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, and <abbr title="Policy Administration Point">PAP</abbr>, and the <abbr title="Federated Service Connectivity">FSC</abbr> Inway at the source holder. If responsibilities and availability are assured, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a> allows a <abbr title="Policy Decision Point">PDP</abbr> per source holder or a shared <abbr title="Policy Decision Point">PDP</abbr>. <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-04</a> allows several variants under one <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> interface. The B-04 owners (bronhouders, FDS/GDI) set the conditions for a shared <abbr title="Policy Decision Point">PDP</abbr>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not set them.</li>
+<li><strong>Question</strong>: Does one central <abbr title="Policy Decision Point">PDP</abbr> decide for all sources, or does each bronhouder run its own <abbr title="Policy Decision Point">PDP</abbr>?</li>
+<li><strong>Answer</strong>: Decentral, at the bronhouder. The <a href="https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing">GO table of provisions</a> places the source access API, the <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, and <abbr title="Policy Administration Point">PAP</abbr>, and the <abbr title="Federated Service Connectivity">FSC</abbr> Inway at the bronhouder. If responsibilities and availability are assured, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a> allows a <abbr title="Policy Decision Point">PDP</abbr> per bronhouder or a shared <abbr title="Policy Decision Point">PDP</abbr>. <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-04</a> allows several variants under one <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> interface. The B-04 owners (bronhouders, FDS/GDI) set the conditions for a shared <abbr title="Policy Decision Point">PDP</abbr>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not set them.</li>
 <li><strong>Landed in</strong>: <a href="../../decisions/0004-federated-authorization/">ADR 0004</a>, <a href="../../requirements/authorization/#req-04">REQ-04</a>. As a shortcut, the demo runs one shared <abbr title="Policy Decision Point">PDP</abbr> behind both Inways. <a href="../increments/#sl-44">SL-44</a> shows that each source can run its own <abbr title="Policy Decision Point">PDP</abbr> with bundle distribution.</li>
 </ul>
 <h3 id="q-03">Q-03: Atomic consent or field level: what is lawful and understandable?<a class="headerlink" href="#q-03" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
-<li><strong>Question</strong>: Does the citizen consent per field, or per indivisible data set?</li>
+<li><strong>Question</strong>: Does the citizen consent per field, or per indivisible data set (gegevensset)?</li>
 <li><strong>Answer</strong>: Per data set. In the GO, consent applies to a specific purpose, consumer, and data set. FR-10 (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9) puts consent at set level, with "1 scope = 1 record". The citizen switches an optional set on or off as a whole. The demo portal switches per scope and conforms. FR-10 also adds a fixed minimal mandatory set, which is <a href="../open-questions/#q-45">Q-45</a> and <a href="https://github.com/ICTU/GBO-demo/issues/382">issue #382</a>.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/consent/#req-10">REQ-10</a>, <a href="../findings-closed/#f-03">F-03</a>.</li>
 </ul>
@@ -4779,12 +4779,12 @@
 <p><strong>Landed in</strong>: <a href="../../requirements/admission/#req-61">REQ-61</a>, <a href="../../requirements/admission/#req-62">REQ-62</a>, <a href="../../requirements/authorization/#req-74">REQ-74</a>.</p>
 </li>
 </ul>
-<h3 id="q-10">Q-10: Which functions must really be central, and which are decentral at each source holder?<a class="headerlink" href="#q-10" title="Permanent link">&para;</a></h3>
+<h3 id="q-10">Q-10: Which functions must really be central, and which are decentral at each bronhouder?<a class="headerlink" href="#q-10" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
-<li><strong>Question</strong>: Which provisions run centrally, and which run at each source holder?</li>
+<li><strong>Question</strong>: Which provisions run centrally, and which run at each bronhouder?</li>
 <li><strong>Answer</strong>: The <a href="https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing">GO table of provisions</a> gives the answer:<ul>
-<li>The <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, and <abbr title="Policy Administration Point">PAP</abbr> and the source access are decentral, at the source holder.</li>
+<li>The <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, and <abbr title="Policy Administration Point">PAP</abbr> and the source access are decentral, at the bronhouder.</li>
 <li>The consent facility (toestemmingsvoorziening) is central and mandatory for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> ("needs a statutory basis").</li>
 <li>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> is mandatory for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> (Logius).</li>
 <li><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance, the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider, and the <abbr title="Once-Only Technical System">OOTS</abbr> adapter are optional central connection provisions.</li>
@@ -4799,8 +4799,8 @@
 <li><strong>Status</strong>: answered</li>
 <li><strong>Question</strong>: Where and how is a source schema transformed to a canonical model?</li>
 <li><strong>Answer</strong>: There is no central canonical model.<ul>
-<li><a href="https://ictu.github.io/GBO-GO/main/#f4-semantiek-eenheid-van-taal">GO F4</a> gives a shared concept framework (NL-SBB, MIM, RDF/SKOS, DCAT-AP-NL) and "the canonical data models of source holders".</li>
-<li>In <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">PSA S10</a>, mappings are explicit and traceable. Source holders and domains own their models.</li>
+<li><a href="https://ictu.github.io/GBO-GO/main/#f4-semantiek-eenheid-van-taal">GO F4</a> gives a shared concept framework (NL-SBB, MIM, RDF/SKOS, DCAT-AP-NL) and "the canonical data models of bronhouders".</li>
+<li>In <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">PSA S10</a>, mappings are explicit and traceable. Bronhouders and domains own their models.</li>
 <li>For EUDI, the source supplies its own mapping (<a href="../findings/#f-57">F-57</a>).</li>
 <li>For <abbr title="Once-Only Technical System">OOTS</abbr>, there is an optional shared mapping facility (GO, B-12).</li>
 <li>Ownership of the semantics falls under <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-11</a>.</li>
@@ -4816,7 +4816,7 @@
 <li><strong>Answer</strong>:<ul>
 <li>FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 removes FR-06. The citizen gets no information about the integrator.</li>
 <li>FR-18: the integrator is a processor for the service provider (dienstverlener). It can view and edit data as far as the assignment needs. It does so under a processing agreement and without persistent storage.</li>
-<li>FR-37: the integrator has its own onboarding and its own organization identification means. It also has a registration in the service catalog per service provider and use case.</li>
+<li>FR-37: the integrator has its own onboarding and its own organization identification means. It also has a registration in the service catalog (dienstencatalogus) per service provider and use case.</li>
 <li>For more information, see PSA S04, S05, and <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-19</a>.</li>
 <li>The consequence for the actor binding of consent was <a href="../findings-closed/#f-73">F-73</a>. The demo tested it with <abbr title="Federated Service Connectivity">FSC</abbr> delegation (<a href="https://github.com/ICTU/GBO-demo/issues/379">issue #379</a>).</li>
 </ul>
@@ -4879,25 +4879,25 @@
 </li>
 <li><strong>Landed in</strong>: <a href="../../requirements/eudi-issuance/#req-78">REQ-78</a>, <a href="../findings/#f-47">F-47</a>.</li>
 </ul>
-<h3 id="q-21">Q-21: Who can manage and publish the policy of a source holder, and how is that authority set federatively?<a class="headerlink" href="#q-21" title="Permanent link">&para;</a></h3>
+<h3 id="q-21">Q-21: Who can manage and publish the policy of a bronhouder, and how is that authority set federatively?<a class="headerlink" href="#q-21" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
-<li><strong>Question</strong>: Who sets the authorization policy for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: a central Policy Authority (FR-39) or the source holder (GO)? Who can manage and publish it?</li>
-<li><strong>Answer</strong>: Policy management stays with each source holder.<ul>
-<li><abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> are at the source holder, as the GO says (<a href="https://github.com/ICTU/GBO-demo/issues/426">issue #426</a>, closed as not planned, October 28, 2026).</li>
+<li><strong>Question</strong>: Who sets the authorization policy for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: a central Policy Authority (FR-39) or the bronhouder (GO)? Who can manage and publish it?</li>
+<li><strong>Answer</strong>: Policy management stays with each bronhouder.<ul>
+<li><abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> are at the bronhouder, as the GO says (<a href="https://github.com/ICTU/GBO-demo/issues/426">issue #426</a>, closed as not planned, October 28, 2026).</li>
 <li>The policy guidelines stay guidelines. They do not become requirements.</li>
 <li>Publication control is a norm in <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>. It covers the owner, the approver, the effective date, the change history, tests before publication, and an emergency and rollback procedure.</li>
 <li>The text of FR-39 (central Policy Authority, signed bundles) is outdated. FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> needs a change to this text.</li>
 <li>Authority over policy lies with competent public parties (<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-05</a>).</li>
 </ul>
 </li>
-<li><strong>Landed in</strong>: <a href="../../decisions/0021-central-pap-signed-bundles/">ADR 0021</a> (rewritten: "Policy management and distribution per source holder"), <a href="../../requirements/authorization/#rl-01">RL-01</a> to <a href="../../requirements/authorization/#rl-05">RL-05</a>, <a href="../findings-closed/#f-09">F-09</a>, <a href="../findings/#f-51">F-51</a>, <a href="../findings/#f-52">F-52</a>.</li>
+<li><strong>Landed in</strong>: <a href="../../decisions/0021-central-pap-signed-bundles/">ADR 0021</a> (rewritten: "Policy management and distribution per bronhouder"), <a href="../../requirements/authorization/#rl-01">RL-01</a> to <a href="../../requirements/authorization/#rl-05">RL-05</a>, <a href="../findings-closed/#f-09">F-09</a>, <a href="../findings/#f-51">F-51</a>, <a href="../findings/#f-52">F-52</a>.</li>
 </ul>
 <h3 id="q-22">Q-22: Who runs the admission register, on which grounds, and what legal protection has a refused party?<a class="headerlink" href="#q-22" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
 <li><strong>Question</strong>: The question has four parts:<ol>
-<li>Who keeps the admission register?</li>
+<li>Who keeps the admission register (toelatingsregister)?</li>
 <li>On which grounds does a party get admission?</li>
 <li>What legal protection does a refused party get?</li>
 <li>At which granularity is admission given?</li>

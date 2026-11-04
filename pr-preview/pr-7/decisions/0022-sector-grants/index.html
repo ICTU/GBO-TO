@@ -4585,8 +4585,8 @@
 <li>Implemented in: not implemented. gbo-demo removed the <code>sector-pip</code> scaffolding (<a href="https://github.com/ICTU/GBO-demo/issues/378">#378</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/CHANGELOG.md#L779-L786">CHANGELOG</a>).</li>
 </ul>
 <h2 id="why-deferred">Why deferred<a class="headerlink" href="#why-deferred" title="Permanent link">&para;</a></h2>
-<p>In gbo-demo v0.9.0, admission runs through the Admission register
-and the contract decision of the <abbr title="Policy Decision Point">PDP</abbr>
+<p>In gbo-demo v0.9.0, admission runs through the admission register
+(toelatingsregister) and the contract decision of the <abbr title="Policy Decision Point">PDP</abbr>
 (<a href="../../requirements/admission/#req-61">REQ-61</a>,
 <a href="../0015-contract-acceptance-by-policy/">ADR-0015</a>). No component called
 the sector <abbr title="Policy Information Point">PIP</abbr>, so the demo removed it. A sector grant is not a native
@@ -4596,7 +4596,7 @@ scale. Work on it starts only after a new decision.</p>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
 <p>PKI proves which organization calls (<abbr title="Organisatie-identificatienummer">OIN</abbr>). PKI does not prove what kind
 of organization it is. Per-organization contracts do not scale to
-sectors. For example, 800 notariskantoren need 800 contracts with each
+sectors. For example, 800 notary offices need 800 contracts with each
 source.</p>
 <h2 id="proposed-decision-deferred">Proposed decision (deferred)<a class="headerlink" href="#proposed-decision-deferred" title="Permanent link">&para;</a></h2>
 <p>The proposal extends contract acceptance and token issuance with
@@ -4616,7 +4616,7 @@ then must carry more than peer IDs.</p>
 <li>An extension of the <abbr title="Federated Service Connectivity">FSC</abbr> grant schema, through the Logius standards
   process.</li>
 <li>The freshness of sector register data, and the liability for it.</li>
-<li>The relation with the Admission register: admission versus
+<li>The relation with the admission register: admission versus
   membership.</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>

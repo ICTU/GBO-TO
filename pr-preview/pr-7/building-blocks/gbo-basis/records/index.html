@@ -4887,7 +4887,7 @@ to the read API of that party in <code>dpl.read.nextLogbookId</code>.</p>
   does not fail requests. If the component cannot store the record
   locally, it refuses the processing.</li>
 <li>No <abbr title="Burgerservicenummer">BSN</abbr>. The logbook scans every write for a nine-digit run that passes
-  the elfproef, and refuses a match. The check is word-bounded, so a
+  the <abbr title="Burgerservicenummer">BSN</abbr> check digit test (elfproef), and refuses a match. The check is word-bounded, so a
   20-digit <abbr title="Organisatie-identificatienummer">OIN</abbr> passes.</li>
 <li>Separate tokens. A component that can write cannot read with that token.</li>
 </ul>

@@ -4632,8 +4632,8 @@
 
 
 <h1 id="source-configuration">Source configuration<a class="headerlink" href="#source-configuration" title="Permanent link">&para;</a></h1>
-<p>The Globaal Ontwerp gives each source holder (bronhouder) a "decentraal
-configuratiecomponent": the source configures what the central <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
+<p>The Globaal Ontwerp gives each bronhouder a decentral configuration
+component ("decentraal configuratiecomponent"): the source configures what the central <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 facilities offer for it. In the demo, the source describes its own
 services in one document. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates that description and activates
 it as an immutable release. The EUDI adapter, the issuance server and the
@@ -4643,7 +4643,7 @@ the detail and the links to the code.</p>
 <p><a href="../../">Overview</a> › <a href="../"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a> › Source configuration</p>
 <h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
-  subgraph bh["At the source holder"]
+  subgraph bh["At the bronhouder"]
     direction TB
     meta[("Source document&lt;br/&gt;/.well-known/gbo")]
     pep("PEP + PDP&lt;br/&gt;metadata service")
@@ -4742,15 +4742,15 @@ zoom in.</em></p>
 release therefore needs a controlled restart of that server.</p>
 <h2 id="who-owns-what">Who owns what<a class="headerlink" href="#who-owns-what" title="Permanent link">&para;</a></h2>
 <p>Four parties own a part of the description of one source. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> never adds
-to the part of the source holder
+to the part of the bronhouder
 (<a href="../../../requirements/sources-identity/#req-64">REQ-64</a>):</p>
 <div class="mermaid">flowchart LR
-  subgraph own["Owned by the source holder"]
+  subgraph own["Owned by the bronhouder"]
     direction TB
     doc[("Source document&lt;br/&gt;service, query, offers,&lt;br/&gt;claims, attributes")]
     cs[("Certificate set&lt;br/&gt;OIN, organization name,&lt;br/&gt;issuer name")]
   end
-  subgraph agr["Agreed between source holder and GBO"]
+  subgraph agr["Agreed between bronhouder and GBO"]
     direction TB
     fsc[("FSC contracts&lt;br/&gt;and grant hashes")]
   end
@@ -4819,7 +4819,7 @@ transports:</p>
 <td><code>file</code></td>
 <td>A document in the metadata directory of the operator</td>
 <td>Not possible: a file cannot answer a query</td>
-<td>A source without its own endpoint, as a temporary exception that needs the agreement of the source holder (<a href="../../../requirements/admission/#av-08">AV-08</a>)</td>
+<td>A source without its own endpoint, as a temporary exception that needs the agreement of the bronhouder (<a href="../../../requirements/admission/#av-08">AV-08</a>)</td>
 </tr>
 <tr>
 <td><code>unsecured</code></td>
@@ -4914,7 +4914,7 @@ are two decisions with two owners. Each situation has a fixed result:</p>
 <p>Demo v0.9.0 does not build two things. No control decides who can add a
 source file. No record keeps the admission decision
 (<a href="../../../requirements/admission/#req-123">REQ-123</a>, PSA B-09 in the
-<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">besluitregister</a>).</p>
+<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">decision register</a>).</p>
 <h2 id="freshness-versions-and-rollback">Freshness, versions and rollback<a class="headerlink" href="#freshness-versions-and-rollback" title="Permanent link">&para;</a></h2>
 <p>Source metadata fails closed for each source, ages within fixed bounds,
 and can be rolled back
@@ -5037,7 +5037,7 @@ It also holds no access decision: the rules decide which fields a channel
 gets. The source does not sign the document. Its origin rests on the
 authenticated <abbr title="Federated Service Connectivity">FSC</abbr> transport and the <abbr title="Organisatie-identificatienummer">OIN</abbr> in the certificate set.</p>
 <h2 id="compared-with-the-globaal-ontwerp">Compared with the Globaal Ontwerp<a class="headerlink" href="#compared-with-the-globaal-ontwerp" title="Permanent link">&para;</a></h2>
-<p>The demo follows the idea of the Globaal Ontwerp: the source holder
+<p>The demo follows the idea of the Globaal Ontwerp: the bronhouder
 configures, and the central facilities read that configuration. It differs
 in three places:</p>
 <table>
@@ -5051,7 +5051,7 @@ in three places:</p>
 <tbody>
 <tr>
 <td>Form of the configuration</td>
-<td>A decentral configuration component at the source holder</td>
+<td>A decentral configuration component at the bronhouder</td>
 <td>One closed JSON document per source at <code>/.well-known/gbo</code>, a proposal for PSA S10 (<a href="../../../decisions/0016-source-owned-metadata/">ADR-0016</a>)</td>
 </tr>
 <tr>
@@ -5072,7 +5072,7 @@ in three places:</p>
 <li>The description lacks the read API of the logbook of the source, a
   DCAT-AP-NL reference and central findability
   (<a href="../../../traceability/findings/#f-57">F-57</a>).</li>
-<li>The <code>file</code> transport has no recorded agreement of the source holder
+<li>The <code>file</code> transport has no recorded agreement of the bronhouder
   (<a href="../../../traceability/findings/#f-71">F-71</a>).</li>
 <li><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> scope comes from the demand side and EUDI scope from the supply
   side (<a href="../../../traceability/findings/#f-74">F-74</a>).</li>

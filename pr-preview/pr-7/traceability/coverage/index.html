@@ -4809,7 +4809,7 @@
 <td><strong><a href="../open-questions/#q-79">Q-79</a></strong></td>
 </tr>
 <tr>
-<td><a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a> Policy management and distribution per source holder</td>
+<td><a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a> Policy management and distribution per bronhouder</td>
 <td>accepted</td>
 <td><a href="../../requirements/logging-audit/#req-59">REQ-59</a>, <a href="../../requirements/authorization/#rl-01">RL-01</a>, <a href="../../requirements/authorization/#rl-02">RL-02</a>, <a href="../../requirements/authorization/#rl-03">RL-03</a>, <a href="../../requirements/authorization/#rl-04">RL-04</a>, <a href="../../requirements/authorization/#rl-05">RL-05</a></td>
 <td><a href="../increments/#sl-44">SL-44</a></td>
@@ -4833,7 +4833,7 @@
 <td><a href="../answered-questions/#q-06">Q-06</a>, <a href="../answered-questions/#q-07">Q-07</a>, <strong><a href="../open-questions/#q-17">Q-17</a></strong>, <strong><a href="../open-questions/#q-30">Q-30</a></strong>, <strong><a href="../open-questions/#q-68">Q-68</a></strong></td>
 </tr>
 <tr>
-<td><a href="../../decisions/0024-canonical-semantic-models/">ADR-0024</a> Canonical semantic models per source holder</td>
+<td><a href="../../decisions/0024-canonical-semantic-models/">ADR-0024</a> Canonical semantic models per bronhouder</td>
 <td>proposed</td>
 <td><a href="../../requirements/eudi-issuance/#req-124">REQ-124</a></td>
 <td>—</td>
@@ -4841,7 +4841,7 @@
 <td><strong><a href="../open-questions/#q-79">Q-79</a></strong></td>
 </tr>
 <tr>
-<td><a href="../../decisions/0025-graphql-fds-datadienst/">ADR-0025</a> GraphQL as a recognized FDS datadienst type</td>
+<td id="adr-0025-graphql-as-a-recognized-fds-datadienst-type"><a href="../../decisions/0025-graphql-fds-datadienst/">ADR-0025</a> GraphQL as a recognized FDS data service type</td>
 <td>proposed</td>
 <td>—</td>
 <td>—</td>
@@ -4857,7 +4857,7 @@
 <td><strong><a href="../open-questions/#q-08">Q-08</a></strong>, <a href="../answered-questions/#q-24">Q-24</a>, <strong><a href="../open-questions/#q-25">Q-25</a></strong>, <strong><a href="../open-questions/#q-27">Q-27</a></strong>, <strong><a href="../open-questions/#q-72">Q-72</a></strong></td>
 </tr>
 <tr>
-<td><a href="../../decisions/0027-onboarding-toolkit/">ADR-0027</a> Source holder onboarding toolkit</td>
+<td><a href="../../decisions/0027-onboarding-toolkit/">ADR-0027</a> Bronhouder onboarding toolkit</td>
 <td>proposed</td>
 <td><a href="../../requirements/admission/#av-07">AV-07</a>, <a href="../../requirements/admission/#av-09">AV-09</a>, <a href="../../requirements/pseudonymization/#bsnk-09">BSNK-09</a>, <a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../../requirements/sources-identity/#req-65">REQ-65</a></td>
 <td><a href="../increments/#sl-09">SL-09</a>, <a href="../increments/#sl-46">SL-46</a></td>
@@ -5165,7 +5165,7 @@
 </tr>
 <tr>
 <td><a href="../../requirements/eudi-issuance/#req-58">REQ-58</a></td>
-<td>Every source holder has its own certificate set for issuance, and missing material fails</td>
+<td>Every bronhouder has its own certificate set for issuance, and missing material fails</td>
 <td>ready for review</td>
 <td><a href="../../building-blocks/components/">Component catalog</a>, <a href="../../building-blocks/eudi/pubeaa/"><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</a>, <a href="../../building-blocks/gbo-basis/source-configuration/">Source configuration</a>, <a href="../../concepts/identity-trust/">Identity and trust</a>, <a href="../../concepts/source-onboarding/">Source onboarding</a>, <a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a>, <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>, <a href="../../decisions/0023-identity-convergence/">ADR-0023</a>, <a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>, <a href="../../deployment/">Deployment view</a>, <a href="../../quality/">Quality requirements</a>, <a href="../../runtime/admission/">Admission and activation</a>, <a href="../../runtime/eudi-issuance/">EUDI issuance: the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route</a></td>
 </tr>
@@ -5219,7 +5219,7 @@
 </tr>
 <tr>
 <td><a href="../../requirements/sources-identity/#req-67">REQ-67</a></td>
-<td>The legal identity of a source holder comes from its certificate and not from configuration</td>
+<td>The legal identity of a bronhouder comes from its certificate and not from configuration</td>
 <td>draft</td>
 <td><a href="../../building-blocks/components/">Component catalog</a>, <a href="../../building-blocks/gbo-basis/source-configuration/">Source configuration</a>, <a href="../../concepts/identity-trust/">Identity and trust</a>, <a href="../../concepts/source-onboarding/">Source onboarding</a>, <a href="../../constraints/">Constraints</a>, <a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a>, <a href="../../decisions/0023-identity-convergence/">ADR-0023</a>, <a href="../../deployment/">Deployment view</a>, <a href="../../glossary/">Glossary</a></td>
 </tr>
@@ -5267,7 +5267,7 @@
 </tr>
 <tr>
 <td><a href="../../requirements/eudi-issuance/#req-77">REQ-77</a></td>
-<td>An attestation gets the validity and revocation policy of the source holder</td>
+<td>An attestation gets the validity and revocation policy of the bronhouder</td>
 <td>draft</td>
 <td><a href="../../building-blocks/eudi/pubeaa/"><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</a>, <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>, <a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>, <a href="../../risks/">Risks and technical debt</a>, <a href="../../runtime/design-level/">Design-level scenarios</a>, <a href="../../runtime/eudi-issuance/">EUDI issuance: the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route</a></td>
 </tr>
@@ -5623,43 +5623,43 @@
 </tr>
 <tr>
 <td><a href="../../requirements/admission/#av-07">AV-07</a></td>
-<td>Source holder publishes a machine-readable description for each data service</td>
+<td>Bronhouder publishes a machine-readable description for each data service</td>
 <td>candidate</td>
 <td><a href="../../concepts/source-onboarding/">Source onboarding</a>, <a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a>, <a href="../../decisions/0027-onboarding-toolkit/">ADR-0027</a></td>
 </tr>
 <tr>
 <td><a href="../../requirements/admission/#av-08">AV-08</a></td>
-<td>Source holder without its own endpoint provably agrees with a taken-over description</td>
+<td>Bronhouder without its own endpoint provably agrees with a taken-over description</td>
 <td>candidate</td>
 <td><a href="../../building-blocks/gbo-basis/source-configuration/">Source configuration</a>, <a href="../../concepts/source-onboarding/">Source onboarding</a>, <a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a>, <a href="../../runtime/admission/">Admission and activation</a></td>
 </tr>
 <tr>
 <td><a href="../../requirements/admission/#av-09">AV-09</a></td>
-<td>Source holder keeps decryption keys of an older version while proofs for that version are valid</td>
+<td>Bronhouder keeps decryption keys of an older version while proofs for that version are valid</td>
 <td>candidate</td>
 <td><a href="../../concepts/consent/">Consent</a>, <a href="../../concepts/pseudonymization/">Pseudonymization</a>, <a href="../../decisions/0027-onboarding-toolkit/">ADR-0027</a>, <a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>, <a href="../../deployment/">Deployment view</a>, <a href="../../runtime/dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: the consumer queries a source under consent</a></td>
 </tr>
 <tr>
 <td><a href="../../requirements/admission/#av-10">AV-10</a></td>
-<td>Source holder logs every living data subject of a relation attestation</td>
+<td>Bronhouder logs every living data subject of a relation attestation</td>
 <td>candidate</td>
 <td><a href="../../runtime/eudi-issuance/">EUDI issuance: the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route</a></td>
 </tr>
 <tr>
 <td><a href="../../requirements/admission/#av-11">AV-11</a></td>
-<td>Source holder tests its view for relation attestations</td>
+<td>Bronhouder tests its view for relation attestations</td>
 <td>candidate</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="../../requirements/admission/#av-12">AV-12</a></td>
-<td>Source holder as provider has a public validity and revocation policy</td>
+<td>Bronhouder as provider has a public validity and revocation policy</td>
 <td>candidate</td>
 <td><a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>, <a href="../../runtime/eudi-issuance/">EUDI issuance: the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route</a></td>
 </tr>
 <tr>
 <td><a href="../../requirements/admission/#av-13">AV-13</a></td>
-<td>Source holder gives the instruction to revoke an attestation</td>
+<td>Bronhouder gives the instruction to revoke an attestation</td>
 <td>candidate</td>
 <td><a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>, <a href="../../runtime/eudi-issuance/">EUDI issuance: the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route</a></td>
 </tr>
@@ -5913,7 +5913,7 @@
 </tr>
 <tr>
 <td><a href="../increments/#sl-22">SL-22</a></td>
-<td>Source source gateway de-pseudonymization (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</td>
+<td>Source gateway de-pseudonymization (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</td>
 <td>done</td>
 <td><a href="../../building-blocks/components/">Component catalog</a>, <a href="../../building-blocks/gbo-basis/source-access/">Generic source access</a>, <a href="../../concepts/pseudonymization/">Pseudonymization</a>, <a href="../../decisions/0011-sidecar-pseudonym-resolution/">ADR-0011</a>, <a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>, <a href="../../runtime/dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: the consumer queries a source under consent</a></td>
 </tr>
@@ -6689,7 +6689,7 @@
 </tr>
 <tr>
 <td><a href="../answered-questions/#q-02">Q-02</a></td>
-<td>Central authorization server or distributed <abbr title="Policy Decision Point">PDP</abbr> (per source holder)?</td>
+<td>Central authorization server or distributed <abbr title="Policy Decision Point">PDP</abbr> (per bronhouder)?</td>
 <td>answered</td>
 <td><a href="../../building-blocks/gbo-basis/"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a>, <a href="../../concepts/policy-lifecycle/">Policy lifecycle</a>, <a href="../../decisions/0004-federated-authorization/">ADR-0004</a>, <a href="../../runtime/policy-distribution/">Policy distribution</a></td>
 </tr>
@@ -6737,7 +6737,7 @@
 </tr>
 <tr>
 <td><a href="../answered-questions/#q-10">Q-10</a></td>
-<td>Which functions must really be central, and which are decentral at each source holder?</td>
+<td>Which functions must really be central, and which are decentral at each bronhouder?</td>
 <td>answered</td>
 <td><a href="../../building-blocks/gbo-basis/"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a>, <a href="../../building-blocks/">Building block view</a>, <a href="../../decisions/0004-federated-authorization/">ADR-0004</a></td>
 </tr>
@@ -6803,7 +6803,7 @@
 </tr>
 <tr>
 <td><a href="../answered-questions/#q-21">Q-21</a></td>
-<td>Who can manage and publish the policy of a source holder, and how is that authority set federatively?</td>
+<td>Who can manage and publish the policy of a bronhouder, and how is that authority set federatively?</td>
 <td>answered</td>
 <td><a href="../../building-blocks/gbo-basis/policy/">Policy rules and their management</a>, <a href="../../concepts/policy-lifecycle/">Policy lifecycle</a>, <a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>, <a href="../../">Introduction and goals</a>, <a href="../../risks/">Risks and technical debt</a>, <a href="../../runtime/policy-distribution/">Policy distribution</a>, <a href="../../solution-strategy/">Solution strategy</a></td>
 </tr>
@@ -6899,7 +6899,7 @@
 </tr>
 <tr>
 <td><a href="../open-questions/#q-37">Q-37</a></td>
-<td>What is <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>'s role in the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>: designated intermediary, technical supplier to source holders, or authentic source itself?</td>
+<td>What is <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>'s role in the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>: designated intermediary, technical supplier to bronhouders, or authentic source itself?</td>
 <td>open</td>
 <td><a href="../../context/">Context and scope</a>, <a href="../../decisions/0037-asi-oauth-front-door/">ADR-0037</a>, <a href="../../decisions/0038-asi-data-service-per-source/">ADR-0038</a>, <a href="../../">Introduction and goals</a>, <a href="../../runtime/asi-verification/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification: a <abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies or retrieves an attribute</a></td>
 </tr>

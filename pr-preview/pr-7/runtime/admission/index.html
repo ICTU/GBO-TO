@@ -4656,7 +4656,7 @@ decisions are <a href="../../decisions/0015-contract-acceptance-by-policy/">ADR-
 and <a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a>.</p>
 <h2 id="contract-admission">Scenario 1: contract admission<a class="headerlink" href="#contract-admission" title="Permanent link">&para;</a></h2>
 <p>A consumer, an integrator, or a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component (the issuance facility, the
-<abbr title="Authentic Source Interface Provider">ASIP</abbr>, the <abbr title="Policy Decision Point">PDP</abbr> itself) wants to connect to an <abbr title="Federated Service Connectivity">FSC</abbr> service of a source holder (bronhouder). The party creates a contract proposal in its own <abbr title="Federated Service Connectivity">FSC</abbr> Manager. The
+<abbr title="Authentic Source Interface Provider">ASIP</abbr>, the <abbr title="Policy Decision Point">PDP</abbr> itself) wants to connect to an <abbr title="Federated Service Connectivity">FSC</abbr> service of a bronhouder. The party creates a contract proposal in its own <abbr title="Federated Service Connectivity">FSC</abbr> Manager. The
 <abbr title="Federated Service Connectivity">FSC</abbr> Manager of the provider does not sign on a flag. It sends every proposal
 to the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> <abbr title="Policy Decision Point">PDP</abbr> as an <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> evaluation and signs only on allow
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L701-L702"><code>fsc-infra/docker-compose.yml#L701-L702</code></a>).
@@ -4688,7 +4688,7 @@ same policy
     end
     CM-&gt;&gt;CM: POST /v1/contracts (grant), signed by the consumer
     CM-&gt;&gt;PM: Contract proposal (FSC, mTLS)
-    PM-&gt;&gt;PDP: AuthZEN evaluation&lt;br/&gt;doelbinding auto_sign_contract
+    PM-&gt;&gt;PDP: AuthZEN evaluation&lt;br/&gt;context.doelbinding = auto_sign_contract
     PDP-&gt;&gt;PDP: Eight ordered checks on the register data
     PDP-&gt;&gt;ADL: Decision record
     alt Allow
@@ -4716,7 +4716,7 @@ same policy
 <td>1</td>
 <td>Administrator → register</td>
 <td>Register UI (<code>localhost:9415</code>), CSRF-protected forms</td>
-<td><abbr title="Federated Service Connectivity">FSC</abbr> Peer ID (20 characters), display name, <code>active</code>, Peer IDs of the admitted source holders</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> Peer ID (20 characters), display name, <code>active</code>, Peer IDs of the admitted bronhouders</td>
 <td>The register has no accounts. Anyone who reaches the UI locally is administrator (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/README.md">README</a>). Integrations (<code>acts_for</code>) and technical participants are part of the deployment configuration. The UI does not manage them</td>
 </tr>
 <tr>
@@ -5008,7 +5008,7 @@ Source Registry. The runtime readers read only activated releases.</p>
 <p>First, the metadata contract and the data contract of the source must be
 valid. They pass <a href="#contract-admission">contract admission</a> like every
 other contract, because the issuance facility is a technical participant
-in the admission register.</p>
+in the admission register (toelatingsregister).</p>
 <div class="mermaid">sequenceDiagram
     autonumber
     box rgb(241,239,232) Operator
@@ -5279,14 +5279,14 @@ Source activation handles each failure as follows:</p>
   owners. Two parts are not built: the rule for who can take the action,
   and the way <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> records the admission decision. These parts are PSA
   B-09 in the
-  <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">besluitregister</a>
+  <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">decision register</a>
   and <a href="../../requirements/admission/#req-123">REQ-123</a>.</li>
 <li><strong>The source owns its description</strong>
   (<a href="../../traceability/findings/#f-57">F-57</a>). <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates and activates
   the description. Its origin is the authenticated <abbr title="Federated Service Connectivity">FSC</abbr> transport plus the
   <abbr title="Organisatie-identificatienummer">OIN</abbr> from the certificate. The document itself has no signature. The
   <code>file</code> transport is a visible, temporary exception for a source without
-  an endpoint. The demo does not record the agreement of the source holder
+  an endpoint. The demo does not record the agreement of the bronhouder
   (<a href="../../traceability/findings/#f-71">F-71</a>,
   <a href="../../requirements/admission/#av-08">AV-08</a>).</li>
 <li><strong>Releases have a full lifecycle</strong>

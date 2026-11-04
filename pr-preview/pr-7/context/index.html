@@ -842,7 +842,7 @@
   <a href="#bronhouder" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Source holder
+        Bronhouder
       
     </span>
   </a>
@@ -4624,7 +4624,7 @@ not built. Click a block to zoom in.</p>
   subgraph basis["GBO Basis at the source"]
     direction LR
     pep("FSC Inway = PEP&lt;br/&gt;+ PDP")
-    src[("Source holder: source&lt;br/&gt;gateway + GraphQL API")]
+    src[("Bronhouder: source&lt;br/&gt;gateway + GraphQL API")]
   end
 
   gov ~~~ dv ~~~ cit ~~~ wallet ~~~ qtsp ~~~ eu
@@ -4670,7 +4670,7 @@ not built. Click a block to zoom in.</p>
   style ch fill:#F4F5F7,stroke:#D1D5DB
   style basis fill:#F0FDF4,stroke:#16A34A
   style svc fill:#F4F5F7,stroke:#D1D5DB
-  click tv "../building-blocks/dvtp/consent-service/" "Toestemmingsvoorziening"
+  click tv "../building-blocks/dvtp/consent-service/" "Consent facility"
   click pub "../building-blocks/eudi/pubeaa/" "PuB-EAA provider"
   click asi "../building-blocks/eudi/asi/" "ASI provider"
   click oots "../building-blocks/oots/" "OOTS channel"
@@ -4693,7 +4693,7 @@ the decision record, and decides on contracts as well as on requests:</p>
     tr[("Consent register")]
     adl[("ADL&lt;br/&gt;decision records")]
   end
-  subgraph src["At the source holder"]
+  subgraph src["At the bronhouder"]
     direction TB
     gw("Source gateway")
     dec("Decryption&lt;br/&gt;component")
@@ -4738,7 +4738,7 @@ the decision record, and decides on contracts as well as on requests:</p>
   style src fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
   style eudi fill:#FFF7ED,stroke:#EA580C
   click pdp "../building-blocks/gbo-basis/authorization/" "Authorization"
-  click tr "../building-blocks/dvtp/consent-service/" "Toestemmingsvoorziening"
+  click tr "../building-blocks/dvtp/consent-service/" "Consent facility"
   click sreg "../building-blocks/gbo-basis/source-configuration/" "Source configuration"
   click adl "../building-blocks/gbo-basis/records/" "Records"</div>
 <p class="caption"><em>Figure 2: The interfaces between <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components.</em></p>
@@ -4842,13 +4842,13 @@ the last column are relative to
 <tbody>
 <tr>
 <td>Data request</td>
-<td>Consumer Outway ↔ source holder (bronhouder) Inway</td>
+<td>Consumer Outway ↔ bronhouder Inway</td>
 <td><abbr title="Federated Service Connectivity">FSC</abbr> (OpenFSC v2.4.0): mTLS, access token, and grant hash. Grants carry no properties.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml">fsc-infra</a></td>
 </tr>
 <tr>
 <td>Delegated data request</td>
-<td>Integrator Outway ↔ source holder Inway</td>
+<td>Integrator Outway ↔ bronhouder Inway</td>
 <td><abbr title="Federated Service Connectivity">FSC</abbr> <code>DelegatedServiceConnectionGrant</code>, signed by the integrator, the represented consumer, and the provider (<a href="../requirements/consent/#req-106">REQ-106</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-delegation-int.sh">seed-bri-delegation-int.sh</a></td>
 </tr>
@@ -4872,8 +4872,8 @@ the last column are relative to
 </tr>
 </tbody>
 </table>
-<h3 id="bronhouder">Source holder<a class="headerlink" href="#bronhouder" title="Permanent link">&para;</a></h3>
-<p>The source holder uses these interfaces:</p>
+<h3 id="bronhouder">Bronhouder<a class="headerlink" href="#bronhouder" title="Permanent link">&para;</a></h3>
+<p>The bronhouder uses these interfaces:</p>
 <table>
 <thead>
 <tr>
@@ -5104,7 +5104,7 @@ the last column are relative to
 </tr>
 <tr>
 <td>Government data request</td>
-<td>Government consumer ↔ source holder Inway</td>
+<td>Government consumer ↔ bronhouder Inway</td>
 <td><abbr title="Federated Service Connectivity">FSC</abbr> with its own positive evidence. This interface is <em>designed</em>. For more information, see <a href="../runtime/design-level/">design-level scenarios</a>.</td>
 <td>—</td>
 </tr>
@@ -5133,7 +5133,7 @@ the last column are relative to
 </ul>
 <p>The following parts are out of scope:</p>
 <ul>
-<li>the internal architecture of source holder systems behind the GraphQL API</li>
+<li>the internal architecture of bronhouder systems behind the GraphQL API</li>
 <li>the EUDI wallet, DigiD, and BSNk themselves</li>
 <li>the <abbr title="Qualified Trust Service Provider">QTSP</abbr>, the Discover Interface, and the national register of relying
   parties</li>

@@ -4604,7 +4604,7 @@ original decision as history.</p>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
 <p>The <abbr title="Policy Decision Point">PDP</abbr> needs consent evidence that it can verify and that can be revoked.
 The evidence must work without exposing the <abbr title="Burgerservicenummer">BSN</abbr>. Also, one consent must
-cover more than one source holder (bronhouder).</p>
+cover more than one bronhouder.</p>
 <h2 id="decision-superseded">Decision (superseded)<a class="headerlink" href="#decision-superseded" title="Permanent link">&para;</a></h2>
 <p>The consent register (toestemmingsregister) issues an ES256-signed JWT of type
 <code>gbo-consent+jwt</code> with these claims:</p>
@@ -4612,7 +4612,7 @@ cover more than one source holder (bronhouder).</p>
 <li><code>consent_id</code></li>
 <li><code>pi</code></li>
 <li><code>scopes</code></li>
-<li><code>scope_entries</code> (per source holder)</li>
+<li><code>scope_entries</code> (per bronhouder)</li>
 <li><code>dienstverlener_oin</code></li>
 <li><code>valid_until</code> (= <code>exp</code>)</li>
 </ul>

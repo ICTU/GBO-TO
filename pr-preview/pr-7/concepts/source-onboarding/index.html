@@ -2077,7 +2077,7 @@
   <a href="#connection-conditions-for-bronhouders" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Connection conditions for source holders
+        Connection conditions for bronhouders
       
     </span>
   </a>
@@ -4657,7 +4657,7 @@ For the step-by-step flow, see
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/source-onboarding.md">docs/source-onboarding.md</a>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/source-metadata-cache.md">docs/source-metadata-cache.md</a>).</p>
 <h2 id="why-the-source-owns-its-description">Why the source owns its description<a class="headerlink" href="#why-the-source-owns-its-description" title="Permanent link">&para;</a></h2>
-<p>The source holder (bronhouder) keeps control of its data
+<p>The bronhouder keeps control of its data
 (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>). It
 can add services through its source-specific <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration
 (<a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">S07</a>).
@@ -4679,7 +4679,8 @@ only from what the source publishes itself
 was a change in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> code or in a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> catalog file. With this mechanism,
 the adapter parameters come from the source
 (<a href="../../traceability/answered-questions/#q-19">Q-19</a>). In GO terms, the
-document is the service catalog that the source holder manages. The
+document is the service catalog (dienstencatalogus) that the bronhouder
+manages. The
 validation rules of the reconciler are the common profile.</p>
 <p>The mechanism (publish, validate, activate, roll back) is a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> design
 decision. The document format <code>gbo-source-metadata-v1</code> is the proposal of
@@ -4703,17 +4704,17 @@ owner:</p>
 </tr>
 <tr>
 <td>Legal <abbr title="Organisatie-identificatienummer">OIN</abbr>, organization name, issuer name and logo</td>
-<td>source holder, through its certificate</td>
+<td>bronhouder, through its certificate</td>
 <td>certificate set under the key <code>source_id</code> (<a href="../identity-trust/">Identity and trust</a>)</td>
 </tr>
 <tr>
 <td>Access to the metadata and data services</td>
-<td>source holder and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, by agreement</td>
+<td>bronhouder and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, by agreement</td>
 <td><abbr title="Federated Service Connectivity">FSC</abbr> contracts and grant hashes</td>
 </tr>
 <tr>
 <td>Data service, query, parameters, offers, display, claims, attributes</td>
-<td>source holder</td>
+<td>bronhouder</td>
 <td>the source document at <code>/.well-known/gbo</code></td>
 </tr>
 <tr>
@@ -4724,12 +4725,12 @@ owner:</p>
 <tr>
 <td>SD-JWT VC Type Metadata</td>
 <td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> generates it from the document</td>
-<td>Source Registry</td>
+<td>source registry</td>
 </tr>
 <tr>
 <td>Candidates, states, releases, active pointer</td>
 <td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr></td>
-<td>Source Registry (PostgreSQL)</td>
+<td>source registry (PostgreSQL)</td>
 </tr>
 </tbody>
 </table>
@@ -4831,7 +4832,7 @@ owner:</p>
 </tr>
 </tbody>
 </table>
-<p>The Source Registry is a shared module,
+<p>The source registry is a shared module,
 <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/source-registry"><code>services/source-registry</code></a>
 (<code>onboarding</code>, <code>postgresregistry</code>, <code>asisnapshot</code>). The reconciler writes to
 it with the writer role. The adapter, the issuance init container, and the
@@ -4898,7 +4899,7 @@ an onboarding phase:</p>
   transport flag makes the exception visible, and <code>expires_at</code> makes it
   temporary.</p>
 <p>The exception is admissible only with recorded agreement of the
-source holder (<a href="../../requirements/admission/#av-08">AV-08</a>,
+bronhouder (<a href="../../requirements/admission/#av-08">AV-08</a>,
 <a href="../../traceability/findings/#f-71">F-71</a>). The demo does not record
 this agreement. The need for agreement is only an instruction in
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/source-metadata/README.md"><code>source-metadata/README.md</code></a>.</p>
@@ -4965,7 +4966,7 @@ Compose and the Helm example turn it on for the demo. Then the source file
 is the management action. Demo v0.9.0 does not build two things: control
 over who can do that action, and a record of the admission decision
 (PSA B-09 in the
-<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">besluitregister</a>,
+<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">decision register</a>,
 <a href="../../requirements/admission/#req-123">REQ-123</a>).</p>
 <h2 id="versions-freshness-and-isolation">Versions, freshness and isolation<a class="headerlink" href="#versions-freshness-and-isolation" title="Permanent link">&para;</a></h2>
 <p>Source metadata fails closed for each source and ages within fixed
@@ -5261,18 +5262,18 @@ fields. The BRP document shows this composition
 503 for verify, retrieve, and discovery
 (<a href="../../requirements/asi/#req-93">REQ-93</a>). If no registry is available,
 the <abbr title="Authentic Source Interface Provider">ASIP</abbr> can read a release file (<code>asi-provider write-release-file</code>).</p>
-<h2 id="connection-conditions-for-bronhouders">Connection conditions for source holders<a class="headerlink" href="#connection-conditions-for-bronhouders" title="Permanent link">&para;</a></h2>
-<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> asks three things of a source holder, as candidate connection
+<h2 id="connection-conditions-for-bronhouders">Connection conditions for bronhouders<a class="headerlink" href="#connection-conditions-for-bronhouders" title="Permanent link">&para;</a></h2>
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> asks three things of a bronhouder, as candidate connection
 conditions:</p>
 <ul>
-<li>The source holder publishes a machine-readable, versioned description for
+<li>The bronhouder publishes a machine-readable, versioned description for
   each data service at the fixed location. The description includes the
-  read API of the logbook of the source holder
+  read API of the logbook of the bronhouder
   (<a href="../../requirements/admission/#av-07">AV-07</a>).</li>
-<li>If the source holder has no endpoint of its own, it agrees provably with
+<li>If the bronhouder has no endpoint of its own, it agrees provably with
   the description that the operator keeps
   (<a href="../../requirements/admission/#av-08">AV-08</a>).</li>
-<li>The source holder provides a certificate set that carries its <abbr title="Organisatie-identificatienummer">OIN</abbr> and
+<li>The bronhouder provides a certificate set that carries its <abbr title="Organisatie-identificatienummer">OIN</abbr> and
   organization name (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>).</li>
 </ul>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>

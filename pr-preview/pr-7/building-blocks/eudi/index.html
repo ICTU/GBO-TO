@@ -4628,7 +4628,7 @@
 
 <h1 id="eudi-wallet-channel">EUDI wallet channel<a class="headerlink" href="#eudi-wallet-channel" title="Permanent link">&para;</a></h1>
 <p>In the EUDI wallet channel, a citizen gets data from a government source in
-the EUDI wallet. Interaction pattern A of the
+the EUDI wallet. Interaction pattern (interactiepatroon) A of the
 <a href="https://ictu.github.io/GBO-GO/main/#patroon-a-burger-gebruikt-eudi-wallet">Globaal Ontwerp</a>
 has two flows. In flow A, the source issues an attestation itself, as a
 <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr>. In flow B, a <abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies or retrieves the data at the source and
@@ -4713,8 +4713,8 @@ channel, with <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis 
 </thead>
 <tbody>
 <tr>
-<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</td>
-<td>The technical issuance facility. The issuance server asks the wallet for the <abbr title="Person Identification Data">PID</abbr>. The EUDI adapter gets the source data and turns it into claims. The source holder (bronhouder) stays the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider (<a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed).</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider (PubEAA-voorziening)</td>
+<td>The technical issuance facility. The issuance server asks the wallet for the <abbr title="Person Identification Data">PID</abbr>. The EUDI adapter gets the source data and turns it into claims. The bronhouder stays the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider (<a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed).</td>
 <td><a href="pubeaa/"><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</a></td>
 </tr>
 <tr>
@@ -4957,17 +4957,17 @@ wallet approval cannot replace each other. For the detail, see
 <tbody>
 <tr>
 <td>Start of flow A</td>
-<td>The wallet sends a credential request to the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> facility (voorziening).</td>
+<td>The wallet sends a credential request to the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider.</td>
 <td>The citizen scans a QR code. The issuance server first asks for the <abbr title="Person Identification Data">PID</abbr> (disclosure-based issuance, <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>).</td>
 </tr>
 <tr>
 <td>Authorization in flow A</td>
-<td>An Autorisatievoorziening asks the wallet for the <abbr title="Person Identification Data">PID</abbr> and authorizes the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> facility.</td>
+<td>An authorization facility (autorisatievoorziening) asks the wallet for the <abbr title="Person Identification Data">PID</abbr> and authorizes the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider.</td>
 <td>No separate service. The nl-wallet issuance server checks the <abbr title="Person Identification Data">PID</abbr> and calls the adapter. The adapter does not authenticate that call.</td>
 </tr>
 <tr>
 <td>Authorization in flow B</td>
-<td>The verify and retrieve service uses the same Autorisatievoorziening of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</td>
+<td>The verify and retrieve service uses the same authorization facility of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</td>
 <td>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider has its own OAuth authorization server, with a wallet verifier and a DigiD mock (<a href="../../decisions/0037-asi-oauth-front-door/">ADR-0037</a>).</td>
 </tr>
 <tr>

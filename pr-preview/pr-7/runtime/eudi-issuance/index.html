@@ -1723,7 +1723,7 @@
   <a href="#related-person-attestation-akte-van-overlijden" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related-person attestation: akte van overlijden
+        Related-person attestation: death certificate
       
     </span>
   </a>
@@ -4613,7 +4613,7 @@
 
 <h1 id="eudi-issuance-the-pub-eaa-route">EUDI issuance: the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route<a class="headerlink" href="#eudi-issuance-the-pub-eaa-route" title="Permanent link">&para;</a></h1>
 <p>A citizen scans a QR code, shares the <abbr title="Person Identification Data">PID</abbr> from the NL Wallet, and gets an
-attestation with data from an authentic source. The source holder (bronhouder) is the
+attestation with data from an authentic source. The bronhouder is the
 <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical issuance facility
 (<a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>,
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>).
@@ -4663,15 +4663,15 @@ is active, no offer exists and the portal shows no QR code.</p>
 </thead>
 <tbody>
 <tr>
-<td>Inkomensverklaring</td>
+<td>Income statement (inkomensverklaring)</td>
 <td><code>belastingdienst</code></td>
 <td><code>bri</code></td>
 <td>EUD0001</td>
-<td><code>jaar</code> 2024 and 2025</td>
+<td>Year (<code>jaar</code>) 2024 and 2025</td>
 <td>The <abbr title="Person Identification Data">PID</abbr> holder</td>
 </tr>
 <tr>
-<td>Akte van overlijden</td>
+<td>Death certificate (akte van overlijden)</td>
 <td><code>rvig</code></td>
 <td><code>brp</code></td>
 <td>EUD0002</td>
@@ -4686,7 +4686,7 @@ is active, no offer exists and the portal shows no QR code.</p>
 In the default demo, both sources are on the Belastingdienst peer <code>…0200</code>
 (<a href="../../deployment/#fsc-peers"><abbr title="Federated Service Connectivity">FSC</abbr> peers</a>).</p>
 <h2 id="sequence">Sequence<a class="headerlink" href="#sequence" title="Permanent link">&para;</a></h2>
-<p>The sequence shows the income declaration for 2024, cross-device.</p>
+<p>The sequence shows the income statement for 2024, cross-device.</p>
 <div class="mermaid">sequenceDiagram
     autonumber
     box rgb(221,235,247) Citizen
@@ -4852,7 +4852,7 @@ steps of the sequence:</p>
 <td>bd-inway → gateway → source</td>
 <td><code>POST /graphql</code></td>
 <td>The judged query with the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
-<td>The request has no consent token, so the gateway passes it through unchanged (<a href="../../building-blocks/components/#level-2-bronhouder">Level 2: source holder</a>). The source logs its own processing.</td>
+<td>The request has no consent token, so the gateway passes it through unchanged (<a href="../../building-blocks/components/#level-2-bronhouder">Level 2: bronhouder</a>). The source logs its own processing.</td>
 </tr>
 <tr>
 <td>23</td>
@@ -5121,8 +5121,8 @@ have these triggers and outcomes:</p>
 </tr>
 </tbody>
 </table>
-<h2 id="related-person-attestation-akte-van-overlijden">Related-person attestation: akte van overlijden<a class="headerlink" href="#related-person-attestation-akte-van-overlijden" title="Permanent link">&para;</a></h2>
-<p>The akte van overlijden holds data about the deceased partner of the
+<h2 id="related-person-attestation-akte-van-overlijden">Related-person attestation: death certificate<a class="headerlink" href="#related-person-attestation-akte-van-overlijden" title="Permanent link">&para;</a></h2>
+<p>The death certificate holds data about the deceased partner of the
 citizen who shares the <abbr title="Person Identification Data">PID</abbr>. The subject of the claims differs from the
 person who discloses the <abbr title="Person Identification Data">PID</abbr> (<a href="../../traceability/findings/#f-47">F-47</a>,
 <a href="../../requirements/eudi-issuance/#req-57">REQ-57</a>,
@@ -5164,8 +5164,8 @@ run in the preceding sections, with these differences per hop:</p>
 </table>
 <p>The <abbr title="Policy Decision Point">PDP</abbr> sees only the flat output of the source view. It does not see the
 relation. The relation depends on the source and on the subject from the
-<abbr title="Person Identification Data">PID</abbr>. Because of the callback gap, a caller can ask for the akte for any
-<abbr title="Burgerservicenummer">BSN</abbr>.</p>
+<abbr title="Person Identification Data">PID</abbr>. Because of the callback gap, a caller can ask for the death certificate
+for any <abbr title="Burgerservicenummer">BSN</abbr>.</p>
 <p>The preferred design puts the relation in filter arguments of the
 published schema. The policy then requires these arguments with fixed
 values (<a href="https://github.com/ICTU/GBO-demo/issues/425">#425</a>,
@@ -5233,7 +5233,7 @@ description does not mark the relation.</p>
 <li>The <abbr title="Burgerservicenummer">BSN</abbr> out of the <abbr title="Policy Decision Point">PDP</abbr> input
   (<a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>,
   <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>, proposed).</li>
-<li>Validity and revocation per type, set by the source holder, with revocation
+<li>Validity and revocation per type, set by the bronhouder, with revocation
   on instruction or on a change in the source
   (<a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>,
   <a href="../../requirements/admission/#av-12">AV-12</a>,
