@@ -80,7 +80,7 @@ flowchart TB
   style ch fill:#F4F5F7,stroke:#D1D5DB
   style basis fill:#F0FDF4,stroke:#16A34A
   style svc fill:#F4F5F7,stroke:#D1D5DB
-  click tv "../building-blocks/dvtp/consent-service/" "Toestemmingsvoorziening"
+  click tv "../building-blocks/dvtp/consent-service/" "Consent facility"
   click pub "../building-blocks/eudi/pubeaa/" "PuB-EAA provider"
   click asi "../building-blocks/eudi/asi/" "ASI provider"
   click oots "../building-blocks/oots/" "OOTS channel"
@@ -144,7 +144,7 @@ flowchart LR
   style src fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
   style eudi fill:#FFF7ED,stroke:#EA580C
   click pdp "../building-blocks/gbo-basis/authorization/" "Authorization"
-  click tr "../building-blocks/dvtp/consent-service/" "Toestemmingsvoorziening"
+  click tr "../building-blocks/dvtp/consent-service/" "Consent facility"
   click sreg "../building-blocks/gbo-basis/source-configuration/" "Source configuration"
   click adl "../building-blocks/gbo-basis/records/" "Records"
 ```

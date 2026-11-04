@@ -2,7 +2,7 @@
 
 - Status: superseded by [ADR-0009](0009-closed-world-rules.md)
 - Date: 2026-08-24 (ported from reference architecture v0.6.2)
-- Satisfies: [P-02](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [GO: dienstencatalogus](https://ictu.github.io/GBO-GO/main/bijlage_begrippenlijst/#begrip-dienstencatalogus)
+- Satisfies: [P-02](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [GO: service catalog](https://ictu.github.io/GBO-GO/main/bijlage_begrippenlijst/#begrip-dienstencatalogus)
 - Deliberation: Reference architecture v0.6.2, decision 3 (archived and unpublished)
 - Implemented in: superseded before implementation
 
@@ -13,8 +13,8 @@ limits what a consent screen can ask for and what a query can select.
 
 ## Decision (superseded)
 
-GBO keeps a wettelijke service catalog (dienstencatalogus) as a separate register with a
-legal anchor. The register maps each scope to its allowed fields
+GBO keeps a statutory service catalog (dienstencatalogus) as a separate
+register with a legal anchor. The register maps each scope to its allowed fields
 (`data.dienstencatalogus[scope].allowed_fields`). The PDP checks every
 query against the catalog. The consent portal (toestemmingsportaal) shows only catalog entries.
 
@@ -25,7 +25,7 @@ from the rules that enforce it. The implemented model puts the ceiling
 into the rules themselves: the coverage declarations in closed-world rules
 are the catalog ([ADR-0009](0009-closed-world-rules.md)).
 
-The question of the legal anchor stays open: a catalog based on an AMvB,
+The question of the legal anchor stays open: a catalog based on a general administrative order (AMvB),
 with its own governance.
 [Risks and technical debt](../risks.md) tracks this question.
 

@@ -64,7 +64,7 @@ that was not part of an increment.
   request, the PEP did not resolve the BSN at all.
 - **Produced**: [REQ-20](../requirements/pseudonymization.md#req-20) and
   [REQ-21](../requirements/pseudonymization.md#req-21). Later, the
-  conversion moved to the source source gateway ([SL-22](#sl-22)). Since
+  conversion moved to the source gateway ([SL-22](#sl-22)). Since
   [SL-51](#sl-51), the proof carries a value per source, and the source
   decrypts it after the decision.
 - **Explained in**: [Pseudonymization](../concepts/pseudonymization.md)
@@ -93,7 +93,7 @@ that was not part of an increment.
   [REQ-79](../requirements/pseudonymization.md#req-79) and
   [REQ-17](../requirements/authorization.md#req-17)), and
   [REQ-06](../requirements/authorization.md#req-06) (new reason codes).
-  Later, the query translation moved to the source source gateway
+  Later, the query translation moved to the source gateway
   ([SL-42](#sl-42)).
 - **Explained in**: [Authorization](../concepts/authorization.md)
 
@@ -336,7 +336,7 @@ that was not part of an increment.
 - **Produced**: none.
 - **Explained in**: no page.
 
-### SL-22: Source source gateway de-pseudonymization (DvTP) {#sl-22}
+### SL-22: Source gateway de-pseudonymization (DvTP) {#sl-22}
 
 - **Status**: done
 - **Demo work**: before the public repository. It was built together
@@ -781,7 +781,7 @@ Epic #336 has four follow-ups:
 - **Demo work**: before the public repository.
 - **What it showed**: DvTP runs over real FSC too, with a second consumer
   organization. The demo removed the `fsc-mock` and the PEP service. The
-  PDP is the only policy endpoint for DvTP and EUDI. The source source gateway
+  PDP is the only policy endpoint for DvTP and EUDI. The source gateway
   does the conversion after the decision ([SL-22](#sl-22),
   [SL-23](#sl-23)).
 - **Produced**:

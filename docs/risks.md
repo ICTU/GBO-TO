@@ -30,7 +30,7 @@ Each risk belongs to one group:
 | [R14](#r14) | New sources need a restart of the issuance server | Production readiness |
 | [R15](#r15) | The legal ceiling of the service catalog (dienstencatalogus) has no technical counterpart | Governance |
 | [R16](#r16) | Rego instead of ODRL | Governance |
-| [R17](#r17) | GraphQL is not a recognized FDS datadienst type | Governance |
+| [R17](#r17) | GraphQL is not a recognized data service (datadienst) type of the Federatief Datastelsel (FDS) | Governance |
 | [R18](#r18) | Integrator mandates have no validity and no governance | Governance |
 | [R19](#r19) | LDV gaps: citizen view, activity register, ASIP | Governance |
 | [R20](#r20) | Onboarding cost for small bronhouders | Governance |
@@ -580,7 +580,7 @@ Each risk belongs to one group:
   more information, see [Policy lifecycle](concepts/policy-lifecycle.md)
   and [Q-78](traceability/open-questions.md#q-78).
 
-### R17: GraphQL is not a recognized FDS datadienst type {#r17}
+### R17: GraphQL is not a recognized FDS data service type {#r17}
 
 - **Risk**: The data access pillar rests on a deviation that no standard
   covers.
@@ -639,7 +639,7 @@ Each risk belongs to one group:
 
 - **Risk**: The cost to connect a source stays high for small
   organizations.
-- **Impact**: There is an adoption risk for gemeenten and small sources.
+- **Impact**: There is an adoption risk for municipalities and small sources.
 - **Follow-up**: [ADR-0027](decisions/0027-onboarding-toolkit.md).
 
 ## Accepted technical debt

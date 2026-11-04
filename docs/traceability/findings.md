@@ -356,7 +356,7 @@ must decide who the BSNk participant is.
     - **Observation**:
         - Five parts of the design fit the specification:
             - An encrypted value per party in the proof is the recipient-specific BSNk form, per OIN ([BSNK-07](../requirements/pseudonymization.md#bsnk-07)).
-            - The choice between identity and pseudonym by authorization is a lookup in the BSN Authorization List ([BSNK-06](../requirements/pseudonymization.md#bsnk-06)).
+            - The choice between identity and pseudonym by authorization is a lookup in the BSN authorization list (Autorisatielijst BSN) ([BSNK-06](../requirements/pseudonymization.md#bsnk-06)).
             - Transformation happens when the citizen gives consent, the only time when BSNk allows it ([BSNK-04](../requirements/pseudonymization.md#bsnk-04)).
             - Local decryption at the source, after the PDP, is what every BSNk recipient does ([BSNK-09](../requirements/pseudonymization.md#bsnk-09)).
             - The design makes no BSNk call at query time, so BSNk stays out of the query path.
@@ -367,11 +367,11 @@ must decide who the BSNk participant is.
             - PI and PP do not have the same starting point.
         - The demo built three parts on the BSNk mock ([SL-51](increments.md#sl-51), [PR #469](https://github.com/ICTU/GBO-demo/pull/469), [PR #477](https://github.com/ICTU/GBO-demo/pull/477)):
             - an encrypted pseudonym for every source
-            - an encrypted identity only for a source on the BSN Authorization List
+            - an encrypted identity only for a source on the BSN authorization list
             - requests of at most four parties ([BSNK-05](../requirements/pseudonymization.md#bsnk-05))
         - The spike on the real BSNk PP (demo issue [#377](https://github.com/ICTU/GBO-demo/issues/377)) closed on October 21, 2026. Its result: the mock follows the BSNk interface and rules. Real activation, transport, key handling, and the agreement for private recipients wait for pre-production access.
     - **Why it matters**: [PSA P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie), B-07, and GO §5 make BSNk PP mandatory for DvTP. Nothing technical blocks the design. The remaining work is administrative and legal. The consent facility must become a recognized BSNk party, in a role that BSNk was not written for.
-    - **Proposal**: use [BSNK-01 to BSNK-11](../requirements/pseudonymization.md#bsnk-preconditions) as the check for each build step and for the trial with the real BSNk PP. Submit the recognition question ([Q-26](open-questions.md#q-26)). Decide who the BSNk participant is ([Q-49](open-questions.md#q-49), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md), proposed). Two points stay open in the demo: a pseudonym for the consumer (demo issue [#478](https://github.com/ICTU/GBO-demo/issues/478)), and how the BSN Authorization List is delivered in practice ([Q-26](open-questions.md#q-26)).
+    - **Proposal**: use [BSNK-01 to BSNK-11](../requirements/pseudonymization.md#bsnk-preconditions) as the check for each build step and for the trial with the real BSNk PP. Submit the recognition question ([Q-26](open-questions.md#q-26)). Decide who the BSNk participant is ([Q-49](open-questions.md#q-49), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md), proposed). Two points stay open in the demo: a pseudonym for the consumer (demo issue [#478](https://github.com/ICTU/GBO-demo/issues/478)), and how the BSN authorization list is delivered in practice ([Q-26](open-questions.md#q-26)).
     - **Related**: [F-76](#f-76) to [F-79](#f-79), [REQ-20](../requirements/pseudonymization.md#req-20), [REQ-21](../requirements/pseudonymization.md#req-21), [REQ-69](../requirements/pseudonymization.md#req-69), [REQ-80](../requirements/pseudonymization.md#req-80), [Q-01](open-questions.md#q-01), [Q-26](open-questions.md#q-26), [Q-49](open-questions.md#q-49), [ADR-0005](../decisions/0005-bsnk-pp.md), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md).
 
 ### F-76: The consumer has no citizen identifier, so what it records about "this person" depends on the consent {#f-76}
@@ -448,7 +448,7 @@ the service catalogue, and gives the proof a version.
     - **Observation**:
         - The portal gets the sources as `<OIN>@<key set version>` from an environment variable. Without at least one source, the portal gives no consent ([`consent-portal-backend/main.go#L154-L173`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/main.go#L154-L173)).
         - The source keeps its keys as files at the source gateway. In the demo, the keys are in the image.
-        - Since [PR #477](https://github.com/ICTU/GBO-demo/pull/477), the portal reads the BSN authorization from the BSNk BSN Authorization List instead of from configuration ([`portal.go#L38`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L38)). The authorization is therefore a snapshot too. If a source joins the list after the consent, that consent holds only a pseudonym for the source.
+        - Since [PR #477](https://github.com/ICTU/GBO-demo/pull/477), the portal reads the BSN authorization from the BSN authorization list of BSNk instead of from configuration ([`portal.go#L38`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L38)). The authorization is therefore a snapshot too. If a source joins the list after the consent, that consent holds only a pseudonym for the source.
         - A proof in an older form is denied with `CONSENT_CONTEXT_INVALID`. The proof form changed twice (PR #469, PR #477). Each time, older proofs stopped working.
     - **Why it matters**: [BSNK-04](../requirements/pseudonymization.md#bsnk-04) (transformation only while the citizen is present) makes the proof a snapshot. After each later change, either the old proof keeps working, or the citizen gives a new consent. Each kind of change has its own effect:
         1. A new party needs a new consent (demo issue [#382](https://github.com/ICTU/GBO-demo/issues/382)).
@@ -917,21 +917,21 @@ the issuer parameter and that the QTSP checks it.
 - **Status**: open
 
 FR-22 to FR-24 of FR-DvTP use different words for the same consent
-statuses. One rationale uses "Openstaand" next to "Actief", and a
-revoked consent is "Geannuleerd" in one place and "ingetrokken" in
-another. The rationale of FR-23 allows revocation only while the status
-is "Open", but its criteria also allow it after retrieval. Builders and
-reviewers therefore get two readings of one rule. The proposal is one
-set of terms, with "Ingetrokken" for a revoked consent, and a rationale
-that matches the criteria.
+statuses. One rationale uses "Openstaand" (pending) next to "Actief"
+(active). A revoked consent is "Geannuleerd" (cancelled) in one place and
+"ingetrokken" (revoked) in another. The rationale of FR-23 allows
+revocation only while the status is "Open", but its criteria also allow
+it after retrieval. Builders and reviewers therefore get two readings of
+one rule. The proposal is one set of terms, with "Ingetrokken" for a
+revoked consent, and a rationale that matches the criteria.
 
 ??? note "Evidence, impact and proposal"
 
     - **Type**: contradiction in the source (FR-DvTP v0.9)
     - **Trigger**: a review of the decision points for the build phase, track B (October 27, 2026).
     - **Observation**:
-        - FR-22, criterion 1, names the statuses "Actief", "Opgehaald (nog geldig)", "Verlopen", and "Geannuleerd". The rationale of FR-22 uses "Openstaand" for the same status.
-        - FR-23 names the action "Intrekken" and the outcome "Geannuleerd". FR-24 uses "ingetrokken".
+        - FR-22, criterion 1, names the statuses active ("Actief"), retrieved and still valid ("Opgehaald (nog geldig)"), expired ("Verlopen"), and cancelled ("Geannuleerd"). The rationale of FR-22 uses "Openstaand" for the same status.
+        - FR-23 names the action revoke ("Intrekken") and the outcome "Geannuleerd". FR-24 uses "ingetrokken".
         - The rationale of FR-23 says that revocation is possible only when the status is "Open". FR-23, criterion 1, and FR-24, criterion 1, also allow revocation after "Opgehaald", while the consent is valid.
     - **Why it matters**: builders and reviewers get two readings of one rule. The demo shows "Actief", "Verlopen", and "Ingetrokken" ([`StatusChip.tsx#L4-L6`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/components/consent-detail/StatusChip.tsx#L4-L6)). "Opgehaald" is missing, because no decision exists on when a consent counts as retrieved ([Q-42](open-questions.md#q-42), [F-19](#f-19)).
     - **Proposal**: use one set of terms in FR-DvTP: "Actief", "Opgehaald (nog geldig)", "Verlopen", and "Ingetrokken". The last term matches the action "Intrekken". Make the FR-23 rationale match the criteria: revocation is possible on "Actief" and "Opgehaald". The choice for the build (October 27, 2026) is "Actief" for the first status and "Ingetrokken" for a revoked consent ([REQ-109](../requirements/consent.md#req-109)).

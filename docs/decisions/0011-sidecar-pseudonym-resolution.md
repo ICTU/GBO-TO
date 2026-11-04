@@ -5,7 +5,7 @@
 - Satisfies: [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)
 - Supersedes: [ADR-0010](0010-pep-bsn-resolution.md)
 - Superseded by: [ADR-0033](0033-gateway-decrypts-after-allow.md)
-- Deliberation: source source gateway de-pseudonymization ([SL-22](../traceability/increments.md#sl-22), [F-30](../traceability/findings-closed.md#f-30))
+- Deliberation: source gateway de-pseudonymization ([SL-22](../traceability/increments.md#sl-22), [F-30](../traceability/findings-closed.md#f-30))
 - Implemented in: changed in gbo-demo. The source gateway does not call BSNk and does not read `subject_id_type` any more ([PR #469](https://github.com/ICTU/GBO-demo/pull/469), [#473](https://github.com/ICTU/GBO-demo/issues/473)). The request mapper does not pseudonymize any more ([#364](https://github.com/ICTU/GBO-demo/issues/364)). Code in gbo-demo v0.9.0: [services/bron-sidecar](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar)
 
 ## Why superseded
@@ -50,7 +50,7 @@ contain only the PI.
 
 ## Consequences (at the time)
 
-- Each role stays separate, in line with datasoevereiniteit:
+- Each role stays separate, in line with data sovereignty:
     - The PEP stays a pure enforcement point.
     - The PDP does no data transformation.
     - Only the bronhouder holds BSN authority.

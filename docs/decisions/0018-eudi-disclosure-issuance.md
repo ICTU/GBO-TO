@@ -2,7 +2,7 @@
 
 - Status: accepted
 - Date: 2026-08-24 (updated 2026-11-02: no flow or subject identifier type, PID verification and the callback gap, gbo-demo v0.9.0)
-- Satisfies: [P-06](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [GO: PuB-EAA-uitgifte](https://ictu.github.io/GBO-GO/main/#uitgifte-van-attestaties-voor-de-eudi-wallet-pubeaa-uitgifte)
+- Satisfies: [P-06](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [GO: PuB-EAA issuance](https://ictu.github.io/GBO-GO/main/#uitgifte-van-attestaties-voor-de-eudi-wallet-pubeaa-uitgifte)
 - Deliberation: Reference architecture v0.6.2, PuB-EAA Provider (archived and unpublished), [REQ-45](../requirements/eudi-issuance.md#req-45), [SL-25](../traceability/increments.md#sl-25), demo constraints in [AGENTS.md](https://github.com/ICTU/GBO-demo/blob/v0.9.0/AGENTS.md)
 - Implemented in: [services/eudi-adapter](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-adapter), [services/eudi-issuance-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-issuance-server) (nl-wallet v0.5.0), PID trust anchors in [issuance_server.toml.example#L3-L9](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/config/issuance_server.toml.example#L3-L9), adapter route in [source_release_runtime.go#L69](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L69)
 
@@ -10,7 +10,7 @@
 
 Citizens must receive attestations from government sources into their
 EUDI wallet. The reference architecture called this function the shared
-PuB-EAA Provider. The protocol stack and the identification mechanism were
+PuB-EAA provider (PubEAA-voorziening). The protocol stack and the identification mechanism were
 open.
 
 PSA v1 treats the wallet as a hook

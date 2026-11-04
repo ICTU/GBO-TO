@@ -134,7 +134,7 @@ the compose defaults. Policy distribution uses the following components:
 | Component | Ports | Role |
 |---|---|---|
 | `openftv-manager` | `9280:8443` management API · `9281:9443` internal (bundle) · `9282:8080` health | PAP. The Manager stores policy and builds bundles. Cedar policies from `/authz` authorize its own API ([`admin.cedar`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/admin.cedar), [`auditor.cedar`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/auditor.cedar), `pdp-bundle.cedar`). The Manager fails closed on an empty store ([`docker-compose.yml#L266-L269`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L266-L269)) |
-| `openftv-manager-ui` | `9283:8080` | Management interface: policies, deployments, and Logboek (ADL) |
+| `openftv-manager-ui` | `9283:8080` | Management interface: policies, deployments, and the ADL (shown as "Logboek") |
 | `keycloak` | `9284:8080` | Demo identity provider of the management plane. Realm `gbo` with roles `admin`, `author`, and `auditor`. The Manager reads the roles from the `roles` claim (`MANAGER_OIDC_ROLES_CLAIM`) |
 | `postgres-ftv` | internal | Two databases: `ftv_manager` (policy and audit trail) and `ftv_adl` (decision log). They are separate because their migration bookkeeping conflicts. The component runs in every profile |
 | `openftv-pdp` | `9181:8443` AuthZEN · `9180:8080` health | Decides. The PDP gets its policy set from the mount. If `PDP_BUNDLE_MANAGER` is set, the PDP gets the set as a bundle |
@@ -203,7 +203,7 @@ Policy distribution in gbo-demo v0.9.0 has these properties and gaps:
   has none of these steps. For this reason, RL-05 is a backlog item and
   more than a wish ([F-59](../traceability/findings-closed.md#f-59)).
 - **Read access to the ADL is open.** Read access to the decision log is
-  an authorization question. The `auditor` role reads the Logboek through
+  an authorization question. The `auditor` role reads the ADL through
   the management interface. The ADL can hold OINs, and in the EUDI and ASI
   routes also the BSN. It is open who can read the ADL
   ([Q-08](../traceability/open-questions.md#q-08),

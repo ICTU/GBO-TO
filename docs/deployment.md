@@ -17,10 +17,10 @@ The demo runs in two environments:
 | Environment | Platform | Purpose |
 |---|---|---|
 | Local | Two Docker Compose projects: the main stack and `fsc-infra`. Make targets start them: `demo-minimal`, `demo-dvtp` (the default `make demo`), `demo-eudi`, `demo-full`, `demo-manager`, `demo-integrator`, and `demo-asi`. | Development and demonstration |
-| Simulation | Kubernetes with the generic [gbo-app Helm chart](https://github.com/ICTU/GBO-demo/tree/v0.9.0/deploy/helm/gbo-app). Each application is one release with a Deployment or a Job, a Service, and a Gateway API HTTPRoute. It runs in the MinEZK and MinBZK tenants. | Public demo at [gbo.simulatie.datastelsel.nl](https://gbo.simulatie.datastelsel.nl/) |
+| Simulation | Kubernetes with the generic [gbo-app Helm chart](https://github.com/ICTU/GBO-demo/tree/v0.9.0/deploy/helm/gbo-app). Each application is one release with a Deployment or a Job, a Service, and a Gateway API HTTPRoute. It runs in two tenants: MinEZK (Ministry of Economic Affairs and Climate Policy) and MinBZK (Ministry of the Interior and Kingdom Relations). | Public demo at [`gbo.simulatie.datastelsel.nl`](https://gbo.simulatie.datastelsel.nl/) |
 
 Compose profiles switch on optional parts. The base (no profile) runs the
-PDP and its databases, the admission register, and the consent register (toestemmingsregister).
+PDP and its databases, the admission register (toelatingsregister), and the consent register (toestemmingsregister).
 It also runs the BD and BRP sources with their gateways, the BSNk mock, the
 decryption component, the LDV logbooks, the developer portal, and
 observability. Each profile adds parts to the base:
@@ -159,7 +159,7 @@ certificate portal serve the group. The group has these peers:
 | Directory peer | `…0000` | `directory-manager`, `directory-inway`, `directory-controller`, `directory-txlog-api`, `directory-ui` | Group registry. It signs service publications automatically. It signs nothing else. |
 | EDI issuer (GBO) | `…0100` | `edi-manager`, `edi-outway`, `edi-controller`, `edi-txlog-api` | Consumer for EUDI issuance (`bri`, `brp`) and for the metadata services. The EUDI rules list it as a designated issuer. |
 | Belastingdienst mock | `…0200` | `bd-manager`, `bd-inway`, `bd-controller`, `bd-txlog-api` | Provider of `bri`, `brp` (RvIG), `lvg`, `gbo-metadata-bd`, and `gbo-metadata-rvig`. Its Manager decides contracts through the PDP. Its Inway is the PEP. |
-| Hypotheekverlener mock | `…0300` | `hv-manager`, `hv-outway`, `hv-controller`, `hv-txlog-api` | DvTP consumer of `bri` |
+| Mortgage lender mock (Hypotheek-BV) | `…0300` | `hv-manager`, `hv-outway`, `hv-controller`, `hv-txlog-api` | DvTP consumer of `bri` |
 | BRP/RvIG mock | `…0400` | `brp-manager`, `brp-inway`, `brp-controller`, `brp-txlog-api` | Provider peer with its own PEP and contract decision. The default demo publishes RvIG on `…0200` instead. `make fsc-seed-brp` publishes `brp` here. |
 | Consent register (GBO) | `…0700` | `cr-manager`, `cr-inway`, `cr-controller`, `cr-txlog-api` | Provider of `consent-status`. The Inway has no AuthZEN hook. The Manager decides contracts through the PDP. |
 | PDP (GBO) | `…0800` | `pdp-manager`, `pdp-outway`, `pdp-controller`, `pdp-txlog-api` | Consumer of `consent-status` |
@@ -263,7 +263,7 @@ GBO and the demo keep data in these stores:
 | Source registry | Postgres `postgres-eudi`, schema `source_registry`, writer and reader roles | Candidates, statuses, immutable releases (snapshot 3.0, or 4.0 with `asi`), and the active-release pointer |
 | Issuance runtime | Volume `eudi-issuance-runtime` | `issuance_server.toml`, written from the active release |
 | Source documents (`file` transport) | Read-only mount `source-metadata/` | Operator-managed descriptions for sources without an endpoint |
-| GBO attribute catalog | [schemas/asi-attributes.json](https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json) | `value_schema` per ASI attribute identifier |
+| GBO attribute catalog | [`schemas/asi-attributes.json`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json) | `value_schema` per ASI attribute identifier |
 | ASI state | In memory, plus a register stub file | Registrations, codes, and transactions of the authorization server. Logins and pending statements of the reference QTSP. |
 | Jaeger, Loki | Volumes, seven-day retention | Debug traces and logs, including the engine's console decision log |
 

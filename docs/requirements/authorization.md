@@ -49,9 +49,11 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 
     - **Source**: design:
       [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
-      ("iedere gegevensvraag doorloopt een PEP-PDP-keten", "een PEP weigert
-      standaard bij ontbrekende of onbetrouwbare beslisinformatie"), and
-      FR-26 criteria 1 and 3.
+      and FR-26 criteria 1 and 3. Under S05, every data request passes a
+      PEP-PDP chain. A PEP denies by default if decision information is
+      missing or not trusted ("iedere gegevensvraag doorloopt een
+      PEP-PDP-keten", "een PEP weigert standaard bij ontbrekende of
+      onbetrouwbare beslisinformatie").
     - **Addressee**: interface agreement. The requirement applies to every
       source that connects through GBO.
       [REQ-81](pseudonymization.md#req-81) works it out for the source
@@ -88,8 +90,10 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 ??? note "Source, evidence and notes"
 
     - **Source**: design:
-      [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
-      ("logging legt de beleidsversie, relevante context en beslissing vast"),
+      [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie),
+      where the log records the policy version, the relevant context, and
+      the decision ("logging legt de beleidsversie, relevante context en
+      beslissing vast"),
       [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid),
       and [P-12](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
       The consumer codes follow the
@@ -140,10 +144,12 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 ??? note "Source, evidence and notes"
 
     - **Source**: design:
-      [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
-      ("de PDP kan relevante informatiebronnen raadplegen", "een PEP weigert
-      standaard bij ontbrekende of onbetrouwbare beslisinformatie"), FR-16
-      criterion 1, and FR-17 criterion 1.
+      [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie),
+      FR-16 criterion 1, and FR-17 criterion 1. Under S05, the PDP can
+      consult relevant information sources. A PEP denies by default if
+      decision information is missing or not trusted ("de PDP kan
+      relevante informatiebronnen raadplegen", "een PEP weigert standaard
+      bij ontbrekende of onbetrouwbare beslisinformatie").
     - **Addressee**: GBO-delivered component: the reference PDP (mapper and
       policy).
     - **Evidence**: the PDP ignores a consent that is sent in the question
@@ -179,10 +185,12 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 ??? note "Source, evidence and notes"
 
     - **Source**: design:
-      [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
+      [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie),
+      with the agreement on the AuthZEN NLGov profile. S05 asks for a
+      standard vocabulary for subject, action, resource, and context. The
+      interface and the policy do not depend on a product
       ("gestandaardiseerd vocabulaire voor subject, actie, resource en
-      context", "de interface en het beleid zijn productonafhankelijk",
-      agreement: AuthZEN NLGov profile).
+      context", "de interface en het beleid zijn productonafhankelijk").
     - **Addressee**: interface agreement: PEP to PDP. GBO-delivered
       component: the mapper on the PDP side.
     - **Evidence**: the Inway sends the body
@@ -217,9 +225,10 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
       does not alone decide what a party gets. The single interface follows
       from the design:
       [PSA S07](https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting)
-      ("een bronhouder gebruikt voor de GBO-interactiepatronen één logisch
-      interface") and
-      [P-06 and P-08](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
+      and [P-06 and P-08](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
+      Under S07, a bronhouder uses one logical interface for all GBO
+      interaction patterns ("een bronhouder gebruikt
+      voor de GBO-interactiepatronen één logisch interface").
     - **Addressee**: GBO-delivered component: channel adapters (in demo
       v0.9.0, the EUDI adapter).
     - **Evidence**: the query and the mapping come from the source metadata,
@@ -388,8 +397,9 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 
     - **Source**: derived. The requirement serves
       [PSA S07](https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting)
-      ("iedere gegevensvraag verwijst eenduidig naar een dienst") and
-      [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie).
+      and [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie).
+      Under S07, every data request refers to exactly one service ("iedere
+      gegevensvraag verwijst eenduidig naar een dienst").
       A field key is unique only within one schema. Without a service
       binding, a rule for one source gives access to another source.
     - **Addressee**: GBO-delivered component: the reference engine and the
@@ -474,11 +484,14 @@ the FTV GraphQL profile for AuthZEN.
 ??? note "Source, evidence and notes"
 
     - **Source**: design:
-        - [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
-          ("de beslissing kan afzonderlijke gegevens of velden toestaan of weigeren",
+        - [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie).
+          Under S05, the decision can allow or deny separate data or fields.
+          A PEP denies by default if decision information is missing or not
+          trusted ("de beslissing kan afzonderlijke gegevens of velden toestaan of weigeren",
           "een PEP weigert standaard bij ontbrekende of onbetrouwbare beslisinformatie").
         - The additional requirements for the source access API in the
-          [design principles](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/)
+          [design principles](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/).
+          A consumer can only run data requests that are allowed in advance
           ("een afnemer kan alleen vooraf toegestane gegevensvragen uitvoeren").
         - [P-02](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)
           and [D-11](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/).
@@ -557,8 +570,10 @@ That rule is [REQ-10](consent.md#req-10) on the consent page.
 ??? note "Source, evidence and notes"
 
     - **Source**: design:
-        - [PSA S07](https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting)
-          ("de API ondersteunt vooraf geregistreerde, selectieve gegevensvragen").
+        - [PSA S07](https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting).
+          Under S07, the API supports selective data requests that are
+          registered in advance ("de API ondersteunt vooraf geregistreerde,
+          selectieve gegevensvragen").
         - [D-09](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/) and the
           additional requirements for the source access API in the
           [design principles](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/).
@@ -591,9 +606,10 @@ That rule is [REQ-10](consent.md#req-10) on the consent page.
 ??? note "Source, evidence and notes"
 
     - **Source**: design.
-      [D-05](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/)
-      ("GBO maakt geen structureel gegevensmagazijn") and
+      [D-05](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/) and
       [P-08](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
+      Under D-05, GBO makes no permanent data warehouse ("GBO maakt geen
+      structureel gegevensmagazijn").
     - **Addressee**: GBO-delivered component: channel adapters, ASIP, and
       translation layer.
     - **Evidence**: the EUDI adapter calls the source through FSC for every
@@ -685,7 +701,9 @@ mean.
 ??? note "Source, evidence and notes"
 
     - **Source**: design.
-      [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie)
+      [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie).
+      Under S06, policy is machine-readable and versioned. The recipient can
+      check the authenticity and integrity of published policy sets
       ("beleid is machineleesbaar, versieerbaar",
       "de ontvanger kan de authenticiteit en integriteit van gepubliceerde beleidssets controleren").
     - **Addressee**: guideline for bronhouders.
@@ -750,10 +768,11 @@ mean.
 ??? note "Source, evidence and notes"
 
     - **Source**: design.
-      [D-11](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/)
-      ("beheerrechten zijn beperkt, tijdelijk en aantoonbaar toegekend") and
+      [D-11](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/) and
       [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie)
-      (owner, approver).
+      (owner, approver). Under D-11, management rights are limited,
+      temporary, and granted in a way that can be shown ("beheerrechten zijn
+      beperkt, tijdelijk en aantoonbaar toegekend").
     - **Addressee**: guideline for bronhouders.
     - **Evidence**: roles
       ([`realm-gbo.json#L11-L19`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager-ui/keycloak/realm-gbo.json#L11-L19)),
@@ -783,8 +802,9 @@ mean.
 ??? note "Source, evidence and notes"
 
     - **Source**: design.
-      [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie)
-      ("wijzigingshistorie", "een spoedprocedure en terugrolprocedure zijn beschikbaar").
+      [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie).
+      S06 asks for a change history, an emergency procedure, and a rollback
+      procedure ("wijzigingshistorie", "een spoedprocedure en terugrolprocedure zijn beschikbaar").
     - **Addressee**: guideline for bronhouders.
     - **Evidence**: [`seed-openftv-manager.py#L116`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/seed-openftv-manager.py#L116)
       (`retire_stale`).
@@ -810,7 +830,9 @@ mean.
 ??? note "Source, evidence and notes"
 
     - **Source**: design.
-      [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie)
+      [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie).
+      Under S06, tests validate changes before publication. On a failure,
+      the components fall back in a controlled way
       ("tests valideren wijzigingen vóór publicatie",
       "bij storingen vallen zij gecontroleerd terug").
     - **Addressee**: guideline for bronhouders.

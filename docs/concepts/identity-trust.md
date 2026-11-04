@@ -52,7 +52,7 @@ field for both values. In demo v0.9.0, the source configuration keeps
 
 It is open whether policy can read the Peer ID of a consumer as its OIN.
 The alternative is that policy takes that link from the admission register
-([Q-68](../traceability/open-questions.md#q-68)).
+(toelatingsregister) ([Q-68](../traceability/open-questions.md#q-68)).
 
 ## The legal identity comes from the certificate
 
@@ -127,7 +127,7 @@ The candidate connection condition has two parts
 FR-33 allows an OIN or a KvK number. The link between OIN, KvK, and eIDAS
 identifiers is an open S04 decision. The trust framework for private
 parties as a whole is PSA decision B-09 in the
-[besluitregister](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister).
+[decision register](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister).
 
 An integrator connects under FSC delegation. The consent binds the party
 that the integrator represents

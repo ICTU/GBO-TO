@@ -76,7 +76,7 @@ The decision has seven parts:
    reconciler validates `asi` against the catalogue, as part of the
    source metadata ([ADR-0016](0016-source-owned-metadata.md)). If `asi`
    is invalid, the reconciler refuses the whole source. The ASIP reads
-   the active release from the Source Registry every 5 seconds, with the
+   the active release from the source registry every 5 seconds, with the
    reader role.
 6. One query per request. The ASIP replaces `...Selected` with only the
    fields of the requested attributes and fragments

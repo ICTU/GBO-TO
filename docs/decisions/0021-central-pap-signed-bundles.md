@@ -12,7 +12,7 @@ Each bronhouder runs its own PDP
 ([ADR-0004](0004-federated-authorization.md)). Someone must write the
 policy for that PDP, publish it, and deliver it to the PDP with integrity.
 The earlier proposal put a central PAP at GBO: a central registry, signed
-bundles, and governance in the GBO gremia.
+bundles, and governance in the GBO standards bodies.
 
 [Q-21](../traceability/answered-questions.md#q-21) asked who can manage and
 publish the policy of a bronhouder. The answer is that policy

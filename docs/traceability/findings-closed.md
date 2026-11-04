@@ -123,7 +123,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: closed
 - **Point**: the PSA named no GBO component that consumes the catalog (a "catalog broker").
-- **Outcome**: GBO has no catalog broker. PSA B-03 sets federated content management with a common profile for findability ([PSA vraagstukken](https://ictu.github.io/GBO-PSA/main/vraagstukken/)). S07 and [S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus) agree. The source owns its service description ([F-57](findings.md#f-57)). The DvTP catalog follows [F-74](findings.md#f-74).
+- **Outcome**: GBO has no catalog broker. PSA B-03 sets federated content management with a common profile for findability ([PSA open decisions](https://ictu.github.io/GBO-PSA/main/vraagstukken/)). S07 and [S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus) agree. The source owns its service description ([F-57](findings.md#f-57)). The DvTP catalog follows [F-74](findings.md#f-74).
 - **Landed in**: [REQ-64](../requirements/sources-identity.md#req-64), [ADR-0016](../decisions/0016-source-owned-metadata.md).
 
 ### F-22: The catalog runtime pattern for the PDP was undecided {#f-22}
@@ -225,7 +225,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: resolved in demo
 - **Point**: FSC grants are per service and per peer. A sector grant needs a contract per peer or a policy attribute.
-- **Outcome**: the demo did not continue the sector branch. The removed REQ-33 and REQ-34 carried it. Admission comes from the admission register and the contract decision of the PDP ([F-55](#f-55)). Demo issue [#378](https://github.com/ICTU/GBO-demo/issues/378) removed `sector-pip`.
+- **Outcome**: the demo did not continue the sector branch. The removed REQ-33 and REQ-34 carried it. Admission comes from the admission register (toelatingsregister) and the contract decision of the PDP ([F-55](#f-55)). Demo issue [#378](https://github.com/ICTU/GBO-demo/issues/378) removed `sector-pip`.
 - **Landed in**: [REQ-61](../requirements/admission.md#req-61), [ADR-0022](../decisions/0022-sector-grants.md) (history).
 - **Evidence**: [`CHANGELOG.md#L779-L786`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/CHANGELOG.md#L779-L786)
 
@@ -417,7 +417,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 ### F-69: A pseudonym that travels across the chain lands in the logbooks of two controllers {#f-69}
 
 - **Status**: resolved in demo
-- **Point**: the source source gateway logged the PI that it received from the consumer. The same PI was then in the consumer logbook and in the source logbook. A reader with access to both logbooks can join them on the person as well as on the trace.
+- **Point**: the source gateway logged the PI that it received from the consumer. The same PI was then in the consumer logbook and in the source logbook. A reader with access to both logbooks can join them on the person as well as on the trace.
 - **Outcome**: [REQ-72](../requirements/logging-audit.md#req-72) states that each controller logs under a pseudonym from its own pseudonym space. A controller never logs under an identifier that the caller sends. The demo fixed this in demo issue [#367](https://github.com/ICTU/GBO-demo/issues/367) through [PR #366](https://github.com/ICTU/GBO-demo/pull/366). Since [SL-51](increments.md#sl-51), the cause is gone. No pseudonym travels: the consumer sends a placeholder ([F-76](findings.md#f-76)).
 - **Landed in**: [REQ-72](../requirements/logging-audit.md#req-72), [ADR-0026](../decisions/0026-ldv-integration.md).
 

@@ -1,7 +1,7 @@
 # Source configuration
 
-The Globaal Ontwerp gives each bronhouder a "decentraal
-configuratiecomponent": the source configures what the central GBO
+The Globaal Ontwerp gives each bronhouder a decentral configuration
+component ("decentraal configuratiecomponent"): the source configures what the central GBO
 facilities offer for it. In the demo, the source describes its own
 services in one document. GBO validates that description and activates
 it as an immutable release. The EUDI adapter, the issuance server and the
@@ -221,7 +221,7 @@ are two decisions with two owners. Each situation has a fixed result:
 Demo v0.9.0 does not build two things. No control decides who can add a
 source file. No record keeps the admission decision
 ([REQ-123](../../requirements/admission.md#req-123), PSA B-09 in the
-[besluitregister](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)).
+[decision register](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)).
 
 ## Freshness, versions and rollback
 

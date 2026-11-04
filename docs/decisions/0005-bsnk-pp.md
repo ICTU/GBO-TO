@@ -2,7 +2,7 @@
 
 - Status: accepted
 - Date: 2026-08-24 (updated 2026-11-02: BSNk only at consent time)
-- Satisfies: [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [S03](https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering), [PSA vraagstukken: keuze BSNk PP](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)
+- Satisfies: [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [S03](https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering), [PSA open decisions: choice of BSNk PP](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)
 - Deliberation: Reference architecture v0.6.2, decision 4 (archived and unpublished), [BSNk preconditions](../requirements/pseudonymization.md#bsnk-preconditions), [F-75](../traceability/findings.md#f-75), demo [#364](https://github.com/ICTU/GBO-demo/issues/364), [PR #469](https://github.com/ICTU/GBO-demo/pull/469), [PR #477](https://github.com/ICTU/GBO-demo/pull/477)
 - Implemented in: [consent-portal-backend/bsnk](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/bsnk/bsnk.go) (activate, transform, BSN authorization list), [consent/portal.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L194-L202) (values per party), [services/bsnk-mock](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bsnk-mock/README.md) (mock of the BSNk interface, also the sources' decryption component)
 

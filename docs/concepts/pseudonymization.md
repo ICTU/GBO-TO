@@ -164,7 +164,7 @@ government:
    It is open how the backend inside MijnOverheid gets the verified
    identity ([Q-50](../traceability/open-questions.md#q-50)).
 2. BSNk, at activation: BSNk records every activation in its
-   Inzageregister ([BSNK-10](../requirements/pseudonymization.md#bsnk-10)).
+   inspection register, the Inzageregister ([BSNK-10](../requirements/pseudonymization.md#bsnk-10)).
 3. The source, after the allow: the source gateway takes the value for its
    own OIN from the proof. The decryption component of the source reads the
    value with the keys of the source. The gateway accepts the result only

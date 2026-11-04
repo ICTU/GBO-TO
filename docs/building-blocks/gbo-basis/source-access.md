@@ -1,6 +1,7 @@
 # Generic source access
 
-The Globaal Ontwerp calls this part "generieke bronontsluiting". It is the
+The Globaal Ontwerp calls this part "generieke bronontsluiting", which
+means generic source access. It is the
 path behind the PEP: after the PDP allows a request, the source gateway
 passes it to the source API. Under consent, the gateway first puts the
 citizen into the query. The source answers one GraphQL query and returns
@@ -319,7 +320,7 @@ and a new policy bundle.
 Some rules depend on data that only the source sees. The PDP cannot check
 them, so the source holds them and their tests.
 
-The akte van overlijden is the example in the demo. A surviving partner
+The death certificate (akte van overlijden) is the example in the demo. A surviving partner
 discloses her own PID and gets an attestation about her deceased partner.
 The BRP source offers the flat view `akteVanOverlijden(bsn)`. The source
 picks the marriage and the deceased partner. The PDP sees only the output
@@ -341,7 +342,7 @@ gateway, and its own logbook:
 | FSC service | Source | Offers | Rules | Logbook |
 |---|---|---|---|---|
 | `bri` | Belastingdienst profile (`graphql-server`, `bron-sidecar`) | Income declarations per year | DVT0001, EUD0001 | `logboek-bd` |
-| `brp` | BRP profile of RvIG (`brp-graphql-server`, `brp-sidecar`) | Persoonslijst and the akte van overlijden view | EUD0002, ASI0001 | `logboek-brp` |
+| `brp` | BRP profile of RvIG (`brp-graphql-server`, `brp-sidecar`) | Personal record (persoonslijst) and the death certificate view | EUD0002, ASI0001 | `logboek-brp` |
 | `lvg` | LVG mock (`lvg-graphql-server`, `lvg-sidecar`) | The ownership check `vbo(bsn, vboId) { vboId }` | LVG0001 | `logboek-lvg` |
 
 The demo takes two shortcuts in this part:

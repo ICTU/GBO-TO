@@ -1,6 +1,6 @@
 # Policy rules and their management
 
-The Globaal Ontwerp names "Beleidsregels" as a block of GBO Basis: policy
+The Globaal Ontwerp names policy rules ("Beleidsregels") as a block of GBO Basis: policy
 rules decide who can get which data. Each bronhouder owns, writes and
 publishes the policy that its own PDP evaluates. GBO supplies a reference
 policy set, the engine choice, and five guidelines, but no central policy
@@ -34,7 +34,7 @@ flowchart LR
     end
     auto("fsc/autosign.rego<br/>contract policy")
   end
-  tr[("Toestemmings-<br/>register")]
+  tr[("Consent<br/>register")]
   pep -- "AuthZEN" --> entry --> e
   e --> r1 & r2 & r3
   e --- con

@@ -66,7 +66,7 @@ share one OIN and one decryption component.
       [PSA S03](https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering)
       ("voorkomen dat onbevoegde afnemers het BSN ontvangen"),
       [GO, building blocks](https://ictu.github.io/GBO-GO/main/#bouwstenen-die-hergebruikt-worden)
-      (BSNk PP for all DvTP requests, before a private service provider (dienstverlener) receives
+      (BSNk PP for all DvTP requests, before a private service provider receives
       data), and FR-35 criteria 2 and 3.
     - **Addressee**: GBO-delivered component: the consent portal and the
       consent register (what the proof carries), and the reference policy
@@ -234,9 +234,10 @@ share one OIN and one decryption component.
           a citizen once and not at every consent
           ([route D](pseudonymization.md#route-d)).
         - This choice deliberately deviates from the text of FR-35
-          criterion 1. That criterion allows the register to record only "een
-          partijspecifiek kenmerk ter vervanging van het BSN en het bewijs van
-          toestemming". The design differs from that text in three ways:
+          criterion 1. That criterion allows the register to record only a
+          party-specific identifier in place of the BSN, and the consent proof
+          ("een partijspecifiek kenmerk ter vervanging van het BSN en het bewijs
+          van toestemming"). The design differs from that text in three ways:
             - The register keeps PI and PP under its own reference.
             - The register keeps no party-specific values.
             - The register does not keep the proof, but signs it.
@@ -502,7 +503,7 @@ share one OIN and one decryption component.
 
 | Case | Outcome |
 |---|---|
-| Source on the Autorisatielijst BSN | a pseudonym and an identity |
+| Source on the BSN Authorization List | a pseudonym and an identity |
 | Source not on the list | only a pseudonym |
 | No source configured | no consent, and BSNk is not called |
 | BSNk makes no value for a source | no consent, and nothing is kept |
@@ -531,7 +532,7 @@ share one OIN and one decryption component.
           ([`portal.go#L126-L128`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L126-L128)).
         - The form follows the authorization
           ([`portal.go#L197-L224`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L197-L224)).
-        - The Autorisatielijst BSN and its maximum age are in
+        - The BSN Authorization List and its maximum age are in
           [`bsnk.go#L84-L100`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/bsnk/bsnk.go#L84-L100),
           [`portal.go#L226-L247`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L226-L247),
           and
@@ -554,7 +555,7 @@ share one OIN and one decryption component.
           the portal (`CONSENT_SOURCES=<OIN>@<key set version>`). Every
           consent gets values for all configured sources, whatever the
           service.
-        - In the target design, the sources come from a service catalog
+        - In the target design, the sources come from a service catalog (dienstencatalogus)
           ([ICTU/GBO-demo#382](https://github.com/ICTU/GBO-demo/issues/382)).
           The keys come from onboarding
           ([ICTU/GBO-demo#467](https://github.com/ICTU/GBO-demo/issues/467)).
@@ -625,8 +626,8 @@ The BSNk specification uses the terms in the following table:
 
 | Term | Meaning | Spec |
 |---|---|---|
-| Participant (recognized party) | A party in the authentication chain that, as the Minister of BZK established, meets the requirements. The roles are Middelenuitgever (means issuer), Authenticatiedienst (authentication service), Machtigingsdienst (authorization service), Toegangsdienst (access service), and Sleutelaanvrager (key requester) | p. 24, 34 |
-| Service provider | Receives and decrypts. A service provider is not a Participant | p. 38 |
+| Participant (recognized party) | A party in the authentication chain that, as the Minister of the Interior and Kingdom Relations (BZK) established, meets the requirements. The roles are Means Issuer (Middelenuitgever), Authentication Service (Authenticatiedienst), Authorization Service (Machtigingsdienst), Access Service (Toegangsdienst), and Key Requester | p. 24, 34 |
+| Service provider (dienstverlener) | Receives and decrypts. A service provider is not a Participant | p. 38 |
 | Key Requester (Sleutelaanvrager) | A Participant that requests the keys at BSNk for a service provider. It has no other role in login or connection | p. 26, 37 |
 | Polymorphic identity (PI) | An encrypted BSN that only the requester can have transformed. Nobody can decrypt the PI itself | p. 25, 43 |
 | Polymorphic pseudonym (PP) | The same as the PI, but it leads to a pseudonym instead of the BSN | p. 43 |
@@ -635,7 +636,7 @@ The BSNk specification uses the terms in the following table:
 | Activate | Offer a BSN to BSNk and get a PI and PP for it | p. 52 |
 | Transform | Have BSNk convert a PI or PP to a VI or VP for a recipient | p. 54 |
 | OIN | Identifies the recipient. BSNk derives the keys and the pseudonym from it | p. 23 |
-| BSN Authorization List (Autorisatielijst BSN) | A list of RvIG with the parties that are allowed to process the BSN. Logius publishes it per OIN as the Technische Lijst BSN | p. 17, 28 |
+| BSN Authorization List | A list of RvIG with the parties that are allowed to process the BSN. Logius publishes it per OIN as the technical BSN list ("Technische Lijst BSN") | p. 17, 28 |
 
 ### The chain with the preconditions in it
 
@@ -665,7 +666,7 @@ sequenceDiagram
     MO->>TR: BSN [BSNK-02]
     TR->>K: activate [BSNK-01, BSNK-02]
     K-->>TR: PI and PP of the register [BSNK-03]
-    Note over K: activation goes into the Inzageregister [BSNK-10]
+    Note over K: activation goes into the inspection register [BSNK-10]
     B->>TR: gives consent for consumer and service
     Note over TR: per party: BSN-authorized? [BSNK-06]<br/>which key version? [BSNK-08]
     TR->>K: transform, citizen is logged in [BSNK-04, BSNK-05]
@@ -703,9 +704,9 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
 
 ### BSNK-01: Only a recognized party can activate and transform {#bsnk-01}
 
-> BSNk accepts an activation only from a Middelenuitgever, a
-> Machtigingsdienst, or the eIDAS message service, and a transformation only
-> from those three or an Authenticatiedienst.
+> BSNk accepts an activation only from a Means Issuer, an Authorization
+> Service, or the eIDAS message service. It accepts a transformation only
+> from those three or an Authentication Service.
 
 - **Status**: fixed, recognition open.
 
@@ -724,7 +725,7 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
       it as follows: activation and transformation touch the BSN of every
       citizen, so BSNk admits only assessed parties.
     - **Consequence for the design**: BZK must recognize the register as a
-      Middelenuitgever or Machtigingsdienst. Neither role is written for a
+      Means Issuer or an Authorization Service. Neither role is written for a
       consent facility. The specification names future roles, among them
       attribute services, but does not work them out (p. 34). After the
       register requests recognition, trials in the test environment are
@@ -737,7 +738,8 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
 ### BSNK-02: Activation needs the BSN and check data {#bsnk-02}
 
 > BSNk activates on a BSN. It does not activate on an existing polymorphic
-> identity. BSNk checks the BSN with name and date of birth against the BRP.
+> identity. BSNk checks the BSN with name and date of birth against the
+> Personal Records Database (BRP).
 
 - **Status**: fixed, delivery to check.
 
@@ -745,8 +747,8 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
 
     - **What the specification says**:
         - The input is a plain BSN, an encrypted BSN, or an encrypted identity
-          (p. 93). An encrypted BSN can be "bij de bron al direct versleuteld"
-          (p. 53).
+          (p. 93). An encrypted BSN can be encrypted directly at the source
+          ("bij de bron al direct versleuteld", p. 53).
         - A BSN alone is not sufficient: check data must come with it. If a
           party does the identification itself, it goes on an exception list.
           Then BSNk checks only the BSN (p. 94).
@@ -787,18 +789,20 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
     - **What the specification says**:
         - BSNk makes PI and PP with key material specific to the requester
           (p. 42). The notation is PI@MU (p. 25).
-        - Another party can use them only as an Authenticatiedienst with a
+        - Another party can use them only as an Authentication Service with a
           registered affiliation (p. 56, 214).
         - BSNk signs them, so no other party can make one (p. 42 to 43).
-    - **Why**: "Dit verhoogt de robuustheid van de oplossing" (p. 42). A PI that
-      leaks is of no use to another party.
+    - **Why**: the specification says that this makes the solution
+      stronger ("Dit verhoogt de robuustheid van de oplossing", p. 42). A PI
+      that leaks is of no use to another party.
     - **Consequence for the design**: the PI does not belong in the consent
       proof. The source and the PDP can do nothing with it. The design of #364
       agrees with this: the proof holds only values per recipient. The PI of
       the DigiD login is not usable for the register either. The register needs
       an activation of its own.
-    - **Storing is allowed**: the party that activates keeps PI and PP "zodanig
-      dat ze betrouwbaar zijn gekoppeld aan de Natuurlijk persoon" (p. 53).
+    - **Storing is allowed**: the party that activates keeps PI and PP so
+      that they are reliably linked to the natural person ("zodanig dat ze
+      betrouwbaar zijn gekoppeld aan de Natuurlijk persoon", p. 53).
       Whether storing is useful depends on how the register finds the citizen
       again. For more information, see the
       [open design choice](#recognition).
@@ -832,7 +836,7 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
         - To extend a consent to an extra source, the citizen must log in
           again.
     - **To check**: does the login at MijnOverheid count as authentication by
-      the register? The register is not an Authenticatiedienst itself.
+      the register? The register is not an Authentication Service itself.
     - **Related**: [REQ-21](pseudonymization.md#req-21),
       [REQ-24](consent.md#req-24),
       [REQ-82](pseudonymization.md#req-82),
@@ -915,8 +919,11 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
 ??? note "Source, evidence and notes"
 
     - **What the specification says**:
-        - BSNk uses the OIN "voor het afleiden van de DV-sleutels waarmee de EI
-          en EP vercijferd zijn en voor het DV-unieke pseudoniem" (p. 23).
+        - BSNk uses the OIN to derive the keys of the service provider that
+          encrypt the EI and EP. BSNk also uses it for the pseudonym that is
+          unique to the service provider ("voor het afleiden van de
+          DV-sleutels waarmee de EI en EP vercijferd zijn en voor het
+          DV-unieke pseudoniem", p. 23).
         - Separate administrations within one organization have "their own OIN
           and hence their own Pseudonyms" (p. 108).
         - The transformation request has no parameter for a service. `Role` and
@@ -952,15 +959,15 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
           certificate with which it requested the keys, as YYYYMMDD (p. 170,
           192).
         - The closing key sets the pseudonym. It has its own version (p. 183).
-        - The public Sleutelverstrekkingslijst (key provision list, p. 231 to
-          232) shows which versions BSNk provided.
+        - The public key provision list (Sleutelverstrekkingslijst) shows
+          which versions BSNk provided (p. 231 to 232).
     - **Why**: a party requests the keys with its certificate. A new
       certificate gives a new set of keys. The Design Specification of the
       decryption component says: "When SP-keys are renewed/replaced, persisted
       pseudonyms will change" (use case 5).
     - **Consequence for the design**: the precondition has three consequences:
         - The register must know the current key version per party. The
-          Sleutelverstrekkingslijst gives it.
+          key provision list gives it.
         - The source must keep old keys as long as proofs encrypted with them
           are in use. That is as long as the longest consent.
         - If a consumer gets a VP, its pseudonyms change with a new closing
@@ -980,7 +987,7 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
 ??? note "Source, evidence and notes"
 
     - **What the specification says**:
-        - Only a Toegangsdienst or Sleutelaanvrager calls `provideDVKeys`, and
+        - Only an Access Service or a Key Requester calls `provideDVKeys`, and
           only for a contracted service provider (p. 146, 155).
         - The service provider needs a PKIoverheid certificate with the OIN
           (p. 154). The keys come encrypted for that certificate (p. 185 to
@@ -990,8 +997,8 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
     - **Why**: the public list is there for transparency, "like Certificate
       Transparency" (p. 231).
     - **Consequence for the design**:
-        - Every source needs a connection through a Toegangsdienst or
-          Sleutelaanvrager. If the consumer gets a VP, it needs such a
+        - Every source needs a connection through an Access Service or a
+          Key Requester. If the consumer gets a VP, it needs such a
           connection too. As a result, participation is publicly visible.
         - Decryption itself needs no construction work. The Logius decryption
           component is a container without its own storage. It gets all keys
@@ -1006,8 +1013,8 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
 
 ### BSNK-10: The party that activates has the inspection duty {#bsnk-10}
 
-> BSNk records every activation in the Inzageregister (inspection
-> register). The party that activated must keep the status there up to
+> BSNk records every activation in the inspection register
+> (Inzageregister). The party that activated must keep the status there up to
 > date.
 
 - **Status**: fixed.
@@ -1016,13 +1023,13 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
 
     - **What the specification says**:
         - At activation, BSNk registers the relation between the requester and
-          the citizen in the Inzageregister (p. 54).
-        - A Middelenuitgever or Machtigingsdienst MUST keep the status up to
+          the citizen in the inspection register (p. 54).
+        - A Means Issuer or an Authorization Service MUST keep the status up to
           date (p. 61) and implement the interface for it (p. 110).
         - The citizen sees the overview in MijnOverheid (p. 39).
         - The registration holds a description that the citizen can read
           (p. 119).
-    - **Why**: the Inzageregister exists so that citizens can see if a party
+    - **Why**: the inspection register exists so that citizens can see if a party
       issued something in their name without their knowledge (p. 44).
     - **Consequence for the design**:
         - The consent register appears in the overview of login means and
@@ -1145,7 +1152,7 @@ Route D has the following properties:
   every login, and that needs a legal basis. Also, the register can compute
   for every BSN itself whether consents exist, without a trace elsewhere.
   In route A, that is possible only through BSNk, and every activation goes
-  into the Inzageregister ([BSNK-10](#bsnk-10)).
+  into the inspection register ([BSNK-10](#bsnk-10)).
 
 The demo builds route D
 ([PR #469](https://github.com/ICTU/GBO-demo/pull/469)):
@@ -1212,12 +1219,13 @@ The routes differ in the following points:
 
 - A and B give the same pseudonym for the same key version
   ([BSNK-08](#bsnk-08)). A pseudonym is always the same for one citizen at
-  one recipient, "ongeacht de Authenticatiedienst of het gebruikte
-  Authenticatiemiddel" (p. 29).
+  one recipient, whatever the authentication service or the login means
+  ("ongeacht de Authenticatiedienst of het gebruikte Authenticatiemiddel",
+  p. 29).
 - B already exists for another register. MijnOverheid lets the citizen log
-  in "voor zichzelf en voor het Inzageregister", and so gets a value for
-  that register (p. 39). The consent register is as fixed at login as
-  the Inzageregister.
+  in for itself and for the inspection register ("voor zichzelf en voor het
+  Inzageregister"). So it gets a value for that register (p. 39). The
+  consent register is as fixed at login as the inspection register.
 - For A and B, the register needs its own keys to decrypt a VP
   ([BSNK-09](#bsnk-09)). In route A, the register counts as one of the four
   recipients ([BSNK-05](#bsnk-05)).
@@ -1257,9 +1265,9 @@ following table:
 | Question | For route | Addressee |
 |---|---|---|
 | Is MijnOverheid allowed to pass the BSN to the consent portal, and on which legal basis does the register process it? | D | MijnOverheid, lawyer, BZK |
-| Can MijnOverheid get a VP for the consent register at the login, as for the Inzageregister? | B | MijnOverheid, Logius |
+| Can MijnOverheid get a VP for the consent register at the login, as for the inspection register? | B | MijnOverheid, Logius |
 | Does MijnOverheid have its own stable reference to the citizen, and is it allowed to pass it on? | C | MijnOverheid |
-| How does the Inzageregister handle repeated activation for the same citizen? | A | Logius |
+| How does the inspection register handle repeated activation for the same citizen? | A | Logius |
 | If the register gets new keys, does a stored PI stay usable? | B, C, D | Logius |
 
 [Q-26](../traceability/open-questions.md#q-26) also holds these questions.
@@ -1297,8 +1305,8 @@ table:
 |---|---|---|---|
 | Certificate and its private key | The party itself, through a PKIoverheid certificate provider | The party. Only the public certificate goes to other parties | p. 154 |
 | EP Decryption and EP Closing, to read a VP | BSNk key management | The party. An HSM is not mandatory | p. 27, 155, 188 |
-| EI Decryption, to read a VI | BSNk key management, only for a party on the Technische Lijst BSN | The party | p. 154 to 155 |
-| Sleutelverstrekkingslijst | BSNk management organization | Public | p. 231 |
+| EI Decryption, to read a VI | BSNk key management, only for a party on the technical BSN list | The party | p. 154 to 155 |
+| Key provision list | BSNk management organization | Public | p. 231 |
 
 The decryption component keeps nothing. The party gives the keys with
 every call ([BSNK-09](#bsnk-09)).
@@ -1319,10 +1327,10 @@ sequenceDiagram
     P->>C: requests certificate with OIN
     C-->>P: certificate, private key stays with the party
     P->>S: public certificate
-    Note over S: checks certificate and origin,<br/>and the Technische Lijst BSN if a VI is needed
+    Note over S: checks certificate and origin,<br/>and the technical BSN list if a VI is needed
     S->>K: request keys for this OIN
     K-->>S: key files, encrypted for the certificate
-    Note over K: provision goes on the Sleutelverstrekkingslijst
+    Note over K: provision goes on the key provision list
     S-->>P: encrypted key files
     Note over P: decrypts with its own private key,<br/>checks the key pairs, keeps them
 ```
@@ -1333,18 +1341,19 @@ to 186). The party must check that the private and public key in every file
 match (p. 195).
 
 The party that requests the keys has duties. The specification states the
-following duties for a Toegangsdienst (p. 155):
+following duties for an Access Service (p. 155):
 
 - It requests keys only for a contracted service provider.
 - It establishes that the request comes from that service provider, and
   records this in a way that it can prove.
 - It checks that the certificate is valid.
 - It makes sure that a party that wants to decrypt the BSN is on the
-  Technische Lijst BSN.
+  technical BSN list.
 
-The Sleutelaanvrager role covers "slechts één specifieke
-verantwoordelijkheid" of the Toegangsdienst (p. 37). The GBO team reads
-this as follows: the same duties then apply to a Sleutelaanvrager.
+The Key Requester role covers only one specific responsibility of the
+Access Service ("slechts één specifieke verantwoordelijkheid", p. 37). The
+GBO team reads this as follows: the same duties then apply to a Key
+Requester.
 
 #### When the step comes back
 
@@ -1356,7 +1365,7 @@ The key request comes back in three cases:
 - Another OIN: another OIN needs separate migration keys. The party
   requests them the same way (p. 156).
 - A party that becomes BSN-authorized later: BSNk provides the key for a VI
-  only to a party on the Technische Lijst BSN (p. 154). The GBO team reads
+  only to a party on the technical BSN list (p. 154). The GBO team reads
   this as follows: if a party gets on the list later, the party must make
   the request again.
 
@@ -1367,9 +1376,9 @@ Two points about the key request are open:
 - Who requests the keys for sources and consumers:
     - The GBO parties talk to MijnOverheid and the consent register.
       They do not talk to BSNk.
-    - Thus one of the parties that does talk to BSNk must be Toegangsdienst
-      or Sleutelaanvrager. As an alternative, an existing Sleutelaanvrager
-      comes in between.
+    - Thus one of the parties that does talk to BSNk must be an Access
+      Service or a Key Requester. As an alternative, an existing Key
+      Requester comes in between.
     - A Participant can combine roles (p. 34).
     - The register must already be recognized for activation and
       transformation ([BSNK-01](#bsnk-01)), and it already admits parties.
@@ -1393,8 +1402,8 @@ BSNk does not offer the following:
   pseudonym of a consumer.
 - A shorter route through the direct variants:
     - BSNk allows the directly encrypted pseudonym only for separate
-      administrations within an Authenticatiedienst, Middelenuitgever, or
-      Machtigingsdienst. It also needs consultation with BSNk (p. 99,
+      administrations within an Authentication Service, a Means Issuer, or
+      an Authorization Service. It also needs consultation with BSNk (p. 99,
       108).
     - The directly encrypted identity is in the notation, but no interface
       delivers it.
@@ -1447,9 +1456,9 @@ The GBO team did not verify the following points:
 - Can a party use the certificate that it already has for FSC for the key
   request? The certificate must have the OIN in `Subject.serialNumber`
   and allow keyEncipherment (p. 154).
-- Which requirements does BZK set for a Sleutelaanvrager? Do the duties of
-  a Toegangsdienst at a key request (p. 155) apply in full to a
-  Sleutelaanvrager?
+- Which requirements does BZK set for a Key Requester? Do the duties of
+  an Access Service at a key request (p. 155) apply in full to a Key
+  Requester?
 - The questions under [questions to answer](#recognition): what
   MijnOverheid can pass at login, and how BSNk handles repeated activation
   and new keys of the register.

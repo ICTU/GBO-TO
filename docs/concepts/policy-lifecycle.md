@@ -253,7 +253,7 @@ PSA S06 names ODRL as a policy language option. GBO uses Rego for every
 decision, and the OpenFTV Manager uses Cedar for its own API. GBO keeps
 this choice. [Risks and technical debt](../risks.md) records the deviation.
 Per [D-13](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/), the
-deviation must go to the standards gremia. It is open how the reference
+deviation must go to the standards bodies. It is open how the reference
 policy shows that it is not tied to one language or engine
 ([Q-78](../traceability/open-questions.md#q-78)).
 

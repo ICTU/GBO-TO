@@ -4,14 +4,14 @@ The Technisch Ontwerp (TO) is the technical design of Gemeenschappelijke
 Bronontsluiting (GBO). It describes the GBO facilities (voorzieningen) and
 interfaces (koppelvlakken). The TO goes one level deeper than the
 [Globaal Ontwerp (GO)](https://ictu.github.io/GBO-GO/main/) and stays
-within the kaders of the
+within the frameworks of the
 [Projectstartarchitectuur (PSA)](https://ictu.github.io/GBO-PSA/main/).
 
 The TO uses the [arc42](https://arc42.org/overview) template. It records
 *how* the GBO components are built. For *why* GBO exists and *what* it
-must do, see the [PSA inleiding](https://ictu.github.io/GBO-PSA/main/)
+must do, see the [PSA introduction](https://ictu.github.io/GBO-PSA/main/)
 and the
-[GO oplossingsrichting](https://ictu.github.io/GBO-GO/main/#2-voorgestelde-oplossingsrichting).
+[GO solution direction](https://ictu.github.io/GBO-GO/main/#2-voorgestelde-oplossingsrichting).
 
 ## Baseline: the demo at v0.9.0
 
@@ -62,9 +62,9 @@ increments that the page explains or depends on.
 
 ## Routes {#trajectories}
 
-GBO gives bronhouders (government organizations that hold an authentic
-source) one technical backbone for several data flows. A bronhouder exposes a GraphQL API behind an
-FSC Inway. Every request passes the same chain: the FSC Inway as PEP, the
+GBO gives bronhouders one technical backbone for several data flows. A
+bronhouder is a government organization that holds an authentic source.
+A bronhouder exposes a GraphQL API behind an FSC Inway. Every request passes the same chain: the FSC Inway as PEP, the
 PDP of the source, the source gateway, and the source API. The
 routes differ at the consumer edge and in the evidence that a
 request carries. The evidence selects the authorization regime
@@ -132,7 +132,7 @@ The TO has three primary audiences:
 - Engineers who build or integrate GBO components.
 - Bronhouder teams that connect a source.
 - Reviewers who check that the implementation stays within the PSA
-  kaders.
+  frameworks.
 
 ## Document chain
 
@@ -142,7 +142,7 @@ The TO is level 3 in a chain of five documents:
 |---|---|---|
 | 0 | [GBO site](https://ictu.github.io/GBO/) | Entry point and context |
 | 1 | [Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/) | System-level solution shape and interaction patterns |
-| 2 | [Projectstartarchitectuur](https://ictu.github.io/GBO-PSA/main/) | Normative principles, kaders, capabilities, and open decisions |
+| 2 | [Projectstartarchitectuur](https://ictu.github.io/GBO-PSA/main/) | Normative principles, frameworks, capabilities, and open decisions |
 | 3 | Technisch Ontwerp (this document) | Technical design of components and interfaces, with requirements and traceability |
 | 4 | [gbo-demo](https://github.com/ICTU/GBO-demo) at [v0.9.0](https://github.com/ICTU/GBO-demo/tree/v0.9.0) | Reference implementation, ground truth for the behavior of GBO |
 

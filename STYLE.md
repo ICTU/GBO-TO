@@ -178,6 +178,10 @@ directly inside parentheses. When you add a term, add it to the glossary
 first. `scripts/gen_abbreviations.py` turns the abbreviations into
 tooltips on every page.
 
+`scripts/check_dutch.py` finds Dutch words in the English prose. Dutch is
+allowed only in proper names, in quotes from Dutch sources, in code, and
+as the Dutch name in parentheses after an English term. CI runs it.
+
 US spelling (authorization, organization, recognize, pseudonymization).
 
 ## Register entries

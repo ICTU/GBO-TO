@@ -1,7 +1,8 @@
 # DvTP: the citizen gives consent
 
-A citizen at a private consumer (dienstverlener) goes to the
-consent portal (toestemmingsportaal), logs in, and gives consent for one or more data sets.
+In DvTP, the consumer is a private service provider (dienstverlener). A
+citizen at the consumer goes to the consent portal (toestemmingsportaal),
+logs in, and gives consent for one or more data sets.
 The result is a consent record in the consent register (toestemmingsregister) and a signed
 consent proof. The proof goes back to the consumer. The consumer uses the
 proof in [DvTP query](dvtp-query.md).
@@ -110,7 +111,7 @@ error paths:
 | Trigger | What the consumer sees | Administrator reason | Pinned by (v0.9.0) |
 |---|---|---|---|
 | The `return_url` origin is not on the allowlist, or a required redirect parameter is missing | No redirect. The portal has no request context and cannot send the citizen back | `validatedRedirectContext` returns null | [`redirectValidation.test.mjs#L24`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/tests/redirectValidation.test.mjs#L24) |
-| A requested scope that the portal cannot describe | No redirect. The citizen sees "Onbekend verzoek" and cannot consent ([REQ-119](../requirements/consent.md#req-119) gap) | The scope is in `unknown` of `requestedScopeGroups` | [`scopeGroups.test.mjs#L16`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/tests/scopeGroups.test.mjs#L16), [`PortaalConsent.tsx#L63-L75`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L63-L75) |
+| A requested scope that the portal cannot describe | No redirect. The citizen sees an unknown request (shown as "Onbekend verzoek") and cannot consent ([REQ-119](../requirements/consent.md#req-119) gap) | The scope is in `unknown` of `requestedScopeGroups` | [`scopeGroups.test.mjs#L16`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/tests/scopeGroups.test.mjs#L16), [`PortaalConsent.tsx#L63-L75`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L63-L75) |
 | The citizen cancels the login or refuses consent | A redirect with `status=denied` and no `consent_id`. The portal does not record the refusal ([Q-43](../traceability/open-questions.md#q-43)) | — | Code only: [`PortaalConsent.tsx#L100-L106`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L100-L106), [`DigiDAuth.tsx#L73-L80`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/DigiDAuth.tsx#L73-L80) |
 | The portal token is missing, expired, or not signed by the portal | No consent. The portal answers HTTP 401 | `invalid token: …` | Code only: [`portalhttp.go#L138-L147`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/portalhttp/portalhttp.go#L138-L147) |
 | No source configured in `CONSENT_SOURCES` | No consent (HTTP 502) | `no sources configured: a consent no source can read is not given` | [`TestGiveConsentNeedsASource`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal_test.go#L552) |

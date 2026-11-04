@@ -64,7 +64,7 @@ change, because it says "never rely only on masking".
   way, as in the consent route
   ([ADR-0033](0033-gateway-decrypts-after-allow.md)).
 - LDV records never hold a BSN. The logbook refuses any record with a
-  run of nine digits that passes the elfproef
+  run of nine digits that passes the BSN checksum (elfproef)
   ([ADR-0026](0026-ldv-integration.md)). This ADR covers the decision
   logs only.
 - Until a decision on #368, the BSN in the EUDI and ASI decision logs is

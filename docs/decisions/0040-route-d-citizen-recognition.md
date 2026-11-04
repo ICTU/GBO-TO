@@ -23,7 +23,7 @@ The consent facility (toestemmingsvoorziening) needs two things from a citizen w
 
 A stored PI or PP is not a stable key. BSNk gives other values at every
 activation, and the service cannot compute these values from a BSN.
-Every activation goes into the Inzageregister
+Every activation goes into the BSNk access register (Inzageregister)
 ([BSNK-10](../requirements/pseudonymization.md#bsnk-10)). Only a
 recognized BSNk participant can activate and transform
 ([BSNK-01](../requirements/pseudonymization.md#bsnk-01)).
@@ -68,7 +68,7 @@ describes the routes in full. The design weighed four options:
 2. [Route A](../requirements/pseudonymization.md#route-a): an own
    pseudonym through BSNk. The service activates and transforms at every
    login, also to show consents. Every login goes into the
-   Inzageregister.
+   access register.
 3. [Route B](../requirements/pseudonymization.md#route-b): a pseudonym
    through the login. MijnOverheid passes a VP for the register. The
    route depends on DigiD and MijnOverheid.

@@ -1,7 +1,7 @@
 # Open questions
 
 An open question is a question that the demo cannot answer. It needs a
-decision by the PSA, by a system (stelsel) forum (G5, Logius, the standards gremia),
+decision by the PSA, by a system forum (G5, Logius, the standards bodies),
 or a legal assessment. Each entry names the forum, the options, and the
 working assumption. The demo and this TO use the working assumption until
 the forum decides the question. An architecture decision that waits for a
@@ -27,16 +27,16 @@ source decrypts itself.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: PSA [B-07](https://ictu.github.io/GBO-PSA/main/vraagstukken/) (pseudonymous identity). Sub-question 1: Logius (BSNk management organization) and BZK. Sub-question 2: lawyer and BZK.
+    - **Forum**: PSA [B-07](https://ictu.github.io/GBO-PSA/main/vraagstukken/) (pseudonymous identity). Sub-question 1: Logius (BSNk management organization) and the Ministry of the Interior and Kingdom Relations (BZK). Sub-question 2: lawyer and BZK.
     - **Question**: PSA and GO set the direction of the form. PSA [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/) says that a consumer without a statutory power gets "a party-specific identity or pseudonym" that cannot be linked outside its context. The [GO](https://ictu.github.io/GBO-GO/main/#toestemming-en-grondslag-als-afdwingbaar-autorisatiemechanisme) says the same for the private service provider (dienstverlener). Two sub-questions stay open:
-        1. Is a private consumer without a public task allowed to connect to BSNk PP as a recipient? If so, on which legal basis?
+        1. Is a private consumer without a public task allowed to connect to BSNk PP as a recipient? If so, on which legal basis (grondslag)?
         2. The consumer carries an encrypted identity for the source that the consumer cannot decrypt. Is that a processing of the BSN by the consumer?
     - **Answer so far**:
         - At BSNk, the recipient is the party (OIN). The service is not the recipient.
         - The consent proof carries an encrypted value per party. Each source decrypts its own value locally ([REQ-21](../requirements/pseudonymization.md#req-21), [REQ-80](../requirements/pseudonymization.md#req-80)).
         - The BSNk technical specifications v11.2 agree. The key belongs to the OIN and not to the FSC peer. Two peers with the same OIN share one encrypted value and one key.
         - A pseudonym per service needs a separate OIN ([BSNK-07](../requirements/pseudonymization.md#bsnk-07)).
-    - **Why the demo cannot answer it**: Both sub-questions are legal questions (Wabb, GDPR). Technically, BSNk can do it. Every service provider with a PKIoverheid certificate gets keys for pseudonyms. BSNk also supports an OIN derived from a KvK number (specification p. 23, p. 67). But the specification is written for service providers with a public task (p. 26). In the reading of the GBO team, a consumer without a public task falls outside it.
+    - **Why the demo cannot answer it**: Both sub-questions are legal questions under the BSN General Provisions Act (Wabb) and the GDPR. Technically, BSNk can do it. Every service provider with a PKIoverheid certificate gets keys for pseudonyms. BSNk also supports an OIN derived from a Chamber of Commerce (KvK) number (specification p. 23, p. 67). But the specification is written for service providers with a public task (p. 26). In the reading of the GBO team, a consumer without a public task falls outside it.
     - **Options**:
         - (a) No pseudonym for the consumer. The consumer then has no citizen identifier at all. This option affects three things:
             - the identifier that the consumer logs under ([Q-27](#q-27)),
@@ -47,7 +47,7 @@ source decrypts itself.
         - The demo gives the consumer no pseudonym ([PR #469](https://github.com/ICTU/GBO-demo/pull/469)).
         - Since [PR #477](https://github.com/ICTU/GBO-demo/pull/477), the proof carries a VP for every source. For a source on the BSN Authorization List, it also carries an encrypted identity (VI). Thus sub-question 2 is already the practice of the demo.
         - [Issue #478](https://github.com/ICTU/GBO-demo/issues/478) tracks a pseudonym for the consumer. [Issue #377](https://github.com/ICTU/GBO-demo/issues/377) tracks a test against the real BSNk PP.
-        - A point for the choice of form: with a pseudonym per recipient, the LDV `dataSubjectId` differs per controller (Verantwoordelijke). Chain-wide citizen access can then search only by trace ID, from the own organization ([F-65](findings-closed.md#f-65)). This is a privacy property and not a defect.
+        - A point for the choice of form: with a pseudonym per recipient, the LDV `dataSubjectId` differs per controller (verantwoordelijke). Chain-wide citizen access can then search only by trace ID, from the own organization ([F-65](findings-closed.md#f-65)). This is a privacy property and not a defect.
     - **Related**: [F-65](findings-closed.md#f-65), [F-75](findings.md#f-75), [F-76](findings.md#f-76), [REQ-20](../requirements/pseudonymization.md#req-20), [REQ-21](../requirements/pseudonymization.md#req-21), [REQ-80](../requirements/pseudonymization.md#req-80), [BSNK-07](../requirements/pseudonymization.md#bsnk-07), [Q-26](#q-26) (recognition of the consent facility (toestemmingsvoorziening) at BSNk), [Q-27](#q-27), [ADR 0005](../decisions/0005-bsnk-pp.md), [ADR 0033](../decisions/0033-gateway-decrypts-after-allow.md).
 
 ### Q-08: What belongs in the LDV (processing log), and who holds the retention duty? {#q-08}
@@ -132,7 +132,7 @@ says that the service catalog holds the permitted requests per
 application. The question is whether queries are fixed per application,
 or whether a consumer can write its own queries within a schema that the
 source publishes. The answer decides how rich the catalog gets and how
-close GBO stays to iWlz. The working assumption rejects fixed queries
+close GBO stays to iWlz (the data exchange of the Dutch Long-term Care Act). The working assumption rejects fixed queries
 for DvTP, so the consumer writes its own query and the PDP decides every
 field against an allowlist. If the field list is uncertain, the PDP
 denies the request.
@@ -170,7 +170,7 @@ source, and keys in files, which decides nothing for production.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: BZK, RDI, and bronhouders, with a legal review. PSA [B-13](https://ictu.github.io/GBO-PSA/main/vraagstukken/) and the open decisions of [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [issue #225](https://github.com/ICTU/GBO-demo/issues/225).
+    - **Forum**: BZK, the Dutch Authority for Digital Infrastructure (RDI), and bronhouders, with a legal review. PSA [B-13](https://ictu.github.io/GBO-PSA/main/vraagstukken/) and the open decisions of [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [issue #225](https://github.com/ICTU/GBO-demo/issues/225).
     - **Question**: The question became a key and seal question, with three parts:
         1. Can a central PuB-EAA facility hold and use the seal key material of a bronhouder? Or must sealing go through a signing facility that the bronhouder manages (remote signing, an HSM at the source)?
         2. Who holds the qualified seal certificate?
@@ -282,7 +282,7 @@ the encrypted values.
         2. Can the service be exempted from the check data at activation, because the citizen is already identified with DigiD at MijnOverheid ([BSNK-02](../requirements/pseudonymization.md#bsnk-02))?
         3. Does the login at MijnOverheid count as authentication by the service, as the specification requires before a transformation ([BSNK-04](../requirements/pseudonymization.md#bsnk-04))?
         4. How does the service appear in the overview of login means that the citizen sees in MijnOverheid ([BSNK-10](../requirements/pseudonymization.md#bsnk-10))?
-        5. How does the service recognize the citizen at a later login? Can MijnOverheid pass an encrypted pseudonym for the service at login, as for the Inzageregister? Or can it pass a fixed reference of its own? If MijnOverheid passes the BSN itself, the service needs nothing else from MijnOverheid. The question then becomes whether MijnOverheid can legally pass the BSN.
+        5. How does the service recognize the citizen at a later login? Can MijnOverheid pass an encrypted pseudonym for the service at login, as for the BSNk inspection register (Inzageregister)? Or can it pass a fixed reference of its own? If MijnOverheid passes the BSN itself, the service needs nothing else from MijnOverheid. The question then becomes whether MijnOverheid can legally pass the BSN.
         6. How does BSNk handle repeated activation for the same citizen? Does a stored PI stay usable when the service gets new keys?
         7. Who requests the keys at BSNk for sources and consumers? They do not talk to BSNk themselves ([BSNK-09](../requirements/pseudonymization.md#bsnk-09)). Can the service also become Key Requester, and which requirements apply?
         8. What does the BSN Authorization List look like in practice ([BSNK-06](../requirements/pseudonymization.md#bsnk-06))?
@@ -298,7 +298,7 @@ the encrypted values.
         - For sub-question 1: means issuer, authorization service, or a new role.
         - For sub-question 5, there are three options. The first is an encrypted pseudonym from MijnOverheid. The second is a fixed reference from MijnOverheid. The third is the BSN from MijnOverheid, with a pseudonym that the service derives itself (route D).
     - **Current working assumption**: Since October 5, 2026, MijnOverheid passes the BSN. The service derives its own pseudonym and stores PI and PP under it (route D, [ADR 0040](../decisions/0040-route-d-citizen-recognition.md), proposed, [BSNk preconditions](../requirements/pseudonymization.md#bsnk-preconditions)). The demo uses a BSNk mock. It reads the BSN Authorization List at the mock and uses a copy for at most one hour. The form and the period are assumptions ([PR #477](https://github.com/ICTU/GBO-demo/pull/477)).
-    - **Related**: PSA [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), GO (toestemmingsvoorziening central, BSNk PP mandatory for DvTP), [F-75](findings.md#f-75), [BSNK-01](../requirements/pseudonymization.md#bsnk-01), [BSNK-02](../requirements/pseudonymization.md#bsnk-02), [BSNK-04](../requirements/pseudonymization.md#bsnk-04), [BSNK-06](../requirements/pseudonymization.md#bsnk-06), [BSNK-09](../requirements/pseudonymization.md#bsnk-09), [BSNK-10](../requirements/pseudonymization.md#bsnk-10), [Q-01](#q-01), [Q-49](#q-49), [Q-50](#q-50), [ADR 0005](../decisions/0005-bsnk-pp.md), [ADR 0040](../decisions/0040-route-d-citizen-recognition.md).
+    - **Related**: PSA [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), GO (central consent facility, BSNk PP mandatory for DvTP), [F-75](findings.md#f-75), [BSNK-01](../requirements/pseudonymization.md#bsnk-01), [BSNK-02](../requirements/pseudonymization.md#bsnk-02), [BSNK-04](../requirements/pseudonymization.md#bsnk-04), [BSNK-06](../requirements/pseudonymization.md#bsnk-06), [BSNK-09](../requirements/pseudonymization.md#bsnk-09), [BSNK-10](../requirements/pseudonymization.md#bsnk-10), [Q-01](#q-01), [Q-49](#q-49), [Q-50](#q-50), [ADR 0005](../decisions/0005-bsnk-pp.md), [ADR 0040](../decisions/0040-route-d-citizen-recognition.md).
 
 ### Q-27: Under what does a consumer without an identifier name the data subject in its processing log? {#q-27}
 
@@ -316,7 +316,7 @@ shows as two data subjects.
 
     - **Forum**: Sub-question 1: Logius and the LDV working group. Sub-question 2: lawyer or DPO. Variant 2 depends on [Q-01](#q-01). [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid).
     - **Question**: Since [SL-51](increments.md#sl-51) ([PR #469](https://github.com/ICTU/GBO-demo/pull/469)), the consent proof carries the citizen only in values that the sources can read. The consumer has no BSN, no PI, and no pseudonym. If the consumer logs its source calls per LDV ([AV-02](../requirements/admission.md#av-02)), `dpl.core.data_subject_id` must contain something. Two sub-questions follow:
-        1. If the controller (Verantwoordelijke) has no identifier of the data subject, can `dpl.core.data_subject_id` be a reference to the legal basis?
+        1. If the controller has no identifier of the data subject, can `dpl.core.data_subject_id` be a reference to the legal basis?
         2. Is it sufficient for the right of access that the citizen finds his processings at the consumer through his consents?
     - **Why the demo cannot answer it**:
         - Whether a reference to the legal basis is a valid `data_subject_id` is an interpretation of the LDV standard.
@@ -814,7 +814,7 @@ whether and when a source first retrieved data under a consent. The
 register cannot see a delivery, so the question is how it learns of one.
 It is also open whether retrieved means a delivery or a use of the
 consent. Each option changes what a source must build, from nothing to
-an extra interface to the register. In the working assumption, the demo
+an extra interface (koppelvlak) to the register. In the working assumption, the demo
 shows no retrieved status, only Active, Expired, and Revoked.
 
 ??? note "Options, working assumption and links"
@@ -1329,7 +1329,7 @@ GBO builds the UI of the consent portal as a contribution to the
 MijnOverheid code base. Several requirements therefore depend on what
 MijnOverheid delivers or allows. This question collects the points
 without a question of their own, so that one meeting can discuss them
-all. They include the interface (koppelvlak) to the portal backend, the redirect
+all. They include the interface to the portal backend, the redirect
 protocol, the request context across the login, and ownership of the UI.
 Others are accessibility, house style, the switch to the apps, and
 delegation. There is no working assumption apart from the imitated shell
@@ -1440,7 +1440,7 @@ while another person acts on behalf of that subject. ETSI makes support
 optional and leaves the details out of the specification. The question
 is whether the ASI must support such requests, and if so, whether the
 authorization server or the ASIP checks the evidence of representation.
-Support needs a legal basis (grondslag), a source for the representation and an
+Support needs a legal basis, a source for the representation and an
 agreement on who checks it. The working assumption is no support, and
 the ASI answers such a request with status 501.
 
@@ -1612,26 +1612,26 @@ splits house number and surname into parts, while the amended PID puts
 the house number into the street. The question is which form address and
 name get, and who registers the Dutch attributes in the catalogue. The
 working assumption keeps a separate house number with letter and
-addition, and puts the voorvoegsel in the family name.
+addition, and puts the surname prefix (`voorvoegsel`) in the family name.
 
 ??? note "Options, working assumption and links"
 
     - **Forum**: BZK (registration in the catalogue), BRP bronhouder, PSA/GO authors (ASI profile).
     - **Question**: The ASIP compares an attribute as a JSON object. The object has the form of the JSON Schema that is registered for the attribute in the catalogue of attributes (ETSI TS 119 478 REQ-ASIP-6.1.1.1-06-02-01). As long as the catalogue has no schemas, GBO sets the schema per attribute identifier itself. In its source metadata, the source then describes how it maps its fields to that schema.
 
-        The BRP splits the house number into huisnummer, huisletter, and huisnummertoevoeging. It splits the surname into voorvoegsel and geslachtsnaam. The PID divides the address differently. CIR 2024/2977 first had a `resident_house_number` "including any affix or suffix". Since the amendment 2026/1731, that field is gone, and `resident_street` is "including the house number and any affix or suffix thereof".
+        The BRP splits the house number into the number (`huisnummer`), the letter (`huisletter`), and the addition (`huisnummertoevoeging`). It splits the surname into the prefix (`voorvoegsel`) and the main name (`geslachtsnaam`). The PID divides the address differently. CIR 2024/2977 first had a `resident_house_number` "including any affix or suffix". Since the amendment 2026/1731, that field is gone, and `resident_street` is "including the house number and any affix or suffix thereof".
 
         CIR 2025/1569 art. 7(5)(g) asks for the catalogue only "the data type of the attribute". Art. 7(3) lets the member state register the attributes of eIDAS Annex VI itself. The question has three parts:
         1. Which form does the address get: (a), (b), or (c)? Which separator goes between house number, letter, and addition?
-        2. Does the name put the voorvoegsel in `family_name`, or in a separate field?
+        2. Does the name put the prefix (`voorvoegsel`) in `family_name`, or in a separate field?
         3. Who registers the Dutch Annex VI attributes in the catalogue? Does the GBO schema then follow that registration?
 
     - **Why the demo cannot answer it**: The form must fit what QTSPs in other member states send. In the end, it must fit what the Netherlands registers in the catalogue. The demo can only pick a form.
     - **Options for the address**: The address can have one of three forms:
         - (a) As the PID after the amendment 2026/1731: street with house number, postal code, city, and country.
         - (b) As the demo: street, house number with letter and addition, postal code, city, and country. This form follows the original PID.
-        - (c) As the BRP: huisnummer, huisletter, and huisnummertoevoeging as separate fields.
-    - **Current working assumption**: Option b. For the name, voorvoegsel and geslachtsnaam go together in `family_name` ([`asi-attributes.json#L44-L55`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json#L44-L55)). Since demo [issue #592](https://github.com/ICTU/GBO-demo/issues/592), the BRP source joins the parts in the `asi` mapping of its own source metadata. The source uses a space as separator ([`gbo-source-metadata.json#L219-L280`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/brp-graphql-server/config/gbo-source-metadata.json#L219-L280)). Since that issue, the ASIP has no BRP adapter in code.
+        - (c) As the BRP: `huisnummer`, `huisletter`, and `huisnummertoevoeging` as separate fields.
+    - **Current working assumption**: Option b. For the name, the prefix (`voorvoegsel`) and the main name (`geslachtsnaam`) go together in `family_name` ([`asi-attributes.json#L44-L55`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json#L44-L55)). Since demo [issue #592](https://github.com/ICTU/GBO-demo/issues/592), the BRP source joins the parts in the `asi` mapping of its own source metadata. The source uses a space as separator ([`gbo-source-metadata.json#L219-L280`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/brp-graphql-server/config/gbo-source-metadata.json#L219-L280)). Since that issue, the ASIP has no BRP adapter in code.
     - **Related**: [REQ-113](../requirements/asi.md#req-113), [ADR 0039](../decisions/0039-asi-source-described-attributes.md), [F-94](findings.md#f-94), [Q-31](#q-31), [Q-38](#q-38), [Q-67](#q-67), [Q-70](#q-70) (normalization: whether "12a" and "12 a" match).
 
 ### Q-72: Do GBO components write attributes outside the LDV core, and if so under which extension? {#q-72}

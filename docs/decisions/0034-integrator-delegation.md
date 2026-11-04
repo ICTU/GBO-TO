@@ -14,7 +14,7 @@
 
 ## Context and problem statement
 
-A consumer (dienstverlener) can let a software party, the integrator,
+A consumer (afnemer) can let a software party, the integrator,
 call the source for it. The consent binds a consumer. The policy
 compared the `dienstverlener_oin` of the consent with the FSC peer that
 calls. An integrator breaks that assumption

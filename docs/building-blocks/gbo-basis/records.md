@@ -198,7 +198,7 @@ Three properties make the records reliable:
   does not fail requests. If the component cannot store the record
   locally, it refuses the processing.
 - No BSN. The logbook scans every write for a nine-digit run that passes
-  the elfproef, and refuses a match. The check is word-bounded, so a
+  the BSN check digit test (elfproef), and refuses a match. The check is word-bounded, so a
   20-digit OIN passes.
 - Separate tokens. A component that can write cannot read with that token.
 

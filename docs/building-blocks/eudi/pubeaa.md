@@ -1,6 +1,6 @@
 # PuB-EAA provider
 
-The PuB-EAA provider issues an attestation with source data to the EUDI
+The PuB-EAA provider (PubEAA-voorziening) issues an attestation with source data to the EUDI
 wallet of the citizen. It is flow A of interaction pattern A in the
 [Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/#patroon-a-burger-gebruikt-eudi-wallet).
 GBO operates the technical issuance facility, and each bronhouder stays
@@ -93,7 +93,8 @@ Each component has one job:
 
 ## The issuance flow
 
-One issuance of the income declaration for 2024 takes these steps:
+One issuance of the income statement (inkomensverklaring) for 2024 takes
+these steps:
 
 ```mermaid
 sequenceDiagram
@@ -166,7 +167,7 @@ its source document. GBO derives the rest:
 flowchart LR
   subgraph doc["Source document: capabilities.eudi"]
     direction TB
-    off["offers<br/>for example jaar 2024"]
+    off["offers<br/>for example year 2024"]
     gq["graphql<br/>query, subject variable,<br/>result_pointer"]
     disp["display<br/>name, summary per language"]
     cl["claims<br/>pointer, datatype, label, sd"]
@@ -223,8 +224,8 @@ The demo has two attestation types:
 
 | Type | Source and service | Rule | Offers | Subject of the data |
 |---|---|---|---|---|
-| Inkomensverklaring | Belastingdienst, `bri` | EUD0001 | `jaar` 2024 and 2025 | The PID holder |
-| Akte van overlijden | RvIG, `brp` | EUD0002 | One, without parameters | The deceased partner of the PID holder |
+| Income statement | Belastingdienst, `bri` | EUD0001 | `jaar` (year) 2024 and 2025 | The PID holder |
+| Death certificate (akte van overlijden) | RvIG, `brp` | EUD0002 | One, without parameters | The deceased partner of the PID holder |
 
 ## Error contract
 
@@ -338,7 +339,7 @@ request.
 
 ## Related-person attestation
 
-The akte van overlijden holds data about the deceased partner of the
+The death certificate holds data about the deceased partner of the
 citizen who shares the PID. The subject of the claims differs from the
 person who discloses the PID
 ([F-47](../../traceability/findings.md#f-47),
@@ -351,7 +352,7 @@ flowchart LR
   pdp("PDP, rule EUD0002<br/>sees only the flat output")
   brp[("BRP source<br/>resolves the relation")]
   rel["Marriage ended by<br/>the death of the partner"]
-  att["Akte van overlijden<br/>claims about the partner"]
+  att["Death certificate<br/>claims about the partner"]
   holder -- "PID" --> ad
   ad -- "akteVanOverlijden(bsn)" --> pdp
   pdp --> brp
@@ -379,7 +380,7 @@ The preferred design puts the relation in filter arguments of the
 published schema. The policy then requires these arguments with fixed
 values ([#425](https://github.com/ICTU/GBO-demo/issues/425),
 [Q-14](../../traceability/open-questions.md#q-14)). In demo v0.9.0, a
-caller can ask for the akte of any BSN, because of the callback gap.
+caller can ask for the death certificate of any BSN, because of the callback gap.
 
 ## Trust roles and the PuB-EAA provider
 
@@ -461,7 +462,7 @@ The demo follows flow A of pattern A. It differs in three points:
 | Point | Globaal Ontwerp | Demo v0.9.0 |
 |---|---|---|
 | Role of GBO | A technical, central and optional facility. GBO is not a PuB-EAA provider. | The same. The bronhouder is the provider ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). |
-| Authorization | An Autorisatievoorziening authorizes the PuB-EAA facility (voorziening) after a PID login. | The issuance server checks the PID itself. No separate authorization service exists. |
+| Authorization | An authorization facility (autorisatievoorziening) authorizes the PuB-EAA facility after a PID login. | The issuance server checks the PID itself. No separate authorization service exists. |
 | Semantic mapping | A shared GBO facility translates the format of the source. | The source maps its own fields to claims with gbo-simple-v1. No translation layer exists. |
 
 ## Open points

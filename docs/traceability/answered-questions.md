@@ -12,7 +12,7 @@ These questions have an answer, or they are closed. Each entry gives the answer 
 ### Q-03: Atomic consent or field level: what is lawful and understandable? {#q-03}
 
 - **Status**: answered
-- **Question**: Does the citizen consent per field, or per indivisible data set?
+- **Question**: Does the citizen consent per field, or per indivisible data set (gegevensset)?
 - **Answer**: Per data set. In the GO, consent applies to a specific purpose, consumer, and data set. FR-10 (FR-DvTP v0.9) puts consent at set level, with "1 scope = 1 record". The citizen switches an optional set on or off as a whole. The demo portal switches per scope and conforms. FR-10 also adds a fixed minimal mandatory set, which is [Q-45](open-questions.md#q-45) and [issue #382](https://github.com/ICTU/GBO-demo/issues/382).
 - **Landed in**: [REQ-10](../requirements/consent.md#req-10), [F-03](findings-closed.md#f-03).
 
@@ -101,7 +101,7 @@ These questions have an answer, or they are closed. Each entry gives the answer 
 - **Answer**:
     - FR-DvTP v0.9 removes FR-06. The citizen gets no information about the integrator.
     - FR-18: the integrator is a processor for the service provider (dienstverlener). It can view and edit data as far as the assignment needs. It does so under a processing agreement and without persistent storage.
-    - FR-37: the integrator has its own onboarding and its own organization identification means. It also has a registration in the service catalog per service provider and use case.
+    - FR-37: the integrator has its own onboarding and its own organization identification means. It also has a registration in the service catalog (dienstencatalogus) per service provider and use case.
     - For more information, see PSA S04, S05, and [B-19](https://ictu.github.io/GBO-PSA/main/vraagstukken/).
     - The consequence for the actor binding of consent was [F-73](findings-closed.md#f-73). The demo tested it with FSC delegation ([issue #379](https://github.com/ICTU/GBO-demo/issues/379)).
 - **Landed in**: [REQ-106](../requirements/consent.md#req-106), [AV-06](../requirements/admission.md#av-06), [ADR 0034](../decisions/0034-integrator-delegation.md). Follow-up: [Q-46](open-questions.md#q-46).
@@ -170,7 +170,7 @@ These questions have an answer, or they are closed. Each entry gives the answer 
 
 - **Status**: answered
 - **Question**: The question has four parts:
-    1. Who keeps the admission register?
+    1. Who keeps the admission register (toelatingsregister)?
     2. On which grounds does a party get admission?
     3. What legal protection does a refused party get?
     4. At which granularity is admission given?

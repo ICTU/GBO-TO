@@ -71,11 +71,14 @@ def scan(path):
     for m in re.finditer(r"[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'-]{3,}", prose):
         if not is_dutch(m.group(0)):
             continue
-        # allowed: a single Dutch name directly inside parentheses
-        before = prose[: m.start()].rstrip(" ")
-        after = prose[m.end():].lstrip(" ")
-        if before.endswith("(") and after.startswith(")"):
-            continue
+        # allowed: a Dutch name of at most five words that fills a pair of
+        # parentheses, for example "(akte van overlijden)"
+        op = prose.rfind("(", 0, m.start())
+        cl = prose.find(")", m.end())
+        if op != -1 and cl != -1 and "\n\n" not in prose[op:cl]:
+            inner = prose[op + 1:cl]
+            if ")" not in inner and "(" not in inner and len(inner.split()) <= 5:
+                continue
         line = prose.count("\n", 0, m.start()) + 1
         hits.append((line, m.group(0), text.split("\n")[line - 1].strip()))
     return hits

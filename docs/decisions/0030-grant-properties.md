@@ -54,7 +54,7 @@ The demo seeded three property sets:
 | Contract | Properties |
 |---|---|
 | EDI issuer → data services (`bri`, `brp`) | `{"flow": "eudi:attestation", "subject_id_type": "direct"}` |
-| Hypotheekverlener → `bri` | `{"flow": "dvtp:query", "subject_id_type": "pseudonym"}` |
+| Mortgage lender (Hypotheek-BV) → `bri` | `{"flow": "dvtp:query", "subject_id_type": "pseudonym"}` |
 | EDI issuer → metadata services | `{"flow": "gbo:source-metadata"}` (not subject-bound) |
 
 ## Consequences (at the time)

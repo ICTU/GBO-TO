@@ -21,7 +21,7 @@ flowchart LR
   end
   subgraph tv["Consent facility"]
     direction LR
-    pf("Portal<br/>frontend") --> pb("Portal<br/>backend") --> tr[("Toestemmings-<br/>register")]
+    pf("Portal<br/>frontend") --> pb("Portal<br/>backend") --> tr[("Consent<br/>register")]
   end
   subgraph ext["External services"]
     direction LR
@@ -53,9 +53,9 @@ flowchart LR
   style cons fill:#F4F5F7,stroke:#D1D5DB
   style ext fill:#F4F5F7,stroke:#D1D5DB
 
-  click pf "consent-service/" "Toestemmingsvoorziening"
-  click pb "consent-service/" "Toestemmingsvoorziening"
-  click tr "consent-service/" "Toestemmingsvoorziening"
+  click pf "consent-service/" "Consent facility"
+  click pb "consent-service/" "Consent facility"
+  click tr "consent-service/" "Consent facility"
   click pdp "../gbo-basis/authorization/" "Authorization"
   click bsnk "../../concepts/pseudonymization/" "Pseudonymization"
   click int "../../runtime/dvtp-query/#variant-an-integrator-calls-for-the-consumer" "Integrator variant"
@@ -69,7 +69,7 @@ The channel has these parts:
 
 | Part | Role | Zoom in |
 |---|---|---|
-| Consent facility | The citizen sees the request, logs in, and gives or refuses consent. Later the citizen views and revokes consents. The register signs a consent proof and answers the status of a consent. | [consent facility](consent-service.md) |
+| Consent facility | The citizen sees the request, logs in, and gives or refuses consent. Later the citizen views and revokes consents. The register signs a consent proof and answers the status of a consent. | [Consent facility](consent-service.md) |
 | Pseudonymization facility | BSNk PP turns the BSN into values that only one party can read. The channel calls it only when a citizen gives consent. | [Pseudonymization](../../concepts/pseudonymization.md) |
 | Service provider | Starts the request, keeps the proof, and sends it with every query. It never gets a BSN or another number for the citizen. | [DvTP query](../../runtime/dvtp-query.md) |
 | Integrator | A software party that calls the source for a service provider, under an FSC delegation and a registered mandate. | [ADR-0034](../../decisions/0034-integrator-delegation.md) |

@@ -58,7 +58,7 @@ sequenceDiagram
     end
     CM->>CM: POST /v1/contracts (grant), signed by the consumer
     CM->>PM: Contract proposal (FSC, mTLS)
-    PM->>PDP: AuthZEN evaluation<br/>doelbinding auto_sign_contract
+    PM->>PDP: AuthZEN evaluation<br/>context.doelbinding = auto_sign_contract
     PDP->>PDP: Eight ordered checks on the register data
     PDP->>ADL: Decision record
     alt Allow
@@ -245,7 +245,7 @@ Source Registry. The runtime readers read only activated releases.
 First, the metadata contract and the data contract of the source must be
 valid. They pass [contract admission](#contract-admission) like every
 other contract, because the issuance facility is a technical participant
-in the admission register.
+in the admission register (toelatingsregister).
 
 ```mermaid
 sequenceDiagram
@@ -368,7 +368,7 @@ Source activation in gbo-demo v0.9.0 has these properties and gaps:
   owners. Two parts are not built: the rule for who can take the action,
   and the way GBO records the admission decision. These parts are PSA
   B-09 in the
-  [besluitregister](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)
+  [decision register](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)
   and [REQ-123](../requirements/admission.md#req-123).
 - **The source owns its description**
   ([F-57](../traceability/findings.md#f-57)). GBO validates and activates

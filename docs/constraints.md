@@ -12,7 +12,7 @@ conflict:
 
 ## Architecture principles (PSA)
 
-The 16 architectuurprincipes of the PSA bind this design. The PSA page
+The 16 architecture principles of the PSA bind this design. The PSA page
 has no anchor per principle. For this reason, each link opens the
 [principles page](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
 The following principles constrain the technical design most directly:
@@ -35,7 +35,7 @@ demo, see the [matrix](traceability/matrix.md#architecture-principles).
 
 ## Design principles (PSA)
 
-The 14 ontwerpprincipes govern how the GBO components are built. Each
+The 14 design principles govern how the GBO components are built. Each
 link opens the
 [design principles page](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/).
 The following design principles constrain the TO most directly:
@@ -130,22 +130,22 @@ are:
 
 ## Legal and regulatory constraints
 
-The PSA groups its principles by legal kader. The following kaders
-constrain this design:
+The PSA groups its principles by legal framework. The following
+frameworks constrain this design:
 
 | Constraint | Source | Bearing on the TO |
 |---|---|---|
-| AVG (GDPR) | [PSA architectuurprincipes](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), kader 1 | Data minimization, purpose limitation (doelbinding), and legal basis (grondslag). Each controller (Verantwoordelijke) logs its own processing ([ADR-0026](decisions/0026-ldv-integration.md)). |
-| Wdo and PKIoverheid | PSA kader 3 | Organization identity through PKI certificates and the OIN. |
-| eIDAS2 and ARF | PSA kader 4 | EUDI wallet support. Article 45e: the Authentic Source Interface ([ADR-0037](decisions/0037-asi-oauth-front-door.md)). |
+| AVG (GDPR) | [PSA architecture principles](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), framework 1 | Data minimization, purpose limitation (doelbinding), and legal basis (grondslag). Each controller (Verantwoordelijke) logs its own processing ([ADR-0026](decisions/0026-ldv-integration.md)). |
+| Digital Government Act (Wdo) and PKIoverheid | PSA framework 3 | Organization identity through PKI certificates and the OIN. |
+| eIDAS2 and ARF | PSA framework 4 | EUDI wallet support. Article 45e: the Authentic Source Interface ([ADR-0037](decisions/0037-asi-oauth-front-door.md)). |
 | eIDAS implementing regulations of 2026 (ASI) | CIR (EU) 2025/1569 art. 9, CIR (EU) 2026/1735 Annex IV | Art. 9 applies from August 19, 2026. From January 1, 2027, the verify interface follows ETSI TS 119 478 clause 6.1.1, clause 6.2.3, or both. From that date, every result is sealed. The authorization part stays a national choice ([F-80](traceability/findings.md#f-80)). |
 | eIDAS implementing regulations of 2026 (PuB-EAA) | CIR (EU) 2026/1735 (ETSI TS 119 471), CIR (EU) 2026/1731 (ETSI TS 119 412-6, TS 119 472-3), CIR (EU) 2026/1730, and CIR (EU) 2025/848 | PuB-EAA issuance falls under the same standard as QEAA issuance. The issuer needs designation and a registration with entitlement `PUB_EAA_Provider`. It also needs an access certificate, a registration certificate, and a qualified seal certificate with its own profile ([F-81](traceability/findings.md#f-81), [Q-28](traceability/open-questions.md#q-28)). |
-| BSN legislation (Wabb) | PSA kader 6 | Private parties must not process the BSN. This rule drives pseudonymization and the BSN exception for the QTSP ([F-86](traceability/findings.md#f-86)). |
-| SDG-verordening (EU 2018/1724) | [GO interactiepatronen](https://ictu.github.io/GBO-GO/main/#3-interactiepatronen) | The OOTS connection over AS4 is an obligation under EU law, and GBO has no choice in it ([ADR-0020](decisions/0020-as4-bridge-for-oots.md)). |
+| BSN legislation (Wabb) | PSA framework 6 | Private parties must not process the BSN. This rule drives pseudonymization and the BSN exception for the QTSP ([F-86](traceability/findings.md#f-86)). |
+| Single Digital Gateway Regulation (EU 2018/1724) | [GO interaction patterns](https://ictu.github.io/GBO-GO/main/#3-interactiepatronen) | The OOTS connection over AS4 is an obligation under EU law, and GBO has no choice in it ([ADR-0020](decisions/0020-as4-bridge-for-oots.md)). |
 
 ## Standards
 
-The capabilities chapter of the PSA lists the afspraken, standards, and
+The capabilities chapter of the PSA lists the agreements, standards, and
 facilities (voorzieningen) per capability, with their gaps. See
 [capabilities S01 to S11](https://ictu.github.io/GBO-PSA/main/capabilities/).
 The design builds directly on the following standards:

@@ -171,7 +171,8 @@ enters the PID regime and fails the actor check, as in
 The OOTS design has these open points:
 
 - It is open who builds the adapter: GBO, or the OOTS-V operator with the
-  GBO interface ([Q-79](../traceability/open-questions.md#q-79)).
+  GBO interface ([Q-79](../traceability/open-questions.md#q-79)). OOTS-V
+  is the part of the Basisinrichting OOTS that receives evidence requests.
 - The regime and the evidence for an OOTS request are open
   ([REQ-74](../requirements/authorization.md#req-74),
   [ADR-0031](../decisions/0031-regime-from-evidence.md)). If an OOTS

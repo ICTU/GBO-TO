@@ -1,6 +1,6 @@
 # DvTP: the consumer queries a source under consent
 
-A consumer (dienstverlener) asks a source for data about a citizen who gave
+A consumer (afnemer) asks a source for data about a citizen who gave
 consent. The consumer sends a GraphQL query and the consent proof through
 FSC. The PDP of the source decides before any data reaches the source.
 After an allow, the source fills in the citizen. Besides the direct call,
@@ -170,11 +170,12 @@ It is open whether the proof must name the integrator
 The LVG pilot uses the same consent pattern with a different consumer and
 a different source
 ([`lvg-ir.md`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/lvg-ir.md)).
-The Installatie Register (IR) asks the Landelijke facility (voorziening) Gebouwen
-(LVG) whether a building unit belongs to the citizen. The citizen gives two
+The Installatie Register (IR) asks the national buildings facility (LVG)
+whether a building unit belongs to the citizen. The citizen gives two
 consents:
 
-- One consent to IR in the consent portal (toestemmingsportaal) (scope `lvg:vbo:eigendom`).
+- One consent to IR in the consent portal (toestemmingsportaal), with
+  scope `lvg:vbo:eigendom`.
   This consent is in GBO.
 - One consent to the installer inside IR. This consent is not in GBO.
 

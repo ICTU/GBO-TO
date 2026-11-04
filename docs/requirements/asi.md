@@ -53,9 +53,9 @@ documentation of the ASI route ([`asi-route.md`](https://github.com/ICTU/GBO-dem
 If nobody decided on a choice of the demo, the profile records it as an
 open question and does not make it a requirement.
 
-- **Source**: design. The source is the line on ETSI TS 119 478 in
-  "Afspraken en standaarden" of [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte). The profile fills the open
-  point "PubEAA-/ASI-profielen" from the summary of S11. Matters about the
+- **Source**: design. The source is the line on ETSI TS 119 478 in the
+  section on agreements and standards ("Afspraken en standaarden") of [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte). The profile fills the open
+  point on PuB-EAA and ASI profiles ("PubEAA-/ASI-profielen") from the summary of S11. Matters about the
   ASI provider and its conditions belong to PSA open decision
   [B-14](https://ictu.github.io/GBO-PSA/main/vraagstukken/).
 
@@ -155,7 +155,8 @@ ASIP. The profile needs these external facilities to apply in full:
           [2026/1735](https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj) replaces it from January 1, 2027 ("the
           verification result shall be signed or sealed … using at least … an
           advanced electronic seal based on a qualified certificate").
-        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) ("ETSI-profielen voor gekwalificeerde zegels").
+        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), on ETSI profiles for qualified seals
+          ("ETSI-profielen voor gekwalificeerde zegels").
         - For retrieve, the requirement serves
           [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte). A QTSP can put a retrieved value in a
           qualified attestation. It must then show in the same way that the
@@ -342,9 +343,10 @@ ASIP. The profile needs these external facilities to apply in full:
           designate clause 6.1.3. S11 names TS 119 478 as a whole.
         - For a BSN that only the ASIP can read:
           [PSA S03](https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering)
-          ("een private afnemer zonder wettelijke BSN-bevoegdheid ontvangt een
-          partijspecifieke identiteit of pseudoniem") and
-          [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
+          and [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
+          Under S03, a private consumer without a statutory BSN authority
+          gets a party-specific identity or pseudonym ("een private afnemer zonder wettelijke BSN-bevoegdheid ontvangt een
+          partijspecifieke identiteit of pseudoniem").
         - For the means in the token, the requirement is derived. It serves
           [P-05](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/):
           the ASIP and the audit must see with which means, and so at which
@@ -429,8 +431,10 @@ ASIP. The profile needs these external facilities to apply in full:
           of a legitimate user").
         - [RFC 9068](https://www.rfc-editor.org/rfc/rfc9068) §4, and
           [RFC 9449](https://www.rfc-editor.org/rfc/rfc9449) §4.3 and §7.
-        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) ("uitgifte, verificatie en retrieval gebruiken
-          passende authenticatie, autorisatie en logging").
+        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte). Under S11, issuance, verification, and
+          retrieval use appropriate authentication, authorization, and logging
+          ("uitgifte, verificatie en retrieval gebruiken passende
+          authenticatie, autorisatie en logging").
         - For the 503, the requirement is derived. It serves
           [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte): a 401 blames the QTSP for a failure on
           the side of the ASIP.
@@ -885,7 +889,8 @@ ASIP. The profile needs these external facilities to apply in full:
           act on behalf of the authentic source".
         - [ETSI TS 119 478](https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf) REQ-ASIP-6.1.1.2-07, -08, and
           REQ-ASIP-6.1.2.2-04 (one `authenticSource`).
-        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) ("de bronhouder blijft juridisch en
+        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte). Under S11, the bronhouder stays responsible
+          for the law and for the content ("de bronhouder blijft juridisch en
           inhoudelijk verantwoordelijk").
         - [P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
     - **Addressee**: interface agreement: every ASIP. GBO-delivered component:
@@ -1002,11 +1007,12 @@ ASIP. The profile needs these external facilities to apply in full:
         - ETSI figure 3, steps 2 to 5. In these steps, the QTSP finds the data
           service through the Discover Interface.
         - The requirement is also derived. It serves
-          [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) ("aansluiting op relevante vertrouwenslijsten
-          en catalogi") and
+          [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) and
           [P-11](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/):
           without a record, a QTSP finds no Dutch data service for an
-          attribute.
+          attribute. S11 asks for the connection to relevant trusted lists
+          and catalogues ("aansluiting op relevante vertrouwenslijsten
+          en catalogi").
     - **Addressee**: GBO-delivered component: the ASIP. Interface agreement:
       the record and the contract.
     - **Evidence**: [ICTU/GBO-demo#533](https://github.com/ICTU/GBO-demo/issues/533), [PR #534](https://github.com/ICTU/GBO-demo/pull/534),
@@ -1069,7 +1075,8 @@ ASIP. The profile needs these external facilities to apply in full:
           specify the corresponding metadata of the OAuth 2.0 based
           authorization server".
         - [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414) §3.1 and §3.3.
-        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) ("ETSI TS 119 478 V1.1.1 voor de inrichting van
+        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), which names ETSI TS 119 478 V1.1.1 for the
+          setup of the ASI provider ("ETSI TS 119 478 V1.1.1 voor de inrichting van
           de ASI-provider").
     - **Addressee**: interface agreement: the contract of every ASIP.
       GBO-delivered component: the ASIP.
@@ -1159,7 +1166,8 @@ ASIP. The profile needs these external facilities to apply in full:
         - [eIDAS](https://eur-lex.europa.eu/eli/reg/2014/910/oj) article 5b(1) to (3). The relying party is registered
           and asks no other data than the registered data.
         - Implementing Regulation (EU) [2025/848](https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj) article 8.
-        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) ("OpenID4VP voor presentatie of verificatie
+        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), which names OpenID4VP for presentation or
+          verification where relevant ("OpenID4VP voor presentatie of verificatie
           waar relevant").
     - **Addressee**: GBO-delivered component: the authorization server of the
       ASI.
@@ -1245,9 +1253,12 @@ ASIP. The profile needs these external facilities to apply in full:
         - [ETSI TS 119 478](https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf) clause 6.1.3.2 binds only for each operation
           ([F-95](../traceability/findings.md#f-95)).
         - The requirement is also derived. It serves
-          [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) ("uitgifte, verificatie en retrieval gebruiken
-          passende authenticatie, autorisatie en logging") and
+          [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) and
           [P-02](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
+          Under S11, issuance, verification, and retrieval use appropriate
+          authentication, authorization, and logging ("uitgifte, verificatie
+          en retrieval gebruiken passende authenticatie, autorisatie en
+          logging").
           Without a binding, the QTSP can ask every attribute from the
           catalogue with the same token, also when the citizen approved
           something else.
@@ -1309,7 +1320,9 @@ ASIP. The profile needs these external facilities to apply in full:
           clause 6.2, or both.
         - Annex IV of Implementing Regulation (EU) [2026/1735](https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj). For verify,
           it designates clause 6.1.1, or 6.2.3, or both.
-        - "Afspraken en standaarden" of [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) ("ETSI TS 119 478
+        - The section on agreements and standards ("Afspraken en
+          standaarden") of [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte). It names ETSI TS 119 478 V1.1.1
+          for the setup of the ASI provider ("ETSI TS 119 478
           V1.1.1 voor de inrichting van de ASI-provider").
     - **Addressee**: GBO-delivered component: the ASIP. Interface agreement.
     - **Evidence**: [PR #499](https://github.com/ICTU/GBO-demo/pull/499), [PR #540](https://github.com/ICTU/GBO-demo/pull/540), [PR #574](https://github.com/ICTU/GBO-demo/pull/574).

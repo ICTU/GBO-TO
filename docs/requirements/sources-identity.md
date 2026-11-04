@@ -13,7 +13,7 @@ These requirements cover how a source publishes its service description,
 and how GBO validates and activates that description. [REQ-64](#req-64)
 applies to every GBO-delivered component that must know something per
 source or per service, in every data flow: EUDI issuance, the ASIP, and
-the consent facility (toestemmingsvoorziening) (DvTP). [REQ-65](#req-65) and [REQ-66](#req-66)
+the consent facility (toestemmingsvoorziening) of DvTP. [REQ-65](#req-65) and [REQ-66](#req-66)
 describe activation as the issuance route and the shared Source Registry
 implement it.
 
@@ -382,7 +382,7 @@ the certificate roles. Evidence links to gbo-demo point at tag `v0.9.0`.
     - **Addressee**: interface agreement for every channel: DvTP, EUDI
         issuance (PuB-EAA), and the Authentic Source Interface.
     - **Evidence**: all three channels call through their own FSC Outway:
-        - the service provider (dienstverlener) backend
+        - the backend of the service provider (dienstverlener)
             ([`main.go#L82`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/main.go#L82))
         - the EUDI adapter
             ([`main.go#L115`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L115))

@@ -3,7 +3,7 @@
 This matrix lists the design elements of four sources:
 
 - the Globaal Ontwerp (GO),
-- the Project Start Architectuur (PSA),
+- the Projectstartarchitectuur (PSA),
 - the functional requirements for DvTP (FR-DvTP v0.9),
 - the EUDI regulation.
 
@@ -88,7 +88,7 @@ The evidence column follows three rules:
 
 ## Architecture principles (P-01 to P-16) {#architecture-principles}
 
-Source: [PSA architectuurprincipes](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
+Source: [PSA architecture principles](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
 These principles are invariants: the demo must not break them.
 
 | ID | Title | Scope | Status | Evidence | Notes |
@@ -112,7 +112,7 @@ These principles are invariants: the demo must not break them.
 
 ## Design principles (D-01 to D-14) {#design-principles}
 
-Source: [PSA ontwerpprincipes](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/).
+Source: [PSA design principles](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/).
 
 | ID | Title | Scope | Status | Evidence | Notes |
 |---|---|---|---|---|---|
@@ -133,7 +133,7 @@ Source: [PSA ontwerpprincipes](https://ictu.github.io/GBO-PSA/main/ontwerpprinci
 
 ## Generic functions (F1 to F8) {#generic-functions}
 
-Source: [PSA generieke functies](https://ictu.github.io/GBO-PSA/main/generieke-functies/)
+Source: [PSA generic functions](https://ictu.github.io/GBO-PSA/main/generieke-functies/)
 and section 4 of the [GO](https://ictu.github.io/GBO-GO/main/).
 
 | ID | Title | Scope | Status | Evidence | Notes |
@@ -167,14 +167,14 @@ Source: [PSA capabilities](https://ictu.github.io/GBO-PSA/main/capabilities/).
 
 ## Interaction patterns {#interaction-patterns}
 
-Source: [PSA interactiepatronen](https://ictu.github.io/GBO-PSA/main/interactiepatronen/)
+Source: [PSA interaction patterns](https://ictu.github.io/GBO-PSA/main/interactiepatronen/)
 and section 3 of the [GO](https://ictu.github.io/GBO-GO/main/).
 
 | ID | Title | Scope | Status | Evidence | Notes |
 |---|---|---|---|---|---|
 | [PAT-A](https://ictu.github.io/GBO-PSA/main/interactiepatronen/) | Citizen uses the EUDI wallet | EUDI | ◐ | [REQ-45](../requirements/eudi-issuance.md#req-45), [REQ-64](../requirements/sources-identity.md#req-64) | The route works end to end against a pre-production wallet, with products from offers that the sources publish ([SL-46](increments.md#sl-46)). Missing: a seal, trust lists, and an authenticated adapter callback ([#133](https://github.com/ICTU/GBO-demo/issues/133)). For more information, see EUDI-3 to EUDI-5. |
 | [PAT-B](https://ictu.github.io/GBO-PSA/main/interactiepatronen/) | Cross-border SDG/OOTS | Hook | — | — | Not in v1 ([ADR-0020](../decisions/0020-as4-bridge-for-oots.md)). |
-| [PAT-C](https://ictu.github.io/GBO-PSA/main/interactiepatronen/) | Data request by a private service provider (dienstverlener) (DvTP) | DvTP | ✓ | [REQ-68](../requirements/consent.md#req-68), [REQ-14](../requirements/consent.md#req-14), [REQ-19](../requirements/consent.md#req-19) | Consent, query, allow or deny, and revoke work end to end, for the BD and LVG sources, and through an integrator ([PR #464](https://github.com/ICTU/GBO-demo/pull/464)). |
+| [PAT-C](https://ictu.github.io/GBO-PSA/main/interactiepatronen/) | Data request by a private service provider (dienstverlener) in DvTP | DvTP | ✓ | [REQ-68](../requirements/consent.md#req-68), [REQ-14](../requirements/consent.md#req-14), [REQ-19](../requirements/consent.md#req-19) | Consent, query, allow or deny, and revoke work end to end, for the BD and LVG sources, and through an integrator ([PR #464](https://github.com/ICTU/GBO-demo/pull/464)). |
 
 ## EUDI wallet and regulation (EUDI-1 to EUDI-11) {#eudi}
 
@@ -254,7 +254,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.
 | FR-11 | Validity period (configurable) | DvTP | ◐ | [`consent.rego#L138`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L138) (`valid_until` must equal `exp`) | The validity is enforced and signed in the proof ([REQ-19](../requirements/consent.md#req-19), [REQ-68](../requirements/consent.md#req-68)). Reuse within the validity conforms to v0.9 ([Q-04](answered-questions.md#q-04)). Missing: a default per service, adjustment by the citizen ([Q-13](open-questions.md#q-13), [#380](https://github.com/ICTU/GBO-demo/issues/380)), and the status "retrieved" ([Q-42](open-questions.md#q-42)). |
 | FR-12 | Initiation from the private environment | DvTP | ✓ | [`Start.tsx`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/pages/Start.tsx), [`buildPortalUrl.ts`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/lib/buildPortalUrl.ts) | The mock service provider website redirects the citizen to the portal, with context ([REQ-37](../requirements/consent.md#req-37)). |
 | FR-13 | Smooth transfer of context | DvTP | ✓ | [`buildPortalUrl.ts`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/lib/buildPortalUrl.ts), [`useRedirectContext.ts`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/useRedirectContext.ts) | The redirect carries the consumer OIN, the service ID, the purpose, the data sets, and the return address ([REQ-37](../requirements/consent.md#req-37)). What the citizen sees must come from the registration ([REQ-111](../requirements/consent.md#req-111)). |
-| FR-14 | Automatic return | DvTP | ◐ | [`PortaalBevestiging.tsx`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalBevestiging.tsx), [`redirectValidation.ts#L26`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/redirectValidation.ts#L26) | The portal returns the citizen with the signed proof in the URL fragment, without BSN. Only the front end checks the return address, against fixed origins ([#427](https://github.com/ICTU/GBO-demo/issues/427), [REQ-111](../requirements/consent.md#req-111)). The "Annuleren" button does not return the citizen ([#599](https://github.com/ICTU/GBO-demo/issues/599), [Q-44](open-questions.md#q-44)). |
+| FR-14 | Automatic return | DvTP | ◐ | [`PortaalBevestiging.tsx`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalBevestiging.tsx), [`redirectValidation.ts#L26`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/redirectValidation.ts#L26) | The portal returns the citizen with the signed proof in the URL fragment, without BSN. Only the front end checks the return address, against fixed origins ([#427](https://github.com/ICTU/GBO-demo/issues/427), [REQ-111](../requirements/consent.md#req-111)). The cancel button (shown as "Annuleren") does not return the citizen ([#599](https://github.com/ICTU/GBO-demo/issues/599), [Q-44](open-questions.md#q-44)). |
 | FR-15 | Support for web and app | DvTP | ◐ | — | The demo supports web only. App switching is out of scope. |
 | FR-16 | Reliable identification of the requesting party and its authority | DvTP | ◐ | [REQ-68](../requirements/consent.md#req-68), [REQ-74](../requirements/authorization.md#req-74) | Identity (FSC peer with mTLS), admission ([SL-45](increments.md#sl-45)), and consent binding work. An integrator can act for a service provider ([REQ-106](../requirements/consent.md#req-106)). Missing: admission per service ([#382](https://github.com/ICTU/GBO-demo/issues/382)). |
 | FR-17 | Fetch data only within a valid consent | DvTP | ✓ | [`consent.rego#L268`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L268), [`consent_token.go`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go) | The consumer sends a signed proof. The policy verifies it and checks the status online on every request ([REQ-68](../requirements/consent.md#req-68), [F-61](findings-closed.md#f-61)). |

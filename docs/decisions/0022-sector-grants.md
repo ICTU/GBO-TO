@@ -8,8 +8,8 @@
 
 ## Why deferred
 
-In gbo-demo v0.9.0, admission runs through the Admission register
-and the contract decision of the PDP
+In gbo-demo v0.9.0, admission runs through the admission register
+(toelatingsregister) and the contract decision of the PDP
 ([REQ-61](../requirements/admission.md#req-61),
 [ADR-0015](0015-contract-acceptance-by-policy.md)). No component called
 the sector PIP, so the demo removed it. A sector grant is not a native
@@ -21,7 +21,7 @@ scale. Work on it starts only after a new decision.
 
 PKI proves which organization calls (OIN). PKI does not prove what kind
 of organization it is. Per-organization contracts do not scale to
-sectors. For example, 800 notariskantoren need 800 contracts with each
+sectors. For example, 800 notary offices need 800 contracts with each
 source.
 
 ## Proposed decision (deferred)
@@ -45,7 +45,7 @@ The proposal leaves three points open:
 - An extension of the FSC grant schema, through the Logius standards
   process.
 - The freshness of sector register data, and the liability for it.
-- The relation with the Admission register: admission versus
+- The relation with the admission register: admission versus
   membership.
 
 ## Traceability

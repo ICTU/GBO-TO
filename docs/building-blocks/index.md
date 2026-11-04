@@ -102,8 +102,8 @@ The overview has seven GBO blocks. Five of them run in the demo:
 | ASI provider | Lets a QTSP verify or retrieve an attribute at the source (eIDAS article 45e). | Built, demo grade | [ASI provider](eudi/asi.md) |
 | OOTS adapter | Answers an EU evidence request with source data. | Design only | [OOTS channel](oots.md) |
 
-The pseudonymization facility (pseudonimiseervoorziening) (BSNk PP) and the QTSP are not GBO
-components. GBO uses them. The demo runs a mock of BSNk PP.
+The pseudonymization facility BSNk PP (pseudonimiseervoorziening) and
+the QTSP are not GBO components. GBO uses them. The demo runs a mock of BSNk PP.
 
 ## How GBO Basis feeds every channel
 

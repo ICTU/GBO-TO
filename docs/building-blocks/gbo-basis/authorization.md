@@ -116,7 +116,7 @@ flowchart LR
   style pdp fill:#F4F5F7,stroke:#16A34A
   click map "#from-query-to-decision" "Decision pipeline"
   click eng "#the-rules" "The rules"
-  click tr "../../dvtp/consent-service/" "Toestemmingsvoorziening"
+  click tr "../../dvtp/consent-service/" "Consent facility"
   click adm "#admission-of-parties" "Admission"
 ```
 
@@ -234,8 +234,8 @@ it serves, and the fields it can grant:
 |---|---|---|---|
 | DVT0001 | consent | `bri` | Income declaration fields, per consented year |
 | LVG0001 | consent | `lvg` | The ownership check of the LVG pilot |
-| EUD0001 | PID | `bri` | Inkomensverklaring to the wallet, years 2024 and 2025 |
-| EUD0002 | PID | `brp` | Akte van overlijden to the wallet |
+| EUD0001 | PID | `bri` | Income statement (inkomensverklaring) to the wallet, years 2024 and 2025 |
+| EUD0002 | PID | `brp` | Death certificate (akte van overlijden) to the wallet |
 | ASI0001 | PID | `brp` | The BRP fields behind the ASI attributes, for the ASIP only |
 
 A rule binds to a field only on its own services. A field name such as

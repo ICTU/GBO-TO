@@ -210,8 +210,8 @@ Demo v0.9.0 has five rules:
 |---|---|---|---|---|
 | DVT0001 | consent | `bri` | Income declaration fields under consent | consent codes, `SCOPE_NOT_ALLOWED`, `CONSTRAINT_MISMATCH`, `YEAR_NOT_COVERED`, `CONSENT_ACTOR_MISMATCH` |
 | LVG0001 | consent | `lvg` | Ownership check at the LVG, scope `lvg:vbo:eigendom` | consent codes, `SCOPE_NOT_ALLOWED`, `CONSTRAINT_MISMATCH` |
-| EUD0001 | pid | `bri` | Inkomensverklaring to the wallet, years 2024 and 2025 | `PID_NOT_PRESENT`, `ACTOR_NOT_ALLOWED`, `YEAR_NOT_ALLOWED` |
-| EUD0002 | pid | `brp` | Akte van overlijden to the wallet | `PID_NOT_PRESENT`, `ACTOR_NOT_ALLOWED` |
+| EUD0001 | pid | `bri` | Income statement (inkomensverklaring) to the wallet, years 2024 and 2025 | `PID_NOT_PRESENT`, `ACTOR_NOT_ALLOWED`, `YEAR_NOT_ALLOWED` |
+| EUD0002 | pid | `brp` | Death certificate (akte van overlijden) to the wallet | `PID_NOT_PRESENT`, `ACTOR_NOT_ALLOWED` |
 | ASI0001 | pid | `brp` | BRP fields for the ASIP | `PID_NOT_PRESENT`, `ACTOR_NOT_ALLOWED` |
 
 The consent codes are the outcomes of the proof verification and the
@@ -278,7 +278,7 @@ can see them. The two checks work as follows:
     ([REQ-79](../requirements/pseudonymization.md#req-79),
     [F-77](../traceability/findings.md#f-77)).
 
-- The year check. Every requested `belastingjaren` value needs a
+- The year check. Every requested tax year (`belastingjaren`) needs a
   consented `bd:ib:<year>` scope. If a query has no year filter, it fails
   too, because the source then returns every year
   ([`dvt0001.rego#L82-L96`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001.rego#L82-L96)).
@@ -511,7 +511,7 @@ What a consumer can request depends on two sides
   ([REQ-64](../requirements/sources-identity.md#req-64),
   [Source onboarding](source-onboarding.md)). The EUDI and ASI routes
   work this way.
-- Demand side: for DvTP, a statutory service catalog sets the legal
+- Demand side: for DvTP, a statutory service catalog (dienstencatalogus) sets the legal
   ceiling of what a consumer can request, per use case. The sector need
   defines this catalog.
 

@@ -24,7 +24,7 @@ The scenarios fall into two planes:
   request takes the same route
   ([ADR-0004](../decisions/0004-federated-authorization.md),
   [ADR-0002](../decisions/0002-opa-rego-authzen.md)), in this order:
-    1. the FSC Outway of the consumer,
+    1. the FSC Outway of the consumer (afnemer),
     2. the FSC Inway of the source, as PEP,
     3. the PDP of the source,
     4. the source gateway,
@@ -41,7 +41,7 @@ The scenarios fall into two planes:
 | Scenario | Page | Route | Actor | Status | Main ADRs |
 |---|---|---|---|---|---|
 | Citizen grants consent | [DvTP consent](dvtp-consent.md) | DvTP | Citizen at a service provider (dienstverlener) | built | [0032](../decisions/0032-consent-proof.md), [0005](../decisions/0005-bsnk-pp.md), [0040](../decisions/0040-route-d-citizen-recognition.md) |
-| Consumer requests data under consent, directly or through an integrator | [DvTP query](dvtp-query.md) | DvTP | Consumer (dienstverlener) or integrator | built | [0031](../decisions/0031-regime-from-evidence.md), [0032](../decisions/0032-consent-proof.md), [0033](../decisions/0033-gateway-decrypts-after-allow.md), [0034](../decisions/0034-integrator-delegation.md), [0013](../decisions/0013-pdp-request-mapper.md) |
+| Consumer requests data under consent, directly or through an integrator | [DvTP query](dvtp-query.md) | DvTP | Consumer or integrator | built | [0031](../decisions/0031-regime-from-evidence.md), [0032](../decisions/0032-consent-proof.md), [0033](../decisions/0033-gateway-decrypts-after-allow.md), [0034](../decisions/0034-integrator-delegation.md), [0013](../decisions/0013-pdp-request-mapper.md) |
 | Citizen views and revokes consents | [DvTP citizen access](dvtp-citizen-access.md) | DvTP | Citizen | built | [0032](../decisions/0032-consent-proof.md), [0040](../decisions/0040-route-d-citizen-recognition.md) |
 | Citizen receives an attestation (PuB-EAA route) | [EUDI issuance](eudi-issuance.md) | EUDI issuance | Citizen with a wallet | built | [0018](../decisions/0018-eudi-disclosure-issuance.md), [0016](../decisions/0016-source-owned-metadata.md), [0017](../decisions/0017-gbo-simple-v1.md), [0028](../decisions/0028-pubeaa-productization.md) |
 | QTSP verifies or retrieves attributes | [ASI verification](asi-verification.md) | ASI verification | QTSP, citizen | built | [0037](../decisions/0037-asi-oauth-front-door.md), [0038](../decisions/0038-asi-data-service-per-source.md), [0039](../decisions/0039-asi-source-described-attributes.md), [0041](../decisions/0041-asi-seal-format.md) |
@@ -53,7 +53,7 @@ The scenarios fall into two planes:
 
 ## Routes {#trajectories}
 
-A route is a route from a source to a party that uses the data. The
+A route is a path from a source to a party that uses the data. The
 PDP of the source judges each request under one regime. The evidence in
 the request selects the regime
 ([ADR-0031](../decisions/0031-regime-from-evidence.md),

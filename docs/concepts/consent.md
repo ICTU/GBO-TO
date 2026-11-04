@@ -1,15 +1,15 @@
 # Consent
 
 In DvTP, the consent of the citizen is the legal basis for delivery of
-source data to a private consumer. A consent proof carries the consent to
+source data to a private consumer (afnemer). A consent proof carries the consent to
 the source, and the PDP of the source verifies that proof on every
 request. A consent has a lifecycle of validity, revocation, and repeated
 use.
-The consent model realizes capabilities
+The consent model realizes capability
 [S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-(toestemmingsregister) and
+for the consent register (toestemmingsregister) and capability
 [S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal)
-(toestemmingsportaal).
+for the consent portal (toestemmingsportaal).
 
 The main decision is [ADR-0032](../decisions/0032-consent-proof.md). It
 defines the consent proof in five points:
@@ -33,7 +33,7 @@ Five roles take part in consent:
 |---|---|---|
 | Consent portal (S02) | `toestemmingsportaal-frontend`, consent portal backend | Shows the request, logs the citizen in, makes the values per source at BSNk, and lets the citizen view and revoke consents |
 | Consent register (S01) | `consent-register` | Stores the consent record, signs the proof, and answers the status over FSC |
-| Consumer (dienstverlener) | `dienstverlener-backend` | Starts the request, receives the proof, and sends it unchanged with every query |
+| Consumer | `dienstverlener-backend` | Starts the request, receives the proof, and sends it unchanged with every query |
 | PDP of the source | OpenFTV PDP, `consent.rego` | Verifies the proof and gets the status at every request |
 | Source gateway | `bron-sidecar` | After the allow, decrypts its own value from the proof |
 

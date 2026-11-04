@@ -12,9 +12,9 @@ v0.9.0 implements. The decisions behind the model are
 [ADR-0036](../decisions/0036-adl-decision-record.md) (decision records),
 and [ADR-0026](../decisions/0026-ldv-integration.md) (processing records).
 
-The term "controller (Verantwoordelijke)" means the organization that is
-responsible for a processing under the GDPR. The term "data subject"
-means the data subject (Betrokkene).
+A controller (Verantwoordelijke) is the organization that is responsible
+for a processing under the GDPR. A data subject (Betrokkene) is the
+person whom a processing is about.
 
 ## Three records, one chain
 
@@ -269,7 +269,7 @@ The LDV integration rests on six design choices:
   [SL-51](../traceability/increments.md#sl-51), no pseudonym travels in
   the chain at all.
 - The logbook refuses a BSN: it scans every write for a nine-digit run
-  that passes the elfproef. The scan covers all values, the record name,
+  that passes the BSN checksum (elfproef). The scan covers all values, the record name,
   and the resource. The logbook refuses a match. The check is
   word-bounded, so a 20-digit OIN passes
   ([`validate.go#L141-L157`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/internal/ldv/validate.go#L141-L157)).

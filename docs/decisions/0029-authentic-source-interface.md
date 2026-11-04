@@ -2,7 +2,7 @@
 
 - Status: superseded by [ADR-0037](0037-asi-oauth-front-door.md)
 - Date: 2026-08-24, superseded on 2026-11-02
-- Satisfies: eIDAS Article 45e, [GO: verificatie- en retrievedienst voor QTSPs](https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider), [PSA vraagstukken: centrale verificatie- en retrievedienst](https://ictu.github.io/GBO-PSA/main/vraagstukken/)
+- Satisfies: eIDAS Article 45e, [GO: verification and retrieval service for QTSPs](https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider), [PSA open decisions: central verification and retrieval service](https://ictu.github.io/GBO-PSA/main/vraagstukken/)
 - Superseded by: [ADR-0037](0037-asi-oauth-front-door.md)
 - Deliberation: reference architecture v0.6.2, gap 8 and ASI design (archived and unpublished)
 - Implemented in: not implemented in this form. The built route is [ADR-0037](0037-asi-oauth-front-door.md).
@@ -41,7 +41,7 @@ following sections hold the original proposal as history.
 
 ## Context and problem statement
 
-Article 45e of the amended eIDAS-verordening obliges member states to let
+Article 45e of the amended eIDAS regulation obliges member states to let
 QTSPs verify attributes against authentic sources at the request of the
 user. ETSI TS 119 478 specifies the interfaces. Without this interface,
 QTSPs cannot issue QEAAs based on Dutch government registers.

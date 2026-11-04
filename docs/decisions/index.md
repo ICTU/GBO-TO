@@ -58,7 +58,7 @@ These decisions are proposed:
 |---|---|---|---|
 | [0023](0023-identity-convergence.md) | Organization identity from the certificate, and separate EUDI certificate roles (part B: EUDI certificate roles) | [REQ-58](../requirements/eudi-issuance.md#req-58) | Part A is accepted |
 | [0024](0024-canonical-semantic-models.md) | Canonical semantic models per bronhouder | — | |
-| [0025](0025-graphql-fds-datadienst.md) | GraphQL as a recognized FDS datadienst type | [REQ-08](../requirements/authorization.md#req-08) | |
+| [0025](0025-graphql-fds-datadienst.md) | GraphQL as a recognized data service (datadienst) type of the Federatief Datastelsel (FDS) | [REQ-08](../requirements/authorization.md#req-08) | |
 | [0027](0027-onboarding-toolkit.md) | Bronhouder onboarding toolkit | [REQ-64](../requirements/sources-identity.md#req-64), [AV-07](../requirements/admission.md#av-07) | [Q-74](../traceability/open-questions.md#q-74) |
 | [0028](0028-pubeaa-productization.md) | PuB-EAA Provider productization | [REQ-58](../requirements/eudi-issuance.md#req-58), [REQ-77](../requirements/eudi-issuance.md#req-77) | |
 | [0040](0040-route-d-citizen-recognition.md) | Citizen recognition and the BSNk participant: route D | [REQ-69](../requirements/pseudonymization.md#req-69), [REQ-23](../requirements/consent.md#req-23) | [Q-49](../traceability/open-questions.md#q-49) |
@@ -89,7 +89,7 @@ This decision is deferred:
 
 | ADR | Proposal | Serves | Status |
 |---|---|---|---|
-| [0022](0022-sector-grants.md) | Sector-level grants with organizational attribute verification | [REQ-61](../requirements/admission.md#req-61) | Deferred. Admission runs through the admission register. The demo removed `sector-pip` ([#378](https://github.com/ICTU/GBO-demo/issues/378)) |
+| [0022](0022-sector-grants.md) | Sector-level grants with organizational attribute verification | [REQ-61](../requirements/admission.md#req-61) | Deferred. Admission runs through the admission register (toelatingsregister). The demo removed `sector-pip` ([#378](https://github.com/ICTU/GBO-demo/issues/378)) |
 
 ## Traceability
 

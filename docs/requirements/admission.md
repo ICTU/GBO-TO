@@ -1,6 +1,6 @@
 # Admission and connection requirements
 
-These requirements cover who can connect to a source. The first part holds requirements on the admission register and the contract decision. The second part holds candidate connection conditions for the parties that connect. For the design, see [Admission of parties](../building-blocks/gbo-basis/authorization.md#admission-of-parties).
+These requirements cover who can connect to a source. The first part holds requirements on the admission register (toelatingsregister) and the contract decision. The second part holds candidate connection conditions for the parties that connect. For the design, see [Admission of parties](../building-blocks/gbo-basis/authorization.md#admission-of-parties).
 
 This page has the following parts:
 
@@ -51,7 +51,8 @@ The design decision is
 
     - **Source**: design:
         - [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-          ("deelname vereist een voorafgaande toelatingsbeslissing", facility "deelnemersregister").
+          (participation needs a prior admission decision, "deelname vereist een voorafgaande toelatingsbeslissing",
+          and the facility is a participant register, "deelnemersregister").
         - [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
           (the PDP consults the participant status, among other sources).
         - FR-30 criteria 1 and 2, and FR-16 criterion 2.
@@ -103,7 +104,8 @@ The design decision is
 
     - **Source**: design.
       [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-      ("de inrichting behandelt technische identiteit en toelatingsstatus apart van de rol en bevoegdheid in een concrete interactie").
+      (the setup handles technical identity and admission status apart from
+      the role and authority in one interaction: "de inrichting behandelt technische identiteit en toelatingsstatus apart van de rol en bevoegdheid in een concrete interactie").
     - **Addressee**: GBO-delivered component: the reference policy.
     - **Evidence**: [PR #228](https://github.com/ICTU/GBO-demo/pull/228). The
       rule set is its own package without an import, in
@@ -189,7 +191,8 @@ The design decision is
 
     - **Source**: design.
       [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-      ("schorsing of beëindiging leidt tijdig tot intrekking van de toegang"),
+      (a suspension or termination leads in time to a withdrawal of access:
+      "schorsing of beëindiging leidt tijdig tot intrekking van de toegang"),
       made stricter: the consent does not change. Also FR-31 criterion 2 and
       FR-36 criterion 4.
     - **Addressee**: interface agreement between source and management
@@ -216,7 +219,7 @@ The design decision is
           the pull interval of 5 s
           ([`dvtp-onboarding.yaml#L9`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml#L9)).
         - A suspension or departure does not revoke the consents. The citizen
-          sees them as Active while the party cannot use them.
+          sees them as active (shown as "Actief") while the party cannot use them.
         - A consumer with a new OIN is a new party. Old consents become
           unusable and do not move to the new party.
         - New consent requests of a suspended consumer belong to the check of
@@ -248,12 +251,17 @@ The design decision is
 
     - **Source**: design:
         - [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid)
-          ("iedere component legt de gebeurtenissen vast die voor zijn verantwoordelijkheid relevant zijn",
+          (each component records the events that are relevant to its
+          responsibility, and measures protect log data against unauthorized
+          change and deletion:
+          "iedere component legt de gebeurtenissen vast die voor zijn verantwoordelijkheid relevant zijn",
           "maatregelen beschermen loggegevens tegen ongeautoriseerde wijziging en verwijdering").
         - [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-          ("schorsing of beëindiging leidt tijdig tot intrekking van de toegang").
+          (a suspension or termination leads in time to a withdrawal of access:
+          "schorsing of beëindiging leidt tijdig tot intrekking van de toegang").
         - [D-11](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/)
-          ("beheerrechten zijn beperkt, tijdelijk en aantoonbaar toegekend").
+          (management rights are limited, temporary, and provably granted:
+          "beheerrechten zijn beperkt, tijdelijk en aantoonbaar toegekend").
         - [P-12](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
     - **Addressee**: GBO-delivered component: the admission register, the
       activation in the EUDI adapter, and the authorization server of the ASI.
@@ -284,8 +292,9 @@ They cover every channel: GBO Basis, DvTP, and EUDI. None of them is an
 approved condition.
 
 [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-names "aansluitvoorwaarden per deelnemersgroep" as an agreement that is
-still open. FR-30 lets the operator of the DvTP facility check selection
+names connection conditions per participant group
+("aansluitvoorwaarden per deelnemersgroep") as an agreement that is still
+open. FR-30 lets the operator of the DvTP facility check selection
 criteria and connection conditions. The framework falls under PSA open
 decision [B-09](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister).
 
@@ -361,7 +370,10 @@ on one of these groups:
     - **Obliged party**: private consumer
     - **Channel**: DvTP
     - **Source**: the table of facilities in the
-      [GO](https://ictu.github.io/GBO-GO/main/) (section 5): "Een private dienstverlener die deelneemt, moet de toestemmingsvoorziening en BSNk PP gebruiken en aan de aansluitvoorwaarden voldoen."
+      [GO](https://ictu.github.io/GBO-GO/main/) (section 5). A participating
+      private service provider (dienstverlener) must use the consent facility
+      (toestemmingsvoorziening) and BSNk PP, and must meet the connection
+      conditions: "Een private dienstverlener die deelneemt, moet de toestemmingsvoorziening en BSNk PP gebruiken en aan de aansluitvoorwaarden voldoen."
 
 ### AV-04: Consumer has its own FSC peer with PKIoverheid certificate and OIN {#av-04}
 
@@ -411,7 +423,7 @@ on one of these groups:
 
 > An integrator SHOULD be admitted separately, with its own organization
 > identity means. It SHOULD have a processing agreement with the
-> service provider (dienstverlener), and SHOULD NOT store personal data persistently. It
+> service provider, and SHOULD NOT store personal data persistently. It
 > SHOULD have a registration for each service provider and use case.
 
 - **Status**: candidate
@@ -452,9 +464,14 @@ on one of these groups:
     - **Channel**: all channels
     - **Source**:
         - [PSA S07](https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting)
-          ("gepubliceerde informatie beschrijft schema's, versies, foutmeldingen en beschikbaarheidskenmerken").
+          (published information describes schemas, versions, error
+          messages, and availability properties:
+          "gepubliceerde informatie beschrijft schema's, versies, foutmeldingen en beschikbaarheidskenmerken").
         - [PSA S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus)
-          ("verwijst naar een beheerd schema en begrippenkader",
+          (a reference to a managed schema and concept framework, a
+          machine-readable and versionable form, quality properties and
+          provenance information, and references to managed objects where
+          possible: "verwijst naar een beheerd schema en begrippenkader",
           "machineleesbaar en versieerbaar",
           "kwaliteitskenmerken en herkomstinformatie",
           "verwijst waar mogelijk naar beheerde objecten").
@@ -581,7 +598,8 @@ on one of these groups:
     - **Obliged party**: private consumer
     - **Channel**: DvTP
     - **Source**:
-        - FR-25 criterion 2 (contact details "vastgelegd tijdens onboarding/configuratie").
+        - FR-25 criterion 2 (contact details recorded during onboarding or
+          configuration: "vastgelegd tijdens onboarding/configuratie").
         - [REQ-120](consent.md#req-120) (the portal shows them with
           every consent and after a revocation).
         - [Q-62](../traceability/open-questions.md#q-62) sub-question 2.
@@ -605,7 +623,8 @@ on one of these groups:
     - **Source**:
         - FR-36 criteria 1 and 2.
         - [PSA S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal)
-          ("de inrichting biedt een gelijkwaardig alternatief als wetgeving of beleid dat vereist").
+          (the setup offers an equivalent alternative if law or policy
+          requires it: "de inrichting biedt een gelijkwaardig alternatief als wetgeving of beleid dat vereist").
         - [REQ-117](consent.md#req-117) (the screen names the alternative).
         - [Q-62](../traceability/open-questions.md#q-62) sub-question 3.
     - **Related**: [REQ-117](consent.md#req-117)

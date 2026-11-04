@@ -26,7 +26,7 @@ graph TB
     subgraph AUTHZ["Authorization chain"]
         PDP["OpenFTV PDP v0.1.0<br/>FTV GraphQL mapper + OPA/Rego"]
         POL["Policy set<br/>engine, consent PIP, five rules"]
-        ADM["Admission register<br/>(Admission register)"]
+        ADM["Admission register<br/>(dvtp-onboarding-register)"]
     end
 
     subgraph FSCG["FSC group (per organization)"]
@@ -129,7 +129,7 @@ The authorization chain has the following components:
 | Consent PIP | Verifies the consent token in policy: ES256 signature, issuer, audience, type, validity with 30 s skew, and required claims. It fetches the JWKS directly from the register and caches it for 300 s. It fetches the status for each evaluation over FSC, through the PDP's Outway. The status fetch has no cache and a 2 s timeout. Every failure has its own reason code. The engine copies the resolved consent into its response. | [policies/gbo/consent.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego) |
 | Authorization rules | Five plain-Rego rules, listed in the next table. Each rule names its regime, its FSC services, and its fields. It also states its own reasons to deny. | [policies/gbo/rules](https://github.com/ICTU/GBO-demo/tree/v0.9.0/policies/gbo/rules) |
 | Contract acceptance policy | Decides whether a provider's FSC Manager signs a submitted contract. It accepts grant types service connection and delegated service connection. It applies eight ordered refusal codes, from `NOT_AN_AUTOSIGN_REQUEST` to `DELEGATION_NOT_REGISTERED`. It keeps a missing register (`ADMISSION_REGISTER_UNAVAILABLE`) apart from a missing entry (`PARTY_NOT_IN_REGISTRY`). | [policies/fsc/autosign.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L167-L174) |
-| Admission register | Holds the admitted participants: bronhouders, GBO system participants (EDI issuer, PDP, ASIP), and consumers. Each entry has `active` and `allowed_source_peer_ids`. The register also holds integrator mandates (`integrations`) and serves them as `acts_for`. OpenFTV pulls it every 5 s over a network that only the PDP shares. The register deactivates an entry and never deletes it. It keeps no change log ([REQ-123](../requirements/admission.md#req-123)). It is a SQLite database with an admin UI. | [services/dvtp-onboarding-register](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register), [PIP pull](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml) |
+| Admission register (toelatingsregister) | Holds the admitted participants: bronhouders, GBO system participants (EDI issuer, PDP, ASIP), and consumers. Each entry has `active` and `allowed_source_peer_ids`. The register also holds integrator mandates (`integrations`) and serves them as `acts_for`. OpenFTV pulls it every 5 s over a network that only the PDP shares. The register deactivates an entry and never deletes it. It keeps no change log ([REQ-123](../requirements/admission.md#req-123)). It is a SQLite database with an admin UI. | [services/dvtp-onboarding-register](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register), [PIP pull](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml) |
 
 The PID regime has no positive evidence of its own. A request without a
 consent token enters it ([F-70](../traceability/findings.md#f-70)). For this
@@ -140,9 +140,9 @@ apart from the consent consumers. The five rules grant these fields:
 |---|---|---|---|---|---|
 | DVT0001 | consent | `bri` | Income declaration fields under consent | consent codes, `SCOPE_NOT_ALLOWED`, `CONSTRAINT_MISMATCH`, `YEAR_NOT_COVERED` | [dvt0001.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001.rego) |
 | LVG0001 | consent | `lvg` | Ownership check at LVG, scope `lvg:vbo:eigendom` | consent codes, `SCOPE_NOT_ALLOWED`, `CONSTRAINT_MISMATCH` | [lvg0001.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/lvg0001.rego) |
-| EUD0001 | pid | `bri` | Inkomensverklaring to the wallet, years 2024 and 2025 | `PID_NOT_PRESENT`, `ACTOR_NOT_ALLOWED`, `YEAR_NOT_ALLOWED` | [eud0001.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001.rego) |
-| EUD0002 | pid | `brp` | Akte van overlijden to the wallet | `PID_NOT_PRESENT`, `ACTOR_NOT_ALLOWED` | [eud0002.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego) |
-| ASI0001 | pid | `brp` | BRP fields behind the ASI attributes, for the ASIP peer `…1200` only | `PID_NOT_PRESENT`, `ACTOR_NOT_ALLOWED` | [asi0001.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego) |
+| EUD0001 | pid | `bri` | Income statement (inkomensverklaring) to the wallet, years 2024 and 2025 | `PID_NOT_PRESENT`, `ACTOR_NOT_ALLOWED`, `YEAR_NOT_ALLOWED` | [eud0001.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001.rego) |
+| EUD0002 | pid | `brp` | Death certificate ("akte van overlijden") to the wallet | `PID_NOT_PRESENT`, `ACTOR_NOT_ALLOWED` | [eud0002.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego) |
+| ASI0001 | pid | `brp` | Fields of the Personal Records Database (BRP) behind the ASI attributes, for the ASIP peer `…1200` only | `PID_NOT_PRESENT`, `ACTOR_NOT_ALLOWED` | [asi0001.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego) |
 
 The EUDI rules share one actor list, `designated_issuers`
 ([eudi_helper.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eudi_helper.rego#L16-L20)).
@@ -218,7 +218,7 @@ The bronhouder runs the following components:
 
 | Component | Responsibility | Implementation |
 |---|---|---|
-| GraphQL source API | The query endpoint of the source. Sources identify a citizen by BSN. The demo has three sources. Service `bri` is a Belastingdienst profile with income declarations per year. Service `brp` is a BRP profile with the persoonslijst and the akte van overlijden view. Service `lvg` is an LVG mock for the LVG pilot (`vbo(bsn, vboId) { vboId }`). | [graphql-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/graphql-server), [brp-graphql-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/brp-graphql-server), [lvg-graphql-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/lvg-graphql-server) |
+| GraphQL source API | The query endpoint of the source. Sources identify a citizen by BSN. The demo has three sources. Service `bri` is a Belastingdienst profile with income declarations per year. Service `brp` is a BRP profile with the personal record (persoonslijst) and the death certificate view. Service `lvg` is an LVG mock for the LVG pilot (`vbo(bsn, vboId) { vboId }`). | [graphql-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/graphql-server), [brp-graphql-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/brp-graphql-server), [lvg-graphql-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/lvg-graphql-server) |
 | Source gateway (bron-sidecar) | Source-owned gateway between the Inway and the API, one instance per source. Its behavior depends on the presence of a consent token. With a token, it takes the value for its own OIN from `encrypted_subject` and has the decryption component read it. It checks that the value names its own OIN. Then it replaces the placeholder. It refuses a literal subject under a token. Without a token, it passes the request through. It accepts only the transport shape the PDP judged: `POST`, one path, no query string. | [services/bron-sidecar](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/bron-sidecar), [substitution](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go), [transport.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/transport.go) |
 | Decryption component | Reads a VI or VP with the source's own keys. It calls no other service, so there is no BSNk call at query time. The demo uses the `bsnk-mock` image with only the decryption endpoints. The three demo sources share one instance and one OIN. Production needs one instance per source. | [decryption.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/decryption/decryption.go), [bsnk-mock README](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bsnk-mock/README.md) |
 | Source metadata endpoint | Serves the source-owned description at `/.well-known/gbo` over a separate FSC metadata service. | [source_metadata.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/graphql-server/source_metadata.go), [BD document](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/graphql-server/config/gbo-source-metadata.json) |
@@ -349,7 +349,7 @@ has no reference to an LDV read API or a DCAT-AP-NL entry
 The GBO configuration per source is small: one YAML file, named after the
 `source_id`. The file names where the description comes from and how GBO
 reaches the data. This is
-[sources/configured/belastingdienst.yaml](https://github.com/ICTU/GBO-demo/blob/v0.9.0/sources/configured/belastingdienst.yaml):
+[`sources/configured/belastingdienst.yaml`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/sources/configured/belastingdienst.yaml):
 
 ```yaml
 metadata_endpoint:
@@ -406,7 +406,7 @@ type Query {
 }
 ```
 
-The BRP source adds a flat view for the akte van overlijden. The selection
+The BRP source adds a flat view for the death certificate. The selection
 of the deceased partner from the marriage history is a security-sensitive
 invariant. The source holds this selection and its tests. The policy does
 not contain it
@@ -512,7 +512,7 @@ chain has the following components:
 | Component | Responsibility | Implementation |
 |---|---|---|
 | Authorization Decision Log (ADL) | The authoritative record of each PDP decision, contract decisions included. OpenFTV writes it to Postgres `ftv_adl`. Readers get a SELECT-only role. It holds the request and `{allow, reason}`. It has no policy version ([REQ-59](../requirements/logging-audit.md#req-59)) and no consent-status answer ([F-72](../traceability/findings.md#f-72)). For decisions behind the Inway, it has no trace ID and no transaction ID ([#369](https://github.com/ICTU/GBO-demo/issues/369)). | [docker-compose.yml](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L117-L125), [adl-reader.sql](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/adl/adl-reader.sql) |
-| LDV logbook | Demo stand-in for the logbook of each controller (Verantwoordelijke), one instance per controller. It accepts one record per processing (`POST /logboek/records`) and serves the read extension (`POST /data-processing-operations`). It keeps a versioned stand-in register of processing activities. It refuses any record with an elfproef-valid run of nine digits. It uses SQLite with `synchronous = FULL`. Write and read take separate tokens. | [services/ldv-logboek](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek) |
+| LDV logbook | Demo stand-in for the logbook of each controller (Verantwoordelijke), one instance per controller. It accepts one record per processing (`POST /logboek/records`) and serves the read extension (`POST /data-processing-operations`). It keeps a versioned stand-in register of processing activities. It refuses any record with a run of nine digits that passes the BSN check digit test (elfproef). It uses SQLite with `synchronous = FULL`. Write and read take separate tokens. | [services/ldv-logboek](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek) |
 | LDV client | A shared Go module. In production, GBO ships this module to chain participants. It does not ship the logbook. The client takes the trace from `traceparent`. It writes records and waits for the logbook to acknowledge them. It derives the subject in the controller's own pseudonym space. It sets `nextLogbookId` on outbound calls. A local durable outbox stores each record before delivery. As a result, a logbook outage delays records but does not fail requests. | [services/ldv-client](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-client), [outbox.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-client/outbox.go) |
 | FSC txlog | Authoritative transport record per peer (see FSC group). | [fsc-infra/docker-compose.yml](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml) |
 | Observability stack | OpenTelemetry collector, Jaeger, Promtail, Loki and Grafana. The engine's console decision log goes to Loki. These stores are for debugging only. They have no audit function. | [otel/collector-config.yaml](https://github.com/ICTU/GBO-demo/blob/v0.9.0/otel/collector-config.yaml), [OBSERVABILITY.md](https://github.com/ICTU/GBO-demo/blob/v0.9.0/OBSERVABILITY.md) |
