@@ -1,0 +1,5400 @@
+
+<!doctype html>
+<html lang="nl" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ictu.github.io/GBO-TO/latest/runtime/eudi-issuance/">
+      
+      
+        <link rel="prev" href="../dvtp-citizen-access/">
+      
+      
+        <link rel="next" href="../asi-verification/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>EUDI issuance - Gemeenschappelijke Bronontsluiting</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/pdf.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#eudi-issuance-the-pub-eaa-route" class="md-skip">
+          Ga naar inhoud
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+  
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+      href="../.."
+      title="Gemeenschappelijke Bronontsluiting"
+      class="md-header__button md-logo"
+      aria-label="Gemeenschappelijke Bronontsluiting"
+      data-md-component="logo"
+    >
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Gemeenschappelijke Bronontsluiting
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              EUDI issuance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+
+    <!-- User preference: color palette -->
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Knop voor PDF Download -->
+    <a href="javascript:void(0)"
+       onclick="downloadPDF('../../print_page/')"
+       title="Download PDF"
+       class="md-header__button md-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5zm5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5zm4-3H17v1h1.5V13H17v2h-1.5V9h3zm-6.5 0h1v3h-1zm-5 0h1v1H7z"/></svg>
+    </a>
+
+    <!-- Button to open search modal -->
+    
+      
+
+      <!-- Check if search is actually enabled - see https://t.ly/DT_0V -->
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+
+        <!-- Search interface -->
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Zoeken" placeholder="Zoeken" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Zoeken">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Leegmaken" aria-label="Leegmaken" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Zoeken initialiseren
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+
+    <!-- Repository information -->
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ICTU/GBO-TO" title="Ga naar repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ictu/gbo-to
+  </div>
+</a>
+      </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Gemeenschappelijke Bronontsluiting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO/latest/context" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Context
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO-GO/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Globaal Ontwerp
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO-PSA/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projectstartarchitectuur
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Technisch Ontwerp
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../requirements/" class="md-tabs__link">
+          
+  
+  
+  Technische Requirements
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO-Semantiek/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Semantiek
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://gbo.simulatie.datastelsel.nl/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Demo
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigatie" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Gemeenschappelijke Bronontsluiting" class="md-nav__button md-logo" aria-label="Gemeenschappelijke Bronontsluiting" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Gemeenschappelijke Bronontsluiting
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ICTU/GBO-TO" title="Ga naar repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ictu/gbo-to
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemeenschappelijke Bronontsluiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO/latest/context" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO-GO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Globaal Ontwerp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO-PSA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projectstartarchitectuur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technisch Ontwerp
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Technisch Ontwerp
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction and goals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../constraints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constraints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context and scope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../solution-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building block view
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Building block view
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_2" id="__nav_5_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GBO Basis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GBO Basis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GBO Basis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/source-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/source-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policy rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/records/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Records
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_3" id="__nav_5_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP channel
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DvTP channel
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/dvtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP channel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/dvtp/consent-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toestemmingsvoorziening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_4" id="__nav_5_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI wallet channel
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EUDI wallet channel
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/eudi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI wallet channel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/eudi/pubeaa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PubEAA provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/eudi/asi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/oots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OOTS channel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime view
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runtime view
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dvtp-consent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP consent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dvtp-query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP query
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dvtp-citizen-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP citizen access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI issuance
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhoudsopgave">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhoudsopgave
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-the-first-qr-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before the first QR code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-per-hop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data per hop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-endpoints-of-the-adapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public endpoints of the adapter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-callback-gap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The callback gap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error paths
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-person-attestation-akte-van-overlijden" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related-person attestation: akte van overlijden
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#not-built-in-demo-v090" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not built in demo v0.9.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traceability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traceability
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asi-verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admission and activation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../policy-distribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policy distribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design-level/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design-level scenarios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment view
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crosscutting concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Crosscutting concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/consent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/pseudonymization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pseudonymization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/source-onboarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source onboarding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/identity-trust/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity and trust
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/policy-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policy lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging, audit and traceability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture decisions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture decisions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_2" id="__nav_5_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accepted
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Accepted
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0001-graphql-source-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0001 GraphQL source access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0002-opa-rego-authzen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0002 OPA/Rego and AuthZEN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0003-fsc-connectivity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0003 FSC connectivity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0004-federated-authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0004 Federated authorization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0005-bsnk-pp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0005 BSNk PP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0009-closed-world-rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0009 Closed-world rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0013-pdp-request-mapper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0013 PDP request mapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0015-contract-acceptance-by-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0015 Contract acceptance by policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0016-source-owned-metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0016 Source-owned metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0017-gbo-simple-v1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0017 gbo-simple-v1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0018-eudi-disclosure-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0018 EUDI disclosure issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0020-as4-bridge-for-oots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0020 AS4 bridge for OOTS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0021-central-pap-signed-bundles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0021 Policy management per source holder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0023-identity-convergence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0023 Organization identity and EUDI certificate roles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0026-ldv-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0026 LDV logbook per controller
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0031-regime-from-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0031 Regime from evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0032-consent-proof/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0032 Consent proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0033-gateway-decrypts-after-allow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0033 Gateway decrypts after allow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0034-integrator-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0034 Integrator delegation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0035-w3c-trace-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0035 W3C Trace Context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0036-adl-decision-record/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0036 ADL decision record
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0037-asi-oauth-front-door/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0037 ASI OAuth front door
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0038-asi-data-service-per-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0038 ASI data service per source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0039-asi-source-described-attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0039 ASI source-described attributes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_3" id="__nav_5_9_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proposed
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proposed
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0024-canonical-semantic-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0024 Canonical semantic models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0025-graphql-fds-datadienst/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0025 GraphQL FDS datadienst
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0027-onboarding-toolkit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0027 Onboarding toolkit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0028-pubeaa-productization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0028 PubEAA productization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0040-route-d-citizen-recognition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0040 Route D citizen recognition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0041-asi-seal-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0041 ASI seal format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0042-asi-attribute-token-binding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0042 ASI attribute token binding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0043-identifiers-out-of-pdp-input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0043 Identifiers out of PDP input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_4" id="__nav_5_9_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deferred
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deferred
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0022-sector-grants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0022 Sector grants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_5" id="__nav_5_9_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Superseded
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Superseded
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0006-consent-register-as-pip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0006 Consent register as PIP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0007-consent-signed-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0007 Consent signed token
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0008-dienstencatalogus-ceiling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0008 Dienstencatalogus ceiling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0010-pep-bsn-resolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0010 PEP BSN resolution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0011-sidecar-pseudonym-resolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0011 Sidecar pseudonym resolution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0012-opa-graphql-parse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0012 OPA graphql.parse_query
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0014-provider-signed-flow-claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0014 Provider-signed flow claims
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0019-fsc-transaction-id-tracing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0019 FSC transaction ID tracing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0029-authentic-source-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0029 Authentic Source Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0030-grant-properties/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0030 Grant properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../risks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risks and technical debt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technische Requirements
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Technische Requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization and data access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/logging-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging and audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/admission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admission and connection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/sources-identity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sources and identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/consent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consent (DvTP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/pseudonymization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pseudonymization and BSNk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/eudi-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/asi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentic Source Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Traceability
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Traceability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../traceability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to trace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../traceability/coverage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coverage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../traceability/matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design to demo matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../traceability/increments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo increments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../traceability/findings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings (open)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../traceability/findings-closed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings (closed)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../traceability/open-questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../traceability/answered-questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Answered questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../traceability/standards-feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO-Semantiek/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semantiek
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://gbo.simulatie.datastelsel.nl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+  <nav class="md-path" aria-label="Navigatie" >
+    <ol class="md-path__list">
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../.." class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Technisch Ontwerp
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Runtime view
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="eudi-issuance-the-pub-eaa-route">EUDI issuance: the PuB-EAA route<a class="headerlink" href="#eudi-issuance-the-pub-eaa-route" title="Permanent link">&para;</a></h1>
+<p>A citizen scans a QR code, shares the PID from the NL Wallet, and gets an
+attestation with data from an authentic source. The bronhouder is the
+PuB-EAA provider. GBO operates the technical issuance facility
+(<a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>,
+<a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>).
+The decision for this route is
+<a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>.</p>
+<p>One issuance in gbo-demo
+<a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0">v0.9.0</a> has hops, data on
+each hop, and error paths. The following sections give these details and do
+not explain the concepts again. For the concepts, see these pages:</p>
+<ul>
+<li>The components: <a href="../../building-blocks/components/#level-2-eudi-chain">Level 2: EUDI chain</a>.</li>
+<li>The regime: <a href="../../concepts/authorization/#regime-selection">Regime selection</a>.</li>
+<li>The source description and its release:
+  <a href="../../concepts/source-onboarding/">Source onboarding</a>.</li>
+<li>The certificates: <a href="../../concepts/identity-trust/#eudi-trust-roles">EUDI trust roles</a>.</li>
+<li>The BSN in this route:
+  <a href="../../concepts/pseudonymization/#exception-the-bsn-in-the-eudi-and-asi-routes">Exception: the BSN in the EUDI and ASI routes</a>.</li>
+</ul>
+<h2 id="before-the-first-qr-code">Before the first QR code<a class="headerlink" href="#before-the-first-qr-code" title="Permanent link">&para;</a></h2>
+<p>The route runs only from an active source release. For each source, the
+release holds these items:</p>
+<ul>
+<li>The offers.</li>
+<li>The GraphQL query and its parameters.</li>
+<li>The claims.</li>
+<li>The display texts.</li>
+<li>A reference to the certificate set.</li>
+</ul>
+<p>GBO generates the issuance configuration and the Type Metadata from the
+release (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>,
+<a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a>,
+<a href="../../decisions/0017-gbo-simple-v1/">ADR-0017</a>). A valid FSC contract does
+not activate a source (<a href="../../requirements/sources-identity/#req-65">REQ-65</a>).
+For that run, see <a href="../admission/">Admission and activation</a>. If no release
+is active, no offer exists and the portal shows no QR code.</p>
+<p>The demo has two attestation types:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Source (<code>source_id</code>)</th>
+<th>FSC service</th>
+<th>Rule</th>
+<th>Offers</th>
+<th>Subject of the data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inkomensverklaring</td>
+<td><code>belastingdienst</code></td>
+<td><code>bri</code></td>
+<td>EUD0001</td>
+<td><code>jaar</code> 2024 and 2025</td>
+<td>The PID holder</td>
+</tr>
+<tr>
+<td>Akte van overlijden</td>
+<td><code>rvig</code></td>
+<td><code>brp</code></td>
+<td>EUD0002</td>
+<td>One, without parameters</td>
+<td>The deceased partner of the PID holder (<a href="#related-person-attestation-akte-van-overlijden">related-person attestation</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>The offers come from the source documents
+(<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/graphql-server/config/gbo-source-metadata.json">BD</a>,
+<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/brp-graphql-server/config/gbo-source-metadata.json">BRP</a>).
+In the default demo, both sources are on the Belastingdienst peer <code>…0200</code>
+(<a href="../../deployment/#fsc-peers">FSC peers</a>).</p>
+<h2 id="sequence">Sequence<a class="headerlink" href="#sequence" title="Permanent link">&para;</a></h2>
+<p>The sequence shows the income declaration for 2024, cross-device.</p>
+<div class="mermaid">sequenceDiagram
+    autonumber
+    box rgb(221,235,247) Citizen
+      actor C as Citizen
+    end
+    box rgb(241,239,232) Portal and wallet
+      participant DP as Developer portal&lt;br/&gt;(QR panel)
+      participant W as NL Wallet
+    end
+    box rgb(255,237,213) EUDI issuance
+      participant IS as Issuance server&lt;br/&gt;(nl-wallet)
+      participant AD as EUDI adapter
+    end
+    box rgb(237,233,254) Records
+      participant LB as Adapter logbook&lt;br/&gt;(LDV)
+    end
+    box rgb(220,252,231) GBO Basis
+      participant OW as edi-outway&lt;br/&gt;(peer …0100)
+      participant MG as edi-manager
+      participant IW as bd-inway&lt;br/&gt;(PEP, peer …0200)
+      participant PDP as OpenFTV PDP&lt;br/&gt;(EUD0001)
+      participant GW as Source gateway&lt;br/&gt;(bron-sidecar)
+    end
+    box rgb(221,235,247) Source
+      participant SRC as Source API&lt;br/&gt;(graphql-server)
+    end
+
+    DP-&gt;&gt;AD: GET /eudi-offers.json
+    AD--&gt;&gt;DP: Offers of the active release
+    C-&gt;&gt;DP: Choose an offer
+    DP--&gt;&gt;C: QR code and same-device link
+    C-&gt;&gt;W: Scan the QR code
+    W-&gt;&gt;IS: POST /disclosure/offer/request_uri
+    IS--&gt;&gt;W: Request signed with the reader&lt;br/&gt;certificate of the source: PID claim bsn
+    W-&gt;&gt;W: Citizen sees the source&lt;br/&gt;and shares the PID
+    W-&gt;&gt;IS: Presentation: PID as SD-JWT VC
+    IS-&gt;&gt;IS: Check the PID against&lt;br/&gt;issuer_trust_anchors
+    IS-&gt;&gt;AD: POST /attestations/belastingdienst/inkomensverklaring?jaar=2024&lt;br/&gt;disclosed attributes with the BSN
+    AD-&gt;&gt;AD: Active release: binding, freshness,&lt;br/&gt;BSN from the PID
+    AD-&gt;&gt;LB: Record pid-bsn-extractie
+    AD-&gt;&gt;AD: Query plan: offer parameters,&lt;br/&gt;BSN as subject variable
+    AD-&gt;&gt;OW: POST /graphql with Fsc-Grant-Hash,&lt;br/&gt;Fsc-Transaction-Id, traceparent
+    OW-&gt;&gt;MG: Access token for the contract
+    MG--&gt;&gt;OW: Certificate-bound access token
+    OW-&gt;&gt;IW: mTLS, Fsc-Authorization, same body
+    IW-&gt;&gt;PDP: POST /authzen/v1/evaluation with the body
+    PDP--&gt;&gt;IW: Allow per field, ADL record
+    IW-&gt;&gt;GW: Query
+    GW-&gt;&gt;SRC: Query unchanged, no consent token
+    SRC--&gt;&gt;AD: Result, back through gateway,&lt;br/&gt;Inway and Outway
+    AD-&gt;&gt;AD: Projection with gbo-simple-v1
+    AD-&gt;&gt;LB: Record attestatie-samenstellen
+    AD--&gt;&gt;IS: Document: VCT, claims, dc+sd-jwt
+    IS--&gt;&gt;W: Credential over OpenID4VCI, signed&lt;br/&gt;with the issuer certificate of the source
+    W-&gt;&gt;W: Citizen accepts the attestation</div>
+<h2 id="data-per-hop">Data per hop<a class="headerlink" href="#data-per-hop" title="Permanent link">&para;</a></h2>
+<p>The table marks personal data in <strong>bold</strong>. The hop numbers refer to the
+steps of the sequence:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>From → To</th>
+<th>Endpoint</th>
+<th>Data</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 to 2</td>
+<td>Portal → adapter</td>
+<td><code>GET /eudi-offers.json</code> (through the portal proxy)</td>
+<td>Per offer: key, label, <code>source_id</code>, <code>type_id</code>, and parameters</td>
+<td>No personal data. The adapter serves the offers of the active release (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L95-L104"><code>source_release_runtime.go#L95-L104</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/developer-portal/nginx.conf#L43-L49"><code>nginx.conf#L43-L49</code></a>).</td>
+</tr>
+<tr>
+<td>3 to 4</td>
+<td>Citizen ↔ portal</td>
+<td>—</td>
+<td>In: the chosen offer. Out: a universal link with <code>request_uri</code></td>
+<td>The portal builds the link in the browser (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/developer-portal/src/eudi.ts#L42-L51"><code>eudi.ts#L42-L51</code></a>). The QR code is public, so any person can scan it. This is the only initiation route in the demo.</td>
+</tr>
+<tr>
+<td>5 to 7</td>
+<td>Wallet ↔ issuance server</td>
+<td><code>POST /disclosure/&lt;offer&gt;/request_uri</code></td>
+<td>The disclosure request</td>
+<td>The request asks for one PID claim, <code>bsn</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_config.go#L162"><code>issuance_config.go#L162</code></a>). The reader certificate of the source names the issuer and the purpose (<a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>).</td>
+</tr>
+<tr>
+<td>8 to 10</td>
+<td>Wallet → issuance server</td>
+<td>OpenID4VP</td>
+<td><strong>PID</strong> with the <strong>BSN</strong></td>
+<td>The issuance server checks the presentation against <code>issuer_trust_anchors</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/config/issuance_server.toml.example#L3-L9"><code>issuance_server.toml.example#L3-L9</code></a>). That list also holds non-PID anchors (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>). The approval in the wallet is no legal basis (<a href="../../traceability/findings/#f-83">F-83</a>).</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Issuance server → adapter</td>
+<td><code>POST /attestations/{sourceID}/{typeID}?&lt;offer parameters&gt;</code></td>
+<td><strong>Disclosed attributes</strong>, <code>urn:eudi:pid:nl:1</code> with the <strong>BSN</strong></td>
+<td>Public HTTPS (an ISRG-rooted certificate, through a tunnel). The route has no caller authentication (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L69-L81"><code>source_release_runtime.go#L69-L81</code></a>, <a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>). For more information, see <a href="#the-callback-gap">The callback gap</a>.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Adapter (internal)</td>
+<td>Active release</td>
+<td>In: path and body. Out: the <strong>BSN</strong></td>
+<td>The binding of <code>sourceID</code> and <code>typeID</code> must exist in the active release. The adapter takes the BSN from the PID and does not check a signature (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L143-L162"><code>main.go#L143-L162</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L23-L26"><code>#L23-L26</code></a>).</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Adapter → logbook</td>
+<td>LDV write</td>
+<td>Record <code>dataverwerking.pid-bsn-extractie</code></td>
+<td>The record names the data subject by a pseudonym that is local to the logbook. It does not hold the BSN. If the logbook does not acknowledge the record, the adapter does not call the source (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L256-L262"><code>main.go#L256-L262</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_issuance.go#L101-L147"><code>ldv_issuance.go#L101-L147</code></a>, <a href="../../requirements/logging-audit/#req-72">REQ-72</a>).</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Adapter (internal)</td>
+<td>Query plan</td>
+<td>In: the offer parameters and the query of the release. Out: <code>{query, variables: {bsn, jaar}}</code></td>
+<td>The parameters must match a published offer exactly (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L272-L298"><code>source_metadata.go#L272-L298</code></a>). The adapter has no query or mapping of its own (<a href="../../requirements/authorization/#req-44">REQ-44</a>).</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Adapter → edi-outway</td>
+<td><code>POST {outway}/graphql</code></td>
+<td><code>{query, variables}</code> with the <strong>BSN</strong>, and the headers <code>Fsc-Grant-Hash</code>, <code>Fsc-Transaction-Id</code>, and <code>traceparent</code></td>
+<td>The adapter checks that the source document names the contracted service (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L466-L503"><code>main.go#L466-L503</code></a>). No <code>X-GBO-Scope</code> and no <code>flow</code>. The txlog and the trace carry the transaction ID. The ADL record behind the Inway gets its own trace and no transaction ID (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>, <a href="../../requirements/logging-audit/#req-55">REQ-55</a>, <a href="../../decisions/0035-w3c-trace-context/">ADR-0035</a>).</td>
+</tr>
+<tr>
+<td>16 to 17</td>
+<td>edi-outway ↔ edi-manager</td>
+<td>FSC access token</td>
+<td>In: the grant hash. Out: a certificate-bound token</td>
+<td>The Outway caches the token. The grant carries no properties.</td>
+</tr>
+<tr>
+<td>18</td>
+<td>edi-outway → bd-inway</td>
+<td>FSC, mTLS</td>
+<td>Body 1:1 with the <strong>BSN</strong></td>
+<td>Every channel goes through FSC with a valid certificate (<a href="../../requirements/sources-identity/#req-46">REQ-46</a>).</td>
+</tr>
+<tr>
+<td>19</td>
+<td>bd-inway → PDP</td>
+<td><code>POST /authzen/v1/evaluation</code></td>
+<td>AuthZEN envelope: Outway peer <code>…0100</code>, service <code>bri</code>, and the body with the <strong>BSN</strong></td>
+<td>The Inway is the PEP. The mapper parses the GraphQL and does not call BSNk (<a href="../../concepts/authorization/#regime-selection">Regime selection</a>).</td>
+</tr>
+<tr>
+<td>20</td>
+<td>PDP → bd-inway</td>
+<td>AuthZEN response</td>
+<td>Allow or deny, per field</td>
+<td>The request has no consent token, so the PID regime applies. EUD0001 checks the designated issuer, the BSN in the root argument, and <code>allowed_years</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001.rego#L45-L75"><code>eud0001.rego#L45-L75</code></a>, <a href="../../requirements/authorization/#req-74">REQ-74</a>, <a href="../../requirements/authorization/#req-97">REQ-97</a>). The PDP writes the BSN to the ADL and the console decision log (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>).</td>
+</tr>
+<tr>
+<td>21 to 22</td>
+<td>bd-inway → gateway → source</td>
+<td><code>POST /graphql</code></td>
+<td>The judged query with the <strong>BSN</strong></td>
+<td>The request has no consent token, so the gateway passes it through unchanged (<a href="../../building-blocks/components/#level-2-bronhouder">Level 2: bronhouder</a>). The source logs its own processing.</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Source → adapter</td>
+<td>GraphQL response</td>
+<td><strong>Income data</strong> for the year</td>
+<td>Back through the same FSC chain, 1:1.</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Adapter (internal)</td>
+<td>gbo-simple-v1</td>
+<td>In: the response at <code>result_pointer</code>. Out: flat <strong>claims</strong></td>
+<td>Exactly one result gives claims. Zero results is <code>no_data</code>. Any error gives no attestation (<a href="../../requirements/eudi-issuance/#req-116">REQ-116</a>). Only scalar claims (<a href="../../requirements/eudi-issuance/#req-78">REQ-78</a>).</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Adapter → logbook</td>
+<td>LDV write</td>
+<td>Record <code>dataverwerking.attestatie-samenstellen</code></td>
+<td>The record names the number of claims without their values. It points at the logbook of the source. The adapter writes it for every outcome after the call to the source. If the logbook does not acknowledge the record, the adapter withholds the answer (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L283-L292"><code>main.go#L283-L292</code></a>).</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Adapter → issuance server</td>
+<td>Response to hop 11</td>
+<td><code>[{attestation_type: &lt;VCT&gt;, attributes, format: "dc+sd-jwt", id}]</code> with the <strong>claims</strong></td>
+<td>The VCT is the URL of the generated Type Metadata (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L319-L334"><code>main.go#L319-L334</code></a>).</td>
+</tr>
+<tr>
+<td>27 to 28</td>
+<td>Issuance server → wallet</td>
+<td>OpenID4VCI</td>
+<td><strong>Attestation</strong> (SD-JWT VC)</td>
+<td>Signed with the issuer certificate of the source. Valid 365 days, with one status list per type (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_config.go#L166-L180"><code>issuance_config.go#L166-L180</code></a>, <a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>). The wallet shows the issuer from the certificate.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-endpoints-of-the-adapter">Public endpoints of the adapter<a class="headerlink" href="#public-endpoints-of-the-adapter" title="Permanent link">&para;</a></h2>
+<p>The adapter serves three routes on one listener
+(<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L59-L106"><code>source_release_runtime.go#L59-L106</code></a>):</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Caller</th>
+<th>Content</th>
+<th>When the release is not available</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /eudi-offers.json</code></td>
+<td>Developer portal, consumer frontends</td>
+<td>The offer catalog</td>
+<td>503 for all sources, also when only one source is past its grace period</td>
+</tr>
+<tr>
+<td><code>GET /types/{sourceID}/{typeID}/v{version}</code></td>
+<td>Wallet, relying parties</td>
+<td>The SD-JWT VC Type Metadata that GBO generates from the claims. Its URL is the VCT.</td>
+<td>503</td>
+</tr>
+<tr>
+<td><code>POST /attestations/{sourceID}/{typeID}</code></td>
+<td>Issuance server</td>
+<td>The attestation callback</td>
+<td>503</td>
+</tr>
+</tbody>
+</table>
+<p>The issuance server installs the same Type Metadata bytes and computes
+<code>vct#integrity</code> over them. A change to the claims or the display needs a
+different <code>type_version</code>
+(<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/type_metadata.go#L17-L40"><code>type_metadata.go#L17-L40</code></a>,
+<a href="../../concepts/source-onboarding/#the-eudi-capability-claims-once-type-metadata-generated">The <code>eudi</code> capability</a>).</p>
+<h2 id="the-callback-gap">The callback gap<a class="headerlink" href="#the-callback-gap" title="Permanent link">&para;</a></h2>
+<p>The issuance server checks the PID. The adapter does not know that the
+request comes from the issuance server. No mechanism binds the BSN in hop
+11 to a checked disclosure (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>,
+<a href="../../traceability/open-questions/#q-18">Q-18</a>,
+<a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>). The demo uses this
+gap itself. The developer portal has a playground that posts a typed BSN
+to the adapter
+(<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/developer-portal/src/components/EudiQrPanel.tsx#L36-L51"><code>EudiQrPanel.tsx#L36-L51</code></a>,
+<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/developer-portal/nginx.conf#L36-L42"><code>nginx.conf#L36-L42</code></a>).</p>
+<div class="mermaid">sequenceDiagram
+    autonumber
+    box rgb(241,239,232) Caller
+      participant X as Any caller&lt;br/&gt;that reaches the adapter
+    end
+    box rgb(255,237,213) EUDI
+      participant AD as EUDI adapter
+    end
+    box rgb(220,252,231) GBO Basis
+      participant OW as edi-outway&lt;br/&gt;(designated issuer)
+      participant PDP as PDP&lt;br/&gt;(EUD0001)
+    end
+    box rgb(221,235,247) Source
+      participant SRC as Source
+    end
+
+    X-&gt;&gt;AD: POST /attestations/belastingdienst/inkomensverklaring?jaar=2024&lt;br/&gt;body with any BSN, no wallet
+    AD-&gt;&gt;OW: Query with that BSN
+    OW-&gt;&gt;PDP: Actor …0100, no consent token
+    PDP--&gt;&gt;OW: Allow: designated issuer, BSN present
+    SRC--&gt;&gt;AD: Income data of that person
+    AD--&gt;&gt;X: Claims, without any wallet</div>
+<p>The data on each hop of this gap is as follows:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Data</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Any BSN</strong></td>
+<td>No caller authentication, and no proof of a checked disclosure.</td>
+</tr>
+<tr>
+<td>2 to 4</td>
+<td><strong>BSN</strong></td>
+<td>The request has no consent token, so it enters the PID regime. The only gate of this regime is the list of designated issuers (<a href="../../traceability/findings/#f-70">F-70</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eudi_helper.rego#L13-L30"><code>eudi_helper.rego#L13-L30</code></a>).</td>
+</tr>
+<tr>
+<td>5 to 6</td>
+<td><strong>Income data</strong></td>
+<td>The caller gets the projected claims.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../../traceability/increments/#sl-25">SL-25</a> removed the PID check from the
+adapter, because the issuance server checks the PID. The issuance server
+checks the signature, so the gap is in the callback. REQ-45 names two
+fixes:</p>
+<ul>
+<li>The adapter checks the SD-JWT itself.</li>
+<li>The issuance server authenticates the callback and delivers signed
+  evidence.</li>
+</ul>
+<p>Both fixes need the binding of the disclosure to the request. The reference
+QTSP callback on the same issuance server uses a secret path over CA-pinned
+HTTPS
+(<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/qtsp_issuance.go#L134-L152"><code>qtsp_issuance.go#L134-L152</code></a>,
+<a href="../asi-verification/#test-statement-to-the-wallet">ASI verification</a>).</p>
+<h2 id="error-paths">Error paths<a class="headerlink" href="#error-paths" title="Permanent link">&para;</a></h2>
+<p>The consumer of the adapter is the issuance server. The issuance server
+gets only the HTTP status. The details are in the adapter log (<code>stage</code>).
+For a PDP deny, the details are also in the ADL.</p>
+<p>The FSC Inway removes the reason of a deny
+(<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/ftv-graphql-profile.md#L93-L95"><code>ftv-graphql-profile.md#L93-L95</code></a>).
+In every error path, no attestation reaches the wallet. The error paths
+have these triggers and outcomes:</p>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Outcome</th>
+<th>Pinned by (v0.9.0)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The release is past its grace period for one source</td>
+<td><code>GET /eudi-offers.json</code> gives 503 for every source. The portal shows no QR code.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L95-L100"><code>source_release_runtime.go#L95-L100</code></a></td>
+</tr>
+<tr>
+<td>The adapter cannot load a release</td>
+<td>503 <code>source activations unavailable</code></td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L70-L74"><code>source_release_runtime.go#L70-L74</code></a></td>
+</tr>
+<tr>
+<td><code>sourceID</code> or <code>typeID</code> not in the active release</td>
+<td>404</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L75-L79"><code>source_release_runtime.go#L75-L79</code></a></td>
+</tr>
+<tr>
+<td>Source metadata missing, expired, or past the stale grace (15 min fresh, 1 h grace)</td>
+<td>503 <code>source metadata unavailable</code>, for this source only (<a href="../../requirements/sources-identity/#req-66">REQ-66</a>)</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L221-L225"><code>main.go#L221-L225</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata_cache.go#L10-L14"><code>source_metadata_cache.go#L10-L14</code></a></td>
+</tr>
+<tr>
+<td>Body unreadable, or no disclosed attestation in it</td>
+<td>400</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L234-L246"><code>main.go#L234-L246</code></a></td>
+</tr>
+<tr>
+<td>PID without a BSN</td>
+<td>400 <code>no BSN in disclosed PID</code>. The adapter logs nothing and does not call the source.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L249-L253"><code>main.go#L249-L253</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L402"><code>ldv_test.go#L402</code></a></td>
+</tr>
+<tr>
+<td>The logbook does not acknowledge the LDV record of hop 13</td>
+<td>500. The adapter does not call the source.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L256-L262"><code>main.go#L256-L262</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L354"><code>ldv_test.go#L354</code></a></td>
+</tr>
+<tr>
+<td>Offer parameters outside the published offer (for example <code>jaar=2023</code>)</td>
+<td>400 <code>invalid attestation parameters</code></td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L263-L268"><code>main.go#L263-L268</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main_test.go#L434"><code>main_test.go#L434</code></a></td>
+</tr>
+<tr>
+<td>PDP deny: the caller is not a designated issuer</td>
+<td><code>ACTOR_NOT_ALLOWED</code> in the ADL. The adapter answers 502.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001_test.rego#L65"><code>eud0001_test.rego#L65</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002_test.rego#L36"><code>eud0002_test.rego#L36</code></a></td>
+</tr>
+<tr>
+<td>PDP deny: no BSN, or a placeholder, in the root argument</td>
+<td><code>PID_NOT_PRESENT</code>. The adapter answers 502.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001_test.rego#L71-L80"><code>eud0001_test.rego#L71-L80</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002_test.rego#L42"><code>eud0002_test.rego#L42</code></a></td>
+</tr>
+<tr>
+<td>PDP deny: the request carries a consent token</td>
+<td><code>PID_NOT_PRESENT</code>. The adapter answers 502.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001_test.rego#L83"><code>eud0001_test.rego#L83</code></a></td>
+</tr>
+<tr>
+<td>PDP deny: a year outside <code>allowed_years</code>, or no year filter</td>
+<td><code>YEAR_NOT_ALLOWED</code>. The adapter answers 502.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001_test.rego#L39-L58"><code>eud0001_test.rego#L39-L58</code></a></td>
+</tr>
+<tr>
+<td>PDP deny: a field outside the rule (closed world)</td>
+<td><code>FIELD_NOT_PERMITTED</code> or <code>NO_APPLICABLE_RULE</code>. The adapter answers 502.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L282"><code>engine.rego#L282</code></a>, <a href="../../concepts/authorization/#rule-model">Rule model</a></td>
+</tr>
+<tr>
+<td>Chain unreachable, non-200 answer, or GraphQL errors</td>
+<td>502 <code>source request failed</code>. The adapter does not pass on the upstream body. The assembly record has status ERROR.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L294-L300"><code>main.go#L294-L300</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main_test.go#L444"><code>main_test.go#L444</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L267"><code>ldv_test.go#L267</code></a></td>
+</tr>
+<tr>
+<td>Result does not fit the claims: <code>GBO_SIMPLE_PATH_MISSING</code>, <code>GBO_SIMPLE_TYPE_MISMATCH</code>, <code>GBO_SIMPLE_RESULT_TYPE</code></td>
+<td>502 <code>source response could not be projected</code>. No partial attestation. The code is only in the adapter log.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L302-L308"><code>main.go#L302-L308</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/internal/gbosimplev1/profile.go#L33-L37"><code>profile.go#L33-L37</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/internal/gbosimplev1/testdata/cases.json#L96-L125"><code>cases.json#L96-L125</code></a></td>
+</tr>
+<tr>
+<td>More than one result</td>
+<td>502 with <code>GBO_SIMPLE_RESULT_AMBIGUOUS</code></td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/internal/gbosimplev1/testdata/cases.json#L89-L93"><code>cases.json#L89-L93</code></a></td>
+</tr>
+<tr>
+<td>No result (<code>no_data</code>)</td>
+<td>404 <code>source has no data for this subject and parameters</code>. The adapter still writes the assembly record, with zero claims.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L310-L315"><code>main.go#L310-L315</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/internal/gbosimplev1/testdata/cases.json#L82-L86"><code>cases.json#L82-L86</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L505"><code>ldv_test.go#L505</code></a></td>
+</tr>
+<tr>
+<td>The logbook does not acknowledge the LDV record of hop 25</td>
+<td>500. The adapter withholds the attestation.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L284-L292"><code>main.go#L284-L292</code></a></td>
+</tr>
+<tr>
+<td>Missing or incomplete certificate set of a source</td>
+<td>The issuance facility blocks the source (<code>CERTIFICATE_SET_NOT_FOUND</code>, <code>CERTIFICATE_SET_INVALID</code>). Other sources continue to work.</td>
+<td><a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>, <a href="../../concepts/source-onboarding/#a-certificate-set-per-source">A certificate set per source</a></td>
+</tr>
+<tr>
+<td>A caller posts a body with any BSN directly to the adapter</td>
+<td>Allowed in demo v0.9.0. The source answers, and the caller gets the claims.</td>
+<td>Not built: <a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>, <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="related-person-attestation-akte-van-overlijden">Related-person attestation: akte van overlijden<a class="headerlink" href="#related-person-attestation-akte-van-overlijden" title="Permanent link">&para;</a></h2>
+<p>The akte van overlijden holds data about the deceased partner of the
+citizen who shares the PID. The subject of the claims differs from the
+person who discloses the PID (<a href="../../traceability/findings/#f-47">F-47</a>,
+<a href="../../requirements/eudi-issuance/#req-57">REQ-57</a>,
+<a href="../../traceability/increments/#sl-43">SL-43</a>). The run is the same as the
+run in the preceding sections, with these differences per hop:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11</td>
+<td><code>POST /attestations/rvig/akte-van-overlijden</code>, without parameters.</td>
+</tr>
+<tr>
+<td>14 to 15</td>
+<td>The query is <code>akteVanOverlijden(bsn: $bsn)</code> with the BSN of the PID holder, on service <code>brp</code>.</td>
+</tr>
+<tr>
+<td>19 to 20</td>
+<td>EUD0002 decides. It grants a closed list of output fields and checks the BSN in the root argument. It has no year check (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego#L20-L66"><code>eud0002.rego#L20-L66</code></a>).</td>
+</tr>
+<tr>
+<td>21 to 22</td>
+<td>The gateway is <code>brp-sidecar</code>, and the source is <code>brp-graphql-server</code>.</td>
+</tr>
+<tr>
+<td>22 to 23</td>
+<td>The source resolves the relation itself. It selects the marriage that ended by the death of the partner. If the partner died on a different date than the dissolution, the source returns nothing. Then the adapter answers 404 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/brp-graphql-server/main_test.go#L183"><code>main_test.go#L183</code></a>).</td>
+</tr>
+<tr>
+<td>25</td>
+<td>The deceased is not a data subject under the GDPR. The source logs the requester and the living parents (<a href="../../requirements/admission/#av-10">AV-10</a>).</td>
+</tr>
+</tbody>
+</table>
+<p>The PDP sees only the flat output of the source view. It does not see the
+relation. The relation depends on the source and on the subject from the
+PID. Because of the callback gap, a caller can ask for the akte for any
+BSN.</p>
+<p>The preferred design puts the relation in filter arguments of the
+published schema. The policy then requires these arguments with fixed
+values (<a href="https://github.com/ICTU/GBO-demo/issues/425">#425</a>,
+<a href="../../traceability/open-questions/#q-14">Q-14</a>). In demo v0.9.0, the source
+description does not mark the relation.</p>
+<h2 id="observations">Observations<a class="headerlink" href="#observations" title="Permanent link">&para;</a></h2>
+<p>The run of an issuance in demo v0.9.0 shows these facts:</p>
+<ul>
+<li>The regime follows from the evidence. A request without a consent token
+  goes into the PID regime. That regime has no positive evidence of its
+  own. Its only gate is the list of designated issuers. This list must stay
+  disjoint from the consent consumers
+  (<a href="../../requirements/authorization/#req-74">REQ-74</a>,
+  <a href="../../traceability/findings/#f-70">F-70</a>,
+  <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>). A test pins the
+  disjointness only for the seeded consumers
+  (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L366-L376"><code>engine_test.rego#L366-L376</code></a>).</li>
+<li>The PID check and the source query have no link. The issuance server
+  checks the PID. The adapter callback has no authentication
+  (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>,
+  <a href="../../traceability/open-questions/#q-18">Q-18</a>). The PID trust list also
+  trusts the GBO development CA and the issuer CA of every source.</li>
+<li>The BSN is in the decision logs. The adapter puts the plain BSN in the
+  query variables. As a result, the BSN is in the PDP input, the ADL, and
+  the console decision log
+  (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>,
+  <a href="../../traceability/findings/#f-54">F-54</a>,
+  <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>,
+  <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>). The LDV records
+  of the adapter hold no BSN.</li>
+<li>The offer and the policy are independent limits. The source offers 2024
+  and 2025. EUD0001 allows 2024 and 2025. A request for 2023 fails at the
+  adapter (no offer). The PDP also denies it (<code>YEAR_NOT_ALLOWED</code>).
+  Publication by a source does not authorize the published data
+  (<a href="../../traceability/findings/#f-74">F-74</a>).</li>
+<li>The adapter holds no knowledge of a source. The query, the parameters,
+  the claims, the display, and the Type Metadata come from the release
+  (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>,
+  <a href="../../traceability/findings/#f-57">F-57</a>). The source decides through its
+  own PDP (<a href="../../requirements/authorization/#req-44">REQ-44</a>).</li>
+<li>No partial attestation exists. Any projection error gives 502 and no
+  attestation (<a href="../../requirements/eudi-issuance/#req-116">REQ-116</a>). The
+  issuance server sees no reason code.</li>
+<li>The validity is fixed. Every source attestation is valid 365 days. GBO
+  has no change feed from the source. As a result, GBO cannot revoke an
+  attestation when the source data changes
+  (<a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>,
+  <a href="../../traceability/findings/#f-82">F-82</a>).</li>
+<li>Correlation works, with one gap. The adapter sends one
+  <code>Fsc-Transaction-Id</code> and a <code>traceparent</code>. The txlog, the LDV records of
+  the adapter and the source, and the trace share them. The ADL record
+  behind the Inway has its own trace and no transaction ID
+  (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>)
+  (<a href="../../requirements/logging-audit/#req-55">REQ-55</a>,
+  <a href="../../concepts/logging/#reading-a-chain">Reading a chain</a>).</li>
+</ul>
+<h2 id="not-built-in-demo-v090">Not built in demo v0.9.0<a class="headerlink" href="#not-built-in-demo-v090" title="Permanent link">&para;</a></h2>
+<p>Demo v0.9.0 does not have these items:</p>
+<ul>
+<li>An authenticated callback, and the binding of the disclosure to the
+  source query
+  (<a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>,
+  <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>).</li>
+<li>A PID trust list with PID-provider anchors only.</li>
+<li>The BSN out of the PDP input
+  (<a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>,
+  <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>, proposed).</li>
+<li>Validity and revocation per type, set by the bronhouder, with revocation
+  on instruction or on a change in the source
+  (<a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>,
+  <a href="../../requirements/admission/#av-12">AV-12</a>,
+  <a href="../../requirements/admission/#av-13">AV-13</a>).</li>
+<li>Nested claims (<a href="../../requirements/eudi-issuance/#req-78">REQ-78</a>), and
+  traceability of the mapping version per attestation
+  (<a href="../../requirements/eudi-issuance/#req-124">REQ-124</a>).</li>
+<li>The relation as filter arguments, and its marking in the source
+  description (<a href="https://github.com/ICTU/GBO-demo/issues/425">#425</a>,
+  <a href="../../requirements/eudi-issuance/#req-57">REQ-57</a>).</li>
+<li>
+<p>The regulatory frame for PuB-EAA issuance
+  (<a href="../../traceability/findings/#f-81">F-81</a>,
+  <a href="../../traceability/open-questions/#q-28">Q-28</a>). This frame has these
+  parts:</p>
+<ul>
+<li>Designation.</li>
+<li>A registration certificate.</li>
+<li>A qualified seal in a QSCD.</li>
+<li>Conformity with ETSI TS 119 471 and TS 119 472-3.</li>
+</ul>
+<p>The trust list for PuB-EAA providers is open
+(<a href="../../traceability/open-questions/#q-30">Q-30</a>). Key custody is open
+(<a href="../../traceability/open-questions/#q-17">Q-17</a>).</p>
+</li>
+<li>
+<p>A second initiation route next to the QR code in the developer portal.</p>
+</li>
+<li>Cross-route items from the ASI work
+  (<a href="../asi-verification/">ASI verification</a>):<ul>
+<li>The BRP document also publishes the <code>asi</code> capability. An error in
+  <code>asi</code> refuses the whole source, and this includes its EUDI issuance
+  (<a href="https://github.com/ICTU/GBO-demo/issues/592">#592</a>,
+  <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/source-onboarding.md#L400-L401"><code>source-onboarding.md#L400-L401</code></a>).</li>
+<li>The issuance server also issues the test statement of the reference
+  QTSP. That use case runs only in the local stack. A deployment in
+  the simulation environment is
+  <a href="https://github.com/ICTU/GBO-demo/issues/594">#594</a>.</li>
+<li><a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a> (BSN in the ASI
+  token) and <a href="https://github.com/ICTU/GBO-demo/issues/596">#596</a>
+  (same-device wallet login on a phone) concern only the ASI route.</li>
+</ul>
+</li>
+</ul>
+<h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Requirements: <a href="../../requirements/authorization/#req-44">REQ-44</a>,
+  <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>,
+  <a href="../../requirements/sources-identity/#req-46">REQ-46</a>,
+  <a href="../../requirements/logging-audit/#req-55">REQ-55</a>,
+  <a href="../../requirements/eudi-issuance/#req-57">REQ-57</a>,
+  <a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>,
+  <a href="../../requirements/logging-audit/#req-60">REQ-60</a>,
+  <a href="../../requirements/sources-identity/#req-64">REQ-64</a>,
+  <a href="../../requirements/sources-identity/#req-65">REQ-65</a>,
+  <a href="../../requirements/sources-identity/#req-66">REQ-66</a>,
+  <a href="../../requirements/logging-audit/#req-72">REQ-72</a>,
+  <a href="../../requirements/authorization/#req-74">REQ-74</a>,
+  <a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>,
+  <a href="../../requirements/eudi-issuance/#req-78">REQ-78</a>,
+  <a href="../../requirements/authorization/#req-97">REQ-97</a>,
+  <a href="../../requirements/eudi-issuance/#req-116">REQ-116</a>,
+  <a href="../../requirements/eudi-issuance/#req-124">REQ-124</a>,
+  <a href="../../requirements/admission/#av-10">AV-10</a>,
+  <a href="../../requirements/admission/#av-12">AV-12</a>,
+  <a href="../../requirements/admission/#av-13">AV-13</a></li>
+<li>Findings: <a href="../../traceability/findings/#f-47">F-47</a> (open),
+  <a href="../../traceability/findings/#f-54">F-54</a> (open),
+  <a href="../../traceability/findings/#f-57">F-57</a> (open),
+  <a href="../../traceability/findings/#f-70">F-70</a> (open),
+  <a href="../../traceability/findings/#f-74">F-74</a> (open),
+  <a href="../../traceability/findings/#f-81">F-81</a> (open),
+  <a href="../../traceability/findings/#f-82">F-82</a> (open),
+  <a href="../../traceability/findings/#f-83">F-83</a> (open)</li>
+<li>Open questions: <a href="../../traceability/open-questions/#q-14">Q-14</a>,
+  <a href="../../traceability/open-questions/#q-17">Q-17</a>,
+  <a href="../../traceability/open-questions/#q-18">Q-18</a>,
+  <a href="../../traceability/open-questions/#q-28">Q-28</a>,
+  <a href="../../traceability/open-questions/#q-30">Q-30</a></li>
+<li>Demo increments: <a href="../../traceability/increments/#sl-19">SL-19</a>,
+  <a href="../../traceability/increments/#sl-25">SL-25</a>,
+  <a href="../../traceability/increments/#sl-26">SL-26</a>,
+  <a href="../../traceability/increments/#sl-31">SL-31</a>,
+  <a href="../../traceability/increments/#sl-33">SL-33</a>,
+  <a href="../../traceability/increments/#sl-39">SL-39</a>,
+  <a href="../../traceability/increments/#sl-40">SL-40</a>,
+  <a href="../../traceability/increments/#sl-43">SL-43</a>,
+  <a href="../../traceability/increments/#sl-46">SL-46</a>,
+  <a href="../../traceability/increments/#sl-48">SL-48</a>,
+  <a href="../../traceability/increments/#sl-49">SL-49</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Terug naar boven
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.integrate", "content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Gekopieerd naar klembord", "clipboard.copy": "Kopi\u00ebren naar klembord", "search.result.more.one": "1 extra overeenkomst op deze pagina", "search.result.more.other": "# extra overeenkomsten op deze pagina", "search.result.none": "Geen overeenkomende documenten", "search.result.one": "1 overeenkomende document", "search.result.other": "# overeenkomende documenten", "search.result.placeholder": "Let op: er wordt alleen gezocht binnen dit documentatie-onderdeel. Om in andere onderdelen te zoeken: ga via het hoofdmenu eerst naar het onderdeel en voer dan de zoekterm in.", "search.result.term.missing": "Ontbreekt", "select.version": "Selecteer versie"}, "version": {"alias": true, "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascript/mermaid-init.js"></script>
+      
+        <script src="../../javascript/print.js"></script>
+      
+        <script src="../../javascript/print-site-toc-fix.js"></script>
+      
+    
+  </body>
+</html>
