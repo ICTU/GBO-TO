@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4591,11 +4591,11 @@
 </li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>The PDP judges a request under one of two regimes:</p>
+<p>The <abbr title="Policy Decision Point">PDP</abbr> judges a request under one of two regimes:</p>
 <ul>
-<li>In the consent regime (DvTP), the consent of a citizen is the access
+<li>In the consent regime (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>), the consent of a citizen is the access
   basis.</li>
-<li>In the PID regime (EUDI issuance, ASI), a verified PID disclosure of
+<li>In the <abbr title="Person Identification Data">PID</abbr> regime (EUDI issuance, <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>), a verified <abbr title="Person Identification Data">PID</abbr> disclosure of
   the citizen is the basis.</li>
 </ul>
 <p>Each regime has its own rules and its own reasons to deny.</p>
@@ -4606,7 +4606,7 @@ selection in three places:</p>
 <li>A header.</li>
 <li>A signed claim of the provider
   (<a href="../0014-provider-signed-flow-claims/">ADR-0014</a>).</li>
-<li>An FSC grant property (<a href="../0030-grant-properties/">ADR-0030</a>).</li>
+<li>An <abbr title="Federated Service Connectivity">FSC</abbr> grant property (<a href="../0030-grant-properties/">ADR-0030</a>).</li>
 </ul>
 <p>All three are a declaration about the request. None of them is evidence
 in the request.</p>
@@ -4616,20 +4616,20 @@ in the request.</p>
 <li>If a consent token is present (<code>X-GBO-Consent-Token</code>, verified or
   not), the request is in the consent regime. Only the rules with
   <code>regime := "consent"</code> bind: DVT0001 and LVG0001.</li>
-<li>If no consent token is present, the request is in the PID regime. Only
+<li>If no consent token is present, the request is in the <abbr title="Person Identification Data">PID</abbr> regime. Only
   the rules with <code>regime := "pid"</code> bind: EUD0001, EUD0002, and ASI0001.</li>
 <li>If two consent proofs are present, the policy denies with
   <code>CONSENT_CONTEXT_INVALID</code>. The policy does not pick one of them.</li>
 </ul>
 <p>Every rule declares its regime. Only the rules of the active regime
-bind, so the deny reason also comes from that regime. FSC grants carry
+bind, so the deny reason also comes from that regime. <abbr title="Federated Service Connectivity">FSC</abbr> grants carry
 no properties. No component reads a <code>flow</code>.</p>
 <h2 id="considered-options">Considered options<a class="headerlink" href="#considered-options" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Evidence in the request (chosen). The request carries no declaration
    that a party can forge or must maintain. Each rule still checks its own basis, so a wrong regime
    cannot give access.</li>
-<li><code>flow</code> as an FSC grant property (<a href="../0030-grant-properties/">ADR-0030</a>).
+<li><code>flow</code> as an <abbr title="Federated Service Connectivity">FSC</abbr> grant property (<a href="../0030-grant-properties/">ADR-0030</a>).
    Both peers sign it, but it is a declaration per contract. Each
    consumer needs one contract per regime, and a change needs a new
    contract.</li>
@@ -4644,24 +4644,24 @@ no properties. No component reads a <code>flow</code>.</p>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>The rules already did the security work. DVT0001 and LVG0001 deny
-  without a verified consent. The PID rules deny without a PID subject.
-  The regime decides which reasons the PDP reports. The regime does not
+  without a verified consent. The <abbr title="Person Identification Data">PID</abbr> rules deny without a <abbr title="Person Identification Data">PID</abbr> subject.
+  The regime decides which reasons the <abbr title="Policy Decision Point">PDP</abbr> reports. The regime does not
   decide access. Engine tests pin the reason in both directions.</li>
-<li>Only consent is positive evidence. A request enters the PID regime
+<li>Only consent is positive evidence. A request enters the <abbr title="Person Identification Data">PID</abbr> regime
   because it has no consent proof
-  (<a href="../../traceability/findings/#f-70">F-70</a>). For this reason, the PID
-  regime needs its own positive evidence: a verified PID disclosure
+  (<a href="../../traceability/findings/#f-70">F-70</a>). For this reason, the <abbr title="Person Identification Data">PID</abbr>
+  regime needs its own positive evidence: a verified <abbr title="Person Identification Data">PID</abbr> disclosure
   (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>). In demo v0.9.0,
   the adapter callback that carries this evidence is not authenticated
   (<a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>).</li>
-<li>The actor lists of the PID rules (<code>designated_issuers</code>, <code>asip</code>) must
+<li>The actor lists of the <abbr title="Person Identification Data">PID</abbr> rules (<code>designated_issuers</code>, <code>asip</code>) must
   stay disjoint from the consent consumers in every environment. A test
   pins this for the seeded peers only
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L366-L376">engine_test.rego</a>).</li>
-<li>A Gov-to-Gov regime on a legal basis needs its own positive evidence.
+<li>A <abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr> regime on a legal basis needs its own positive evidence.
   It cannot be a third regime that rests on an absence.</li>
-<li>The sidecar uses the same evidence. If a consent token is present, the
-  sidecar takes the subject from it. If not, the sidecar passes the
+<li>The source gateway uses the same evidence. If a consent token is present, the
+  source gateway takes the subject from it. If not, the source gateway passes the
   request through (<a href="../0033-gateway-decrypts-after-allow/">ADR-0033</a>).</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -4671,6 +4671,7 @@ no properties. No component reads a <code>flow</code>.</p>
 <li>Open questions: <a href="../../traceability/answered-questions/#q-15">Q-15</a> (answered)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-24">SL-24</a> (dropped), <a href="../../traceability/increments/#sl-48">SL-48</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

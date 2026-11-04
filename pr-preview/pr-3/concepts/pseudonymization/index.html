@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4629,15 +4629,15 @@
 
 
 <h1 id="pseudonymization">Pseudonymization<a class="headerlink" href="#pseudonymization" title="Permanent link">&para;</a></h1>
-<p>Private consumers must not process the BSN
+<p>Private consumers must not process the <abbr title="Burgerservicenummer">BSN</abbr>
 (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a>). In
-DvTP, they still request data about one citizen from government sources.
-For this, GBO uses the BSNk PP polymorphic pseudonym scheme. GBO calls BSNk
+<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, they still request data about one citizen from government sources.
+For this, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> uses the BSNk <abbr title="Polymorphic pseudonym">PP</abbr> polymorphic pseudonym scheme. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> calls BSNk
 only at consent time (<a href="../../decisions/0005-bsnk-pp/">ADR-0005</a>). In the
-consent route, the consumer holds no identifier of the citizen: no BSN and
+consent route, the consumer holds no identifier of the citizen: no <abbr title="Burgerservicenummer">BSN</abbr> and
 no pseudonym (<a href="../../requirements/pseudonymization/#req-20">REQ-20</a>). After
-the PDP allows the request, only the source turns its own value back into
-the BSN (<a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>).</p>
+the <abbr title="Policy Decision Point">PDP</abbr> allows the request, only the source turns its own value back into
+the <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>).</p>
 <p>Pseudonymization realizes capability
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">S03</a>.
 For the BSNk rules that shape this design, see
@@ -4656,26 +4656,26 @@ proof that carries the values, see <a href="../consent/">Consent</a>.</p>
 </thead>
 <tbody>
 <tr>
-<td>BSN</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr></td>
 <td>The citizen service number</td>
-<td>DigiD login, or PID disclosure (EUDI, ASI)</td>
+<td>DigiD login, or <abbr title="Person Identification Data">PID</abbr> disclosure (EUDI, <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>)</td>
 <td>The portal backend during the login. The source, inside its own boundary</td>
 </tr>
 <tr>
-<td>PI, PP</td>
+<td><abbr title="Polymorphic identity">PI</abbr>, <abbr title="Polymorphic pseudonym">PP</abbr></td>
 <td>Polymorphic identity and polymorphic pseudonym. Only the requester can get them transformed (<a href="../../requirements/pseudonymization/#bsnk-03">BSNK-03</a>)</td>
 <td>BSNk Activate, once per citizen</td>
 <td>The portal backend. The register stores them under <code>subject_ref</code> (<a href="../../requirements/pseudonymization/#req-69">REQ-69</a>)</td>
 </tr>
 <tr>
-<td>VI (encrypted identity)</td>
-<td>A value for one recipient OIN and key version. It decrypts to the BSN. It exists only for a recipient on the BSN authorization list (<a href="../../requirements/pseudonymization/#bsnk-06">BSNK-06</a>)</td>
+<td><abbr title="Encrypted identity">VI</abbr> (encrypted identity)</td>
+<td>A value for one recipient <abbr title="Organisatie-identificatienummer">OIN</abbr> and key version. It decrypts to the <abbr title="Burgerservicenummer">BSN</abbr>. It exists only for a recipient on the <abbr title="Burgerservicenummer">BSN</abbr> authorization list (<a href="../../requirements/pseudonymization/#bsnk-06">BSNK-06</a>)</td>
 <td>BSNk Transform, at consent</td>
 <td>Inside the consent proof, <code>encrypted_subject[&lt;OIN&gt;].identity</code></td>
 </tr>
 <tr>
-<td>VP (encrypted pseudonym)</td>
-<td>A value for one recipient OIN and key version. It decrypts to the own pseudonym of that recipient for the citizen. Every recipient gets one</td>
+<td><abbr title="Encrypted pseudonym">VP</abbr> (encrypted pseudonym)</td>
+<td>A value for one recipient <abbr title="Organisatie-identificatienummer">OIN</abbr> and key version. It decrypts to the own pseudonym of that recipient for the citizen. Every recipient gets one</td>
 <td>BSNk Transform, at consent</td>
 <td>Inside the consent proof, <code>encrypted_subject[&lt;OIN&gt;].pseudonym</code></td>
 </tr>
@@ -4683,23 +4683,23 @@ proof that carries the values, see <a href="../consent/">Consent</a>.</p>
 <td>Placeholder</td>
 <td><code>consent:identity</code> or <code>consent:pseudonym</code>: the name of the subject in a consent-based query</td>
 <td>Fixed values (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/lib.rego#L43-L53"><code>lib.rego#L43-L53</code></a>)</td>
-<td>The consumer query and the PDP input. The source gateway replaces it</td>
+<td>The consumer query and the <abbr title="Policy Decision Point">PDP</abbr> input. The source gateway replaces it</td>
 </tr>
 <tr>
 <td><code>subject_ref</code></td>
-<td>HMAC of the BSN with the secret, versioned key of the portal</td>
+<td>HMAC of the <abbr title="Burgerservicenummer">BSN</abbr> with the secret, versioned key of the portal</td>
 <td>Portal backend (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/subjectref.go#L38-L42"><code>subjectref.go#L38-L42</code></a>)</td>
 <td>Portal backend and register: the key to the consents of the citizen</td>
 </tr>
 <tr>
 <td><code>consent_id</code></td>
 <td>The consent record</td>
-<td>Toestemmingsregister</td>
+<td>Consent register (toestemmingsregister)</td>
 <td>Consumer: its only handle on "this person"</td>
 </tr>
 </tbody>
 </table>
-<p>PI and PP belong to the portal. VI and VP belong to their recipient. No
+<p><abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> belong to the portal. <abbr title="Encrypted identity">VI</abbr> and <abbr title="Encrypted pseudonym">VP</abbr> belong to their recipient. No
 other party can read them. In the demo, every party can read them because
 the mock does not encrypt. For more information, see
 <a href="#demo-mock-and-production-bsnk">Demo mock and production BSNk</a>.</p>
@@ -4710,7 +4710,7 @@ the mock does not encrypt. For more information, see
         REF[subject_ref = HMAC]
     end
     BSNK[BSNk]
-    subgraph CR[Toestemmingsregister]
+    subgraph CR[Consent register]
         PP[PI + PP under subject_ref]
         PROOF[Signed proof:&lt;br/&gt;VI/VP per source]
     end
@@ -4765,13 +4765,13 @@ the citizen gives consent
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L119-L192"><code>portal.go#L119-L192</code></a>).
 The portal does these steps:</p>
 <ol>
-<li>It derives <code>subject_ref</code> from the BSN.</li>
-<li>It looks up PI and PP under <code>subject_ref</code> in the register. At the first
-   consent of this citizen, it activates the BSN once at BSNk and stores PI
-   and PP (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L296-L314"><code>portal.go#L296-L314</code></a>).</li>
-<li>It reads the BSN authorization list from a copy. The copy is at most
+<li>It derives <code>subject_ref</code> from the <abbr title="Burgerservicenummer">BSN</abbr>.</li>
+<li>It looks up <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> under <code>subject_ref</code> in the register. At the first
+   consent of this citizen, it activates the <abbr title="Burgerservicenummer">BSN</abbr> once at BSNk and stores <abbr title="Polymorphic identity">PI</abbr>
+   and <abbr title="Polymorphic pseudonym">PP</abbr> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L296-L314"><code>portal.go#L296-L314</code></a>).</li>
+<li>It reads the <abbr title="Burgerservicenummer">BSN</abbr> authorization list from a copy. The copy is at most
    <code>BSN_AUTHORISATION_LIST_MAX_AGE</code> old (default 1 hour).</li>
-<li>It transforms PP to a VP for every source. It transforms PI to a VI for
+<li>It transforms <abbr title="Polymorphic pseudonym">PP</abbr> to a <abbr title="Encrypted pseudonym">VP</abbr> for every source. It transforms <abbr title="Polymorphic identity">PI</abbr> to a <abbr title="Encrypted identity">VI</abbr> for
    every source on the list
    (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L197-L224"><code>portal.go#L197-L224</code></a>).
    Each BSNk request names at most four parties
@@ -4780,7 +4780,7 @@ The portal does these steps:</p>
 <li>It sends the values to the register. The register signs them into the
    proof and does not store them.</li>
 </ol>
-<p>For each source, the portal must know the OIN, the key version, and the BSN
+<p>For each source, the portal must know the <abbr title="Organisatie-identificatienummer">OIN</abbr>, the key version, and the <abbr title="Burgerservicenummer">BSN</abbr>
 authorization (<a href="../../requirements/pseudonymization/#req-82">REQ-82</a>). In
 the demo, this is configuration: <code>CONSENT_SOURCES=&lt;OIN&gt;@&lt;key set version&gt;</code>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L1005"><code>docker-compose.yml#L1005</code></a>).
@@ -4792,19 +4792,18 @@ values at consent, so the proof freezes. For more information, see
 <a href="../consent/#the-proof-freezes-at-consent">Consent</a>
 (<a href="../../traceability/findings/#f-78">F-78</a>).</p>
 <h2 id="citizen-recognition-route-d">Citizen recognition: route D<a class="headerlink" href="#citizen-recognition-route-d" title="Permanent link">&para;</a></h2>
-<p>To show and revoke the consents of a citizen without a BSN, the consent
-service needs a stable key. A stored PI or PP is not a stable key, because
+<p>To show and revoke the consents of a citizen without a <abbr title="Burgerservicenummer">BSN</abbr>, the consent facility (toestemmingsvoorziening) needs a stable key. A stored <abbr title="Polymorphic identity">PI</abbr> or <abbr title="Polymorphic pseudonym">PP</abbr> is not a stable key, because
 BSNk gives other values at every activation. The proposed solution is route
 D (<a href="../../decisions/0040-route-d-citizen-recognition/">ADR-0040</a>, proposed,
 <a href="../../requirements/pseudonymization/#route-d">route D</a>). Route D works as
 follows:</p>
 <ul>
-<li>The service recognizes the citizen by an HMAC of the BSN, with a
+<li>The service recognizes the citizen by an HMAC of the <abbr title="Burgerservicenummer">BSN</abbr>, with a
   secret, versioned key. Every record keeps the key version.</li>
-<li>The service activates once and stores PI and PP under that reference.</li>
+<li>The service activates once and stores <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> under that reference.</li>
 <li>To show or revoke consents, the service does not call BSNk.</li>
 </ul>
-<p>The register stores PI and PP, but no BSN and no per-party value
+<p>The register stores <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr>, but no <abbr title="Burgerservicenummer">BSN</abbr> and no per-party value
 (<a href="../../requirements/pseudonymization/#req-69">REQ-69</a>,
 <a href="../../requirements/consent/#req-23">REQ-23</a>). This is an intentional
 deviation from FR-35, criterion 1 (<a href="../../traceability/findings/#f-98">F-98</a>).
@@ -4818,39 +4817,39 @@ For the other routes, see
 <li>A changed HMAC key gives every citizen a different reference. Then the
   service does not show older consents. Migration is not built
   (<a href="../../traceability/open-questions/#q-56">Q-56</a>).</li>
-<li>The protection of the stored PI and PP is open
+<li>The protection of the stored <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> is open
   (<a href="../../traceability/open-questions/#q-57">Q-57</a>). Retention is also open
   (<a href="../../traceability/open-questions/#q-63">Q-63</a>).</li>
 </ul>
 <h2 id="where-the-boundary-is-enforced">Where the boundary is enforced<a class="headerlink" href="#where-the-boundary-is-enforced" title="Permanent link">&para;</a></h2>
-<p>The BSN is in three places only. All three places are inside the
+<p>The <abbr title="Burgerservicenummer">BSN</abbr> is in three places only. All three places are inside the
 government:</p>
 <ol>
 <li>Portal backend, at login: the backend derives <code>subject_ref</code>. At the
-   first consent, it sends the BSN to BSNk. After that step, no component
-   holds a BSN, because the draft consent has no field for one
+   first consent, it sends the <abbr title="Burgerservicenummer">BSN</abbr> to BSNk. After that step, no component
+   holds a <abbr title="Burgerservicenummer">BSN</abbr>, because the draft consent has no field for one
    (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L116-L118"><code>portal.go#L116-L118</code></a>).
    It is open how the backend inside MijnOverheid gets the verified
    identity (<a href="../../traceability/open-questions/#q-50">Q-50</a>).</li>
 <li>BSNk, at activation: BSNk records every activation in its
-   Inzageregister (<a href="../../requirements/pseudonymization/#bsnk-10">BSNK-10</a>).</li>
+   inspection register, the Inzageregister (<a href="../../requirements/pseudonymization/#bsnk-10">BSNK-10</a>).</li>
 <li>The source, after the allow: the source gateway takes the value for its
-   own OIN from the proof. The decryption component of the source reads the
+   own <abbr title="Organisatie-identificatienummer">OIN</abbr> from the proof. The decryption component of the source reads the
    value with the keys of the source. The gateway accepts the result only
-   if the value names the OIN of the source as recipient
+   if the value names the <abbr title="Organisatie-identificatienummer">OIN</abbr> of the source as recipient
    (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L213-L251"><code>substitution.go#L213-L251</code></a>,
    <a href="../../requirements/pseudonymization/#req-80">REQ-80</a>). Then the gateway
    replaces the placeholder. BSNk is not in the query path
    (<a href="../../requirements/pseudonymization/#req-21">REQ-21</a>).</li>
 </ol>
-<p>The register never gets a BSN, not even for a short time
+<p>The register never gets a <abbr title="Burgerservicenummer">BSN</abbr>, not even for a short time
 (<a href="../../requirements/consent/#req-23">REQ-23</a>). The consumer never
-gets a BSN in the proof or in the response.</p>
-<p>Like the PDP, the gateway acts on the evidence. If the request carries a
+gets a <abbr title="Burgerservicenummer">BSN</abbr> in the proof or in the response.</p>
+<p>Like the <abbr title="Policy Decision Point">PDP</abbr>, the gateway acts on the evidence. If the request carries a
 consent token, the gateway takes the subject from the token. If the request
-has no consent token, the gateway passes it through unchanged (PID regime).
+has no consent token, the gateway passes it through unchanged (<abbr title="Person Identification Data">PID</abbr> regime).
 The gateway reads no grant property. The value for the requested form can
-be missing, for example no VI for a source that is not on the list. In that
+be missing, for example no <abbr title="Encrypted identity">VI</abbr> for a source that is not on the list. In that
 case, the gateway does not forward the request.</p>
 <h3 id="network-isolation-is-the-control">Network isolation is the control<a class="headerlink" href="#network-isolation-is-the-control" title="Permanent link">&para;</a></h3>
 <p>The gateway does not verify the proof again
@@ -4873,60 +4872,60 @@ in demo v0.9.0 has no NetworkPolicy. A nonce that binds a value to one
 consent, as a second line, is not built. For the zones, see
 <a href="../../deployment/">Deployment</a>.</p>
 <h2 id="subject-binding">Subject binding<a class="headerlink" href="#subject-binding" title="Permanent link">&para;</a></h2>
-<p>Under a consent, the PDP does not compare identifiers. The query names the
+<p>Under a consent, the <abbr title="Policy Decision Point">PDP</abbr> does not compare identifiers. The query names the
 subject with a placeholder. The source can fill in only the subject from
 the proof (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>,
 <a href="../../traceability/findings/#f-77">F-77</a>). For the rule, see
 <a href="../authorization/#constraints-inside-the-query">Authorization</a>.
 Subject binding has these consequences:</p>
 <ul>
-<li>No policy at the PDP can depend on who the citizen is.</li>
+<li>No policy at the <abbr title="Policy Decision Point">PDP</abbr> can depend on who the citizen is.</li>
 <li>One request names one subject. A question about two persons does not
   fit. This needs a design decision.</li>
 <li>Substitution works only on variables. If the query text holds a literal
-  placeholder, the placeholder passes the PDP. The gateway does not replace
+  placeholder, the placeholder passes the <abbr title="Policy Decision Point">PDP</abbr>. The gateway does not replace
   it, and the query finds nobody.</li>
-<li>The PDP input and the decision logs have no identifier. They do hold the
+<li>The <abbr title="Policy Decision Point">PDP</abbr> input and the decision logs have no identifier. They do hold the
   proof with the encrypted values.</li>
 </ul>
 <h2 id="the-consumer-has-no-identifier">The consumer has no identifier<a class="headerlink" href="#the-consumer-has-no-identifier" title="Permanent link">&para;</a></h2>
 <p>The consumer reads only <code>consent_id</code> and <code>scopes</code> from the proof
 (<a href="../../traceability/findings/#f-76">F-76</a>). This goes further than the
-"BSN-free" rule of P-04, because the consumer is free of all identifiers.
+"<abbr title="Burgerservicenummer">BSN</abbr>-free" rule of P-04, because the consumer is free of all identifiers.
 This has three effects:</p>
 <ul>
 <li>Logging: the consumer logbook names the data subject by the consent ID,
   with subject type <code>consent-id</code>
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/logbook/logbook.go#L20-L22"><code>logbook.go#L20-L22</code></a>).
   In the logbook, one citizen with two consents is two data subjects. It is
-  open whether this fits LDV (<a href="../../traceability/open-questions/#q-27">Q-27</a>).</li>
+  open whether this fits <abbr title="Logboek Dataverwerkingen">LDV</abbr> (<a href="../../traceability/open-questions/#q-27">Q-27</a>).</li>
 <li>Access requests: a citizen can ask the consumer what it processed. The
   consumer can find the citizen only through the consents of the citizen.</li>
-<li>Recognition: through GBO, the consumer cannot tell that two consents are
+<li>Recognition: through <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, the consumer cannot tell that two consents are
   from the same person. This is data minimization, and a design choice.</li>
 </ul>
-<p>With its own VP, the consumer has a pseudonym to log under. This option is
+<p>With its own <abbr title="Encrypted pseudonym">VP</abbr>, the consumer has a pseudonym to log under. This option is
 in the design and not built
 (<a href="https://github.com/ICTU/GBO-demo/issues/478">#478</a>,
 <a href="../../traceability/open-questions/#q-01">Q-01</a>). A source API that answers
 on a pseudonym is also not built. No demo rule accepts
 <code>consent:pseudonym</code> (<a href="https://github.com/ICTU/GBO-demo/issues/474">#474</a>).</p>
-<h2 id="exception-the-bsn-in-the-eudi-and-asi-routes">Exception: the BSN in the EUDI and ASI routes<a class="headerlink" href="#exception-the-bsn-in-the-eudi-and-asi-routes" title="Permanent link">&para;</a></h2>
-<p>The EUDI adapter and the ASIP put the plain BSN from the PID or the token
-into the query variables. As a result, the BSN is in the PDP input and in
-both decision logs: the ADL and the console log
+<h2 id="exception-the-bsn-in-the-eudi-and-asi-routes">Exception: the <abbr title="Burgerservicenummer">BSN</abbr> in the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> routes<a class="headerlink" href="#exception-the-bsn-in-the-eudi-and-asi-routes" title="Permanent link">&para;</a></h2>
+<p>The EUDI adapter and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> put the plain <abbr title="Burgerservicenummer">BSN</abbr> from the <abbr title="Person Identification Data">PID</abbr> or the token
+into the query variables. As a result, the <abbr title="Burgerservicenummer">BSN</abbr> is in the <abbr title="Policy Decision Point">PDP</abbr> input and in
+both decision logs: the <abbr title="Authorization Decision Log">ADL</abbr> and the console log
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L273"><code>source_metadata.go#L273</code></a>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/source.go#L94"><code>source.go#L94</code></a>).
-The PDP does not call BSNk. This is a known violation of
+The <abbr title="Policy Decision Point">PDP</abbr> does not call BSNk. This is a known violation of
 <a href="../../requirements/logging-audit/#req-60">REQ-60</a>. The demo accepts it
 until <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a> decides between
 masking and "transform first"
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/CHANGELOG.md#L588-L602">CHANGELOG</a>).</p>
-<p>The proposed decision keeps identifiers out of the PDP input and uses
+<p>The proposed decision keeps identifiers out of the <abbr title="Policy Decision Point">PDP</abbr> input and uses
 masking only as a second line
 (<a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>, proposed).
 Earlier, masking in the policy engine had no effect
-(<a href="../../traceability/findings/#f-54">F-54</a>). LDV records never hold a BSN,
+(<a href="../../traceability/findings/#f-54">F-54</a>). <abbr title="Logboek Dataverwerkingen">LDV</abbr> records never hold a <abbr title="Burgerservicenummer">BSN</abbr>,
 because the logbook refuses one (<a href="../logging/">Logging</a>).</p>
 <h2 id="demo-mock-and-production-bsnk">Demo mock and production BSNk<a class="headerlink" href="#demo-mock-and-production-bsnk" title="Permanent link">&para;</a></h2>
 <p>The demo uses <code>bsnk-mock</code>
@@ -4935,8 +4934,8 @@ The mock follows the BSNk interface (<code>/v2/activate</code>, <code>/v2/transf
 <code>/v2/bsn-authorisation-list</code>, and more), but as JSON instead of SOAP. The
 mock enforces these rules:</p>
 <ul>
-<li>Only the requester can use the PI.</li>
-<li>The BSN authorization list applies.</li>
+<li>Only the requester can use the <abbr title="Polymorphic identity">PI</abbr>.</li>
+<li>The <abbr title="Burgerservicenummer">BSN</abbr> authorization list applies.</li>
 <li>A request names at most four parties.</li>
 <li>The mock reads values per key version.</li>
 </ul>
@@ -4952,7 +4951,7 @@ mock enforces these rules:</p>
 <tbody>
 <tr>
 <td>Encryption</td>
-<td>None: any party that holds a PI or VI can read the BSN</td>
+<td>None: any party that holds a <abbr title="Polymorphic identity">PI</abbr> or <abbr title="Encrypted identity">VI</abbr> can read the <abbr title="Burgerservicenummer">BSN</abbr></td>
 <td>Encrypted values, unlinkable between parties</td>
 </tr>
 <tr>
@@ -4972,8 +4971,8 @@ mock enforces these rules:</p>
 </tr>
 <tr>
 <td>Activation input</td>
-<td>The BSN. The mock does not check it against a population register</td>
-<td>The BSN and check data (<a href="../../requirements/pseudonymization/#bsnk-02">BSNK-02</a>)</td>
+<td>The <abbr title="Burgerservicenummer">BSN</abbr>. The mock does not check it against a population register</td>
+<td>The <abbr title="Burgerservicenummer">BSN</abbr> and check data (<a href="../../requirements/pseudonymization/#bsnk-02">BSNK-02</a>)</td>
 </tr>
 <tr>
 <td>Recipient keys</td>
@@ -4987,15 +4986,15 @@ mock enforces these rules:</p>
 </tr>
 <tr>
 <td>Decryption component</td>
-<td>One, shared by the three demo sources, which also share one OIN</td>
-<td>One per source, each with its own OIN (<a href="../../requirements/pseudonymization/#bsnk-07">BSNK-07</a>)</td>
+<td>One, shared by the three demo sources, which also share one <abbr title="Organisatie-identificatienummer">OIN</abbr></td>
+<td>One per source, each with its own <abbr title="Organisatie-identificatienummer">OIN</abbr> (<a href="../../requirements/pseudonymization/#bsnk-07">BSNK-07</a>)</td>
 </tr>
 </tbody>
 </table>
 <p>The same image, started with <code>DECRYPTION_COMPONENT_ONLY=true</code>, is the
 decryption component of the sources
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L773-L786"><code>docker-compose.yml#L773-L786</code></a>).
-The mock does not encrypt and the sources share one OIN. As a result, the
+The mock does not encrypt and the sources share one <abbr title="Organisatie-identificatienummer">OIN</abbr>. As a result, the
 demo does not show unlinkability between parties. For the certificates and
 keys per party at onboarding, see
 <a href="../../requirements/pseudonymization/#onboarding-keys">BSNk preconditions</a>.</p>
@@ -5006,6 +5005,7 @@ keys per party at onboarding, see
 <li>Open questions: <a href="../../traceability/open-questions/#q-01">Q-01</a> (partly answered), <a href="../../traceability/open-questions/#q-26">Q-26</a> (open), <a href="../../traceability/open-questions/#q-27">Q-27</a> (open), <a href="../../traceability/open-questions/#q-49">Q-49</a> (open), <a href="../../traceability/open-questions/#q-50">Q-50</a> (open), <a href="../../traceability/open-questions/#q-56">Q-56</a> (open), <a href="../../traceability/open-questions/#q-57">Q-57</a> (open), <a href="../../traceability/open-questions/#q-63">Q-63</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-02">SL-02</a> (done), <a href="../../traceability/increments/#sl-22">SL-22</a> (done), <a href="../../traceability/increments/#sl-29">SL-29</a> (done), <a href="../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

@@ -1301,7 +1301,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1417,7 +1417,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4550,31 +4550,31 @@ every pillar that is marked "built".</p>
 </tr>
 <tr>
 <td>Connectivity</td>
-<td>All domestic traffic uses FSC. Protocol adapters at the edge handle all other traffic.</td>
+<td>All domestic traffic uses <abbr title="Federated Service Connectivity">FSC</abbr>. Protocol adapters at the edge handle all other traffic.</td>
 <td><a href="../decisions/0003-fsc-connectivity/">ADR-0003</a></td>
 <td><a href="../deployment/">Deployment view</a></td>
 </tr>
 <tr>
 <td>Authorization</td>
-<td>The FSC Inway is the PEP. OPA/Rego in OpenFTV is the PDP, behind AuthZEN with the FTV GraphQL profile. Authorization has five separable concerns and one PDP per source holder. There is no central authorization server. Rules are plain Rego, bound by regime, FSC service, and field.</td>
+<td>The <abbr title="Federated Service Connectivity">FSC</abbr> Inway is the <abbr title="Policy Enforcement Point">PEP</abbr>. OPA/Rego in <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> is the <abbr title="Policy Decision Point">PDP</abbr>, behind <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> with the <abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL profile. Authorization has five separable concerns and one <abbr title="Policy Decision Point">PDP</abbr> per bronhouder. There is no central authorization server. Rules are plain Rego, bound by regime, <abbr title="Federated Service Connectivity">FSC</abbr> service, and field.</td>
 <td><a href="../decisions/0002-opa-rego-authzen/">ADR-0002</a>, <a href="../decisions/0004-federated-authorization/">ADR-0004</a>, <a href="../decisions/0009-closed-world-rules/">ADR-0009</a>, <a href="../decisions/0013-pdp-request-mapper/">ADR-0013</a></td>
 <td><a href="../concepts/authorization/">Authorization</a></td>
 </tr>
 <tr>
 <td>Regime from evidence</td>
-<td>The evidence that a request carries selects the regime. A consent proof gives the consent regime. Without a consent proof, the PID regime applies. Grants carry no properties.</td>
+<td>The evidence that a request carries selects the regime. A consent proof gives the consent regime. Without a consent proof, the <abbr title="Person Identification Data">PID</abbr> regime applies. Grants carry no properties.</td>
 <td><a href="../decisions/0031-regime-from-evidence/">ADR-0031</a></td>
 <td><a href="../concepts/authorization/#regime-selection">Regime selection</a></td>
 </tr>
 <tr>
 <td>Admission</td>
-<td>A register admits parties. The decision policy does not admit parties. A separate policy decides on FSC contracts. An integrator connects under FSC delegation with a registered mandate.</td>
+<td>A register admits parties. The decision policy does not admit parties. A separate policy decides on <abbr title="Federated Service Connectivity">FSC</abbr> contracts. An integrator connects under <abbr title="Federated Service Connectivity">FSC</abbr> delegation with a registered mandate.</td>
 <td><a href="../decisions/0015-contract-acceptance-by-policy/">ADR-0015</a>, <a href="../decisions/0034-integrator-delegation/">ADR-0034</a></td>
 <td><a href="../runtime/admission/">Admission and activation</a></td>
 </tr>
 <tr>
 <td>Policy management</td>
-<td>Each source holder manages and distributes its own policy. GBO supplies a reference policy set and guidelines (RL-01 to RL-05). GBO does not supply a central PAP.</td>
+<td>Each bronhouder manages and distributes its own policy. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> supplies a reference policy set and guidelines (RL-01 to RL-05). <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not supply a central <abbr title="Policy Administration Point">PAP</abbr>.</td>
 <td><a href="../decisions/0021-central-pap-signed-bundles/">ADR-0021</a></td>
 <td><a href="../concepts/policy-lifecycle/">Policy lifecycle</a></td>
 </tr>
@@ -4586,7 +4586,7 @@ every pillar that is marked "built".</p>
 </tr>
 </tbody>
 </table>
-<h2 id="consent-and-pseudonymization-dvtp">Consent and pseudonymization (DvTP)<a class="headerlink" href="#consent-and-pseudonymization-dvtp" title="Permanent link">&para;</a></h2>
+<h2 id="consent-and-pseudonymization-dvtp">Consent and pseudonymization (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)<a class="headerlink" href="#consent-and-pseudonymization-dvtp" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -4599,13 +4599,13 @@ every pillar that is marked "built".</p>
 <tbody>
 <tr>
 <td>Consent proof</td>
-<td>A signed consent proof carries an encrypted value per source. The consumer names the subject with a placeholder. For every request, the policy verifies the proof and asks for the status online over FSC.</td>
+<td>A signed consent proof carries an encrypted value per source. The consumer names the subject with a placeholder. For every request, the policy verifies the proof and asks for the status online over <abbr title="Federated Service Connectivity">FSC</abbr>.</td>
 <td><a href="../decisions/0032-consent-proof/">ADR-0032</a></td>
-<td><a href="../concepts/consent/">Consent</a>, <a href="../runtime/dvtp-query/">DvTP query</a></td>
+<td><a href="../concepts/consent/">Consent</a>, <a href="../runtime/dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a></td>
 </tr>
 <tr>
 <td>Pseudonymization</td>
-<td>The design uses BSNk PP only at consent time. After the allow decision, the source gateway decrypts the value for its own OIN. Only the FSC Inway reaches the gateway. The consent service recognizes the citizen by its own keyed reference (route D, proposed).</td>
+<td>The design uses BSNk <abbr title="Polymorphic pseudonym">PP</abbr> only at consent time. After the allow decision, the source gateway decrypts the value for its own <abbr title="Organisatie-identificatienummer">OIN</abbr>. Only the <abbr title="Federated Service Connectivity">FSC</abbr> Inway reaches the gateway. The consent facility (toestemmingsvoorziening) recognizes the citizen by its own keyed reference (route D, proposed).</td>
 <td><a href="../decisions/0005-bsnk-pp/">ADR-0005</a>, <a href="../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>, <a href="../decisions/0040-route-d-citizen-recognition/">ADR-0040</a></td>
 <td><a href="../concepts/pseudonymization/">Pseudonymization</a></td>
 </tr>
@@ -4624,15 +4624,15 @@ every pillar that is marked "built".</p>
 <tbody>
 <tr>
 <td>EUDI issuance</td>
-<td>Issuance is disclosure-based OpenID4VCI on the nl-wallet stack. Sources feed it over FSC under the PID regime. The bronhouder is the PuB-EAA provider, and GBO operates the facility. Built. The PSA treats wallet support (P-06) as a hook outside version 1.</td>
+<td>Issuance is disclosure-based <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> on the nl-wallet stack. Sources feed it over <abbr title="Federated Service Connectivity">FSC</abbr> under the <abbr title="Person Identification Data">PID</abbr> regime. The bronhouder is the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the facility. Built. The PSA treats wallet support (P-06) as a hook outside version 1.</td>
 <td><a href="../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>, <a href="../decisions/0017-gbo-simple-v1/">ADR-0017</a>, <a href="../decisions/0028-pubeaa-productization/">ADR-0028</a></td>
 <td><a href="../runtime/eudi-issuance/">EUDI issuance</a></td>
 </tr>
 <tr>
-<td>ASI verification</td>
-<td>An OAuth front door as specified in ETSI TS 119 478 clause 6.1 (verify, retrieve, authorization server). The QTSP is an OAuth client and does not take part in FSC. The design has one data service per authentic source and one token per data service. The source describes its ASI attributes. Built, demo grade.</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification</td>
+<td>An OAuth front door as specified in ETSI TS 119 478 clause 6.1 (verify, retrieve, authorization server). The <abbr title="Qualified Trust Service Provider">QTSP</abbr> is an OAuth client and does not take part in <abbr title="Federated Service Connectivity">FSC</abbr>. The design has one data service per authentic source and one token per data service. The source describes its <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attributes. Built, demo grade.</td>
 <td><a href="../decisions/0037-asi-oauth-front-door/">ADR-0037</a>, <a href="../decisions/0038-asi-data-service-per-source/">ADR-0038</a>, <a href="../decisions/0039-asi-source-described-attributes/">ADR-0039</a></td>
-<td><a href="../runtime/asi-verification/">ASI verification</a></td>
+<td><a href="../runtime/asi-verification/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification</a></td>
 </tr>
 </tbody>
 </table>
@@ -4649,13 +4649,13 @@ every pillar that is marked "built".</p>
 <tbody>
 <tr>
 <td>Audit</td>
-<td>The design has three authoritative records: the ADL for authorization decisions, the LDV logbook of each controller for processings, and FSC-Logging for transport. Observability tools are not audit records.</td>
+<td>The design has three authoritative records: the <abbr title="Authorization Decision Log">ADL</abbr> for authorization decisions, the <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook of each controller for processings, and <abbr title="Federated Service Connectivity">FSC</abbr>-Logging for transport. Observability tools are not audit records.</td>
 <td><a href="../decisions/0036-adl-decision-record/">ADR-0036</a>, <a href="../decisions/0026-ldv-integration/">ADR-0026</a></td>
 <td><a href="../concepts/logging/">Logging, audit and traceability</a></td>
 </tr>
 <tr>
 <td>Traceability</td>
-<td>W3C Trace Context is the correlation key. Each component records the FSC transaction ID next to the trace ID.</td>
+<td>W3C Trace Context is the correlation key. Each component records the <abbr title="Federated Service Connectivity">FSC</abbr> transaction ID next to the trace ID.</td>
 <td><a href="../decisions/0035-w3c-trace-context/">ADR-0035</a></td>
 <td><a href="../concepts/logging/#correlation-trace-id-and-transaction-id">Correlation</a></td>
 </tr>
@@ -4665,10 +4665,10 @@ every pillar that is marked "built".</p>
 <p>Two strategy elements exist at design level only. Both reuse the generic
 chain:</p>
 <ul>
-<li>The AS4 bridge for SDG-OOTS
+<li>The AS4 bridge for SDG-<abbr title="Once-Only Technical System">OOTS</abbr>
   (<a href="../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>) is a protocol
-  adapter in front of the same FSC and authorization chain.</li>
-<li>Gov-to-Gov needs its own positive evidence for the legal-basis regime
+  adapter in front of the same <abbr title="Federated Service Connectivity">FSC</abbr> and authorization chain.</li>
+<li><abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr> needs its own positive evidence for the legal-basis regime
   (<a href="../decisions/0031-regime-from-evidence/">ADR-0031</a>). No rule set
   exists for this regime (<a href="../risks/#r3">R3</a>).</li>
 </ul>
@@ -4677,12 +4677,12 @@ question or a demo issue:</p>
 <ul>
 <li><a href="../decisions/0040-route-d-citizen-recognition/">ADR-0040</a>, citizen
   recognition, waits for <a href="../traceability/open-questions/#q-49">Q-49</a>.</li>
-<li><a href="../decisions/0041-asi-seal-format/">ADR-0041</a>, seal format of ASI
+<li><a href="../decisions/0041-asi-seal-format/">ADR-0041</a>, seal format of <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>
   results, waits for <a href="../traceability/open-questions/#q-32">Q-32</a>.</li>
 <li><a href="../decisions/0042-asi-attribute-token-binding/">ADR-0042</a>, per-attribute
   token binding, waits for <a href="../traceability/open-questions/#q-33">Q-33</a>.</li>
 <li><a href="../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>, identifiers
-  out of the PDP input, waits for demo issue
+  out of the <abbr title="Policy Decision Point">PDP</abbr> input, waits for demo issue
   <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>.</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -4717,6 +4717,7 @@ question or a demo issue:</p>
   <a href="../traceability/increments/#sl-50">SL-50</a> (done),
   <a href="../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

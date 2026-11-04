@@ -1292,7 +1292,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1408,7 +1408,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4557,9 +4557,9 @@
 
 
 <h1 id="building-block-view">Building block view<a class="headerlink" href="#building-block-view" title="Permanent link">&para;</a></h1>
-<p>GBO has one base and three channels. GBO Basis sits at every bronhouder
-and opens the source in one standard way. The DvTP, EUDI and OOTS
-channels each serve a different kind of consumer, and GBO Basis feeds all
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has one base and three channels. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis sits at every bronhouder
+and opens the source in one standard way. The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI and <abbr title="Once-Only Technical System">OOTS</abbr>
+channels each serve a different kind of consumer, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis feeds all
 three. This picture is the overview of the
 <a href="https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing">Globaal Ontwerp</a>,
 with the state of gbo-demo v0.9.0 added.</p>
@@ -4580,7 +4580,7 @@ levels go from this overview, to one page per block, to the
   subgraph eudi["EUDI wallet channel"]
     direction LR
     asi("ASI provider&lt;br/&gt;verify / retrieve")
-    pubeaa("PubEAA provider&lt;br/&gt;attestation issuance")
+    pubeaa("PuB-EAA provider&lt;br/&gt;attestation issuance")
     qtsp["QTSP&lt;br/&gt;(QEAA)"]
     wallet["EUDI wallet"]
   end
@@ -4592,9 +4592,9 @@ levels go from this overview, to one page per block, to the
   end
   subgraph dvtp["DvTP channel"]
     direction LR
-    tv("Toestemmingsvoorziening&lt;br/&gt;portal + register")
-    pp["Pseudonimiseervoorziening&lt;br/&gt;BSNk PP"]
-    dv["Private&lt;br/&gt;dienstverlener"]
+    tv("Consent facility&lt;br/&gt;portal + register")
+    pp["Pseudonymization facility&lt;br/&gt;BSNk PP"]
+    dv["Private&lt;br/&gt;service provider"]
   end
   burger["Citizen"]
 
@@ -4643,13 +4643,13 @@ levels go from this overview, to one page per block, to the
   click cfg "gbo-basis/source-configuration/" "Source configuration"
   click tv "dvtp/" "DvTP channel"
   click pp "../concepts/pseudonymization/" "Pseudonymization"
-  click pubeaa "eudi/pubeaa/" "PubEAA provider"
+  click pubeaa "eudi/pubeaa/" "PuB-EAA provider"
   click asi "eudi/asi/" "ASI provider"
   click ootsa "oots/" "OOTS channel"</div>
-<p class="caption"><em>Figure 1: GBO Basis feeds three channels. Thick border: click to zoom in.
+<p class="caption"><em>Figure 1: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis feeds three channels. Thick border: click to zoom in.
 Dashed: design only, not built in demo v0.9.0.</em></p>
 <h2 id="the-blocks">The blocks<a class="headerlink" href="#the-blocks" title="Permanent link">&para;</a></h2>
-<p>The overview has seven GBO blocks. Five of them run in the demo:</p>
+<p>The overview has seven <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> blocks. Five of them run in the demo:</p>
 <table>
 <thead>
 <tr>
@@ -4662,59 +4662,59 @@ Dashed: design only, not built in demo v0.9.0.</em></p>
 <tbody>
 <tr>
 <td>Generic source access</td>
-<td>Opens a source over FSC with GraphQL. The PDP of the source decides on every request, field by field.</td>
+<td>Opens a source over <abbr title="Federated Service Connectivity">FSC</abbr> with GraphQL. The <abbr title="Policy Decision Point">PDP</abbr> of the source decides on every request, field by field.</td>
 <td>Built</td>
-<td><a href="gbo-basis/">GBO Basis</a></td>
+<td><a href="gbo-basis/"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a></td>
 </tr>
 <tr>
 <td>Source configuration</td>
-<td>The source describes its own services. GBO validates the description and activates it as a release.</td>
+<td>The source describes its own services. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates the description and activates it as a release.</td>
 <td>Built</td>
 <td><a href="gbo-basis/source-configuration/">Source configuration</a></td>
 </tr>
 <tr>
-<td>GBO tools</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> tools</td>
 <td>Help a bronhouder that cannot offer GraphQL, through a translation layer.</td>
 <td>Design only</td>
 <td><a href="../decisions/0027-onboarding-toolkit/">ADR-0027</a></td>
 </tr>
 <tr>
-<td>Toestemmingsvoorziening</td>
+<td>Consent facility (toestemmingsvoorziening)</td>
 <td>The citizen gives, views and revokes consent. The register signs a consent proof for the consumer.</td>
 <td>Built, with a DigiD mock</td>
-<td><a href="dvtp/">DvTP channel</a></td>
+<td><a href="dvtp/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel</a></td>
 </tr>
 <tr>
-<td>PubEAA provider</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</td>
 <td>Issues an attestation from source data to the wallet of the citizen.</td>
 <td>Built on the nl-wallet stack</td>
-<td><a href="eudi/pubeaa/">PubEAA provider</a></td>
+<td><a href="eudi/pubeaa/"><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</a></td>
 </tr>
 <tr>
-<td>ASI provider</td>
-<td>Lets a QTSP verify or retrieve an attribute at the source (eIDAS article 45e).</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</td>
+<td>Lets a <abbr title="Qualified Trust Service Provider">QTSP</abbr> verify or retrieve an attribute at the source (eIDAS article 45e).</td>
 <td>Built, demo grade</td>
-<td><a href="eudi/asi/">ASI provider</a></td>
+<td><a href="eudi/asi/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</a></td>
 </tr>
 <tr>
-<td>OOTS adapter</td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr> adapter</td>
 <td>Answers an EU evidence request with source data.</td>
 <td>Design only</td>
-<td><a href="oots/">OOTS channel</a></td>
+<td><a href="oots/"><abbr title="Once-Only Technical System">OOTS</abbr> channel</a></td>
 </tr>
 </tbody>
 </table>
-<p>The pseudonimiseervoorziening (BSNk PP) and the QTSP are not GBO
-components. GBO uses them. The demo runs a mock of BSNk PP.</p>
-<h2 id="how-gbo-basis-feeds-every-channel">How GBO Basis feeds every channel<a class="headerlink" href="#how-gbo-basis-feeds-every-channel" title="Permanent link">&para;</a></h2>
+<p>The pseudonymization facility BSNk <abbr title="Polymorphic pseudonym">PP</abbr> (pseudonimiseervoorziening) and
+the <abbr title="Qualified Trust Service Provider">QTSP</abbr> are not <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> uses them. The demo runs a mock of BSNk <abbr title="Polymorphic pseudonym">PP</abbr>.</p>
+<h2 id="how-gbo-basis-feeds-every-channel">How <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis feeds every channel<a class="headerlink" href="#how-gbo-basis-feeds-every-channel" title="Permanent link">&para;</a></h2>
 <p>Every channel reaches the source in the same way. A channel component
-calls the source through its own FSC Outway. At the source, GBO Basis
+calls the source through its own <abbr title="Federated Service Connectivity">FSC</abbr> Outway. At the source, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis
 decides and only then asks the source:</p>
 <div class="mermaid">flowchart LR
   subgraph ch["Channel (one of three)"]
     direction TB
     c1("Consumer backend&lt;br/&gt;DvTP")
-    c2("EUDI adapter&lt;br/&gt;PubEAA")
+    c2("EUDI adapter&lt;br/&gt;PuB-EAA")
     c3("ASIP&lt;br/&gt;ASI")
   end
   out["Outway of the caller"]
@@ -4766,7 +4766,7 @@ decides and only then asks the source:</p>
 <p class="caption"><em>Figure 2: One path to the source for all channels. Dotted lines: the
 three audit records.</em></p>
 <p>The channels differ in the evidence that a request carries. The evidence
-selects the rules that the PDP applies, and it decides how the source
+selects the rules that the <abbr title="Policy Decision Point">PDP</abbr> applies, and it decides how the source
 learns who the citizen is:</p>
 <table>
 <thead>
@@ -4779,22 +4779,22 @@ learns who the citizen is:</p>
 </thead>
 <tbody>
 <tr>
-<td>DvTP</td>
-<td>A consent proof, signed by the toestemmingsregister</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>A consent proof, signed by the consent register (toestemmingsregister)</td>
 <td>DVT0001, LVG0001</td>
 <td>The source decrypts its own value from the proof</td>
 </tr>
 <tr>
-<td>PubEAA issuance</td>
-<td>No consent proof: PID regime</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance</td>
+<td>No consent proof: <abbr title="Person Identification Data">PID</abbr> regime</td>
 <td>EUD0001, EUD0002</td>
-<td>The adapter puts the BSN from the PID of the wallet in the query</td>
+<td>The adapter puts the <abbr title="Burgerservicenummer">BSN</abbr> from the <abbr title="Person Identification Data">PID</abbr> of the wallet in the query</td>
 </tr>
 <tr>
-<td>ASI</td>
-<td>No consent proof: PID regime</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr></td>
+<td>No consent proof: <abbr title="Person Identification Data">PID</abbr> regime</td>
 <td>ASI0001</td>
-<td>The ASIP puts the BSN from its access token in the query</td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> puts the <abbr title="Burgerservicenummer">BSN</abbr> from its access token in the query</td>
 </tr>
 </tbody>
 </table>
@@ -4809,16 +4809,16 @@ The following table shows where each theme lives in the blocks:</p>
 <thead>
 <tr>
 <th>Theme</th>
-<th>GBO Basis</th>
-<th>DvTP</th>
-<th>PubEAA</th>
-<th>ASI</th>
+<th><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</th>
+<th><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></th>
+<th><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr></th>
+<th><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><a href="gbo-basis/authorization/">Authorization</a></td>
-<td>PEP, PDP and rules</td>
+<td><abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr> and rules</td>
 <td>DVT0001, LVG0001</td>
 <td>EUD0001, EUD0002</td>
 <td>ASI0001, and an OAuth server of its own</td>
@@ -4826,7 +4826,7 @@ The following table shows where each theme lives in the blocks:</p>
 <tr>
 <td><a href="../concepts/consent/">Consent</a></td>
 <td>Status check per request</td>
-<td>Toestemmingsvoorziening</td>
+<td>Consent facility</td>
 <td>Not used</td>
 <td>Login is the approval</td>
 </tr>
@@ -4834,8 +4834,8 @@ The following table shows where each theme lives in the blocks:</p>
 <td><a href="../concepts/pseudonymization/">Pseudonymization</a></td>
 <td>Source gateway decrypts</td>
 <td>Values made at consent</td>
-<td>BSN from the PID</td>
-<td>BSN in the token</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr> from the <abbr title="Person Identification Data">PID</abbr></td>
+<td><abbr title="Burgerservicenummer">BSN</abbr> in the token</td>
 </tr>
 <tr>
 <td><a href="../concepts/source-onboarding/">Source onboarding</a></td>
@@ -4846,17 +4846,17 @@ The following table shows where each theme lives in the blocks:</p>
 </tr>
 <tr>
 <td><a href="../concepts/identity-trust/">Identity and trust</a></td>
-<td>FSC certificates, admission</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> certificates, admission</td>
 <td>Admission register</td>
 <td>Certificate set per source</td>
-<td>QTSP register, seal</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> register, seal</td>
 </tr>
 <tr>
 <td><a href="../concepts/logging/">Logging and audit</a></td>
-<td>ADL, LDV, txlog</td>
-<td>Logbook of the consent service</td>
+<td><abbr title="Authorization Decision Log">ADL</abbr>, <abbr title="Logboek Dataverwerkingen">LDV</abbr>, txlog</td>
+<td>Logbook of the consent facility</td>
 <td>Logbook of the adapter</td>
-<td>ADL and source logbook. The ASIP writes no LDV records</td>
+<td><abbr title="Authorization Decision Log">ADL</abbr> and source logbook. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> writes no <abbr title="Logboek Dataverwerkingen">LDV</abbr> records</td>
 </tr>
 </tbody>
 </table>
@@ -4896,6 +4896,7 @@ The following table shows where each theme lives in the blocks:</p>
 <li>Demo increments: <a href="../traceability/increments/#sl-28">SL-28</a> (done),
   <a href="../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

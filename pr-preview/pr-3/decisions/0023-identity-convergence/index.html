@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4611,7 +4611,7 @@
 <li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-07</a> (trust through recognized admission and trust anchors), <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel">S04</a>, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">S11</a>, <a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f1-identiteit-vertrouwen">F1</a></li>
 <li>Deliberation: reference architecture v0.6.2, gap 2 and trust model comparison (archived and unpublished), <a href="../../traceability/findings-closed/#f-60">F-60</a>, <a href="../../traceability/findings-closed/#f-66">F-66</a>, <a href="../../traceability/findings/#f-81">F-81</a>, <a href="../../traceability/increments/#sl-49">SL-49</a>, and demo <a href="https://github.com/ICTU/GBO-demo/pull/242">PR #242</a>, <a href="https://github.com/ICTU/GBO-demo/pull/247">PR #247</a>, <a href="https://github.com/ICTU/GBO-demo/pull/321">PR #321</a></li>
 <li>Implemented in:<ul>
-<li>Part A: the OIN and the name come from the certificate in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/development_ca_provider.go#L280-L288">development_ca_provider.go#L280-L288</a>. The refusal of a set without OIN or name is in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/source-registry/onboarding/service.go#L293-L297">source-registry/onboarding/service.go#L293-L297</a>. The Peer ID is separate from the OIN in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_configuration.go#L35-L44">source_configuration.go#L35-L44</a>.</li>
+<li>Part A: the <abbr title="Organisatie-identificatienummer">OIN</abbr> and the name come from the certificate in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/development_ca_provider.go#L280-L288">development_ca_provider.go#L280-L288</a>. The refusal of a set without <abbr title="Organisatie-identificatienummer">OIN</abbr> or name is in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/source-registry/onboarding/service.go#L293-L297">source-registry/onboarding/service.go#L293-L297</a>. The Peer ID is separate from the <abbr title="Organisatie-identificatienummer">OIN</abbr> in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_configuration.go#L35-L44">source_configuration.go#L35-L44</a>.</li>
 <li>Part B: not implemented. One development CA stands in for every role (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_config.go#L159-L180">issuance_config.go#L159-L180</a>).</li>
 </ul>
 </li>
@@ -4622,19 +4622,19 @@ and identity story. That story had three parts:</p>
 <ul>
 <li>PKIoverheid as the basis for all certificates.</li>
 <li>One common anchor for all organization identifiers.</li>
-<li>The production BSNk PP.</li>
+<li>The production BSNk <abbr title="Polymorphic pseudonym">PP</abbr>.</li>
 </ul>
 <p>GO and PSA dropped that goal. P-07 does not name PKI any more
 (<a href="../../traceability/answered-questions/#q-07">Q-07</a>). Two separate questions
 remain.</p>
 <p>Question A is: who is this organization? The demo had three identity
-carriers side by side: the FSC Peer ID, a configured OIN, and the
+carriers side by side: the <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID, a configured <abbr title="Organisatie-identificatienummer">OIN</abbr>, and the
 certificate. One field mixed two identities, and the runtime held CA
 private keys (<a href="../../traceability/findings-closed/#f-60">F-60</a>). Simulation Peer
 IDs are not OINs (<code>0000009950HYPBV00000</code>).</p>
 <p>Question B is: which certificates does EUDI issuance need? The analysis
-first confused the PuB-EAA seal and the access CA with PKIoverheid
-(<a href="../../traceability/findings-closed/#f-66">F-66</a>). Since August 2026, PuB-EAA
+first confused the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> seal and the access CA with PKIoverheid
+(<a href="../../traceability/findings-closed/#f-66">F-66</a>). Since August 2026, <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr>
 issuance falls under ETSI TS 119 471. That standard has its own
 registration and certificate profile
 (<a href="../../traceability/findings/#f-81">F-81</a>).</p>
@@ -4646,24 +4646,24 @@ recognition and the BSNk participant.</p>
 <h3 id="part-a-organization-identity-accepted">Part A: organization identity (accepted)<a class="headerlink" href="#part-a-organization-identity-accepted" title="Permanent link">&para;</a></h3>
 <p>The decision for organization identity has five parts:</p>
 <ol>
-<li>The legal identity of a bronhouder (OIN and organization name) comes
+<li>The legal identity of a bronhouder (<abbr title="Organisatie-identificatienummer">OIN</abbr> and organization name) comes
    from its verified certificate material. It does not come from
    configuration (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>).
-   The OIN is the 20-digit <code>serialNumber</code>. The name is exactly one <code>O</code>
+   The <abbr title="Organisatie-identificatienummer">OIN</abbr> is the 20-digit <code>serialNumber</code>. The name is exactly one <code>O</code>
    attribute.</li>
-<li>GBO refuses a configured OIN or name that differs from the
-   certificate. GBO also refuses a certificate without a 20-digit OIN,
+<li><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> refuses a configured <abbr title="Organisatie-identificatienummer">OIN</abbr> or name that differs from the
+   certificate. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> also refuses a certificate without a 20-digit <abbr title="Organisatie-identificatienummer">OIN</abbr>,
    or without exactly one organization name.</li>
-<li>The configuration holds the FSC Peer ID separately from the OIN
+<li>The configuration holds the <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID separately from the <abbr title="Organisatie-identificatienummer">OIN</abbr>
    (<code>provider_peer_id</code>). One peer can offer services of more than one
    bronhouder.</li>
 <li>The runtime gets leaf material and public CA certificates, never CA
    private keys. A separate privileged command does the provisioning.</li>
-<li>FSC participants use PKIoverheid certificates
+<li><abbr title="Federated Service Connectivity">FSC</abbr> participants use PKIoverheid certificates
    (<a href="../0003-fsc-connectivity/">ADR-0003</a>).</li>
 </ol>
 <h3 id="part-b-eudi-certificate-roles-proposed">Part B: EUDI certificate roles (proposed)<a class="headerlink" href="#part-b-eudi-certificate-roles-proposed" title="Permanent link">&para;</a></h3>
-<p>GBO issues attestations for a bronhouder. Each such bronhouder needs its
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issues attestations for a bronhouder. Each such bronhouder needs its
 own certificates, one per role. One certificate never fills two roles.
 The roles are as follows:</p>
 <table>
@@ -4678,13 +4678,13 @@ The roles are as follows:</p>
 <tbody>
 <tr>
 <td>Organization or system certificate</td>
-<td>mTLS for FSC, and organization identity (OIN, name)</td>
+<td>mTLS for <abbr title="Federated Service Connectivity">FSC</abbr>, and organization identity (<abbr title="Organisatie-identificatienummer">OIN</abbr>, name)</td>
 <td>PKIoverheid</td>
 <td>PKIoverheid root</td>
 </tr>
 <tr>
 <td>Access certificate</td>
-<td>Authenticates the issuer to the wallet (OpenID4VCI)</td>
+<td>Authenticates the issuer to the wallet (<abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr>)</td>
 <td>An access CA (ETSI TS 119 411-8)</td>
 <td>The access CA that the member state notified</td>
 </tr>
@@ -4696,8 +4696,8 @@ The roles are as follows:</p>
 </tr>
 <tr>
 <td>Qualified certificate for electronic seal</td>
-<td>Seals the PuB-EAA. The profile is ETSI TS 119 412-6 clause 8. It names the authentic source and the legal basis (eIDAS art. 45f(1)(b)). The key is in a QSCD</td>
-<td>A QTSP</td>
+<td>Seals the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr>. The profile is ETSI TS 119 412-6 clause 8. It names the authentic source and the legal basis (eIDAS art. 45f(1)(b)). The key is in a QSCD</td>
+<td>A <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td>Open: <a href="../../traceability/open-questions/#q-30">Q-30</a></td>
 </tr>
 <tr>
@@ -4723,22 +4723,22 @@ set per source fail-hard (<a href="../0016-source-owned-metadata/">ADR-0016</a>)
   <a href="https://github.com/ICTU/GBO-demo/pull/277">PR #277</a> showed that the
   binding is real.</li>
 <li>In the default demo onboarding, the demo publishes RvIG through the
-  Belastingdienst peer with the Belastingdienst OIN. That is a demo
-  shortcut, so it does not show one OIN per bronhouder. The certificate
+  Belastingdienst peer with the Belastingdienst <abbr title="Organisatie-identificatienummer">OIN</abbr>. That is a demo
+  shortcut, so it does not show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per bronhouder. The certificate
   sets still differ per source.</li>
 <li>The demo development CA stands in for all EUDI roles at once.
   Production separates the roles.</li>
 <li>The choice of the party that operates the Dutch access CA depends on
   Dutch EUDI governance. That choice is outside the decision scope of
-  GBO.</li>
+  <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</li>
 </ul>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
 <p>These points are open:</p>
 <ul>
-<li>Can policy read the FSC Peer ID of a consumer as its OIN, or must
+<li>Can policy read the <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID of a consumer as its <abbr title="Organisatie-identificatienummer">OIN</abbr>, or must
   policy take that link from the register
   (<a href="../../traceability/open-questions/#q-68">Q-68</a>)?</li>
-<li>On which trust list do PuB-EAA providers appear: a List of Trusted
+<li>On which trust list do <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> providers appear: a List of Trusted
   Entities (ETSI TS 119 602) or the trusted lists (ETSI TS 119 612)? The
   specifications contradict each other
   (<a href="../../traceability/open-questions/#q-30">Q-30</a>).</li>
@@ -4763,6 +4763,7 @@ set per source fail-hard (<a href="../0016-source-owned-metadata/">ADR-0016</a>)
 <li>Demo increments: <a href="../../traceability/increments/#sl-34a">SL-34a</a>,
   <a href="../../traceability/increments/#sl-49">SL-49</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

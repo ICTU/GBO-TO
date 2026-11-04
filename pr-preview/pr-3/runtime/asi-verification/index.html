@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4606,15 +4606,15 @@
   
 
 
-<h1 id="asi-verification-a-qtsp-verifies-or-retrieves-an-attribute">ASI verification: a QTSP verifies or retrieves an attribute<a class="headerlink" href="#asi-verification-a-qtsp-verifies-or-retrieves-an-attribute" title="Permanent link">&para;</a></h1>
-<p>A qualified trust service provider (QTSP) asks the Authentic Source
-Interface Provider (ASIP) to verify or retrieve attributes of a citizen at
+<h1 id="asi-verification-a-qtsp-verifies-or-retrieves-an-attribute"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification: a <abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies or retrieves an attribute<a class="headerlink" href="#asi-verification-a-qtsp-verifies-or-retrieves-an-attribute" title="Permanent link">&para;</a></h1>
+<p>A qualified trust service provider (<abbr title="Qualified Trust Service Provider">QTSP</abbr>) asks the Authentic Source
+Interface Provider (<abbr title="Authentic Source Interface Provider">ASIP</abbr>) to verify or retrieve attributes of a citizen at
 the authentic source. This exchange follows eIDAS Article 45e and ETSI TS
 119 478, clause 6.1 (<a href="../../decisions/0037-asi-oauth-front-door/">ADR-0037</a>,
-<a href="https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider">GO: ASI provider</a>).
+<a href="https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider">GO: <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</a>).
 The citizen approves each request by logging in at the authorization
-server of the ASIP.</p>
-<p>The ASI route in gbo-demo
+server of the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</p>
+<p>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route in gbo-demo
 <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0">v0.9.0</a> has four runs:</p>
 <ol>
 <li><a href="#discovery-and-registration">Discovery and registration</a></li>
@@ -4625,9 +4625,9 @@ server of the ASIP.</p>
 <p>For the concepts, see these pages:</p>
 <ul>
 <li>The components and the trust boundary:
-  <a href="../../building-blocks/components/#level-2-asi-chain">Level 2: ASI chain</a>.</li>
-<li>The profile per ETSI clause: <a href="../../requirements/asi/#asi-profile">ASI requirements</a>.</li>
-<li>The trust roles: <a href="../../concepts/identity-trust/#asi-trust-roles">ASI trust roles</a>.</li>
+  <a href="../../building-blocks/components/#level-2-asi-chain">Level 2: <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> chain</a>.</li>
+<li>The profile per ETSI clause: <a href="../../requirements/asi/#asi-profile"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> requirements</a>.</li>
+<li>The trust roles: <a href="../../concepts/identity-trust/#asi-trust-roles"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> trust roles</a>.</li>
 <li>The source description: <a href="../../concepts/source-onboarding/#the-asi-capability-schema-11">The <code>asi</code> capability</a>.</li>
 <li>What is real, stub, or interpretation in the demo:
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/asi-route.md"><code>docs/asi-route.md</code></a>.</li>
@@ -4636,12 +4636,12 @@ server of the ASIP.</p>
 (BRP mock). Its base URL is <code>/brp/authsrc-api</code>
 (<a href="../../decisions/0038-asi-data-service-per-source/">ADR-0038</a>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/config/dataservices.json"><code>dataservices.json</code></a>).
-The QTSP is the reference QTSP of the demo. It is not a real QTSP. The
+The <abbr title="Qualified Trust Service Provider">QTSP</abbr> is the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> of the demo. It is not a real <abbr title="Qualified Trust Service Provider">QTSP</abbr>. The
 route runs only in the local stack (<code>make demo-asi</code>).</p>
 <h2 id="discovery-and-registration">Discovery and registration<a class="headerlink" href="#discovery-and-registration" title="Permanent link">&para;</a></h2>
-<p>A QTSP finds the data service for an attribute without addresses in its
+<p>A <abbr title="Qualified Trust Service Provider">QTSP</abbr> finds the data service for an attribute without addresses in its
 configuration (<a href="../../requirements/asi/#req-99">REQ-99</a>,
-<a href="../../requirements/asi/#req-100">REQ-100</a>). The QTSP registers once per
+<a href="../../requirements/asi/#req-100">REQ-100</a>). The <abbr title="Qualified Trust Service Provider">QTSP</abbr> registers once per
 authorization server (<a href="../../requirements/asi/#req-88">REQ-88</a>).</p>
 <div class="mermaid">sequenceDiagram
     autonumber
@@ -4688,32 +4688,32 @@ authorization server (<a href="../../requirements/asi/#req-88">REQ-88</a>).</p>
 <tbody>
 <tr>
 <td>1 to 4</td>
-<td>QTSP → Discover Interface → ASIP</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> → Discover Interface → <abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
 <td>In: an attribute identifier. Out: one record per attribute and data service</td>
-<td>No personal data travels. The stub holds no records. It reads them per query from the ASIP and checks them against the ETSI schema (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-discovery-stub/directory.go#L35-L40"><code>directory.go#L35-L40</code></a>). The ASIP lists the attributes of the active source description. If no description is active, the ASIP answers 503 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L139-L165"><code>handler.go#L139-L165</code></a>).</td>
+<td>No personal data travels. The stub holds no records. It reads them per query from the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and checks them against the ETSI schema (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-discovery-stub/directory.go#L35-L40"><code>directory.go#L35-L40</code></a>). The <abbr title="Authentic Source Interface Provider">ASIP</abbr> lists the attributes of the active source description. If no description is active, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> answers 503 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L139-L165"><code>handler.go#L139-L165</code></a>).</td>
 </tr>
 <tr>
 <td>5</td>
-<td>QTSP (internal)</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> (internal)</td>
 <td>The records</td>
-<td>A token is for one data service. If no data service provides all attributes, the QTSP stops before the authorization server (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/internal/qtsp/qtsp.go#L124-L162"><code>qtsp.go#L124-L162</code></a>, <a href="../../traceability/findings/#f-89">F-89</a>).</td>
+<td>A token is for one data service. If no data service provides all attributes, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> stops before the authorization server (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/internal/qtsp/qtsp.go#L124-L162"><code>qtsp.go#L124-L162</code></a>, <a href="../../traceability/findings/#f-89">F-89</a>).</td>
 </tr>
 <tr>
 <td>6 to 7</td>
-<td>QTSP → ASIP</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> → <abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
 <td>The contract (ETSI Annex B OpenAPI)</td>
-<td><code>servers</code> must equal the <code>endpointURI</code>. <code>x-oauth-authorization-server</code> is a GBO extension: ETSI requires the reference but gives no field (<a href="../../traceability/findings/#f-91">F-91</a>, <a href="../../traceability/open-questions/#q-39">Q-39</a>, <a href="../../traceability/standards-feedback/#e1">E1</a>).</td>
+<td><code>servers</code> must equal the <code>endpointURI</code>. <code>x-oauth-authorization-server</code> is a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> extension: ETSI requires the reference but gives no field (<a href="../../traceability/findings/#f-91">F-91</a>, <a href="../../traceability/open-questions/#q-39">Q-39</a>, <a href="../../traceability/standards-feedback/#e1">E1</a>).</td>
 </tr>
 <tr>
 <td>8 to 10</td>
-<td>QTSP → authorization server</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> → authorization server</td>
 <td>RFC 8414 metadata</td>
-<td>The QTSP checks that the metadata URL is the RFC 8414 location for the issuer (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/internal/qtsp/qtsp.go#L190-L214"><code>qtsp.go#L190-L214</code></a>).</td>
+<td>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> checks that the metadata URL is the RFC 8414 location for the issuer (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/internal/qtsp/qtsp.go#L190-L214"><code>qtsp.go#L190-L214</code></a>).</td>
 </tr>
 <tr>
 <td>11 to 12</td>
-<td>QTSP → authorization server</td>
-<td>RFC 7591 request with a software statement, sealed with the QTSP certificate (<code>x5c</code>, <code>registryURI</code>)</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> → authorization server</td>
+<td>RFC 7591 request with a software statement, sealed with the <abbr title="Qualified Trust Service Provider">QTSP</abbr> certificate (<code>x5c</code>, <code>registryURI</code>)</td>
 <td>No personal data travels. The certificate must chain to a trust anchor and carry an <code>organizationIdentifier</code>. In the demo, the certificate comes from the development reader CA. It is not an access certificate per ETSI TS 119 411-8 (<a href="../../traceability/findings/#f-85">F-85</a>).</td>
 </tr>
 <tr>
@@ -4731,7 +4731,7 @@ authorization server (<a href="../../requirements/asi/#req-88">REQ-88</a>).</p>
 </tbody>
 </table>
 <h2 id="authorization-and-login">Authorization and login<a class="headerlink" href="#authorization-and-login" title="Permanent link">&para;</a></h2>
-<p>The citizen starts at the QTSP and logs in there first. The QTSP then
+<p>The citizen starts at the <abbr title="Qualified Trust Service Provider">QTSP</abbr> and logs in there first. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> then
 sends the browser to the authorization server. One request page shows who
 asks what at which source (<a href="../../requirements/asi/#req-91">REQ-91</a>). The
 citizen approves by logging in, or refuses
@@ -4793,21 +4793,21 @@ refusal.</p>
 <tbody>
 <tr>
 <td>1</td>
-<td>Citizen → QTSP</td>
-<td><strong>name, birth date, nationalities</strong> (no BSN)</td>
-<td>The QTSP uses use case <code>qtsp-login</code> on the same verifier, with its own reader certificate. This shared verifier is a demo shortcut. The test-data login is a stub. The QTSP keeps the login in memory for 30 minutes.</td>
+<td>Citizen → <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
+<td><strong>name, birth date, nationalities</strong> (no <abbr title="Burgerservicenummer">BSN</abbr>)</td>
+<td>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> uses use case <code>qtsp-login</code> on the same verifier, with its own reader certificate. This shared verifier is a demo shortcut. The test-data login is a stub. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> keeps the login in memory for 30 minutes.</td>
 </tr>
 <tr>
 <td>2 to 3</td>
-<td>Citizen → QTSP → browser</td>
+<td>Citizen → <abbr title="Qualified Trust Service Provider">QTSP</abbr> → browser</td>
 <td>The product and the values to check (<strong>address</strong>)</td>
-<td>The redirect carries PKCE S256, <code>state</code>, the operation as <code>scope</code>, <code>resource</code> = the <code>endpointURI</code>, and <code>authorization_details</code> with the attribute identifiers (<a href="../../requirements/asi/#req-103">REQ-103</a>, <a href="../../decisions/0042-asi-attribute-token-binding/">ADR-0042</a>). The values stay at the QTSP.</td>
+<td>The redirect carries PKCE S256, <code>state</code>, the operation as <code>scope</code>, <code>resource</code> = the <code>endpointURI</code>, and <code>authorization_details</code> with the attribute identifiers (<a href="../../requirements/asi/#req-103">REQ-103</a>, <a href="../../decisions/0042-asi-attribute-token-binding/">ADR-0042</a>). The values stay at the <abbr title="Qualified Trust Service Provider">QTSP</abbr>.</td>
 </tr>
 <tr>
 <td>4 to 5</td>
 <td>Browser → authorization server</td>
 <td>The authorization request. Out: the request page</td>
-<td>If <code>resource</code> does not name exactly one data service, the answer is <code>invalid_target</code> (<a href="../../requirements/asi/#req-95">REQ-95</a>). The page names the QTSP by its legal name from the register, the operation, the source, and the attributes. The transaction lives 5 minutes and is used once. A cookie binds the transaction to the browser.</td>
+<td>If <code>resource</code> does not name exactly one data service, the answer is <code>invalid_target</code> (<a href="../../requirements/asi/#req-95">REQ-95</a>). The page names the <abbr title="Qualified Trust Service Provider">QTSP</abbr> by its legal name from the register, the operation, the source, and the attributes. The transaction lives 5 minutes and is used once. A cookie binds the transaction to the browser.</td>
 </tr>
 <tr>
 <td>6</td>
@@ -4824,20 +4824,20 @@ refusal.</p>
 <tr>
 <td>10 to 12</td>
 <td>Wallet ↔ verifier</td>
-<td><strong>PID</strong> with the <strong>BSN</strong></td>
-<td>The reader certificate names the authorization server. It does not name the QTSP. Any phone can scan the QR code (<a href="../../traceability/findings/#f-93">F-93</a>). The verifier verifies the issuer signature, the trusted issuer, and the wallet binding. The trusted issuers come from a fixed list. They do not come from a trusted list (<a href="../../requirements/asi/#req-102">REQ-102</a>, <a href="../../traceability/open-questions/#q-36">Q-36</a>).</td>
+<td><strong><abbr title="Person Identification Data">PID</abbr></strong> with the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
+<td>The reader certificate names the authorization server. It does not name the <abbr title="Qualified Trust Service Provider">QTSP</abbr>. Any phone can scan the QR code (<a href="../../traceability/findings/#f-93">F-93</a>). The verifier verifies the issuer signature, the trusted issuer, and the wallet binding. The trusted issuers come from a fixed list. They do not come from a trusted list (<a href="../../requirements/asi/#req-102">REQ-102</a>, <a href="../../traceability/open-questions/#q-36">Q-36</a>).</td>
 </tr>
 <tr>
 <td>13 to 15</td>
 <td>Authorization server ↔ verifier</td>
-<td><strong>BSN</strong>, names, birth date, nationalities</td>
-<td>Only a PID of the right type with a BSN identifies the citizen. The NL PID has no place of birth (<a href="../../traceability/findings/#f-94">F-94</a>).</td>
+<td><strong><abbr title="Burgerservicenummer">BSN</abbr></strong>, names, birth date, nationalities</td>
+<td>Only a <abbr title="Person Identification Data">PID</abbr> of the right type with a <abbr title="Burgerservicenummer">BSN</abbr> identifies the citizen. The NL <abbr title="Person Identification Data">PID</abbr> has no place of birth (<a href="../../traceability/findings/#f-94">F-94</a>).</td>
 </tr>
 <tr>
 <td>16 to 17</td>
 <td>Browser → DigiD mock</td>
-<td><strong>BSN</strong></td>
-<td>The DigiD mock is a stub. It checks only for nine digits and gives only the BSN (<a href="../../traceability/findings/#f-88">F-88</a>).</td>
+<td><strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
+<td>The DigiD mock is a stub. It checks only for nine digits and gives only the <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../../traceability/findings/#f-88">F-88</a>).</td>
 </tr>
 <tr>
 <td>18</td>
@@ -4847,21 +4847,21 @@ refusal.</p>
 </tr>
 <tr>
 <td>19 to 20</td>
-<td>Browser → QTSP</td>
+<td>Browser → <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td><code>code</code>, <code>state</code></td>
-<td>The code is single use and valid for 60 s. Before the QTSP asks for a token, it checks its session and <code>state</code>.</td>
+<td>The code is single use and valid for 60 s. Before the <abbr title="Qualified Trust Service Provider">QTSP</abbr> asks for a token, it checks its session and <code>state</code>.</td>
 </tr>
 <tr>
 <td>21</td>
-<td>QTSP → authorization server</td>
-<td><code>POST /token</code>: code, <code>code_verifier</code>, <code>private_key_jwt</code> client assertion, DPoP proof</td>
-<td>From each pair of mechanisms that ETSI offers, the demo uses one: <code>private_key_jwt</code> and DPoP. The demo uses no mTLS and no PAR (<a href="../../traceability/findings/#f-84">F-84</a>, <a href="../../traceability/open-questions/#q-66">Q-66</a>).</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> → authorization server</td>
+<td><code>POST /token</code>: code, <code>code_verifier</code>, <code>private_key_jwt</code> client assertion, <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr> proof</td>
+<td>From each pair of mechanisms that ETSI offers, the demo uses one: <code>private_key_jwt</code> and <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr>. The demo uses no mTLS and no PAR (<a href="../../traceability/findings/#f-84">F-84</a>, <a href="../../traceability/open-questions/#q-66">Q-66</a>).</td>
 </tr>
 <tr>
 <td>22</td>
-<td>Authorization server → QTSP</td>
-<td>RFC 9068 access token, ES256: <code>aud</code> = data service, <code>scope</code>, <code>authorization_details</code>, <code>cnf.jkt</code>, opaque <code>sub</code>, <strong>BSN</strong> claim, <code>acr</code>/<code>amr</code>, <strong>PID claims</strong> (wallet only)</td>
-<td>The QTSP can read the BSN in the token (<a href="../../traceability/findings/#f-86">F-86</a>, <a href="../../traceability/standards-feedback/#e7">E7</a>, <a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>). The token carries the means used (<a href="../../requirements/asi/#req-86">REQ-86</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/tokens.go#L53-L85"><code>tokens.go#L53-L85</code></a>).</td>
+<td>Authorization server → <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
+<td>RFC 9068 access token, ES256: <code>aud</code> = data service, <code>scope</code>, <code>authorization_details</code>, <code>cnf.jkt</code>, opaque <code>sub</code>, <strong><abbr title="Burgerservicenummer">BSN</abbr></strong> claim, <code>acr</code>/<code>amr</code>, <strong><abbr title="Person Identification Data">PID</abbr> claims</strong> (wallet only)</td>
+<td>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> can read the <abbr title="Burgerservicenummer">BSN</abbr> in the token (<a href="../../traceability/findings/#f-86">F-86</a>, <a href="../../traceability/standards-feedback/#e7">E7</a>, <a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>). The token carries the means used (<a href="../../requirements/asi/#req-86">REQ-86</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/tokens.go#L53-L85"><code>tokens.go#L53-L85</code></a>).</td>
 </tr>
 </tbody>
 </table>
@@ -4926,15 +4926,15 @@ real phone waits for the simulation environment
 <tr>
 <td>10 to 11</td>
 <td>Authorization server ↔ verifier</td>
-<td><code>nonce</code>. Out: <strong>PID</strong> with the <strong>BSN</strong></td>
+<td><code>nonce</code>. Out: <strong><abbr title="Person Identification Data">PID</abbr></strong> with the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
 <td>The nonce binds the disclosure to the browser that the wallet returned. Another phone cannot finish this session (<a href="../../traceability/findings/#f-93">F-93</a>).</td>
 </tr>
 </tbody>
 </table>
 <h2 id="verify-through-the-chain">Verify through the chain<a class="headerlink" href="#verify-through-the-chain" title="Permanent link">&para;</a></h2>
-<p>The QTSP calls the ASIP with the token. The ASIP verifies the token, takes
-the BSN from it, and calls the source once, through its own FSC Outway.
-The generic GBO chain starts behind the ASIP
+<p>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> calls the <abbr title="Authentic Source Interface Provider">ASIP</abbr> with the token. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> verifies the token, takes
+the <abbr title="Burgerservicenummer">BSN</abbr> from it, and calls the source once, through its own <abbr title="Federated Service Connectivity">FSC</abbr> Outway.
+The generic <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> chain starts behind the <abbr title="Authentic Source Interface Provider">ASIP</abbr>
 (<a href="../../traceability/findings/#f-87">F-87</a>).</p>
 <div class="mermaid">sequenceDiagram
     autonumber
@@ -4984,81 +4984,81 @@ The generic GBO chain starts behind the ASIP
 <tbody>
 <tr>
 <td>1</td>
-<td>QTSP → ASIP</td>
-<td><code>Authorization: DPoP &lt;token&gt;</code>, DPoP proof with <code>ath</code>, <strong>attribute values</strong> to check</td>
-<td>The values are personal data that the QTSP already has. <code>insufficient_scope</code> and every other token error give 401, as ETSI lists.</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> → <abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
+<td><code>Authorization: DPoP &lt;token&gt;</code>, <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr> proof with <code>ath</code>, <strong>attribute values</strong> to check</td>
+<td>The values are personal data that the <abbr title="Qualified Trust Service Provider">QTSP</abbr> already has. <code>insufficient_scope</code> and every other token error give 401, as ETSI lists.</td>
 </tr>
 <tr>
 <td>2 to 3</td>
-<td>ASIP → authorization server</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> → authorization server</td>
 <td><code>jwks_uri</code> from the metadata</td>
-<td>If the <code>kid</code> is unknown, the ASIP fetches the keys again. If the keys are not available, the ASIP answers 503 (<a href="../../requirements/asi/#req-87">REQ-87</a>).</td>
+<td>If the <code>kid</code> is unknown, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> fetches the keys again. If the keys are not available, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> answers 503 (<a href="../../requirements/asi/#req-87">REQ-87</a>).</td>
 </tr>
 <tr>
 <td>4</td>
-<td>ASIP (internal)</td>
-<td>Token, proof. Out: the <strong>BSN</strong></td>
-<td>The ASIP first verifies the token: signature, issuer, <code>aud</code>, expiry, DPoP binding and replay, and scope (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L222-L258"><code>handler.go#L222-L258</code></a>). The BSN comes only from the token. No log line holds the BSN.</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> (internal)</td>
+<td>Token, proof. Out: the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> first verifies the token: signature, issuer, <code>aud</code>, expiry, <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr> binding and replay, and scope (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L222-L258"><code>handler.go#L222-L258</code></a>). The <abbr title="Burgerservicenummer">BSN</abbr> comes only from the token. No log line holds the <abbr title="Burgerservicenummer">BSN</abbr>.</td>
 </tr>
 <tr>
 <td>5</td>
-<td>ASIP (internal)</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> (internal)</td>
 <td>The request</td>
 <td>Schema against the contract: 400. Attributes outside <code>authorization_details</code>: 401. <code>mandate</code>: 501. An attribute the source does not describe: 404 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L260-L356"><code>handler.go#L260-L356</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/verification/service.go#L129-L139"><code>service.go#L129-L139</code></a>).</td>
 </tr>
 <tr>
 <td>6</td>
-<td>ASIP (internal)</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> (internal)</td>
 <td>The <code>asi</code> description from the active release</td>
-<td>The ASIP reads the active release every 5 s with the reader role. It derives one query with only the fields of the requested attributes (<a href="../../requirements/asi/#req-92">REQ-92</a>, <a href="../../decisions/0039-asi-source-described-attributes/">ADR-0039</a>).</td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> reads the active release every 5 s with the reader role. It derives one query with only the fields of the requested attributes (<a href="../../requirements/asi/#req-92">REQ-92</a>, <a href="../../decisions/0039-asi-source-described-attributes/">ADR-0039</a>).</td>
 </tr>
 <tr>
 <td>7</td>
-<td>ASIP → asip-outway</td>
-<td><code>POST /brp/graphql</code> (grant link <code>/brp</code>): <code>{query, variables: {bsn}}</code> with the <strong>BSN</strong>, <code>Fsc-Transaction-Id</code>, <code>traceparent</code></td>
-<td>One FSC transaction per request. The span names the source, the transaction ID and the attribute identifiers, never the BSN or a value (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/source.go#L75-L104"><code>source.go#L75-L104</code></a>, <a href="../../requirements/logging-audit/#req-55">REQ-55</a>).</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> → asip-outway</td>
+<td><code>POST /brp/graphql</code> (grant link <code>/brp</code>): <code>{query, variables: {bsn}}</code> with the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong>, <code>Fsc-Transaction-Id</code>, <code>traceparent</code></td>
+<td>One <abbr title="Federated Service Connectivity">FSC</abbr> transaction per request. The span names the source, the transaction ID and the attribute identifiers, never the <abbr title="Burgerservicenummer">BSN</abbr> or a value (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/source.go#L75-L104"><code>source.go#L75-L104</code></a>, <a href="../../requirements/logging-audit/#req-55">REQ-55</a>).</td>
 </tr>
 <tr>
 <td>8</td>
 <td>asip-outway → bd-inway</td>
-<td>FSC, mTLS, with the body and the <strong>BSN</strong></td>
-<td>The hop uses the contract of the ASIP peer <code>…1200</code> for service <code>brp</code> on <code>…0200</code> (<a href="../../deployment/#fsc-peers">FSC peers</a>).</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr>, mTLS, with the body and the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
+<td>The hop uses the contract of the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer <code>…1200</code> for service <code>brp</code> on <code>…0200</code> (<a href="../../deployment/#fsc-peers"><abbr title="Federated Service Connectivity">FSC</abbr> peers</a>).</td>
 </tr>
 <tr>
 <td>9 to 10</td>
-<td>bd-inway ↔ PDP</td>
-<td>AuthZEN: actor <code>…1200</code>, service <code>brp</code>, the query with the <strong>BSN</strong></td>
-<td>ASI0001 grants the ASIP peer the BRP fields behind the attributes, on <code>brp</code> only. It does not check the token or the QTSP (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego#L1-L72"><code>asi0001.rego#L1-L72</code></a>, <a href="../../requirements/authorization/#req-97">REQ-97</a>). The PDP never sees the QTSP or the citizen. The ADL holds the BSN (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>, <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>).</td>
+<td>bd-inway ↔ <abbr title="Policy Decision Point">PDP</abbr></td>
+<td><abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr>: actor <code>…1200</code>, service <code>brp</code>, the query with the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
+<td>ASI0001 grants the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer the BRP fields behind the attributes, on <code>brp</code> only. It does not check the token or the <abbr title="Qualified Trust Service Provider">QTSP</abbr> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego#L1-L72"><code>asi0001.rego#L1-L72</code></a>, <a href="../../requirements/authorization/#req-97">REQ-97</a>). The <abbr title="Policy Decision Point">PDP</abbr> never sees the <abbr title="Qualified Trust Service Provider">QTSP</abbr> or the citizen. The <abbr title="Authorization Decision Log">ADL</abbr> holds the <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>, <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>).</td>
 </tr>
 <tr>
 <td>11 to 12</td>
 <td>bd-inway → gateway → BRP mock</td>
 <td>The judged query</td>
-<td>If the query has no consent token, the gateway passes it through. The BRP logs its own processing. In demo v0.9.0, the ASIP writes no LDV records.</td>
+<td>If the query has no consent token, the gateway passes it through. The BRP logs its own processing. In demo v0.9.0, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> writes no <abbr title="Logboek Dataverwerkingen">LDV</abbr> records.</td>
 </tr>
 <tr>
 <td>13</td>
-<td>BRP mock → ASIP</td>
+<td>BRP mock → <abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
 <td><strong>fields of the person</strong>, or <code>null</code></td>
-<td>The answer goes back through the same FSC chain.</td>
+<td>The answer goes back through the same <abbr title="Federated Service Connectivity">FSC</abbr> chain.</td>
 </tr>
 <tr>
 <td>14</td>
-<td>ASIP (internal)</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> (internal)</td>
 <td>Fields. Out: a result per attribute</td>
 <td><code>pointer</code>, <code>join</code>, <code>const</code>, and <code>each</code> build the attribute from the fields. The result is <code>Match</code>, <code>MatchWithVariation</code>, <code>NoMatch</code>, or <code>Unknown</code>. <code>Unknown</code> means only that the source holds no value (<a href="../../requirements/asi/#req-84">REQ-84</a>). Fuzzy matching applies only to strings without a <code>format</code> (<a href="../../requirements/asi/#req-113">REQ-113</a>).</td>
 </tr>
 <tr>
 <td>15</td>
-<td>ASIP → QTSP</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> → <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td>results, <code>provider</code>, <code>authenticSource</code> (legal name from the description), header <code>X-JWS-Signature</code></td>
-<td>A verify response holds no source value (<a href="../../requirements/asi/#req-85">REQ-85</a>). One authentic source per response (<a href="../../requirements/asi/#req-94">REQ-94</a>). The seal is a detached JWS, ES256, with <code>x5c</code>, over the exact body. The ASIP does not seal errors (<a href="../../requirements/asi/#req-83">REQ-83</a>, <a href="../../decisions/0041-asi-seal-format/">ADR-0041</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L402-L417"><code>handler.go#L402-L417</code></a>).</td>
+<td>A verify response holds no source value (<a href="../../requirements/asi/#req-85">REQ-85</a>). One authentic source per response (<a href="../../requirements/asi/#req-94">REQ-94</a>). The seal is a detached JWS, ES256, with <code>x5c</code>, over the exact body. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not seal errors (<a href="../../requirements/asi/#req-83">REQ-83</a>, <a href="../../decisions/0041-asi-seal-format/">ADR-0041</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L402-L417"><code>handler.go#L402-L417</code></a>).</td>
 </tr>
 <tr>
 <td>16</td>
-<td>QTSP (internal)</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> (internal)</td>
 <td>The seal</td>
-<td>The chain must lead to <code>QTSP_SEAL_TRUST_ANCHORS</code>. If it does not, the QTSP does not accept the result.</td>
+<td>The chain must lead to <code>QTSP_SEAL_TRUST_ANCHORS</code>. If it does not, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> does not accept the result.</td>
 </tr>
 </tbody>
 </table>
@@ -5068,8 +5068,8 @@ values. The sealed 200 carries the values of every requested attribute. If
 the source holds no value for one of them, the answer is 404. Retrieve
 gives no partial result (<a href="../../requirements/asi/#req-101">REQ-101</a>).</p>
 <h2 id="test-statement-to-the-wallet">Test statement to the wallet<a class="headerlink" href="#test-statement-to-the-wallet" title="Permanent link">&para;</a></h2>
-<p>After an accepted result, the reference QTSP issues a test statement to
-the wallet of the citizen who logged in at the QTSP. The QTSP uses the central
+<p>After an accepted result, the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues a test statement to
+the wallet of the citizen who logged in at the <abbr title="Qualified Trust Service Provider">QTSP</abbr>. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> uses the central
 issuance server of the EUDI route, with its own use case and its own
 certificates (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/qtsp_issuance.go#L19-L27"><code>qtsp_issuance.go#L19-L27</code></a>,
 <a href="../eudi-issuance/">EUDI issuance</a>).</p>
@@ -5109,38 +5109,38 @@ certificates (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eud
 <tbody>
 <tr>
 <td>1 to 2</td>
-<td>QTSP → browser</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> → browser</td>
 <td>The result and a fixed link per use case</td>
 <td>This hop occurs only after <code>Match</code>, <code>MatchWithVariation</code>, or a retrieved value. The pending statement lives 10 minutes in memory and is used once. A later request of the same citizen replaces it.</td>
 </tr>
 <tr>
 <td>3 to 4</td>
 <td>Wallet → issuance server</td>
-<td><strong>PID</strong> without the BSN</td>
-<td>A QTSP is not allowed to process the BSN.</td>
+<td><strong><abbr title="Person Identification Data">PID</abbr></strong> without the <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>A <abbr title="Qualified Trust Service Provider">QTSP</abbr> is not allowed to process the <abbr title="Burgerservicenummer">BSN</abbr>.</td>
 </tr>
 <tr>
 <td>5</td>
-<td>Issuance server → QTSP</td>
+<td>Issuance server → <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td><strong>name, birth date, nationalities</strong></td>
-<td>The QTSP gets no session, only the shared attributes. The callback uses a secret path over CA-pinned HTTPS, without client authentication (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/qtsp_issuance.go#L134-L152"><code>qtsp_issuance.go#L134-L152</code></a>).</td>
+<td>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> gets no session, only the shared attributes. The callback uses a secret path over CA-pinned HTTPS, without client authentication (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/qtsp_issuance.go#L134-L152"><code>qtsp_issuance.go#L134-L152</code></a>).</td>
 </tr>
 <tr>
 <td>6</td>
-<td>QTSP (internal)</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> (internal)</td>
 <td>The identity</td>
 <td>The link to the login uses only these personal data. This link is a demo binding and does not check a unique identity (<a href="../../traceability/findings/#f-93">F-93</a>).</td>
 </tr>
 <tr>
 <td>7 to 8</td>
-<td>QTSP → issuance server → wallet</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> → issuance server → wallet</td>
 <td><strong>statement</strong></td>
-<td>The statement is valid for 30 days, has <code>attestation_qualification = "EAA"</code>, and carries a clear test marking. It is not a QEAA. For <code>MatchWithVariation</code>, the statement records the value that the QTSP sent. It does not record a source value.</td>
+<td>The statement is valid for 30 days, has <code>attestation_qualification = "EAA"</code>, and carries a clear test marking. It is not a <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr>. For <code>MatchWithVariation</code>, the statement records the value that the <abbr title="Qualified Trust Service Provider">QTSP</abbr> sent. It does not record a source value.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="error-paths">Error paths<a class="headerlink" href="#error-paths" title="Permanent link">&para;</a></h2>
-<p>The ASI route has the following error paths:</p>
+<p>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route has the following error paths:</p>
 <table>
 <thead>
 <tr>
@@ -5152,7 +5152,7 @@ certificates (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eud
 <tbody>
 <tr>
 <td>No data service provides all requested attributes</td>
-<td>The QTSP stops before the authorization server. Request API: 422.</td>
+<td>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> stops before the authorization server. Request API: 422.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/api_e2e_test.go#L201"><code>api_e2e_test.go#L201</code></a></td>
 </tr>
 <tr>
@@ -5201,7 +5201,7 @@ certificates (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eud
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/httpapi/login_test.go#L61"><code>login_test.go#L61</code></a></td>
 </tr>
 <tr>
-<td>DigiD mock: BSN is not nine digits</td>
+<td>DigiD mock: <abbr title="Burgerservicenummer">BSN</abbr> is not nine digits</td>
 <td>The page stays open with an error</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/httpapi/login_test.go#L110"><code>login_test.go#L110</code></a></td>
 </tr>
@@ -5236,12 +5236,12 @@ certificates (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eud
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/httpapi/handler_test.go#L293"><code>handler_test.go#L293</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/httpapi/handler_test.go#L347"><code>#L347</code></a></td>
 </tr>
 <tr>
-<td>No valid DPoP proof at the token endpoint</td>
+<td>No valid <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr> proof at the token endpoint</td>
 <td><code>invalid_dpop_proof</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/httpapi/handler_test.go#L374"><code>handler_test.go#L374</code></a></td>
 </tr>
 <tr>
-<td>No token, an invalid token, or a DPoP proof that is missing, invalid, or replayed</td>
+<td>No token, an invalid token, or a <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr> proof that is missing, invalid, or replayed</td>
 <td>401 with <code>WWW-Authenticate: DPoP</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/token_test.go#L46-L216"><code>token_test.go#L46-L216</code></a></td>
 </tr>
@@ -5277,11 +5277,11 @@ certificates (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eud
 </tr>
 <tr>
 <td>Attribute the source does not describe, also one of another data service</td>
-<td>404. The ASIP does not call the source.</td>
+<td>404. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not call the source.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler_test.go#L151"><code>handler_test.go#L151</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler_test.go#L157"><code>#L157</code></a></td>
 </tr>
 <tr>
-<td>Source holds no value, or the BSN is unknown to the source</td>
+<td>Source holds no value, or the <abbr title="Burgerservicenummer">BSN</abbr> is unknown to the source</td>
 <td><code>Unknown</code> (<a href="../../requirements/asi/#req-84">REQ-84</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler_test.go#L140"><code>handler_test.go#L140</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/token_test.go#L254"><code>token_test.go#L254</code></a></td>
 </tr>
@@ -5296,28 +5296,28 @@ certificates (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eud
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/source_test.go#L157"><code>graphqlsource/source_test.go#L157</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/source_test.go#L141"><code>source_test.go#L141</code></a></td>
 </tr>
 <tr>
-<td>PDP deny (the Inway answers 401), GraphQL errors, or an answer of another shape</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> deny (the Inway answers 401), GraphQL errors, or an answer of another shape</td>
 <td>500, never <code>Unknown</code></td>
 <td>The same tests</td>
 </tr>
 <tr>
-<td>PDP: the caller is not the ASIP peer</td>
+<td><abbr title="Policy Decision Point">PDP</abbr>: the caller is not the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer</td>
 <td><code>ACTOR_NOT_ALLOWED</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001_test.rego#L29"><code>asi0001_test.rego#L29</code></a></td>
 </tr>
 <tr>
-<td>PDP: a consent token, or no BSN in the root argument</td>
+<td><abbr title="Policy Decision Point">PDP</abbr>: a consent token, or no <abbr title="Burgerservicenummer">BSN</abbr> in the root argument</td>
 <td><code>PID_NOT_PRESENT</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001_test.rego#L37-L49"><code>asi0001_test.rego#L37-L49</code></a></td>
 </tr>
 <tr>
-<td>PDP: another service than <code>brp</code>, or another BRP field</td>
+<td><abbr title="Policy Decision Point">PDP</abbr>: another service than <code>brp</code>, or another BRP field</td>
 <td>Rule not bound, or the field falls to the closed world</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001_test.rego#L56-L61"><code>asi0001_test.rego#L56-L61</code></a></td>
 </tr>
 <tr>
 <td>Seal from an unknown anchor</td>
-<td>The QTSP does not accept the result</td>
+<td>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> does not accept the result</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/e2e_test.go#L285"><code>e2e_test.go#L285</code></a></td>
 </tr>
 <tr>
@@ -5326,7 +5326,7 @@ certificates (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eud
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/internal/issuance/issuance_test.go#L97"><code>issuance_test.go#L97</code></a></td>
 </tr>
 <tr>
-<td>Test statement: another PID, or a statement that is expired or used</td>
+<td>Test statement: another <abbr title="Person Identification Data">PID</abbr>, or a statement that is expired or used</td>
 <td>Empty document list, nothing issued</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/internal/issuance/issuance_test.go#L53"><code>issuance_test.go#L53</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/internal/issuancecallback/callback_test.go#L38"><code>callback_test.go#L38</code></a></td>
 </tr>
@@ -5338,30 +5338,30 @@ tests. At v0.9.0, the matrix has 55 passed, 4 stub, 21 not applicable, and
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/conformance/etsi-ts-119478.yaml"><code>etsi-ts-119478.yaml</code></a>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/.github/workflows/ci.yml#L72-L73"><code>ci.yml#L72-L73</code></a>).</p>
 <h2 id="main-observations">Main observations<a class="headerlink" href="#main-observations" title="Permanent link">&para;</a></h2>
-<p>The ASI route in gbo-demo v0.9.0 has these properties and gaps:</p>
+<p>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route in gbo-demo v0.9.0 has these properties and gaps:</p>
 <ul>
-<li><strong>The QTSP is outside FSC.</strong> Its admission is a certificate and a
-  register entitlement at the authorization server. The source and the PDP
-  see only the ASIP peer <code>…1200</code>. The ASIP passes nothing about the QTSP
+<li><strong>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> is outside <abbr title="Federated Service Connectivity">FSC</abbr>.</strong> Its admission is a certificate and a
+  register entitlement at the authorization server. The source and the <abbr title="Policy Decision Point">PDP</abbr>
+  see only the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer <code>…1200</code>. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> passes nothing about the <abbr title="Qualified Trust Service Provider">QTSP</abbr>
   into the chain (<a href="../../traceability/findings/#f-87">F-87</a>,
   <a href="../../building-blocks/components/#trust-boundary">Trust boundary</a>).</li>
-<li><strong>Two logins, no link.</strong> The citizen logs in at the QTSP and at the
+<li><strong>Two logins, no link.</strong> The citizen logs in at the <abbr title="Qualified Trust Service Provider">QTSP</abbr> and at the
   authorization server. Nothing proves that it is the same person. In the
   cross-device route, another phone can scan the QR code
   (<a href="../../traceability/findings/#f-93">F-93</a>,
   <a href="../../traceability/open-questions/#q-40">Q-40</a>,
   <a href="../../traceability/standards-feedback/#e6">E6</a>).</li>
-<li><strong>The BSN travels in two places where it is not needed.</strong> The QTSP can read the BSN
+<li><strong>The <abbr title="Burgerservicenummer">BSN</abbr> travels in two places where it is not needed.</strong> The <abbr title="Qualified Trust Service Provider">QTSP</abbr> can read the <abbr title="Burgerservicenummer">BSN</abbr>
   in the token (<a href="../../traceability/findings/#f-86">F-86</a>,
-  <a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>). The PDP input and
-  the ADL also hold the BSN
+  <a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>). The <abbr title="Policy Decision Point">PDP</abbr> input and
+  the <abbr title="Authorization Decision Log">ADL</abbr> also hold the <abbr title="Burgerservicenummer">BSN</abbr>
   (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>,
   <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>).</li>
 <li><strong>Approval is a login, not a consent.</strong> The citizen approves one request.
   The demo stores no approval, and the citizen cannot revoke one
   (<a href="../../requirements/asi/#req-90">REQ-90</a>,
   <a href="../../concepts/authorization/#wallet-approval-is-not-a-legal-basis">Wallet approval is not a legal basis</a>).</li>
-<li><strong>One token per source.</strong> A QTSP that needs attributes of two sources
+<li><strong>One token per source.</strong> A <abbr title="Qualified Trust Service Provider">QTSP</abbr> that needs attributes of two sources
   authorizes twice. The citizen sees each source by name
   (<a href="../../decisions/0038-asi-data-service-per-source/">ADR-0038</a>,
   <a href="../../traceability/findings/#f-89">F-89</a>,
@@ -5376,26 +5376,26 @@ tests. At v0.9.0, the matrix has 55 passed, 4 stub, 21 not applicable, and
   (<a href="../../traceability/findings/#f-92">F-92</a>,
   <a href="../../traceability/open-questions/#q-29">Q-29</a>,
   <a href="../../traceability/standards-feedback/#e2">E2</a>).</li>
-<li><strong>The seal format is a GBO choice.</strong> ETSI defines no seal format
+<li><strong>The seal format is a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> choice.</strong> ETSI defines no seal format
   (<a href="../../traceability/open-questions/#q-32">Q-32</a>,
   <a href="../../traceability/standards-feedback/#e4">E4</a>). The demo seals with a
   development certificate.</li>
-<li><strong>Identification data is incomplete.</strong> The NL PID has no place of birth.
-  The DigiD mock gives only the BSN
+<li><strong>Identification data is incomplete.</strong> The NL <abbr title="Person Identification Data">PID</abbr> has no place of birth.
+  The DigiD mock gives only the <abbr title="Burgerservicenummer">BSN</abbr>
   (<a href="../../traceability/findings/#f-88">F-88</a>,
   <a href="../../traceability/findings/#f-94">F-94</a>,
   <a href="../../traceability/open-questions/#q-36">Q-36</a>).</li>
 </ul>
 <h2 id="not-built-in-demo-v090">Not built in demo v0.9.0<a class="headerlink" href="#not-built-in-demo-v090" title="Permanent link">&para;</a></h2>
-<p>Demo v0.9.0 does not build these parts of the ASI route:</p>
+<p>Demo v0.9.0 does not build these parts of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route:</p>
 <ul>
 <li>A resource list from the source descriptions. The authorization server
   takes its resource list from <code>AZSP_RESOURCES</code>. The rest of the <code>asi</code>
   capability is built (<a href="https://github.com/ICTU/GBO-demo/issues/592">#592</a>,
   <a href="../../traceability/open-questions/#q-38">Q-38</a>).</li>
 <li>A deployment in the simulation environment, and a connection of an
-  external QTSP (<a href="https://github.com/ICTU/GBO-demo/issues/594">#594</a>).</li>
-<li>Protection of the BSN in the access token
+  external <abbr title="Qualified Trust Service Provider">QTSP</abbr> (<a href="https://github.com/ICTU/GBO-demo/issues/594">#594</a>).</li>
+<li>Protection of the <abbr title="Burgerservicenummer">BSN</abbr> in the access token
   (<a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>,
   <a href="../../traceability/findings/#f-86">F-86</a>).</li>
 <li>A same-device wallet login on a real phone. It is built and tested, and
@@ -5406,7 +5406,7 @@ tests. At v0.9.0, the matrix has 55 passed, 4 stub, 21 not applicable, and
   withdrawn entitlement on issued tokens
   (<a href="../../traceability/open-questions/#q-41">Q-41</a>,
   <a href="../../traceability/standards-feedback/#e10">E10</a>).</li>
-<li>LDV records by the ASIP and the authorization server
+<li><abbr title="Logboek Dataverwerkingen">LDV</abbr> records by the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and the authorization server
   (<a href="../../requirements/logging-audit/#req-72">REQ-72</a>).</li>
 <li>Clause 6.2 (ISO 15000) and deferred answers
   (<a href="../../requirements/asi/#req-112">REQ-112</a>,
@@ -5489,6 +5489,7 @@ tests. At v0.9.0, the matrix has 55 passed, 4 stub, 21 not applicable, and
   <a href="../../traceability/standards-feedback/#e10">E10</a></li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-28">SL-28</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

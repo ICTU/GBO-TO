@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4600,42 +4600,42 @@
 this scenario, and no citizen data travels. The management plane decides
 who changes the rules. The decision plane decides who gets which data. The
 two planes are separate (<a href="../../traceability/findings/#f-51">F-51</a>).</p>
-<p>The scenario takes place at the source holder. The PDP is behind the FSC
-Inway of the source holder, and the OpenFTV Manager serves exactly that
-PDP. Policy management stays with each source holder
+<p>The scenario takes place at the bronhouder. The <abbr title="Policy Decision Point">PDP</abbr> is behind the <abbr title="Federated Service Connectivity">FSC</abbr>
+Inway of the bronhouder, and the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager serves exactly that
+<abbr title="Policy Decision Point">PDP</abbr>. Policy management stays with each bronhouder
 (<a href="../../traceability/answered-questions/#q-21">Q-21</a>,
 <a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>). In the demo,
 everything runs in one compose stack. This setup is a demo artifact and
 makes no statement about the architecture.</p>
 <p>For the concept, see <a href="../../concepts/policy-lifecycle/">Policy lifecycle</a>.</p>
-<p>Two components have the name Manager. The OpenFTV Manager manages policy
-(PAP). The FSC Manager manages contracts and issues access tokens. This
-page covers only the OpenFTV Manager.</p>
+<p>Two components have the name Manager. The <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager manages policy
+(<abbr title="Policy Administration Point">PAP</abbr>). The <abbr title="Federated Service Connectivity">FSC</abbr> Manager manages contracts and issues access tokens. This
+page covers only the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager.</p>
 <h2 id="two-modes">Two modes<a class="headerlink" href="#two-modes" title="Permanent link">&para;</a></h2>
-<p>The PDP gets its policy in one of two modes:</p>
+<p>The <abbr title="Policy Decision Point">PDP</abbr> gets its policy in one of two modes:</p>
 <table>
 <thead>
 <tr>
 <th>Mode</th>
-<th>Where the PDP gets its policy</th>
+<th>Where the <abbr title="Policy Decision Point">PDP</abbr> gets its policy</th>
 <th>Started by</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Mount (default)</td>
-<td>The PDP image carries <code>policies/</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/Dockerfile#L62-L67"><code>Dockerfile#L62-L67</code></a>). Compose bind-mounts <code>./policies</code> over that copy (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L157"><code>docker-compose.yml#L157</code></a>). The PDP hot-reloads at each edit</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> image carries <code>policies/</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/Dockerfile#L62-L67"><code>Dockerfile#L62-L67</code></a>). Compose bind-mounts <code>./policies</code> over that copy (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L157"><code>docker-compose.yml#L157</code></a>). The <abbr title="Policy Decision Point">PDP</abbr> hot-reloads at each edit</td>
 <td>every <code>make demo*</code> target</td>
 </tr>
 <tr>
 <td>Bundle (opt-in)</td>
-<td>The PDP pulls bundle <code>gbo-pdp</code> from the OpenFTV Manager at start, because <code>PDP_BUNDLE_MANAGER</code> is set (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L145-L149"><code>docker-compose.yml#L145-L149</code></a>)</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> pulls bundle <code>gbo-pdp</code> from the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager at start, because <code>PDP_BUNDLE_MANAGER</code> is set (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L145-L149"><code>docker-compose.yml#L145-L149</code></a>)</td>
 <td><code>make demo-manager</code>, then <code>make manager-seed</code> after each change (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L151-L177"><code>Makefile#L151-L177</code></a>)</td>
 </tr>
 </tbody>
 </table>
-<p>The demo runs OpenFTV release v0.1.0. The PDP builds from the tag with
-the FTV GraphQL mapper patched in. The Manager and its management
+<p>The demo runs <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> release v0.1.0. The <abbr title="Policy Decision Point">PDP</abbr> builds from the tag with
+the <abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL mapper patched in. The Manager and its management
 interface are the published v0.1.0 images
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L245"><code>docker-compose.yml#L245</code></a>).
 If the three versions differ, or if the version is not a release tag, CI
@@ -4689,23 +4689,23 @@ fails
 <td>2 to 5</td>
 <td><code>make</code> → <code>policies/</code></td>
 <td>File list, compile result</td>
-<td><code>policy-check</code> runs before every target that starts the PDP (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L92-L106"><code>Makefile#L92-L106</code></a>). <code>make policy-test</code> adds <code>opa fmt --diff</code> and <code>opa test</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L115-L117"><code>#L115-L117</code></a>)</td>
+<td><code>policy-check</code> runs before every target that starts the <abbr title="Policy Decision Point">PDP</abbr> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L92-L106"><code>Makefile#L92-L106</code></a>). <code>make policy-test</code> adds <code>opa fmt --diff</code> and <code>opa test</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L115-L117"><code>#L115-L117</code></a>)</td>
 </tr>
 <tr>
 <td>6 to 7</td>
-<td>PDP → mount</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → mount</td>
 <td>Every file under <code>/policies</code> as a Rego module (<code>PDP_POLICIES_LANGUAGE=rego</code>, <code>PDP_POLICIES_STORE_RECURSE=true</code>)</td>
 <td>The reload log line <code>policy added/replaced</code> does not prove that the new rules decide (<a href="https://github.com/ICTU/GBO-demo/issues/151">#151</a>)</td>
 </tr>
 <tr>
 <td>8</td>
-<td>PDP → ADL</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → <abbr title="Authorization Decision Log">ADL</abbr></td>
 <td>Decision records</td>
-<td>The PDP does not start without the ADL database (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L117-L125"><code>docker-compose.yml#L117-L125</code></a>)</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> does not start without the <abbr title="Authorization Decision Log">ADL</abbr> database (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L117-L125"><code>docker-compose.yml#L117-L125</code></a>)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="bundle-mode">Scenario 2: bundle mode (OpenFTV Manager)<a class="headerlink" href="#bundle-mode" title="Permanent link">&para;</a></h2>
+<h2 id="bundle-mode">Scenario 2: bundle mode (<abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager)<a class="headerlink" href="#bundle-mode" title="Permanent link">&para;</a></h2>
 <div class="mermaid">sequenceDiagram
     autonumber
     box rgb(237,233,254) Version control
@@ -4780,24 +4780,24 @@ fails
 </tr>
 <tr>
 <td>9 to 11</td>
-<td>PDP → Manager</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → Manager</td>
 <td><code>GET /v1/bundle/gbo-pdp</code> on the internal port (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml"><code>gbo-pdp.yaml</code></a>)</td>
 <td>Gzipped bundle: <code>version</code>, the policies with tag <code>gbo-authz</code>, design-time data</td>
-<td>The PDP pulls the bundle. The Manager has no push targets (<code>targets: []</code>). The PDP presents no identity. <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/pdp-bundle.cedar#L13-L17"><code>pdp-bundle.cedar</code></a> permits only <code>can_read</code> on this one path (<a href="../../requirements/authorization/#rl-02">RL-02</a>)</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> pulls the bundle. The Manager has no push targets (<code>targets: []</code>). The <abbr title="Policy Decision Point">PDP</abbr> presents no identity. <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/pdp-bundle.cedar#L13-L17"><code>pdp-bundle.cedar</code></a> permits only <code>can_read</code> on this one path (<a href="../../requirements/authorization/#rl-02">RL-02</a>)</td>
 </tr>
 <tr>
 <td>12</td>
-<td>PDP</td>
+<td><abbr title="Policy Decision Point">PDP</abbr></td>
 <td>—</td>
 <td>The active policy set</td>
-<td>The PDP compiles the set as a whole. If one package is duplicated, every request fails (<a href="../../traceability/findings/#f-52">F-52</a>, <a href="../../requirements/authorization/#rl-05">RL-05</a>)</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> compiles the set as a whole. If one package is duplicated, every request fails (<a href="../../traceability/findings/#f-52">F-52</a>, <a href="../../requirements/authorization/#rl-05">RL-05</a>)</td>
 </tr>
 <tr>
 <td>13</td>
-<td>PDP → Postgres</td>
-<td>ADL</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → Postgres</td>
+<td><abbr title="Authorization Decision Log">ADL</abbr></td>
 <td>Decision records for data requests and contract proposals</td>
-<td>The ADL is the authoritative record (<a href="../../decisions/0036-adl-decision-record/">ADR-0036</a>). The ADL records no policy version (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>). The ADL can hold OINs. In the EUDI and ASI routes, it can also hold the BSN (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>)</td>
+<td>The <abbr title="Authorization Decision Log">ADL</abbr> is the authoritative record (<a href="../../decisions/0036-adl-decision-record/">ADR-0036</a>). The <abbr title="Authorization Decision Log">ADL</abbr> records no policy version (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>). The <abbr title="Authorization Decision Log">ADL</abbr> can hold OINs. In the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> routes, it can also hold the <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -4816,12 +4816,12 @@ the compose defaults. Policy distribution uses the following components:</p>
 <tr>
 <td><code>openftv-manager</code></td>
 <td><code>9280:8443</code> management API · <code>9281:9443</code> internal (bundle) · <code>9282:8080</code> health</td>
-<td>PAP. The Manager stores policy and builds bundles. Cedar policies from <code>/authz</code> authorize its own API (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/admin.cedar"><code>admin.cedar</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/auditor.cedar"><code>auditor.cedar</code></a>, <code>pdp-bundle.cedar</code>). The Manager fails closed on an empty store (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L266-L269"><code>docker-compose.yml#L266-L269</code></a>)</td>
+<td><abbr title="Policy Administration Point">PAP</abbr>. The Manager stores policy and builds bundles. Cedar policies from <code>/authz</code> authorize its own API (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/admin.cedar"><code>admin.cedar</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/auditor.cedar"><code>auditor.cedar</code></a>, <code>pdp-bundle.cedar</code>). The Manager fails closed on an empty store (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L266-L269"><code>docker-compose.yml#L266-L269</code></a>)</td>
 </tr>
 <tr>
 <td><code>openftv-manager-ui</code></td>
 <td><code>9283:8080</code></td>
-<td>Management interface: policies, deployments, and Logboek (ADL)</td>
+<td>Management interface: policies, deployments, and the <abbr title="Authorization Decision Log">ADL</abbr> (shown as "Logboek")</td>
 </tr>
 <tr>
 <td><code>keycloak</code></td>
@@ -4835,8 +4835,8 @@ the compose defaults. Policy distribution uses the following components:</p>
 </tr>
 <tr>
 <td><code>openftv-pdp</code></td>
-<td><code>9181:8443</code> AuthZEN · <code>9180:8080</code> health</td>
-<td>Decides. The PDP gets its policy set from the mount. If <code>PDP_BUNDLE_MANAGER</code> is set, the PDP gets the set as a bundle</td>
+<td><code>9181:8443</code> <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> · <code>9180:8080</code> health</td>
+<td>Decides. The <abbr title="Policy Decision Point">PDP</abbr> gets its policy set from the mount. If <code>PDP_BUNDLE_MANAGER</code> is set, the <abbr title="Policy Decision Point">PDP</abbr> gets the set as a bundle</td>
 </tr>
 </tbody>
 </table>
@@ -4868,7 +4868,7 @@ the compose defaults. Policy distribution uses the following components:</p>
 </tr>
 <tr>
 <td>A module that does not compile, at hot reload</td>
-<td>The PDP reports the module as loaded. The previous rules keep deciding</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> reports the module as loaded. The previous rules keep deciding</td>
 <td><code>opa check</code> before start. No runtime signal: a visible fallback is not built in demo v0.9.0 (<a href="../../requirements/authorization/#rl-05">RL-05</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/issues/151">#151</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L234-L238"><code>docker-compose.yml#L234-L238</code></a></td>
 </tr>
@@ -4886,13 +4886,13 @@ the compose defaults. Policy distribution uses the following components:</p>
 </tr>
 <tr>
 <td>Push a bundle from the Manager</td>
-<td>The PDP authorizes its own management endpoints with the decision policy. That policy denies every request that is not a data request, with HTTP 403 (<a href="../../traceability/findings/#f-51">F-51</a>)</td>
-<td>No push targets. The PDP pulls at start. The make targets restart the PDP after a seed</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> authorizes its own management endpoints with the decision policy. That policy denies every request that is not a data request, with HTTP 403 (<a href="../../traceability/findings/#f-51">F-51</a>)</td>
+<td>No push targets. The <abbr title="Policy Decision Point">PDP</abbr> pulls at start. The make targets restart the <abbr title="Policy Decision Point">PDP</abbr> after a seed</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml#L18-L32"><code>gbo-pdp.yaml#L18-L32</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L164-L165"><code>Makefile#L164-L165</code></a></td>
 </tr>
 <tr>
 <td>Bundle pull without a Cedar permit</td>
-<td>Since v0.1.0, the bundle endpoint uses the same authorizer as the API. Cedar denies by default. Every pull gets HTTP 403, and the PDP gets no bundle</td>
+<td>Since v0.1.0, the bundle endpoint uses the same authorizer as the API. Cedar denies by default. Every pull gets HTTP 403, and the <abbr title="Policy Decision Point">PDP</abbr> gets no bundle</td>
 <td><code>pdp-bundle.cedar</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/pdp-bundle.cedar"><code>pdp-bundle.cedar</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/CHANGELOG.md#L737-L742">CHANGELOG</a></td>
 </tr>
@@ -4904,13 +4904,13 @@ the compose defaults. Policy distribution uses the following components:</p>
 </tr>
 <tr>
 <td><code>MANAGER_POLICIES_LANGUAGE=rego</code></td>
-<td>Then the GBO <code>package authz</code> governs the Manager API. From the next restart, the API answers HTTP 403</td>
+<td>Then the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> <code>package authz</code> governs the Manager API. From the next restart, the API answers HTTP 403</td>
 <td>Not set. The compose file explains why</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L254-L263"><code>docker-compose.yml#L254-L263</code></a></td>
 </tr>
 <tr>
 <td><code>PDP_POLICIES_LANGUAGE=OPA</code> (the documented value)</td>
-<td>OpenFTV skips every policy file without a signal</td>
+<td><abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> skips every policy file without a signal</td>
 <td>Set to <code>rego</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L106-L114"><code>docker-compose.yml#L106-L114</code></a></td>
 </tr>
@@ -4921,20 +4921,20 @@ the compose defaults. Policy distribution uses the following components:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/seed-openftv-manager.py#L236-L250"><code>seed-openftv-manager.py#L236-L250</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/test_seed_openftv_manager.py#L44"><code>test_seed_openftv_manager.py#L44</code></a></td>
 </tr>
 <tr>
-<td>PDP, Manager, and interface on different OpenFTV versions</td>
+<td><abbr title="Policy Decision Point">PDP</abbr>, Manager, and interface on different <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> versions</td>
 <td>The bundle format and the API differ</td>
 <td>CI check</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/.github/workflows/ci.yml#L355-L373"><code>ci.yml#L355-L373</code></a></td>
 </tr>
 <tr>
 <td>The contract policy package is renamed</td>
-<td>The FSC Manager finds no policy. Every contract stays pending, without a signal</td>
+<td>The <abbr title="Federated Service Connectivity">FSC</abbr> Manager finds no policy. Every contract stays pending, without a signal</td>
 <td>None (comment only)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L8-L10"><code>autosign.rego#L8-L10</code></a></td>
 </tr>
 <tr>
-<td>The ADL database is missing</td>
-<td>The PDP exits at start</td>
+<td>The <abbr title="Authorization Decision Log">ADL</abbr> database is missing</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> exits at start</td>
 <td><code>postgres-ftv</code> in every profile</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L117-L125"><code>docker-compose.yml#L117-L125</code></a></td>
 </tr>
@@ -4945,7 +4945,7 @@ the compose defaults. Policy distribution uses the following components:</p>
 <ul>
 <li><strong>Two planes, two policy sets.</strong> Cedar policies authorize the Manager
   API. These policies are separate from the Rego decision policy. On the
-  PDP side, this separation is missing. The PDP guards its own management
+  <abbr title="Policy Decision Point">PDP</abbr> side, this separation is missing. The <abbr title="Policy Decision Point">PDP</abbr> guards its own management
   endpoints with the decision policy. As a result, push works only if that
   policy opens up. The demo pulls instead
   (<a href="../../traceability/findings/#f-51">F-51</a>,
@@ -4954,7 +4954,7 @@ the compose defaults. Policy distribution uses the following components:</p>
   no Cedar policy in v0.9.0 grants it an action. Only <code>admin</code> writes and
   publishes. The deployment identity is that non-personal <code>admin</code>
   (<a href="../../requirements/authorization/#rl-03">RL-03</a>).</li>
-<li><strong>Version control is canonical.</strong> The PAP distributes the policy.
+<li><strong>Version control is canonical.</strong> The <abbr title="Policy Administration Point">PAP</abbr> distributes the policy.
   Manual API changes are possible. As a result, reconciliation at every
   publication is the only guard against drift
   (<a href="../../requirements/authorization/#rl-04">RL-04</a>).</li>
@@ -4978,10 +4978,10 @@ the compose defaults. Policy distribution uses the following components:</p>
   <a href="../admission/#source-activation">Source activation</a>). The policy bundle
   has none of these steps. For this reason, RL-05 is a backlog item and
   more than a wish (<a href="../../traceability/findings-closed/#f-59">F-59</a>).</li>
-<li><strong>Read access to the ADL is open.</strong> Read access to the decision log is
-  an authorization question. The <code>auditor</code> role reads the Logboek through
-  the management interface. The ADL can hold OINs, and in the EUDI and ASI
-  routes also the BSN. It is open who can read the ADL
+<li><strong>Read access to the <abbr title="Authorization Decision Log">ADL</abbr> is open.</strong> Read access to the decision log is
+  an authorization question. The <code>auditor</code> role reads the <abbr title="Authorization Decision Log">ADL</abbr> through
+  the management interface. The <abbr title="Authorization Decision Log">ADL</abbr> can hold OINs, and in the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>
+  routes also the <abbr title="Burgerservicenummer">BSN</abbr>. It is open who can read the <abbr title="Authorization Decision Log">ADL</abbr>
   (<a href="../../traceability/open-questions/#q-08">Q-08</a>,
   <a href="../../traceability/findings-closed/#f-53">F-53</a>).</li>
 </ul>
@@ -4992,6 +4992,7 @@ the compose defaults. Policy distribution uses the following components:</p>
 <li>Open questions: <a href="../../traceability/answered-questions/#q-21">Q-21</a> (answered), <a href="../../traceability/answered-questions/#q-02">Q-02</a> (answered), <a href="../../traceability/open-questions/#q-08">Q-08</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-44">SL-44</a> (done), <a href="../../traceability/increments/#sl-45">SL-45</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1298,7 +1298,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4326,7 +4326,7 @@
   <a href="#q-02" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Q-02: Central authorization server or distributed PDP (per source holder)?
+        Q-02: Central authorization server or distributed PDP (per bronhouder)?
       
     </span>
   </a>
@@ -4403,7 +4403,7 @@
   <a href="#q-10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Q-10: Which functions must really be central, and which are decentral at each source holder?
+        Q-10: Which functions must really be central, and which are decentral at each bronhouder?
       
     </span>
   </a>
@@ -4480,7 +4480,7 @@
   <a href="#q-21" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Q-21: Who can manage and publish the policy of a source holder, and how is that authority set federatively?
+        Q-21: Who can manage and publish the policy of a bronhouder, and how is that authority set federatively?
       
     </span>
   </a>
@@ -4705,32 +4705,32 @@
 
 <h1 id="answered-questions">Answered questions<a class="headerlink" href="#answered-questions" title="Permanent link">&para;</a></h1>
 <p>These questions have an answer, or they are closed. Each entry gives the answer and where it landed. The questions that are still open are on <a href="../open-questions/">Open questions</a>.</p>
-<h3 id="q-02">Q-02: Central authorization server or distributed PDP (per source holder)?<a class="headerlink" href="#q-02" title="Permanent link">&para;</a></h3>
+<h3 id="q-02">Q-02: Central authorization server or distributed <abbr title="Policy Decision Point">PDP</abbr> (per bronhouder)?<a class="headerlink" href="#q-02" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
-<li><strong>Question</strong>: Does one central PDP decide for all sources, or does each source holder run its own PDP?</li>
-<li><strong>Answer</strong>: Decentral, at the source holder. The <a href="https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing">GO table of provisions</a> places the source access API, the PEP, PDP, and PAP, and the FSC Inway at the source holder. If responsibilities and availability are assured, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a> allows a PDP per source holder or a shared PDP. <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-04</a> allows several variants under one PEP-PDP interface. The B-04 owners (source holders, FDS/GDI) set the conditions for a shared PDP. GBO does not set them.</li>
-<li><strong>Landed in</strong>: <a href="../../decisions/0004-federated-authorization/">ADR 0004</a>, <a href="../../requirements/authorization/#req-04">REQ-04</a>. As a shortcut, the demo runs one shared PDP behind both Inways. <a href="../increments/#sl-44">SL-44</a> shows that each source can run its own PDP with bundle distribution.</li>
+<li><strong>Question</strong>: Does one central <abbr title="Policy Decision Point">PDP</abbr> decide for all sources, or does each bronhouder run its own <abbr title="Policy Decision Point">PDP</abbr>?</li>
+<li><strong>Answer</strong>: Decentral, at the bronhouder. The <a href="https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing">GO table of provisions</a> places the source access API, the <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, and <abbr title="Policy Administration Point">PAP</abbr>, and the <abbr title="Federated Service Connectivity">FSC</abbr> Inway at the bronhouder. If responsibilities and availability are assured, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a> allows a <abbr title="Policy Decision Point">PDP</abbr> per bronhouder or a shared <abbr title="Policy Decision Point">PDP</abbr>. <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-04</a> allows several variants under one <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> interface. The B-04 owners (bronhouders, FDS/GDI) set the conditions for a shared <abbr title="Policy Decision Point">PDP</abbr>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not set them.</li>
+<li><strong>Landed in</strong>: <a href="../../decisions/0004-federated-authorization/">ADR 0004</a>, <a href="../../requirements/authorization/#req-04">REQ-04</a>. As a shortcut, the demo runs one shared <abbr title="Policy Decision Point">PDP</abbr> behind both Inways. <a href="../increments/#sl-44">SL-44</a> shows that each source can run its own <abbr title="Policy Decision Point">PDP</abbr> with bundle distribution.</li>
 </ul>
 <h3 id="q-03">Q-03: Atomic consent or field level: what is lawful and understandable?<a class="headerlink" href="#q-03" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
-<li><strong>Question</strong>: Does the citizen consent per field, or per indivisible data set?</li>
-<li><strong>Answer</strong>: Per data set. In the GO, consent applies to a specific purpose, consumer, and data set. FR-10 (FR-DvTP v0.9) puts consent at set level, with "1 scope = 1 record". The citizen switches an optional set on or off as a whole. The demo portal switches per scope and conforms. FR-10 also adds a fixed minimal mandatory set, which is <a href="../open-questions/#q-45">Q-45</a> and <a href="https://github.com/ICTU/GBO-demo/issues/382">issue #382</a>.</li>
+<li><strong>Question</strong>: Does the citizen consent per field, or per indivisible data set (gegevensset)?</li>
+<li><strong>Answer</strong>: Per data set. In the GO, consent applies to a specific purpose, consumer, and data set. FR-10 (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9) puts consent at set level, with "1 scope = 1 record". The citizen switches an optional set on or off as a whole. The demo portal switches per scope and conforms. FR-10 also adds a fixed minimal mandatory set, which is <a href="../open-questions/#q-45">Q-45</a> and <a href="https://github.com/ICTU/GBO-demo/issues/382">issue #382</a>.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/consent/#req-10">REQ-10</a>, <a href="../findings-closed/#f-03">F-03</a>.</li>
 </ul>
 <h3 id="q-04">Q-04: Is consent single-use or repeatable within a validity period?<a class="headerlink" href="#q-04" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
 <li><strong>Question</strong>: Is a consent valid for one retrieval, or can the consumer use it again until it expires?</li>
-<li><strong>Answer</strong>: Repeatable. In FR-11 (FR-DvTP v0.9), every consent has a configurable validity period. Within that period, the consumer can use the consent again. Single use is no longer an option.</li>
+<li><strong>Answer</strong>: Repeatable. In FR-11 (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9), every consent has a configurable validity period. Within that period, the consumer can use the consent again. Single use is no longer an option.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/consent/#req-19">REQ-19</a>, <a href="../findings-closed/#f-04">F-04</a>. The question who sets the period is <a href="../open-questions/#q-13">Q-13</a>.</li>
 </ul>
 <h3 id="q-05">Q-05: Who is authoritative for revocation and expiry, and what is the propagation SLA?<a class="headerlink" href="#q-05" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
 <li><strong>Question</strong>: Which party is authoritative for revocation and expiry? How much time can a revocation take to reach the decision?</li>
-<li><strong>Answer</strong>: The central consent register is authoritative (GO, <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-06</a>). Revocation has direct effect. The authorization chain calls the register as PIP when the data request arrives (<a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie">PSA S01</a>, S02 "without undue delay", FR-11 v0.9 "real-time"). The demo conforms: the PDP calls for the status per request, without a cache (<a href="https://github.com/ICTU/GBO-demo/pull/371">PR #371</a>). The proof travels signed, but its status stays online (<a href="../findings-closed/#f-61">F-61</a>).</li>
+<li><strong>Answer</strong>: The central consent register (toestemmingsregister) is authoritative (GO, <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-06</a>). Revocation has direct effect. The authorization chain calls the register as <abbr title="Policy Information Point">PIP</abbr> when the data request arrives (<a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie">PSA S01</a>, S02 "without undue delay", FR-11 v0.9 "real-time"). The demo conforms: the <abbr title="Policy Decision Point">PDP</abbr> calls for the status per request, without a cache (<a href="https://github.com/ICTU/GBO-demo/pull/371">PR #371</a>). The proof travels signed, but its status stays online (<a href="../findings-closed/#f-61">F-61</a>).</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../../decisions/0032-consent-proof/">ADR 0032</a>. The figures (propagation time, availability, latency) are a design requirement in <a href="../../requirements/consent/#req-75">REQ-75</a>.</li>
 </ul>
 <h3 id="q-06">Q-06: Authentication means for private parties: eHerkenning, PKI certificate, or both?<a class="headerlink" href="#q-06" title="Permanent link">&para;</a></h3>
@@ -4738,11 +4738,11 @@
 <li><strong>Status</strong>: answered</li>
 <li><strong>Question</strong>: With which means does a private party authenticate: eHerkenning, a PKI certificate, or both?</li>
 <li><strong>Answer</strong>: Both, with separate roles.<ul>
-<li>FR-03 (FR-DvTP v0.9): people use eHerkenning, at onboarding and for management.</li>
-<li>FR-33 and FR-34: systems use an organization identification means from a recognized issuer, linked to OIN or KvK.</li>
+<li>FR-03 (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9): people use eHerkenning, at onboarding and for management.</li>
+<li>FR-33 and FR-34: systems use an organization identification means from a recognized issuer, linked to <abbr title="Organisatie-identificatienummer">OIN</abbr> or KvK.</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel">PSA S04</a>: organizations and systems use recognized identifiers and certificates.</li>
 <li>The demo conforms for systems. The legal identity comes from the validated certificate (<a href="../findings-closed/#f-60">F-60</a>).</li>
-<li>The origin of source metadata fetched outside FSC is a design matter and no question for the PSA (<a href="../findings/#f-71">F-71</a>).</li>
+<li>The origin of source metadata fetched outside <abbr title="Federated Service Connectivity">FSC</abbr> is a design matter and no question for the PSA (<a href="../findings/#f-71">F-71</a>).</li>
 </ul>
 </li>
 <li><strong>Landed in</strong>: <a href="../../requirements/sources-identity/#req-67">REQ-67</a>, <a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../../decisions/0023-identity-convergence/">ADR 0023</a>. The identifier and the issuer are <a href="#q-07">Q-07</a>.</li>
@@ -4753,7 +4753,7 @@
 <li><strong>Question</strong>: Is PKIoverheid the one trust anchor for both FDS and EUDI, including the EUDI Access CA?</li>
 <li><strong>Answer</strong>: The question is answered or no longer applies, as follows:<ul>
 <li>On the FDS side, systems authenticate with PKIoverheid certificates (<a href="https://ictu.github.io/GBO-GO/main/">GO</a>, PSA S04).</li>
-<li>The seal on an attestation follows the eIDAS framework. It uses a qualified seal certificate from a QTSP, checked against the EU trusted lists (<a href="../findings-closed/#f-66">F-66</a>).</li>
+<li>The seal on an attestation follows the eIDAS framework. It uses a qualified seal certificate from a <abbr title="Qualified Trust Service Provider">QTSP</abbr>, checked against the EU trusted lists (<a href="../findings-closed/#f-66">F-66</a>).</li>
 <li>Access certificates (ETSI TS 119 411-8) only authenticate a provider or relying party to the wallet. They do not sign attestations.</li>
 <li>GO and PSA no longer pursue one infrastructure for FDS and EUDI.</li>
 <li>Issuer and reader certificates are a set per source. The reason is that the legal identity and the display name depend on the signing certificate (<a href="https://github.com/ICTU/GBO-demo/issues/225">issue #225</a>).</li>
@@ -4761,16 +4761,16 @@
 <li>The open key and seal question moved to <a href="../open-questions/#q-17">Q-17</a>.</li>
 </ul>
 </li>
-<li><strong>Landed in</strong>: <a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>, <a href="../findings-closed/#f-66">F-66</a>, <a href="../../decisions/0023-identity-convergence/">ADR 0023</a>. For a private consumer, the choice is OIN or KvK. The GO names the OIN. The link between the identifiers is an open decision in S04.</li>
+<li><strong>Landed in</strong>: <a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>, <a href="../findings-closed/#f-66">F-66</a>, <a href="../../decisions/0023-identity-convergence/">ADR 0023</a>. For a private consumer, the choice is <abbr title="Organisatie-identificatienummer">OIN</abbr> or KvK. The GO names the <abbr title="Organisatie-identificatienummer">OIN</abbr>. The link between the identifiers is an open decision in S04.</li>
 </ul>
-<h3 id="q-09">Q-09: How does the FSC grant (org permission) relate to consent (legal basis)? Can one be missing?<a class="headerlink" href="#q-09" title="Permanent link">&para;</a></h3>
+<h3 id="q-09">Q-09: How does the <abbr title="Federated Service Connectivity">FSC</abbr> grant (org permission) relate to consent (legal basis)? Can one be missing?<a class="headerlink" href="#q-09" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
-<li><strong>Question</strong>: Are organization permission (the FSC grant) and legal basis (consent) separate checks, and must both always be present?</li>
+<li><strong>Question</strong>: Are organization permission (the <abbr title="Federated Service Connectivity">FSC</abbr> grant) and legal basis (consent) separate checks, and must both always be present?</li>
 <li>
 <p><strong>Answer</strong>: Yes, there are two separate, cumulative checks:</p>
 <ul>
-<li>Admission: PSA S04 ("participation requires a prior admission decision") and FR-16 (FR-DvTP v0.9).</li>
+<li>Admission: PSA S04 ("participation requires a prior admission decision") and FR-16 (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9).</li>
 <li>Legal basis: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>, FR-17, and the GO.</li>
 </ul>
 <p>The demo conforms (<a href="../increments/#sl-05">SL-05</a>, <a href="../increments/#sl-45">SL-45</a>). The governance part is <a href="#q-22">Q-22</a> and <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-09</a>.</p>
@@ -4779,30 +4779,30 @@
 <p><strong>Landed in</strong>: <a href="../../requirements/admission/#req-61">REQ-61</a>, <a href="../../requirements/admission/#req-62">REQ-62</a>, <a href="../../requirements/authorization/#req-74">REQ-74</a>.</p>
 </li>
 </ul>
-<h3 id="q-10">Q-10: Which functions must really be central, and which are decentral at each source holder?<a class="headerlink" href="#q-10" title="Permanent link">&para;</a></h3>
+<h3 id="q-10">Q-10: Which functions must really be central, and which are decentral at each bronhouder?<a class="headerlink" href="#q-10" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
-<li><strong>Question</strong>: Which provisions run centrally, and which run at each source holder?</li>
+<li><strong>Question</strong>: Which provisions run centrally, and which run at each bronhouder?</li>
 <li><strong>Answer</strong>: The <a href="https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing">GO table of provisions</a> gives the answer:<ul>
-<li>The PEP, PDP, and PAP and the source access are decentral, at the source holder.</li>
-<li>The consent service is central and mandatory for DvTP ("needs a statutory basis").</li>
-<li>BSNk PP is mandatory for DvTP (Logius).</li>
-<li>PubEAA issuance, the ASI provider, and the OOTS adapter are optional central connection provisions.</li>
+<li>The <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, and <abbr title="Policy Administration Point">PAP</abbr> and the source access are decentral, at the bronhouder.</li>
+<li>The consent facility (toestemmingsvoorziening) is central and mandatory for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> ("needs a statutory basis").</li>
+<li>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> is mandatory for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> (Logius).</li>
+<li><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance, the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider, and the <abbr title="Once-Only Technical System">OOTS</abbr> adapter are optional central connection provisions.</li>
 <li>Operators "still to be decided" fall under <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-17 and B-06</a>.</li>
 <li>Funding is outside this analysis.</li>
 </ul>
 </li>
-<li><strong>Landed in</strong>: <a href="../../decisions/0004-federated-authorization/">ADR 0004</a>, <a href="#q-02">Q-02</a>. In the demo, the register and BSNk are central, which conforms. The PDP is shared as a shortcut. The demo removed <code>sector-pip</code> (<a href="https://github.com/ICTU/GBO-demo/issues/378">issue #378</a>).</li>
+<li><strong>Landed in</strong>: <a href="../../decisions/0004-federated-authorization/">ADR 0004</a>, <a href="#q-02">Q-02</a>. In the demo, the register and BSNk are central, which conforms. The <abbr title="Policy Decision Point">PDP</abbr> is shared as a shortcut. The demo removed <code>sector-pip</code> (<a href="https://github.com/ICTU/GBO-demo/issues/378">issue #378</a>).</li>
 </ul>
 <h3 id="q-11">Q-11: Transformation between source schema and canonical model: where and how?<a class="headerlink" href="#q-11" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
 <li><strong>Question</strong>: Where and how is a source schema transformed to a canonical model?</li>
 <li><strong>Answer</strong>: There is no central canonical model.<ul>
-<li><a href="https://ictu.github.io/GBO-GO/main/#f4-semantiek-eenheid-van-taal">GO F4</a> gives a shared concept framework (NL-SBB, MIM, RDF/SKOS, DCAT-AP-NL) and "the canonical data models of source holders".</li>
-<li>In <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">PSA S10</a>, mappings are explicit and traceable. Source holders and domains own their models.</li>
+<li><a href="https://ictu.github.io/GBO-GO/main/#f4-semantiek-eenheid-van-taal">GO F4</a> gives a shared concept framework (NL-SBB, MIM, RDF/SKOS, DCAT-AP-NL) and "the canonical data models of bronhouders".</li>
+<li>In <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">PSA S10</a>, mappings are explicit and traceable. Bronhouders and domains own their models.</li>
 <li>For EUDI, the source supplies its own mapping (<a href="../findings/#f-57">F-57</a>).</li>
-<li>For OOTS, there is an optional shared mapping facility (GO, B-12).</li>
+<li>For <abbr title="Once-Only Technical System">OOTS</abbr>, there is an optional shared mapping facility (GO, B-12).</li>
 <li>Ownership of the semantics falls under <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-11</a>.</li>
 <li>One point is open for a check. S10 requires that every data service refers to a managed schema and concept framework. That includes the service description of the source (<code>/.well-known/gbo</code>).</li>
 </ul>
@@ -4814,11 +4814,11 @@
 <li><strong>Status</strong>: answered</li>
 <li><strong>Question</strong>: Is an integrator only a pass-through, and can it see the data?</li>
 <li><strong>Answer</strong>:<ul>
-<li>FR-DvTP v0.9 removes FR-06. The citizen gets no information about the integrator.</li>
-<li>FR-18: the integrator is a processor for the service provider. It can view and edit data as far as the assignment needs. It does so under a processing agreement and without persistent storage.</li>
-<li>FR-37: the integrator has its own onboarding and its own organization identification means. It also has a registration in the service catalog per service provider and use case.</li>
+<li>FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 removes FR-06. The citizen gets no information about the integrator.</li>
+<li>FR-18: the integrator is a processor for the service provider (dienstverlener). It can view and edit data as far as the assignment needs. It does so under a processing agreement and without persistent storage.</li>
+<li>FR-37: the integrator has its own onboarding and its own organization identification means. It also has a registration in the service catalog (dienstencatalogus) per service provider and use case.</li>
 <li>For more information, see PSA S04, S05, and <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-19</a>.</li>
-<li>The consequence for the actor binding of consent was <a href="../findings-closed/#f-73">F-73</a>. The demo tested it with FSC delegation (<a href="https://github.com/ICTU/GBO-demo/issues/379">issue #379</a>).</li>
+<li>The consequence for the actor binding of consent was <a href="../findings-closed/#f-73">F-73</a>. The demo tested it with <abbr title="Federated Service Connectivity">FSC</abbr> delegation (<a href="https://github.com/ICTU/GBO-demo/issues/379">issue #379</a>).</li>
 </ul>
 </li>
 <li><strong>Landed in</strong>: <a href="../../requirements/consent/#req-106">REQ-106</a>, <a href="../../requirements/admission/#av-06">AV-06</a>, <a href="../../decisions/0034-integrator-delegation/">ADR 0034</a>. Follow-up: <a href="../open-questions/#q-46">Q-46</a>.</li>
@@ -4828,25 +4828,25 @@
 <li><strong>Status</strong>: answered</li>
 <li><strong>Question</strong>: Which mechanism selects the access-basis path (consent or legal basis) for a request?</li>
 <li><strong>Answer</strong>: The premise ("the Manager selects the path") lapsed.<ul>
-<li>The regime follows from the evidence that the request carries. A consent token opens the consent regime. Without a consent token, the PID regime applies (<a href="https://github.com/ICTU/GBO-demo/pull/363">PR #363</a>).</li>
+<li>The regime follows from the evidence that the request carries. A consent token opens the consent regime. Without a consent token, the <abbr title="Person Identification Data">PID</abbr> regime applies (<a href="https://github.com/ICTU/GBO-demo/pull/363">PR #363</a>).</li>
 <li>The GO and <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a> check the legal basis in policy.</li>
-<li>An admission question remains: who is on the actor list of the PID regime? That is a register fact (<a href="#q-22">Q-22</a>).</li>
-<li>Positive PID evidence is <a href="../findings/#f-70">F-70</a>, <a href="https://github.com/ICTU/GBO-demo/issues/133">issue #133</a>, and <a href="../open-questions/#q-18">Q-18</a>.</li>
+<li>An admission question remains: who is on the actor list of the <abbr title="Person Identification Data">PID</abbr> regime? That is a register fact (<a href="#q-22">Q-22</a>).</li>
+<li>Positive <abbr title="Person Identification Data">PID</abbr> evidence is <a href="../findings/#f-70">F-70</a>, <a href="https://github.com/ICTU/GBO-demo/issues/133">issue #133</a>, and <a href="../open-questions/#q-18">Q-18</a>.</li>
 <li>Grants carry no properties any more. The demo removed <code>subject_id_type</code> (<a href="https://github.com/ICTU/GBO-demo/issues/473">issue #473</a>).</li>
 </ul>
 </li>
 <li><strong>Landed in</strong>: <a href="../../requirements/authorization/#req-74">REQ-74</a>, <a href="../../decisions/0031-regime-from-evidence/">ADR 0031</a> (supersedes <a href="../../decisions/0030-grant-properties/">ADR 0030</a>), <a href="../findings/#f-70">F-70</a>.</li>
 </ul>
-<h3 id="q-16">Q-16: AuthZEN/OpenFTV conformity: which profile does GBO follow, and is GBO at the working-group table?<a class="headerlink" href="#q-16" title="Permanent link">&para;</a></h3>
+<h3 id="q-16">Q-16: <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr>/<abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> conformity: which profile does <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> follow, and is <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> at the working-group table?<a class="headerlink" href="#q-16" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
-<li><strong>Question</strong>: Which PEP-PDP profile does GBO follow, and does GBO take part in the OpenFTV working group?</li>
+<li><strong>Question</strong>: Which <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> profile does <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> follow, and does <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> take part in the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> working group?</li>
 <li><strong>Answer</strong>:<ul>
-<li>GBO takes part in the OpenFTV working group and prepares a proposal for a GraphQL profile (<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-02</a>, <a href="https://github.com/ICTU/GBO-demo/issues/331">issue #331</a>).</li>
-<li>The conformity level is the NLGov AuthZEN profile (GO, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>).</li>
-<li>The demo conforms on the wire protocol through OpenFTV v0.1.0 (<a href="https://github.com/ICTU/GBO-demo/pull/337">PR #337</a>). In demo v0.9.0, only the GraphQL mapping is patched.</li>
+<li><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> takes part in the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> working group and prepares a proposal for a GraphQL profile (<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-02</a>, <a href="https://github.com/ICTU/GBO-demo/issues/331">issue #331</a>).</li>
+<li>The conformity level is the NLGov <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> profile (GO, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">PSA S05</a>).</li>
+<li>The demo conforms on the wire protocol through <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> v0.1.0 (<a href="https://github.com/ICTU/GBO-demo/pull/337">PR #337</a>). In demo v0.9.0, only the GraphQL mapping is patched.</li>
 <li>The profile variant and the choice "purist or pragmatic" belong in the proposal.</li>
-<li>The mapping of DvTP fields onto AuthZEN is the open S05 decision on the definitive GBO profile. <a href="../open-questions/#q-14">Q-14</a> is input for it.</li>
+<li>The mapping of <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> fields onto <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> is the open S05 decision on the definitive <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> profile. <a href="../open-questions/#q-14">Q-14</a> is input for it.</li>
 <li>The standardization route for grant properties lapsed (<a href="https://github.com/ICTU/GBO-demo/pull/363">PR #363</a>, <a href="https://github.com/ICTU/GBO-demo/issues/364">issue #364</a>).</li>
 </ul>
 </li>
@@ -4857,10 +4857,10 @@
 <li><strong>Status</strong>: answered</li>
 <li><strong>Question</strong>: Where do the query parameters that a channel adapter sends to a source come from?</li>
 <li><strong>Answer</strong>: From the source, for both branches.<ul>
-<li>EUDI: the source publishes the query, the declared parameters, the mapping, the attestation schema, and the offer in <code>/.well-known/gbo</code>. GBO validates and activates them (<a href="../increments/#sl-46">SL-46</a>, <a href="https://github.com/ICTU/GBO-demo/pull/224">PR #224</a>). The adapter has no use-case knowledge. The demo removed the use-case catalog on the GBO side.</li>
-<li>DvTP: FR-32 (FR-DvTP v0.9) sets up a statutory service catalog with the legal ceiling per use case. The operator of the DvTP service makes the catalog with the sector representative and manages it. The catalog links data sets to service providers and marks each set mandatory, optional, or minimal.</li>
+<li>EUDI: the source publishes the query, the declared parameters, the mapping, the attestation schema, and the offer in <code>/.well-known/gbo</code>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates and activates them (<a href="../increments/#sl-46">SL-46</a>, <a href="https://github.com/ICTU/GBO-demo/pull/224">PR #224</a>). The adapter has no use-case knowledge. The demo removed the use-case catalog on the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> side.</li>
+<li><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: FR-32 (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9) sets up a statutory service catalog with the legal ceiling per use case. The operator of the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> service makes the catalog with the sector representative and manages it. The catalog links data sets to service providers and marks each set mandatory, optional, or minimal.</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-03</a>: content management is federated, and findability is central. For more information, see PSA S07.</li>
-<li>The consequence is <a href="../findings/#f-74">F-74</a>: DvTP takes the scope from the demand side, and EUDI takes it from the supply side (<a href="https://github.com/ICTU/GBO-demo/issues/382">issue #382</a>).</li>
+<li>The consequence is <a href="../findings/#f-74">F-74</a>: <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> takes the scope from the demand side, and EUDI takes it from the supply side (<a href="https://github.com/ICTU/GBO-demo/issues/382">issue #382</a>).</li>
 </ul>
 </li>
 <li><strong>Landed in</strong>: <a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../../requirements/authorization/#req-44">REQ-44</a>, <a href="../../decisions/0016-source-owned-metadata/">ADR 0016</a>, <a href="../../decisions/0008-dienstencatalogus-ceiling/">ADR 0008</a>.</li>
@@ -4879,36 +4879,36 @@
 </li>
 <li><strong>Landed in</strong>: <a href="../../requirements/eudi-issuance/#req-78">REQ-78</a>, <a href="../findings/#f-47">F-47</a>.</li>
 </ul>
-<h3 id="q-21">Q-21: Who can manage and publish the policy of a source holder, and how is that authority set federatively?<a class="headerlink" href="#q-21" title="Permanent link">&para;</a></h3>
+<h3 id="q-21">Q-21: Who can manage and publish the policy of a bronhouder, and how is that authority set federatively?<a class="headerlink" href="#q-21" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
-<li><strong>Question</strong>: Who sets the authorization policy for DvTP: a central Policy Authority (FR-39) or the source holder (GO)? Who can manage and publish it?</li>
-<li><strong>Answer</strong>: Policy management stays with each source holder.<ul>
-<li>PAP and PDP are at the source holder, as the GO says (<a href="https://github.com/ICTU/GBO-demo/issues/426">issue #426</a>, closed as not planned, October 28, 2026).</li>
+<li><strong>Question</strong>: Who sets the authorization policy for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: a central Policy Authority (FR-39) or the bronhouder (GO)? Who can manage and publish it?</li>
+<li><strong>Answer</strong>: Policy management stays with each bronhouder.<ul>
+<li><abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> are at the bronhouder, as the GO says (<a href="https://github.com/ICTU/GBO-demo/issues/426">issue #426</a>, closed as not planned, October 28, 2026).</li>
 <li>The policy guidelines stay guidelines. They do not become requirements.</li>
 <li>Publication control is a norm in <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>. It covers the owner, the approver, the effective date, the change history, tests before publication, and an emergency and rollback procedure.</li>
-<li>The text of FR-39 (central Policy Authority, signed bundles) is outdated. FR-DvTP needs a change to this text.</li>
+<li>The text of FR-39 (central Policy Authority, signed bundles) is outdated. FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> needs a change to this text.</li>
 <li>Authority over policy lies with competent public parties (<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-05</a>).</li>
 </ul>
 </li>
-<li><strong>Landed in</strong>: <a href="../../decisions/0021-central-pap-signed-bundles/">ADR 0021</a> (rewritten: "Policy management and distribution per source holder"), <a href="../../requirements/authorization/#rl-01">RL-01</a> to <a href="../../requirements/authorization/#rl-05">RL-05</a>, <a href="../findings-closed/#f-09">F-09</a>, <a href="../findings/#f-51">F-51</a>, <a href="../findings/#f-52">F-52</a>.</li>
+<li><strong>Landed in</strong>: <a href="../../decisions/0021-central-pap-signed-bundles/">ADR 0021</a> (rewritten: "Policy management and distribution per bronhouder"), <a href="../../requirements/authorization/#rl-01">RL-01</a> to <a href="../../requirements/authorization/#rl-05">RL-05</a>, <a href="../findings-closed/#f-09">F-09</a>, <a href="../findings/#f-51">F-51</a>, <a href="../findings/#f-52">F-52</a>.</li>
 </ul>
 <h3 id="q-22">Q-22: Who runs the admission register, on which grounds, and what legal protection has a refused party?<a class="headerlink" href="#q-22" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: answered</li>
 <li><strong>Question</strong>: The question has four parts:<ol>
-<li>Who keeps the admission register?</li>
+<li>Who keeps the admission register (toelatingsregister)?</li>
 <li>On which grounds does a party get admission?</li>
 <li>What legal protection does a refused party get?</li>
 <li>At which granularity is admission given?</li>
 </ol>
 </li>
 <li><strong>Answer</strong>:<ul>
-<li>Register: the operator of the DvTP service keeps the register (FR-30, FR-DvTP v0.9). The system framework (FDS gatekeeper, draft) follows from <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-09</a>.</li>
+<li>Register: the operator of the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> service keeps the register (FR-30, FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9). The system framework (FDS gatekeeper, draft) follows from <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">B-09</a>.</li>
 <li>Grounds: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA P-16</a> ("objective, proportionate and verifiable; the permitted service, legal basis and data request are registered in advance") and FR-30 (selection criteria, connection conditions).</li>
 <li>Granularity: per service (P-16, FR-32), through the catalog and the consent registration (<a href="https://github.com/ICTU/GBO-demo/issues/382">issue #382</a>).</li>
 <li>Legal protection: procedural, at the management organization and B-09. The technical part is <a href="../../requirements/admission/#req-63">REQ-63</a>.</li>
-<li>The actor list of the PID regime is a register fact. It must stay disjoint from the DvTP consumers (<a href="../../requirements/authorization/#req-74">REQ-74</a>, <a href="../findings/#f-70">F-70</a>).</li>
+<li>The actor list of the <abbr title="Person Identification Data">PID</abbr> regime is a register fact. It must stay disjoint from the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consumers (<a href="../../requirements/authorization/#req-74">REQ-74</a>, <a href="../findings/#f-70">F-70</a>).</li>
 <li>Demo gap: FR-30 criterion 3 (status "trusted" visible to the citizen) is missing.</li>
 </ul>
 </li>
@@ -4917,17 +4917,18 @@
 <h3 id="q-23">Q-23: Through which interface does a source get the consent status, and how does the register know who asks?<a class="headerlink" href="#q-23" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: closed</li>
-<li><strong>Question</strong>: The PDP of a source calls the register for the consent status across an organization boundary. Over which interface does it do this, and how does the register authenticate the caller?</li>
-<li><strong>Answer</strong>: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie">PSA S01</a> sets the norm: only the citizen and authorized components have access to consent. The interface and the caller identity are a design decision for the GBO team, as builders of the register. The GO gives FSC as the direction. In demo v0.9.0, the status query goes over FSC. Thus the register records the verified FSC peer as the processor in LDV (<a href="https://github.com/ICTU/GBO-demo/issues/383">issue #383</a>). The trade-off between a query per request and a status list is at <a href="../../requirements/consent/#req-75">REQ-75</a>.</li>
+<li><strong>Question</strong>: The <abbr title="Policy Decision Point">PDP</abbr> of a source calls the register for the consent status across an organization boundary. Over which interface does it do this, and how does the register authenticate the caller?</li>
+<li><strong>Answer</strong>: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie">PSA S01</a> sets the norm: only the citizen and authorized components have access to consent. The interface and the caller identity are a design decision for the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> team, as builders of the register. The GO gives <abbr title="Federated Service Connectivity">FSC</abbr> as the direction. In demo v0.9.0, the status query goes over <abbr title="Federated Service Connectivity">FSC</abbr>. Thus the register records the verified <abbr title="Federated Service Connectivity">FSC</abbr> peer as the processor in <abbr title="Logboek Dataverwerkingen">LDV</abbr> (<a href="https://github.com/ICTU/GBO-demo/issues/383">issue #383</a>). The trade-off between a query per request and a status list is at <a href="../../requirements/consent/#req-75">REQ-75</a>.</li>
 <li><strong>Landed in</strong>: <a href="../../requirements/consent/#req-76">REQ-76</a>, <a href="../../requirements/consent/#req-75">REQ-75</a>, <a href="../../decisions/0032-consent-proof/">ADR 0032</a>.</li>
 </ul>
-<h3 id="q-24">Q-24: Must a private consumer record its processing according to LDV?<a class="headerlink" href="#q-24" title="Permanent link">&para;</a></h3>
+<h3 id="q-24">Q-24: Must a private consumer record its processing according to <abbr title="Logboek Dataverwerkingen">LDV</abbr>?<a class="headerlink" href="#q-24" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Status</strong>: closed</li>
-<li><strong>Question</strong>: Must a private consumer, which LDV does not bind, record its processing so that a reader can follow a chain from its start?</li>
-<li><strong>Answer</strong>: The minimum is normative: the consumer sends W3C Trace Context and records the transaction ID. In <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>, every data request gets a request identifier that is usable across the whole chain. Full LDV at the private consumer is a candidate connection condition. FR-31 (FR-DvTP v0.9) puts the chain audit at the service. The LDV records of the status queries at the register form that chain-wide index. This is true only while the PDP calls for the status per request (<a href="../../requirements/consent/#req-75">REQ-75</a>, <a href="../findings/#f-68">F-68</a>).</li>
-<li><strong>Landed in</strong>: <a href="../../requirements/admission/#av-01">AV-01</a> (minimum), <a href="../../requirements/admission/#av-02">AV-02</a> (full LDV, candidate), <a href="../findings/#f-68">F-68</a>.</li>
+<li><strong>Question</strong>: Must a private consumer, which <abbr title="Logboek Dataverwerkingen">LDV</abbr> does not bind, record its processing so that a reader can follow a chain from its start?</li>
+<li><strong>Answer</strong>: The minimum is normative: the consumer sends W3C Trace Context and records the transaction ID. In <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>, every data request gets a request identifier that is usable across the whole chain. Full <abbr title="Logboek Dataverwerkingen">LDV</abbr> at the private consumer is a candidate connection condition. FR-31 (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9) puts the chain audit at the service. The <abbr title="Logboek Dataverwerkingen">LDV</abbr> records of the status queries at the register form that chain-wide index. This is true only while the <abbr title="Policy Decision Point">PDP</abbr> calls for the status per request (<a href="../../requirements/consent/#req-75">REQ-75</a>, <a href="../findings/#f-68">F-68</a>).</li>
+<li><strong>Landed in</strong>: <a href="../../requirements/admission/#av-01">AV-01</a> (minimum), <a href="../../requirements/admission/#av-02">AV-02</a> (full <abbr title="Logboek Dataverwerkingen">LDV</abbr>, candidate), <a href="../findings/#f-68">F-68</a>.</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

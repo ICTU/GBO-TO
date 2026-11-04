@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4626,7 +4626,7 @@
   
 
 
-<h1 id="adr-0032-the-consent-proof-signed-a-value-per-source-a-placeholder-in-the-query-status-online-over-fsc-verified-in-policy">ADR-0032: The consent proof: signed, a value per source, a placeholder in the query, status online over FSC, verified in policy<a class="headerlink" href="#adr-0032-the-consent-proof-signed-a-value-per-source-a-placeholder-in-the-query-status-online-over-fsc-verified-in-policy" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0032-the-consent-proof-signed-a-value-per-source-a-placeholder-in-the-query-status-online-over-fsc-verified-in-policy">ADR-0032: The consent proof: signed, a value per source, a placeholder in the query, status online over <abbr title="Federated Service Connectivity">FSC</abbr>, verified in policy<a class="headerlink" href="#adr-0032-the-consent-proof-signed-a-value-per-source-a-placeholder-in-the-query-status-online-over-fsc-verified-in-policy" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: accepted</li>
 <li>Date: 2026-11-02</li>
@@ -4638,16 +4638,16 @@
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego">consent.rego</a>: the verification and the status check in policy.</li>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/status.go">status.go</a>: the status listener behind the register Inway.</li>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/lib.rego#L43-L53">lib.rego</a>: the placeholders.</li>
-<li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L141-L142">docker-compose.yml</a>: the status call over the PDP Outway.</li>
+<li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L141-L142">docker-compose.yml</a>: the status call over the <abbr title="Policy Decision Point">PDP</abbr> Outway.</li>
 </ul>
 </li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>In DvTP, the consent of the citizen is the access basis. The PDP at the
+<p>In <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, the consent of the citizen is the access basis. The <abbr title="Policy Decision Point">PDP</abbr> at the
 source must establish three facts itself
 (<a href="../../requirements/consent/#req-68">REQ-68</a>):</p>
 <ul>
-<li>The consent comes from the toestemmingsregister and is unchanged.</li>
+<li>The consent comes from the consent register (toestemmingsregister) and is unchanged.</li>
 <li>The consent is bound to this consumer, this data set, and this
   citizen.</li>
 <li>The consent is valid at the time of the request, also after a
@@ -4663,7 +4663,7 @@ reason, the register must make every value that a source needs at
 consent time. These values travel with the proof.</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <h3 id="the-proof">The proof<a class="headerlink" href="#the-proof" title="Permanent link">&para;</a></h3>
-<p>When the citizen gives consent, the toestemmingsregister signs a JWT
+<p>When the citizen gives consent, the consent register signs a JWT
 with these properties:</p>
 <ul>
 <li>The algorithm is ES256. The header has <code>typ=gbo-consent+jwt</code> and
@@ -4673,26 +4673,26 @@ with these properties:</p>
   <code>gbo:dvtp:pdp</code>), <code>iat</code>, <code>nbf</code>, <code>exp</code> (equal to <code>valid_until</code>), and
   <code>jti</code>. The <code>dienstverlener_oin</code> is the represented party
   (<a href="../0034-integrator-delegation/">ADR-0034</a>).</li>
-<li>The <code>encrypted_subject</code> claim holds a <code>pseudonym</code> (VP) per source OIN.
-  If the source is on the BSN authorization list, it also holds an
-  <code>identity</code> (VI) for that source. Each value carries its
+<li>The <code>encrypted_subject</code> claim holds a <code>pseudonym</code> (<abbr title="Encrypted pseudonym">VP</abbr>) per source <abbr title="Organisatie-identificatienummer">OIN</abbr>.
+  If the source is on the <abbr title="Burgerservicenummer">BSN</abbr> authorization list, it also holds an
+  <code>identity</code> (<abbr title="Encrypted identity">VI</abbr>) for that source. Each value carries its
   <code>key_set_version</code>. Only that source can read the value
   (<a href="../../requirements/pseudonymization/#req-80">REQ-80</a>).</li>
 </ul>
-<p>The proof holds no PI and no BSN. If a proof has no pseudonym for every
+<p>The proof holds no <abbr title="Polymorphic identity">PI</abbr> and no <abbr title="Burgerservicenummer">BSN</abbr>. If a proof has no pseudonym for every
 party, the register refuses it.</p>
 <h3 id="the-consumer">The consumer<a class="headerlink" href="#the-consumer" title="Permanent link">&para;</a></h3>
 <p>The consumer sends the proof unchanged in <code>X-GBO-Consent-Token</code>
 (<a href="../../requirements/admission/#av-05">AV-05</a>). In its query,
 the consumer names the citizen only with a placeholder:</p>
 <ul>
-<li><code>consent:identity</code> for a BSN API.</li>
+<li><code>consent:identity</code> for a <abbr title="Burgerservicenummer">BSN</abbr> API.</li>
 <li><code>consent:pseudonym</code> for a source-pseudonym API.</li>
 </ul>
 <p>Each rule lists the placeholders that it accepts. If the query has a
-literal value, or a placeholder without a verified proof, the PDP denies
+literal value, or a placeholder without a verified proof, the <abbr title="Policy Decision Point">PDP</abbr> denies
 (<code>CONSTRAINT_MISMATCH</code>).</p>
-<h3 id="the-pdp-policy-verifies-the-proof-itself">The PDP policy verifies the proof itself<a class="headerlink" href="#the-pdp-policy-verifies-the-proof-itself" title="Permanent link">&para;</a></h3>
+<h3 id="the-pdp-policy-verifies-the-proof-itself">The <abbr title="Policy Decision Point">PDP</abbr> policy verifies the proof itself<a class="headerlink" href="#the-pdp-policy-verifies-the-proof-itself" title="Permanent link">&para;</a></h3>
 <p>The request mapper only maps (<a href="../0013-pdp-request-mapper/">ADR-0013</a>).
 <code>consent.rego</code> does these steps per evaluation:</p>
 <ol>
@@ -4701,8 +4701,8 @@ literal value, or a placeholder without a verified proof, the PDP denies
    policy fetches the JWKS again.</li>
 <li>It verifies the claims in Rego, with 30 seconds of clock skew.</li>
 <li>Only after that, it asks the status of this <code>consent_id</code>. This call uses
-   no cache and a 2-second timeout. It goes over FSC, through the Outway
-   of the PDP, to the Inway of the register (FSC service
+   no cache and a 2-second timeout. It goes over <abbr title="Federated Service Connectivity">FSC</abbr>, through the Outway
+   of the <abbr title="Policy Decision Point">PDP</abbr>, to the Inway of the register (<abbr title="Federated Service Connectivity">FSC</abbr> service
    <code>consent-status</code>).</li>
 </ol>
 <p>Keys can be five minutes old. The status cannot be old. Every failure
@@ -4724,25 +4724,25 @@ placeholder (<a href="../0033-gateway-decrypts-after-allow/">ADR-0033</a>).</p>
 <h2 id="considered-options">Considered options<a class="headerlink" href="#considered-options" title="Permanent link">&para;</a></h2>
 <ol>
 <li>A signed proof, with the status online (chosen).</li>
-<li>Only a consent ID, and the PDP looks up the content at the register
+<li>Only a consent ID, and the <abbr title="Policy Decision Point">PDP</abbr> looks up the content at the register
    (<a href="../0006-consent-register-as-pip/">ADR-0006</a>). The register becomes
    the only source of the evidence. The consumer presents nothing that
-   the PDP can verify.</li>
-<li>A status list that the PDP fetches periodically. A revocation takes
+   the <abbr title="Policy Decision Point">PDP</abbr> can verify.</li>
+<li>A status list that the <abbr title="Policy Decision Point">PDP</abbr> fetches periodically. A revocation takes
    effect only after the next fetch.
    <a href="../../requirements/consent/#req-14">REQ-14</a> needs a deny on the next
    request.</li>
 <li>A verifiable credential or presentation. This is a wallet format for
    a server-to-server proof. It adds a holder role that the consumer
    does not have.</li>
-<li>A PI in the query, and a BSNk call at the PEP or the source
+<li>A <abbr title="Polymorphic identity">PI</abbr> in the query, and a BSNk call at the <abbr title="Policy Enforcement Point">PEP</abbr> or the source
    (<a href="../0010-pep-bsn-resolution/">ADR-0010</a>,
-   <a href="../0007-consent-signed-token/">ADR-0007</a>). The PI belongs to the
+   <a href="../0007-consent-signed-token/">ADR-0007</a>). The <abbr title="Polymorphic identity">PI</abbr> belongs to the
    requester only (<a href="../../requirements/pseudonymization/#bsnk-03">BSNK-03</a>).
    BSNk transforms only while the citizen is logged in
    (<a href="../../requirements/pseudonymization/#bsnk-04">BSNK-04</a>).</li>
-<li>Consent verification in the Go request mapper (the earlier demo). FTV
-   puts attribute retrieval inside the PDP. With verification in the
+<li>Consent verification in the Go request mapper (the earlier demo). <abbr title="Federatieve Toegangsverlening">FTV</abbr>
+   puts attribute retrieval inside the <abbr title="Policy Decision Point">PDP</abbr>. With verification in the
    mapper, the decision rests on facts that the policy did not establish
    (<a href="../../requirements/authorization/#req-18">REQ-18</a>).</li>
 </ol>
@@ -4755,28 +4755,28 @@ placeholder (<a href="../0033-gateway-decrypts-after-allow/">ADR-0033</a>).</p>
   for latency and availability are open
   (<a href="../../traceability/open-questions/#q-47">Q-47</a>).</li>
 <li>The status check is a processing at the register. The register
-  answers only an FSC peer that its Inway authenticated. The register
+  answers only an <abbr title="Federated Service Connectivity">FSC</abbr> peer that its Inway authenticated. The register
   logs that peer as the processor
   (<a href="../../requirements/consent/#req-76">REQ-76</a>). Any connected peer can
   still ask the status of any consent whose ID it holds. A restriction
-  to the own PDP of the source is not built in demo v0.9.0.</li>
+  to the own <abbr title="Policy Decision Point">PDP</abbr> of the source is not built in demo v0.9.0.</li>
 <li>A replay from (input, policy, data) is not possible. The policy
   fetches the status during the evaluation. The engine copies the
-  resolved consent into its response for the console log. The ADL
+  resolved consent into its response for the console log. The <abbr title="Authorization Decision Log">ADL</abbr>
   carries only <code>{allow, reason}</code> (<a href="../../traceability/findings/#f-72">F-72</a>,
   <a href="../0036-adl-decision-record/">ADR-0036</a>).</li>
-<li>The PDP verifies that the subject comes from the proof. The PDP does
+<li>The <abbr title="Policy Decision Point">PDP</abbr> verifies that the subject comes from the proof. The <abbr title="Policy Decision Point">PDP</abbr> does
   not verify who the subject is (<a href="../../traceability/findings/#f-77">F-77</a>).
   One request names one subject. No policy can depend on the identity of
   the subject.</li>
 <li>The proof freezes at consent (<a href="../../traceability/findings/#f-78">F-78</a>).
-  The parties, key versions, BSN authorization, and proof form stay fixed
+  The parties, key versions, <abbr title="Burgerservicenummer">BSN</abbr> authorization, and proof form stay fixed
   for its validity period. The proof has no version. If a source is
   added or gets new keys later, it needs a new consent, or it keeps its
   old keys (<a href="../../requirements/admission/#av-09">AV-09</a>).</li>
 <li>The proof is a bearer token. The actor binding stops use by another
   consumer, but it does not stop replay by the same consumer. Production
-  needs a shorter validity and a proof-of-possession binding to the FSC
+  needs a shorter validity and a proof-of-possession binding to the <abbr title="Federated Service Connectivity">FSC</abbr>
   identity (<a href="../../risks/">Risks and technical debt</a>).</li>
 <li>The consumer holds no citizen identifier
   (<a href="../../traceability/findings/#f-76">F-76</a>). What the consumer records
@@ -4797,7 +4797,7 @@ placeholder (<a href="../0033-gateway-decrypts-after-allow/">ADR-0033</a>).</p>
 </ul>
 <p>The design came in three steps:</p>
 <ol>
-<li>A consent PIP through a PEP pre-fetch
+<li>A consent <abbr title="Policy Information Point">PIP</abbr> through a <abbr title="Policy Enforcement Point">PEP</abbr> pre-fetch
    (<a href="../../traceability/increments/#sl-08">SL-08</a>).</li>
 <li>A signed, actor-bound proof
    (<a href="../../traceability/increments/#sl-47">SL-47</a>).</li>
@@ -4811,6 +4811,7 @@ placeholder (<a href="../0033-gateway-decrypts-after-allow/">ADR-0033</a>).</p>
 <li>Open questions: <a href="../../traceability/answered-questions/#q-05">Q-05</a> (answered), <a href="../../traceability/open-questions/#q-13">Q-13</a> (open), <a href="../../traceability/open-questions/#q-46">Q-46</a> (open), <a href="../../traceability/open-questions/#q-47">Q-47</a> (open), <a href="../../traceability/open-questions/#q-55">Q-55</a> (open), <a href="../../traceability/open-questions/#q-69">Q-69</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-08">SL-08</a> (done), <a href="../../traceability/increments/#sl-23">SL-23</a> (done), <a href="../../traceability/increments/#sl-47">SL-47</a> (done), <a href="../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

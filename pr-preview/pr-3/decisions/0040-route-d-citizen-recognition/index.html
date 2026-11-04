@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4585,30 +4585,30 @@
 <li>Implemented in: demo, provisionally:<ul>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/subjectref.go#L38-L42">subjectref.go</a>: the HMAC reference.</li>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L296-L314">portal.go</a>: one activation per citizen.</li>
-<li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/polymorphic.go#L10-L17">polymorphic.go</a>: PI and PP stored under the reference.</li>
+<li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/polymorphic.go#L10-L17">polymorphic.go</a>: <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> stored under the reference.</li>
 </ul>
 </li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>The consent service needs two things from a citizen who logged in:</p>
+<p>The consent facility (toestemmingsvoorziening) needs two things from a citizen who logged in:</p>
 <ol>
 <li>A stable key for its own administration. With this key, the service
-   shows and revokes the consents of the citizen without a BSN
+   shows and revokes the consents of the citizen without a <abbr title="Burgerservicenummer">BSN</abbr>
    (<a href="../../requirements/pseudonymization/#req-20">REQ-20</a>,
    <a href="../../requirements/consent/#req-40">REQ-40</a>).</li>
-<li>A PI and a PP. With these, the service makes the values for the
+<li>A <abbr title="Polymorphic identity">PI</abbr> and a <abbr title="Polymorphic pseudonym">PP</abbr>. With these, the service makes the values for the
    parties at a new consent
    (<a href="../../requirements/pseudonymization/#bsnk-03">BSNK-03</a>).</li>
 </ol>
-<p>A stored PI or PP is not a stable key. BSNk gives other values at every
-activation, and the service cannot compute these values from a BSN.
-Every activation goes into the Inzageregister
+<p>A stored <abbr title="Polymorphic identity">PI</abbr> or <abbr title="Polymorphic pseudonym">PP</abbr> is not a stable key. BSNk gives other values at every
+activation, and the service cannot compute these values from a <abbr title="Burgerservicenummer">BSN</abbr>.
+Every activation goes into the BSNk access register (Inzageregister)
 (<a href="../../requirements/pseudonymization/#bsnk-10">BSNK-10</a>). Only a
 recognized BSNk participant can activate and transform
 (<a href="../../requirements/pseudonymization/#bsnk-01">BSNK-01</a>).</p>
 <p>Two points are open (<a href="../../traceability/open-questions/#q-49">Q-49</a>):</p>
 <ul>
-<li>Are the consent register and the consent portal backend one system?</li>
+<li>Are the consent register (toestemmingsregister) and the consent portal (toestemmingsportaal) backend one system?</li>
 <li>Which of them is the BSNk participant?</li>
 </ul>
 <p>The working assumption puts the BSNk calls at the register. The demo
@@ -4616,9 +4616,9 @@ puts them at the backend. The TO removed the earlier requirement on this
 point (REQ-22) until a decision on Q-49.</p>
 <h2 id="proposed-decision">Proposed decision<a class="headerlink" href="#proposed-decision" title="Permanent link">&para;</a></h2>
 <p>The proposal is route D, under the working assumption that MijnOverheid
-passes the BSN:</p>
+passes the <abbr title="Burgerservicenummer">BSN</abbr>:</p>
 <ul>
-<li>The consent service recognizes the citizen by an HMAC of the BSN, with
+<li>The consent facility recognizes the citizen by an HMAC of the <abbr title="Burgerservicenummer">BSN</abbr>, with
   a secret, versioned key:<ul>
 <li>The key is in an HSM or KMS.</li>
 <li>The input has a fixed prefix and nine digits with leading zeros.</li>
@@ -4626,27 +4626,27 @@ passes the BSN:</p>
 <li>Every record keeps the key version.</li>
 </ul>
 </li>
-<li>At the first consent, the service activates once at BSNk. It stores PI
-  and PP under that reference. At a later consent, the service only lets
+<li>At the first consent, the service activates once at BSNk. It stores <abbr title="Polymorphic identity">PI</abbr>
+  and <abbr title="Polymorphic pseudonym">PP</abbr> under that reference. At a later consent, the service only lets
   BSNk transform values.</li>
 <li>To show and revoke consents, the service needs no BSNk call.</li>
 </ul>
 <p>In the demo, the portal backend derives the reference and activates.
-The register stores PI and PP. This split fits only if both are one BSNk
+The register stores <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr>. This split fits only if both are one BSNk
 participant (Q-49).</p>
 <h2 id="considered-options">Considered options<a class="headerlink" href="#considered-options" title="Permanent link">&para;</a></h2>
 <p><a href="../../requirements/pseudonymization/#routes-abc">BSNk preconditions</a>
 describes the routes in full. The design weighed four options:</p>
 <ol>
-<li>Route D: an own pseudonym from the BSN (proposed). BSNk is necessary
-   only at the first activation. The route needs the BSN from
-   MijnOverheid and a grondslag for the register.</li>
+<li>Route D: an own pseudonym from the <abbr title="Burgerservicenummer">BSN</abbr> (proposed). BSNk is necessary
+   only at the first activation. The route needs the <abbr title="Burgerservicenummer">BSN</abbr> from
+   MijnOverheid and a legal basis (grondslag) for the register.</li>
 <li><a href="../../requirements/pseudonymization/#route-a">Route A</a>: an own
    pseudonym through BSNk. The service activates and transforms at every
    login, also to show consents. Every login goes into the
-   Inzageregister.</li>
+   access register.</li>
 <li><a href="../../requirements/pseudonymization/#route-b">Route B</a>: a pseudonym
-   through the login. MijnOverheid passes a VP for the register. The
+   through the login. MijnOverheid passes a <abbr title="Encrypted pseudonym">VP</abbr> for the register. The
    route depends on DigiD and MijnOverheid.</li>
 <li><a href="../../requirements/pseudonymization/#route-c">Route C</a>: a reference
    from MijnOverheid. MijnOverheid must have such a reference and must
@@ -4654,20 +4654,20 @@ describes the routes in full. The design weighed four options:</p>
 </ol>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The register stores PI and PP. It stores no BSN and no value per party
+<li>The register stores <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr>. It stores no <abbr title="Burgerservicenummer">BSN</abbr> and no value per party
   (<a href="../../requirements/pseudonymization/#req-69">REQ-69</a>,
   <a href="../../requirements/consent/#req-23">REQ-23</a>). This deviates on
   purpose from FR-35, criterion 1
   (<a href="../../traceability/findings/#f-98">F-98</a>).</li>
-<li>The service processes the BSN briefly at every login, and that needs a
-  grondslag. For every BSN, the service can compute whether consents
+<li>The service processes the <abbr title="Burgerservicenummer">BSN</abbr> briefly at every login, and that needs a
+  legal basis. For every <abbr title="Burgerservicenummer">BSN</abbr>, the service can compute whether consents
   exist, without a trace elsewhere.</li>
 <li>The secret key is the whole protection. Without the key, anyone can
-  compute every reference back from the small BSN space.</li>
+  compute every reference back from the small <abbr title="Burgerservicenummer">BSN</abbr> space.</li>
 <li>A new key gives every citizen a new reference. A migration of existing
   records is not built
   (<a href="../../traceability/open-questions/#q-56">Q-56</a>).</li>
-<li>The consent service must become a recognized BSNk participant
+<li>The consent facility must become a recognized BSNk participant
   (<a href="../../traceability/findings/#f-75">F-75</a>,
   <a href="../../traceability/open-questions/#q-26">Q-26</a>).</li>
 </ul>
@@ -4678,7 +4678,7 @@ describes the routes in full. The design weighed four options:</p>
 <li><a href="../../traceability/open-questions/#q-50">Q-50</a>: how the backend gets
   the verified identity.</li>
 <li><a href="../../traceability/open-questions/#q-57">Q-57</a>: the protection of the
-  stored PI and PP.</li>
+  stored <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr>.</li>
 <li><a href="../../traceability/open-questions/#q-58">Q-58</a>: does the register
   authenticate the backend?</li>
 <li><a href="../../traceability/open-questions/#q-63">Q-63</a>: retention.</li>
@@ -4692,6 +4692,7 @@ replaces it.</p>
 <li>Open questions: <a href="../../traceability/open-questions/#q-26">Q-26</a> (open), <a href="../../traceability/open-questions/#q-49">Q-49</a> (open), <a href="../../traceability/open-questions/#q-50">Q-50</a> (open), <a href="../../traceability/open-questions/#q-56">Q-56</a> (open), <a href="../../traceability/open-questions/#q-57">Q-57</a> (open), <a href="../../traceability/open-questions/#q-58">Q-58</a> (open), <a href="../../traceability/open-questions/#q-63">Q-63</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

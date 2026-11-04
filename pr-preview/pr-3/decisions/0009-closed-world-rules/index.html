@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4575,8 +4575,8 @@
 <li>Implemented in: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo">policies/gbo</a>: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L168-L192">engine.rego</a> (regime and service binding), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/lib.rego#L1-L7">lib.rego</a> (reads the request only), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules">rules/</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L497-L501">engine_test.rego</a> (every rule names its services)</li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>For each requested field, the PDP must decide whether an authorization basis
-covers the field. The PDP must do this without a separate catalog, because
+<p>For each requested field, the <abbr title="Policy Decision Point">PDP</abbr> must decide whether an authorization basis
+covers the field. The <abbr title="Policy Decision Point">PDP</abbr> must do this without a separate catalog, because
 a catalog can drift away from enforcement.</p>
 <p>A field key (<code>ParentType.field</code>) is unique only within one schema. Two
 services can share a key: <code>Query.ingeschrevenPersoon</code> is in both <code>bri</code> and
@@ -4584,7 +4584,7 @@ services can share a key: <code>Query.ingeschrevenPersoon</code> is in both <cod
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p>Each rule is plain Rego. A rule declares these items:</p>
 <ul>
-<li><code>rule_id</code>, <code>regime</code> (<code>consent</code> or <code>pid</code>), and <code>services</code> (the FSC
+<li><code>rule_id</code>, <code>regime</code> (<code>consent</code> or <code>pid</code>), and <code>services</code> (the <abbr title="Federated Service Connectivity">FSC</abbr>
   services that the rule applies to)</li>
 <li><code>covers_fields</code> and <code>covers_types</code>: the fields that the rule can grant</li>
 <li>its reasons to refuse: <code>deny</code> for the whole request and <code>deny_field[i]</code>
@@ -4597,8 +4597,8 @@ and the scope itself (<a href="../../requirements/authorization/#req-48">REQ-48<
 <ol>
 <li>Only the rules of the active regime bind
    (<a href="../0031-regime-from-evidence/">ADR-0031</a>).</li>
-<li>Only the rules that serve the FSC service of the request bind. The
-   service is the <code>service_name</code> from the FSC access token. The Manager of
+<li>Only the rules that serve the <abbr title="Federated Service Connectivity">FSC</abbr> service of the request bind. The
+   service is the <code>service_name</code> from the <abbr title="Federated Service Connectivity">FSC</abbr> access token. The Manager of
    the source signed this token
    (<a href="../../requirements/authorization/#req-97">REQ-97</a>).</li>
 <li>A field binds to the rules that name its key. An argument-free leaf
@@ -4608,12 +4608,12 @@ and the scope itself (<a href="../../requirements/authorization/#req-48">REQ-48<
 </ol>
 <p>The rule set is a closed world:</p>
 <ul>
-<li>If no rule covers a field, the PDP denies the field with
+<li>If no rule covers a field, the <abbr title="Policy Decision Point">PDP</abbr> denies the field with
   <code>NO_APPLICABLE_RULE</code>.</li>
-<li>If the PDP cannot make the decision for a field, it refuses the field
+<li>If the <abbr title="Policy Decision Point">PDP</abbr> cannot make the decision for a field, it refuses the field
   as <code>RULE_NOT_EVALUABLE</code>. The request then fails as a configuration
   error.</li>
-<li>If the field list of a request is uncertain, the PDP denies the whole
+<li>If the field list of a request is uncertain, the <abbr title="Policy Decision Point">PDP</abbr> denies the whole
   request (<a href="../../requirements/authorization/#req-17">REQ-17</a>,
   <a href="../0013-pdp-request-mapper/">ADR-0013</a>).</li>
 </ul>
@@ -4644,19 +4644,19 @@ and the scope itself (<a href="../../requirements/authorization/#req-48">REQ-48<
 <td>EUD0001</td>
 <td>pid</td>
 <td><code>bri</code></td>
-<td>Inkomensverklaring to the wallet, years 2024 and 2025</td>
+<td>Income statement (inkomensverklaring) to the wallet, years 2024 and 2025</td>
 </tr>
 <tr>
 <td>EUD0002</td>
 <td>pid</td>
 <td><code>brp</code></td>
-<td>Akte van overlijden to the wallet</td>
+<td>Death certificate (akte van overlijden) to the wallet</td>
 </tr>
 <tr>
 <td>ASI0001</td>
 <td>pid</td>
 <td><code>brp</code></td>
-<td>BRP fields for the ASIP</td>
+<td>BRP fields for the <abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
 </tr>
 </tbody>
 </table>
@@ -4673,7 +4673,7 @@ and the scope itself (<a href="../../requirements/authorization/#req-48">REQ-48<
 <p>Reasons have two layers
   (<a href="../../requirements/authorization/#req-06">REQ-06</a>):</p>
 <ul>
-<li>The consumer and the ADL get only a client code, such as
+<li>The consumer and the <abbr title="Authorization Decision Log">ADL</abbr> get only a client code, such as
   <code>FIELD_NOT_PERMITTED</code>.</li>
 <li>The rule codes for each field go only to the console decision log
   for the operator, in a fixed order.</li>
@@ -4681,7 +4681,7 @@ and the scope itself (<a href="../../requirements/authorization/#req-48">REQ-48<
 <p>For more information, see <a href="../../concepts/authorization/">Authorization</a>.</p>
 </li>
 <li>
-<p>The dienstencatalogus with a legal anchor from
+<p>The service catalog (dienstencatalogus) with a legal anchor from
   <a href="../0008-dienstencatalogus-ceiling/">ADR-0008</a> stays an open governance
   question. <a href="../../risks/">Risks and technical debt</a> tracks it.</p>
 </li>
@@ -4695,6 +4695,7 @@ and the scope itself (<a href="../../requirements/authorization/#req-48">REQ-48<
 <li>Open questions: <a href="../../traceability/open-questions/#q-14">Q-14</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-03b">SL-03b</a> (done), <a href="../../traceability/increments/#sl-13">SL-13</a> (done), <a href="../../traceability/increments/#sl-33">SL-33</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

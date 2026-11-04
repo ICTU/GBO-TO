@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -3678,10 +3678,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#domain-terms-dutch-to-english" class="md-nav__link">
+  <a href="#building-blocks-and-channels" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Domain terms (Dutch to English)
+        Building blocks and channels
       
     </span>
   </a>
@@ -3689,10 +3689,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#abbreviations-and-system-terms" class="md-nav__link">
+  <a href="#domain-terms" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Abbreviations and system terms
+        Domain terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consent-identity-and-pseudonyms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consent, identity, and pseudonyms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#records-and-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Records and tracing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abbreviations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Abbreviations
       
     </span>
   </a>
@@ -4501,320 +4534,525 @@
 
 
 <h1 id="glossary">Glossary<a class="headerlink" href="#glossary" title="Permanent link">&para;</a></h1>
-<p>The glossary gives the English equivalents of the Dutch domain terms in
-the TO and defines the GBO-specific terms. For the full begrippenlijst of
-the GBO stelsel, see the
+<p>The TO is written in English. Each concept has one English term. On its
+first use on a page, the term gets the Dutch name of the Globaal Ontwerp
+in parentheses, for example "consent register (toestemmingsregister)".
+After that, the page uses the English term only. Proper names stay as
+they are: Gemeenschappelijke Bronontsluiting, Delen van gegevens via
+Toestemming met Private dienstverleners, Globaal Ontwerp,
+Projectstartarchitectuur, Technisch Ontwerp, MijnOverheid, DigiD, Logius,
+<abbr title="Burgerservicenummer">BSN</abbr>, Autorisatielijst <abbr title="Burgerservicenummer">BSN</abbr>, Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr>, Logboek Dataverwerkingen. One Dutch government
+term also stays as it is, without a translation: bronhouder.</p>
+<p>The following tables give each term, the Dutch name, its meaning, and the
+words that the TO does not use for the same concept. The style linter
+(<code>scripts/style_lint.py</code>) reports every word from a "Do not use" column
+in running text. A Dutch name directly inside parentheses is allowed.
+Code names, quotes from sources, and IDs are exempt. For the full
+begrippenlijst of the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> stelsel, see the
 <a href="https://ictu.github.io/GBO-GO/main/bijlage_begrippenlijst/">GO begrippenlijst</a>.</p>
-<h2 id="domain-terms-dutch-to-english">Domain terms (Dutch to English)<a class="headerlink" href="#domain-terms-dutch-to-english" title="Permanent link">&para;</a></h2>
+<h2 id="building-blocks-and-channels">Building blocks and channels<a class="headerlink" href="#building-blocks-and-channels" title="Permanent link">&para;</a></h2>
+<p>These terms follow the <a href="../building-blocks/">building block view</a>:</p>
 <table>
 <thead>
 <tr>
 <th>Term</th>
-<th>English</th>
+<th>Dutch (GO)</th>
 <th>Meaning</th>
+<th>Do not use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Afnemer</td>
-<td>Consumer</td>
-<td>Organization that requests data from a bronhouder.</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
+<td>The part of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> at every bronhouder: <abbr title="Federated Service Connectivity">FSC</abbr>, the <abbr title="Policy Enforcement Point">PEP</abbr> and the <abbr title="Policy Decision Point">PDP</abbr>, the source gateway, source configuration, and the records. It feeds every channel (<a href="../building-blocks/gbo-basis/"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a>).</td>
+<td>—</td>
 </tr>
 <tr>
-<td>Betrokkene</td>
-<td>Data subject</td>
-<td>The person whom a processing is about (AVG and LDV term).</td>
+<td>Channel</td>
+<td>kanaal</td>
+<td>A way in which <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> serves one kind of consumer. The three channels are <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI wallet, and <abbr title="Once-Only Technical System">OOTS</abbr>.</td>
+<td>trajectory</td>
 </tr>
 <tr>
-<td>Bronhouder</td>
-<td>Source holder</td>
-<td>Organization responsible for an authentic register and its ontsluiting.</td>
+<td>Route</td>
+<td>—</td>
+<td>One end-to-end flow through a channel: the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> route, the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route, the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route, the SDG-<abbr title="Once-Only Technical System">OOTS</abbr> route, and the <abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr> route.</td>
+<td>trajectory</td>
 </tr>
 <tr>
-<td>Bronontsluiting</td>
-<td>Source access</td>
-<td>The provision of register data through a standard interface.</td>
+<td>Facility</td>
+<td>voorziening</td>
+<td>A shared function that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> or another party provides, for example the consent facility.</td>
+<td>voorziening</td>
 </tr>
 <tr>
-<td>Burger</td>
-<td>Citizen</td>
-<td>The data subject in GBO flows.</td>
+<td>Consent facility</td>
+<td>toestemmingsvoorziening</td>
+<td>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> facility of the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel where the citizen gives, views, and revokes consent. It consists of the consent portal and the consent register (<a href="../building-blocks/dvtp/consent-service/">Consent facility</a>).</td>
+<td>toestemmingsvoorziening, consent service</td>
 </tr>
 <tr>
-<td>Dienstverlener</td>
-<td>Service provider</td>
-<td>Party, often private, that uses data to deliver a service to the citizen. In DvTP, the dienstverlener is the consumer.</td>
-</tr>
-<tr>
-<td>Dienstencatalogus</td>
-<td>Service catalog</td>
-<td>Legally anchored register of the maximum scope that a consumer can ask for per use case. See <a href="../decisions/0008-dienstencatalogus-ceiling/">ADR-0008</a>.</td>
-</tr>
-<tr>
-<td>Doelbinding</td>
-<td>Purpose limitation</td>
-<td>Processing of data is allowed only for the stated purpose.</td>
-</tr>
-<tr>
-<td>Gegevensset</td>
-<td>Data set</td>
-<td>A named group of fields that a consent covers as a whole (<a href="../requirements/consent/#req-10">REQ-10</a>).</td>
-</tr>
-<tr>
-<td>Gegevensstroom</td>
-<td>Data flow, trajectory</td>
-<td>One of the GBO exchange routes (DvTP, EUDI issuance, ASI verification, Gov-to-Gov, and SDG-OOTS).</td>
-</tr>
-<tr>
-<td>Grondslag</td>
-<td>Legal basis</td>
-<td>The legal ground for a processing or a provision of data.</td>
-</tr>
-<tr>
-<td>Koppelvlak</td>
-<td>Interface</td>
-<td>A specified technical interface between parties or components.</td>
-</tr>
-<tr>
-<td>Toestemming</td>
-<td>Consent</td>
-<td>The informed agreement of the citizen to a specific data exchange.</td>
-</tr>
-<tr>
-<td>Toestemmingsportaal</td>
 <td>Consent portal</td>
-<td>Citizen-facing application to grant, view, and revoke consents. Its backend is the consent portal backend.</td>
+<td>toestemmingsportaal</td>
+<td>The citizen-facing application of the consent facility (PSA S02). It has a frontend and a backend. The short form "portal backend" is allowed.</td>
+<td>toestemmingsportaal</td>
 </tr>
 <tr>
-<td>Toestemmingsregister</td>
 <td>Consent register</td>
-<td>Machine-readable registration of consents. It signs the consent proof and answers the consent status.</td>
+<td>toestemmingsregister</td>
+<td>The register of consents (PSA S01). It signs the consent proof and answers the consent status.</td>
+<td>toestemmingsregister</td>
 </tr>
 <tr>
-<td>Verantwoordelijke</td>
-<td>Controller</td>
-<td>The party that decides on a processing (AVG). Under LDV, each controller keeps its own logbook.</td>
+<td>Pseudonymization facility</td>
+<td>pseudonimiseervoorziening</td>
+<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr>: the Logius facility that the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel uses at consent time.</td>
+<td>pseudonimiseervoorziening</td>
 </tr>
 <tr>
-<td>Verwerking</td>
-<td>Processing</td>
-<td>Any operation on personal data (AVG term).</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</td>
+<td>PubEAA-voorziening</td>
+<td>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> block of the EUDI wallet channel that issues an attestation from source data to the wallet (<a href="../building-blocks/eudi/pubeaa/"><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</a>). Legally, the bronhouder is the provider.</td>
+<td>PubEAA</td>
 </tr>
 <tr>
-<td>Wettelijke grondslag</td>
-<td>Statutory basis</td>
-<td>A grondslag set directly by law.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="abbreviations-and-system-terms">Abbreviations and system terms<a class="headerlink" href="#abbreviations-and-system-terms" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Term</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ADL</td>
-<td>Authorization Decision Log. Logius standard for the record of an authorization decision. In GBO, the ADL is the authoritative record of every PDP decision (<a href="../decisions/0036-adl-decision-record/">ADR-0036</a>).</td>
+<td>Issuance facility</td>
+<td>—</td>
+<td>The technical part of the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> runs: the issuance server and the EUDI adapter (<a href="../decisions/0028-pubeaa-productization/">ADR-0028</a>).</td>
+<td>—</td>
 </tr>
 <tr>
-<td>ASIP</td>
-<td>Authentic Source Interface Provider. The GBO service that offers verify and retrieve as specified in ETSI TS 119 478 clause 6.1. It calls the source over FSC (<a href="../decisions/0037-asi-oauth-front-door/">ADR-0037</a>).</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr></td>
+<td>—</td>
+<td>Authentic Source Interface: the interface of ETSI TS 119 478 through which a <abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies or retrieves attributes at an authentic source (eIDAS article 45e).</td>
+<td>—</td>
 </tr>
 <tr>
-<td>AuthZEN</td>
-<td>OpenID standard for the evaluation interface from PEP to PDP.</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>-provider</td>
+<td>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> block of the EUDI wallet channel that offers the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>. It consists of the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server (<a href="../building-blocks/eudi/asi/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</a>).</td>
+<td>—</td>
 </tr>
 <tr>
-<td>AVG</td>
-<td>Algemene verordening gegevensbescherming (GDPR).</td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr> adapter</td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr>-adapter</td>
+<td>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> block of the <abbr title="Once-Only Technical System">OOTS</abbr> channel that answers EU evidence requests. Design only (<a href="../building-blocks/oots/"><abbr title="Once-Only Technical System">OOTS</abbr> channel</a>).</td>
+<td>—</td>
 </tr>
 <tr>
-<td>AZSP</td>
-<td>The ASI authorization server. It registers QTSPs, lets the citizen approve by logging in, and issues DPoP-bound access tokens.</td>
-</tr>
-<tr>
-<td>BSN</td>
-<td>Burgerservicenummer. Citizen identification number, restricted to authorized parties.</td>
-</tr>
-<tr>
-<td>BSN authorization list</td>
-<td>BSNk list (Autorisatielijst BSN) of the parties that are allowed to receive the BSN. A source on the list gets a VI in the consent proof. Other sources get only a VP.</td>
-</tr>
-<tr>
-<td>BSNk PP</td>
-<td>BSN-koppelregister polymorphic pseudonymization. Logius facility that turns a BSN into encrypted values per recipient. GBO uses it only at consent time (<a href="../decisions/0005-bsnk-pp/">ADR-0005</a>).</td>
-</tr>
-<tr>
-<td>Consent proof</td>
-<td>The signed <code>gbo-consent+jwt</code> that the consent register issues. It carries an encrypted value per source (<code>encrypted_subject</code>), the scopes, and the consumer (<a href="../decisions/0032-consent-proof/">ADR-0032</a>).</td>
+<td>Source gateway</td>
+<td>—</td>
+<td>The component in front of a source API (code name <code>bron-sidecar</code>). After the allow decision, it decrypts the value for its own <abbr title="Organisatie-identificatienummer">OIN</abbr> (<a href="../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>).</td>
+<td>sidecar</td>
 </tr>
 <tr>
 <td>Decryption component</td>
-<td>The component of a source that reads the VI or VP for that source with its own keys. The source gateway calls it after the allow decision.</td>
+<td>—</td>
+<td>The component of a source that reads the <abbr title="Encrypted identity">VI</abbr> or <abbr title="Encrypted pseudonym">VP</abbr> for that source with its own keys. The source gateway calls it after the allow decision.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Admission register</td>
+<td>toelatingsregister</td>
+<td>The register of admitted participants and integrator mandates. The <abbr title="Policy Decision Point">PDP</abbr> pulls it as a <abbr title="Policy Information Point">PIP</abbr> (code name <code>dvtp-onboarding-register</code>).</td>
+<td>onboarding register</td>
+</tr>
+<tr>
+<td>Source registry</td>
+<td>—</td>
+<td>The store of source descriptions: candidates, immutable releases, and the active release.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Source metadata</td>
+<td>—</td>
+<td>The description that a source publishes of its own services, at <code>/.well-known/gbo</code> (<a href="../building-blocks/gbo-basis/source-configuration/">Source configuration</a>).</td>
+<td>—</td>
+</tr>
+<tr>
+<td>EUDI adapter</td>
+<td>—</td>
+<td>The component between the issuance server and the <abbr title="Federated Service Connectivity">FSC</abbr> chain. In the demo, its <abbr title="Federated Service Connectivity">FSC</abbr> peer is called "EDI issuer" (<code>edi-…</code>).</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Wallet verifier</td>
+<td>—</td>
+<td>The nl-wallet verification server that the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server uses for a login with the NL Wallet.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Integrator</td>
+<td>integrator</td>
+<td>A software party that calls a source on behalf of a consumer, under an <abbr title="Federated Service Connectivity">FSC</abbr> delegated grant and a registered mandate (<a href="../decisions/0034-integrator-delegation/">ADR-0034</a>).</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="domain-terms">Domain terms<a class="headerlink" href="#domain-terms" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Dutch (GO)</th>
+<th>Meaning</th>
+<th>Do not use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bronhouder</td>
+<td>bronhouder</td>
+<td>The government organization responsible for an authentic register and the access to it. The TO keeps this Dutch government term, also in English text, without translation.</td>
+<td>source holder</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>bron</td>
+<td>A system of a bronhouder that answers queries.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Source access</td>
+<td>bronontsluiting</td>
+<td>The provision of register data through a standard interface.</td>
+<td>bronontsluiting</td>
+</tr>
+<tr>
+<td>Citizen</td>
+<td>burger</td>
+<td>The data subject in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> flows.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Consent</td>
+<td>toestemming</td>
+<td>The informed agreement of the citizen to a specific data exchange.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Consumer</td>
+<td>afnemer</td>
+<td>An organization that asks a bronhouder for data, in any channel.</td>
+<td>afnemer</td>
+</tr>
+<tr>
+<td>Service provider</td>
+<td>dienstverlener</td>
+<td>The private party that is the consumer in the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel.</td>
+<td>dienstverlener</td>
+</tr>
+<tr>
+<td>Controller</td>
+<td>Verantwoordelijke</td>
+<td>The party that decides on a processing (<abbr title="Algemene verordening gegevensbescherming (GDPR)">AVG</abbr>). Under <abbr title="Logboek Dataverwerkingen">LDV</abbr>, each controller keeps its own logbook.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Data subject</td>
+<td>Betrokkene</td>
+<td>The person whom a processing is about (<abbr title="Algemene verordening gegevensbescherming (GDPR)">AVG</abbr> and <abbr title="Logboek Dataverwerkingen">LDV</abbr> term).</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Data set</td>
+<td>gegevensset</td>
+<td>A named group of fields that a consent covers as a whole (<a href="../requirements/consent/#req-10">REQ-10</a>).</td>
+<td>gegevensset</td>
+</tr>
+<tr>
+<td>Service catalog</td>
+<td>dienstencatalogus</td>
+<td>The legally anchored register of the maximum scope that a consumer can ask for per use case. See <a href="../decisions/0008-dienstencatalogus-ceiling/">ADR-0008</a>.</td>
+<td>dienstencatalogus</td>
+</tr>
+<tr>
+<td>Purpose limitation</td>
+<td>doelbinding</td>
+<td>Processing of data is allowed only for the stated purpose.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Legal basis</td>
+<td>grondslag</td>
+<td>The legal ground for a processing or a provision of data. A legal basis set directly by law is a statutory basis (wettelijke grondslag).</td>
+<td>grondslag</td>
+</tr>
+<tr>
+<td>Interface</td>
+<td>koppelvlak</td>
+<td>A specified technical interface between parties or components.</td>
+<td>koppelvlak</td>
+</tr>
+<tr>
+<td>Interaction pattern</td>
+<td>interactiepatroon</td>
+<td>One of the patterns of the GO: A (EUDI wallet), B (<abbr title="Once-Only Technical System">OOTS</abbr>), C (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>).</td>
+<td>interactiepatronen</td>
+</tr>
+<tr>
+<td>Processing</td>
+<td>verwerking</td>
+<td>Any operation on personal data (<abbr title="Algemene verordening gegevensbescherming (GDPR)">AVG</abbr> term).</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="consent-identity-and-pseudonyms">Consent, identity, and pseudonyms<a class="headerlink" href="#consent-identity-and-pseudonyms" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Do not use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Consent proof</td>
+<td>The signed <code>gbo-consent+jwt</code> that the toestemmingsregister issues. It carries an encrypted value per source (<code>encrypted_subject</code>), the scopes, and the consumer (<a href="../decisions/0032-consent-proof/">ADR-0032</a>).</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Consent token</td>
+<td>The same JWT as it travels in <code>X-GBO-Consent-Token</code>, before the <abbr title="Policy Decision Point">PDP</abbr> verified it. The evidence that selects the consent regime is a consent token.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Placeholder</td>
+<td>The value that a dienstverlener puts in the query in place of the citizen: <code>consent:identity</code> or <code>consent:pseudonym</code>. The source gateway replaces it after the allow decision (<a href="../requirements/pseudonymization/#req-79">REQ-79</a>).</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Regime</td>
+<td>The basis on which the <abbr title="Policy Decision Point">PDP</abbr> judges a request. The evidence in the request selects it (<a href="../decisions/0031-regime-from-evidence/">ADR-0031</a>). With a consent token, the consent regime applies. Without one, the <abbr title="Person Identification Data">PID</abbr> regime applies.</td>
+<td>—</td>
 </tr>
 <tr>
 <td>Designated issuer</td>
-<td>An FSC peer on the actor list of the EUDI rules. Only a designated issuer can ask for source data under the PID regime.</td>
+<td>An <abbr title="Federated Service Connectivity">FSC</abbr> peer on the actor list of the EUDI rules. Only a designated issuer can ask for source data under the <abbr title="Person Identification Data">PID</abbr> regime.</td>
+<td>—</td>
 </tr>
 <tr>
-<td>DIP</td>
+<td>Mandate (<code>acts_for</code>)</td>
+<td>The registration in the admission register that an integrator acts for a consumer and a rule. The <abbr title="Policy Decision Point">PDP</abbr> reads it at request time.</td>
+<td>—</td>
+</tr>
+<tr>
+<td><abbr title="Burgerservicenummer">BSN</abbr> authorization list</td>
+<td>The BSNk list (Autorisatielijst <abbr title="Burgerservicenummer">BSN</abbr>) of the parties that are allowed to receive the <abbr title="Burgerservicenummer">BSN</abbr>. A source on the list gets a <abbr title="Encrypted identity">VI</abbr> in the consent proof. Other sources get only a <abbr title="Encrypted pseudonym">VP</abbr>.</td>
+<td>—</td>
+</tr>
+<tr>
+<td><abbr title="Polymorphic identity">PI</abbr></td>
+<td>Polymorphic identity. A BSNk value made for the requester (the toestemmingsportaal) from the <abbr title="Burgerservicenummer">BSN</abbr>. The toestemmingsregister stores it under the <code>subject_ref</code>. Recipients get a <abbr title="Encrypted identity">VI</abbr> made from it.</td>
+<td>—</td>
+</tr>
+<tr>
+<td><abbr title="Polymorphic pseudonym">PP</abbr></td>
+<td>Polymorphic pseudonym. Like the <abbr title="Polymorphic identity">PI</abbr>, but for pseudonyms. Recipients get a <abbr title="Encrypted pseudonym">VP</abbr> made from it.</td>
+<td>—</td>
+</tr>
+<tr>
+<td><abbr title="Encrypted identity">VI</abbr></td>
+<td>Encrypted identity. A <abbr title="Burgerservicenummer">BSN</abbr> that BSNk encrypted for one recipient <abbr title="Organisatie-identificatienummer">OIN</abbr> and one key version. Only that recipient can read it.</td>
+<td>—</td>
+</tr>
+<tr>
+<td><abbr title="Encrypted pseudonym">VP</abbr></td>
+<td>Encrypted pseudonym. A pseudonym that BSNk encrypted for one recipient <abbr title="Organisatie-identificatienummer">OIN</abbr> and one key version. The BSNk specification calls it EP.</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>subject_ref</code></td>
+<td>The reference under which the toestemmingsvoorziening knows a citizen: a keyed HMAC of the <abbr title="Burgerservicenummer">BSN</abbr> (route D). It is not a BSNk value.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Peer ID</td>
+<td>The identifier of an <abbr title="Federated Service Connectivity">FSC</abbr> peer. It is different from the <abbr title="Organisatie-identificatienummer">OIN</abbr> of the organization (<a href="../requirements/sources-identity/#req-67">REQ-67</a>).</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="records-and-tracing">Records and tracing<a class="headerlink" href="#records-and-tracing" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Do not use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision record</td>
+<td>One <abbr title="Authorization Decision Log">ADL</abbr> record: the authoritative record of a <abbr title="Policy Decision Point">PDP</abbr> decision (<a href="../decisions/0036-adl-decision-record/">ADR-0036</a>).</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Console decision log</td>
+<td>The log of the policy engine that goes to Loki. It holds the detail per field, but it is observability, not audit.</td>
+<td>—</td>
+</tr>
+<tr>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook</td>
+<td>The logbook of one controller, with one record per processing (<a href="../decisions/0026-ldv-integration/">ADR-0026</a>).</td>
+<td>—</td>
+</tr>
+<tr>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> txlog</td>
+<td>The transaction log of an <abbr title="Federated Service Connectivity">FSC</abbr> peer (<abbr title="Federated Service Connectivity">FSC</abbr>-Logging): the authoritative record of transport.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>W3C Trace Context</td>
+<td>The <code>traceparent</code> and <code>tracestate</code> headers. The trace ID in <code>traceparent</code> is the correlation key of the chain (<a href="../decisions/0035-w3c-trace-context/">ADR-0035</a>).</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="abbreviations">Abbreviations<a class="headerlink" href="#abbreviations" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><abbr title="Authorization Decision Log">ADL</abbr></td>
+<td>Authorization Decision Log. The Logius standard for the record of an authorization decision. In <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, the <abbr title="Authorization Decision Log">ADL</abbr> is the authoritative record of every <abbr title="Policy Decision Point">PDP</abbr> decision.</td>
+</tr>
+<tr>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
+<td>Authentic Source Interface Provider. The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> service that offers verify and retrieve as specified in ETSI TS 119 478 clause 6.1. It calls the source over <abbr title="Federated Service Connectivity">FSC</abbr> (<a href="../decisions/0037-asi-oauth-front-door/">ADR-0037</a>).</td>
+</tr>
+<tr>
+<td><abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr></td>
+<td>The OpenID standard for the evaluation interface from <abbr title="Policy Enforcement Point">PEP</abbr> to <abbr title="Policy Decision Point">PDP</abbr>.</td>
+</tr>
+<tr>
+<td><abbr title="Algemene verordening gegevensbescherming (GDPR)">AVG</abbr></td>
+<td>Algemene verordening gegevensbescherming (GDPR).</td>
+</tr>
+<tr>
+<td><abbr title="The ASI authorization server">AZSP</abbr></td>
+<td>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server. It registers QTSPs, lets the citizen approve by logging in, and issues <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr>-bound access tokens.</td>
+</tr>
+<tr>
+<td><abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>Burgerservicenummer. The citizen identification number, restricted to authorized parties.</td>
+</tr>
+<tr>
+<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr></td>
+<td><abbr title="Burgerservicenummer">BSN</abbr>-koppelregister polymorphic pseudonymization. The Logius facility that turns a <abbr title="Burgerservicenummer">BSN</abbr> into encrypted values per recipient. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> uses it only at consent time (<a href="../decisions/0005-bsnk-pp/">ADR-0005</a>).</td>
+</tr>
+<tr>
+<td><abbr title="Discover Interface Provider">DIP</abbr></td>
 <td>Discover Interface Provider. The party that publishes the data service records of ASIPs. The demo has a stub.</td>
 </tr>
 <tr>
-<td>DPoP</td>
+<td><abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr></td>
 <td>Demonstrating Proof of Possession (RFC 9449). It binds an access token to a key of the client.</td>
 </tr>
 <tr>
-<td>DvTP</td>
-<td>Delen van gegevens via Toestemming met Private dienstverleners. The consent-based trajectory.</td>
-</tr>
-<tr>
-<td>EP</td>
-<td>Encrypted pseudonym. An older name for the VP. The TO uses VP.</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>Delen van gegevens via Toestemming met Private dienstverleners. The consent-based channel.</td>
 </tr>
 <tr>
 <td>EUDI wallet</td>
 <td>European Digital Identity wallet (eIDAS2).</td>
 </tr>
 <tr>
-<td>FSC</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr></td>
 <td>Federated Service Connectivity. The connectivity standard, with Inway, Outway, Manager, directory, and contracts.</td>
 </tr>
 <tr>
-<td>FSC Manager</td>
-<td>The FSC component of each peer that negotiates contracts and signs access tokens. It is different from the OpenFTV Manager.</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> Manager</td>
+<td>The <abbr title="Federated Service Connectivity">FSC</abbr> component of each peer that negotiates contracts and signs access tokens. It is different from the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager.</td>
 </tr>
 <tr>
-<td>FSC-Logging</td>
-<td>Logius draft standard for the transaction log of FSC. It is the authoritative record of transport.</td>
+<td><abbr title="Federatieve Toegangsverlening">FTV</abbr>, <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr></td>
+<td>Federatieve Toegangsverlening. The authorization framework that hosts the <abbr title="Policy Decision Point">PDP</abbr>.</td>
 </tr>
 <tr>
-<td>FTV / OpenFTV</td>
-<td>Federatieve Toegangsverlening. The authorization framework that hosts the PDP.</td>
-</tr>
-<tr>
-<td>GBO</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr></td>
 <td>Gemeenschappelijke Bronontsluiting.</td>
 </tr>
 <tr>
-<td>Integrator</td>
-<td>A software party that calls a source on behalf of a consumer, under an FSC delegated grant and a registered mandate (<a href="../decisions/0034-integrator-delegation/">ADR-0034</a>).</td>
+<td><abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr></td>
+<td>The route in which a government consumer gets data on a legal basis, without consent. Design only.</td>
 </tr>
 <tr>
-<td>LDV</td>
-<td>Logboek Dataverwerkingen. Logius standard (v1.0.0) that records each processing in the logbook of its controller. Citizen access is one use of its read extension (<a href="../decisions/0026-ldv-integration/">ADR-0026</a>).</td>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr></td>
+<td>Logboek Dataverwerkingen. The Logius standard (v1.0.0) that records each processing in the logbook of its controller.</td>
 </tr>
 <tr>
-<td>Mandate (<code>acts_for</code>)</td>
-<td>The registration in the admission register that an integrator acts for a provider and a rule. The PDP reads it at request time.</td>
+<td><abbr title="Organisatie-identificatienummer">OIN</abbr></td>
+<td>Organisatie-identificatienummer. The organization identifier, bound to PKI certificates.</td>
 </tr>
 <tr>
-<td>OIN</td>
-<td>Organisatie-identificatienummer. Organization identifier, bound to PKI certificates.</td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr></td>
+<td>Once-Only Technical System. The EU cross-border evidence exchange under the SDG-verordening.</td>
 </tr>
 <tr>
-<td>OOTS</td>
-<td>Once-Only Technical System. EU cross-border evidence exchange under the SDG-verordening.</td>
+<td><abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager</td>
+<td>The policy administration component of <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr>. It stores policies and serves bundles to the <abbr title="Policy Decision Point">PDP</abbr>. It is different from the <abbr title="Federated Service Connectivity">FSC</abbr> Manager.</td>
 </tr>
 <tr>
-<td>OpenFTV Manager</td>
-<td>The policy administration component of OpenFTV. It stores policies and serves bundles to the PDP. It is different from the FSC Manager.</td>
-</tr>
-<tr>
-<td>OpenID4VCI / OpenID4VP</td>
+<td><abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr>, <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr></td>
 <td>Protocols for credential issuance and presentation.</td>
 </tr>
 <tr>
-<td>PAP</td>
+<td><abbr title="Policy Administration Point">PAP</abbr></td>
 <td>Policy Administration Point. It authors and distributes policies.</td>
 </tr>
 <tr>
-<td>PBAC</td>
+<td><abbr title="Policy-based access control">PBAC</abbr></td>
 <td>Policy-based access control.</td>
 </tr>
 <tr>
-<td>PDP</td>
+<td><abbr title="Policy Decision Point">PDP</abbr></td>
 <td>Policy Decision Point. It evaluates authorization requests.</td>
 </tr>
 <tr>
-<td>Peer ID</td>
-<td>The identifier of an FSC peer. It is different from the OIN of the organization (<a href="../requirements/sources-identity/#req-67">REQ-67</a>).</td>
+<td><abbr title="Policy Enforcement Point">PEP</abbr></td>
+<td>Policy Enforcement Point. It enforces <abbr title="Policy Decision Point">PDP</abbr> decisions. In this design, the <abbr title="Federated Service Connectivity">FSC</abbr> Inway is the <abbr title="Policy Enforcement Point">PEP</abbr>.</td>
 </tr>
 <tr>
-<td>PEP</td>
-<td>Policy Enforcement Point. It enforces PDP decisions. In this design, the FSC Inway is the PEP.</td>
-</tr>
-<tr>
-<td>PI</td>
-<td>Polymorphic identity. BSNk value made for the requester (the consent portal) from the BSN. It stays with the requester: the register stores it under the <code>subject_ref</code>. Recipients get a VI made from it.</td>
-</tr>
-<tr>
-<td>PID</td>
+<td><abbr title="Person Identification Data">PID</abbr></td>
 <td>Person Identification Data. The identity attestation in the EUDI wallet.</td>
 </tr>
 <tr>
-<td>PIP</td>
-<td>Policy Information Point. It supplies data to the PDP: the consent status and the admission register.</td>
+<td><abbr title="Policy Information Point">PIP</abbr></td>
+<td>Policy Information Point. It supplies data to the <abbr title="Policy Decision Point">PDP</abbr>: the consent status and the admission register.</td>
 </tr>
 <tr>
-<td>Placeholder</td>
-<td>The value that a DvTP consumer puts in the query in place of the citizen: <code>consent:identity</code> or <code>consent:pseudonym</code>. The source gateway replaces it after the allow decision (<a href="../requirements/pseudonymization/#req-79">REQ-79</a>).</td>
-</tr>
-<tr>
-<td>PP</td>
-<td>Polymorphic pseudonym. Like the PI, but for pseudonyms. Recipients get a VP made from it.</td>
-</tr>
-<tr>
-<td>PuB-EAA</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr></td>
 <td>Public Body Electronic Attestation of Attributes.</td>
 </tr>
 <tr>
-<td>QEAA / QTSP</td>
-<td>QEAA is a Qualified Electronic Attestation of Attributes. QTSP is a Qualified Trust Service Provider.</td>
+<td><abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr></td>
+<td>Qualified Electronic Attestation of Attributes.</td>
+</tr>
+<tr>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
+<td>Qualified Trust Service Provider. In the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> is an OAuth client of the <abbr title="The ASI authorization server">AZSP</abbr>, not an <abbr title="Federated Service Connectivity">FSC</abbr> participant.</td>
 </tr>
 <tr>
 <td><code>QEAA_Provider</code></td>
-<td>The entitlement in the national register of relying parties that a QTSP needs to become an ASI client.</td>
-</tr>
-<tr>
-<td>QTSP reference client</td>
-<td><code>qtsp-reference</code>, the demo client that acts as the QTSP in the ASI route. It is not a GBO component.</td>
-</tr>
-<tr>
-<td>Regime</td>
-<td>The basis on which the PDP judges a request. The evidence in the request selects it (<a href="../decisions/0031-regime-from-evidence/">ADR-0031</a>). With a consent proof, the consent regime applies. Without one, the PID regime applies.</td>
+<td>The entitlement in the national register of relying parties that a <abbr title="Qualified Trust Service Provider">QTSP</abbr> needs to become an <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> client.</td>
 </tr>
 <tr>
 <td>SD-JWT VC</td>
-<td>Selective-disclosure JWT verifiable credential format (<code>dc+sd-jwt</code>).</td>
+<td>The selective-disclosure JWT verifiable credential format (<code>dc+sd-jwt</code>).</td>
 </tr>
 <tr>
-<td>Source gateway</td>
-<td>The component in front of a source API (<code>bron-sidecar</code>). After the allow decision, it decrypts the value for its own OIN (<a href="../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>).</td>
-</tr>
-<tr>
-<td><code>subject_ref</code></td>
-<td>The reference under which the consent service knows a citizen: a keyed HMAC of the BSN (route D). It is not a BSNk value.</td>
-</tr>
-<tr>
-<td>VCT</td>
+<td><abbr title="Verifiable credential type identifier">VCT</abbr></td>
 <td>Verifiable credential type identifier. It is published with <code>vct#integrity</code> over immutable Type Metadata.</td>
-</tr>
-<tr>
-<td>VI</td>
-<td>Encrypted identity. A BSN that BSNk encrypted for one recipient OIN and one key version. Only that recipient can read it.</td>
-</tr>
-<tr>
-<td>VP</td>
-<td>Encrypted pseudonym. A pseudonym that BSNk encrypted for one recipient OIN and one key version.</td>
-</tr>
-<tr>
-<td>W3C Trace Context</td>
-<td>The <code>traceparent</code> and <code>tracestate</code> headers. The trace ID in <code>traceparent</code> is the correlation key of the chain (<a href="../decisions/0035-w3c-trace-context/">ADR-0035</a>).</td>
 </tr>
 </tbody>
 </table>
@@ -4829,23 +5067,23 @@ the GBO stelsel, see the
 <tbody>
 <tr>
 <td>BSNk precondition (BSNK-NN)</td>
-<td>A fact about BSNk PP that the design must respect. It is not a requirement on GBO (<a href="../requirements/pseudonymization/#bsnk-preconditions">BSNk preconditions</a>).</td>
+<td>A fact about BSNk <abbr title="Polymorphic pseudonym">PP</abbr> that the design must respect. It is not a requirement on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> (<a href="../requirements/pseudonymization/#bsnk-preconditions">BSNk preconditions</a>).</td>
 </tr>
 <tr>
 <td>Connection condition (AV-NN)</td>
-<td>A demand on a party that connects to GBO, not on GBO. The TO holds candidates for the management organization (<a href="../requirements/admission/#connection-conditions">connection conditions</a>).</td>
+<td>A demand on a party that connects to <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, not on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>. The TO holds candidates for the management organization (<a href="../requirements/admission/#connection-conditions">connection conditions</a>).</td>
+</tr>
+<tr>
+<td>Demo increment (SL-NN)</td>
+<td>A bounded piece of demo work with its result (<a href="../traceability/increments/">increments</a>). The ID keeps the old prefix SL.</td>
 </tr>
 <tr>
 <td>Finding (F-NN)</td>
-<td>An observation from building the demo: a design gap, an exposed design choice, an implicit requirement or an erratum (<a href="../traceability/findings/">findings</a>).</td>
+<td>An observation from building the demo: a design gap, an exposed design choice, an implicit requirement, or an erratum (<a href="../traceability/findings/">findings</a>).</td>
 </tr>
 <tr>
 <td>Guideline (RL-NN)</td>
-<td>A recommendation to bronhouders, for example on policy management. Not a demand on GBO (<a href="../requirements/authorization/#policy-management">policy management</a>).</td>
-</tr>
-<tr>
-<td>Increment (SL-NN)</td>
-<td>A demo increment: a bounded piece of demo work with its result (<a href="../traceability/increments/">increments</a>). The ID keeps the old prefix SL.</td>
+<td>A recommendation to bronhouders, for example on policy management. Not a demand on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> (<a href="../requirements/authorization/#policy-management">policy management</a>).</td>
 </tr>
 <tr>
 <td>Open question (Q-NN)</td>
@@ -4857,7 +5095,7 @@ the GBO stelsel, see the
 </tr>
 <tr>
 <td>Requirement (REQ-NN)</td>
-<td>A testable demand on what GBO builds or on its interfaces (<a href="../requirements/">requirements</a>).</td>
+<td>A testable demand on what <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> builds or on its interfaces (<a href="../requirements/">requirements</a>).</td>
 </tr>
 </tbody>
 </table>
@@ -4870,6 +5108,7 @@ the GBO stelsel, see the
 <li>Open questions: none</li>
 <li>Demo increments: <a href="../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4565,31 +4565,31 @@
   
 
 
-<h1 id="adr-0013-graphql-request-mapping-in-the-pdp-ahead-of-policy-evaluation">ADR-0013: GraphQL request mapping in the PDP ahead of policy evaluation<a class="headerlink" href="#adr-0013-graphql-request-mapping-in-the-pdp-ahead-of-policy-evaluation" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0013-graphql-request-mapping-in-the-pdp-ahead-of-policy-evaluation">ADR-0013: GraphQL request mapping in the <abbr title="Policy Decision Point">PDP</abbr> ahead of policy evaluation<a class="headerlink" href="#adr-0013-graphql-request-mapping-in-the-pdp-ahead-of-policy-evaluation" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: accepted</li>
 <li>Date: 2026-08-24 (updated 2026-11-02: the mapper only maps)</li>
 <li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">S05</a></li>
 <li>Supersedes: <a href="../0012-opa-graphql-parse/">ADR-0012</a></li>
-<li>Deliberation: <a href="../../requirements/authorization/#req-17">REQ-17</a>, <a href="../../requirements/authorization/#req-42">REQ-42</a>, demo <a href="https://github.com/ICTU/GBO-demo/issues/364">#364</a>, <a href="https://github.com/ICTU/GBO-demo/issues/330">#330</a>, <a href="https://github.com/ICTU/GBO-demo/pull/370">PR #370</a>, <a href="https://github.com/ICTU/GBO-demo/pull/371">PR #371</a>, <a href="https://github.com/ICTU/GBO-demo/pull/482">PR #482</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/ftv-graphql-profile.md">FTV GraphQL profile</a></li>
-<li>Implemented in: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/mapper/ftvgraphql.go#L1-L13">mapper/ftvgraphql.go</a> (OpenFTV adapter), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ftv-graphql-mapper">services/ftv-graphql-mapper</a> (profile mapper), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/pdp-mirror">schemas/pdp-mirror</a> (schema per FSC service), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/graphql_schemas.rego">graphql_schemas.rego</a> (schema pins), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/check-schema-drift.sh">scripts/check-schema-drift.sh</a></li>
+<li>Deliberation: <a href="../../requirements/authorization/#req-17">REQ-17</a>, <a href="../../requirements/authorization/#req-42">REQ-42</a>, demo <a href="https://github.com/ICTU/GBO-demo/issues/364">#364</a>, <a href="https://github.com/ICTU/GBO-demo/issues/330">#330</a>, <a href="https://github.com/ICTU/GBO-demo/pull/370">PR #370</a>, <a href="https://github.com/ICTU/GBO-demo/pull/371">PR #371</a>, <a href="https://github.com/ICTU/GBO-demo/pull/482">PR #482</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/ftv-graphql-profile.md"><abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL profile</a></li>
+<li>Implemented in: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/mapper/ftvgraphql.go#L1-L13">mapper/ftvgraphql.go</a> (<abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> adapter), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ftv-graphql-mapper">services/ftv-graphql-mapper</a> (profile mapper), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/pdp-mirror">schemas/pdp-mirror</a> (schema per <abbr title="Federated Service Connectivity">FSC</abbr> service), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/graphql_schemas.rego">graphql_schemas.rego</a> (schema pins), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/check-schema-drift.sh">scripts/check-schema-drift.sh</a></li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
 <p>Rules need clean, typed facts about the request instead of a raw query
 string. These facts are the fields, with their parent types and with their
 arguments as the source executes them.</p>
-<p>The PEP passes the raw body unchanged
-(<a href="../0002-opa-rego-authzen/">ADR-0002</a>). So a component on the PDP side
+<p>The <abbr title="Policy Enforcement Point">PEP</abbr> passes the raw body unchanged
+(<a href="../0002-opa-rego-authzen/">ADR-0002</a>). So a component on the <abbr title="Policy Decision Point">PDP</abbr> side
 must turn the body into a field list. That list must be complete. If it is
-not complete, the PDP denies the request
+not complete, the <abbr title="Policy Decision Point">PDP</abbr> denies the request
 (<a href="../../requirements/authorization/#req-17">REQ-17</a>).</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>A request mapper inside the OpenFTV PDP implements the mapping function of
-the FTV GraphQL profile (<code>ftv-graphql/0.1</code>) and nothing else. The mapper
+<p>A request mapper inside the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> <abbr title="Policy Decision Point">PDP</abbr> implements the mapping function of
+the <abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL profile (<code>ftv-graphql/0.1</code>) and nothing else. The mapper
 does these things:</p>
 <ul>
 <li>It parses the GraphQL body and builds the field list. The parent type of
-  each field comes from the bundled schema of the FSC service of the
+  each field comes from the bundled schema of the <abbr title="Federated Service Connectivity">FSC</abbr> service of the
   request. The arguments are as the source executes them.</li>
 <li>It accepts only a query operation. A mutation or subscription gives
   <code>OPERATION_NOT_SUPPORTED</code>.</li>
@@ -4612,23 +4612,23 @@ not pseudonymize, and reads no flow. The policy verifies the consent
 itself (<a href="../0032-consent-proof/">ADR-0032</a>). The regime follows from the
 evidence (<a href="../0031-regime-from-evidence/">ADR-0031</a>).</p>
 <p>The profile mapper is a separate Go module. A thin adapter connects it to
-OpenFTV.</p>
+<abbr title="Federatieve Toegangsverlening">OpenFTV</abbr>.</p>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Rules stay declarative. Parsing happens once, in one place, in tested Go
   code. The conformance vectors of the profile run as tests.</li>
-<li>The PDP loads one schema for each FSC service. The policy bundle pins
+<li>The <abbr title="Policy Decision Point">PDP</abbr> loads one schema for each <abbr title="Federated Service Connectivity">FSC</abbr> service. The policy bundle pins
   the digest of each schema and denies a schema that is not pinned
   (<code>CONFIG_ERROR SCHEMA_MISMATCH</code>). A CI job checks for drift between the
   pinned schema and the schema that the source executes.</li>
-<li>The source gateway accepts only the request shape that the PDP evaluated
+<li>The source gateway accepts only the request shape that the <abbr title="Policy Decision Point">PDP</abbr> evaluated
   (<a href="../0033-gateway-decrypts-after-allow/">ADR-0033</a>).</li>
-<li>The mapper is a patch on OpenFTV v0.1.0. The patch stays until the
+<li>The mapper is a patch on <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> v0.1.0. The patch stays until the
   upstream project includes the profile mapper
   (<a href="https://github.com/ICTU/GBO-demo/issues/331">#331</a>). For more
   information, see <a href="../../risks/">Risks and technical debt</a>.</li>
-<li>The mapper does not pseudonymize any more. So the EUDI and ASI routes
-  put the plain BSN into the PDP input
+<li>The mapper does not pseudonymize any more. So the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> routes
+  put the plain <abbr title="Burgerservicenummer">BSN</abbr> into the <abbr title="Policy Decision Point">PDP</abbr> input
   (<a href="../0043-identifiers-out-of-pdp-input/">ADR-0043</a>, proposed).</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -4638,6 +4638,7 @@ OpenFTV.</p>
 <li>Open questions: <a href="../../traceability/open-questions/#q-14">Q-14</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-03a">SL-03a</a> (done), <a href="../../traceability/increments/#sl-18">SL-18</a> (done), <a href="../../traceability/increments/#sl-31">SL-31</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

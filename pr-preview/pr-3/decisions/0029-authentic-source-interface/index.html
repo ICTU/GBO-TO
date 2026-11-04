@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4580,9 +4580,9 @@
 <ul>
 <li>Status: superseded by <a href="../0037-asi-oauth-front-door/">ADR-0037</a></li>
 <li>Date: 2026-08-24, superseded on 2026-11-02</li>
-<li>Satisfies: eIDAS Article 45e, <a href="https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider">GO: verificatie- en retrievedienst voor QTSPs</a>, <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">PSA vraagstukken: centrale verificatie- en retrievedienst</a></li>
+<li>Satisfies: eIDAS Article 45e, <a href="https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider">GO: verification and retrieval service for QTSPs</a>, <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/">PSA open decisions: central verification and retrieval service</a></li>
 <li>Superseded by: <a href="../0037-asi-oauth-front-door/">ADR-0037</a></li>
-<li>Deliberation: reference architecture v0.6.2, gap 8 and ASI design (archived and unpublished)</li>
+<li>Deliberation: reference architecture v0.6.2, gap 8 and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> design (archived and unpublished)</li>
 <li>Implemented in: not implemented in this form. The built route is <a href="../0037-asi-oauth-front-door/">ADR-0037</a>.</li>
 </ul>
 <h2 id="why-superseded">Why superseded<a class="headerlink" href="#why-superseded" title="Permanent link">&para;</a></h2>
@@ -4590,15 +4590,15 @@
 (<a href="../../traceability/increments/#sl-28">SL-28</a>). Three core points of this
 proposal changed:</p>
 <ul>
-<li>Retrieve is implemented. The ASIP offers clause 6.1.2 next to 6.1.1.
-  EUDI issuance does not replace retrieve, because the QTSP issues the
-  QEAA, and GBO does not (<a href="../../requirements/asi/#req-101">REQ-101</a>,
+<li>Retrieve is implemented. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> offers clause 6.1.2 next to 6.1.1.
+  EUDI issuance does not replace retrieve, because the <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues the
+  <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr>, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not (<a href="../../requirements/asi/#req-101">REQ-101</a>,
   <a href="../../requirements/asi/#req-112">REQ-112</a>).</li>
-<li>The QTSP is outside FSC. This proposal saw the ASI as a protocol
-  adapter "in front of" the FSC chain. The ASI is an OAuth front door
-  with its own trust model. The authorization server admits the QTSP, and
-  the PDP does not. The generic chain starts behind the ASIP, which is an
-  FSC peer of its own (<a href="../../traceability/findings/#f-87">F-87</a>).</li>
+<li>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> is outside <abbr title="Federated Service Connectivity">FSC</abbr>. This proposal saw the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> as a protocol
+  adapter "in front of" the <abbr title="Federated Service Connectivity">FSC</abbr> chain. The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> is an OAuth front door
+  with its own trust model. The authorization server admits the <abbr title="Qualified Trust Service Provider">QTSP</abbr>, and
+  the <abbr title="Policy Decision Point">PDP</abbr> does not. The generic chain starts behind the <abbr title="Authentic Source Interface Provider">ASIP</abbr>, which is an
+  <abbr title="Federated Service Connectivity">FSC</abbr> peer of its own (<a href="../../traceability/findings/#f-87">F-87</a>).</li>
 <li>
 <p>Clause numbers replace the labels I1 to I5. The labels came from the
   reference architecture:</p>
@@ -4619,16 +4619,16 @@ replaces this ADR. <a href="../0038-asi-data-service-per-source/">ADR-0038</a>,
 <a href="../0042-asi-attribute-token-binding/">ADR-0042</a> record the details. The
 following sections hold the original proposal as history.</p>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>Article 45e of the amended eIDAS-verordening obliges member states to let
+<p>Article 45e of the amended eIDAS regulation obliges member states to let
 QTSPs verify attributes against authentic sources at the request of the
 user. ETSI TS 119 478 specifies the interfaces. Without this interface,
 QTSPs cannot issue QEAAs based on Dutch government registers.</p>
 <h2 id="proposed-decision">Proposed decision<a class="headerlink" href="#proposed-decision" title="Permanent link">&para;</a></h2>
-<p>The proposal builds the ASI provider as a GBO edge service, in the
+<p>The proposal builds the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider as a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> edge service, in the
 HTTP/OAuth variant:</p>
 <ul>
 <li>Implement I2 (Verify). The service translates verification requests
-  into GraphQL queries over FSC, through the standard PEP-PDP chain, and
+  into GraphQL queries over <abbr title="Federated Service Connectivity">FSC</abbr>, through the standard <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> chain, and
   compares the values.</li>
 <li>Implement I4 and I5: citizen authorization through OAuth, with a
   wallet or eID.</li>
@@ -4639,10 +4639,10 @@ HTTP/OAuth variant:</p>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
 <p>The proposal left these points open:</p>
 <ul>
-<li>The PDP policy set for QTSP verification (Trusted List check, citizen
+<li>The <abbr title="Policy Decision Point">PDP</abbr> policy set for <abbr title="Qualified Trust Service Provider">QTSP</abbr> verification (Trusted List check, citizen
   authorization, attribute scope).</li>
 <li>The design of the authorization server (I4), and its relation to the
-  toestemmingsvoorziening.</li>
+  consent facility (toestemmingsvoorziening).</li>
 <li>The timeline pressure from the Article 45e deadline. For more
   information, see <a href="../../risks/">Risks and technical debt</a>.</li>
 </ul>
@@ -4654,6 +4654,7 @@ HTTP/OAuth variant:</p>
   <a href="../../traceability/findings/#f-87">F-87</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-28">SL-28</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

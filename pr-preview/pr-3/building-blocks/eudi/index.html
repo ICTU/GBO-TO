@@ -1190,7 +1190,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1347,7 +1347,7 @@
   <a href="#flow-a-the-source-issues-a-pubeaa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Flow A: the source issues a PubEAA
+        Flow A: the source issues a PuB-EAA
       
     </span>
   </a>
@@ -1460,7 +1460,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4628,12 +4628,12 @@
 
 <h1 id="eudi-wallet-channel">EUDI wallet channel<a class="headerlink" href="#eudi-wallet-channel" title="Permanent link">&para;</a></h1>
 <p>In the EUDI wallet channel, a citizen gets data from a government source in
-the EUDI wallet. Interaction pattern A of the
+the EUDI wallet. Interaction pattern (interactiepatroon) A of the
 <a href="https://ictu.github.io/GBO-GO/main/#patroon-a-burger-gebruikt-eudi-wallet">Globaal Ontwerp</a>
 has two flows. In flow A, the source issues an attestation itself, as a
-PubEAA. In flow B, a QTSP verifies or retrieves the data at the source and
-issues a QEAA. GBO delivers one component for each flow, and both
-components reach the source through GBO Basis.</p>
+<abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr>. In flow B, a <abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies or retrieves the data at the source and
+issues a <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers one component for each flow, and both
+components reach the source through <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis.</p>
 <p><a href="../">Overview</a> › EUDI wallet channel</p>
 <h2 id="inside-the-channel">Inside the channel<a class="headerlink" href="#inside-the-channel" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
@@ -4643,7 +4643,7 @@ components reach the source through GBO Basis.</p>
     wallet["NL Wallet&lt;br/&gt;PID, attestations"]
     qtsp["QTSP&lt;br/&gt;&lt;i&gt;reference QTSP in the demo&lt;/i&gt;"]
   end
-  subgraph pub["PubEAA provider: flow A"]
+  subgraph pub["PuB-EAA provider: flow A"]
     direction TB
     is("Issuance server&lt;br/&gt;nl-wallet")
     ad("EUDI adapter")
@@ -4693,15 +4693,15 @@ components reach the source through GBO Basis.</p>
   style basis fill:#F4F5F7,stroke:#16A34A
   style extp fill:#F4F5F7,stroke:#D1D5DB
 
-  click is "pubeaa/" "PubEAA provider"
-  click ad "pubeaa/" "PubEAA provider"
+  click is "pubeaa/" "PuB-EAA provider"
+  click ad "pubeaa/" "PuB-EAA provider"
   click az "asi/" "ASI provider"
   click asip "asi/" "ASI provider"
   click pdp "../gbo-basis/" "GBO Basis"
   click gw "../gbo-basis/#the-request-path" "Request path"
   click reg "../../concepts/source-onboarding/" "Source onboarding"</div>
-<p class="caption"><em>Figure 1: The EUDI wallet channel. Orange: the GBO components of the
-channel, with GBO Basis in green. Thick border: click to zoom in.</em></p>
+<p class="caption"><em>Figure 1: The EUDI wallet channel. Orange: the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components of the
+channel, with <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis in green. Thick border: click to zoom in.</em></p>
 <p>The channel has these parts:</p>
 <table>
 <thead>
@@ -4713,14 +4713,14 @@ channel, with GBO Basis in green. Thick border: click to zoom in.</em></p>
 </thead>
 <tbody>
 <tr>
-<td>PubEAA provider</td>
-<td>The technical issuance facility. The issuance server asks the wallet for the PID. The EUDI adapter gets the source data and turns it into claims. The bronhouder stays the PuB-EAA provider (<a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed).</td>
-<td><a href="pubeaa/">PubEAA provider</a></td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider (PubEAA-voorziening)</td>
+<td>The technical issuance facility. The issuance server asks the wallet for the <abbr title="Person Identification Data">PID</abbr>. The EUDI adapter gets the source data and turns it into claims. The bronhouder stays the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider (<a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>, proposed).</td>
+<td><a href="pubeaa/"><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</a></td>
 </tr>
 <tr>
-<td>ASI provider</td>
-<td>Lets a QTSP verify or retrieve attributes at the source (eIDAS article 45e). It has its own OAuth authorization server. The QTSP is an OAuth client there, and not an FSC participant (<a href="../../traceability/findings/#f-87">F-87</a>).</td>
-<td><a href="asi/">ASI provider</a></td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</td>
+<td>Lets a <abbr title="Qualified Trust Service Provider">QTSP</abbr> verify or retrieve attributes at the source (eIDAS article 45e). It has its own OAuth authorization server. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> is an OAuth client there, and not an <abbr title="Federated Service Connectivity">FSC</abbr> participant (<a href="../../traceability/findings/#f-87">F-87</a>).</td>
+<td><a href="asi/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</a></td>
 </tr>
 <tr>
 <td>Source registry</td>
@@ -4728,19 +4728,19 @@ channel, with GBO Basis in green. Thick border: click to zoom in.</em></p>
 <td><a href="../../concepts/source-onboarding/">Source onboarding</a></td>
 </tr>
 <tr>
-<td>GBO Basis</td>
-<td>Decides every request of the channel under the PID regime, with the rules EUD0001, EUD0002 and ASI0001.</td>
-<td><a href="../gbo-basis/">GBO Basis</a></td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
+<td>Decides every request of the channel under the <abbr title="Person Identification Data">PID</abbr> regime, with the rules EUD0001, EUD0002 and ASI0001.</td>
+<td><a href="../gbo-basis/"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a></td>
 </tr>
 <tr>
-<td>NL Wallet and QTSP</td>
-<td>External parties. The wallet holds the PID of the citizen. The demo runs a reference QTSP, which is not a real QTSP.</td>
-<td><a href="../../runtime/asi-verification/">ASI verification</a></td>
+<td>NL Wallet and <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
+<td>External parties. The wallet holds the <abbr title="Person Identification Data">PID</abbr> of the citizen. The demo runs a reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>, which is not a real <abbr title="Qualified Trust Service Provider">QTSP</abbr>.</td>
+<td><a href="../../runtime/asi-verification/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="flow-a-the-source-issues-a-pubeaa">Flow A: the source issues a PubEAA<a class="headerlink" href="#flow-a-the-source-issues-a-pubeaa" title="Permanent link">&para;</a></h2>
-<p>In flow A, the citizen shares the PID with the issuance facility and gets an
+<h2 id="flow-a-the-source-issues-a-pubeaa">Flow A: the source issues a <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr><a class="headerlink" href="#flow-a-the-source-issues-a-pubeaa" title="Permanent link">&para;</a></h2>
+<p>In flow A, the citizen shares the <abbr title="Person Identification Data">PID</abbr> with the issuance facility and gets an
 attestation back. The attestation carries the name of the source as the
 issuer:</p>
 <div class="mermaid">sequenceDiagram
@@ -4749,7 +4749,7 @@ issuer:</p>
   box rgb(241,239,232) External
     participant W as NL Wallet
   end
-  box rgb(255,237,213) PubEAA provider
+  box rgb(255,237,213) PuB-EAA provider
     participant IS as Issuance server
     participant AD as EUDI adapter
   end
@@ -4777,11 +4777,11 @@ issuer:</p>
   W--&gt;&gt;B: accept the attestation</div>
 <p class="caption"><em>Figure 2: Flow A, at essence level. The runtime page has every hop.</em></p>
 <p>The facility signs with the certificate set of the source. The wallet shows
-the source as the issuer. GBO plays no part when the citizen later presents
-the attestation to a dienstverlener. For every hop, with the data and the
+the source as the issuer. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> plays no part when the citizen later presents
+the attestation to a service provider (dienstverlener). For every hop, with the data and the
 error paths, see <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.</p>
-<h2 id="flow-b-a-qtsp-verifies-at-the-source">Flow B: a QTSP verifies at the source<a class="headerlink" href="#flow-b-a-qtsp-verifies-at-the-source" title="Permanent link">&para;</a></h2>
-<p>In flow B, the QTSP asks the ASI provider to verify or retrieve attributes
+<h2 id="flow-b-a-qtsp-verifies-at-the-source">Flow B: a <abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies at the source<a class="headerlink" href="#flow-b-a-qtsp-verifies-at-the-source" title="Permanent link">&para;</a></h2>
+<p>In flow B, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> asks the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider to verify or retrieve attributes
 at the source. The citizen approves the request by logging in at the
 authorization server:</p>
 <div class="mermaid">sequenceDiagram
@@ -4814,14 +4814,14 @@ authorization server:</p>
   S--&gt;&gt;ASIP: fields of the person
   ASIP--&gt;&gt;Q: sealed result per attribute
   Q-&gt;&gt;W: test statement, not a QEAA</div>
-<p class="caption"><em>Figure 3: Flow B, at essence level. Discovery and registration of the QTSP
+<p class="caption"><em>Figure 3: Flow B, at essence level. Discovery and registration of the <abbr title="Qualified Trust Service Provider">QTSP</abbr>
 happen once, before the first request.</em></p>
 <p>A token is valid for one data service, and each data service serves one
-source. The QTSP issues the QEAA itself. In the demo, the reference QTSP
+source. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues the <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr> itself. In the demo, the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>
 issues a test statement through the issuance server of flow A. For every
-hop, see <a href="../../runtime/asi-verification/">ASI verification</a>.</p>
+hop, see <a href="../../runtime/asi-verification/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification</a>.</p>
 <h2 id="who-sees-which-identifier">Who sees which identifier<a class="headerlink" href="#who-sees-which-identifier" title="Permanent link">&para;</a></h2>
-<p>The channel does not use BSNk. The BSN goes into the source query as a
+<p>The channel does not use BSNk. The <abbr title="Burgerservicenummer">BSN</abbr> goes into the source query as a
 plain value:</p>
 <div class="mermaid">flowchart LR
   subgraph need["Needs the BSN"]
@@ -4864,28 +4864,28 @@ plain value:</p>
   style need fill:#FFF7ED,stroke:#EA580C
   style extra fill:#FFF1F0,stroke:#E28F80
   style none fill:#F0FDF4,stroke:#16A34A</div>
-<p class="caption"><em>Figure 4: Where the BSN can appear in the EUDI wallet channel. Red: the
-BSN is there without a need.</em></p>
-<p>In flow A, the EUDI adapter takes the BSN from the disclosed PID. In flow
-B, the ASIP takes it from the access token. Both components put the BSN in
-the query variables. As a result, the BSN is in two kinds of places that do
+<p class="caption"><em>Figure 4: Where the <abbr title="Burgerservicenummer">BSN</abbr> can appear in the EUDI wallet channel. Red: the
+<abbr title="Burgerservicenummer">BSN</abbr> is there without a need.</em></p>
+<p>In flow A, the EUDI adapter takes the <abbr title="Burgerservicenummer">BSN</abbr> from the disclosed <abbr title="Person Identification Data">PID</abbr>. In flow
+B, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> takes it from the access token. Both components put the <abbr title="Burgerservicenummer">BSN</abbr> in
+the query variables. As a result, the <abbr title="Burgerservicenummer">BSN</abbr> is in two kinds of places that do
 not need it:</p>
 <ul>
-<li>The PDP input, and with it the ADL and the console decision log. This is
+<li>The <abbr title="Policy Decision Point">PDP</abbr> input, and with it the <abbr title="Authorization Decision Log">ADL</abbr> and the console decision log. This is
   a known violation of <a href="../../requirements/logging-audit/#req-60">REQ-60</a>.
-  The proposed fix keeps identifiers out of the PDP input
+  The proposed fix keeps identifiers out of the <abbr title="Policy Decision Point">PDP</abbr> input
   (<a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>,
   proposed).</li>
 <li>The access token of flow B. ETSI requires the identification data in the
-  token, and the QTSP can read the BSN
+  token, and the <abbr title="Qualified Trust Service Provider">QTSP</abbr> can read the <abbr title="Burgerservicenummer">BSN</abbr>
   (<a href="../../traceability/findings/#f-86">F-86</a>).</li>
 </ul>
-<p>The LDV records hold no BSN, because the logbook refuses one. For the
+<p>The <abbr title="Logboek Dataverwerkingen">LDV</abbr> records hold no <abbr title="Burgerservicenummer">BSN</abbr>, because the logbook refuses one. For the
 detail, see
-<a href="../../concepts/pseudonymization/#exception-the-bsn-in-the-eudi-and-asi-routes">Exception: the BSN in the EUDI and ASI routes</a>.</p>
-<h2 id="the-pid-regime">The PID regime<a class="headerlink" href="#the-pid-regime" title="Permanent link">&para;</a></h2>
+<a href="../../concepts/pseudonymization/#exception-the-bsn-in-the-eudi-and-asi-routes">Exception: the <abbr title="Burgerservicenummer">BSN</abbr> in the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> routes</a>.</p>
+<h2 id="the-pid-regime">The <abbr title="Person Identification Data">PID</abbr> regime<a class="headerlink" href="#the-pid-regime" title="Permanent link">&para;</a></h2>
 <p>Neither flow carries a consent proof. The evidence in the request selects
-the regime, so both flows land in the PID regime
+the regime, so both flows land in the <abbr title="Person Identification Data">PID</abbr> regime
 (<a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>):</p>
 <div class="mermaid">flowchart LR
   q{"Consent token&lt;br/&gt;in the request?"}
@@ -4924,24 +4924,24 @@ the regime, so both flows land in the PID regime
   class ev planned
   class p zoom
   click p "../gbo-basis/authorization/#regime-from-evidence" "Regime from evidence"</div>
-<p class="caption"><em>Figure 5: The PID regime. Dashed: the positive evidence that the design
+<p class="caption"><em>Figure 5: The <abbr title="Person Identification Data">PID</abbr> regime. Dashed: the positive evidence that the design
 asks for. Demo v0.9.0 does not build it.</em></p>
-<p>Each PID rule admits only named callers: the FSC peer of the EUDI adapter,
-or the ASIP peer. Only consent is positive evidence. A request enters the
-PID regime because it carries no token
+<p>Each <abbr title="Person Identification Data">PID</abbr> rule admits only named callers: the <abbr title="Federated Service Connectivity">FSC</abbr> peer of the EUDI adapter,
+or the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer. Only consent is positive evidence. A request enters the
+<abbr title="Person Identification Data">PID</abbr> regime because it carries no token
 (<a href="../../traceability/findings/#f-70">F-70</a>). For that reason, the actor
-lists of the PID rules must stay disjoint from the consent consumers. The
-fix in the design is a verified PID disclosure, bound to the subject of the
+lists of the <abbr title="Person Identification Data">PID</abbr> rules must stay disjoint from the consent consumers. The
+fix in the design is a verified <abbr title="Person Identification Data">PID</abbr> disclosure, bound to the subject of the
 query (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>).</p>
-<p>In demo v0.9.0, the callback that carries the PID is not authenticated.
+<p>In demo v0.9.0, the callback that carries the <abbr title="Person Identification Data">PID</abbr> is not authenticated.
 <a href="pubeaa/#the-callback-gap">The callback gap</a> shows what that allows.</p>
 <h3 id="approval-in-the-wallet-is-no-legal-basis">Approval in the wallet is no legal basis<a class="headerlink" href="#approval-in-the-wallet-is-no-legal-basis" title="Permanent link">&para;</a></h3>
-<p>In flow A, the citizen chooses in the wallet to share the PID. In flow B,
+<p>In flow A, the citizen chooses in the wallet to share the <abbr title="Person Identification Data">PID</abbr>. In flow B,
 the citizen approves one request by logging in
 (<a href="../../requirements/asi/#req-90">REQ-90</a>). The ARF says that approval in
 the wallet is never a legal basis for the relying party
 (<a href="../../traceability/findings/#f-83">F-83</a>). The approval of flow B is
-also not stored, and the citizen cannot revoke it. A DvTP consent and a
+also not stored, and the citizen cannot revoke it. A <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consent and a
 wallet approval cannot replace each other. For the detail, see
 <a href="../../concepts/authorization/#wallet-approval-is-not-a-legal-basis">Wallet approval is not a legal basis</a>.</p>
 <h2 id="compared-with-the-globaal-ontwerp">Compared with the Globaal Ontwerp<a class="headerlink" href="#compared-with-the-globaal-ontwerp" title="Permanent link">&para;</a></h2>
@@ -4957,23 +4957,23 @@ wallet approval cannot replace each other. For the detail, see
 <tbody>
 <tr>
 <td>Start of flow A</td>
-<td>The wallet sends a credential request to the PubEAA voorziening.</td>
-<td>The citizen scans a QR code. The issuance server first asks for the PID (disclosure-based issuance, <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>).</td>
+<td>The wallet sends a credential request to the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider.</td>
+<td>The citizen scans a QR code. The issuance server first asks for the <abbr title="Person Identification Data">PID</abbr> (disclosure-based issuance, <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>).</td>
 </tr>
 <tr>
 <td>Authorization in flow A</td>
-<td>An Autorisatievoorziening asks the wallet for the PID and authorizes the PubEAA voorziening.</td>
-<td>No separate service. The nl-wallet issuance server checks the PID and calls the adapter. The adapter does not authenticate that call.</td>
+<td>An authorization facility (autorisatievoorziening) asks the wallet for the <abbr title="Person Identification Data">PID</abbr> and authorizes the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider.</td>
+<td>No separate service. The nl-wallet issuance server checks the <abbr title="Person Identification Data">PID</abbr> and calls the adapter. The adapter does not authenticate that call.</td>
 </tr>
 <tr>
 <td>Authorization in flow B</td>
-<td>The verify and retrieve service uses the same Autorisatievoorziening of GBO.</td>
-<td>The ASI provider has its own OAuth authorization server, with a wallet verifier and a DigiD mock (<a href="../../decisions/0037-asi-oauth-front-door/">ADR-0037</a>).</td>
+<td>The verify and retrieve service uses the same authorization facility of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</td>
+<td>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider has its own OAuth authorization server, with a wallet verifier and a DigiD mock (<a href="../../decisions/0037-asi-oauth-front-door/">ADR-0037</a>).</td>
 </tr>
 <tr>
 <td>Approval by the citizen</td>
 <td>The wallet shows the request and asks for consent.</td>
-<td>Flow A: the citizen shares the PID. Flow B: the citizen logs in. Neither is a stored consent.</td>
+<td>Flow A: the citizen shares the <abbr title="Person Identification Data">PID</abbr>. Flow B: the citizen logs in. Neither is a stored consent.</td>
 </tr>
 <tr>
 <td>Format of the attestation</td>
@@ -4982,29 +4982,29 @@ wallet approval cannot replace each other. For the detail, see
 </tr>
 <tr>
 <td>Result of flow B</td>
-<td>The QTSP issues a QEAA.</td>
-<td>The reference QTSP issues a test statement, marked as not qualified.</td>
+<td>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues a <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr>.</td>
+<td>The reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues a test statement, marked as not qualified.</td>
 </tr>
 </tbody>
 </table>
 <p>The GO also says that a request over ISO 15000 needs no authorization. The
 demo offers clause 6.1 of ETSI TS 119 478 only
 (<a href="../../requirements/asi/#req-112">REQ-112</a>). In both the GO and the demo,
-GBO itself is not a PubEAA provider.</p>
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> itself is not a <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider.</p>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
 <p>The main open points in the EUDI wallet channel are these:</p>
 <ul>
-<li>Nothing binds the BSN in the source query of flow A to a checked PID
+<li>Nothing binds the <abbr title="Burgerservicenummer">BSN</abbr> in the source query of flow A to a checked <abbr title="Person Identification Data">PID</abbr>
   disclosure (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>,
   <a href="../../traceability/open-questions/#q-18">Q-18</a>).</li>
-<li>The BSN is in the PDP input and in both decision logs
+<li>The <abbr title="Burgerservicenummer">BSN</abbr> is in the <abbr title="Policy Decision Point">PDP</abbr> input and in both decision logs
   (<a href="../../traceability/findings/#f-54">F-54</a>).</li>
-<li>The QTSP can read the BSN in the access token
+<li>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> can read the <abbr title="Burgerservicenummer">BSN</abbr> in the access token
   (<a href="../../traceability/findings/#f-86">F-86</a>).</li>
-<li>Nothing links the citizen who logs in at the QTSP to the citizen who logs
+<li>Nothing links the citizen who logs in at the <abbr title="Qualified Trust Service Provider">QTSP</abbr> to the citizen who logs
   in at the authorization server
   (<a href="../../traceability/findings/#f-93">F-93</a>).</li>
-<li>The regulatory frame for PuB-EAA issuance and the designation of the
+<li>The regulatory frame for <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance and the designation of the
   issuer (<a href="../../traceability/findings/#f-81">F-81</a>,
   <a href="../../traceability/open-questions/#q-28">Q-28</a>).</li>
 </ul>
@@ -5028,6 +5028,7 @@ GBO itself is not a PubEAA provider.</p>
   <a href="../../traceability/increments/#sl-26">SL-26</a> (done),
   <a href="../../traceability/increments/#sl-28">SL-28</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

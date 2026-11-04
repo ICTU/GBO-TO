@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4587,60 +4587,60 @@
   
 
 
-<h1 id="adr-0041-seal-format-of-asi-results">ADR-0041: Seal format of ASI results<a class="headerlink" href="#adr-0041-seal-format-of-asi-results" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0041-seal-format-of-asi-results">ADR-0041: Seal format of <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> results<a class="headerlink" href="#adr-0041-seal-format-of-asi-results" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: proposed (waits for <a href="../../traceability/open-questions/#q-32">Q-32</a>)</li>
 <li>Date: 2026-11-02</li>
 <li>Satisfies: Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj">2025/1569</a> article 9(4), as replaced by Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj">2026/1735</a>, from January 1, 2027, and <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">S11</a></li>
-<li>Deliberation: <a href="../../requirements/asi/#req-83">REQ-83</a>, <a href="../../traceability/findings/#f-80">F-80</a>, and demo <a href="https://github.com/ICTU/GBO-demo/issues/498">ICTU/GBO-demo#498</a>, <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a></li>
+<li>Deliberation: <a href="../../requirements/asi/#req-83">REQ-83</a>, <a href="../../traceability/findings/#f-80">F-80</a>, and demo <a href="https://github.com/ICTU/GBO-demo/issues/498">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#498</a>, <a href="https://github.com/ICTU/GBO-demo/pull/499">PR #499</a></li>
 <li>Implemented in: demo grade, with a development certificate:<ul>
 <li>The seal in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/seal/seal.go#L18-L57">seal.go#L18-L57</a>.</li>
 <li>The seal on successful responses only, in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L402-L417">handler.go#L402-L417</a>.</li>
 <li>The header in the contract, in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/openapi/completions.json#L25-L33">completions.json#L25-L33</a>.</li>
-<li>The validation by the reference QTSP, in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/internal/seal/seal.go">qtsp-reference/internal/seal/seal.go</a>.</li>
+<li>The validation by the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>, in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/internal/seal/seal.go">qtsp-reference/internal/seal/seal.go</a>.</li>
 </ul>
 </li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>From January 1, 2027, every verification result of an ASIP must be
+<p>From January 1, 2027, every verification result of an <abbr title="Authentic Source Interface Provider">ASIP</abbr> must be
 signed or sealed. The seal is at least an advanced electronic seal based
 on a qualified certificate. The certificate belongs to the responsible
 public sector body or to the designated intermediary
 (<a href="../../traceability/findings/#f-80">F-80</a>). ETSI TS 119 478 defines no
 seal on the response (<a href="../../traceability/standards-feedback/#e4">E4</a>).</p>
-<p>A QTSP that verifies at several ASIPs must validate every seal in the
-same way. If each ASIP chooses its own format, every QTSP must implement
+<p>A <abbr title="Qualified Trust Service Provider">QTSP</abbr> that verifies at several ASIPs must validate every seal in the
+same way. If each <abbr title="Authentic Source Interface Provider">ASIP</abbr> chooses its own format, every <abbr title="Qualified Trust Service Provider">QTSP</abbr> must implement
 each format. For this reason, the format is an interface agreement. It
-is not a choice per ASIP (<a href="../../requirements/asi/#req-83">REQ-83</a>).
+is not a choice per <abbr title="Authentic Source Interface Provider">ASIP</abbr> (<a href="../../requirements/asi/#req-83">REQ-83</a>).
 <a href="../../traceability/open-questions/#q-32">Q-32</a> asks who decides the
 format. This ADR stays proposed until that decision.</p>
 <h2 id="proposed-decision">Proposed decision<a class="headerlink" href="#proposed-decision" title="Permanent link">&para;</a></h2>
 <p>The proposal has five parts:</p>
 <ol>
-<li>The ASIP seals the exact response body with a detached JWS (RFC 7515,
+<li>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> seals the exact response body with a detached JWS (RFC 7515,
    Appendix F). The JWS goes in the header <code>X-JWS-Signature</code>
    (<code>&lt;protected header&gt;..&lt;signature&gt;</code>).</li>
 <li>The algorithm is ES256. The protected header carries the certificate
    chain in <code>x5c</code>, leaf first.</li>
 <li>The body stays plain JSON, as the ETSI OpenAPI prescribes. The
    contract of the data service names the header as an addition.</li>
-<li>The ASIP seals every successful verify and retrieve response (200).
+<li>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> seals every successful verify and retrieve response (200).
    An error response is not a verification result and gets no seal.</li>
-<li>The QTSP validates the signature over the received body, and the
-   chain against its trust anchors. The QTSP does not accept a result
+<li>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> validates the signature over the received body, and the
+   chain against its trust anchors. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> does not accept a result
    without a valid seal.</li>
 </ol>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>With only the response and the trusted lists, the QTSP can establish
-  that the response comes unchanged from this ASIP.</li>
+<li>With only the response and the trusted lists, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> can establish
+  that the response comes unchanged from this <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</li>
 <li>The format works with any HTTP client. It leaves the ETSI response
   schema unchanged.</li>
 <li>The demo seals with a development certificate. Production needs a
   qualified certificate for electronic seals (Implementing Regulation
   (EU) 2025/1943, Annex II). The certificate has the registration number
   of the organization as <code>organizationIdentifier</code>.</li>
-<li>It is open who holds that certificate: the source holder, or the
+<li>It is open who holds that certificate: the bronhouder, or the
   designated intermediary (<a href="../../traceability/open-questions/#q-17">Q-17</a>,
   <a href="../../traceability/open-questions/#q-28">Q-28</a>).</li>
 </ul>
@@ -4650,7 +4650,7 @@ format. This ADR stays proposed until that decision.</p>
   The body stays as ETSI specifies.</li>
 <li>A JAdES baseline signature (ETSI TS 119 182-1). This is the EU format
   for JSON signatures, with the signing time and the certificate
-  references in the header. It is more work for the QTSP and the ASIP,
+  references in the header. It is more work for the <abbr title="Qualified Trust Service Provider">QTSP</abbr> and the <abbr title="Authentic Source Interface Provider">ASIP</abbr>,
   but it is closer to the eIDAS ecosystem.</li>
 <li>An enveloping JWS, with the result as the JWS payload. This option
   changes the response form that the ETSI OpenAPI prescribes.</li>
@@ -4662,7 +4662,7 @@ format. This ADR stays proposed until that decision.</p>
   to TS 119 478 (<a href="../../traceability/open-questions/#q-32">Q-32</a>,
   <a href="../../traceability/standards-feedback/#e4">E4</a>)?</li>
 <li>Does every source response get one seal, regardless of the channel
-  (DvTP, EUDI, ASI) (<a href="../../traceability/open-questions/#q-75">Q-75</a>)?</li>
+  (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI, <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>) (<a href="../../traceability/open-questions/#q-75">Q-75</a>)?</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4676,6 +4676,7 @@ format. This ADR stays proposed until that decision.</p>
 <li>Standards feedback: <a href="../../traceability/standards-feedback/#e4">E4</a></li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-28">SL-28</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

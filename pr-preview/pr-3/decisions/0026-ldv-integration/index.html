@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4576,7 +4576,7 @@
   
 
 
-<h1 id="adr-0026-each-controller-logs-its-own-processing-in-an-ldv-logbook">ADR-0026: Each controller logs its own processing in an LDV logbook<a class="headerlink" href="#adr-0026-each-controller-logs-its-own-processing-in-an-ldv-logbook" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0026-each-controller-logs-its-own-processing-in-an-ldv-logbook">ADR-0026: Each controller logs its own processing in an <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook<a class="headerlink" href="#adr-0026-each-controller-logs-its-own-processing-in-an-ldv-logbook" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: accepted</li>
 <li>Date: 2026-08-24, proposed as "Logboek Dataverwerkingen integration". Rewritten and accepted on 2026-11-02.</li>
@@ -4585,7 +4585,7 @@
 <li>Implemented in:<ul>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/README.md">services/ldv-logboek</a>: the logbook stand-in, one instance per controller.</li>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-client">services/ldv-client</a>: the shared client (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-client/outbox.go#L17-L25">outbox.go</a>).</li>
-<li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/internal/ldv/validate.go">validate.go</a>: the BSN refusal.</li>
+<li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/internal/ldv/validate.go">validate.go</a>: the <abbr title="Burgerservicenummer">BSN</abbr> refusal.</li>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L410-L598">docker-compose.yml</a>: the seven logbooks.</li>
 </ul>
 </li>
@@ -4593,7 +4593,7 @@
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
 <p>A citizen and an auditor must be able to see which organization
 processed which personal data, and why. The decision log records
-decisions. It does not record processings, because a PDP decision is not
+decisions. It does not record processings, because a <abbr title="Policy Decision Point">PDP</abbr> decision is not
 a processing (<a href="../../traceability/findings-closed/#f-63">F-63</a>). The gap is at
 the processing itself (<a href="../../traceability/findings-closed/#f-64">F-64</a>):</p>
 <ul>
@@ -4601,14 +4601,14 @@ the processing itself (<a href="../../traceability/findings-closed/#f-64">F-64</
 <li>The decryption at the source gateway.</li>
 <li>The query at the source.</li>
 </ul>
-<p>The Logius standard Logboek Dataverwerkingen (LDV, v1.0.0) records each
-processing in the logbook of its controller (Verantwoordelijke). Only
+<p>The Logius standard Logboek Dataverwerkingen (<abbr title="Logboek Dataverwerkingen">LDV</abbr>, v1.0.0) records each
+processing in the logbook of its controller (verantwoordelijke). Only
 trace metadata crosses an organization boundary.</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p>The decision has four parts:</p>
 <ul>
-<li>Every component that GBO delivers and that processes personal data
-  writes one LDV record per processing and per data subject. The record
+<li>Every component that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers and that processes personal data
+  writes one <abbr title="Logboek Dataverwerkingen">LDV</abbr> record per processing and per data subject. The record
   goes to the logbook of the controller of that component
   (<a href="../../requirements/logging-audit/#req-72">REQ-72</a>).</li>
 <li>The record carries these values:<ul>
@@ -4616,15 +4616,15 @@ trace metadata crosses an organization boundary.</p>
   decides.</li>
 <li>The data subject in the pseudonym space of that controller, with
   an explicit <code>data_subject_id_type</code>. The data subject is never a
-  BSN.</li>
+  <abbr title="Burgerservicenummer">BSN</abbr>.</li>
 <li>A versioned, resolvable <code>processing_activity_id</code>.</li>
 <li><code>dpl.read.nextLogbookId</code>, if the processing calls another party.</li>
-<li>The FSC peer that the Inway verified, if the component is a
-  processor on a lookup over FSC
+<li>The <abbr title="Federated Service Connectivity">FSC</abbr> peer that the Inway verified, if the component is a
+  processor on a lookup over <abbr title="Federated Service Connectivity">FSC</abbr>
   (<a href="../../requirements/consent/#req-76">REQ-76</a>).</li>
 </ul>
 </li>
-<li>GBO ships the client. Each controller owns its logbook (P-10).</li>
+<li><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> ships the client. Each controller owns its logbook (P-10).</li>
 <li>A component stores the record durably in a local outbox before the
   processing delivers. If the logbook is down, the record arrives later.
   The outage never loses the record, and it does not fail the request.</li>
@@ -4632,9 +4632,9 @@ trace metadata crosses an organization boundary.</p>
 <h2 id="considered-options">Considered options<a class="headerlink" href="#considered-options" title="Permanent link">&para;</a></h2>
 <ol>
 <li>A logbook per controller, written by a shared client (chosen).</li>
-<li>One central GBO logbook. Not chosen: LDV keeps records at each
+<li>One central <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> logbook. Not chosen: <abbr title="Logboek Dataverwerkingen">LDV</abbr> keeps records at each
    controller, and only trace metadata crosses a boundary.</li>
-<li>OpenTelemetry spans, relabeled as LDV records. Not chosen: spans are
+<li>OpenTelemetry spans, relabeled as <abbr title="Logboek Dataverwerkingen">LDV</abbr> records. Not chosen: spans are
    sampled, and their delivery is not acknowledged
    (<a href="../../requirements/logging-audit/#req-32">REQ-32</a>).</li>
 <li>A failed request when the logbook is down (the first demo version).
@@ -4651,10 +4651,10 @@ trace metadata crosses an organization boundary.</p>
   Each logbook uses its own pseudonym space. As a result, a pseudonym
   does not travel between the logbooks of different controllers
   (<a href="../../traceability/findings-closed/#f-69">F-69</a>).</li>
-<li>LDV records never hold a BSN. The logbook refuses any record with a
-  run of nine digits that passes the elfproef.</li>
+<li><abbr title="Logboek Dataverwerkingen">LDV</abbr> records never hold a <abbr title="Burgerservicenummer">BSN</abbr>. The logbook refuses any record with a
+  run of nine digits that passes the <abbr title="Burgerservicenummer">BSN</abbr> check digit test (elfproef).</li>
 <li>A reader follows a chain forward from the start logbooks through
-  <code>nextLogbookId</code>. In DvTP the chain starts at the consumer, and LDV does
+  <code>nextLogbookId</code>. In <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> the chain starts at the consumer, and <abbr title="Logboek Dataverwerkingen">LDV</abbr> does
   not bind the consumer (<a href="../../traceability/findings/#f-68">F-68</a>,
   <a href="../../requirements/admission/#av-02">AV-02</a>).</li>
 <li>The consumer has no citizen identifier, so it logs under the consent
@@ -4671,8 +4671,8 @@ trace metadata crosses an organization boundary.</p>
 <li>Components write a local <code>dpl.gbo.*</code> extension that nobody ratified
   (<a href="../../traceability/open-questions/#q-72">Q-72</a>).</li>
 <li>No pointer leads from the decision at the source to the logbook of the
-  consent register (<a href="../../traceability/open-questions/#q-25">Q-25</a>).</li>
-<li>In demo v0.9.0, the ASIP writes no LDV records.</li>
+  consent register (toestemmingsregister) (<a href="../../traceability/open-questions/#q-25">Q-25</a>).</li>
+<li>In demo v0.9.0, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> writes no <abbr title="Logboek Dataverwerkingen">LDV</abbr> records.</li>
 <li>Production needs WORM storage, hash chaining, or a notary for the
   logbooks (<a href="../../requirements/logging-audit/#req-32">REQ-32</a>).</li>
 </ul>
@@ -4683,6 +4683,7 @@ trace metadata crosses an organization boundary.</p>
 <li>Open questions: <a href="../../traceability/open-questions/#q-08">Q-08</a> (open), <a href="../../traceability/answered-questions/#q-24">Q-24</a> (closed), <a href="../../traceability/open-questions/#q-25">Q-25</a> (open), <a href="../../traceability/open-questions/#q-27">Q-27</a> (open), <a href="../../traceability/open-questions/#q-72">Q-72</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-50">SL-50</a> (exploration done, build delivered)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

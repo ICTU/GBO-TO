@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1298,7 +1298,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4656,7 +4656,7 @@
 
 
 <h1 id="logging-and-audit-requirements">Logging and audit requirements<a class="headerlink" href="#logging-and-audit-requirements" title="Permanent link">&para;</a></h1>
-<p>These requirements cover the three records of GBO: the decision record (ADL), the processing record (LDV), and the trace that links them. For the design, see <a href="../../concepts/logging/">Logging, audit and traceability</a>.</p>
+<p>These requirements cover the three records of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>: the decision record (<abbr title="Authorization Decision Log">ADL</abbr>), the processing record (<abbr title="Logboek Dataverwerkingen">LDV</abbr>), and the trace that links them. For the design, see <a href="../../concepts/logging/">Logging, audit and traceability</a>.</p>
 <p>This page has the following parts:</p>
 <ul>
 <li><a href="#decision-audit">Decision audit requirements</a></li>
@@ -4667,18 +4667,18 @@
 <p>The decision audit requirements cover the record of authorization
 decisions. They set rules for these topics:</p>
 <ul>
-<li>the Authorization Decision Log (ADL) of Logius</li>
+<li>the Authorization Decision Log (<abbr title="Authorization Decision Log">ADL</abbr>) of Logius</li>
 <li>the protection of the record</li>
 <li>the policy version that the record names</li>
 <li>the personal data that the record can hold</li>
 </ul>
-<p>The requirements are generic. They apply to DvTP, EUDI issuance, and the
-ASI route. <a href="./#processing-logging">Processing logging</a> covers the record
-of each processing (LDV). <a href="./#observability">Observability</a> covers the
+<p>The requirements are generic. They apply to <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI issuance, and the
+<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route. <a href="./#processing-logging">Processing logging</a> covers the record
+of each processing (<abbr title="Logboek Dataverwerkingen">LDV</abbr>). <a href="./#observability">Observability</a> covers the
 trace ID.</p>
 <h3 id="req-32">REQ-32: Audit records are protected, complete, and stored apart from operational logs<a class="headerlink" href="#req-32" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>Decision records (ADL) and processing log records (LDV) MUST be
+<p>Decision records (<abbr title="Authorization Decision Log">ADL</abbr>) and processing log records (<abbr title="Logboek Dataverwerkingen">LDV</abbr>) MUST be
 protected against change and deletion. This protection applies to
 anyone who does not manage them. They MUST NOT be sampled. They MUST have
 their own retention period and access, independent of those of
@@ -4692,19 +4692,22 @@ ID, but they are no audit source.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>:
+  measures protect log data against unauthorized change and deletion,
+  and agreements set retention, access, inspection, and destruction
+  explicitly
   ("maatregelen beschermen loggegevens tegen ongeautoriseerde wijziging en verwijdering",
   "afspraken regelen bewaartermijnen, toegang, inzage en vernietiging expliciet").</li>
-<li><a href="https://logius-standaarden.github.io/logboek-dataverwerkingen/#gedrag-van-applicatie">LDV, behavior of the application</a>
+<li><a href="https://logius-standaarden.github.io/logboek-dataverwerkingen/#gedrag-van-applicatie"><abbr title="Logboek Dataverwerkingen">LDV</abbr>, behavior of the application</a>
   (no log sampling).</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-12</a>.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the logbook and the components
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the logbook and the components
   that write to it. Interface and audit agreement: the decision record at
   the source.</li>
 <li><strong>Evidence</strong>:<ul>
-<li>The ADL is in Postgres, apart from the console log in Loki
+<li>The <abbr title="Authorization Decision Log">ADL</abbr> is in Postgres, apart from the console log in Loki
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L117-L125"><code>docker-compose.yml#L117-L125</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/337">PR #337</a>).</li>
 <li>Readers get only SELECT
@@ -4713,7 +4716,7 @@ ID, but they are no audit source.</p>
 <li>The logbook in the demo has write and read, and no change or delete
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/internal/httpapi/handler.go#L49-L53"><code>handler.go#L49-L53</code></a>).
   That logbook is a stand-in for the logbook of the controller
-  (Verantwoordelijke). It is no GBO component.</li>
+  (Verantwoordelijke). It is no <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component.</li>
 <li>Retention period and tamper resistance at storage level: not built.</li>
 </ul>
 </li>
@@ -4722,7 +4725,7 @@ ID, but they are no audit source.</p>
   <a href="../../decisions/0036-adl-decision-record/">ADR 0036</a>.</li>
 <li><strong>Notes</strong>: retention periods and read access are open in
   <a href="../../traceability/open-questions/#q-08">Q-08</a>. Nobody tested whether the
-  writing role of the PDP can change its own records.</li>
+  writing role of the <abbr title="Policy Decision Point">PDP</abbr> can change its own records.</li>
 </ul>
 </details>
 <h3 id="req-59">REQ-59: The decision record names the policy version that decided<a class="headerlink" href="#req-59" title="Permanent link">&para;</a></h3>
@@ -4740,19 +4743,21 @@ version (bundle ID with version, commit hash, image version).</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>
+<li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>:
+  authorization decisions refer to the applied policy version and to
+  relevant information about the legal basis
   ("autorisatiebeslissingen verwijzen naar de toegepaste beleidsversie en relevante informatie over de grondslag").</li>
-<li><a href="https://logius-standaarden.github.io/authorization-decision-log/#adl-core-policies">ADL <code>adl.core.policies</code></a>.</li>
+<li><a href="https://logius-standaarden.github.io/authorization-decision-log/#adl-core-policies"><abbr title="Authorization Decision Log">ADL</abbr> <code>adl.core.policies</code></a>.</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">PSA S06</a>
   (start date and change history).</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: interface and audit agreement: every PDP that decides on
+<li><strong>Addressee</strong>: interface and audit agreement: every <abbr title="Policy Decision Point">PDP</abbr> that decides on
   a data request.</li>
 <li><strong>Evidence</strong>: not built, and there is no demo issue for it. The bundle
   carries a version
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml#L17"><code>gbo-pdp.yaml#L17</code></a>),
-  but that version does not reach the ADL record
+  but that version does not reach the <abbr title="Authorization Decision Log">ADL</abbr> record
   (<a href="https://github.com/ICTU/GBO-demo/pull/373">PR #373</a>). Records carry
   <code>policies: 0</code>.</li>
 <li><strong>Related</strong>: <a href="#req-71">REQ-71</a>, <a href="../../traceability/findings-closed/#f-53">F-53</a>,
@@ -4761,16 +4766,16 @@ version (bundle ID with version, commit hash, image version).</p>
   <a href="../authorization/#rl-01">RL-01</a>, <a href="../authorization/#rl-04">RL-04</a>.</li>
 <li><strong>Notes</strong>: without this field, nobody can link the history of the policy
   (who published which version) to a decision. In the default stack, the
-  policy comes from the PDP image. In that case, the version must also be
+  policy comes from the <abbr title="Policy Decision Point">PDP</abbr> image. In that case, the version must also be
   traceable.</li>
 </ul>
 </details>
-<h3 id="req-60">REQ-60: Logging contains no BSN that the processing does not need<a class="headerlink" href="#req-60" title="Permanent link">&para;</a></h3>
+<h3 id="req-60">REQ-60: Logging contains no <abbr title="Burgerservicenummer">BSN</abbr> that the processing does not need<a class="headerlink" href="#req-60" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>A GBO-delivered component MUST keep the BSN and other directly
+<p>A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component MUST keep the <abbr title="Burgerservicenummer">BSN</abbr> and other directly
 identifying data out of its operational logs and spans. Some
-identifying values in the PDP input are not necessary for the
-decision. A component that builds the PDP input MUST keep such a value
+identifying values in the <abbr title="Policy Decision Point">PDP</abbr> input are not necessary for the
+decision. A component that builds the <abbr title="Policy Decision Point">PDP</abbr> input MUST keep such a value
 out of the input, or replace it before it sends the input. If that
 fails, the request does not continue. Masking in the decision log MUST
 NOT be the only safeguard.</p>
@@ -4785,10 +4790,10 @@ NOT be the only safeguard.</p>
 <tbody>
 <tr>
 <td>Operational log or span</td>
-<td>no BSN. A data subject only as pseudonym or opaque reference</td>
+<td>no <abbr title="Burgerservicenummer">BSN</abbr>. A data subject (Betrokkene) only as pseudonym or opaque reference</td>
 </tr>
 <tr>
-<td>PDP input, DvTP</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> input, <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>no identity: a placeholder, which the source replaces only after the consent</td>
 </tr>
 <tr>
@@ -4796,8 +4801,8 @@ NOT be the only safeguard.</p>
 <td>the request does not reach the source</td>
 </tr>
 <tr>
-<td>PDP input, EUDI and ASI</td>
-<td>no BSN (not met in demo v0.9.0, see the notes)</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> input, EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr></td>
+<td>no <abbr title="Burgerservicenummer">BSN</abbr> (not met in demo v0.9.0, see the notes)</td>
 </tr>
 </tbody>
 </table>
@@ -4809,19 +4814,20 @@ NOT be the only safeguard.</p>
 <ul>
 <li><strong>Source</strong>: design.
   <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>
-  ("logging bevat niet meer persoonsgegevens dan noodzakelijk") and
+  (logging holds no more personal data than necessary: "logging bevat
+  niet meer persoonsgegevens dan noodzakelijk") and
   <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-03, P-04</a>.</li>
-<li><strong>Addressee</strong>: GBO-delivered component: the GBO components and the
-  chain that builds the PDP input. It is no requirement on the policy
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components and the
+  chain that builds the <abbr title="Policy Decision Point">PDP</abbr> input. It is no requirement on the policy
   engine of the source.</li>
 <li><strong>Evidence</strong>:<ul>
-<li>DvTP: <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>, tested
+<li><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>, tested
   in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L76"><code>substitution_test.go#L76</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L247"><code>#L247</code></a>,
   and
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/ldv_test.go#L385"><code>ldv_test.go#L385</code></a>.</li>
-<li>Logs and spans in the ASI chain:
+<li>Logs and spans in the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> chain:
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/qtsp-reference/e2e_test.go#L425"><code>e2e_test.go#L425</code></a>
   (<a href="https://github.com/ICTU/GBO-demo/pull/535">PR #535</a>) and
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/trace_test.go#L110"><code>trace_test.go#L110</code></a>
@@ -4841,18 +4847,18 @@ NOT be the only safeguard.</p>
   of masking it inside the engine. From the outside, a masking rule
   that does not work looks the same as one that works
   (<a href="../../traceability/findings/#f-54">F-54</a>).</li>
-<li>In the EUDI channel and the ASI route, the BSN is in the PDP input,
+<li>In the EUDI channel and the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route, the <abbr title="Burgerservicenummer">BSN</abbr> is in the <abbr title="Policy Decision Point">PDP</abbr> input,
   and so in the decision record
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L272-L273"><code>eudi-adapter/source_metadata.go#L272-L273</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/source.go#L94"><code>asi-provider/internal/graphqlsource/source.go#L94</code></a>).</li>
 <li>Demo issue <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>
-  decides how the BSN goes out. If the team chooses masking there,
+  decides how the <abbr title="Burgerservicenummer">BSN</abbr> goes out. If the team chooses masking there,
   this requirement must change.</li>
 </ul>
 </li>
 </ul>
 </details>
-<h3 id="req-71">REQ-71: Every authorization decision is in an ADL-conformant decision record, and that record is the audit source<a class="headerlink" href="#req-71" title="Permanent link">&para;</a></h3>
+<h3 id="req-71">REQ-71: Every authorization decision is in an <abbr title="Authorization Decision Log">ADL</abbr>-conformant decision record, and that record is the audit source<a class="headerlink" href="#req-71" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>Every authorization decision on a data request MUST be recorded in a
 record according to the Logius standard Authorization Decision Log. The
@@ -4862,8 +4868,8 @@ holds the answer of every information source consulted during the
 evaluation (<code>adl.core.information</code>). A reference to that answer can
 replace the answer. The reference MUST then stay available as long as
 the record exists.</p>
-<p>If the request passes an FSC Inway or Outway, <code>adl.fsc.transaction_id</code>
-MUST be set. Where more decision logs exist side by side, the ADL record
+<p>If the request passes an <abbr title="Federated Service Connectivity">FSC</abbr> Inway or Outway, <code>adl.fsc.transaction_id</code>
+MUST be set. Where more decision logs exist side by side, the <abbr title="Authorization Decision Log">ADL</abbr> record
 MUST be the designated audit source. Other streams MUST NOT be an audit
 source.</p>
 </blockquote>
@@ -4888,7 +4894,7 @@ source.</p>
 <td>the status answer is in or with the record</td>
 </tr>
 <tr>
-<td>Request through FSC</td>
+<td>Request through <abbr title="Federated Service Connectivity">FSC</abbr></td>
 <td><code>adl.fsc.transaction_id</code> next to <code>trace_id</code></td>
 </tr>
 </tbody>
@@ -4903,17 +4909,17 @@ source.</p>
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>
   (Authorization Decision Log to record authorization decisions).</li>
 <li><a href="https://ictu.github.io/GBO-GO/main/">GO, reused building blocks</a>
-  (ADL 1.0.0).</li>
-<li><a href="https://logius-standaarden.github.io/authorization-decision-log/">ADL</a>
+  (<abbr title="Authorization Decision Log">ADL</abbr> 1.0.0).</li>
+<li><a href="https://logius-standaarden.github.io/authorization-decision-log/"><abbr title="Authorization Decision Log">ADL</abbr></a>
   (<a href="https://logius-standaarden.github.io/authorization-decision-log/#adl-core-information"><code>adl.core.information</code></a>,
   <a href="https://logius-standaarden.github.io/authorization-decision-log/#adl-fsc-transaction_id"><code>adl.fsc.transaction_id</code></a>).</li>
 <li>FR-31 criterion 1.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: interface and audit agreement: the PDP of every source,
-  whatever the product. GBO-delivered component: what GBO delivers to the
-  PDP (request mapping, policy).</li>
-<li><strong>Evidence</strong>: the ADL in Postgres is mandatory
+<li><strong>Addressee</strong>: interface and audit agreement: the <abbr title="Policy Decision Point">PDP</abbr> of every source,
+  whatever the product. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: what <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers to the
+  <abbr title="Policy Decision Point">PDP</abbr> (request mapping, policy).</li>
+<li><strong>Evidence</strong>: the <abbr title="Authorization Decision Log">ADL</abbr> in Postgres is mandatory
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L125"><code>docker-compose.yml#L125</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/337">PR #337</a>). The demo reads it
   as the audit source (<a href="https://github.com/ICTU/GBO-demo/pull/373">PR #373</a>).
@@ -4935,11 +4941,11 @@ source.</p>
   <a href="../../decisions/0036-adl-decision-record/">ADR 0036</a>.</li>
 <li><strong>Notes</strong>:<ul>
 <li>The detail for each field (which fields were allowed or denied) does
-  not need to be in the record. It follows from a replay, and the ADL
+  not need to be in the record. It follows from a replay, and the <abbr title="Authorization Decision Log">ADL</abbr>
   prefers a reference to a copy.</li>
 <li>A reference brings a retention duty for its source
   (<a href="../../traceability/open-questions/#q-08">Q-08</a>).</li>
-<li>The ADL is working version 1.0.0. Pin the version in a conformance
+<li>The <abbr title="Authorization Decision Log">ADL</abbr> is working version 1.0.0. Pin the version in a conformance
   claim.</li>
 <li>The policy fetches the consent status during evaluation. For that
   reason, a replay from (input, policy, data) needs the status answer
@@ -4955,19 +4961,18 @@ source.</p>
 <h2 id="processing-logging">Processing logging requirements<a class="headerlink" href="#processing-logging" title="Permanent link">&para;</a></h2>
 <p>The processing logging requirement covers the record of each processing
 of personal data. <a href="./#decision-audit">Decision audit</a> covers the decision
-side (ADL). The requirement on this page covers the processing side. It is
-generic and applies to DvTP, EUDI issuance, and the ASI route.</p>
-<p>The Logius standard Logboek Dataverwerkingen (LDV) asks for a log record
-for every processing (Dataverwerking), for each controller
-(Verantwoordelijke). Only trace metadata crosses an organization boundary.
-The decision of a PDP is no processing. A transformation at the source,
+side (<abbr title="Authorization Decision Log">ADL</abbr>). The requirement on this page covers the processing side. It is
+generic and applies to <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI issuance, and the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route.</p>
+<p>The Logius standard Logboek Dataverwerkingen (<abbr title="Logboek Dataverwerkingen">LDV</abbr>) asks for a log record
+for every processing, for each controller. Only trace metadata crosses an organization boundary.
+The decision of a <abbr title="Policy Decision Point">PDP</abbr> is no processing. A transformation at the source,
 such as the decryption by the source gateway, is a processing
 (<a href="../../traceability/findings-closed/#f-64">F-64</a>).</p>
-<h3 id="req-72">REQ-72: A GBO component that processes personal data writes an LDV log record for each processing at its controller<a class="headerlink" href="#req-72" title="Permanent link">&para;</a></h3>
+<h3 id="req-72">REQ-72: A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component that processes personal data writes an <abbr title="Logboek Dataverwerkingen">LDV</abbr> log record for each processing at its controller<a class="headerlink" href="#req-72" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>Every GBO-delivered component that processes data of a data subject
-(Betrokkene) MUST write a log record according to Logboek
-Dataverwerkingen for each action. It MUST write the record to the
+<p>Every <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component that processes data of a data subject
+MUST write a log record according to
+Logboek Dataverwerkingen for each action. It MUST write the record to the
 logbook of the controller of that processing. The trace ID in that
 record MUST follow from <a href="./#req-55">REQ-55</a>. There MUST be
 a separate log record for each data subject. A further data subject of
@@ -4975,7 +4980,7 @@ the same processing hangs as a child under the first.</p>
 <p>The field <code>dpl.core.data_subject_id</code> MUST name the data subject in an
 identifier space of the controller itself, with an explicit
 <code>data_subject_id_type</code>. It MUST NOT name the data subject with the
-BSN. The field <code>dpl.core.processing_activity_id</code> MUST refer to a
+<abbr title="Burgerservicenummer">BSN</abbr>. The field <code>dpl.core.processing_activity_id</code> MUST refer to a
 versioned, resolvable processing activity. A component that calls another party during the
 processing MUST set <code>dpl.read.nextLogbookId</code> to the read API of that
 party. Only trace metadata crosses an organization boundary.</p>
@@ -4987,26 +4992,27 @@ party. Only trace metadata crosses an organization boundary.</p>
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design:<ul>
-<li><a href="https://logius-standaarden.github.io/logboek-dataverwerkingen/#gedrag-van-applicatie">LDV</a>
+<li><a href="https://logius-standaarden.github.io/logboek-dataverwerkingen/#gedrag-van-applicatie"><abbr title="Logboek Dataverwerkingen">LDV</abbr></a>
   and its
   <a href="https://logius-standaarden.github.io/logboek-extensie-lezen/">read extension</a>.</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>
-  (LDV as functional frame,
+  (<abbr title="Logboek Dataverwerkingen">LDV</abbr> as functional frame, and each component records the events
+  that are relevant for its responsibility:
   "iedere component legt de gebeurtenissen vast die voor zijn verantwoordelijkheid relevant zijn").</li>
 <li><a href="https://ictu.github.io/GBO-GO/main/">GO, reused building blocks</a>.</li>
 <li>FR-31 criterion 1.</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: source gateway (sidecar),
-  toestemmingsregister and toestemmingsportaal, EUDI adapter, and ASIP.
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: source gateway (<code>bron-sidecar</code>),
+  consent register (toestemmingsregister), consent portal (toestemmingsportaal), EUDI adapter, and <abbr title="Authentic Source Interface Provider">ASIP</abbr>.
   The logbook and the source application of a bronhouder belong to that
   bronhouder (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>).</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/302">ICTU/GBO-demo#302</a>,
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/302">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#302</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/366">PR #366</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>. Code and tests:<ul>
-<li>The sidecar logs decryption and forwarding
+<li>The source gateway logs decryption and forwarding
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/ldv_test.go#L309"><code>bron-sidecar/ldv_test.go#L309</code></a>).</li>
-<li>The EUDI adapter names the holder without a BSN
+<li>The EUDI adapter names the holder without a <abbr title="Burgerservicenummer">BSN</abbr>
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L159"><code>eudi-adapter/ldv_test.go#L159</code></a>)
   and points to the logbook of the source
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L471"><code>#L471</code></a>).</li>
@@ -5030,28 +5036,28 @@ party. Only trace metadata crosses an organization boundary.</p>
   <a href="../../decisions/0026-ldv-integration/">ADR 0026</a>.</li>
 <li><strong>Notes</strong>:<ul>
 <li>The <code>ldv-logboek</code> in the demo is a stand-in for the logbook of the
-  controller, and is no GBO component. It refuses a record with a BSN
+  controller, and is no <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component. It refuses a record with a <abbr title="Burgerservicenummer">BSN</abbr>
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/internal/ldv/validate.go#L148"><code>validate.go#L148</code></a>,
   tested in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/internal/ldv/validate_test.go#L94"><code>validate_test.go#L94</code></a>)
   or with an activity that does not resolve
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/internal/ldv/validate.go#L119"><code>validate.go#L119</code></a>).
   That is therefore no evidence for this requirement.</li>
-<li>LDV allows <code>BSN</code> as a type. "Never the BSN" is a stricter rule from
+<li><abbr title="Logboek Dataverwerkingen">LDV</abbr> allows <code>BSN</code> as a type. "Never the <abbr title="Burgerservicenummer">BSN</abbr>" is a stricter rule from
   S09 and P-04.</li>
 <li>The register of processing activities is a stand-in for each logbook
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/internal/ldv/register.go#L28"><code>register.go#L28</code></a>).
-  A real register is missing. For GBO components it belongs with the
+  A real register is missing. For <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components it belongs with the
   management organization (<a href="../../traceability/open-questions/#q-08">Q-08</a>).</li>
-<li><code>dpl.core.foreign_operation.processor</code> is a URL made from the FSC
+<li><code>dpl.core.foreign_operation.processor</code> is a URL made from the <abbr title="Federated Service Connectivity">FSC</abbr>
   peer ID or the grant hash. It identifies the caller, but nothing
   resolves behind it.</li>
-<li>In demo v0.9.0, the ASIP writes no log records.</li>
+<li>In demo v0.9.0, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> writes no log records.</li>
 <li>Design choice: a processing delivers data only after its log record
   is durable locally (outbox). An outage of the logbook does not stop
   the chain
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/graphql-server/main.go#L394-L398"><code>graphql-server/main.go#L394-L398</code></a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/main.go#L541-L549"><code>bron-sidecar/main.go#L541-L549</code></a>).</li>
-<li>It is open whether GBO components write attributes outside the LDV
+<li>It is open whether <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components write attributes outside the <abbr title="Logboek Dataverwerkingen">LDV</abbr>
   core: <a href="../../traceability/open-questions/#q-72">Q-72</a>.</li>
 </ul>
 </li>
@@ -5064,20 +5070,20 @@ party. Only trace metadata crosses an organization boundary.</p>
 <h2 id="observability">Observability requirements<a class="headerlink" href="#observability" title="Permanent link">&para;</a></h2>
 <p>The observability requirement covers the correlation of logs and traces
 over the chain. Each request has one trace ID, and the components record
-the FSC transaction ID next to it. The requirement is generic. It applies
-to DvTP, EUDI issuance, and the ASI route.
+the <abbr title="Federated Service Connectivity">FSC</abbr> transaction ID next to it. The requirement is generic. It applies
+to <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI issuance, and the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route.
 <a href="./#decision-audit">Decision audit</a> covers the decision record.
 <a href="./#processing-logging">Processing logging</a> covers the processing
 record.</p>
 <h3 id="req-55">REQ-55: One trace ID per request across the whole chain, and the transaction ID can be linked to it<a class="headerlink" href="#req-55" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>Every GBO-delivered component MUST take the trace ID of an incoming
+<p>Every <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component MUST take the trace ID of an incoming
 request unchanged from W3C Trace Context (<code>traceparent</code>). It MUST record
 the span of the caller as parent. It MUST send <code>traceparent</code> with every
 outgoing call. Every record that the component writes about the request
 (processing log record, operational log record, span) MUST carry that
 trace ID. The <code>Fsc-Transaction-Id</code> MUST NOT replace an incoming trace. A
-component that starts or receives an FSC transaction MUST record the
+component that starts or receives an <abbr title="Federated Service Connectivity">FSC</abbr> transaction MUST record the
 transaction ID next to the trace ID.</p>
 </blockquote>
 <table>
@@ -5101,7 +5107,7 @@ transaction ID next to the trace ID.</p>
 <td>MAY choose its trace ID equal to that transaction ID</td>
 </tr>
 <tr>
-<td>Processing with more than one FSC hop</td>
+<td>Processing with more than one <abbr title="Federated Service Connectivity">FSC</abbr> hop</td>
 <td>one trace ID, several transaction IDs. The link runs through the records that carry both, and does not depend on equality</td>
 </tr>
 </tbody>
@@ -5114,15 +5120,16 @@ transaction ID next to the trace ID.</p>
 <ul>
 <li><strong>Source</strong>: design:<ul>
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">PSA S09</a>
-  ("iedere gegevensvraag krijgt een verzoekidentificator die over de hele keten bruikbaar is",
-  standardized correlation and trace context).</li>
-<li><a href="https://logius-standaarden.github.io/logboek-dataverwerkingen/#trace_id">LDV <code>trace_id</code></a>.</li>
+  (each data request gets a request identifier that is usable over
+  the whole chain: "iedere gegevensvraag krijgt een verzoekidentificator die over de hele keten bruikbaar is",
+  and standardized correlation and trace context).</li>
+<li><a href="https://logius-standaarden.github.io/logboek-dataverwerkingen/#trace_id"><abbr title="Logboek Dataverwerkingen">LDV</abbr> <code>trace_id</code></a>.</li>
 <li><a href="https://www.w3.org/TR/trace-context/">W3C Trace Context</a>.</li>
 <li>FR-31 criterion 1 (traceable correlation references across
   components).</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component.</li>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/366">PR #366</a>,
   <a href="https://github.com/ICTU/GBO-demo/pull/530">PR #530</a>. Code and tests:<ul>
 <li>Order of sources for the trace ID:
@@ -5132,7 +5139,7 @@ transaction ID next to the trace ID.</p>
 <li>Take-over: source gateway
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/ldv_test.go#L415"><code>bron-sidecar/ldv_test.go#L415</code></a>,
   EUDI adapter <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L308"><code>eudi-adapter/ldv_test.go#L308</code></a>,
-  and ASIP <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/trace_test.go#L96"><code>graphqlsource/trace_test.go#L96</code></a>.</li>
+  and <abbr title="Authentic Source Interface Provider">ASIP</abbr> <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/trace_test.go#L96"><code>graphqlsource/trace_test.go#L96</code></a>.</li>
 <li>Pass-on:
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/outway/outway.go#L45-L50"><code>outway.go#L45-L50</code></a>.</li>
 <li>Transaction ID on the span behind the Inway:
@@ -5143,7 +5150,7 @@ transaction ID next to the trace ID.</p>
   (<a href="https://github.com/ICTU/GBO-demo/pull/329">PR #329</a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-client/tracecontext.go#L166-L192"><code>tracecontext.go#L166-L192</code></a>,
   tested in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-client/tracecontext_test.go#L146-L170"><code>tracecontext_test.go#L146-L170</code></a>).</li>
-<li>The PDP passes trace and transaction ID on to the register
+<li>The <abbr title="Policy Decision Point">PDP</abbr> passes trace and transaction ID on to the register
   (<a href="https://github.com/ICTU/GBO-demo/pull/305">PR #305</a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L190-L200"><code>consent.rego#L190-L200</code></a>).</li>
 </ul>
@@ -5157,15 +5164,15 @@ transaction ID next to the trace ID.</p>
   <a href="../../traceability/findings-closed/#f-67">F-67</a>,
   <a href="../../decisions/0035-w3c-trace-context/">ADR 0035</a>.</li>
 <li><strong>Notes</strong>:<ul>
-<li>Behind the FSC Inway, the decision record does not meet this
-  requirement. The Inway gives the PDP no <code>traceparent</code>, and gives the
-  transaction ID only as <code>X-Request-Id</code>. So the ADL record gets its own
+<li>Behind the <abbr title="Federated Service Connectivity">FSC</abbr> Inway, the decision record does not meet this
+  requirement. The Inway gives the <abbr title="Policy Decision Point">PDP</abbr> no <code>traceparent</code>, and gives the
+  transaction ID only as <code>X-Request-Id</code>. So the <abbr title="Authorization Decision Log">ADL</abbr> record gets its own
   trace and no <code>adl.fsc.transaction_id</code>
   (<a href="../../traceability/findings-closed/#f-41">F-41</a>,
   <a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>). That is
-  behavior of FSC and the policy engine. The fix lies upstream.</li>
+  behavior of <abbr title="Federated Service Connectivity">FSC</abbr> and the policy engine. The fix lies upstream.</li>
 <li>In demo v0.9.0, the operational logs of the source gateway, the EUDI
-  adapter, and the ASIP do not carry a trace ID.</li>
+  adapter, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> do not carry a trace ID.</li>
 <li>Design choice: logs and traces are joined on identifier equality.
   The join does not use timestamps.</li>
 <li>Consent issuance and the later query are separate units of work, with
@@ -5179,9 +5186,10 @@ transaction ID next to the trace ID.</p>
 <ul>
 <li>REQ-16 (end-to-end <code>traceparent</code> propagation): merged into <a href="#req-55">REQ-55</a>.</li>
 <li>REQ-28 (logs and traces can be reconstructed by a shared identifier for each request): merged into <a href="#req-55">REQ-55</a>.</li>
-<li>REQ-29 (no BSN in observability logs): merged into <a href="./#req-60">REQ-60</a>.</li>
+<li>REQ-29 (no <abbr title="Burgerservicenummer">BSN</abbr> in observability logs): merged into <a href="./#req-60">REQ-60</a>.</li>
 <li>REQ-54 (peer transaction log and portal correlation by <code>Fsc-Transaction-Id</code>): merged into <a href="#req-55">REQ-55</a>.</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

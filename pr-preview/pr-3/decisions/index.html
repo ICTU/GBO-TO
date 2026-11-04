@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4557,9 +4557,9 @@
 
 
 <h1 id="architecture-decisions">Architecture decisions<a class="headerlink" href="#architecture-decisions" title="Permanent link">&para;</a></h1>
-<p>The decision log holds every architecture decision of GBO in MADR
+<p>The decision log holds every architecture decision of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> in MADR
 format. It contains the decisions of the archived reference architecture
-v0.6.2. It also contains the decisions that the GBO team made during the
+v0.6.2. It also contains the decisions that the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> team made during the
 build of the demo.</p>
 <p>Each ADR names the PSA or GO constraint that it satisfies and the
 deliberation that produced it. Each ADR also links to its implementation
@@ -4591,13 +4591,13 @@ full list is in the ADR.</p>
 </tr>
 <tr>
 <td><a href="0002-opa-rego-authzen/">0002</a></td>
-<td>OPA/Rego in OpenFTV, the FSC Inway as PEP, AuthZEN with the FTV GraphQL profile</td>
+<td>OPA/Rego in <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr>, the <abbr title="Federated Service Connectivity">FSC</abbr> Inway as <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> with the <abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL profile</td>
 <td><a href="../requirements/authorization/#req-04">REQ-04</a>, <a href="../requirements/authorization/#req-42">REQ-42</a></td>
-<td>Includes the decision "the FSC Inway is the PEP"</td>
+<td>Includes the decision "the <abbr title="Federated Service Connectivity">FSC</abbr> Inway is the <abbr title="Policy Enforcement Point">PEP</abbr>"</td>
 </tr>
 <tr>
 <td><a href="0003-fsc-connectivity/">0003</a></td>
-<td>FSC for all domestic connectivity</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> for all domestic connectivity</td>
 <td><a href="../requirements/sources-identity/#req-46">REQ-46</a></td>
 <td></td>
 </tr>
@@ -4609,7 +4609,7 @@ full list is in the ADR.</p>
 </tr>
 <tr>
 <td><a href="0005-bsnk-pp/">0005</a></td>
-<td>BSNk PP polymorphic pseudonyms for private-sector access</td>
+<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> polymorphic pseudonyms for private-sector access</td>
 <td><a href="../requirements/pseudonymization/#req-20">REQ-20</a>, <a href="../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="../requirements/pseudonymization/#req-82">REQ-82</a></td>
 <td>BSNk is called only at consent time. The mock follows the BSNk interface and does not encrypt</td>
 </tr>
@@ -4621,13 +4621,13 @@ full list is in the ADR.</p>
 </tr>
 <tr>
 <td><a href="0013-pdp-request-mapper/">0013</a></td>
-<td>GraphQL request mapping in the PDP ahead of policy evaluation</td>
+<td>GraphQL request mapping in the <abbr title="Policy Decision Point">PDP</abbr> ahead of policy evaluation</td>
 <td><a href="../requirements/authorization/#req-17">REQ-17</a>, <a href="../requirements/authorization/#req-42">REQ-42</a></td>
 <td>Supersedes 0012. The mapper only maps</td>
 </tr>
 <tr>
 <td><a href="0015-contract-acceptance-by-policy/">0015</a></td>
-<td>FSC contract acceptance by policy</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> contract acceptance by policy</td>
 <td><a href="../requirements/admission/#req-61">REQ-61</a>, <a href="../requirements/admission/#req-62">REQ-62</a>, <a href="../requirements/admission/#req-63">REQ-63</a></td>
 <td>Eight ordered refusal codes</td>
 </tr>
@@ -4645,19 +4645,19 @@ full list is in the ADR.</p>
 </tr>
 <tr>
 <td><a href="0018-eudi-disclosure-issuance/">0018</a></td>
-<td>EUDI issuance through disclosure-based OpenID4VCI on the nl-wallet stack</td>
+<td>EUDI issuance through disclosure-based <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> on the nl-wallet stack</td>
 <td><a href="../requirements/eudi-issuance/#req-45">REQ-45</a>, <a href="../requirements/eudi-issuance/#req-57">REQ-57</a>, <a href="../requirements/eudi-issuance/#req-78">REQ-78</a></td>
 <td></td>
 </tr>
 <tr>
 <td><a href="0020-as4-bridge-for-oots/">0020</a></td>
-<td>AS4 bridge for SDG-OOTS</td>
+<td>AS4 bridge for SDG-<abbr title="Once-Only Technical System">OOTS</abbr></td>
 <td><a href="../requirements/authorization/#req-44">REQ-44</a></td>
 <td>Not implemented in gbo-demo v0.9.0</td>
 </tr>
 <tr>
 <td><a href="0021-central-pap-signed-bundles/">0021</a></td>
-<td>Policy management and distribution per source holder</td>
+<td>Policy management and distribution per bronhouder</td>
 <td><a href="../requirements/authorization/#rl-01">RL-01</a> to <a href="../requirements/authorization/#rl-05">RL-05</a></td>
 <td>Rewritten. Signing applies only across an organization boundary</td>
 </tr>
@@ -4669,7 +4669,7 @@ full list is in the ADR.</p>
 </tr>
 <tr>
 <td><a href="0026-ldv-integration/">0026</a></td>
-<td>Each controller logs its own processing in an LDV logbook</td>
+<td>Each controller logs its own processing in an <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook</td>
 <td><a href="../requirements/logging-audit/#req-72">REQ-72</a></td>
 <td>Rewritten</td>
 </tr>
@@ -4681,7 +4681,7 @@ full list is in the ADR.</p>
 </tr>
 <tr>
 <td><a href="0032-consent-proof/">0032</a></td>
-<td>The consent proof: signed, a value per source, a placeholder in the query, status online over FSC, verified in policy</td>
+<td>The consent proof: signed, a value per source, a placeholder in the query, status online over <abbr title="Federated Service Connectivity">FSC</abbr>, verified in policy</td>
 <td><a href="../requirements/consent/#req-68">REQ-68</a>, <a href="../requirements/pseudonymization/#req-79">REQ-79</a>, <a href="../requirements/pseudonymization/#req-80">REQ-80</a></td>
 <td>Supersedes 0007</td>
 </tr>
@@ -4693,19 +4693,19 @@ full list is in the ADR.</p>
 </tr>
 <tr>
 <td><a href="0034-integrator-delegation/">0034</a></td>
-<td>An integrator connects under FSC delegation, and the consent binds the represented party</td>
+<td>An integrator connects under <abbr title="Federated Service Connectivity">FSC</abbr> delegation, and the consent binds the represented party</td>
 <td><a href="../requirements/consent/#req-106">REQ-106</a></td>
 <td></td>
 </tr>
 <tr>
 <td><a href="0035-w3c-trace-context/">0035</a></td>
-<td>W3C Trace Context is the correlation key, and the FSC transaction ID is recorded next to it</td>
+<td>W3C Trace Context is the correlation key, and the <abbr title="Federated Service Connectivity">FSC</abbr> transaction ID is recorded next to it</td>
 <td><a href="../requirements/logging-audit/#req-55">REQ-55</a></td>
 <td>Supersedes 0019</td>
 </tr>
 <tr>
 <td><a href="0036-adl-decision-record/">0036</a></td>
-<td>The ADL is the authoritative record of authorization decisions</td>
+<td>The <abbr title="Authorization Decision Log">ADL</abbr> is the authoritative record of authorization decisions</td>
 <td><a href="../requirements/logging-audit/#req-71">REQ-71</a></td>
 <td></td>
 </tr>
@@ -4723,7 +4723,7 @@ full list is in the ADR.</p>
 </tr>
 <tr>
 <td><a href="0039-asi-source-described-attributes/">0039</a></td>
-<td>ASI attributes described by the source (<code>asi</code> capability in source metadata)</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attributes described by the source (<code>asi</code> capability in source metadata)</td>
 <td><a href="../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../requirements/asi/#req-92">REQ-92</a></td>
 <td>Partly implemented (<a href="https://github.com/ICTU/GBO-demo/issues/592">#592</a>)</td>
 </tr>
@@ -4756,7 +4756,7 @@ These decisions are proposed:</p>
 </tr>
 <tr>
 <td><a href="0025-graphql-fds-datadienst/">0025</a></td>
-<td>GraphQL as a recognized FDS datadienst type</td>
+<td>GraphQL as a recognized data service (datadienst) type of the Federatief Datastelsel (FDS)</td>
 <td><a href="../requirements/authorization/#req-08">REQ-08</a></td>
 <td></td>
 </tr>
@@ -4768,7 +4768,7 @@ These decisions are proposed:</p>
 </tr>
 <tr>
 <td><a href="0028-pubeaa-productization/">0028</a></td>
-<td>PubEAA Provider productization</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> Provider productization</td>
 <td><a href="../requirements/eudi-issuance/#req-58">REQ-58</a>, <a href="../requirements/eudi-issuance/#req-77">REQ-77</a></td>
 <td></td>
 </tr>
@@ -4780,19 +4780,19 @@ These decisions are proposed:</p>
 </tr>
 <tr>
 <td><a href="0041-asi-seal-format/">0041</a></td>
-<td>Seal format of ASI results</td>
+<td>Seal format of <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> results</td>
 <td><a href="../requirements/asi/#req-83">REQ-83</a></td>
 <td><a href="../traceability/open-questions/#q-32">Q-32</a></td>
 </tr>
 <tr>
 <td><a href="0042-asi-attribute-token-binding/">0042</a></td>
-<td>Optional per-attribute token binding for ASI tokens</td>
+<td>Optional per-attribute token binding for <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> tokens</td>
 <td><a href="../requirements/asi/#req-103">REQ-103</a></td>
 <td><a href="../traceability/open-questions/#q-33">Q-33</a></td>
 </tr>
 <tr>
 <td><a href="0043-identifiers-out-of-pdp-input/">0043</a></td>
-<td>Keep identifiers out of the PDP input instead of masking decision logs</td>
+<td>Keep identifiers out of the <abbr title="Policy Decision Point">PDP</abbr> input instead of masking decision logs</td>
 <td><a href="../requirements/logging-audit/#req-60">REQ-60</a></td>
 <td>Demo <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a></td>
 </tr>
@@ -4812,7 +4812,7 @@ These decisions are proposed:</p>
 <tbody>
 <tr>
 <td><a href="0006-consent-register-as-pip/">0006</a></td>
-<td>Consent register as runtime PIP</td>
+<td>Consent register (toestemmingsregister) as runtime <abbr title="Policy Information Point">PIP</abbr></td>
 <td><a href="../requirements/consent/#req-68">REQ-68</a></td>
 <td><a href="0007-consent-signed-token/">0007</a>, then <a href="0032-consent-proof/">0032</a></td>
 </tr>
@@ -4824,19 +4824,19 @@ These decisions are proposed:</p>
 </tr>
 <tr>
 <td><a href="0008-dienstencatalogus-ceiling/">0008</a></td>
-<td>Dienstencatalogus as a data-driven policy ceiling</td>
+<td>Service catalog (dienstencatalogus) as a data-driven policy ceiling</td>
 <td><a href="../requirements/authorization/#req-08">REQ-08</a></td>
 <td><a href="0009-closed-world-rules/">0009</a></td>
 </tr>
 <tr>
 <td><a href="0010-pep-bsn-resolution/">0010</a></td>
-<td>BSN resolution inside the PEP</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr> resolution inside the <abbr title="Policy Enforcement Point">PEP</abbr></td>
 <td><a href="../requirements/pseudonymization/#req-21">REQ-21</a></td>
 <td><a href="0011-sidecar-pseudonym-resolution/">0011</a>, then <a href="0033-gateway-decrypts-after-allow/">0033</a></td>
 </tr>
 <tr>
 <td><a href="0011-sidecar-pseudonym-resolution/">0011</a></td>
-<td>Source-owned sidecar resolves pseudonyms, and the PDP never sees a BSN</td>
+<td>Source-owned source gateway resolves pseudonyms, and the <abbr title="Policy Decision Point">PDP</abbr> never sees a <abbr title="Burgerservicenummer">BSN</abbr></td>
 <td><a href="../requirements/pseudonymization/#req-21">REQ-21</a></td>
 <td><a href="0033-gateway-decrypts-after-allow/">0033</a></td>
 </tr>
@@ -4854,7 +4854,7 @@ These decisions are proposed:</p>
 </tr>
 <tr>
 <td><a href="0019-fsc-transaction-id-tracing/">0019</a></td>
-<td>FSC transaction ID as the end-to-end correlation key</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> transaction ID as the end-to-end correlation key</td>
 <td><a href="../requirements/logging-audit/#req-55">REQ-55</a></td>
 <td><a href="0035-w3c-trace-context/">0035</a></td>
 </tr>
@@ -4866,7 +4866,7 @@ These decisions are proposed:</p>
 </tr>
 <tr>
 <td><a href="0030-grant-properties/">0030</a></td>
-<td>Flow and subject identifier semantics as FSC grant properties</td>
+<td>Flow and subject identifier semantics as <abbr title="Federated Service Connectivity">FSC</abbr> grant properties</td>
 <td><a href="../requirements/authorization/#req-74">REQ-74</a></td>
 <td><a href="0031-regime-from-evidence/">0031</a></td>
 </tr>
@@ -4888,7 +4888,7 @@ These decisions are proposed:</p>
 <td><a href="0022-sector-grants/">0022</a></td>
 <td>Sector-level grants with organizational attribute verification</td>
 <td><a href="../requirements/admission/#req-61">REQ-61</a></td>
-<td>Deferred. Admission runs through the onboarding register. The demo removed <code>sector-pip</code> (<a href="https://github.com/ICTU/GBO-demo/issues/378">#378</a>)</td>
+<td>Deferred. Admission runs through the admission register (toelatingsregister). The demo removed <code>sector-pip</code> (<a href="https://github.com/ICTU/GBO-demo/issues/378">#378</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -4899,6 +4899,7 @@ These decisions are proposed:</p>
 <li>Open questions: <a href="../traceability/open-questions/#q-32">Q-32</a>, <a href="../traceability/open-questions/#q-33">Q-33</a>, <a href="../traceability/open-questions/#q-49">Q-49</a>, <a href="../traceability/open-questions/#q-74">Q-74</a> (block proposed ADRs)</li>
 <li>Demo increments: see the footer of each ADR.</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

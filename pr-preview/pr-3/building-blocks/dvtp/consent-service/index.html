@@ -25,7 +25,7 @@
     
     
       
-        <title>Toestemmingsvoorziening - Gemeenschappelijke Bronontsluiting</title>
+        <title>Consent facility - Gemeenschappelijke Bronontsluiting</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#toestemmingsvoorziening" class="md-skip">
+        <a href="#consent-facility" class="md-skip">
           Ga naar inhoud
         </a>
       
@@ -164,7 +164,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Toestemmingsvoorziening
+              Consent facility
             
           </span>
         </div>
@@ -1201,7 +1201,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1219,7 +1219,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1421,7 +1421,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4587,26 +4587,26 @@
   
 
 
-<h1 id="toestemmingsvoorziening">Toestemmingsvoorziening<a class="headerlink" href="#toestemmingsvoorziening" title="Permanent link">&para;</a></h1>
-<p>The toestemmingsvoorziening is where the citizen gives, views and revokes
+<h1 id="consent-facility">Consent facility<a class="headerlink" href="#consent-facility" title="Permanent link">&para;</a></h1>
+<p>The consent facility (toestemmingsvoorziening) is where the citizen gives, views and revokes
 consent. It also tells every source, at every request, whether a consent
-still holds. It has three components: the toestemmingsportaal frontend
+still holds. It has three components: the consent portal (toestemmingsportaal) frontend
 and backend (PSA capability
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal">S02</a>)
-and the toestemmingsregister
+and the consent register (toestemmingsregister)
 (<a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie">S01</a>).
 The <a href="../../../concepts/consent/">Consent</a> concept page has the detail and
 the links to the code.</p>
-<p><a href="../../">Overview</a> › <a href="../">DvTP channel</a> › Toestemmingsvoorziening</p>
+<p><a href="../../">Overview</a> › <a href="../"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel</a> › Consent facility</p>
 <h2 id="components-and-interfaces">Components and interfaces<a class="headerlink" href="#components-and-interfaces" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
   burger(["Citizen&lt;br/&gt;browser"])
-  dv["Dienstverlener"]
-  subgraph tv["Toestemmingsvoorziening"]
+  dv["Service provider"]
+  subgraph tv["Consent facility"]
     direction TB
     pf("Portal frontend&lt;br/&gt;request, login, choice,&lt;br/&gt;overview, revoke")
     pb("Portal backend&lt;br/&gt;keeps the BSN away&lt;br/&gt;from the register")
-    subgraph tr["Toestemmingsregister"]
+    subgraph tr["Consent register"]
       direction TB
       api("Portal API&lt;br/&gt;create, list, revoke")
       st("Status listener&lt;br/&gt;status only")
@@ -4618,7 +4618,7 @@ the links to the code.</p>
   bsnk["BSNk PP&lt;br/&gt;&lt;i&gt;mock&lt;/i&gt;"]
   inw("Register Inway&lt;br/&gt;FSC service consent-status")
   pdp("PDP of a source")
-  log[("LDV logbook&lt;br/&gt;consent service")]
+  log[("LDV logbook&lt;br/&gt;consent facility")]
 
   dv -- "redirect: consumer, service,&lt;br/&gt;data sets, return address" --&gt; pf
   burger --&gt; pf
@@ -4654,7 +4654,7 @@ the links to the code.</p>
   style tr fill:#FFFFFF,stroke:#E28F80
   click pdp "../../gbo-basis/authorization/" "Authorization"
   click bsnk "../../../concepts/pseudonymization/" "Pseudonymization"</div>
-<p class="caption"><em>Figure 1: The components of the toestemmingsvoorziening and their
+<p class="caption"><em>Figure 1: The components of the consent facility and their
 interfaces.</em></p>
 <p>Each component has one job:</p>
 <table>
@@ -4673,8 +4673,8 @@ interfaces.</em></p>
 </tr>
 <tr>
 <td>Portal backend</td>
-<td>Recognizes the citizen with a keyed hash of the BSN. Asks BSNk for the values per source. Talks to the register.</td>
-<td>Sends a BSN to the register (<a href="../../../requirements/consent/#req-23">REQ-23</a>)</td>
+<td>Recognizes the citizen with a keyed hash of the <abbr title="Burgerservicenummer">BSN</abbr>. Asks BSNk for the values per source. Talks to the register.</td>
+<td>Sends a <abbr title="Burgerservicenummer">BSN</abbr> to the register (<a href="../../../requirements/consent/#req-23">REQ-23</a>)</td>
 </tr>
 <tr>
 <td>Register: portal API</td>
@@ -4683,19 +4683,19 @@ interfaces.</em></p>
 </tr>
 <tr>
 <td>Register: status listener</td>
-<td>Answers one question per request: is this consent active? It is reachable only over FSC.</td>
+<td>Answers one question per request: is this consent active? It is reachable only over <abbr title="Federated Service Connectivity">FSC</abbr>.</td>
 <td>Serves anything else</td>
 </tr>
 <tr>
 <td>Register: JWKS</td>
-<td>Publishes the public keys that the PDP uses to check a proof.</td>
+<td>Publishes the public keys that the <abbr title="Policy Decision Point">PDP</abbr> uses to check a proof.</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
 <h2 id="the-consent-proof">The consent proof<a class="headerlink" href="#the-consent-proof" title="Permanent link">&para;</a></h2>
 <p>The register signs a consent proof when the citizen gives consent. The
-dienstverlener keeps it and sends it unchanged with every query:</p>
+service provider (dienstverlener) keeps it and sends it unchanged with every query:</p>
 <div class="mermaid">flowchart LR
   subgraph jwt["Consent proof: ES256 JWT, type gbo-consent+jwt"]
     direction TB
@@ -4733,20 +4733,20 @@ dienstverlener keeps it and sends it unchanged with every query:</p>
   style claims fill:#F4F5F7,stroke:#D1D5DB
   style es fill:#F5F3FF,stroke:#7C3AED</div>
 <p class="caption"><em>Figure 2: The parts of the consent proof.</em></p>
-<p>The proof holds no BSN. The dienstverlener can read which data sets it
+<p>The proof holds no <abbr title="Burgerservicenummer">BSN</abbr>. The service provider can read which data sets it
 can ask for. It cannot read who the citizen is: each value in
 <code>encrypted_subject</code> can be decrypted only by the source it was made for
 (<a href="../../../requirements/pseudonymization/#req-80">REQ-80</a>). The
 decision for this form is
 <a href="../../../decisions/0032-consent-proof/">ADR-0032</a>.</p>
-<p>The proof works as a bearer token. The binding to the dienstverlener stops
+<p>The proof works as a bearer token. The binding to the service provider stops
 use by another party, but not replay by the same party within the
 validity (<a href="../../../risks/#r4">R4</a>).</p>
 <h2 id="life-of-a-consent">Life of a consent<a class="headerlink" href="#life-of-a-consent" title="Permanent link">&para;</a></h2>
 <div class="mermaid">stateDiagram-v2
   direction LR
   [*] --&gt; Active: citizen gives consent,&lt;br/&gt;register signs the proof
-  Active --&gt; Active: dienstverlener queries&lt;br/&gt;(as often as needed)
+  Active --&gt; Active: service provider queries&lt;br/&gt;(as often as needed)
   Active --&gt; Revoked: citizen revokes
   Active --&gt; Expired: valid_until passes
   Revoked --&gt; [*]
@@ -4760,7 +4760,7 @@ validity (<a href="../../../risks/#r4">R4</a>).</p>
 date in the proof. A consent can be used again within its validity: the
 design does not require single use
 (<a href="../../../traceability/answered-questions/#q-04">Q-04</a>). A revocation
-takes effect on the next request, because the PDP asks the status every
+takes effect on the next request, because the <abbr title="Policy Decision Point">PDP</abbr> asks the status every
 time (<a href="../../../requirements/consent/#req-14">REQ-14</a>).</p>
 <h2 id="why-the-status-stays-online">Why the status stays online<a class="headerlink" href="#why-the-status-stays-online" title="Permanent link">&para;</a></h2>
 <p>The proof carries the content of the consent, and the register keeps the
@@ -4777,7 +4777,7 @@ status. Each part has its own freshness:</p>
 <tr>
 <td>Content: data sets, party, validity</td>
 <td>Fixed at consent, checked locally</td>
-<td>The register signed it. The PDP needs no call for it.</td>
+<td>The register signed it. The <abbr title="Policy Decision Point">PDP</abbr> needs no call for it.</td>
 </tr>
 <tr>
 <td>Public keys</td>
@@ -4791,12 +4791,12 @@ status. Each part has its own freshness:</p>
 </tr>
 </tbody>
 </table>
-<p>The price is a hard dependency: if the register does not answer, the PDP
-denies every DvTP request (<a href="../../../requirements/consent/#req-75">REQ-75</a>).
+<p>The price is a hard dependency: if the register does not answer, the <abbr title="Policy Decision Point">PDP</abbr>
+denies every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> request (<a href="../../../requirements/consent/#req-75">REQ-75</a>).
 The target values for availability and delay are open
 (<a href="../../../traceability/open-questions/#q-47">Q-47</a>).</p>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
-<p>The main open points in the toestemmingsvoorziening are these:</p>
+<p>The main open points in the consent facility are these:</p>
 <ul>
 <li>Whether the register and the portal backend are one system, and which
   one is the BSNk participant
@@ -4833,6 +4833,7 @@ The target values for availability and delay are open
   <a href="../../../traceability/increments/#sl-47">SL-47</a> (done),
   <a href="../../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1298,7 +1298,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4033,7 +4033,7 @@
   <a href="#req-58" class="md-nav__link">
     <span class="md-ellipsis">
       
-        REQ-58: Every source holder has its own certificate set for issuance, and missing material fails
+        REQ-58: Every bronhouder has its own certificate set for issuance, and missing material fails
       
     </span>
   </a>
@@ -4044,7 +4044,7 @@
   <a href="#req-77" class="md-nav__link">
     <span class="md-ellipsis">
       
-        REQ-77: An attestation gets the validity and revocation policy of the source holder
+        REQ-77: An attestation gets the validity and revocation policy of the bronhouder
       
     </span>
   </a>
@@ -4595,10 +4595,10 @@
 
 <h1 id="eudi-issuance-requirements">EUDI issuance requirements<a class="headerlink" href="#eudi-issuance-requirements" title="Permanent link">&para;</a></h1>
 <p>These requirements apply only to the issuance of attestations to the EUDI
-wallet (the PuB-EAA route). The citizen discloses a PID from the wallet.
-The nl-wallet issuance server verifies the disclosure and calls the GBO
-EUDI adapter. The adapter queries the source over FSC through the generic
-PEP-PDP chain. Then the issuance server issues the attestation under the
+wallet (the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route). The citizen discloses a <abbr title="Person Identification Data">PID</abbr> from the wallet.
+The nl-wallet issuance server verifies the disclosure and calls the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
+EUDI adapter. The adapter queries the source over <abbr title="Federated Service Connectivity">FSC</abbr> through the generic
+<abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> chain. Then the issuance server issues the attestation under the
 certificate set of the bronhouder.</p>
 <p>This route exposed a generic basis. The generic pages hold that basis:</p>
 <ul>
@@ -4612,10 +4612,10 @@ certificate set of the bronhouder.</p>
 <a href="../../decisions/0028-pubeaa-productization/">ADR 0028</a> record the design.
 The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.</p>
 <p>Evidence links to gbo-demo point at tag <code>v0.9.0</code>.</p>
-<h2 id="req-45">REQ-45: The source is queried only about the citizen from a verified PID disclosure<a class="headerlink" href="#req-45" title="Permanent link">&para;</a></h2>
+<h2 id="req-45">REQ-45: The source is queried only about the citizen from a verified <abbr title="Person Identification Data">PID</abbr> disclosure<a class="headerlink" href="#req-45" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>The GBO issuance facility MUST take the subject of a source query for an attestation only from a verified PID disclosure. A verified PID disclosure has a signature that was checked against a trust list of PID providers. The facility MUST be able to show that this disclosure belongs to this request. A request without such a disclosure MUST NOT reach the source. A request with a shared attestation that is not a PID MUST NOT reach the source. A request that does not provably come from the verifying party MUST NOT reach the source either.</p>
-<p>The trust list for that check MUST hold only the anchors of PID providers.</p>
+<p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST take the subject of a source query for an attestation only from a verified <abbr title="Person Identification Data">PID</abbr> disclosure. A verified <abbr title="Person Identification Data">PID</abbr> disclosure has a signature that was checked against a trust list of <abbr title="Person Identification Data">PID</abbr> providers. The facility MUST be able to show that this disclosure belongs to this request. A request without such a disclosure MUST NOT reach the source. A request with a shared attestation that is not a <abbr title="Person Identification Data">PID</abbr> MUST NOT reach the source. A request that does not provably come from the verifying party MUST NOT reach the source either.</p>
+<p>The trust list for that check MUST hold only the anchors of <abbr title="Person Identification Data">PID</abbr> providers.</p>
 </blockquote>
 <table>
 <thead>
@@ -4626,15 +4626,15 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </thead>
 <tbody>
 <tr>
-<td>Verified PID disclosure, provably for this request</td>
-<td>source queried with the BSN from the PID (<em>proposal, binding not built</em>)</td>
+<td>Verified <abbr title="Person Identification Data">PID</abbr> disclosure, provably for this request</td>
+<td>source queried with the <abbr title="Burgerservicenummer">BSN</abbr> from the <abbr title="Person Identification Data">PID</abbr> (<em>proposal, binding not built</em>)</td>
 </tr>
 <tr>
-<td>Disclosure without a BSN</td>
+<td>Disclosure without a <abbr title="Burgerservicenummer">BSN</abbr></td>
 <td>refused before the source with HTTP 400 (<em>from the code</em>)</td>
 </tr>
 <tr>
-<td>Shared attestation is not a PID</td>
+<td>Shared attestation is not a <abbr title="Person Identification Data">PID</abbr></td>
 <td>refused (<em>proposal, reason open</em>)</td>
 </tr>
 <tr>
@@ -4655,30 +4655,30 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <ul>
 <li><strong>Source</strong>: design: ARF v3.0.0 Annex 2
     <a href="https://eudi.dev/3.0.0/annexes/annex-2/annex-2.02-high-level-requirements-by-topic/#OIA_12">OIA_12</a>
-    (a relying party validates the PID signature with a trust anchor from
-    the LoTE of PID providers) and
+    (a relying party validates the <abbr title="Person Identification Data">PID</abbr> signature with a trust anchor from
+    the LoTE of <abbr title="Person Identification Data">PID</abbr> providers) and
     <a href="https://eudi.dev/3.0.0/annexes/annex-2/annex-2.02-high-level-requirements-by-topic/#OIA_14">OIA_14</a>
     (LoTE per ETSI TS 119 602). The other source is
     <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>
     ("issuance, verification and retrieval use suitable authentication,
     authorization and logging", "agreements arrange binding to citizen and
     wallet").</li>
-<li><strong>Addressee</strong>: GBO-delivered component: the EUDI adapter and the
-    issuance configuration that GBO generates. The issuance server is part
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the EUDI adapter and the
+    issuance configuration that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> generates. The issuance server is part
     of nl-wallet. What the issuance server verifies is a product property.
     This requirement does not cover it.</li>
 <li><strong>Evidence</strong>: not built:
-    <a href="https://github.com/ICTU/GBO-demo/issues/133">ICTU/GBO-demo#133</a>.
+    <a href="https://github.com/ICTU/GBO-demo/issues/133">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#133</a>.
     Demo v0.9.0 has this state:<ul>
-<li>The adapter trusts the BSN
+<li>The adapter trusts the <abbr title="Burgerservicenummer">BSN</abbr>
     (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L23-L26"><code>main.go#L23-L26</code></a>).
-    It refuses a disclosure without a BSN in
+    It refuses a disclosure without a <abbr title="Burgerservicenummer">BSN</abbr> in
     <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L249-L253"><code>#L249-L253</code></a>.</li>
 <li>The route <code>POST /attestations/{sourceID}/{typeID}</code>
     (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L69"><code>source_release_runtime.go#L69</code></a>)
     runs on a plain listener without caller authentication
     (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L700"><code>main.go#L700</code></a>).</li>
-<li>Issuance asks only for the BSN from the PID
+<li>Issuance asks only for the <abbr title="Burgerservicenummer">BSN</abbr> from the <abbr title="Person Identification Data">PID</abbr>
     (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_config.go#L162"><code>issuance_config.go#L162</code></a>).</li>
 <li>The trust list is in
     <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/config/issuance_server.toml.example#L3-L9"><code>issuance_server.toml.example#L3-L9</code></a>.
@@ -4697,37 +4697,37 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     <a href="../../decisions/0031-regime-from-evidence/">ADR 0031</a>,
     <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR 0043</a>.</li>
 <li><strong>Notes</strong>:<ul>
-<li>The issuance server verifies the PID disclosure. For that reason
-    <a href="../../traceability/increments/#sl-25">SL-25</a> (PID verification in the
+<li>The issuance server verifies the <abbr title="Person Identification Data">PID</abbr> disclosure. For that reason
+    <a href="../../traceability/increments/#sl-25">SL-25</a> (<abbr title="Person Identification Data">PID</abbr> verification in the
     adapter) was dropped.</li>
 <li>The gap is in the callback. The signature check is in place. Any
-    caller that reaches the adapter URL can post a body with any BSN. The
-    adapter then calls the source over FSC as the designated issuer peer,
-    so the PDP allows the request. The adapter returns the projected
+    caller that reaches the adapter URL can post a body with any <abbr title="Burgerservicenummer">BSN</abbr>. The
+    adapter then calls the source over <abbr title="Federated Service Connectivity">FSC</abbr> as the designated issuer peer,
+    so the <abbr title="Policy Decision Point">PDP</abbr> allows the request. The adapter returns the projected
     claims without any wallet involvement.</li>
 <li>Two solutions meet the requirement: the adapter verifies the SD-JWT
     itself, or the verifying runtime delivers signed evidence and
     authenticates the callback. Both solutions also need the binding of
     the disclosure to the request.</li>
-<li>With this requirement, the PID becomes positive evidence for the PID
+<li>With this requirement, the <abbr title="Person Identification Data">PID</abbr> becomes positive evidence for the <abbr title="Person Identification Data">PID</abbr>
     regime. In demo v0.9.0, that regime is "no consent token" plus a list
     of designated issuers
     (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eudi_helper.rego#L13-L30"><code>eudi_helper.rego#L13-L30</code></a>,
     <a href="../../traceability/findings/#f-70">F-70</a>).</li>
-<li>In demo v0.9.0, the trust list also holds the GBO development CA and
-    the issuer CAs of the sources. A PID verification must trust only PID
+<li>In demo v0.9.0, the trust list also holds the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> development CA and
+    the issuer CAs of the sources. A <abbr title="Person Identification Data">PID</abbr> verification must trust only <abbr title="Person Identification Data">PID</abbr>
     providers.
     How fresh the list must be is open
     (<a href="../../traceability/open-questions/#q-18">Q-18</a>, sub-question 4).
-    Which list anchors PuB-EAA providers is open as well
+    Which list anchors <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> providers is open as well
     (<a href="../../traceability/open-questions/#q-30">Q-30</a>).</li>
-<li>Checking the revocation status of the PID is a SHOULD
+<li>Checking the revocation status of the <abbr title="Person Identification Data">PID</abbr> is a SHOULD
     (<a href="https://eudi.dev/3.0.0/annexes/annex-2/annex-2.02-high-level-requirements-by-topic/#VCR_13">VCR_13</a>).</li>
-<li>The reference QTSP authenticates its callback with a secret path over
+<li>The reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> authenticates its callback with a secret path over
     CA-pinned HTTPS
     (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/qtsp_issuance.go#L134-L142"><code>qtsp_issuance.go#L134-L142</code></a>).
     The source route does not.</li>
-<li>The BSN from the PID stays in the PDP input and is in both decision
+<li>The <abbr title="Burgerservicenummer">BSN</abbr> from the <abbr title="Person Identification Data">PID</abbr> stays in the <abbr title="Policy Decision Point">PDP</abbr> input and is in both decision
     logs. <a href="../logging-audit/#req-60">REQ-60</a> is not met for EUDI
     (<a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR 0043</a>).</li>
 </ul>
@@ -4736,7 +4736,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </details>
 <h2 id="req-57">REQ-57: An attestation about someone other than the requester follows an agreed relation from the verified requester<a class="headerlink" href="#req-57" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>An attestation can hold data about someone other than the requester. For such an attestation, the chain that GBO delivers MUST query the source only along a relation that the source recorded in its service description. The starting point MUST be the subject from the verified PID (<a href="#req-45">REQ-45</a>). The starting point MUST NOT be a value that the caller chooses. The reference policy MUST deny a query that takes another entry point or asks for fields outside that relation. The service description MUST mark such a relation, with the kind of relation.</p>
+<p>An attestation can hold data about someone other than the requester. For such an attestation, the chain that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers MUST query the source only along a relation that the source recorded in its service description. The starting point MUST be the subject from the verified <abbr title="Person Identification Data">PID</abbr> (<a href="#req-45">REQ-45</a>). The starting point MUST NOT be a value that the caller chooses. The reference policy MUST deny a query that takes another entry point or asks for fields outside that relation. The service description MUST mark such a relation, with the kind of relation.</p>
 </blockquote>
 <table>
 <thead>
@@ -4759,7 +4759,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <td>certificate (<em>from the code</em>)</td>
 </tr>
 <tr>
-<td>Entry point without the BSN of a citizen</td>
+<td>Entry point without the <abbr title="Burgerservicenummer">BSN</abbr> of a citizen</td>
 <td>denied: <code>PID_NOT_PRESENT</code> (<em>from the code</em>)</td>
 </tr>
 <tr>
@@ -4767,8 +4767,8 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <td>denied: <code>FIELD_NOT_PERMITTED</code> (<em>from the code</em>)</td>
 </tr>
 <tr>
-<td>Entry point with the BSN of someone other than the PID holder</td>
-<td>the PDP cannot tell the difference, so this case depends on REQ-45 (<em>proposal</em>)</td>
+<td>Entry point with the <abbr title="Burgerservicenummer">BSN</abbr> of someone other than the <abbr title="Person Identification Data">PID</abbr> holder</td>
+<td>the <abbr title="Policy Decision Point">PDP</abbr> cannot tell the difference, so this case depends on REQ-45 (<em>proposal</em>)</td>
 </tr>
 <tr>
 <td>Relation not marked in the service description</td>
@@ -4786,12 +4786,12 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>
     ("agreements arrange binding to citizen and wallet") and
     <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>.
-    Without a recorded relation from the requester, anyone with a valid PID
+    Without a recorded relation from the requester, anyone with a valid <abbr title="Person Identification Data">PID</abbr>
     can put data about any other person in an attestation. Compare
     Implementing Regulation (EU)
     <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj">2025/1569</a>,
     Annex II point 2(c) (only the minimum set of attributes).</li>
-<li><strong>Addressee</strong>: GBO-delivered component: the reference policy and the
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the reference policy and the
     adapter. Interface agreement: the marking of the relation in the
     service description.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/125">PR #125</a>,
@@ -4808,7 +4808,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego#L62-L66"><code>#L62-L66</code></a>,
     tested in
     <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002_test.rego#L42"><code>eud0002_test.rego#L42</code></a>.</li>
-<li>The subject comes from the PID
+<li>The subject comes from the <abbr title="Person Identification Data">PID</abbr>
     (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L272-L273"><code>source_metadata.go#L272-L273</code></a>).</li>
 <li>The marking in the service description is not built.</li>
 </ul>
@@ -4824,8 +4824,8 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <li>Design choice: in demo v0.9.0, the relation runs through a view of
     the source. Filter arguments in the schema, which the policy requires
     with fixed values, also meet the requirement
-    (<a href="https://github.com/ICTU/GBO-demo/issues/425">ICTU/GBO-demo#425</a>).
-    In the view variant, the PDP does not see the relation and only limits
+    (<a href="https://github.com/ICTU/GBO-demo/issues/425">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#425</a>).
+    In the view variant, the <abbr title="Policy Decision Point">PDP</abbr> does not see the relation and only limits
     the fields. The source carries the selection. The mechanism to check
     argument values exists
     (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/lib.rego#L30-L41"><code>lib.rego#L30-L41</code></a>).</li>
@@ -4842,9 +4842,9 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </li>
 </ul>
 </details>
-<h2 id="req-58">REQ-58: Every source holder has its own certificate set for issuance, and missing material fails<a class="headerlink" href="#req-58" title="Permanent link">&para;</a></h2>
+<h2 id="req-58">REQ-58: Every bronhouder has its own certificate set for issuance, and missing material fails<a class="headerlink" href="#req-58" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>The GBO issuance facility MUST keep a certificate set of its own per bronhouder. The set holds a certificate that signs attestations, and an access certificate with which issuance shows itself to the wallet. The facility MUST NOT sign an attestation or a request to the wallet with the set of another bronhouder, in any case. If the set of a source is missing, incomplete, or differs from what is activated, issuance MUST refuse for that source. Issuance MUST NOT fall back to another set.</p>
+<p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST keep a certificate set of its own per bronhouder. The set holds a certificate that signs attestations, and an access certificate with which issuance shows itself to the wallet. The facility MUST NOT sign an attestation or a request to the wallet with the set of another bronhouder, in any case. If the set of a source is missing, incomplete, or differs from what is activated, issuance MUST refuse for that source. Issuance MUST NOT fall back to another set.</p>
 </blockquote>
 <table>
 <thead>
@@ -4863,7 +4863,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <td>source blocked: <code>CERTIFICATE_SET_NOT_FOUND</code>. Other sources continue.</td>
 </tr>
 <tr>
-<td>Set without OIN or organization name</td>
+<td>Set without <abbr title="Organisatie-identificatienummer">OIN</abbr> or organization name</td>
 <td>source blocked: <code>CERTIFICATE_SET_INVALID</code></td>
 </tr>
 <tr>
@@ -4871,7 +4871,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <td>no issuance configuration generated</td>
 </tr>
 <tr>
-<td>Two sources behind one FSC peer</td>
+<td>Two sources behind one <abbr title="Federated Service Connectivity">FSC</abbr> peer</td>
 <td>each its own set</td>
 </tr>
 </tbody>
@@ -4886,16 +4886,16 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     <a href="https://eudi.dev/3.0.0/annexes/annex-2/annex-2.02-high-level-requirements-by-topic/#Reg_10a">Reg_10a</a>
     (at least one access certificate per registered service),
     <a href="https://eudi.dev/3.0.0/annexes/annex-2/annex-2.02-high-level-requirements-by-topic/#PuBPNot_04">PuBPNot_04</a>
-    (every PuB-EAA can be authenticated with the trust anchors notified for
+    (every <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> can be authenticated with the trust anchors notified for
     that provider), and
     <a href="https://eudi.dev/3.0.0/annexes/annex-2/annex-2.02-high-level-requirements-by-topic/#ISSU_73">ISSU_73</a>
     (signing certificates per ETSI TS 119 412-6 clause 8). The other source
     is
     <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>
     ("the bronhouder stays legally and substantively responsible").</li>
-<li><strong>Addressee</strong>: GBO-delivered component: the reconciler and the
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the reconciler and the
     generator of the issuance configuration.</li>
-<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/225">ICTU/GBO-demo#225</a>,
+<li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/issues/225">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#225</a>,
     <a href="https://github.com/ICTU/GBO-demo/pull/237">PR #237</a>,
     <a href="https://github.com/ICTU/GBO-demo/pull/247">PR #247</a>,
     <a href="https://github.com/ICTU/GBO-demo/pull/276">PR #276</a>.<ul>
@@ -4930,7 +4930,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     does not say who keeps them.</li>
 <li>No procedure exists to rotate and revoke certificates without a
     wallet update
-    (<a href="https://github.com/ICTU/GBO-demo/issues/381">ICTU/GBO-demo#381</a>,
+    (<a href="https://github.com/ICTU/GBO-demo/issues/381">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#381</a>,
     rows 2 and 3).</li>
 <li>In production, a registered service also needs a registration
     certificate, and the seal key sits in a QSCD
@@ -4938,17 +4938,17 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <li>In the demo, all sets hang under one development CA
     (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/config/issuance_server.toml.example#L4-L5"><code>issuance_server.toml.example#L4-L5</code></a>).
     This CA is part of the demo configuration.</li>
-<li>The reference QTSP gets a set of its own, and fails on an incomplete
+<li>The reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> gets a set of its own, and fails on an incomplete
     set
     (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/qtsp_issuance.go#L109-L131"><code>qtsp_issuance.go#L109-L131</code></a>).
-    Missing QTSP material does not block source issuance.</li>
+    Missing <abbr title="Qualified Trust Service Provider">QTSP</abbr> material does not block source issuance.</li>
 </ul>
 </li>
 </ul>
 </details>
-<h2 id="req-77">REQ-77: An attestation gets the validity and revocation policy of the source holder<a class="headerlink" href="#req-77" title="Permanent link">&para;</a></h2>
+<h2 id="req-77">REQ-77: An attestation gets the validity and revocation policy of the bronhouder<a class="headerlink" href="#req-77" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>For each attestation type, the GBO issuance facility MUST apply the validity period that the bronhouder records. The facility MUST NOT apply a value from its own code. An attestation that is valid for more than 24 hours MUST carry a status reference with which it can be revoked. On instruction of the bronhouder, the facility MUST be able to revoke an issued attestation, without an action of the holder.</p>
+<p>For each attestation type, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST apply the validity period that the bronhouder records. The facility MUST NOT apply a value from its own code. An attestation that is valid for more than 24 hours MUST carry a status reference with which it can be revoked. On instruction of the bronhouder, the facility MUST be able to revoke an issued attestation, without an action of the holder.</p>
 </blockquote>
 <table>
 <thead>
@@ -5004,14 +5004,14 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     (revoke when an attribute changes)</li>
 <li><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>
     ("agreements arrange … status, revocation and validity")</li>
-<li><a href="https://ictu.github.io/GBO-GO/main/">GO</a> ("GBO is legally not a
-    PubEAA provider")</li>
+<li><a href="https://ictu.github.io/GBO-GO/main/">GO</a> ("<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> is legally not a
+    <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider")</li>
 </ul>
 </li>
-<li><strong>Addressee</strong>: GBO-delivered component: the issuance facility.</li>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the issuance facility.</li>
 <li><strong>Evidence</strong>: not built:
-    <a href="https://github.com/ICTU/GBO-demo/issues/381">ICTU/GBO-demo#381</a> (rows
-    11 and 12), <a href="https://github.com/ICTU/GBO-demo/issues/225">ICTU/GBO-demo#225</a>.
+    <a href="https://github.com/ICTU/GBO-demo/issues/381">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#381</a> (rows
+    11 and 12), <a href="https://github.com/ICTU/GBO-demo/issues/225">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#225</a>.
     In demo v0.9.0, the validity is fixed in
     <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_config.go#L166-L168"><code>issuance_config.go#L166-L168</code></a>
     and
@@ -5028,12 +5028,12 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <li><strong>Notes</strong>:<ul>
 <li>The policy itself (paragraph 1) belongs to the bronhouder as
     provider. That policy is a candidate connection condition
-    (<a href="../admission/#av-12">AV-12</a>) and no requirement on GBO.
+    (<a href="../admission/#av-12">AV-12</a>) and no requirement on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.
     The facility revokes technically, on instruction of the bronhouder
     (<a href="../admission/#av-13">AV-13</a>).
     <a href="../../traceability/open-questions/#q-17">Q-17</a> covers who holds the
     key of the status list.</li>
-<li>GBO only queries. It gets no signal when source data changes
+<li><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> only queries. It gets no signal when source data changes
     (<a href="../../traceability/findings/#f-82">F-82</a>). For each type, the choice
     is short-lived (less than 24 hours) or long-lived with a change feed
     and revocation.</li>
@@ -5053,7 +5053,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </details>
 <h2 id="req-78">REQ-78: Issuance issues nested claims, with selective disclosure per element as the schema prescribes<a class="headerlink" href="#req-78" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>The attestation schema of the source can define a claim as an object or a list. The GBO issuance facility MUST be able to issue such a claim in that form. It MUST apply the selective disclosure that the schema prescribes for each claim, also for each nested property and each list element. It MUST NOT refuse a schema, or flatten it, because it contains nested claims.</p>
+<p>The attestation schema of the source can define a claim as an object or a list. The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST be able to issue such a claim in that form. It MUST apply the selective disclosure that the schema prescribes for each claim, also for each nested property and each list element. It MUST NOT refuse a schema, or flatten it, because it contains nested claims.</p>
 </blockquote>
 <table>
 <thead>
@@ -5086,13 +5086,13 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     disclosable),
     <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>
     ("attestations follow an established attestation rulebook and schema",
-    and the bronhouder records mapping and attestation schema in its GBO
+    and the bronhouder records mapping and attestation schema in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
     configuration), and
     <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>.</li>
-<li><strong>Addressee</strong>: GBO-delivered component: the mapping profile and the
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the mapping profile and the
     generation of Type Metadata in the EUDI adapter.</li>
 <li><strong>Evidence</strong>: not built:
-    <a href="https://github.com/ICTU/GBO-demo/issues/381">ICTU/GBO-demo#381</a>,
+    <a href="https://github.com/ICTU/GBO-demo/issues/381">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#381</a>,
     row 13. Demo v0.9.0 has only single-valued datatypes in
     <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/internal/gbosimplev1/profile.go#L117-L121"><code>profile.go#L117-L121</code></a>.
     It sets <code>sd</code> per claim in
@@ -5104,9 +5104,9 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     <a href="../../decisions/0017-gbo-simple-v1/">ADR 0017</a>.</li>
 <li><strong>Notes</strong>:<ul>
 <li>The rulebook and the source choose whether a certificate models the
-    parents per person. GBO does not make that choice.</li>
+    parents per person. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not make that choice.</li>
 <li>Each claim in the source description has <code>sd</code> set to <code>always</code> (the
-    default), <code>allowed</code>, or <code>never</code>. GBO carries this value into the
+    default), <code>allowed</code>, or <code>never</code>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> carries this value into the
     generated Type Metadata.</li>
 <li>Whether NL Wallet shows nested claims and lets the holder share them
     per element is wallet behavior (#381, row 13). That behavior decides
@@ -5118,7 +5118,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </details>
 <h2 id="req-116">REQ-116: An attestation contains only what the source answered, per its mapping, and an answer that does not fit gives no attestation<a class="headerlink" href="#req-116" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>The GBO issuance facility MUST take every claim of an attestation from the answer of the source. It MUST use the mapping that the bronhouder records in its service description (<a href="../sources-identity/#req-64">REQ-64</a>). It MUST NOT round, convert, add, or derive a source value beyond what that mapping prescribes.</p>
+<p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST take every claim of an attestation from the answer of the source. It MUST use the mapping that the bronhouder records in its service description (<a href="../sources-identity/#req-64">REQ-64</a>). It MUST NOT round, convert, add, or derive a source value beyond what that mapping prescribes.</p>
 <p>An answer does not fit the mapping if a mandatory claim is missing or empty. It also does not fit if a value does not have the recorded type, or if the answer holds more than one result. If the answer does not fit the mapping, the facility MUST NOT issue an attestation. That includes an attestation with only the claims that do fit. An answer without a result MUST end as "not found", distinct from an error.</p>
 </blockquote>
 <table>
@@ -5168,14 +5168,14 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <li><strong>Source</strong>: design: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>
     ("the bronhouder stays legally and substantively responsible for the
     public attributes issued", "if attestation issuance needs a semantic
-    mapping, the bronhouder records in its GBO configuration which mapping
+    mapping, the bronhouder records in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration which mapping
     … applies"),
     <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">PSA S10</a>
     ("the set-up applies validation rules before delivery"), and
     <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>.
     This requirement is stricter than these sources: no partial attestation
-    and no conversion by GBO.</li>
-<li><strong>Addressee</strong>: GBO-delivered component: the mapping profile and the
+    and no conversion by <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</li>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: the mapping profile and the
     issuance runtime of the EUDI adapter. Interface agreement: the mapping
     profile as part of the service description.</li>
 <li><strong>Evidence</strong>: <a href="https://github.com/ICTU/GBO-demo/pull/204">PR #204</a>.<ul>
@@ -5212,7 +5212,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
     That is a product property.</li>
 <li>If an error occurs, the consumer sees only 502. The error code is in
     the adapter log.</li>
-<li>The ASIP does not use <code>gbo-simple-v1</code>. Its <code>asi</code> capability composes
+<li>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> does not use <code>gbo-simple-v1</code>. Its <code>asi</code> capability composes
     values with <code>pointer</code>, <code>join</code>, <code>const</code>, and <code>each</code>
     (<a href="../../decisions/0039-asi-source-described-attributes/">ADR 0039</a>).
     The rule "no partial result" holds there too
@@ -5223,7 +5223,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </details>
 <h2 id="req-124">REQ-124: For every attestation, the versions of the mapping, the source schema, and the attestation schema are traceable<a class="headerlink" href="#req-124" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>For every issued attestation, the GBO issuance facility MUST make the applied versions traceable. These are the versions of the mapping of the bronhouder, of the source schema, and of the attestation schema. The facility MUST apply only the mapping that the bronhouder recorded for that data service in its GBO configuration (<a href="#req-116">REQ-116</a>). If the bronhouder recorded no mapping, the facility MUST convert nothing.</p>
+<p>For every issued attestation, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility MUST make the applied versions traceable. These are the versions of the mapping of the bronhouder, of the source schema, and of the attestation schema. The facility MUST apply only the mapping that the bronhouder recorded for that data service in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration (<a href="#req-116">REQ-116</a>). If the bronhouder recorded no mapping, the facility MUST convert nothing.</p>
 </blockquote>
 <table>
 <thead>
@@ -5254,12 +5254,12 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <summary>Source, evidence and notes</summary>
 <ul>
 <li><strong>Source</strong>: design: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">PSA S10</a>
-    ("mappings to OOTS-EDM and attestation schemas are explicit. They can be
+    ("mappings to <abbr title="Once-Only Technical System">OOTS</abbr>-EDM and attestation schemas are explicit. They can be
     traced to the source and target versions used"),
     <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>
-    (the bronhouder records in its GBO configuration which mapping applies),
+    (the bronhouder records in its <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration which mapping applies),
     and <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-14</a>.</li>
-<li><strong>Addressee</strong>: GBO-delivered component: issuance (the EUDI adapter).</li>
+<li><strong>Addressee</strong>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component: issuance (the EUDI adapter).</li>
 <li><strong>Evidence</strong>: <a href="#req-116">REQ-116</a> gives the evidence that only the
     mapping of the bronhouder is applied. The traceability of the versions
     is not checked.</li>
@@ -5276,7 +5276,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 <li>This requirement is the counterpart for the mapping of
     <a href="../logging-audit/#req-59">REQ-59</a> (the policy version in the
     decision record).</li>
-<li>S10 asks the same for the mapping to OOTS-EDM. That requirement
+<li>S10 asks the same for the mapping to <abbr title="Once-Only Technical System">OOTS</abbr>-EDM. That requirement
     follows after <a href="../../traceability/open-questions/#q-79">Q-79</a>.</li>
 </ul>
 </li>
@@ -5291,6 +5291,7 @@ The runtime view is in <a href="../../runtime/eudi-issuance/">EUDI issuance</a>.
 </ul>
 <p>The list of all removed numbers is on the
 <a href="../#removed-numbers">requirements overview</a>.</p>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

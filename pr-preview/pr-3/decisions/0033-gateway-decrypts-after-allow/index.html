@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4587,7 +4587,7 @@
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/main.go#L185-L189">bron-sidecar/main.go</a>: the gateway acts on the consent proof.</li>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L213-L251">substitution.go</a>: the own value and the recipient check.</li>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/decryption/decryption.go#L44-L50">decryption.go</a>: the source keys, with older versions kept.</li>
-<li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/transport.go#L9-L13">transport.go</a>: only the request shape that the PDP judged.</li>
+<li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/transport.go#L9-L13">transport.go</a>: only the request shape that the <abbr title="Policy Decision Point">PDP</abbr> judged.</li>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L829-L837">docker-compose.yml</a>: the network isolation.</li>
 </ul>
 </li>
@@ -4595,10 +4595,10 @@
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
 <p>Under a consent, the query of the consumer names the citizen with a
 placeholder (<a href="../0032-consent-proof/">ADR-0032</a>). The source API needs a
-BSN, or the own pseudonym of the source for the citizen. A component
+<abbr title="Burgerservicenummer">BSN</abbr>, or the own pseudonym of the source for the citizen. A component
 must replace the placeholder, under three conditions:</p>
 <ul>
-<li>Only after the PDP allowed the request
+<li>Only after the <abbr title="Policy Decision Point">PDP</abbr> allowed the request
   (<a href="../../requirements/authorization/#req-04">REQ-04</a>).</li>
 <li>Inside the boundary of the source, with the keys of the source, and
   without a central party in the query path
@@ -4614,25 +4614,25 @@ Inway and the source API. The gateway works as follows:</p>
 <ul>
 <li>The evidence decides. If a consent token is present, the subject comes
   from the token. Without a token, the request passes through unchanged
-  (PID regime, <a href="../0031-regime-from-evidence/">ADR-0031</a>). Grant properties
+  (<abbr title="Person Identification Data">PID</abbr> regime, <a href="../0031-regime-from-evidence/">ADR-0031</a>). Grant properties
   play no part.</li>
 <li>Only the own value of the source counts. The gateway takes
-  <code>encrypted_subject[&lt;own OIN&gt;]</code> from the proof: the VI for
-  <code>consent:identity</code>, and the VP for <code>consent:pseudonym</code>. The own
+  <code>encrypted_subject[&lt;own OIN&gt;]</code> from the proof: the <abbr title="Encrypted identity">VI</abbr> for
+  <code>consent:identity</code>, and the <abbr title="Encrypted pseudonym">VP</abbr> for <code>consent:pseudonym</code>. The own
   decryption component of the source reads the value with the keys of
   the source.</li>
-<li>The recipient must match. The decrypted value must name the own OIN of
+<li>The recipient must match. The decrypted value must name the own <abbr title="Organisatie-identificatienummer">OIN</abbr> of
   the source as recipient, or the gateway does not accept it. The key
   in the proof is not evidence. The value that BSNk signed is the
   evidence.</li>
 <li>Three cases lead to a refusal, and the request then goes no further:<ul>
-<li>A form is missing, for example no VI for a source that is not on
-  the BSN authorization list.</li>
+<li>A form is missing, for example no <abbr title="Encrypted identity">VI</abbr> for a source that is not on
+  the <abbr title="Burgerservicenummer">BSN</abbr> authorization list.</li>
 <li>The value is for another recipient.</li>
 <li>The query has a literal subject under a consent proof.</li>
 </ul>
 </li>
-<li>The gateway does not verify the proof again. The PDP verified it on
+<li>The gateway does not verify the proof again. The <abbr title="Policy Decision Point">PDP</abbr> verified it on
   the same request, and the gateway runs only after the allow.</li>
 <li>Isolation is the control:<ul>
 <li>Only the source Inways reach the gateway (network
@@ -4640,7 +4640,7 @@ Inway and the source API. The gateway works as follows:</p>
 <li>The gateway reaches only what serves the source (network
   <code>sources</code>).</li>
 <li>The gateway publishes no port.</li>
-<li>The gateway accepts only the request shape that the PDP judged:
+<li>The gateway accepts only the request shape that the <abbr title="Policy Decision Point">PDP</abbr> judged:
   POST, one path, a JSON body, and no query string.</li>
 </ul>
 </li>
@@ -4648,24 +4648,24 @@ Inway and the source API. The gateway works as follows:</p>
 <h2 id="considered-options">Considered options<a class="headerlink" href="#considered-options" title="Permanent link">&para;</a></h2>
 <ol>
 <li>The source gateway decrypts after the allow (chosen).</li>
-<li>BSN resolution in the PEP (<a href="../0010-pep-bsn-resolution/">ADR-0010</a>).
-   The PEP becomes a middlebox that transforms data in shared
+<li><abbr title="Burgerservicenummer">BSN</abbr> resolution in the <abbr title="Policy Enforcement Point">PEP</abbr> (<a href="../0010-pep-bsn-resolution/">ADR-0010</a>).
+   The <abbr title="Policy Enforcement Point">PEP</abbr> becomes a middlebox that transforms data in shared
    infrastructure, with a BSNk call in the query path.</li>
-<li>The sidecar calls BSNk Transform per request
+<li>The source gateway calls BSNk Transform per request
    (<a href="../0011-sidecar-pseudonym-resolution/">ADR-0011</a>). BSNk transforms
    only while the citizen is logged in, and a query comes later.</li>
-<li>Transformation in the PDP. Policy is not a data pipeline
-   (<a href="../../traceability/findings-closed/#f-37">F-37</a>). With this option, the PDP
-   holds BSN authority.</li>
+<li>Transformation in the <abbr title="Policy Decision Point">PDP</abbr>. Policy is not a data pipeline
+   (<a href="../../traceability/findings-closed/#f-37">F-37</a>). With this option, the <abbr title="Policy Decision Point">PDP</abbr>
+   holds <abbr title="Burgerservicenummer">BSN</abbr> authority.</li>
 <li>The gateway verifies the proof again. This option adds no protection,
    because a consumer holds real proofs. The protection is that no
-   request reaches the gateway without the allow of the PDP
+   request reaches the gateway without the allow of the <abbr title="Policy Decision Point">PDP</abbr>
    (<a href="../../traceability/findings/#f-79">F-79</a>).</li>
 </ol>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>The query path has no central party and no BSNk. Only the source holds
-  BSN authority, as P-10 requires.</li>
+  <abbr title="Burgerservicenummer">BSN</abbr> authority, as P-10 requires.</li>
 <li>"After the decision" holds only while nothing other than the Inway
   reaches the gateway (<a href="../../requirements/pseudonymization/#req-81">REQ-81</a>).
   The compose networks do this. A Kubernetes deployment needs a
@@ -4680,9 +4680,9 @@ Inway and the source API. The gateway works as follows:</p>
   (<a href="../../requirements/pseudonymization/#bsnk-09">BSNK-09</a>,
   <a href="../../requirements/pseudonymization/#onboarding-keys">onboarding keys</a>,
   <a href="https://github.com/ICTU/GBO-demo/issues/467">#467</a>).</li>
-<li>The gateway is a processing. It writes LDV records for the decryption
+<li>The gateway is a processing. It writes <abbr title="Logboek Dataverwerkingen">LDV</abbr> records for the decryption
   and the forward (<a href="../0026-ldv-integration/">ADR-0026</a>).</li>
-<li>In the demo, the three sources share one OIN and one decryption
+<li>In the demo, the three sources share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decryption
   component. The mock does not encrypt. Production needs one decryption
   component per source.</li>
 <li>Two parts are not built: a source API that answers on a pseudonym
@@ -4699,6 +4699,7 @@ Inway and the source API. The gateway works as follows:</p>
 <li>Open questions: <a href="../../traceability/open-questions/#q-01">Q-01</a> (partly answered)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-02">SL-02</a> (done), <a href="../../traceability/increments/#sl-22">SL-22</a> (done), <a href="../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 
