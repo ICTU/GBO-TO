@@ -4,8 +4,9 @@ The TO is written in English. Each concept has one English term. On its
 first use on a page, the term gets the Dutch name of the Globaal Ontwerp
 in parentheses, for example "consent register (toestemmingsregister)".
 After that, the page uses the English term only. Proper names stay as
-they are: MijnOverheid, DigiD, Logius, BSN, Autorisatielijst BSN,
-Basisinrichting OOTS, Logboek Dataverwerkingen.
+they are: Gemeenschappelijke Bronontsluiting, Globaal Ontwerp,
+Projectstartarchitectuur, Technisch Ontwerp, MijnOverheid, DigiD, Logius,
+BSN, Autorisatielijst BSN, Basisinrichting OOTS, Logboek Dataverwerkingen.
 
 The following tables give each term, the Dutch name, its meaning, and the
 words that the TO does not use for the same concept. The style linter

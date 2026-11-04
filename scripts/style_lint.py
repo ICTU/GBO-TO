@@ -74,6 +74,10 @@ TIME = re.compile(r"\b(?:currently|recently|soon|at present|at the moment|"
 DIRECTION = re.compile(r"\b(?:above|below)\b", re.I)
 WEAK_CONTRAST = re.compile(r"\brather than\b|, not (?:a |an |the )?\w+", re.I)
 
+PROPER_NAMES = re.compile(
+    r"Gemeenschappelijke Bronontsluiting|Globaal Ontwerp|Technisch Ontwerp|"
+    r"Projectstartarchitectuur|Basisinrichting OOTS|Logboek Dataverwerkingen|"
+    r"Federatieve Toegangsverlening|Autorisatielijst BSN|MijnOverheid")
 ING_HEADING = re.compile(r"^#{1,6} [A-Z][a-z]+ing\b")
 
 
@@ -125,6 +129,8 @@ def clean_line(line):
     line = re.sub(r"!\[[^\]]*\]\([^)]*\)", "IMG", line)
     line = re.sub(r"\[([^\]]*)\]\([^)]*\)", lambda m: "LINK", line)
     line = re.sub(r"https?://\S+", "URL", line)
+    # proper names are never translated and count as one word
+    line = re.sub(PROPER_NAMES, "NAME", line)
     # quoted source text counts as one word and is not checked (ASD-STE100 8.6)
     line = re.sub(r'"[^"\n]{1,400}"', "QUOTE", line)
     return line

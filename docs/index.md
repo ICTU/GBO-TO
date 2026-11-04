@@ -1,7 +1,7 @@
 # Introduction and goals
 
 The Technisch Ontwerp (TO) is the technical design of Gemeenschappelijke
-Source access (bronontsluiting) (GBO). It describes the GBO facilities (voorzieningen) and
+Bronontsluiting (GBO). It describes the GBO facilities (voorzieningen) and
 interfaces (koppelvlakken). The TO goes one level deeper than the
 [Globaal Ontwerp (GO)](https://ictu.github.io/GBO-GO/main/) and stays
 within the kaders of the

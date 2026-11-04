@@ -163,9 +163,11 @@ The TO is written in English. Use the English term from the
 [glossary](docs/glossary.md) for every domain concept. On the first use
 on a page, add the Dutch name of the Globaal Ontwerp in parentheses, for
 example "consent register (toestemmingsregister)". After that, use the
-English term only. Never translate proper names: MijnOverheid, DigiD,
-Logius, BSN, Autorisatielijst BSN, Basisinrichting OOTS, Logboek
-Dataverwerkingen, GBO Basis. Quotes from Dutch sources stay in Dutch.
+English term only. Never translate proper names: Gemeenschappelijke
+Bronontsluiting, Globaal Ontwerp, Projectstartarchitectuur, Technisch
+Ontwerp, MijnOverheid, DigiD, Logius, BSN, Autorisatielijst BSN,
+Basisinrichting OOTS, Logboek Dataverwerkingen, GBO Basis. The linter
+skips these names (`PROPER_NAMES` in `scripts/style_lint.py`). Quotes from Dutch sources stay in Dutch.
 
 The glossary is the source for all domain and system terms. Each
 glossary table has a "Do not use" column. The linter reports those words
