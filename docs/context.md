@@ -10,101 +10,153 @@ give the business context: which parties exchange which data, and why.
 
 ## Technical context
 
-The [building block view](building-blocks/components.md) describes each GBO
-component. Dashed elements in the diagram are designed but not built. The
-diagram shows the system boundary in
-[gbo-demo](https://github.com/ICTU/GBO-demo) v0.9.0:
+GBO has the same shape as in the
+[Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing):
+external parties use one of the channels, and every channel reaches the
+source through GBO Basis. The following figure shows who is on the other
+side of each interface in gbo-demo v0.9.0. Dashed blocks are designed but
+not built. Click a block to zoom in.
 
 ```mermaid
-graph TB
-    subgraph External["External actors and systems"]
-        CIT["Citizen<br/>browser + DigiD"]
-        WALLET["EUDI wallet<br/>NL Wallet app"]
-        DV["Private consumer<br/>FSC Outway"]
-        INT["Integrator<br/>FSC Outway, delegated"]
-        GOV["Government consumer<br/>FSC Outway"]:::planned
-        EU["EU procedure portal<br/>AS4"]:::planned
-        QTSP[QTSP]
-        DIP[Discover Interface]
-        RRP[Register of relying parties]
-        BSNK["BSNk PP<br/>(Logius)"]
-    end
+flowchart TB
+  subgraph ext["External parties"]
+    direction LR
+    gov["Government consumer"]
+    dv["Private consumer<br/>or integrator"]
+    cit(["Citizen<br/>browser + DigiD"])
+    wallet["EUDI wallet<br/>NL Wallet app"]
+    qtsp["QTSP"]
+    eu["EU procedure portal"]
+  end
+  subgraph ch["GBO channels"]
+    direction LR
+    tv("Toestemmingsvoorziening<br/>portal + register")
+    pub("PubEAA provider<br/>adapter + issuance server")
+    asi("ASI provider<br/>authorization server + ASIP")
+    oots("OOTS adapter")
+  end
+  subgraph svc["External services"]
+    direction LR
+    bsnk["BSNk PP<br/>Logius"]
+    rrp["Register of<br/>relying parties"]
+    dip["Discover Interface"]
+  end
+  subgraph basis["GBO Basis at the source"]
+    direction LR
+    pep("FSC Inway = PEP<br/>+ PDP")
+    src[("Bronhouder: source<br/>gateway + GraphQL API")]
+  end
 
-    subgraph GBO["GBO shared services"]
-        PORTAL[Toestemmingsportaal]
-        CREG[Toestemmingsregister]
-        ONBOARD[Admission register]
-        PDP["OpenFTV PDP<br/>OPA/Rego"]
-        ADL[("ADL")]
-        EUDIADP["EUDI adapter +<br/>issuance server"]
-        SREG[("Source registry")]
-        ASIP[ASIP]
-        AZSP[ASI authorization server]
-        WV[Wallet verifier]
-        OOTS[OOTS adapter]:::planned
-    end
-
-    subgraph FSC["FSC group"]
-        MGR[FSC Manager per org]
-        INWAY[FSC Inway per bronhouder]
-    end
-
-    subgraph BRON["Bronhouder"]
-        SIDECAR[Source gateway]
-        DEC[Decryption component]
-        GQL[GraphQL source API]
-        META["Source metadata<br/>/.well-known/gbo"]
-        LOGBOOK[("LDV logbook")]
-    end
-
-    CIT -->|HTTPS| PORTAL
-    PORTAL -->|"/v2 activate, transform"| BSNK
-    PORTAL -->|REST| CREG
-    WALLET -->|OpenID4VP / OpenID4VCI| EUDIADP
-    DV -->|"FSC: mTLS + access token"| INWAY
-    INT -->|FSC delegated grant| INWAY
-    GOV -.->|FSC| INWAY
-    EU -.->|AS4| OOTS
-    OOTS -.->|FSC| INWAY
-    QTSP -->|"OAuth: register, token"| AZSP
-    QTSP -->|"HTTPS verify/retrieve + DPoP"| ASIP
-    QTSP -->|discover| DIP
-    DIP -->|read records| ASIP
-    CIT -->|login, approval| AZSP
-    WALLET -->|OpenID4VP| WV
-    AZSP --> WV
-    AZSP -->|entitlement lookup| RRP
-    ASIP -->|FSC via own Outway| INWAY
-    ASIP -->|read releases| SREG
-    EUDIADP -->|FSC via Outway| INWAY
-    EUDIADP -->|"reconcile over FSC"| META
-    EUDIADP --> SREG
-    INWAY -->|AuthZEN evaluation| PDP
-    MGR -->|AuthZEN contract decision| PDP
-    PDP -->|PIP pull| ONBOARD
-    PDP -->|JWKS| CREG
-    PDP -->|consent-status over FSC| CREG
-    PDP --> ADL
-    INWAY --> SIDECAR
-    SIDECAR -->|decrypt own value| DEC
-    SIDECAR --> GQL
-    SIDECAR -.->|LDV records| LOGBOOK
+  gov ~~~ dv ~~~ cit ~~~ wallet ~~~ qtsp ~~~ eu
+  tv ~~~ pub ~~~ asi ~~~ oots
+  bsnk ~~~ rrp ~~~ dip
+  cit -- "HTTPS: consent" --> tv
+  dv -- "redirect" --> tv
+  wallet -- "OpenID4VP, OpenID4VCI" --> pub
+  wallet -- "OpenID4VP: login" --> asi
+  qtsp -- "OAuth, verify, retrieve" --> asi
+  eu -. "AS4" .-> oots
+  dv == "FSC: query + consent proof" ==> pep
+  gov -. "FSC" .-> pep
+  pub -- "FSC" --> pep
+  asi -- "FSC" --> pep
+  oots -. "FSC" .-> pep
+  tv <-. "consent status, FSC" .- pep
+  pep == "after allow" ==> src
+  tv -- "at consent only" --> bsnk
+  asi -- "entitlement" --> rrp
+  qtsp -. "discover" .-> dip
 
 --8<-- "mermaid/classes.mmd"
-    class CIT source
-    class WALLET,DV,INT,QTSP,DIP,RRP,BSNK ext
-    class PORTAL,CREG dvtp
-    class ONBOARD,ADL,SREG,LOGBOOK store
-    class PDP,MGR,INWAY,SIDECAR,DEC basis
-    class EUDIADP,ASIP,AZSP,WV eudi
-    class GQL,META source
-    style External fill:#F4F5F7,stroke:#D1D5DB
-    style GBO fill:#F4F5F7,stroke:#D1D5DB
-    style FSC fill:#F4F5F7,stroke:#16A34A
-    style BRON fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
+  class cit source
+  class dv,wallet,qtsp,bsnk,rrp,dip ext
+  class eu,gov,oots planned
+  class tv dvtp
+  class pub,asi eudi
+  class pep basis
+  class src source
+  class tv,pub,asi,oots,pep,src zoom
+  style ext fill:#F4F5F7,stroke:#D1D5DB
+  style ch fill:#F4F5F7,stroke:#D1D5DB
+  style basis fill:#F0FDF4,stroke:#16A34A
+  style svc fill:#F4F5F7,stroke:#D1D5DB
+  click tv "../building-blocks/dvtp/consent-service/" "Toestemmingsvoorziening"
+  click pub "../building-blocks/eudi/pubeaa/" "PubEAA provider"
+  click asi "../building-blocks/eudi/asi/" "ASI provider"
+  click oots "../building-blocks/oots/" "OOTS channel"
+  click pep "../building-blocks/gbo-basis/" "GBO Basis"
+  click src "../building-blocks/gbo-basis/source-access/" "Source access"
 ```
 
-Four points in this diagram are easy to misread:
+*Figure 1: The system context. Thick lines: the path of a data request.
+Dashed: designed, not built.*
+{: .caption }
+
+Inside the boundary, the PDP is the hub. It reads two registers, writes
+the decision record, and decides on contracts as well as on requests:
+
+```mermaid
+flowchart LR
+  subgraph fsc["FSC at the source"]
+    direction TB
+    inw("FSC Inway<br/>PEP")
+    mgr("FSC Manager<br/>contracts")
+  end
+  pdp("OpenFTV PDP<br/>OPA/Rego")
+  subgraph reg["Registers and records"]
+    direction TB
+    adm[("Admission register")]
+    tr[("Toestemmingsregister")]
+    adl[("ADL<br/>decision records")]
+  end
+  subgraph src["At the bronhouder"]
+    direction TB
+    gw("Source gateway")
+    dec("Decryption<br/>component")
+    ldv[("LDV logbook")]
+  end
+  subgraph eudi["EUDI components"]
+    direction TB
+    adp("EUDI adapter<br/>+ reconciler")
+    sreg[("Source registry")]
+    asip("ASIP")
+  end
+
+  inw -- "AuthZEN: request" --> pdp
+  mgr -- "AuthZEN: contract" --> pdp
+  adm -. "PIP pull, every 5 s" .-> pdp
+  pdp -- "keys (JWKS) + status over FSC" --> tr
+  pdp --> adl
+  inw -- "after allow" --> gw
+  gw --> dec
+  gw -.-> ldv
+  adp -- "writes releases" --> sreg
+  asip -- "reads releases" --> sreg
+
+--8<-- "mermaid/classes.mmd"
+  class inw,mgr,pdp,gw,dec basis
+  class adm,adl,ldv,sreg store
+  class tr dvtp
+  class adp,asip eudi
+  class pdp,tr,sreg,adl zoom
+  style fsc fill:#F0FDF4,stroke:#16A34A
+  style reg fill:#F4F5F7,stroke:#D1D5DB
+  style src fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
+  style eudi fill:#FFF7ED,stroke:#EA580C
+  click pdp "../building-blocks/gbo-basis/authorization/" "Authorization"
+  click tr "../building-blocks/dvtp/consent-service/" "Toestemmingsvoorziening"
+  click sreg "../building-blocks/gbo-basis/source-configuration/" "Source configuration"
+  click adl "../building-blocks/gbo-basis/records/" "Records"
+```
+
+*Figure 2: The interfaces between GBO components.*
+{: .caption }
+
+The [koppelvlak inventory](#koppelvlak-inventory) lists every interface
+with its protocol and code. The
+[building block view](building-blocks/index.md) zooms in per channel.
+
+Four points in these diagrams are easy to misread:
 
 - Only the portal backend calls BSNk, at consent time. Neither the PDP nor
   the source gateway calls BSNk. The source reads its own value with
