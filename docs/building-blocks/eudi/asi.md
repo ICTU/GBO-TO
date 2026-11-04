@@ -3,7 +3,7 @@
 The ASI provider lets a qualified trust service provider (QTSP) verify or
 retrieve attributes of a citizen at the authentic source. The exchange
 follows eIDAS article 45e and ETSI TS 119 478, clause 6.1. It is flow B of
-interaction pattern A in the
+interaction pattern (interactiepatroon) A in the
 [Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider).
 GBO offers it as an OAuth front door with two services: the Authentic
 Source Interface Provider (ASIP) and its own authorization server
@@ -147,7 +147,8 @@ The admission of a QTSP has two parts
 
 The ASIP is an FSC consumer peer of its own, with a contract for the
 service `brp` at the source. For the PDP, the actor is always the ASIP.
-Rule ASI0001 grants the ASIP peer the BRP fields behind the attributes, on
+Rule ASI0001 grants the ASIP peer the fields of the Personal Records
+Database (BRP) behind the attributes, on
 `brp` only. The rule does not check the token or the QTSP. The PDP input
 and the ADL hold the BSN
 ([REQ-60](../../requirements/logging-audit.md#req-60)).
@@ -219,7 +220,7 @@ without a partial result ([REQ-101](../../requirements/asi.md#req-101)).
 
 After an accepted result, the reference QTSP issues a test statement to
 the wallet. It uses the issuance server of the
-[PubEAA provider](pubeaa.md). The statement has a test marking and is not
+[PuB-EAA provider](pubeaa.md). The statement has a test marking and is not
 a QEAA.
 
 ## One data service per source
@@ -392,7 +393,7 @@ The demo follows flow B of pattern A. It differs in four steps:
 
 | Step | Globaal Ontwerp | Demo v0.9.0 |
 |---|---|---|
-| Authorization | The verify and retrieve service uses the Autorisatievoorziening of GBO. | The ASI provider has its own OAuth authorization server, as ETSI clause 6.1.3 describes ([ADR-0037](../../decisions/0037-asi-oauth-front-door.md)). |
+| Authorization | The verify and retrieve service uses the authorization facility (autorisatievoorziening) of GBO. | The ASI provider has its own OAuth authorization server, as ETSI clause 6.1.3 describes ([ADR-0037](../../decisions/0037-asi-oauth-front-door.md)). |
 | Approval | The wallet shows the request and asks for consent. | The citizen logs in with the NL Wallet or the DigiD mock. The demo stores no approval ([REQ-90](../../requirements/asi.md#req-90)). |
 | ISO 15000 | A request over ISO 15000 needs no authorization. | Clause 6.2 is not offered ([REQ-112](../../requirements/asi.md#req-112)). |
 | After an accepted result | The QTSP issues a QEAA. | The reference QTSP issues a test statement that is not qualified. |

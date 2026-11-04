@@ -28,6 +28,10 @@ jobs:
 
       - run: python3 scripts/style_lint.py --strict --summary
 
+      - run: python3 scripts/gen_abbreviations.py --check
+
+      - run: python3 scripts/check_dutch.py --strict
+
       - run: mkdocs build --strict
 
       - run: python3 scripts/check_diagram_links.py site

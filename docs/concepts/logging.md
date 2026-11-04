@@ -12,9 +12,9 @@ v0.9.0 implements. The decisions behind the model are
 [ADR-0036](../decisions/0036-adl-decision-record.md) (decision records),
 and [ADR-0026](../decisions/0026-ldv-integration.md) (processing records).
 
-The term "controller (Verantwoordelijke)" means the organization that is
-responsible for a processing under the GDPR. The term "data subject"
-means the Betrokkene.
+A controller (Verantwoordelijke) is the organization that is responsible
+for a processing under the GDPR. A data subject (Betrokkene) is the
+person whom a processing is about.
 
 ## Three records, one chain
 
@@ -115,7 +115,7 @@ the Inway calls the PDP over AuthZEN on a fresh context, with only
 [F-41](../traceability/findings-closed.md#f-41)).
 
 The Inway copies the headers of the original request into the AuthZEN
-context. When the policy calls the consent register for a status, it
+context. When the policy calls the consent register (toestemmingsregister) for a status, it
 reads the trace from this context. The status request carries the trace
 ID of the request with a new span. It also carries the transaction ID
 ([`consent.rego#L190-L245`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L190-L245)).
@@ -232,7 +232,7 @@ Each record carries five elements:
     |---|---|---|
     | `consent-id` | the consent that the consumer acted under | consumer |
     | `logboek-pseudoniem` | HMAC over the BSN with a key of this controller | sources, EUDI adapter |
-    | `portal-subject` | the reference that the consent portal derives | consent register and portal |
+    | `portal-subject` | the reference that the consent portal (toestemmingsportaal) derives | consent register and portal |
     | `brp-persoon-id` | the own record ID of RvIG, for a person named in a certificate about another person | RvIG only |
 
 - A processing activity: `processing_activity_id` refers to a versioned,
@@ -269,7 +269,7 @@ The LDV integration rests on six design choices:
   [SL-51](../traceability/increments.md#sl-51), no pseudonym travels in
   the chain at all.
 - The logbook refuses a BSN: it scans every write for a nine-digit run
-  that passes the elfproef. The scan covers all values, the record name,
+  that passes the BSN checksum (elfproef). The scan covers all values, the record name,
   and the resource. The logbook refuses a match. The check is
   word-bounded, so a 20-digit OIN passes
   ([`validate.go#L141-L157`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/internal/ldv/validate.go#L141-L157)).

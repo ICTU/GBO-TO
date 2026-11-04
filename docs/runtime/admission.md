@@ -24,12 +24,11 @@ and [ADR-0016](../decisions/0016-source-owned-metadata.md).
 ## Scenario 1: contract admission {#contract-admission}
 
 A consumer, an integrator, or a GBO component (the issuance facility, the
-ASIP, the PDP itself) wants to connect to an FSC service of a source
-holder. The party creates a contract proposal in its own FSC Manager. The
+ASIP, the PDP itself) wants to connect to an FSC service of a bronhouder. The party creates a contract proposal in its own FSC Manager. The
 FSC Manager of the provider does not sign on a flag. It sends every proposal
 to the OpenFTV PDP as an AuthZEN evaluation and signs only on allow
 ([`fsc-infra/docker-compose.yml#L701-L702`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L701-L702)).
-The FSC Managers of the BRP peer and the consent register peer use the
+The FSC Managers of the BRP peer and the consent register (toestemmingsregister) peer use the
 same policy
 ([`#L892-L893`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L892-L893),
 [`#L1079-L1080`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L1079-L1080)).
@@ -59,7 +58,7 @@ sequenceDiagram
     end
     CM->>CM: POST /v1/contracts (grant), signed by the consumer
     CM->>PM: Contract proposal (FSC, mTLS)
-    PM->>PDP: AuthZEN evaluation<br/>doelbinding auto_sign_contract
+    PM->>PDP: AuthZEN evaluation<br/>context.doelbinding = auto_sign_contract
     PDP->>PDP: Eight ordered checks on the register data
     PDP->>ADL: Decision record
     alt Allow
@@ -78,12 +77,12 @@ Each hop of contract admission carries the following data:
 
 | # | From → to | Interface | Data | Notes |
 |---|---|---|---|---|
-| 1 | Administrator → register | Register UI (`localhost:9415`), CSRF-protected forms | FSC Peer ID (20 characters), display name, `active`, Peer IDs of the admitted source holders | The register has no accounts. Anyone who reaches the UI locally is administrator ([README](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/README.md)). Integrations (`acts_for`) and technical participants are part of the deployment configuration. The UI does not manage them |
+| 1 | Administrator → register | Register UI (`localhost:9415`), CSRF-protected forms | FSC Peer ID (20 characters), display name, `active`, Peer IDs of the admitted bronhouders | The register has no accounts. Anyone who reaches the UI locally is administrator ([README](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/README.md)). Integrations (`acts_for`) and technical participants are part of the deployment configuration. The UI does not manage them |
 | 2 to 3 | PDP → register | `GET /internal/openftv/participants` ([`handler.go#L63`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/internal/httpapi/handler.go#L63)), interval 5 s, timeout 2 s | `data.entities.dvtp_participant`, keyed by Peer ID: `name`, `active`, `allowed_source_peer_ids`, `acts_for` ([`dvtp-onboarding.yaml`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml#L1-L31)) | The pull uses a network that only the register and the PDP share. Every entry carries `acts_for`. If the party acts for nobody, `acts_for` is empty. As a result, a withdrawn mandate replaces the old entity |
 | 4 | Consumer → own FSC Manager | `POST /v1/contracts`, internal API, mTLS ([`seed-bri-connection-hv.sh#L113-L135`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-connection-hv.sh#L113-L135)) | Contract content: grant (type and service), validity, the peers | FSC grants carry no properties ([ADR-0031](../decisions/0031-regime-from-evidence.md)) |
 | 5 | Consumer Manager → provider Manager | FSC Manager interface, mTLS with the organization certificate (demo CA) | Signed contract proposal | The contract hash identifies the proposal. A new submission is a new proposal with a new hash |
 | 6 | Provider Manager → PDP | AuthZEN, `https://openftv-pdp:8443/authzen/v1`, the Manager pins the PDP CA | `subject` (`self_peer_id`, `peer_ids`), `action` `autosign_contract`, `resource` (contract hash, `grant_types`), `context.doelbinding` = `auto_sign_contract` ([`autosign.rego#L12-L15`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L12-L15)) | The input has no service name and no delegation direction. The PDP judges who connects. It does not judge to which service ([F-56](../traceability/findings-closed.md#f-56)) |
-| 7 to 8 | PDP | Package `doelbinding.auto_sign_contract`, separate from the request policy ([REQ-62](../requirements/admission.md#req-62)) | Decision record in the ADL, next to the request decisions | The doelbinding selects the package. A renamed package resolves to nothing ([`autosign.rego#L8-L10`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L8-L10)) |
+| 7 to 8 | PDP | Package `doelbinding.auto_sign_contract`, separate from the request policy ([REQ-62](../requirements/admission.md#req-62)) | Decision record in the ADL, next to the request decisions | The purpose limitation (doelbinding) selects the package. A renamed package resolves to nothing ([`autosign.rego#L8-L10`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L8-L10)) |
 | 9 to 11 | PDP → provider Manager → consumer Manager | AuthZEN response, then FSC signature | Allow: `FSC_AUTOSIGN_ADMITTED_PARTY`, counterparties, source Peer ID. Deny: first failing code, counterparties, grant types ([`autosign.rego#L184-L202`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L184-L202)) | The response holds only Peer IDs and no personal data |
 
 ### Ordered refusal codes
@@ -246,7 +245,7 @@ Source Registry. The runtime readers read only activated releases.
 First, the metadata contract and the data contract of the source must be
 valid. They pass [contract admission](#contract-admission) like every
 other contract, because the issuance facility is a technical participant
-in the admission register.
+in the admission register (toelatingsregister).
 
 ```mermaid
 sequenceDiagram
@@ -369,7 +368,7 @@ Source activation in gbo-demo v0.9.0 has these properties and gaps:
   owners. Two parts are not built: the rule for who can take the action,
   and the way GBO records the admission decision. These parts are PSA
   B-09 in the
-  [besluitregister](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)
+  [decision register](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)
   and [REQ-123](../requirements/admission.md#req-123).
 - **The source owns its description**
   ([F-57](../traceability/findings.md#f-57)). GBO validates and activates

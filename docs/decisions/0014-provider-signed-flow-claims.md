@@ -9,7 +9,7 @@
 ## Context and problem statement
 
 The PDP selects rules by the flow of the request (`dvtp:query`,
-`eudi:attestation`, `gbo:source-metadata`). The sidecar interprets the
+`eudi:attestation`, `gbo:source-metadata`). The source gateway interprets the
 subject identifier (`pseudonym` or `direct`). If callers supply these
 values as headers, a caller can choose the authorization regime that
 applies to its request.
@@ -19,7 +19,7 @@ applies to its request.
 An Additional Claims service that the provider owned mapped each validated
 connection grant `(outway peer, service peer, service name)` to an `add`
 claim object. The FSC Manager of the provider signed this object into the
-access token. The PDP mapper and the sidecar read only the `add` claim.
+access token. The PDP mapper and the source gateway read only the `add` claim.
 
 ## Why it was superseded
 

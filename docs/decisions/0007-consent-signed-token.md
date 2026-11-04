@@ -33,7 +33,7 @@ cover more than one bronhouder.
 
 ## Decision (superseded)
 
-The toestemmingsregister issues an ES256-signed JWT of type
+The consent register (toestemmingsregister) issues an ES256-signed JWT of type
 `gbo-consent+jwt` with these claims:
 
 - `consent_id`
@@ -43,7 +43,7 @@ The toestemmingsregister issues an ES256-signed JWT of type
 - `dienstverlener_oin`
 - `valid_until` (= `exp`)
 
-The dienstverlener presents the token in the `X-Gbo-Consent-Token` header.
+The service provider (dienstverlener) presents the token in the `X-Gbo-Consent-Token` header.
 For each request, the PDP does three things:
 
 1. It verifies the signature against the JWKS of the register.

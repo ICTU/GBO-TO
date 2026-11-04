@@ -23,7 +23,7 @@ the processing itself ([F-64](../traceability/findings-closed.md#f-64)):
 - The query at the source.
 
 The Logius standard Logboek Dataverwerkingen (LDV, v1.0.0) records each
-processing in the logbook of its controller (Verantwoordelijke). Only
+processing in the logbook of its controller (verantwoordelijke). Only
 trace metadata crosses an organization boundary.
 
 ## Decision
@@ -73,7 +73,7 @@ The decision has four parts:
   does not travel between the logbooks of different controllers
   ([F-69](../traceability/findings-closed.md#f-69)).
 - LDV records never hold a BSN. The logbook refuses any record with a
-  run of nine digits that passes the elfproef.
+  run of nine digits that passes the BSN check digit test (elfproef).
 - A reader follows a chain forward from the start logbooks through
   `nextLogbookId`. In DvTP the chain starts at the consumer, and LDV does
   not bind the consumer ([F-68](../traceability/findings.md#f-68),
@@ -92,7 +92,7 @@ These points are open:
 - Components write a local `dpl.gbo.*` extension that nobody ratified
   ([Q-72](../traceability/open-questions.md#q-72)).
 - No pointer leads from the decision at the source to the logbook of the
-  consent register ([Q-25](../traceability/open-questions.md#q-25)).
+  consent register (toestemmingsregister) ([Q-25](../traceability/open-questions.md#q-25)).
 - In demo v0.9.0, the ASIP writes no LDV records.
 - Production needs WORM storage, hash chaining, or a notary for the
   logbooks ([REQ-32](../requirements/logging-audit.md#req-32)).

@@ -2,13 +2,13 @@
 
 - Status: accepted
 - Date: 2026-08-24 (updated 2026-11-02: includes the decision "the FSC Inway is the PEP")
-- Satisfies: [S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie), [P-09](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [GO: toestemming en grondslag als afdwingbaar autorisatiemechanisme](https://ictu.github.io/GBO-GO/main/#toestemming-en-grondslag-als-afdwingbaar-autorisatiemechanisme)
+- Satisfies: [S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie), [P-09](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [GO: consent and legal basis as an enforceable authorization mechanism](https://ictu.github.io/GBO-GO/main/#toestemming-en-grondslag-als-afdwingbaar-autorisatiemechanisme)
 - Deliberation: Reference architecture v0.6.2, authorization models analysis (archived and unpublished), [F-35](../traceability/findings-closed.md#f-35), [Q-16](../traceability/answered-questions.md#q-16), demo [PR #60](https://github.com/ICTU/GBO-demo/pull/60), [PR #482](https://github.com/ICTU/GBO-demo/pull/482), [PR #337](https://github.com/ICTU/GBO-demo/pull/337)
 - Implemented in: [fsc-infra/docker-compose.yml](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L769-L775) (Inway AuthZEN plugin, with body), [services/openftv-pdp/Dockerfile](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/Dockerfile#L3-L9) (OpenFTV v0.1.0), [mapper/ftvgraphql.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/mapper/ftvgraphql.go#L1-L13), [services/ftv-graphql-mapper](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ftv-graphql-mapper), [docs/ftv-graphql-profile.md](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/ftv-graphql-profile.md), [policies/](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies)
 
 ## Context and problem statement
 
-GBO needs one policy engine and one PEP-PDP protocol for all trajectories.
+GBO needs one policy engine and one PEP-PDP protocol for all routes.
 Then the authorization logic is in policy and not in application code.
 
 Every source also needs an enforcement point in front of it. The interface

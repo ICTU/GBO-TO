@@ -2,17 +2,17 @@
 
 These questions have an answer, or they are closed. Each entry gives the answer and where it landed. The questions that are still open are on [Open questions](open-questions.md).
 
-### Q-02: Central authorization server or distributed PDP (per source holder)? {#q-02}
+### Q-02: Central authorization server or distributed PDP (per bronhouder)? {#q-02}
 
 - **Status**: answered
-- **Question**: Does one central PDP decide for all sources, or does each source holder run its own PDP?
-- **Answer**: Decentral, at the source holder. The [GO table of provisions](https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing) places the source access API, the PEP, PDP, and PAP, and the FSC Inway at the source holder. If responsibilities and availability are assured, [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie) allows a PDP per source holder or a shared PDP. [B-04](https://ictu.github.io/GBO-PSA/main/vraagstukken/) allows several variants under one PEP-PDP interface. The B-04 owners (source holders, FDS/GDI) set the conditions for a shared PDP. GBO does not set them.
+- **Question**: Does one central PDP decide for all sources, or does each bronhouder run its own PDP?
+- **Answer**: Decentral, at the bronhouder. The [GO table of provisions](https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing) places the source access API, the PEP, PDP, and PAP, and the FSC Inway at the bronhouder. If responsibilities and availability are assured, [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie) allows a PDP per bronhouder or a shared PDP. [B-04](https://ictu.github.io/GBO-PSA/main/vraagstukken/) allows several variants under one PEP-PDP interface. The B-04 owners (bronhouders, FDS/GDI) set the conditions for a shared PDP. GBO does not set them.
 - **Landed in**: [ADR 0004](../decisions/0004-federated-authorization.md), [REQ-04](../requirements/authorization.md#req-04). As a shortcut, the demo runs one shared PDP behind both Inways. [SL-44](increments.md#sl-44) shows that each source can run its own PDP with bundle distribution.
 
 ### Q-03: Atomic consent or field level: what is lawful and understandable? {#q-03}
 
 - **Status**: answered
-- **Question**: Does the citizen consent per field, or per indivisible data set?
+- **Question**: Does the citizen consent per field, or per indivisible data set (gegevensset)?
 - **Answer**: Per data set. In the GO, consent applies to a specific purpose, consumer, and data set. FR-10 (FR-DvTP v0.9) puts consent at set level, with "1 scope = 1 record". The citizen switches an optional set on or off as a whole. The demo portal switches per scope and conforms. FR-10 also adds a fixed minimal mandatory set, which is [Q-45](open-questions.md#q-45) and [issue #382](https://github.com/ICTU/GBO-demo/issues/382).
 - **Landed in**: [REQ-10](../requirements/consent.md#req-10), [F-03](findings-closed.md#f-03).
 
@@ -27,7 +27,7 @@ These questions have an answer, or they are closed. Each entry gives the answer 
 
 - **Status**: answered
 - **Question**: Which party is authoritative for revocation and expiry? How much time can a revocation take to reach the decision?
-- **Answer**: The central consent register is authoritative (GO, [B-06](https://ictu.github.io/GBO-PSA/main/vraagstukken/)). Revocation has direct effect. The authorization chain calls the register as PIP when the data request arrives ([PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie), S02 "without undue delay", FR-11 v0.9 "real-time"). The demo conforms: the PDP calls for the status per request, without a cache ([PR #371](https://github.com/ICTU/GBO-demo/pull/371)). The proof travels signed, but its status stays online ([F-61](findings-closed.md#f-61)).
+- **Answer**: The central consent register (toestemmingsregister) is authoritative (GO, [B-06](https://ictu.github.io/GBO-PSA/main/vraagstukken/)). Revocation has direct effect. The authorization chain calls the register as PIP when the data request arrives ([PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie), S02 "without undue delay", FR-11 v0.9 "real-time"). The demo conforms: the PDP calls for the status per request, without a cache ([PR #371](https://github.com/ICTU/GBO-demo/pull/371)). The proof travels signed, but its status stays online ([F-61](findings-closed.md#f-61)).
 - **Landed in**: [REQ-68](../requirements/consent.md#req-68), [ADR 0032](../decisions/0032-consent-proof.md). The figures (propagation time, availability, latency) are a design requirement in [REQ-75](../requirements/consent.md#req-75).
 
 ### Q-06: Authentication means for private parties: eHerkenning, PKI certificate, or both? {#q-06}
@@ -68,15 +68,15 @@ These questions have an answer, or they are closed. Each entry gives the answer 
 
 - **Landed in**: [REQ-61](../requirements/admission.md#req-61), [REQ-62](../requirements/admission.md#req-62), [REQ-74](../requirements/authorization.md#req-74).
 
-### Q-10: Which functions must really be central, and which are decentral at each source holder? {#q-10}
+### Q-10: Which functions must really be central, and which are decentral at each bronhouder? {#q-10}
 
 - **Status**: answered
-- **Question**: Which provisions run centrally, and which run at each source holder?
+- **Question**: Which provisions run centrally, and which run at each bronhouder?
 - **Answer**: The [GO table of provisions](https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing) gives the answer:
-    - The PEP, PDP, and PAP and the source access are decentral, at the source holder.
-    - The consent service is central and mandatory for DvTP ("needs a statutory basis").
+    - The PEP, PDP, and PAP and the source access are decentral, at the bronhouder.
+    - The consent facility (toestemmingsvoorziening) is central and mandatory for DvTP ("needs a statutory basis").
     - BSNk PP is mandatory for DvTP (Logius).
-    - PubEAA issuance, the ASI provider, and the OOTS adapter are optional central connection provisions.
+    - PuB-EAA issuance, the ASI provider, and the OOTS adapter are optional central connection provisions.
     - Operators "still to be decided" fall under [B-17 and B-06](https://ictu.github.io/GBO-PSA/main/vraagstukken/).
     - Funding is outside this analysis.
 - **Landed in**: [ADR 0004](../decisions/0004-federated-authorization.md), [Q-02](#q-02). In the demo, the register and BSNk are central, which conforms. The PDP is shared as a shortcut. The demo removed `sector-pip` ([issue #378](https://github.com/ICTU/GBO-demo/issues/378)).
@@ -86,8 +86,8 @@ These questions have an answer, or they are closed. Each entry gives the answer 
 - **Status**: answered
 - **Question**: Where and how is a source schema transformed to a canonical model?
 - **Answer**: There is no central canonical model.
-    - [GO F4](https://ictu.github.io/GBO-GO/main/#f4-semantiek-eenheid-van-taal) gives a shared concept framework (NL-SBB, MIM, RDF/SKOS, DCAT-AP-NL) and "the canonical data models of source holders".
-    - In [PSA S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus), mappings are explicit and traceable. Source holders and domains own their models.
+    - [GO F4](https://ictu.github.io/GBO-GO/main/#f4-semantiek-eenheid-van-taal) gives a shared concept framework (NL-SBB, MIM, RDF/SKOS, DCAT-AP-NL) and "the canonical data models of bronhouders".
+    - In [PSA S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus), mappings are explicit and traceable. Bronhouders and domains own their models.
     - For EUDI, the source supplies its own mapping ([F-57](findings.md#f-57)).
     - For OOTS, there is an optional shared mapping facility (GO, B-12).
     - Ownership of the semantics falls under [B-11](https://ictu.github.io/GBO-PSA/main/vraagstukken/).
@@ -100,8 +100,8 @@ These questions have an answer, or they are closed. Each entry gives the answer 
 - **Question**: Is an integrator only a pass-through, and can it see the data?
 - **Answer**:
     - FR-DvTP v0.9 removes FR-06. The citizen gets no information about the integrator.
-    - FR-18: the integrator is a processor for the service provider. It can view and edit data as far as the assignment needs. It does so under a processing agreement and without persistent storage.
-    - FR-37: the integrator has its own onboarding and its own organization identification means. It also has a registration in the service catalog per service provider and use case.
+    - FR-18: the integrator is a processor for the service provider (dienstverlener). It can view and edit data as far as the assignment needs. It does so under a processing agreement and without persistent storage.
+    - FR-37: the integrator has its own onboarding and its own organization identification means. It also has a registration in the service catalog (dienstencatalogus) per service provider and use case.
     - For more information, see PSA S04, S05, and [B-19](https://ictu.github.io/GBO-PSA/main/vraagstukken/).
     - The consequence for the actor binding of consent was [F-73](findings-closed.md#f-73). The demo tested it with FSC delegation ([issue #379](https://github.com/ICTU/GBO-demo/issues/379)).
 - **Landed in**: [REQ-106](../requirements/consent.md#req-106), [AV-06](../requirements/admission.md#av-06), [ADR 0034](../decisions/0034-integrator-delegation.md). Follow-up: [Q-46](open-questions.md#q-46).
@@ -154,23 +154,23 @@ These questions have an answer, or they are closed. Each entry gives the answer 
     - [Issue #381](https://github.com/ICTU/GBO-demo/issues/381), row 13, tests nested claims in the NL Wallet.
 - **Landed in**: [REQ-78](../requirements/eudi-issuance.md#req-78), [F-47](findings.md#f-47).
 
-### Q-21: Who can manage and publish the policy of a source holder, and how is that authority set federatively? {#q-21}
+### Q-21: Who can manage and publish the policy of a bronhouder, and how is that authority set federatively? {#q-21}
 
 - **Status**: answered
-- **Question**: Who sets the authorization policy for DvTP: a central Policy Authority (FR-39) or the source holder (GO)? Who can manage and publish it?
-- **Answer**: Policy management stays with each source holder.
-    - PAP and PDP are at the source holder, as the GO says ([issue #426](https://github.com/ICTU/GBO-demo/issues/426), closed as not planned, October 28, 2026).
+- **Question**: Who sets the authorization policy for DvTP: a central Policy Authority (FR-39) or the bronhouder (GO)? Who can manage and publish it?
+- **Answer**: Policy management stays with each bronhouder.
+    - PAP and PDP are at the bronhouder, as the GO says ([issue #426](https://github.com/ICTU/GBO-demo/issues/426), closed as not planned, October 28, 2026).
     - The policy guidelines stay guidelines. They do not become requirements.
     - Publication control is a norm in [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie). It covers the owner, the approver, the effective date, the change history, tests before publication, and an emergency and rollback procedure.
     - The text of FR-39 (central Policy Authority, signed bundles) is outdated. FR-DvTP needs a change to this text.
     - Authority over policy lies with competent public parties ([B-05](https://ictu.github.io/GBO-PSA/main/vraagstukken/)).
-- **Landed in**: [ADR 0021](../decisions/0021-central-pap-signed-bundles.md) (rewritten: "Policy management and distribution per source holder"), [RL-01](../requirements/authorization.md#rl-01) to [RL-05](../requirements/authorization.md#rl-05), [F-09](findings-closed.md#f-09), [F-51](findings.md#f-51), [F-52](findings.md#f-52).
+- **Landed in**: [ADR 0021](../decisions/0021-central-pap-signed-bundles.md) (rewritten: "Policy management and distribution per bronhouder"), [RL-01](../requirements/authorization.md#rl-01) to [RL-05](../requirements/authorization.md#rl-05), [F-09](findings-closed.md#f-09), [F-51](findings.md#f-51), [F-52](findings.md#f-52).
 
 ### Q-22: Who runs the admission register, on which grounds, and what legal protection has a refused party? {#q-22}
 
 - **Status**: answered
 - **Question**: The question has four parts:
-    1. Who keeps the admission register?
+    1. Who keeps the admission register (toelatingsregister)?
     2. On which grounds does a party get admission?
     3. What legal protection does a refused party get?
     4. At which granularity is admission given?

@@ -1,17 +1,17 @@
 # Introduction and goals
 
 The Technisch Ontwerp (TO) is the technical design of Gemeenschappelijke
-Bronontsluiting (GBO). It describes the GBO voorzieningen and
-koppelvlakken. The TO goes one level deeper than the
+Bronontsluiting (GBO). It describes the GBO facilities (voorzieningen) and
+interfaces (koppelvlakken). The TO goes one level deeper than the
 [Globaal Ontwerp (GO)](https://ictu.github.io/GBO-GO/main/) and stays
-within the kaders of the
+within the frameworks of the
 [Projectstartarchitectuur (PSA)](https://ictu.github.io/GBO-PSA/main/).
 
 The TO uses the [arc42](https://arc42.org/overview) template. It records
 *how* the GBO components are built. For *why* GBO exists and *what* it
-must do, see the [PSA inleiding](https://ictu.github.io/GBO-PSA/main/)
+must do, see the [PSA introduction](https://ictu.github.io/GBO-PSA/main/)
 and the
-[GO oplossingsrichting](https://ictu.github.io/GBO-GO/main/#2-voorgestelde-oplossingsrichting).
+[GO solution direction](https://ictu.github.io/GBO-GO/main/#2-voorgestelde-oplossingsrichting).
 
 ## Baseline: the demo at v0.9.0
 
@@ -60,17 +60,17 @@ Each arc42 page and each ADR ends with a "Traceability" section. This
 section lists the requirements, findings, open questions, and demo
 increments that the page explains or depends on.
 
-## Trajectories
+## Routes {#trajectories}
 
-GBO gives bronhouders (government source holders) one technical backbone
-for several gegevensstromen. A bronhouder exposes a GraphQL API behind an
-FSC Inway. Every request passes the same chain: the FSC Inway as PEP, the
+GBO gives bronhouders one technical backbone for several data flows. A
+bronhouder is a government organization that holds an authentic source.
+A bronhouder exposes a GraphQL API behind an FSC Inway. Every request passes the same chain: the FSC Inway as PEP, the
 PDP of the source, the source gateway, and the source API. The
-trajectories differ at the consumer edge and in the evidence that a
+routes differ at the consumer edge and in the evidence that a
 request carries. The evidence selects the authorization regime
 ([ADR-0031](decisions/0031-regime-from-evidence.md)).
 
-gbo-demo v0.9.0 implements three trajectories end to end:
+gbo-demo v0.9.0 implements three routes end to end:
 
 - **DvTP** (Delen van gegevens via Toestemming met Private
   dienstverleners). A citizen gives consent, and a private consumer
@@ -95,7 +95,7 @@ gbo-demo v0.9.0 implements three trajectories end to end:
   grade: it uses a stub register, development certificates, and a DigiD
   mock. See [ASI verification](runtime/asi-verification.md).
 
-Three trajectories exist at design level only
+Three routes exist at design level only
 ([design-level scenarios](runtime/design-level.md)):
 
 - **Gov-to-Gov**: exchange between government parties on a legal basis.
@@ -106,7 +106,7 @@ Three trajectories exist at design level only
 - **Relying-party presentation**: the citizen presents a wallet
   attestation to a relying party. This route has no GBO runtime.
 
-For the interactiepatronen behind these trajectories, see the
+For the interaction patterns (interactiepatronen) behind these routes, see the
 [GO](https://ictu.github.io/GBO-GO/main/#3-interactiepatronen).
 
 ## Quality goals
@@ -121,7 +121,7 @@ Each goal has the following effect on the design:
 | 2 | Privacy (BSN-free) | In DvTP, the consumer gets no BSN and no other citizen identifier. The query names the subject with a placeholder. As a result, the PDP input and the decision logs hold no identity ([REQ-20](requirements/pseudonymization.md#req-20), [REQ-79](requirements/pseudonymization.md#req-79)). EUDI and ASI are an exception: the plain BSN is in the PDP input and in both decision logs ([REQ-60](requirements/logging-audit.md#req-60) not met). [ADR-0043](decisions/0043-identifiers-out-of-pdp-input.md) (proposed) records the fix. See [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/). |
 | 3 | Verifiable authorization | A policy engine decides every data request. Application code does not make this decision. Each decision is allow or deny with a reason code. The consumer and the decision record get a coarse code. The operator gets the rule code per field ([REQ-06](requirements/authorization.md#req-06), [ADR-0036](decisions/0036-adl-decision-record.md)). See [S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie). |
 | 4 | Traceability | One W3C trace ID links the processing records of all controllers. Next to it, the records hold the FSC transaction ID, which links the transport records ([REQ-55](requirements/logging-audit.md#req-55), [ADR-0035](decisions/0035-w3c-trace-context.md)). In demo v0.9.0, the link to the decision record behind the FSC Inway is missing ([risk R23](risks.md#r23)). See [P-12](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/). |
-| 5 | Bronhouder autonomy | Sources own their schema, their service description, their decryption keys, and their policy. PAP and PDP are at the source holder ([ADR-0021](decisions/0021-central-pap-signed-bundles.md)). GBO keeps no copy of source data ([REQ-11](requirements/authorization.md#req-11)). See [P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/). |
+| 5 | Bronhouder autonomy | Sources own their schema, their service description, their decryption keys, and their policy. PAP and PDP are at the bronhouder ([ADR-0021](decisions/0021-central-pap-signed-bundles.md)). GBO keeps no copy of source data ([REQ-11](requirements/authorization.md#req-11)). See [P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/). |
 
 ## Stakeholders
 
@@ -132,7 +132,7 @@ The TO has three primary audiences:
 - Engineers who build or integrate GBO components.
 - Bronhouder teams that connect a source.
 - Reviewers who check that the implementation stays within the PSA
-  kaders.
+  frameworks.
 
 ## Document chain
 
@@ -141,9 +141,9 @@ The TO is level 3 in a chain of five documents:
 | Level | Document | Role |
 |---|---|---|
 | 0 | [GBO site](https://ictu.github.io/GBO/) | Entry point and context |
-| 1 | [Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/) | System-level solution shape and interactiepatronen |
-| 2 | [Projectstartarchitectuur](https://ictu.github.io/GBO-PSA/main/) | Normative principles, kaders, capabilities, and open decisions |
-| 3 | Technisch Ontwerp (this document) | Technical design of components and koppelvlakken, with requirements and traceability |
+| 1 | [Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/) | System-level solution shape and interaction patterns |
+| 2 | [Projectstartarchitectuur](https://ictu.github.io/GBO-PSA/main/) | Normative principles, frameworks, capabilities, and open decisions |
+| 3 | Technisch Ontwerp (this document) | Technical design of components and interfaces, with requirements and traceability |
 | 4 | [gbo-demo](https://github.com/ICTU/GBO-demo) at [v0.9.0](https://github.com/ICTU/GBO-demo/tree/v0.9.0) | Reference implementation, ground truth for the behavior of GBO |
 
 ## Traceability

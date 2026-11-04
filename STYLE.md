@@ -155,13 +155,32 @@ unless that is the purpose of the change.
 | bron | source | data source (except in "authentic source") |
 | burger | citizen | user (except user of software) |
 | toestemming | consent | permission |
-| toestemmingsbewijs | consent proof | consent token (except the JWT type name) |
+| toestemmingsbewijs | consent proof (verified); consent token (the JWT before verification) | — |
 | increment (SL-NN) | demo increment | slice |
 | demo baseline | gbo-demo v0.9.0, "the demo" | "the current demo", "now" |
 
-Keep these Dutch domain terms (the glossary defines them): bronhouder,
-toestemmingsportaal, toestemmingsregister, dienstverlener, grondslag,
-doelbinding, koppelvlak, MijnOverheid, Autorisatielijst BSN.
+The TO is written in English. Use the English term from the
+[glossary](docs/glossary.md) for every domain concept. On the first use
+on a page, add the Dutch name of the Globaal Ontwerp in parentheses, for
+example "consent register (toestemmingsregister)". After that, use the
+English term only. Never translate proper names: Gemeenschappelijke
+Bronontsluiting, Globaal Ontwerp, Projectstartarchitectuur, Technisch
+Ontwerp, MijnOverheid, DigiD, Logius, BSN, Autorisatielijst BSN,
+Basisinrichting OOTS, Logboek Dataverwerkingen, GBO Basis, Delen van
+gegevens via Toestemming met Private dienstverleners. The government
+term "bronhouder" also stays in Dutch, without a translation. The linter
+skips these names (`PROPER_NAMES` in `scripts/style_lint.py`). Quotes from Dutch sources stay in Dutch.
+
+The glossary is the source for all domain and system terms. Each
+glossary table has a "Do not use" column. The linter reports those words
+as errors in every page except the glossary, unless the word stands
+directly inside parentheses. When you add a term, add it to the glossary
+first. `scripts/gen_abbreviations.py` turns the abbreviations into
+tooltips on every page.
+
+`scripts/check_dutch.py` finds Dutch words in the English prose. Dutch is
+allowed only in proper names, in quotes from Dutch sources, in code, and
+as the Dutch name in parentheses after an English term. CI runs it.
 
 US spelling (authorization, organization, recognize, pseudonymization).
 

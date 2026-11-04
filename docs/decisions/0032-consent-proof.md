@@ -18,7 +18,7 @@ In DvTP, the consent of the citizen is the access basis. The PDP at the
 source must establish three facts itself
 ([REQ-68](../requirements/consent.md#req-68)):
 
-- The consent comes from the toestemmingsregister and is unchanged.
+- The consent comes from the consent register (toestemmingsregister) and is unchanged.
 - The consent is bound to this consumer, this data set, and this
   citizen.
 - The consent is valid at the time of the request, also after a
@@ -37,7 +37,7 @@ consent time. These values travel with the proof.
 
 ### The proof
 
-When the citizen gives consent, the toestemmingsregister signs a JWT
+When the citizen gives consent, the consent register signs a JWT
 with these properties:
 
 - The algorithm is ES256. The header has `typ=gbo-consent+jwt` and

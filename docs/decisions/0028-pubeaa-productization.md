@@ -2,7 +2,7 @@
 
 - Status: proposed
 - Date: 2026-08-24, rewritten on 2026-11-02. The rewrite made the bronhouder the PuB-EAA provider and GBO the technical issuance facility, and added the regulatory frame of F-81.
-- Satisfies: [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [P-06](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [GO: PubEAA-uitgifte](https://ictu.github.io/GBO-GO/main/#uitgifte-van-attestaties-voor-de-eudi-wallet-pubeaa-uitgifte)
+- Satisfies: [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [P-06](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [GO: PuB-EAA issuance](https://ictu.github.io/GBO-GO/main/#uitgifte-van-attestaties-voor-de-eudi-wallet-pubeaa-uitgifte)
 - Deliberation: reference architecture v0.6.2, gap 7 (archived and unpublished), [F-81](../traceability/findings.md#f-81), [F-82](../traceability/findings.md#f-82), [REQ-77](../requirements/eudi-issuance.md#req-77)
 - Implemented in: demo grade. The issuance chain of [ADR-0018](0018-eudi-disclosure-issuance.md) works end to end with development CAs. [issuance_config.go#L166-L168](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_config.go#L166-L168) fixes the validity at 365 days.
 

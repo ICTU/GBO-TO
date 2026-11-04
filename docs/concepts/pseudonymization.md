@@ -28,7 +28,7 @@ Each identifier of the citizen or the consent has its own maker and holder:
 | VP (encrypted pseudonym) | A value for one recipient OIN and key version. It decrypts to the own pseudonym of that recipient for the citizen. Every recipient gets one | BSNk Transform, at consent | Inside the consent proof, `encrypted_subject[<OIN>].pseudonym` |
 | Placeholder | `consent:identity` or `consent:pseudonym`: the name of the subject in a consent-based query | Fixed values ([`lib.rego#L43-L53`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/lib.rego#L43-L53)) | The consumer query and the PDP input. The source gateway replaces it |
 | `subject_ref` | HMAC of the BSN with the secret, versioned key of the portal | Portal backend ([`subjectref.go#L38-L42`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/subjectref.go#L38-L42)) | Portal backend and register: the key to the consents of the citizen |
-| `consent_id` | The consent record | Toestemmingsregister | Consumer: its only handle on "this person" |
+| `consent_id` | The consent record | Consent register (toestemmingsregister) | Consumer: its only handle on "this person" |
 
 PI and PP belong to the portal. VI and VP belong to their recipient. No
 other party can read them. In the demo, every party can read them because
@@ -44,7 +44,7 @@ flowchart LR
         REF[subject_ref = HMAC]
     end
     BSNK[BSNk]
-    subgraph CR[Toestemmingsregister]
+    subgraph CR[Consent register]
         PP[PI + PP under subject_ref]
         PROOF[Signed proof:<br/>VI/VP per source]
     end
@@ -122,8 +122,7 @@ values at consent, so the proof freezes. For more information, see
 
 ## Citizen recognition: route D
 
-To show and revoke the consents of a citizen without a BSN, the consent
-service needs a stable key. A stored PI or PP is not a stable key, because
+To show and revoke the consents of a citizen without a BSN, the consent facility (toestemmingsvoorziening) needs a stable key. A stored PI or PP is not a stable key, because
 BSNk gives other values at every activation. The proposed solution is route
 D ([ADR-0040](../decisions/0040-route-d-citizen-recognition.md), proposed,
 [route D](../requirements/pseudonymization.md#route-d)). Route D works as
@@ -165,7 +164,7 @@ government:
    It is open how the backend inside MijnOverheid gets the verified
    identity ([Q-50](../traceability/open-questions.md#q-50)).
 2. BSNk, at activation: BSNk records every activation in its
-   Inzageregister ([BSNK-10](../requirements/pseudonymization.md#bsnk-10)).
+   inspection register, the Inzageregister ([BSNK-10](../requirements/pseudonymization.md#bsnk-10)).
 3. The source, after the allow: the source gateway takes the value for its
    own OIN from the proof. The decryption component of the source reads the
    value with the keys of the source. The gateway accepts the result only

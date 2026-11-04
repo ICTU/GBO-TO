@@ -45,7 +45,7 @@ flowchart LR
     reg[("Source registry")]
     tools("GBO tools<br/><i>design only</i>")
   end
-  tr[("Toestemmingsregister")]
+  tr[("Consent register")]
 
   caller -- "FSC request" --> inway
   caller -. "contract proposal" .-> mgr
@@ -169,7 +169,7 @@ The steps work as follows:
    ([REQ-08](../../requirements/authorization.md#req-08)). It logs the
    processing in its own LDV logbook.
 
-## What the bronhouder runs
+## What the bronhouder runs {#what-the-bronhouder-runs}
 
 GBO delivers the components as reference components. The bronhouder
 chooses to run them, or a working equivalent that meets the same
@@ -196,7 +196,7 @@ flowchart TB
     direction LR
     adm[("Admission register")]
     reg[("Source registry")]
-    tr[("Toestemmingsregister")]
+    tr[("Consent register")]
   end
   own ~~~ deliv ~~~ run
 --8<-- "mermaid/classes.mmd"
@@ -213,7 +213,7 @@ flowchart TB
 {: .caption }
 
 The PEP, the PDP, policy management and source access are decentral, at
-the bronhouder. The toestemmingsvoorziening is central and mandatory for
+the bronhouder. The consent facility (toestemmingsvoorziening) is central and mandatory for
 DvTP ([Q-10](../../traceability/answered-questions.md#q-10),
 [ADR-0021](../../decisions/0021-central-pap-signed-bundles.md)). The PSA
 has not decided who operates the central facilities (open decisions

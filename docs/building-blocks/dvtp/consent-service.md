@@ -1,28 +1,28 @@
-# Toestemmingsvoorziening
+# Consent facility
 
-The toestemmingsvoorziening is where the citizen gives, views and revokes
+The consent facility (toestemmingsvoorziening) is where the citizen gives, views and revokes
 consent. It also tells every source, at every request, whether a consent
-still holds. It has three components: the toestemmingsportaal frontend
+still holds. It has three components: the consent portal (toestemmingsportaal) frontend
 and backend (PSA capability
 [S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal))
-and the toestemmingsregister
+and the consent register (toestemmingsregister)
 ([S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)).
 The [Consent](../../concepts/consent.md) concept page has the detail and
 the links to the code.
 
-[Overview](../index.md) › [DvTP channel](index.md) › Toestemmingsvoorziening
+[Overview](../index.md) › [DvTP channel](index.md) › Consent facility
 
 ## Components and interfaces
 
 ```mermaid
 flowchart LR
   burger(["Citizen<br/>browser"])
-  dv["Dienstverlener"]
-  subgraph tv["Toestemmingsvoorziening"]
+  dv["Service provider"]
+  subgraph tv["Consent facility"]
     direction TB
     pf("Portal frontend<br/>request, login, choice,<br/>overview, revoke")
     pb("Portal backend<br/>keeps the BSN away<br/>from the register")
-    subgraph tr["Toestemmingsregister"]
+    subgraph tr["Consent register"]
       direction TB
       api("Portal API<br/>create, list, revoke")
       st("Status listener<br/>status only")
@@ -34,7 +34,7 @@ flowchart LR
   bsnk["BSNk PP<br/><i>mock</i>"]
   inw("Register Inway<br/>FSC service consent-status")
   pdp("PDP of a source")
-  log[("LDV logbook<br/>consent service")]
+  log[("LDV logbook<br/>consent facility")]
 
   dv -- "redirect: consumer, service,<br/>data sets, return address" --> pf
   burger --> pf
@@ -62,7 +62,7 @@ flowchart LR
   click bsnk "../../../concepts/pseudonymization/" "Pseudonymization"
 ```
 
-*Figure 1: The components of the toestemmingsvoorziening and their
+*Figure 1: The components of the consent facility and their
 interfaces.*
 {: .caption }
 
@@ -79,7 +79,7 @@ Each component has one job:
 ## The consent proof
 
 The register signs a consent proof when the citizen gives consent. The
-dienstverlener keeps it and sends it unchanged with every query:
+service provider (dienstverlener) keeps it and sends it unchanged with every query:
 
 ```mermaid
 flowchart LR
@@ -113,14 +113,14 @@ flowchart LR
 *Figure 2: The parts of the consent proof.*
 {: .caption }
 
-The proof holds no BSN. The dienstverlener can read which data sets it
+The proof holds no BSN. The service provider can read which data sets it
 can ask for. It cannot read who the citizen is: each value in
 `encrypted_subject` can be decrypted only by the source it was made for
 ([REQ-80](../../requirements/pseudonymization.md#req-80)). The
 decision for this form is
 [ADR-0032](../../decisions/0032-consent-proof.md).
 
-The proof works as a bearer token. The binding to the dienstverlener stops
+The proof works as a bearer token. The binding to the service provider stops
 use by another party, but not replay by the same party within the
 validity ([R4](../../risks.md#r4)).
 
@@ -130,7 +130,7 @@ validity ([R4](../../risks.md#r4)).
 stateDiagram-v2
   direction LR
   [*] --> Active: citizen gives consent,<br/>register signs the proof
-  Active --> Active: dienstverlener queries<br/>(as often as needed)
+  Active --> Active: service provider queries<br/>(as often as needed)
   Active --> Revoked: citizen revokes
   Active --> Expired: valid_until passes
   Revoked --> [*]
@@ -169,7 +169,7 @@ The target values for availability and delay are open
 
 ## Open points
 
-The main open points in the toestemmingsvoorziening are these:
+The main open points in the consent facility are these:
 
 - Whether the register and the portal backend are one system, and which
   one is the BSNk participant

@@ -90,7 +90,7 @@ The Gov-to-Gov design has these open points:
 - It is open what form the positive evidence for the legal basis has, and
   who issues it ([REQ-74](../requirements/authorization.md#req-74)).
 - It is open where the legal-basis data lives (which consumer, which
-  service, which grondslag, which fields), and who maintains it. ADR-0004
+  service, which legal basis, which fields), and who maintains it. ADR-0004
   puts it in policy data.
 - The PID actor lists must stay disjoint from the consumers of other
   regimes. If a Gov-to-Gov consumer omits its evidence, it must not enter
@@ -171,7 +171,8 @@ enters the PID regime and fails the actor check, as in
 The OOTS design has these open points:
 
 - It is open who builds the adapter: GBO, or the OOTS-V operator with the
-  GBO interface ([Q-79](../traceability/open-questions.md#q-79)).
+  GBO interface ([Q-79](../traceability/open-questions.md#q-79)). OOTS-V
+  is the part of the Basisinrichting OOTS that receives evidence requests.
 - The regime and the evidence for an OOTS request are open
   ([REQ-74](../requirements/authorization.md#req-74),
   [ADR-0031](../decisions/0031-regime-from-evidence.md)). If an OOTS
@@ -183,7 +184,7 @@ The OOTS design has these open points:
 The citizen presents a wallet attestation from GBO to a relying party
 over OpenID4VP, with selective disclosure. No GBO decision component and
 no source take part at presentation time. This is the purpose of an
-issuance-based trajectory. The data are fixed at issuance, and the source
+issuance-based route. The data are fixed at issuance, and the source
 carries no presentation load. For the issuance itself, see
 [EUDI issuance](eudi-issuance.md).
 

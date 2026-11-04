@@ -43,7 +43,8 @@ Before this mechanism, every new source, attestation type, or tax year
 was a change in GBO code or in a GBO catalog file. With this mechanism,
 the adapter parameters come from the source
 ([Q-19](../traceability/answered-questions.md#q-19)). In GO terms, the
-document is the service catalog that the bronhouder manages. The
+document is the service catalog (dienstencatalogus) that the bronhouder
+manages. The
 validation rules of the reconciler are the common profile.
 
 The mechanism (publish, validate, activate, roll back) is a GBO design
@@ -61,8 +62,8 @@ owner:
 | Access to the metadata and data services | bronhouder and GBO, by agreement | FSC contracts and grant hashes |
 | Data service, query, parameters, offers, display, claims, attributes | bronhouder | the source document at `/.well-known/gbo` |
 | Shape of an ASI attribute value (`value_schema`) | GBO, until the EU catalog of attributes exists | [`schemas/asi-attributes.json`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json) |
-| SD-JWT VC Type Metadata | GBO generates it from the document | Source Registry |
-| Candidates, states, releases, active pointer | GBO | Source Registry (PostgreSQL) |
+| SD-JWT VC Type Metadata | GBO generates it from the document | source registry |
+| Candidates, states, releases, active pointer | GBO | source registry (PostgreSQL) |
 
 ## Lifecycle
 
@@ -133,7 +134,7 @@ Four readers use the active release:
 | ASIP | per data service: query, attribute mapping, legal name of the authentic source, discovery records | live, every 5 seconds ([`asi-provider/main.go#L101`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/main.go#L101)) |
 | Developer portal and landing page | the offers that a citizen can start, from the adapter | live |
 
-The Source Registry is a shared module,
+The source registry is a shared module,
 [`services/source-registry`](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/source-registry)
 (`onboarding`, `postgresregistry`, `asisnapshot`). The reconciler writes to
 it with the writer role. The adapter, the issuance init container, and the
@@ -226,7 +227,7 @@ Compose and the Helm example turn it on for the demo. Then the source file
 is the management action. Demo v0.9.0 does not build two things: control
 over who can do that action, and a record of the admission decision
 (PSA B-09 in the
-[besluitregister](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister),
+[decision register](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister),
 [REQ-123](../requirements/admission.md#req-123)).
 
 ## Versions, freshness and isolation
@@ -444,7 +445,7 @@ If the description is absent, has no `asi`, or is stale, the ASIP answers
 ([REQ-93](../requirements/asi.md#req-93)). If no registry is available,
 the ASIP can read a release file (`asi-provider write-release-file`).
 
-## Connection conditions for bronhouders
+## Connection conditions for bronhouders {#connection-conditions-for-bronhouders}
 
 GBO asks three things of a bronhouder, as candidate connection
 conditions:

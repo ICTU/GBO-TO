@@ -36,8 +36,8 @@ For the open findings per PSA theme, see
 - **Status**: open
 
 The consent detail page shows when the citizen gave a consent, when a
-dienstverlener first used it, and when it ended. The
-toestemmingsregister keeps only the start and end dates, so the demo
+service provider (dienstverlener) first used it, and when it ended. The
+consent register (toestemmingsregister) keeps only the start and end dates, so the demo
 cannot show the first use. FR-11 and FR-22 require that the register
 itself records whether and when data was first retrieved. The open point
 is how the register learns of a successful delivery at the source. Three
@@ -110,7 +110,7 @@ bronhouders, because each source keeps its own PAP and PDP.
         - While its policy store is empty, the engine also installs a no-auth mode.
         - On the Manager side, the bundle pull needs its own Cedar policy since OpenFTV v0.1.0 ([`pdp-bundle.cedar`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/pdp-bundle.cedar)).
     - **Why it matters**: every rule that allows management sits in the policy that decides on citizen data. Pull meets [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie), which asks only that a component reliably gets a valid policy version. The GO and the PSA have no gap here. The gap is in the implementation.
-    - **Proposal**: a PDP needs a separate authorization path for management. Then push works without a wider decision policy ([RL-02](../requirements/authorization.md#rl-02)). The point was reported to the OpenFTV maintainers. [Q-21](answered-questions.md#q-21) keeps PAP and PDP at each source. RL-02 therefore stays a guideline for source holders and is no requirement.
+    - **Proposal**: a PDP needs a separate authorization path for management. Then push works without a wider decision policy ([RL-02](../requirements/authorization.md#rl-02)). The point was reported to the OpenFTV maintainers. [Q-21](answered-questions.md#q-21) keeps PAP and PDP at each source. RL-02 therefore stays a guideline for bronhouders and is no requirement.
     - **Related**: [RL-02](../requirements/authorization.md#rl-02), [F-09](findings-closed.md#f-09), [F-52](#f-52), [Q-21](answered-questions.md#q-21), [ADR-0021](../decisions/0021-central-pap-signed-bundles.md).
 
 ### F-52: The policy store is cumulative and cannot delete, and one duplicate package breaks every decision {#f-52}
@@ -209,7 +209,7 @@ follows pointers forward to each next logbook. In DvTP, a private
 consumer starts the processing, and LDV does not bind that party, so
 nobody knows which sources one processing touched. The PDP at the source
 also writes only decision records, so no record at the source points to
-the consent logbook. The proposal uses the toestemmingsregister as an
+the consent logbook. The proposal uses the consent register as an
 index: every retrieval leads to a status lookup there, and the register
 logs each lookup. The step from the source to the register is open with
 Logius.
@@ -303,7 +303,7 @@ from the record.
     - **Trigger**: [PR #373](https://github.com/ICTU/GBO-demo/pull/373) (closes demo issue [#332](https://github.com/ICTU/GBO-demo/issues/332)) made the ADL the audit source. The change had to choose how decision detail gets into the ADL.
     - **Observation**:
         - OpenFTV reads only `allow` and `reason` from the policy. `reason` becomes `reason_user.en` in the AuthZEN answer. The ADL stores that answer unchanged ([`policies/authz.rego#L42-L48`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/authz.rego#L42-L48)). Per-field detail and the step trace are only in the console log of the engine, and that log is observability.
-        - Detail in `reason_admin` does not solve this. The FSC Inway returns the reason to the consumer, so everything in it reaches a private party. Since [PR #375](https://github.com/ICTU/GBO-demo/pull/375), the dienstverlener backend filters which reason code the citizen sees. In demo v0.9.0, the Inway drops the reason (OpenFSC #308).
+        - Detail in `reason_admin` does not solve this. The FSC Inway returns the reason to the consumer, so everything in it reaches a private party. Since [PR #375](https://github.com/ICTU/GBO-demo/pull/375), the service provider backend filters which reason code the citizen sees. In demo v0.9.0, the Inway drops the reason (OpenFSC #308).
         - The ADL records show `policies: 0`, so they hold no policy version ([REQ-59](../requirements/logging-audit.md#req-59)).
         - Behind the Inway, the ADL record has its own trace and no `adl.fsc.transaction_id` (demo issue [#369](https://github.com/ICTU/GBO-demo/issues/369), open).
     - **Why it matters**: in this design, the AuthZEN answer is both the audit record and the error message to the consumer. What a supervisor must reconstruct is then limited to what the consumer is allowed to know ([PSA P-12](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid), FR-31). Since [PR #371](https://github.com/ICTU/GBO-demo/pull/371), the policy fetches the consent status during evaluation. If the record does not hold that answer, nobody can replay the decision ([F-61](findings-closed.md#f-61)).
@@ -329,14 +329,14 @@ text, with a check of the intersection at activation.
     - **Trigger**: a review of [Q-19](answered-questions.md#q-19) against FR-DvTP v0.9 (September 16, 2026).
     - **Observation**:
         - For EUDI, the source publishes its offer, and GBO validates and activates it ([F-57](#f-57), [REQ-64](../requirements/sources-identity.md#req-64)).
-        - For DvTP, FR-32 v0.9 describes a statutory service catalogue. Per use case, the catalogue sets the legal ceiling of what can be requested. The sector need defines the catalogue, and the operator of the DvTP facility keeps it. Data sets link to dienstverleners. Each data set is marked mandatory, optional, or minimal.
+        - For DvTP, FR-32 v0.9 describes a statutory service catalogue. Per use case, the catalogue sets the legal ceiling of what can be requested. The sector need defines the catalogue, and the operator of the DvTP facility keeps it. Data sets link to service providers. Each data set is marked mandatory, optional, or minimal.
         - FR-38 v0.9, criterion 5, limits the scope of a request to that ceiling. The demand side is therefore normative.
         - In the demo, the DvTP scopes are spread over policy, portal, and field map ([F-17](findings-closed.md#f-17)).
     - **Why it matters**: what a DvTP consumer can request is the intersection of the source offer (its schema, [Q-14](open-questions.md#q-14)) and the legal ceiling per use case. [REQ-64](../requirements/sources-identity.md#req-64) covers only the supply side. No GO, PSA, or FR text names the intersection ([PSA S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus), B-03, FR-10 v0.9).
-    - **Proposal**: one DvTP catalogue per FR-32, as the single source for scopes, fields, portal text, and the link to dienstverleners. At activation, an intersection check runs. Demo issue [#382](https://github.com/ICTU/GBO-demo/issues/382) (open) and [REQ-121](../requirements/consent.md#req-121) cover this proposal. A schema with enforceable filters (demo issue [#425](https://github.com/ICTU/GBO-demo/issues/425)) is one form for the ceiling ([Q-14](open-questions.md#q-14)). The intersection is a proposal for the GO (PSA B-03).
+    - **Proposal**: one DvTP catalogue per FR-32, as the single source for scopes, fields, portal text, and the link to service providers. At activation, an intersection check runs. Demo issue [#382](https://github.com/ICTU/GBO-demo/issues/382) (open) and [REQ-121](../requirements/consent.md#req-121) cover this proposal. A schema with enforceable filters (demo issue [#425](https://github.com/ICTU/GBO-demo/issues/425)) is one form for the ceiling ([Q-14](open-questions.md#q-14)). The intersection is a proposal for the GO (PSA B-03).
     - **Related**: [F-17](findings-closed.md#f-17), [F-47](#f-47), [F-57](#f-57), [F-78](#f-78), [REQ-10](../requirements/consent.md#req-10), [REQ-64](../requirements/sources-identity.md#req-64), [REQ-121](../requirements/consent.md#req-121), [Q-14](open-questions.md#q-14), [Q-19](answered-questions.md#q-19), [Q-45](open-questions.md#q-45), [ADR-0008](../decisions/0008-dienstencatalogus-ceiling.md).
 
-### F-75: The BSNk design fits the specification, but the consent service can fetch the values only as a recognized party {#f-75}
+### F-75: The BSNk design fits the specification, but the consent facility can fetch the values only as a recognized party {#f-75}
 
 - **Status**: open
 
@@ -346,7 +346,7 @@ keeps BSNk out of the request path. One point does not fit: only a
 recognized BSNk party can activate and transform values. The citizen
 logs in at MijnOverheid before the sources are known, so the login
 cannot deliver the values. The remaining work is administrative and
-legal: the consent service must become a recognized party, and someone
+legal: the consent facility (toestemmingsvoorziening) must become a recognized party, and someone
 must decide who the BSNk participant is.
 
 ??? note "Evidence, impact and proposal"
@@ -356,7 +356,7 @@ must decide who the BSNk participant is.
     - **Observation**:
         - Five parts of the design fit the specification:
             - An encrypted value per party in the proof is the recipient-specific BSNk form, per OIN ([BSNK-07](../requirements/pseudonymization.md#bsnk-07)).
-            - The choice between identity and pseudonym by authorization is a lookup in the BSN Authorization List ([BSNK-06](../requirements/pseudonymization.md#bsnk-06)).
+            - The choice between identity and pseudonym by authorization is a lookup in the BSN authorization list (Autorisatielijst BSN) ([BSNK-06](../requirements/pseudonymization.md#bsnk-06)).
             - Transformation happens when the citizen gives consent, the only time when BSNk allows it ([BSNK-04](../requirements/pseudonymization.md#bsnk-04)).
             - Local decryption at the source, after the PDP, is what every BSNk recipient does ([BSNK-09](../requirements/pseudonymization.md#bsnk-09)).
             - The design makes no BSNk call at query time, so BSNk stays out of the query path.
@@ -367,20 +367,20 @@ must decide who the BSNk participant is.
             - PI and PP do not have the same starting point.
         - The demo built three parts on the BSNk mock ([SL-51](increments.md#sl-51), [PR #469](https://github.com/ICTU/GBO-demo/pull/469), [PR #477](https://github.com/ICTU/GBO-demo/pull/477)):
             - an encrypted pseudonym for every source
-            - an encrypted identity only for a source on the BSN Authorization List
+            - an encrypted identity only for a source on the BSN authorization list
             - requests of at most four parties ([BSNK-05](../requirements/pseudonymization.md#bsnk-05))
         - The spike on the real BSNk PP (demo issue [#377](https://github.com/ICTU/GBO-demo/issues/377)) closed on October 21, 2026. Its result: the mock follows the BSNk interface and rules. Real activation, transport, key handling, and the agreement for private recipients wait for pre-production access.
-    - **Why it matters**: [PSA P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie), B-07, and GO §5 make BSNk PP mandatory for DvTP. Nothing technical blocks the design. The remaining work is administrative and legal. The consent service must become a recognized BSNk party, in a role that BSNk was not written for.
-    - **Proposal**: use [BSNK-01 to BSNK-11](../requirements/pseudonymization.md#bsnk-preconditions) as the check for each build step and for the trial with the real BSNk PP. Submit the recognition question ([Q-26](open-questions.md#q-26)). Decide who the BSNk participant is ([Q-49](open-questions.md#q-49), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md), proposed). Two points stay open in the demo: a pseudonym for the consumer (demo issue [#478](https://github.com/ICTU/GBO-demo/issues/478)), and how the BSN Authorization List is delivered in practice ([Q-26](open-questions.md#q-26)).
+    - **Why it matters**: [PSA P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie), B-07, and GO §5 make BSNk PP mandatory for DvTP. Nothing technical blocks the design. The remaining work is administrative and legal. The consent facility must become a recognized BSNk party, in a role that BSNk was not written for.
+    - **Proposal**: use [BSNK-01 to BSNK-11](../requirements/pseudonymization.md#bsnk-preconditions) as the check for each build step and for the trial with the real BSNk PP. Submit the recognition question ([Q-26](open-questions.md#q-26)). Decide who the BSNk participant is ([Q-49](open-questions.md#q-49), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md), proposed). Two points stay open in the demo: a pseudonym for the consumer (demo issue [#478](https://github.com/ICTU/GBO-demo/issues/478)), and how the BSN authorization list is delivered in practice ([Q-26](open-questions.md#q-26)).
     - **Related**: [F-76](#f-76) to [F-79](#f-79), [REQ-20](../requirements/pseudonymization.md#req-20), [REQ-21](../requirements/pseudonymization.md#req-21), [REQ-69](../requirements/pseudonymization.md#req-69), [REQ-80](../requirements/pseudonymization.md#req-80), [Q-01](open-questions.md#q-01), [Q-26](open-questions.md#q-26), [Q-49](open-questions.md#q-49), [ADR-0005](../decisions/0005-bsnk-pp.md), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md).
 
 ### F-76: The consumer has no citizen identifier, so what it records about "this person" depends on the consent {#f-76}
 
 - **Status**: open
 
-The dienstverlener never learns who the citizen is. It holds a consent
+The service provider never learns who the citizen is. It holds a consent
 proof and names the citizen with a placeholder. This goes further than
-"no BSN for private parties", and it has side effects. The dienstverlener
+"no BSN for private parties", and it has side effects. The service provider
 logs under the consent ID, so one citizen with two consents is two
 people in its logbook. It cannot tell that two consents come from the
 same person, and it can answer a request for access only through the
@@ -447,8 +447,8 @@ the service catalogue, and gives the proof a version.
     - **Trigger**: [SL-51](increments.md#sl-51) ([PR #469](https://github.com/ICTU/GBO-demo/pull/469)). To make the values, the portal must know an OIN and a key version per source. No part of the chain holds these values, so they became configuration.
     - **Observation**:
         - The portal gets the sources as `<OIN>@<key set version>` from an environment variable. Without at least one source, the portal gives no consent ([`consent-portal-backend/main.go#L154-L173`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/main.go#L154-L173)).
-        - The source keeps its keys as files at the sidecar. In the demo, the keys are in the image.
-        - Since [PR #477](https://github.com/ICTU/GBO-demo/pull/477), the portal reads the BSN authorization from the BSNk BSN Authorization List instead of from configuration ([`portal.go#L38`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L38)). The authorization is therefore a snapshot too. If a source joins the list after the consent, that consent holds only a pseudonym for the source.
+        - The source keeps its keys as files at the source gateway. In the demo, the keys are in the image.
+        - Since [PR #477](https://github.com/ICTU/GBO-demo/pull/477), the portal reads the BSN authorization from the BSN authorization list of BSNk instead of from configuration ([`portal.go#L38`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L38)). The authorization is therefore a snapshot too. If a source joins the list after the consent, that consent holds only a pseudonym for the source.
         - A proof in an older form is denied with `CONSENT_CONTEXT_INVALID`. The proof form changed twice (PR #469, PR #477). Each time, older proofs stopped working.
     - **Why it matters**: [BSNK-04](../requirements/pseudonymization.md#bsnk-04) (transformation only while the citizen is present) makes the proof a snapshot. After each later change, either the old proof keeps working, or the citizen gives a new consent. Each kind of change has its own effect:
         1. A new party needs a new consent (demo issue [#382](https://github.com/ICTU/GBO-demo/issues/382)).
@@ -474,14 +474,14 @@ guard.
 ??? note "Evidence, impact and proposal"
 
     - **Type**: design gap (security)
-    - **Trigger**: [SL-51](increments.md#sl-51) ([PR #469](https://github.com/ICTU/GBO-demo/pull/469)). The substitution runs in the sidecar behind the Inway. A plugin in the Inway after the authorization needs a custom Inway build (demo issue [#364](https://github.com/ICTU/GBO-demo/issues/364)). A review of PR #469 showed that consumers were able to reach the sidecar without the Inway.
+    - **Trigger**: [SL-51](increments.md#sl-51) ([PR #469](https://github.com/ICTU/GBO-demo/pull/469)). The substitution runs in the source gateway behind the Inway. A plugin in the Inway after the authorization needs a custom Inway build (demo issue [#364](https://github.com/ICTU/GBO-demo/issues/364)). A review of PR #469 showed that consumers were able to reach the source gateway without the Inway.
     - **Observation**:
-        - The sidecar reads the proof without a signature check. It relies on the PDP that checked the same request ([`substitution.go#L105-L107`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L105-L107)). The sidecar does check two things: the proof has a value for its own OIN, and the BSNk-signed value names that OIN as recipient.
-        - Before the fix, consumers shared networks with the sidecars, and the sidecars published a port. A consumer with a real proof was able to send any query to the sidecar directly. The sidecar decrypted the identity and passed the query on. The checks on scope, fields, actor, and revocation did not run.
-        - The fix: the sidecars publish no port. Each sidecar is only on a network with the Inways of the source and on a network with the service behind the source ([`docker-compose.yml#L829-L836`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L829-L836)). A check on October 5, 2026 showed that consumer networks and the host cannot reach the sidecars. The Inways can reach them.
+        - The source gateway reads the proof without a signature check. It relies on the PDP that checked the same request ([`substitution.go#L105-L107`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L105-L107)). The source gateway does check two things: the proof has a value for its own OIN, and the BSNk-signed value names that OIN as recipient.
+        - Before the fix, consumers shared networks with the source gateways, and the source gateways published a port. A consumer with a real proof was able to send any query to the source gateway directly. The source gateway decrypted the identity and passed the query on. The checks on scope, fields, actor, and revocation did not run.
+        - The fix: the source gateways publish no port. Each source gateway is only on a network with the Inways of the source and on a network with the service behind the source ([`docker-compose.yml#L829-L836`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L829-L836)). A check on October 5, 2026 showed that consumer networks and the host cannot reach the source gateways. The Inways can reach them.
     - **Why it matters**:
-        - The rule "only after a positive decision" ([REQ-21](../requirements/pseudonymization.md#req-21)) depends on the deployment. The sidecar alone cannot make it true.
-        - A signature check in the sidecar does not help. A consumer holds real proofs, so a direct call with a real proof passes the check and still skips the PDP.
+        - The rule "only after a positive decision" ([REQ-21](../requirements/pseudonymization.md#req-21)) depends on the deployment. The source gateway alone cannot make it true.
+        - A signature check in the source gateway does not help. A consumer holds real proofs, so a direct call with a real proof passes the check and still skips the PDP.
         - Only two measures help: isolation, or a proof of the decision that is bound to the request. The Inway does not pass such a proof on.
         - A BSNk value is bound to a recipient. It is not bound to a consent, and it has no end date. A nonce can bind it to one consent as a second line of defense ([PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)).
     - **Proposal**: [REQ-81](../requirements/pseudonymization.md#req-81) says that only the component that enforces the decision reaches the source gateway. Outside Compose, this needs a NetworkPolicy or an equivalent measure. Add the nonce as a second line of defense ([BSNk preconditions](../requirements/pseudonymization.md#bsnk-preconditions)). The nonce is not built. Both measures are open design points from demo issue [#473](https://github.com/ICTU/GBO-demo/issues/473).
@@ -917,21 +917,21 @@ the issuer parameter and that the QTSP checks it.
 - **Status**: open
 
 FR-22 to FR-24 of FR-DvTP use different words for the same consent
-statuses. One rationale uses "Openstaand" next to "Actief", and a
-revoked consent is "Geannuleerd" in one place and "ingetrokken" in
-another. The rationale of FR-23 allows revocation only while the status
-is "Open", but its criteria also allow it after retrieval. Builders and
-reviewers therefore get two readings of one rule. The proposal is one
-set of terms, with "Ingetrokken" for a revoked consent, and a rationale
-that matches the criteria.
+statuses. One rationale uses "Openstaand" (pending) next to "Actief"
+(active). A revoked consent is "Geannuleerd" (cancelled) in one place and
+"ingetrokken" (revoked) in another. The rationale of FR-23 allows
+revocation only while the status is "Open", but its criteria also allow
+it after retrieval. Builders and reviewers therefore get two readings of
+one rule. The proposal is one set of terms, with "Ingetrokken" for a
+revoked consent, and a rationale that matches the criteria.
 
 ??? note "Evidence, impact and proposal"
 
     - **Type**: contradiction in the source (FR-DvTP v0.9)
     - **Trigger**: a review of the decision points for the build phase, track B (October 27, 2026).
     - **Observation**:
-        - FR-22, criterion 1, names the statuses "Actief", "Opgehaald (nog geldig)", "Verlopen", and "Geannuleerd". The rationale of FR-22 uses "Openstaand" for the same status.
-        - FR-23 names the action "Intrekken" and the outcome "Geannuleerd". FR-24 uses "ingetrokken".
+        - FR-22, criterion 1, names the statuses active ("Actief"), retrieved and still valid ("Opgehaald (nog geldig)"), expired ("Verlopen"), and cancelled ("Geannuleerd"). The rationale of FR-22 uses "Openstaand" for the same status.
+        - FR-23 names the action revoke ("Intrekken") and the outcome "Geannuleerd". FR-24 uses "ingetrokken".
         - The rationale of FR-23 says that revocation is possible only when the status is "Open". FR-23, criterion 1, and FR-24, criterion 1, also allow revocation after "Opgehaald", while the consent is valid.
     - **Why it matters**: builders and reviewers get two readings of one rule. The demo shows "Actief", "Verlopen", and "Ingetrokken" ([`StatusChip.tsx#L4-L6`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/components/consent-detail/StatusChip.tsx#L4-L6)). "Opgehaald" is missing, because no decision exists on when a consent counts as retrieved ([Q-42](open-questions.md#q-42), [F-19](#f-19)).
     - **Proposal**: use one set of terms in FR-DvTP: "Actief", "Opgehaald (nog geldig)", "Verlopen", and "Ingetrokken". The last term matches the action "Intrekken". Make the FR-23 rationale match the criteria: revocation is possible on "Actief" and "Opgehaald". The choice for the build (October 27, 2026) is "Actief" for the first status and "Ingetrokken" for a revoked consent ([REQ-109](../requirements/consent.md#req-109)).
@@ -1005,10 +1005,10 @@ In total, 34 findings are open. The review of September 21, 2026 closed 28 of 39
 
 ### Pseudonymization and BSNk
 
-- **Open**: [F-75](#f-75) (the consent service must be a recognized BSNk party), [F-76](#f-76) (the consumer has no citizen identifier), [F-77](#f-77) (one subject per request), and [F-79](#f-79) (only the Inway reaches the source gateway, with the roll-out outside Compose and the nonce open).
+- **Open**: [F-75](#f-75) (the consent facility must be a recognized BSNk party), [F-76](#f-76) (the consumer has no citizen identifier), [F-77](#f-77) (one subject per request), and [F-79](#f-79) (only the Inway reaches the source gateway, with the roll-out outside Compose and the nonce open).
 - **Decided in the TO**: the source gateway decrypts its own value after the allow ([ADR-0033](../decisions/0033-gateway-decrypts-after-allow.md)). Route D for citizen recognition is proposed ([ADR-0040](../decisions/0040-route-d-citizen-recognition.md)).
 - **PSA to decide**:
-    1. Recognition of the consent service at BSNk, and who the BSNk participant is ([Q-26](open-questions.md#q-26), [Q-49](open-questions.md#q-49)).
+    1. Recognition of the consent facility at BSNk, and who the BSNk participant is ([Q-26](open-questions.md#q-26), [Q-49](open-questions.md#q-49)).
     2. Whether the consumer gets a pseudonym (VP), with its effects on logging, access, and recognition ([Q-01](open-questions.md#q-01)).
     3. Queries about more than one person.
 

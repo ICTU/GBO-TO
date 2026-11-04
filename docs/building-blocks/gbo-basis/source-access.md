@@ -1,6 +1,7 @@
 # Generic source access
 
-The Globaal Ontwerp calls this part "generieke bronontsluiting". It is the
+The Globaal Ontwerp calls this part "generieke bronontsluiting", which
+means generic source access. It is the
 path behind the PEP: after the PDP allows a request, the source gateway
 passes it to the source API. Under consent, the gateway first puts the
 citizen into the query. The source answers one GraphQL query and returns
@@ -108,7 +109,7 @@ citizen after the allow:
 sequenceDiagram
   autonumber
   box rgb(241,239,232) Consumer
-    participant DV as Dienstverlener
+    participant DV as Service provider
   end
   box rgb(220,252,231) GBO Basis at the source
     participant IN as FSC Inway (PEP)
@@ -319,7 +320,7 @@ and a new policy bundle.
 Some rules depend on data that only the source sees. The PDP cannot check
 them, so the source holds them and their tests.
 
-The akte van overlijden is the example in the demo. A surviving partner
+The death certificate (akte van overlijden) is the example in the demo. A surviving partner
 discloses her own PID and gets an attestation about her deceased partner.
 The BRP source offers the flat view `akteVanOverlijden(bsn)`. The source
 picks the marriage and the deceased partner. The PDP sees only the output
@@ -341,7 +342,7 @@ gateway, and its own logbook:
 | FSC service | Source | Offers | Rules | Logbook |
 |---|---|---|---|---|
 | `bri` | Belastingdienst profile (`graphql-server`, `bron-sidecar`) | Income declarations per year | DVT0001, EUD0001 | `logboek-bd` |
-| `brp` | BRP profile of RvIG (`brp-graphql-server`, `brp-sidecar`) | Persoonslijst and the akte van overlijden view | EUD0002, ASI0001 | `logboek-brp` |
+| `brp` | BRP profile of RvIG (`brp-graphql-server`, `brp-sidecar`) | Personal record (persoonslijst) and the death certificate view | EUD0002, ASI0001 | `logboek-brp` |
 | `lvg` | LVG mock (`lvg-graphql-server`, `lvg-sidecar`) | The ownership check `vbo(bsn, vboId) { vboId }` | LVG0001 | `logboek-lvg` |
 
 The demo takes two shortcuts in this part:
@@ -360,9 +361,9 @@ queries. It differs in three places:
 
 | Topic | Globaal Ontwerp | Demo v0.9.0 |
 |---|---|---|
-| Allowed queries | A dienstencatalogus lists the allowed queries per application | The rules are the catalog: a field that no rule names is denied ([ADR-0009](../../decisions/0009-closed-world-rules.md)) |
+| Allowed queries | A service catalog (dienstencatalogus) lists the allowed queries per application | The rules are the catalog: a field that no rule names is denied ([ADR-0009](../../decisions/0009-closed-world-rules.md)) |
 | Source without GraphQL | A GBO translation layer turns an existing API into a GraphQL source | Not built. All three sources run GraphQL ([ADR-0027](../../decisions/0027-onboarding-toolkit.md), proposed) |
-| From proof to BSN | BSNk PP keeps the BSN away from the private dienstverlener | The same, and the source gateway converts its own value after the allow. BSNk is not in the query path |
+| From proof to BSN | BSNk PP keeps the BSN away from the private service provider (dienstverlener) | The same, and the source gateway converts its own value after the allow. BSNk is not in the query path |
 
 ## Open points
 

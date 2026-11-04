@@ -44,8 +44,8 @@ The demo has two attestation types:
 
 | Type | Source (`source_id`) | FSC service | Rule | Offers | Subject of the data |
 |---|---|---|---|---|---|
-| Inkomensverklaring | `belastingdienst` | `bri` | EUD0001 | `jaar` 2024 and 2025 | The PID holder |
-| Akte van overlijden | `rvig` | `brp` | EUD0002 | One, without parameters | The deceased partner of the PID holder ([related-person attestation](#related-person-attestation-akte-van-overlijden)) |
+| Income statement (inkomensverklaring) | `belastingdienst` | `bri` | EUD0001 | Year (`jaar`) 2024 and 2025 | The PID holder |
+| Death certificate (akte van overlijden) | `rvig` | `brp` | EUD0002 | One, without parameters | The deceased partner of the PID holder ([related-person attestation](#related-person-attestation-akte-van-overlijden)) |
 
 The offers come from the source documents
 ([BD](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/graphql-server/config/gbo-source-metadata.json),
@@ -55,7 +55,7 @@ In the default demo, both sources are on the Belastingdienst peer `…0200`
 
 ## Sequence
 
-The sequence shows the income declaration for 2024, cross-device.
+The sequence shows the income statement for 2024, cross-device.
 
 ```mermaid
 sequenceDiagram
@@ -253,9 +253,9 @@ have these triggers and outcomes:
 | Missing or incomplete certificate set of a source | The issuance facility blocks the source (`CERTIFICATE_SET_NOT_FOUND`, `CERTIFICATE_SET_INVALID`). Other sources continue to work. | [REQ-58](../requirements/eudi-issuance.md#req-58), [A certificate set per source](../concepts/source-onboarding.md#a-certificate-set-per-source) |
 | A caller posts a body with any BSN directly to the adapter | Allowed in demo v0.9.0. The source answers, and the caller gets the claims. | Not built: [#133](https://github.com/ICTU/GBO-demo/issues/133), [REQ-45](../requirements/eudi-issuance.md#req-45) |
 
-## Related-person attestation: akte van overlijden
+## Related-person attestation: death certificate {#related-person-attestation-akte-van-overlijden}
 
-The akte van overlijden holds data about the deceased partner of the
+The death certificate holds data about the deceased partner of the
 citizen who shares the PID. The subject of the claims differs from the
 person who discloses the PID ([F-47](../traceability/findings.md#f-47),
 [REQ-57](../requirements/eudi-issuance.md#req-57),
@@ -273,8 +273,8 @@ run in the preceding sections, with these differences per hop:
 
 The PDP sees only the flat output of the source view. It does not see the
 relation. The relation depends on the source and on the subject from the
-PID. Because of the callback gap, a caller can ask for the akte for any
-BSN.
+PID. Because of the callback gap, a caller can ask for the death certificate
+for any BSN.
 
 The preferred design puts the relation in filter arguments of the
 published schema. The policy then requires these arguments with fixed

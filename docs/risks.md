@@ -14,23 +14,23 @@ Each risk belongs to one group:
 
 | ID | Risk | Group |
 |---|---|---|
-| [R1](#r1) | The ASI exists at demo grade only | Trajectories |
-| [R2](#r2) | The SDG-OOTS bridge is design-level only | Trajectories |
-| [R3](#r3) | No Gov-to-Gov regime and no positive evidence for it | Trajectories |
+| [R1](#r1) | The ASI exists at demo grade only | Routes |
+| [R2](#r2) | The SDG-OOTS bridge is design-level only | Routes |
+| [R3](#r3) | No Gov-to-Gov regime and no positive evidence for it | Routes |
 | [R4](#r4) | The consent proof is a bearer token | Security |
 | [R5](#r5) | The EUDI adapter accepts unauthenticated issuance callbacks | Security |
 | [R6](#r6) | No rate limiting or quota | Security |
 | [R7](#r7) | Data-chain responses are not sealed | Security |
 | [R8](#r8) | Contract acceptance sees the parties but not the service | Security |
 | [R9](#r9) | Demo-grade shared services | Production readiness |
-| [R10](#r10) | The consent register is a dependency of every DvTP decision | Production readiness |
+| [R10](#r10) | The consent register (toestemmingsregister) is a dependency of every DvTP decision | Production readiness |
 | [R11](#r11) | The demo runs one PDP for all providers | Production readiness |
 | [R12](#r12) | Policy distribution has no integrity chain and no visible fallback | Production readiness |
 | [R13](#r13) | The PDP mapper is a patch on OpenFTV | Production readiness |
 | [R14](#r14) | New sources need a restart of the issuance server | Production readiness |
-| [R15](#r15) | The legal ceiling of the dienstencatalogus has no technical counterpart | Governance |
+| [R15](#r15) | The legal ceiling of the service catalog (dienstencatalogus) has no technical counterpart | Governance |
 | [R16](#r16) | Rego instead of ODRL | Governance |
-| [R17](#r17) | GraphQL is not a recognized FDS datadienst type | Governance |
+| [R17](#r17) | GraphQL is not a recognized data service (datadienst) type of the Federatief Datastelsel (FDS) | Governance |
 | [R18](#r18) | Integrator mandates have no validity and no governance | Governance |
 | [R19](#r19) | LDV gaps: citizen view, activity register, ASIP | Governance |
 | [R20](#r20) | Onboarding cost for small bronhouders | Governance |
@@ -50,9 +50,9 @@ Each risk belongs to one group:
 | [R34](#r34) | Any connected peer can read any consent status | Security |
 | [R35](#r35) | The consumer sets the consent validity | DvTP |
 | [R36](#r36) | Attestations are valid 365 days without a change feed | EUDI |
-| [R37](#r37) | BSNk recognition of the consent service is not settled | DvTP |
+| [R37](#r37) | BSNk recognition of the consent facility (toestemmingsvoorziening) is not settled | DvTP |
 
-## Trajectories
+## Routes {#trajectories}
 
 ### R1: The ASI exists at demo grade only {#r1}
 
@@ -101,7 +101,7 @@ Each risk belongs to one group:
 ### R3: No Gov-to-Gov regime and no positive evidence for it {#r3}
 
 - **Risk**: The PDP knows two regimes: consent and PID. No legal-basis
-  regime, rule set, or grondslag data exists. A request without a consent
+  regime, rule set, or legal basis (grondslag) data exists. A request without a consent
   proof falls in the PID regime
   ([ADR-0031](decisions/0031-regime-from-evidence.md)).
 - **Impact**: The two-path access-basis model of
@@ -247,7 +247,7 @@ Each risk belongs to one group:
 ### R32: Only the network protects the register listener {#r32}
 
 - **Risk**: The register listener for create, list, read, and revoke has
-  no caller authentication. The consent portal backend is its only
+  no caller authentication. The consent portal (toestemmingsportaal) backend is its only
   intended caller ([REQ-39](requirements/consent.md#req-39)). In
   Compose, the register is on `backend`
   ([`docker-compose.yml#L737-L740`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L737-L740)).
@@ -447,11 +447,11 @@ Each risk belongs to one group:
 - **Related**: [F-11](traceability/findings-closed.md#f-11),
   [REQ-19](requirements/consent.md#req-19).
 
-### R37: BSNk recognition of the consent service is not settled {#r37}
+### R37: BSNk recognition of the consent facility is not settled {#r37}
 
 - **Risk**: Only a recognized party can activate and transform
   ([BSNK-01](requirements/pseudonymization.md#bsnk-01)). It is open
-  whether the consent service can be that party, and in which role. The
+  whether the consent facility can be that party, and in which role. The
   demo assumes route D: the backend derives and activates, and the
   register stores PI and PP.
 - **Impact**: Route D works only under one condition: the backend and the
@@ -511,11 +511,10 @@ Each risk belongs to one group:
 
 ### R11: The demo runs one PDP for all providers {#r11}
 
-- **Risk**: The target model has a PAP and a PDP at each source holder
+- **Risk**: The target model has a PAP and a PDP at each bronhouder
   ([ADR-0021](decisions/0021-central-pap-signed-bundles.md)). The demo
   runs one shared PDP.
-- **Impact**: The demo does not show policy separation between source
-  holders.
+- **Impact**: The demo does not show policy separation between bronhouders.
 - **Follow-up**: Run a PDP per provider in the simulation deployment.
 - **Related**: [Q-21](traceability/answered-questions.md#q-21) (answered).
 
@@ -558,7 +557,7 @@ Each risk belongs to one group:
 
 ## Governance and standards
 
-### R15: The legal ceiling of the dienstencatalogus has no technical counterpart {#r15}
+### R15: The legal ceiling of the service catalog has no technical counterpart {#r15}
 
 - **Risk**: Rule coverage replaced the catalog artifact. The legally
   anchored ceiling and its governance (the Bureau DvTP process) are not
@@ -581,7 +580,7 @@ Each risk belongs to one group:
   more information, see [Policy lifecycle](concepts/policy-lifecycle.md)
   and [Q-78](traceability/open-questions.md#q-78).
 
-### R17: GraphQL is not a recognized FDS datadienst type {#r17}
+### R17: GraphQL is not a recognized FDS data service type {#r17}
 
 - **Risk**: The data access pillar rests on a deviation that no standard
   covers.
@@ -640,7 +639,7 @@ Each risk belongs to one group:
 
 - **Risk**: The cost to connect a source stays high for small
   organizations.
-- **Impact**: There is an adoption risk for gemeenten and small sources.
+- **Impact**: There is an adoption risk for municipalities and small sources.
 - **Follow-up**: [ADR-0027](decisions/0027-onboarding-toolkit.md).
 
 ## Accepted technical debt

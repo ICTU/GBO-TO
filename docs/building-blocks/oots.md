@@ -67,7 +67,7 @@ The channel has these parts:
 
 | Part | Role | Zoom in |
 |---|---|---|
-| Basisinrichting OOTS | Delivered by RINIS for the ministries of BZK and EZK. Its part OOTS-V receives evidence requests and has the citizen authenticate again. It checks for a mix-up of identities, fetches the data, and shows them to the citizen before it sends them. Not a GBO component | [GO pattern B](https://ictu.github.io/GBO-GO/main/#patroon-b-grensoverschrijdend-verzoek-via-oots) |
+| Basisinrichting OOTS | Delivered by RINIS for the Ministry of the Interior (BZK) and the Ministry of Economic Affairs (EZK). Its part OOTS-V receives evidence requests and has the citizen authenticate again. It checks for a mix-up of identities, fetches the data, and shows them to the citizen before it sends them. Not a GBO component | [GO pattern B](https://ictu.github.io/GBO-GO/main/#patroon-b-grensoverschrijdend-verzoek-via-oots) |
 | Protocol adapter | Translates the OOTS request into a GraphQL query over FSC and passes it on. It decides nothing about source data ([REQ-44](../requirements/authorization.md#req-44)) | [ADR-0020](../decisions/0020-as4-bridge-for-oots.md) |
 | Semantic mapping | Maps the source format to the SDG Evidence Data Model, if the bronhouder configures a mapping. Optional for the bronhouder | [ADR-0024](../decisions/0024-canonical-semantic-models.md) |
 | GBO Basis | Decides at the source, field by field, and only then asks the source. The same chain as for every other channel | [GBO Basis](gbo-basis/index.md) |
@@ -180,13 +180,13 @@ A channel adapter that GBO delivers does only protocol translation
 which data a party gets. It does not fetch decision information such as
 consent or admission. It carries no knowledge of a source in code. It
 uses the source access that the source offers for all interaction
-patterns, and never a koppelvlak for one channel.
+patterns, and never an interface (koppelvlak) for one channel.
 
 The mapping depends on a canonical model per source. The proposed
-decision makes the GraphQL schema of the bronprofiel that canonical model
+decision makes the GraphQL schema of the source profile that canonical model
 ([ADR-0024](../decisions/0024-canonical-semantic-models.md), proposed).
 GBO then derives the OOTS-EDM evidence-type mappings from it. No central
-canonical model exists. Source holders and domains own their models
+canonical model exists. Bronhouders and domains own their models
 ([Q-11](../traceability/answered-questions.md#q-11)).
 
 ## What demo v0.9.0 does

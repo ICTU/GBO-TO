@@ -2,7 +2,7 @@
 
 - Status: accepted (demo grade)
 - Date: 2026-11-02
-- Satisfies: eIDAS [article 45e](https://eur-lex.europa.eu/eli/reg/2014/910/oj), Implementing Regulation (EU) [2025/1569](https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj) article 9, Implementing Regulation (EU) [2026/1735](https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj) Annex IV, [GO: verificatie- en retrievedienst voor QTSPs](https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider), [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
+- Satisfies: eIDAS [article 45e](https://eur-lex.europa.eu/eli/reg/2014/910/oj), Implementing Regulation (EU) [2025/1569](https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj) article 9, Implementing Regulation (EU) [2026/1735](https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj) Annex IV, [GO: verification and retrieval service for QTSPs](https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider), [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
 - Supersedes: [ADR-0029](0029-authentic-source-interface.md)
 - Deliberation: [SL-28](../traceability/increments.md#sl-28), [F-80](../traceability/findings.md#f-80), [F-87](../traceability/findings.md#f-87), and demo epic [ICTU/GBO-demo#336](https://github.com/ICTU/GBO-demo/issues/336)
 - Implemented in:
@@ -77,7 +77,7 @@ works as follows:
    in, or refuses without login
    ([REQ-90](../requirements/asi.md#req-90)). The approval is one login
    per request: it is not a stored consent, and it has no relation to
-   the consent register. Approval in a wallet is not a legal basis
+   the consent register (toestemmingsregister). Approval in a wallet is not a legal basis
    ([F-83](../traceability/findings.md#f-83)).
 5. Token. The authorization server uses the authorization code flow
    with PKCE S256 and `private_key_jwt`. It issues a DPoP-bound RFC 9068
@@ -238,8 +238,8 @@ These points are open:
 - Who designates the ASI intermediary, and what is the role of GBO
   ([Q-28](../traceability/open-questions.md#q-28),
   [Q-37](../traceability/open-questions.md#q-37))? The
-  [besluitregister](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)
-  holds this point as PSA open decision B-14.
+  [PSA decision register](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)
+  holds this point as open decision B-14.
 - What is the legal basis to verify for private QTSPs, and does the ASIP
   return the value on a match
   ([Q-29](../traceability/open-questions.md#q-29))?

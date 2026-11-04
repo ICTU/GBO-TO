@@ -11,7 +11,7 @@
 
 ## Context and problem statement
 
-The consent service needs two things from a citizen who logged in:
+The consent facility (toestemmingsvoorziening) needs two things from a citizen who logged in:
 
 1. A stable key for its own administration. With this key, the service
    shows and revokes the consents of the citizen without a BSN
@@ -23,14 +23,14 @@ The consent service needs two things from a citizen who logged in:
 
 A stored PI or PP is not a stable key. BSNk gives other values at every
 activation, and the service cannot compute these values from a BSN.
-Every activation goes into the Inzageregister
+Every activation goes into the BSNk access register (Inzageregister)
 ([BSNK-10](../requirements/pseudonymization.md#bsnk-10)). Only a
 recognized BSNk participant can activate and transform
 ([BSNK-01](../requirements/pseudonymization.md#bsnk-01)).
 
 Two points are open ([Q-49](../traceability/open-questions.md#q-49)):
 
-- Are the consent register and the consent portal backend one system?
+- Are the consent register (toestemmingsregister) and the consent portal (toestemmingsportaal) backend one system?
 - Which of them is the BSNk participant?
 
 The working assumption puts the BSNk calls at the register. The demo
@@ -42,7 +42,7 @@ point (REQ-22) until a decision on Q-49.
 The proposal is route D, under the working assumption that MijnOverheid
 passes the BSN:
 
-- The consent service recognizes the citizen by an HMAC of the BSN, with
+- The consent facility recognizes the citizen by an HMAC of the BSN, with
   a secret, versioned key:
     - The key is in an HSM or KMS.
     - The input has a fixed prefix and nine digits with leading zeros.
@@ -64,11 +64,11 @@ describes the routes in full. The design weighed four options:
 
 1. Route D: an own pseudonym from the BSN (proposed). BSNk is necessary
    only at the first activation. The route needs the BSN from
-   MijnOverheid and a grondslag for the register.
+   MijnOverheid and a legal basis (grondslag) for the register.
 2. [Route A](../requirements/pseudonymization.md#route-a): an own
    pseudonym through BSNk. The service activates and transforms at every
    login, also to show consents. Every login goes into the
-   Inzageregister.
+   access register.
 3. [Route B](../requirements/pseudonymization.md#route-b): a pseudonym
    through the login. MijnOverheid passes a VP for the register. The
    route depends on DigiD and MijnOverheid.
@@ -84,14 +84,14 @@ describes the routes in full. The design weighed four options:
   purpose from FR-35, criterion 1
   ([F-98](../traceability/findings.md#f-98)).
 - The service processes the BSN briefly at every login, and that needs a
-  grondslag. For every BSN, the service can compute whether consents
+  legal basis. For every BSN, the service can compute whether consents
   exist, without a trace elsewhere.
 - The secret key is the whole protection. Without the key, anyone can
   compute every reference back from the small BSN space.
 - A new key gives every citizen a new reference. A migration of existing
   records is not built
   ([Q-56](../traceability/open-questions.md#q-56)).
-- The consent service must become a recognized BSNk participant
+- The consent facility must become a recognized BSNk participant
   ([F-75](../traceability/findings.md#f-75),
   [Q-26](../traceability/open-questions.md#q-26)).
 

@@ -1,10 +1,10 @@
 # EUDI wallet channel
 
 In the EUDI wallet channel, a citizen gets data from a government source in
-the EUDI wallet. Interaction pattern A of the
+the EUDI wallet. Interaction pattern (interactiepatroon) A of the
 [Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/#patroon-a-burger-gebruikt-eudi-wallet)
 has two flows. In flow A, the source issues an attestation itself, as a
-PubEAA. In flow B, a QTSP verifies or retrieves the data at the source and
+PuB-EAA. In flow B, a QTSP verifies or retrieves the data at the source and
 issues a QEAA. GBO delivers one component for each flow, and both
 components reach the source through GBO Basis.
 
@@ -20,7 +20,7 @@ flowchart LR
     wallet["NL Wallet<br/>PID, attestations"]
     qtsp["QTSP<br/><i>reference QTSP in the demo</i>"]
   end
-  subgraph pub["PubEAA provider: flow A"]
+  subgraph pub["PuB-EAA provider: flow A"]
     direction TB
     is("Issuance server<br/>nl-wallet")
     ad("EUDI adapter")
@@ -60,8 +60,8 @@ flowchart LR
   style basis fill:#F4F5F7,stroke:#16A34A
   style extp fill:#F4F5F7,stroke:#D1D5DB
 
-  click is "pubeaa/" "PubEAA provider"
-  click ad "pubeaa/" "PubEAA provider"
+  click is "pubeaa/" "PuB-EAA provider"
+  click ad "pubeaa/" "PuB-EAA provider"
   click az "asi/" "ASI provider"
   click asip "asi/" "ASI provider"
   click pdp "../gbo-basis/" "GBO Basis"
@@ -77,13 +77,13 @@ The channel has these parts:
 
 | Part | Role | Zoom in |
 |---|---|---|
-| PubEAA provider | The technical issuance facility. The issuance server asks the wallet for the PID. The EUDI adapter gets the source data and turns it into claims. The bronhouder stays the PuB-EAA provider ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). | [PubEAA provider](pubeaa.md) |
+| PuB-EAA provider (PubEAA-voorziening) | The technical issuance facility. The issuance server asks the wallet for the PID. The EUDI adapter gets the source data and turns it into claims. The bronhouder stays the PuB-EAA provider ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). | [PuB-EAA provider](pubeaa.md) |
 | ASI provider | Lets a QTSP verify or retrieve attributes at the source (eIDAS article 45e). It has its own OAuth authorization server. The QTSP is an OAuth client there, and not an FSC participant ([F-87](../../traceability/findings.md#f-87)). | [ASI provider](asi.md) |
 | Source registry | Holds the active release of every source description. The source describes its attestations (`eudi`) and its attributes (`asi`) itself. | [Source onboarding](../../concepts/source-onboarding.md) |
 | GBO Basis | Decides every request of the channel under the PID regime, with the rules EUD0001, EUD0002 and ASI0001. | [GBO Basis](../gbo-basis/index.md) |
 | NL Wallet and QTSP | External parties. The wallet holds the PID of the citizen. The demo runs a reference QTSP, which is not a real QTSP. | [ASI verification](../../runtime/asi-verification.md) |
 
-## Flow A: the source issues a PubEAA
+## Flow A: the source issues a PuB-EAA {#flow-a-the-source-issues-a-pubeaa}
 
 In flow A, the citizen shares the PID with the issuance facility and gets an
 attestation back. The attestation carries the name of the source as the
@@ -96,7 +96,7 @@ sequenceDiagram
   box rgb(241,239,232) External
     participant W as NL Wallet
   end
-  box rgb(255,237,213) PubEAA provider
+  box rgb(255,237,213) PuB-EAA provider
     participant IS as Issuance server
     participant AD as EUDI adapter
   end
@@ -129,7 +129,7 @@ sequenceDiagram
 
 The facility signs with the certificate set of the source. The wallet shows
 the source as the issuer. GBO plays no part when the citizen later presents
-the attestation to a dienstverlener. For every hop, with the data and the
+the attestation to a service provider (dienstverlener). For every hop, with the data and the
 error paths, see [EUDI issuance](../../runtime/eudi-issuance.md).
 
 ## Flow B: a QTSP verifies at the source
@@ -309,9 +309,9 @@ The demo follows the two flows of pattern A. It differs in six steps:
 
 | Step | Globaal Ontwerp | Demo v0.9.0 |
 |---|---|---|
-| Start of flow A | The wallet sends a credential request to the PubEAA voorziening. | The citizen scans a QR code. The issuance server first asks for the PID (disclosure-based issuance, [ADR-0018](../../decisions/0018-eudi-disclosure-issuance.md)). |
-| Authorization in flow A | An Autorisatievoorziening asks the wallet for the PID and authorizes the PubEAA voorziening. | No separate service. The nl-wallet issuance server checks the PID and calls the adapter. The adapter does not authenticate that call. |
-| Authorization in flow B | The verify and retrieve service uses the same Autorisatievoorziening of GBO. | The ASI provider has its own OAuth authorization server, with a wallet verifier and a DigiD mock ([ADR-0037](../../decisions/0037-asi-oauth-front-door.md)). |
+| Start of flow A | The wallet sends a credential request to the PuB-EAA provider. | The citizen scans a QR code. The issuance server first asks for the PID (disclosure-based issuance, [ADR-0018](../../decisions/0018-eudi-disclosure-issuance.md)). |
+| Authorization in flow A | An authorization facility (autorisatievoorziening) asks the wallet for the PID and authorizes the PuB-EAA provider. | No separate service. The nl-wallet issuance server checks the PID and calls the adapter. The adapter does not authenticate that call. |
+| Authorization in flow B | The verify and retrieve service uses the same authorization facility of GBO. | The ASI provider has its own OAuth authorization server, with a wallet verifier and a DigiD mock ([ADR-0037](../../decisions/0037-asi-oauth-front-door.md)). |
 | Approval by the citizen | The wallet shows the request and asks for consent. | Flow A: the citizen shares the PID. Flow B: the citizen logs in. Neither is a stored consent. |
 | Format of the attestation | SD-JWT VC or mdoc | SD-JWT VC (`dc+sd-jwt`) only |
 | Result of flow B | The QTSP issues a QEAA. | The reference QTSP issues a test statement, marked as not qualified. |
@@ -319,7 +319,7 @@ The demo follows the two flows of pattern A. It differs in six steps:
 The GO also says that a request over ISO 15000 needs no authorization. The
 demo offers clause 6.1 of ETSI TS 119 478 only
 ([REQ-112](../../requirements/asi.md#req-112)). In both the GO and the demo,
-GBO itself is not a PubEAA provider.
+GBO itself is not a PuB-EAA provider.
 
 ## Open points
 

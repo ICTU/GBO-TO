@@ -2,7 +2,7 @@
 
 - Status: accepted (not implemented in gbo-demo v0.9.0)
 - Date: 2026-08-24 (ported from the reference architecture)
-- Satisfies: [S08](https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter), [GO patroon B](https://ictu.github.io/GBO-GO/main/#patroon-b-grensoverschrijdend-verzoek-via-oots), SDG-verordening (EU 2018/1724)
+- Satisfies: [S08](https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter), [GO pattern B](https://ictu.github.io/GBO-GO/main/#patroon-b-grensoverschrijdend-verzoek-via-oots), SDG regulation (EU 2018/1724)
 - Deliberation: Reference architecture v0.6.2, decision 7 and OOTS bridge (archived and unpublished)
 - Implemented in: not implemented. gbo-demo v0.9.0 has no implementation.
 
@@ -15,7 +15,7 @@ EU obligation, so GBO has no architectural choice here.
 
 ## Decision
 
-GBO builds an OOTS-adapter at its edge. The adapter has three parts:
+GBO builds an OOTS adapter at its edge. The adapter has three parts:
 
 - A Domibus access point receives AS4 messages.
 - An OOTS-EDM adapter maps evidence requests.
@@ -31,7 +31,7 @@ line with the national Basisinrichting OOTS.
   to OOTS.
 - The mapping of evidence types depends on canonical semantic models
   ([ADR-0024](0024-canonical-semantic-models.md)).
-- The trajectory needs a legal-basis policy path in the Gov-to-Gov style.
+- The route needs a legal-basis policy path in the Gov-to-Gov style.
   This path is not implemented either.
   [Risks and technical debt](../risks.md) tracks both gaps.
 

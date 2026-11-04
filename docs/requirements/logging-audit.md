@@ -36,7 +36,10 @@ trace ID.
 ??? note "Source, evidence and notes"
 
     - **Source**: design:
-        - [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid)
+        - [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid):
+          measures protect log data against unauthorized change and deletion,
+          and agreements set retention, access, inspection, and destruction
+          explicitly
           ("maatregelen beschermen loggegevens tegen ongeautoriseerde wijziging en verwijdering",
           "afspraken regelen bewaartermijnen, toegang, inzage en vernietiging expliciet").
         - [LDV, behavior of the application](https://logius-standaarden.github.io/logboek-dataverwerkingen/#gedrag-van-applicatie)
@@ -77,7 +80,9 @@ trace ID.
 ??? note "Source, evidence and notes"
 
     - **Source**: design:
-        - [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid)
+        - [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid):
+          authorization decisions refer to the applied policy version and to
+          relevant information about the legal basis
           ("autorisatiebeslissingen verwijzen naar de toegepaste beleidsversie en relevante informatie over de grondslag").
         - [ADL `adl.core.policies`](https://logius-standaarden.github.io/authorization-decision-log/#adl-core-policies).
         - [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie)
@@ -111,7 +116,7 @@ trace ID.
 
 | Case | Outcome |
 |---|---|
-| Operational log or span | no BSN. A data subject only as pseudonym or opaque reference |
+| Operational log or span | no BSN. A data subject (Betrokkene) only as pseudonym or opaque reference |
 | PDP input, DvTP | no identity: a placeholder, which the source replaces only after the consent |
 | Decryption or replacement fails | the request does not reach the source |
 | PDP input, EUDI and ASI | no BSN (not met in demo v0.9.0, see the notes) |
@@ -122,7 +127,8 @@ trace ID.
 
     - **Source**: design.
       [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid)
-      ("logging bevat niet meer persoonsgegevens dan noodzakelijk") and
+      (logging holds no more personal data than necessary: "logging bevat
+      niet meer persoonsgegevens dan noodzakelijk") and
       [P-03, P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
     - **Addressee**: GBO-delivered component: the GBO components and the
       chain that builds the PDP input. It is no requirement on the policy
@@ -241,8 +247,7 @@ side (ADL). The requirement on this page covers the processing side. It is
 generic and applies to DvTP, EUDI issuance, and the ASI route.
 
 The Logius standard Logboek Dataverwerkingen (LDV) asks for a log record
-for every processing (Dataverwerking), for each controller
-(Verantwoordelijke). Only trace metadata crosses an organization boundary.
+for every processing, for each controller. Only trace metadata crosses an organization boundary.
 The decision of a PDP is no processing. A transformation at the source,
 such as the decryption by the source gateway, is a processing
 ([F-64](../traceability/findings-closed.md#f-64)).
@@ -250,8 +255,8 @@ such as the decryption by the source gateway, is a processing
 ### REQ-72: A GBO component that processes personal data writes an LDV log record for each processing at its controller {#req-72}
 
 > Every GBO-delivered component that processes data of a data subject
-> (Betrokkene) MUST write a log record according to Logboek
-> Dataverwerkingen for each action. It MUST write the record to the
+> MUST write a log record according to
+> Logboek Dataverwerkingen for each action. It MUST write the record to the
 > logbook of the controller of that processing. The trace ID in that
 > record MUST follow from [REQ-55](logging-audit.md#req-55). There MUST be
 > a separate log record for each data subject. A further data subject of
@@ -274,18 +279,19 @@ such as the decryption by the source gateway, is a processing
           and its
           [read extension](https://logius-standaarden.github.io/logboek-extensie-lezen/).
         - [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid)
-          (LDV as functional frame,
+          (LDV as functional frame, and each component records the events
+          that are relevant for its responsibility:
           "iedere component legt de gebeurtenissen vast die voor zijn verantwoordelijkheid relevant zijn").
         - [GO, reused building blocks](https://ictu.github.io/GBO-GO/main/).
         - FR-31 criterion 1.
-    - **Addressee**: GBO-delivered component: source gateway (sidecar),
-      toestemmingsregister and toestemmingsportaal, EUDI adapter, and ASIP.
+    - **Addressee**: GBO-delivered component: source gateway (`bron-sidecar`),
+      consent register (toestemmingsregister), consent portal (toestemmingsportaal), EUDI adapter, and ASIP.
       The logbook and the source application of a bronhouder belong to that
       bronhouder ([P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)).
     - **Evidence**: [ICTU/GBO-demo#302](https://github.com/ICTU/GBO-demo/issues/302),
       [PR #366](https://github.com/ICTU/GBO-demo/pull/366),
       [PR #469](https://github.com/ICTU/GBO-demo/pull/469). Code and tests:
-        - The sidecar logs decryption and forwarding
+        - The source gateway logs decryption and forwarding
           ([`bron-sidecar/ldv_test.go#L309`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/ldv_test.go#L309)).
         - The EUDI adapter names the holder without a BSN
           ([`eudi-adapter/ldv_test.go#L159`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L159))
@@ -371,8 +377,9 @@ record.
 
     - **Source**: design:
         - [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid)
-          ("iedere gegevensvraag krijgt een verzoekidentificator die over de hele keten bruikbaar is",
-          standardized correlation and trace context).
+          (each data request gets a request identifier that is usable over
+          the whole chain: "iedere gegevensvraag krijgt een verzoekidentificator die over de hele keten bruikbaar is",
+          and standardized correlation and trace context).
         - [LDV `trace_id`](https://logius-standaarden.github.io/logboek-dataverwerkingen/#trace_id).
         - [W3C Trace Context](https://www.w3.org/TR/trace-context/).
         - FR-31 criterion 1 (traceable correlation references across

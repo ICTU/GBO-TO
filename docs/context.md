@@ -1,7 +1,7 @@
 # Context and scope
 
 The GBO technical system connects to external actors and systems. This
-chapter lists every koppelvlak on the system boundary and between GBO
+chapter lists every interface (koppelvlak) on the system boundary and between GBO
 components. It covers the technical context only. The
 [GO solution direction](https://ictu.github.io/GBO-GO/main/#2-voorgestelde-oplossingsrichting)
 and the
@@ -30,8 +30,8 @@ flowchart TB
   end
   subgraph ch["GBO channels"]
     direction LR
-    tv("Toestemmingsvoorziening<br/>portal + register")
-    pub("PubEAA provider<br/>adapter + issuance server")
+    tv("Consent facility<br/>portal + register")
+    pub("PuB-EAA provider<br/>adapter + issuance server")
     asi("ASI provider<br/>authorization server + ASIP")
     oots("OOTS adapter")
   end
@@ -80,8 +80,8 @@ flowchart TB
   style ch fill:#F4F5F7,stroke:#D1D5DB
   style basis fill:#F0FDF4,stroke:#16A34A
   style svc fill:#F4F5F7,stroke:#D1D5DB
-  click tv "../building-blocks/dvtp/consent-service/" "Toestemmingsvoorziening"
-  click pub "../building-blocks/eudi/pubeaa/" "PubEAA provider"
+  click tv "../building-blocks/dvtp/consent-service/" "Consent facility"
+  click pub "../building-blocks/eudi/pubeaa/" "PuB-EAA provider"
   click asi "../building-blocks/eudi/asi/" "ASI provider"
   click oots "../building-blocks/oots/" "OOTS channel"
   click pep "../building-blocks/gbo-basis/" "GBO Basis"
@@ -106,7 +106,7 @@ flowchart LR
   subgraph reg["Registers and records"]
     direction TB
     adm[("Admission register")]
-    tr[("Toestemmingsregister")]
+    tr[("Consent register")]
     adl[("ADL<br/>decision records")]
   end
   subgraph src["At the bronhouder"]
@@ -144,7 +144,7 @@ flowchart LR
   style src fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
   style eudi fill:#FFF7ED,stroke:#EA580C
   click pdp "../building-blocks/gbo-basis/authorization/" "Authorization"
-  click tr "../building-blocks/dvtp/consent-service/" "Toestemmingsvoorziening"
+  click tr "../building-blocks/dvtp/consent-service/" "Consent facility"
   click sreg "../building-blocks/gbo-basis/source-configuration/" "Source configuration"
   click adl "../building-blocks/gbo-basis/records/" "Records"
 ```
@@ -152,7 +152,7 @@ flowchart LR
 *Figure 2: The interfaces between GBO components.*
 {: .caption }
 
-The [koppelvlak inventory](#koppelvlak-inventory) lists every interface
+The [interface inventory](#koppelvlak-inventory) lists every interface
 with its protocol and code. The
 [building block view](building-blocks/index.md) zooms in per channel.
 
@@ -177,7 +177,7 @@ Four points in these diagrams are easy to misread:
   operates the ASIP and the authorization server
   ([Q-37](traceability/open-questions.md#q-37)).
 
-## Koppelvlak inventory
+## Interface inventory {#koppelvlak-inventory}
 
 Every interface has a row in one of the tables in the following sections.
 A row gives the standard that the interface follows and its implementation
@@ -189,21 +189,21 @@ the last column are relative to
 
 The DvTP consent chain uses these interfaces:
 
-| Koppelvlak | Between | Protocol and standard | Implemented in |
+| Interface | Between | Protocol and standard | Implemented in |
 |---|---|---|---|
-| Consent initiation | Consumer → toestemmingsportaal, and back | HTTPS redirect with consumer, scopes, purpose, and return URL. The return carries the consent proof in the URL fragment, or `status=denied` ([REQ-37](requirements/consent.md#req-37), [REQ-119](requirements/consent.md#req-119)). | [toestemmingsportaal-frontend](https://github.com/ICTU/GBO-demo/tree/v0.9.0/toestemmingsportaal-frontend) |
-| Citizen login | Citizen ↔ toestemmingsportaal | DigiD (mock): the citizen types a test BSN, and the backend signs a portal token with the BSN in `sub`. Real DigiD gives the identity in an assertion ([REQ-24](requirements/consent.md#req-24)). | [portalhttp](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-portal-backend/portalhttp) |
-| Consent registration | Portal backend ↔ toestemmingsregister | REST: `POST /consents`, `GET /consents?subject_ref=…`, `GET` and `DELETE /consents/{id}`, `GET` and `PUT /subjects/{ref}/polymorphic`. No BSN crosses this interface ([REQ-23](requirements/consent.md#req-23), [REQ-39](requirements/consent.md#req-39)). | [consent-register/main.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/main.go#L350-L376) |
+| Consent initiation | Consumer → consent portal (toestemmingsportaal), and back | HTTPS redirect with consumer, scopes, purpose, and return URL. The return carries the consent proof in the URL fragment, or `status=denied` ([REQ-37](requirements/consent.md#req-37), [REQ-119](requirements/consent.md#req-119)). | [toestemmingsportaal-frontend](https://github.com/ICTU/GBO-demo/tree/v0.9.0/toestemmingsportaal-frontend) |
+| Citizen login | Citizen ↔ consent portal | DigiD (mock): the citizen types a test BSN, and the backend signs a portal token with the BSN in `sub`. Real DigiD gives the identity in an assertion ([REQ-24](requirements/consent.md#req-24)). | [portalhttp](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-portal-backend/portalhttp) |
+| Consent registration | Portal backend ↔ consent register (toestemmingsregister) | REST: `POST /consents`, `GET /consents?subject_ref=…`, `GET` and `DELETE /consents/{id}`, `GET` and `PUT /subjects/{ref}/polymorphic`. No BSN crosses this interface ([REQ-23](requirements/consent.md#req-23), [REQ-39](requirements/consent.md#req-39)). | [consent-register/main.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/main.go#L350-L376) |
 | BSNk PP | Portal backend → BSNk | `/v2/activate`, `/v2/transform`, and `/v2/bsn-authorisation-list`. The mock follows the BSNk interface as JSON and does not encrypt. Production BSNk uses SOAP with PKIoverheid ([BSNK-11](requirements/pseudonymization.md#bsnk-11)). | [bsnk-mock](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bsnk-mock/README.md) |
 | Consent proof | Consumer → Inway → PDP and source gateway | Signed JWT `gbo-consent+jwt` (ES256) in the `X-GBO-Consent-Token` header, with `encrypted_subject` per source. The query names the subject with the placeholder `consent:identity` or `consent:pseudonym` ([REQ-79](requirements/pseudonymization.md#req-79), [AV-05](requirements/admission.md#av-05)). | [consent_token.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go) |
-| Consent keys | PDP → toestemmingsregister | `GET /.well-known/jwks.json`, cached for 300 s | [consent.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego) |
+| Consent keys | PDP → consent register | `GET /.well-known/jwks.json`, cached for 300 s | [consent.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego) |
 | Consent status | PDP Outway (`…0800`) → register Inway (`…0700`) | FSC service `consent-status`: `GET /consents/{id}/status` on a status-only listener, with no cache and a 2 s timeout. The register refuses a call without an FSC peer ([REQ-76](requirements/consent.md#req-76)). | [status.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/status.go), [Makefile](https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L647-L668) |
 
 ### Authorization and FSC
 
 The authorization chain and the FSC group use these interfaces:
 
-| Koppelvlak | Between | Protocol and standard | Implemented in |
+| Interface | Between | Protocol and standard | Implemented in |
 |---|---|---|---|
 | Data request | Consumer Outway ↔ bronhouder Inway | FSC (OpenFSC v2.4.0): mTLS, access token, and grant hash. Grants carry no properties. | [fsc-infra](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml) |
 | Delegated data request | Integrator Outway ↔ bronhouder Inway | FSC `DelegatedServiceConnectionGrant`, signed by the integrator, the represented consumer, and the provider ([REQ-106](requirements/consent.md#req-106)) | [seed-bri-delegation-int.sh](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-delegation-int.sh) |
@@ -211,11 +211,11 @@ The authorization chain and the FSC group use these interfaces:
 | Contract decision | Provider Manager → PDP | AuthZEN autosign request for each submitted contract ([REQ-62](requirements/admission.md#req-62)) | [autosign.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego) |
 | Participant admission | PDP ← admission register | OpenFTV PIP pull, `GET /internal/openftv/participants`, every 5 s, on a network that only the PDP shares ([REQ-61](requirements/admission.md#req-61)) | [dvtp-onboarding.yaml](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml) |
 
-### Bronhouder
+### Bronhouder {#bronhouder}
 
 The bronhouder uses these interfaces:
 
-| Koppelvlak | Between | Protocol and standard | Implemented in |
+| Interface | Between | Protocol and standard | Implemented in |
 |---|---|---|---|
 | GraphQL source API | Source gateway ↔ source | GraphQL over HTTP, `POST /graphql`. Only the Inway can reach the gateway ([REQ-81](requirements/pseudonymization.md#req-81)). | [graphql-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/graphql-server), [brp-graphql-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/brp-graphql-server), [lvg-graphql-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/lvg-graphql-server) |
 | Source decryption | Source gateway → decryption component of the source | `POST /signed-encrypted-identity` and `POST /signed-encrypted-pseudonym`. The component calls no other service ([REQ-21](requirements/pseudonymization.md#req-21)). | [decryption.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/decryption/decryption.go) |
@@ -225,7 +225,7 @@ The bronhouder uses these interfaces:
 
 EUDI issuance uses these interfaces:
 
-| Koppelvlak | Between | Protocol and standard | Implemented in |
+| Interface | Between | Protocol and standard | Implemented in |
 |---|---|---|---|
 | Wallet issuance | EUDI wallet ↔ issuance server | OpenID4VCI with OpenID4VP disclosure, SD-JWT VC (`dc+sd-jwt`) | [eudi-issuance-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-issuance-server) (nl-wallet v0.5.0) |
 | Attestation data | Issuance server → EUDI adapter | `POST /attestations/{source_id}/{type_id}` over public HTTPS. In demo v0.9.0, this route has no caller authentication ([REQ-45](requirements/eudi-issuance.md#req-45), [#133](https://github.com/ICTU/GBO-demo/issues/133)). | [source_release_runtime.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L69) |
@@ -238,7 +238,7 @@ EUDI issuance uses these interfaces:
 
 The Authentic Source Interface uses these interfaces:
 
-| Koppelvlak | Between | Protocol and standard | Implemented in |
+| Interface | Between | Protocol and standard | Implemented in |
 |---|---|---|---|
 | ASI discovery | QTSP ↔ Discover Interface, and Discover Interface ← ASIP records | ETSI TS 119 478 clause 5.3 and Annex A. `dataService` records (clause 5.3.3) at `/<ds>/dataservices` ([REQ-99](requirements/asi.md#req-99)). | [asi-discovery-stub](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-discovery-stub) (stub), [asi-provider](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-provider) |
 | ASI contract | QTSP ← ASIP | ETSI Annex B OpenAPI with completions. `x-oauth-authorization-server` names the authorization server ([REQ-100](requirements/asi.md#req-100)). | [asi-provider/openapi](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-provider/openapi) |
@@ -256,7 +256,7 @@ The Authentic Source Interface uses these interfaces:
 
 Logging and audit use these interfaces:
 
-| Koppelvlak | Between | Protocol and standard | Implemented in |
+| Interface | Between | Protocol and standard | Implemented in |
 |---|---|---|---|
 | Decision records | PDP → ADL, and reader → ADL | Logius ADL in Postgres `ftv_adl`. Readers use a SELECT-only role ([REQ-71](requirements/logging-audit.md#req-71)). | [adl-reader.sql](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/adl/adl-reader.sql), [adl.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/adl.go) |
 | Processing records | Component → logbook of its controller | LDV v1.0.0 write, `POST /logboek/records`, over HTTPS with JSON and a bearer write token ([REQ-72](requirements/logging-audit.md#req-72)) | [ldv-client](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-client) |
@@ -269,21 +269,21 @@ Logging and audit use these interfaces:
 
 Two interfaces are designed but not built in demo v0.9.0:
 
-| Koppelvlak | Between | Protocol and standard | Implemented in |
+| Interface | Between | Protocol and standard | Implemented in |
 |---|---|---|---|
 | OOTS evidence exchange | EU access points ↔ OOTS adapter | AS4/eDelivery and OOTS-EDM. This interface is *designed*. For more information, see [ADR-0020](decisions/0020-as4-bridge-for-oots.md) and [Q-79](traceability/open-questions.md#q-79). | — |
 | Government data request | Government consumer ↔ bronhouder Inway | FSC with its own positive evidence. This interface is *designed*. For more information, see [design-level scenarios](runtime/design-level.md). | — |
 
 ## Scope
 
-The demo implements three trajectories end to end, at demo grade:
+The demo implements three routes end to end, at demo grade:
 
 1. The DvTP query under consent, with an integrator variant and the LVG
    pilot as a second consumer and source.
 2. EUDI issuance of PuB-EAA attestations.
 3. ASI verification and retrieval for QTSPs (ETSI TS 119 478 clause 6.1).
 
-Two trajectories are design-level: SDG-OOTS and Gov-to-Gov. The
+Two routes are design-level: SDG-OOTS and Gov-to-Gov. The
 [runtime view](runtime/index.md) has a scenario for each.
 
 This design covers the following parts of the system:

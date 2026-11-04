@@ -190,7 +190,7 @@ The following points are open:
   ([F-74](../traceability/findings.md#f-74)).
 - Who can do the activation action, and how the admission decision is
   recorded (PSA B-09 in the
-  [besluitregister](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)).
+  [decision register](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister)).
 - The final form of the source configuration. This is the open PSA S10
   decision.
 

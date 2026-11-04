@@ -179,7 +179,7 @@ seven logbooks:
 | `logboek-bd` | Belastingdienst | `bron-sidecar`, `graphql-server` |
 | `logboek-brp` | RvIG | `brp-sidecar`, `brp-graphql-server` |
 | `logboek-lvg` | LVG | `lvg-sidecar`, `lvg-graphql-server` |
-| `logboek-toestemming` | GBO consent service | `consent-register`, `consent-portal-backend` |
+| `logboek-toestemming` | GBO consent facility (toestemmingsvoorziening) | `consent-register`, `consent-portal-backend` |
 | `logboek-eudi-adapter` | GBO issuance facility | `eudi-adapter` |
 | `logboek-afnemer` | Hypotheek-BV (demo consumer) | `dienstverlener-backend`, `integrator-backend` |
 | `logboek-ir` | Installatie Register (demo consumer) | `ir-backend` |
@@ -198,7 +198,7 @@ Three properties make the records reliable:
   does not fail requests. If the component cannot store the record
   locally, it refuses the processing.
 - No BSN. The logbook scans every write for a nine-digit run that passes
-  the elfproef, and refuses a match. The check is word-bounded, so a
+  the BSN check digit test (elfproef), and refuses a match. The check is word-bounded, so a
   20-digit OIN passes.
 - Separate tokens. A component that can write cannot read with that token.
 

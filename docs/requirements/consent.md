@@ -1,29 +1,30 @@
 # Consent requirements (DvTP)
 
-These requirements cover the consent of the citizen in the DvTP channel. They cover the consent proof and its lifecycle, and the start of a request. They also cover the roles of portal and register, access and revocation by the citizen, and the data model of the register. For the design, see [Toestemmingsvoorziening](../building-blocks/dvtp/consent-service.md).
+These requirements cover the consent of the citizen in the DvTP channel. They cover the consent proof and its lifecycle, and the start of a request. They also cover the roles of portal and register, access and revocation by the citizen, and the data model of the register. For the design, see [consent facility (toestemmingsvoorziening)](../building-blocks/dvtp/consent-service.md).
 
 This page has the following parts:
 
 - [Consent proof and use](#consent)
 - [Consent lifecycle requirements](#consent-lifecycle)
 - [Consent initiation and return requirements](#consent-initiation)
-- [Role split between consent register and consent portal (S01/S02)](#consent-roles)
+- [Role split between consent register (toestemmingsregister) and consent portal (toestemmingsportaal) (S01/S02)](#consent-roles)
 - [Citizen access and revocation requirements](#citizen-access)
 - [Consent register data model](#consent-register)
 
 ## Consent proof and use {#consent}
 
-In the DvTP route (Data via Third Parties), a citizen gives consent to a
-private dienstverlener to get data about the citizen from a source. The
+In the DvTP route (Delen van gegevens via Toestemming met Private
+dienstverleners), a citizen gives consent to a
+private service provider (dienstverlener) to get data about the citizen from a source. The
 requirements on this page cover three topics:
 
 - what a consent covers
 - what the citizen sees and confirms
 - how the authorization chain checks a consent at every request
 
-The toestemmingsportaal is the portal UI inside MijnOverheid plus the
+The consent portal is the portal UI inside MijnOverheid plus the
 consent portal backend. It records the choice of the citizen. The
-toestemmingsregister stores the consent and issues a signed consent proof.
+consent register stores the consent and issues a signed consent proof.
 The consumer sends that proof with each request. The PDP of the source
 checks the proof itself, and asks the register for the current status over
 FSC ([ADR 0032](../decisions/0032-consent-proof.md)). If an integrator
@@ -65,11 +66,11 @@ change between the review commit `819f3eb` and `v0.9.0`.
     - **Source**: design:
         - FR-10 criteria 1 and 2, and FR-38 criteria 4 and 5.
         - [PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-          ("gegevensscope").
+          (data scope: "gegevensscope").
         - [GO, pattern C](https://ictu.github.io/GBO-GO/main/#patroon-c-gegevensverzoek-van-private-dienstverlener-dvtp)
-          ("een specifieke gegevensset").
+          (a specific data set: "een specifieke gegevensset").
     - **Addressee**: GBO-delivered component: the portal UI, the
-      toestemmingsregister, and the reference policy.
+      consent register, and the reference policy.
     - **Evidence**: [PR #511](https://github.com/ICTU/GBO-demo/pull/511),
       [PR #580](https://github.com/ICTU/GBO-demo/pull/580). Code and tests:
         - The proof carries only scopes
@@ -95,7 +96,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
       [Q-45](../traceability/open-questions.md#q-45).
     - **Notes**: in the demo, the rule fixes which fields belong to a set. The
       portal UI fixes this again, separately. This information belongs in the
-      service catalog
+      service catalog (dienstencatalogus)
       ([ICTU/GBO-demo#382](https://github.com/ICTU/GBO-demo/issues/382)).
       Whether the design enforces a minimal mandatory set is open:
       [Q-45](../traceability/open-questions.md#q-45). In demo v0.9.0, the
@@ -107,7 +108,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > Every consent MUST be bound to one consumer (OIN), one service with its
 > purpose, and at least one named data set. The portal MUST NOT offer
 > consent for a request without a purpose or a data set. The
-> toestemmingsregister MUST NOT record a consent without a consumer, a
+> consent register MUST NOT record a consent without a consumer, a
 > service, or a data set. If a consent has no data set or no purpose, the
 > consent portal backend MUST refuse it with `CONSENT_SCOPE_MISSING`. The
 > UI then offers no button.
@@ -117,8 +118,8 @@ change between the review commit `819f3eb` and `v0.9.0`.
 | Consumer, purpose, and at least one known set | recorded (code) |
 | No consumer | not recorded. The register refuses (code: HTTP 400 `dienstverlener_oin is required`) |
 | No set chosen | button disabled. The backend refuses: `CONSENT_SCOPE_MISSING` (not built in the backend in demo v0.9.0) |
-| No purpose | refused: `CONSENT_SCOPE_MISSING` (the demo fills in `hypotheek`, which deviates) |
-| A set that the portal does not know | no consent question. The citizen sees "Onbekend verzoek" (code) |
+| No purpose | refused: `CONSENT_SCOPE_MISSING` (the demo fills in `hypotheek` (mortgage), which deviates) |
+| A set that the portal does not know | no consent question. The citizen sees the message unknown request (shown as "Onbekend verzoek") (code) |
 
 - **Status**: draft
 
@@ -127,15 +128,18 @@ change between the review commit `819f3eb` and `v0.9.0`.
     - **Source**: design:
         - FR-09 criteria 1 and 2.
         - [PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-          ("een toestemmingsrecord bevat minimaal … afnemer, dienst, doel,
+          (a consent record holds at least the consumer, service, purpose,
+          and data scope: "een toestemmingsrecord bevat minimaal … afnemer, dienst, doel,
           gegevensscope").
         - [PSA F2](https://ictu.github.io/GBO-PSA/main/generieke-functies/#f2-toegang-interactie)
-          ("toestemming is vrij, specifiek, geïnformeerd …").
+          (consent is free, specific, and informed:
+          "toestemming is vrij, specifiek, geïnformeerd …").
         - [GO, pattern C](https://ictu.github.io/GBO-GO/main/#patroon-c-gegevensverzoek-van-private-dienstverlener-dvtp)
-          ("een specifiek doel, een specifieke afnemer en een specifieke
+          (a specific purpose, consumer, and data set:
+          "een specifiek doel, een specifieke afnemer en een specifieke
           gegevensset").
-    - **Addressee**: GBO-delivered component: the portal UI, the consent
-      portal backend, and the toestemmingsregister.
+    - **Addressee**: GBO-delivered component: the portal UI, the consent portal
+      backend, and the consent register.
     - **Evidence**: the work to build is
       [ICTU/GBO-demo#601](https://github.com/ICTU/GBO-demo/issues/601). Code and tests:
         - The consumer is mandatory in
@@ -182,14 +186,17 @@ change between the review commit `819f3eb` and `v0.9.0`.
     - **Source**: design:
         - FR-23 criterion 3, FR-24, FR-17 criterion 4, and FR-11 criterion 3.
         - [PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-          ("de registratie ondersteunt … intrekking", and "de autorisatie
+          (the registration supports revocation, and the authorization
+          checks the status at the time of the data request:
+          "de registratie ondersteunt … intrekking", and "de autorisatie
           controleert de actuele status op het moment van de gegevensvraag").
         - [PSA S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal)
-          ("het toestemmingsregister verwerkt een intrekking zonder onnodige
+          (the consent register handles a revocation without undue delay:
+          "het toestemmingsregister verwerkt een intrekking zonder onnodige
           vertraging").
         - [GO](https://ictu.github.io/GBO-GO/main/#toestemming-en-grondslag-als-afdwingbaar-autorisatiemechanisme)
-          ("Intrekking heeft direct effect").
-    - **Addressee**: GBO-delivered component: the toestemmingsregister and the
+          (revocation has direct effect: "Intrekking heeft direct effect").
+    - **Addressee**: GBO-delivered component: the consent register and the
       reference policy.
     - **Evidence**: [PR #371](https://github.com/ICTU/GBO-demo/pull/371),
       [PR #390](https://github.com/ICTU/GBO-demo/pull/390). Code and tests:
@@ -207,7 +214,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
       [Q-48](../traceability/open-questions.md#q-48).
     - **Notes**: design choices:
         - A revocation changes only the status in the register. The record
-          stays, and the citizen sees it as Ingetrokken (revoked).
+          stays, and the citizen sees it as revoked (shown as "Ingetrokken").
         - The revocation does not touch the proof, the FSC contract, or
           sessions at the consumer. The consumer gets no message.
         - The deny follows because the PDP asks the status at every request
@@ -254,15 +261,19 @@ change between the review commit `819f3eb` and `v0.9.0`.
 
     - **Source**: design:
         - [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
-          ("de PDP kan relevante informatiebronnen raadplegen …
+          (the PDP can consult relevant information sources, such as the
+          consent register, and a PEP denies by default if decision
+          information is missing or untrusted:
+          "de PDP kan relevante informatiebronnen raadplegen …
           toestemmingsregister", and "een PEP weigert standaard bij
           ontbrekende of onbetrouwbare beslisinformatie").
         - [PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-          ("de autorisatie controleert de actuele status op het moment van de
+          (the authorization checks the status at the time of the
+          data request: "de autorisatie controleert de actuele status op het moment van de
           gegevensvraag").
         - FR-17 criterion 1, and FR-26 criteria 1 and 3.
         - [P-01](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
-    - **Addressee**: GBO-delivered component: the toestemmingsregister
+    - **Addressee**: GBO-delivered component: the consent register
       (issuer) and the reference policy (verifier). Interface agreement: the
       form of the proof between consumer and source.
     - **Evidence**: [PR #238](https://github.com/ICTU/GBO-demo/pull/238),
@@ -322,12 +333,12 @@ change between the review commit `819f3eb` and `v0.9.0`.
           ([F-78](../traceability/findings.md#f-78)).
         - [Q-55](../traceability/open-questions.md#q-55) covers the key
           location and rotation.
-        - A pseudonym for the dienstverlener itself is not built
+        - A pseudonym for the service provider itself is not built
           ([ICTU/GBO-demo#478](https://github.com/ICTU/GBO-demo/issues/478)).
 
 ### REQ-75: Consent status is available within a set propagation time, availability, and latency {#req-75}
 
-> The toestemmingsregister MUST deliver the current status of a consent
+> The consent register MUST deliver the current status of a consent
 > within a set maximum propagation time. The propagation time runs from the
 > revocation by the citizen to the first deny in the chain. The register
 > MUST also meet a set availability and a set latency per query. If the
@@ -343,16 +354,18 @@ change between the review commit `819f3eb` and `v0.9.0`.
 
     - **Source**: design:
         - [PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-          ("de autorisatie controleert de actuele status op het moment van de
+          (the authorization checks the status at the time of the
+          data request: "de autorisatie controleert de actuele status op het moment van de
           gegevensvraag").
         - [PSA S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal)
-          ("zonder onnodige vertraging").
+          (without undue delay: "zonder onnodige vertraging").
         - [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
-          ("regels voor foutafhandeling, time-outs en fail-safe gedrag").
+          (rules for error handling, time-outs, and fail-safe behavior:
+          "regels voor foutafhandeling, time-outs en fail-safe gedrag").
         - [GO](https://ictu.github.io/GBO-GO/main/#toestemming-en-grondslag-als-afdwingbaar-autorisatiemechanisme)
-          ("Intrekking heeft direct effect").
+          (revocation has direct effect: "Intrekking heeft direct effect").
         - FR-11 criterion 3, and FR-17 criterion 4.
-    - **Addressee**: GBO-delivered component: the toestemmingsregister and the
+    - **Addressee**: GBO-delivered component: the consent register and the
       status check in the reference policy.
     - **Evidence**: [PR #371](https://github.com/ICTU/GBO-demo/pull/371),
       [PR #390](https://github.com/ICTU/GBO-demo/pull/390). Code and tests:
@@ -386,7 +399,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
 
 ### REQ-76: The register gives consent status only to an authenticated, authorized PDP, over FSC, and records who asked {#req-76}
 
-> The toestemmingsregister MUST give the status of a consent only to an
+> The consent register MUST give the status of a consent only to an
 > authenticated, authorized component. That component is the PDP of a source
 > that offers the service for which the consent applies. The query MUST go
 > over FSC.
@@ -408,14 +421,16 @@ change between the review commit `819f3eb` and `v0.9.0`.
 
     - **Source**: design:
         - [PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-          ("alleen de burger en bevoegde componenten hebben toegang tot
+          (only the citizen and authorized components have access to
+          consent, through a standardized PIP interface for queries:
+          "alleen de burger en bevoegde componenten hebben toegang tot
           toestemming", and "gestandaardiseerd PIP-koppelvlak voor
           raadpleging").
         - [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
-          ("aansluiting van PIP-bronnen").
+          (connection of PIP sources: "aansluiting van PIP-bronnen").
         - [GO](https://ictu.github.io/GBO-GO/main/) (FSC as the connectivity
           standard).
-    - **Addressee**: GBO-delivered component: the toestemmingsregister.
+    - **Addressee**: GBO-delivered component: the consent register.
       Interface agreement: the status service over FSC.
     - **Evidence**: [PR #390](https://github.com/ICTU/GBO-demo/pull/390). Code and tests:
         - The status service is in
@@ -443,7 +458,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
           nothing else. In demo v0.9.0, the portal-facing listener does not
           answer status calls.
         - The Manager of the register signs a contract only for peers admitted
-          in the onboarding register (the PDP peer). Thus in the demo, the FSC
+          in the admission register (toelatingsregister): the PDP peer. Thus in the demo, the FSC
           contract is the authorization.
         - The register can check which source belongs to which service only
           with the catalog.
@@ -456,12 +471,12 @@ change between the review commit `819f3eb` and `v0.9.0`.
 
 ### REQ-106: An integrator acts only with a registered mandate, and the consent binds the represented party {#req-106}
 
-> If an integrator calls on behalf of a dienstverlener, the authorization
+> If an integrator calls on behalf of a service provider, the authorization
 > decision MUST check the consent against the represented party. It MUST NOT
 > check the consent against the party that makes the connection.
 
 > The connecting party MUST have a registered mandate for that
-> dienstverlener and that use. If there is no mandate, the request MUST be
+> service provider and that use. If there is no mandate, the request MUST be
 > denied. A mandate MUST have a validity. Outside that validity, a request
 > MUST be denied as if there is no mandate.
 
@@ -470,16 +485,16 @@ change between the review commit `819f3eb` and `v0.9.0`.
 
 | Case | Outcome |
 |---|---|
-| Consent for dienstverlener X, and integrator registered for X and this rule | allowed |
-| Consent given to another dienstverlener | denied: `CONSENT_ACTOR_MISMATCH` |
+| Consent for service provider X, and integrator registered for X and this rule | allowed |
+| Consent given to another service provider | denied: `CONSENT_ACTOR_MISMATCH` |
 | Integrator registered only for another rule | denied: `INTEGRATOR_NOT_REGISTERED` |
 | Integrator suspended | denied: `INTEGRATOR_NOT_REGISTERED` |
 | Mandate not in force at that time, or expired | denied: `INTEGRATOR_NOT_REGISTERED` *(proposal: not built)* |
 | The admission register delivers no data | denied: `INTEGRATOR_REGISTER_UNAVAILABLE` |
-| Consent given to the integrator itself instead of the dienstverlener | denied: `CONSENT_ACTOR_MISMATCH` |
+| Consent given to the integrator itself instead of the service provider | denied: `CONSENT_ACTOR_MISMATCH` |
 | No registration of the representation | contract stays proposed: `DELEGATION_NOT_REGISTERED` |
-| Dienstverlener suspended, for a delegated contract | contract stays proposed: `PARTY_NOT_ACTIVE` |
-| The dienstverlener calls itself, with or without an integrator in the chain | allowed, unchanged |
+| Service provider suspended, for a delegated contract | contract stays proposed: `PARTY_NOT_ACTIVE` |
+| The service provider calls itself, with or without an integrator in the chain | allowed, unchanged |
 
 - **Status**: ready for review
 
@@ -488,22 +503,28 @@ change between the review commit `819f3eb` and `v0.9.0`.
     - **Source**: design:
         - FR-18, and FR-37 criteria 3 and 4.
         - [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
-          ("als een actor namens een andere partij handelt, gebruikt de
+          (if an actor acts on behalf of another party, the authorization
+          decision uses both the acting actor and the represented party, with
+          the role, scope, and validity of the authority:
+          "als een actor namens een andere partij handelt, gebruikt de
           autorisatiebeslissing zowel de handelende actor als de
           vertegenwoordigde partij", and "rol, reikwijdte en geldigheid van de
           bevoegdheid").
         - [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-          ("een technische intermediair voor alleen transport of connectiviteit
+          (a technical intermediary for transport or connectivity only gets no
+          authority from that role to act on behalf of another party:
+          "een technische intermediair voor alleen transport of connectiviteit
           krijgt door die rol geen bevoegdheid om namens een andere partij te
-          handelen"). The representation context holds "rol of hoedanigheid,
-          reikwijdte en geldigheid".
+          handelen"). The representation context holds the role or capacity,
+          the scope, and the validity ("rol of hoedanigheid,
+          reikwijdte en geldigheid").
         - Tightened: the requirement also applies when the contract comes into
           force.
     - **Addressee**: GBO-delivered component: the reference policy for
       requests and contracts, and the admission register with the mandates.
       Interface agreement: the FSC delegation
       (`DelegatedServiceConnectionGrant`). Nothing changes for the consent
-      components, because the proof already binds the dienstverlener
+      components, because the proof already binds the service provider
       ([REQ-68](#req-68)).
     - **Evidence**: [ICTU/GBO-demo#379](https://github.com/ICTU/GBO-demo/issues/379),
       [PR #464](https://github.com/ICTU/GBO-demo/pull/464). The demo builds
@@ -532,7 +553,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
     - **Notes**:
         - The represented party is the FSC delegator. If there is no
           delegator, it is the subject ID of the caller.
-        - The mandates are in the onboarding register and reach the PDP as
+        - The mandates are in the admission register and reach the PDP as
           `acts_for`.
         - [Q-46](../traceability/open-questions.md#q-46) asks whether the
           integrator also belongs in the proof, or whether the mandate in the
@@ -549,11 +570,11 @@ change between the review commit `819f3eb` and `v0.9.0`.
 
 ### REQ-107: Consent can be given only after confirmation that the citizen saw the information {#req-107}
 
-> The UI of the toestemmingsportaal MUST make the action "give consent"
+> The UI of the consent portal MUST make the action "give consent"
 > available only after the citizen confirmed that they saw the information
 > shown. The confirmation mechanism MUST be accessible according to WCAG
-> 2.1 AA. If a request to give consent has no confirmation, the consent
-> portal backend MUST refuse it, before any processing.
+> 2.1 AA. If a request to give consent has no confirmation, the consent portal
+> backend MUST refuse it, before any processing.
 
 | Case | Outcome |
 |---|---|
@@ -571,10 +592,12 @@ change between the review commit `819f3eb` and `v0.9.0`.
         - FR-08 criteria 1 to 3.
         - FR-09 (dependency: store only after the confirmation of FR-08).
         - [PSA F2](https://ictu.github.io/GBO-PSA/main/generieke-functies/#f2-toegang-interactie)
-          ("toestemming is vrij, specifiek, geïnformeerd, ondubbelzinnig en
+          (consent is free, specific, informed, unambiguous, and provable:
+          "toestemming is vrij, specifiek, geïnformeerd, ondubbelzinnig en
           aantoonbaar").
         - [PSA S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal)
-          ("de interactie voldoet aan toegankelijkheidseisen").
+          (the interaction meets accessibility requirements:
+          "de interactie voldoet aan toegankelijkheidseisen").
         - Tightened: FR-08 asks to block the button in the UI. This
           requirement also lets the backend enforce it.
     - **Addressee**: GBO-delivered component: the portal UI inside MijnOverheid
@@ -622,7 +645,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
 
 > The texts MUST be at language level B1. The legal description MUST stay
 > available. The description of sets and elements MUST come from the service
-> description that the consent service knows. It MUST NOT come from the
+> description that the consent facility knows. It MUST NOT come from the
 > request of the consumer.
 
 | Case | Outcome |
@@ -643,12 +666,17 @@ change between the review commit `819f3eb` and `v0.9.0`.
         - FR-05 criteria 1 to 5, FR-07 criteria 1 and 2, FR-30 criterion 3,
           and FR-38 criterion 1.
         - [PSA S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal)
-          ("de burger ziet in begrijpelijke taal de afnemer, dienst, doel,
+          (the citizen sees in plain language the consumer, service,
+          purpose, data scope, duration, and consequences. The setup offers an
+          equivalent alternative if law or policy requires it. The interface
+          does not present these as a real choice:
+          "de burger ziet in begrijpelijke taal de afnemer, dienst, doel,
           gegevensscope, duur en gevolgen", "de inrichting biedt een
           gelijkwaardig alternatief als wetgeving of beleid dat vereist", and
           "de interface presenteert deze niet als inhoudelijke keuze").
         - [PSA F2](https://ictu.github.io/GBO-PSA/main/generieke-functies/#f2-toegang-interactie)
-          ("toestemming is vrij, specifiek, geïnformeerd …").
+          (consent is free, specific, and informed:
+          "toestemming is vrij, specifiek, geïnformeerd …").
         - [P-13](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
     - **Addressee**: GBO-delivered component: the portal UI inside
       MijnOverheid. The consent portal backend delivers name and purpose from
@@ -687,11 +715,12 @@ change between the review commit `819f3eb` and `v0.9.0`.
         - FR-05 does not work out which "gevolgen" (consequences, S02) the
           citizen sees.
         - Supervision of voluntariness is an open decision of S02.
-        - S02 also calls pseudonymization "transparant voor de burger". The
+        - S02 also calls pseudonymization transparent to the citizen
+          ("transparant voor de burger"). The
           GBO team asked the PSA authors whether that means invisible or
           explained ([F-98](../traceability/findings.md#f-98)).
-        - A public list of admitted participants (FR-30 criterion 3, "ook voor
-          anderen") is a task of the management organization.
+        - A public list of admitted participants (FR-30 criterion 3, also for others:
+          "ook voor anderen") is a task of the management organization.
 
 ### REQ-118: If a service excludes delegation, an authorized representative cannot give consent for it {#req-118}
 
@@ -705,10 +734,10 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > MUST be admitted.
 
 > Whether a service excludes delegation MUST come from the service
-> description that the consent service knows. It MUST NOT come from the
+> description that the consent facility knows. It MUST NOT come from the
 > request of the consumer.
 
-> In two cases, the consent service MUST refuse with
+> In two cases, the consent facility MUST refuse with
 > `DELEGATION_NOT_ALLOWED` (fail-closed). In the first case, it cannot
 > establish whether the login is on behalf of another person. In the second
 > case, the login is on behalf of another person, and the service
@@ -719,7 +748,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
 | Service excludes delegation, and login on behalf of another person | no consent screen, and a message to the representative. The backend refuses: `DELEGATION_NOT_ALLOWED`. No consent, and no activation or transformation at BSNk |
 | Service excludes delegation, and the citizen logs in for themselves | consent screen |
 | Service allows delegation, and login with a valid authorization | consent screen. [Q-73](../traceability/open-questions.md#q-73) asks whose consent it then is |
-| The consent service cannot establish whether the login is on behalf of another person | refused: `DELEGATION_NOT_ALLOWED`, and no consent screen |
+| The consent facility cannot establish whether the login is on behalf of another person | refused: `DELEGATION_NOT_ALLOWED`, and no consent screen |
 | The service does not state whether it excludes delegation, and login on behalf of another person | refused: `DELEGATION_NOT_ALLOWED`, and no consent screen |
 | The service does not state whether it excludes delegation, and the citizen logs in for themselves | consent screen |
 
@@ -728,10 +757,12 @@ change between the review commit `819f3eb` and `v0.9.0`.
 ??? note "Source, evidence and notes"
 
     - **Source**: design:
-        - FR-02 criteria 2, 3, and 5, with the dependency on FR-32 (the
-          setting per service follows from the grondslag).
+        - FR-02 criteria 2, 3, and 5, with the dependency on FR-32. The
+          setting per service follows from the legal basis (grondslag).
         - [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
-          ("als een actor namens een andere partij handelt, gebruikt de
+          (if an actor acts on behalf of another party, the authorization
+          decision uses both the acting actor and the represented party:
+          "als een actor namens een andere partij handelt, gebruikt de
           autorisatiebeslissing zowel de handelende actor als de
           vertegenwoordigde partij").
         - Tightened: FR-02 asks to block access to the screen. This
@@ -781,8 +812,8 @@ change between the review commit `819f3eb` and `v0.9.0`.
         - FR-32 description and criterion 1, and FR-38 criterion 1.
         - FR-21 (description: the same elements as when the citizen gave
           consent).
-    - **Addressee**: GBO-delivered component: the portal UI, the consent
-      portal backend, and the reference policy. The content of the description
+    - **Addressee**: GBO-delivered component: the portal UI, the consent portal
+      backend, and the reference policy. The content of the description
       is a task of the management organization
       ([Q-62](../traceability/open-questions.md#q-62)).
     - **Evidence**: not built:
@@ -811,7 +842,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
 
 ### REQ-122: The citizen gets a confirmation of their choice {#req-122}
 
-> After the citizen gave, refused, or revoked consent, the consent service
+> After the citizen gave, refused, or revoked consent, the consent facility
 > MUST give the citizen a confirmation of that choice. After giving, the
 > confirmation MUST name the consumer, the service with its purpose, and the
 > granted data sets. It MUST also name the valid-until moment. It MUST name
@@ -834,7 +865,8 @@ change between the review commit `819f3eb` and `v0.9.0`.
 
     - **Source**: design:
         - [PSA S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal)
-          ("de burger ontvangt een bevestiging van de gemaakte keuze").
+          (the citizen gets a confirmation of the choice made:
+          "de burger ontvangt een bevestiging van de gemaakte keuze").
         - FR-23 with step C-10a, and FR-14.
     - **Addressee**: GBO-delivered component: the portal UI inside
       MijnOverheid and the consent portal backend.
@@ -867,11 +899,12 @@ change between the review commit `819f3eb` and `v0.9.0`.
 
 A consent has a limited validity. The lifecycle requirement covers the
 validity of a consent and its repeated use within that validity. The
-statuses that a citizen sees (Actief, Verlopen, Ingetrokken) and
-revocation are in [citizen access and revocation](consent.md#citizen-access) and
-[REQ-14](consent.md#req-14).
+statuses that a citizen sees and revocation are in
+[citizen access and revocation](consent.md#citizen-access) and
+[REQ-14](consent.md#req-14). These statuses are active (shown as
+"Actief"), expired (shown as "Verlopen"), and revoked.
 
-In the demo, the toestemmingsregister sets an absolute valid-until moment
+In the demo, the consent register sets an absolute valid-until moment
 when it records the consent. It writes that moment into the consent proof
 as both `valid_until` and the expiry time `exp`. The PDP checks it at
 every request. A consumer can use a consent again and again within its
@@ -901,8 +934,9 @@ validity period is open again
 
     - **Source**: design. FR-11 criteria 2 and 3, FR-17 criteria 1 and 4, and
       [PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-      ("geldigheidsduur", "de registratie ondersteunt … verloop").
-    - **Addressee**: GBO-delivered component: the toestemmingsregister (sets
+          (the validity period, and the registration supports expiry:
+          "geldigheidsduur", "de registratie ondersteunt … verloop").
+    - **Addressee**: GBO-delivered component: the consent register (sets
       the moment) and the reference policy (checks it).
     - **Evidence**: [PR #238](https://github.com/ICTU/GBO-demo/pull/238),
       [PR #371](https://github.com/ICTU/GBO-demo/pull/371). Code and tests:
@@ -950,7 +984,7 @@ validity period is open again
 ## Consent initiation and return requirements {#consent-initiation}
 
 A consent starts at the consumer. The consumer sends the citizen to the
-toestemmingsportaal with a request that names who asks what. After the
+consent portal with a request that names who asks what. After the
 choice, the portal sends the citizen back to the consumer with the
 outcome. The requirements cover that request, the data that the portal
 takes from the registration instead of the request, and the return.
@@ -971,11 +1005,11 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 > the integrator. These data MUST still be available after the citizen
 > logged in. If an item is missing, the citizen MUST NOT see a consent
 > screen. The same applies if the request asks for a data set that the
-> consent service does not know.
+> consent facility does not know.
 
 > The consent portal backend MUST refuse such a request:
 > `INITIATION_INCOMPLETE` if a mandatory item is missing, `UNKNOWN_SCOPE`
-> for an unknown data set. A data set can be known to the consent service,
+> for an unknown data set. A data set can be known to the consent facility,
 > but not belong to that service according to the service description. It
 > can also be known but not recorded for this consumer. In both cases, the
 > consent portal backend MUST refuse the request with
@@ -987,8 +1021,8 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 | Case | Outcome |
 |---|---|
 | Complete request, known data sets | after the login, the consent screen with this context at once *(from code)* |
-| One of the mandatory items is missing | refused: `INITIATION_INCOMPLETE`, no consent screen (demo: only the UI, "Geen sessie") |
-| Unknown data set | refused: `UNKNOWN_SCOPE`, no consent screen (demo: only the UI, "Onbekend verzoek", [PR #435](https://github.com/ICTU/GBO-demo/pull/435)) |
+| One of the mandatory items is missing | refused: `INITIATION_INCOMPLETE`, no consent screen (demo: only the UI, the message no session, shown as "Geen sessie") |
+| Unknown data set | refused: `UNKNOWN_SCOPE`, no consent screen (demo: only the UI, the message unknown request, [PR #435](https://github.com/ICTU/GBO-demo/pull/435)) |
 | Known data set that does not belong to the requested service, or is not recorded for this consumer | refused: `SCOPE_NOT_REGISTERED`, no consent screen *(not built)* |
 | Request on behalf of a consumer through an integrator | the request also names the integrator *(proposal from FR-12 criterion 2: not built)* |
 
@@ -1000,10 +1034,11 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
         - FR-12 criterion 2.
         - FR-13 criterion 1, with its rationale (scope ID and return address).
         - FR-14 criterion 1.
-        - FR-10 description ("binnen het wettelijke plafond van de dienstencatalogus").
+        - FR-10 description (within the legal ceiling of the service
+          catalog: "binnen het wettelijke plafond van de dienstencatalogus").
         - FR-17 criterion 2, FR-32 criterion 2, and FR-38 criterion 5.
-    - **Addressee**: interface agreement: the initiation koppelvlak between
-      consumer and consent service. GBO-delivered component: the portal UI
+    - **Addressee**: interface agreement: the initiation interface (koppelvlak) between
+      consumer and consent facility. GBO-delivered component: the portal UI
       inside MijnOverheid, which shows no consent screen.
     - **Evidence**: partly, only in the UI. Code and tests:
         - The mandatory fields are in
@@ -1050,7 +1085,7 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 > the name of the consumer and the purpose from the registration. It MUST
 > check that the consumer is admitted and active for the requested
 > service. It MUST check the return address against the addresses recorded
-> for that consumer in the onboarding register. The backend MUST refuse a
+> for that consumer in the admission register. The backend MUST refuse a
 > request that fails these checks before the citizen sees a consent
 > screen. The same applies to a request with a name or purpose that
 > differs from the registration.
@@ -1070,13 +1105,15 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
     - **Source**: design:
         - FR-14 criterion 1, with its rationale (protection against open
           redirects).
-        - FR-34, FR-12, and FR-16 criterion 2 ("bevoegd is voor de gevraagde dienst en gegevens").
+        - FR-34, FR-12, and FR-16 criterion 2 (is authorized for the
+          requested service and data: "bevoegd is voor de gevraagde dienst en gegevens").
         - [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-          ("vertrouwensankers en deelnemersstatus zijn machineleesbaar controleerbaar").
+          (trust anchors and participant status can be checked by machine:
+          "vertrouwensankers en deelnemersstatus zijn machineleesbaar controleerbaar").
         - Tightened: the requirement fixes which data come from the
           registration. Provable origin of the request is out of scope.
     - **Addressee**: GBO-delivered component: the consent portal backend.
-      Management organization: the return addresses in the onboarding
+      Management organization: the return addresses in the admission
       register.
     - **Evidence**: not built:
       [ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427). The
@@ -1097,10 +1134,10 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
         - It is open whether it must also be provable that the consumer made
           the request (FR-34 criterion 1):
           [Q-60](../traceability/open-questions.md#q-60).
-        - The return addresses are in the onboarding register and not in the
+        - The return addresses are in the admission register and not in the
           service catalog. They belong to the consumer, and the admission is
           already there ([REQ-61](admission.md#req-61)).
-        - The check for each service needs an onboarding register that knows,
+        - The check for each service needs an admission register that knows,
           for each consumer, the services for which it is admitted (FR-30,
           FR-32). [REQ-61](admission.md#req-61) records the admission for each
           bronhouder.
@@ -1109,12 +1146,12 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 
 ### REQ-119: After every outcome the citizen returns to the consumer with that outcome {#req-119}
 
-> When the consent process ends, the consent service MUST return the
+> When the consent process ends, the consent facility MUST return the
 > citizen automatically to the registered return address of the consumer
 > ([REQ-111](#req-111)). This applies to every outcome, also after a
 > refusal or an error. The return MUST name the outcome. For any outcome
-> other than a given consent, the consent service MUST NOT record a
-> consent. If the consent service cannot establish the return address, it
+> other than a given consent, the consent facility MUST NOT record a
+> consent. If the consent facility cannot establish the return address, it
 > MUST NOT return the citizen.
 
 | Case | Outcome |
@@ -1130,14 +1167,15 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 
 ??? note "Source, evidence and notes"
 
-    - **Source**: design. FR-14 criteria 2 ("ongeacht de uitkomst (succes, weigering of fout)") and 3.
+    - **Source**: design. FR-14 criteria 2 and 3. Criterion 2 applies
+      whatever the outcome is, success, refusal, or error ("ongeacht de uitkomst (succes, weigering of fout)").
     - **Addressee**: GBO-delivered component: the portal UI inside
       MijnOverheid and the consent portal backend. Interface agreement: the
       outcome values in the return.
     - **Evidence**: partly. A refusal returns with `status=denied`
       ([`PortaalConsent.tsx#L100-L106`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L100-L106)).
       A success returns with the proof in the URL fragment
-      (`PortaalBevestiging.tsx`). "Annuleren" (cancel) does not return
+      (`PortaalBevestiging.tsx`). The cancel button (shown as "Annuleren") does not return
       ([`PortaalConsent.tsx#L108`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L108)).
       The return after an error is not checked.
     - **Related**: [REQ-37](#req-37), [REQ-82](pseudonymization.md#req-82),
@@ -1159,10 +1197,10 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 
 The PSA splits the consent function into two capabilities:
 [S01 consent registration](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-(the toestemmingsregister) and
+(the consent register) and
 [S02 consent portal](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal)
-(the toestemmingsportaal: the portal UI inside MijnOverheid and the consent
-portal backend). The requirements for this split keep the BSN out of the
+(the consent portal: the portal UI inside MijnOverheid and the consent portal
+backend). The requirements for this split keep the BSN out of the
 register, and fix where the citizen identity comes from.
 
 In the demo, the consent portal backend receives the BSN from the
@@ -1176,7 +1214,7 @@ and backend stay two systems, and which of them is the BSNk participant
 
 ### REQ-23: The consent register gets no BSN, not even temporarily {#req-23}
 
-> A request to the toestemmingsregister MUST NOT contain a BSN. The same
+> A request to the consent register MUST NOT contain a BSN. The same
 > applies to every answer of the register and to every data item that it
 > stores, also temporarily while it handles a request.
 
@@ -1186,13 +1224,15 @@ and backend stay two systems, and which of them is the BSNk participant
 
     - **Source**: design:
         - [PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-          ("het register bevat geen BSN als een pseudonieme identificatie volstaat").
+          (the register holds no BSN if a pseudonymous identification is
+          enough: "het register bevat geen BSN als een pseudonieme identificatie volstaat").
         - [PSA S03](https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering)
-          ("alleen componenten en organisaties met een geldige grondslag verwerken het BSN").
+          (only components and organizations with a valid legal basis process
+          the BSN: "alleen componenten en organisaties met een geldige grondslag verwerken het BSN").
         - FR-35 criterion 1.
         - Tightened: the BSN is also not in a request or an answer, so that
           the BSN stays limited to one component.
-    - **Addressee**: GBO-delivered component: the toestemmingsregister, and
+    - **Addressee**: GBO-delivered component: the consent register, and
       the consent portal backend that calls it.
     - **Evidence**: [PR #148](https://github.com/ICTU/GBO-demo/pull/148),
       [PR #469](https://github.com/ICTU/GBO-demo/pull/469). Code and tests:
@@ -1212,8 +1252,8 @@ and backend stay two systems, and which of them is the BSNk participant
       [Q-49](../traceability/open-questions.md#q-49),
       [Q-56](../traceability/open-questions.md#q-56).
     - **Notes**:
-        - The register knows the citizen under a reference that the consent
-          portal backend derives from the BSN. Under that reference, the
+        - The register knows the citizen under a reference that the consent portal
+          backend derives from the BSN. Under that reference, the
           register keeps the polymorphic values of the first activation
           ([REQ-69](pseudonymization.md#req-69)). It receives the encrypted
           values for each party only to sign the proof.
@@ -1229,8 +1269,8 @@ and backend stay two systems, and which of them is the BSNk participant
 
 > The consent portal backend MUST take the identity of the citizen from the
 > validated assertion of the authentication service. The backend MUST NOT
-> use a BSN that the client sends as input as the identity. The consent
-> portal backend MUST accept only an assertion that states the assurance
+> use a BSN that the client sends as input as the identity. The consent portal
+> backend MUST accept only an assertion that states the assurance
 > level of the authentication. The assertion can state a level lower than
 > the set minimum, or no level. If so, the backend MUST show no personal
 > data and no consent options. It MUST also record or revoke nothing.
@@ -1245,10 +1285,12 @@ and backend stay two systems, and which of them is the BSNk participant
 ??? note "Source, evidence and notes"
 
     - **Source**: design:
-        - FR-01 criterion 2 ("op het door de overheid vereiste minimale betrouwbaarheidsniveau").
+        - FR-01 criterion 2 (at the minimum assurance level that the
+          government requires: "op het door de overheid vereiste minimale betrouwbaarheidsniveau").
         - [P-05](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
         - [PSA S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal)
-          ("de authenticatie heeft een passend betrouwbaarheidsniveau").
+          (the authentication has a suitable assurance level:
+          "de authenticatie heeft een passend betrouwbaarheidsniveau").
     - **Addressee**: GBO-delivered component: the consent portal backend.
     - **Evidence**: [PR #148](https://github.com/ICTU/GBO-demo/pull/148). Code and tests:
         - The backend takes the BSN from the validated token, and refuses a
@@ -1290,7 +1332,7 @@ and backend stay two systems, and which of them is the BSNk participant
 ## Citizen access and revocation requirements {#citizen-access}
 
 A citizen can see the consents that they gave and revoke them in the
-toestemmingsportaal inside MijnOverheid (FR-20, FR-22, FR-23). The
+consent portal inside MijnOverheid (FR-20, FR-22, FR-23). The
 requirements for this function cover these topics:
 
 - the overview of consents
@@ -1303,15 +1345,15 @@ requirements for this function cover these topics:
 In the demo, the consent portal backend derives the reference to the
 citizen (an HMAC of the BSN) from the validated portal token. The backend
 asks the register for the consents under that reference. It shows them as
-Actief (active), Verlopen (expired), or Ingetrokken (revoked). On a
+active, expired, or revoked. On a
 revocation, the backend checks ownership and asks the register to set the
 status to revoked. The record stays.
 
 Viewing and revoking do not call BSNk. The authorization chain denies the
 next request on a revoked consent with `CONSENT_WITHDRAWN`
 ([REQ-14](consent.md#req-14)). The status names follow
-[F-97](../traceability/findings.md#f-97). The status Opgehaald (retrieved)
-waits for [Q-42](../traceability/open-questions.md#q-42).
+[F-97](../traceability/findings.md#f-97). The status retrieved (shown as
+"Opgehaald") waits for [Q-42](../traceability/open-questions.md#q-42).
 
 ### REQ-38: A logged-in citizen can view consents with status and revoke them {#req-38}
 
@@ -1331,10 +1373,10 @@ waits for [Q-42](../traceability/open-questions.md#q-42).
 
 | Case | Outcome |
 |---|---|
-| Logged in, overview | the own consents, each with the status Actief, Verlopen, or Ingetrokken *(from code)* |
-| Validity passed | Verlopen *(from code)* |
-| Revoked, also if the validity passed later | Ingetrokken *(from code)* |
-| Logged in, revoke an own active consent | Ingetrokken *(from code)* |
+| Logged in, overview | the own consents, each with the status active, expired, or revoked *(from code)* |
+| Validity passed | expired *(from code)* |
+| Revoked, also if the validity passed later | revoked *(from code)* |
+| Logged in, revoke an own active consent | revoked *(from code)* |
 | Detail of a consent | for each set, the same data elements as on the consent screen, without values *(proposal: not built)* |
 | Not logged in, or invalid assertion | refused, nothing shown or changed *(from code: HTTP 401)* |
 
@@ -1343,12 +1385,15 @@ waits for [Q-42](../traceability/open-questions.md#q-42).
 ??? note "Source, evidence and notes"
 
     - **Source**: design:
-        - FR-20: the description ("een chronologisch overzicht") and criteria 1
-          and 2.
-        - FR-21: criterion 3 and the description ("dezelfde data-elementen als getoond tijdens het geven van de toestemming, zonder de feitelijke waarden").
+        - FR-20: the description (a chronological overview:
+          "een chronologisch overzicht") and criteria 1 and 2.
+        - FR-21: criterion 3 and the description (the same data elements as
+          shown when the citizen gave consent, without the actual values:
+          "dezelfde data-elementen als getoond tijdens het geven van de toestemming, zonder de feitelijke waarden").
         - FR-22 criteria 1 and 2, FR-23 criterion 2, and FR-01 criterion 3.
         - [PSA S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal)
-          (provision "inzage- en intrekkingsfunctie").
+          (the provision of a view and revocation function:
+          "inzage- en intrekkingsfunctie").
         - [P-13](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
     - **Addressee**: GBO-delivered component: the consent portal backend. The
       portal UI inside MijnOverheid shows the result.
@@ -1375,7 +1420,7 @@ waits for [Q-42](../traceability/open-questions.md#q-42).
       [Q-61](../traceability/open-questions.md#q-61),
       [Q-63](../traceability/open-questions.md#q-63).
     - **Notes**:
-        - The status Opgehaald follows after
+        - The status retrieved follows after
           [Q-42](../traceability/open-questions.md#q-42). The processings for
           each consent (FR-20 criterion 2) follow after
           [Q-25](../traceability/open-questions.md#q-25).
@@ -1392,11 +1437,11 @@ waits for [Q-42](../traceability/open-questions.md#q-42).
           As on the consent screen, the name must come from the registration.
         - [Q-53](../traceability/open-questions.md#q-53) asks whether the
           overview shows a consent of a suspended consumer differently from
-          Actief.
+          active.
 
 ### REQ-39: Only the consent backend can create, query, and revoke the consents of a citizen in the register {#req-39}
 
-> The toestemmingsregister MUST allow only the consent portal backend to
+> The consent register MUST allow only the consent portal backend to
 > create, query, and revoke the consents of a citizen. The register MUST
 > also allow only that backend to read and keep the values that the
 > register keeps for that citizen. A portal UI, a citizen, or another
@@ -1415,11 +1460,13 @@ waits for [Q-42](../traceability/open-questions.md#q-42).
 
     - **Source**: design.
       [PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-      ("alleen de burger en bevoegde componenten hebben toegang tot toestemming", provision "interface voor het toestemmingsportaal").
+      (only the citizen and authorized components have access to consent,
+      and the provision of an interface for the consent portal:
+      "alleen de burger en bevoegde componenten hebben toegang tot toestemming", "interface voor het toestemmingsportaal").
       Tightened: the citizen has access only through the consent portal
       backend, because only that backend checks ownership
       ([REQ-40](#req-40)).
-    - **Addressee**: GBO-delivered component: the toestemmingsregister and the
+    - **Addressee**: GBO-delivered component: the consent register and the
       deployment that it runs in.
     - **Evidence**: partly. Code and tests:
         - The UI talks only to the backend
@@ -1475,7 +1522,8 @@ waits for [Q-42](../traceability/open-questions.md#q-42).
 
     - **Source**: design.
       [PSA S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie)
-      ("alleen de burger en bevoegde componenten hebben toegang tot toestemming"),
+      (only the citizen and authorized components have access to consent:
+      "alleen de burger en bevoegde componenten hebben toegang tot toestemming"),
       tightened: the citizen has access only to their own consents. Also
       FR-20 criterion 1 and FR-23.
     - **Addressee**: GBO-delivered component: the consent portal backend.
@@ -1556,17 +1604,17 @@ waits for [Q-42](../traceability/open-questions.md#q-42).
 
 ### REQ-109: Revocation is possible only for a valid consent {#req-109}
 
-> The UI of the toestemmingsportaal MUST offer the action "revoke" only for
-> a consent with the status Actief or Opgehaald. It MUST NOT offer it for
-> Verlopen or Ingetrokken. The consent portal backend MUST refuse a
+> The UI of the consent portal MUST offer the action "revoke" only for
+> a consent with the status active or retrieved. It MUST NOT offer it for
+> expired or revoked. The consent portal backend MUST refuse a
 > revocation of an expired or already revoked consent. It MUST NOT change
 > the status or make a new registration then.
 
 | Case | Outcome |
 |---|---|
-| Actief | button visible, Ingetrokken after the citizen approves |
-| Opgehaald (still valid) | button visible, Ingetrokken after the citizen approves (to build after [Q-42](../traceability/open-questions.md#q-42)) |
-| Verlopen | no button. The backend refuses a direct request: `CONSENT_NOT_REVOCABLE`. The status stays Verlopen |
+| Active | button visible, revoked after the citizen approves |
+| Retrieved (still valid) | button visible, revoked after the citizen approves (to build after [Q-42](../traceability/open-questions.md#q-42)) |
+| Expired | no button. The backend refuses a direct request: `CONSENT_NOT_REVOCABLE`. The status stays expired |
 | Already revoked | no button. The backend refuses a direct request: `CONSENT_NOT_REVOCABLE`. No new registration |
 | The consent of another citizen | refused, as in demo v0.9.0 ([REQ-40](#req-40)) |
 
@@ -1593,10 +1641,10 @@ waits for [Q-42](../traceability/open-questions.md#q-42).
     - **Related**: [REQ-14](consent.md#req-14), [REQ-40](#req-40),
       [F-97](../traceability/findings.md#f-97),
       [Q-42](../traceability/open-questions.md#q-42).
-    - **Notes**: the words Actief, Opgehaald, Verlopen, and Ingetrokken are the
-      names of statuses here, chosen in
-      [F-97](../traceability/findings.md#f-97). Their form on screen follows
-      the text guideline. The backend refuses a second revocation and does not
+    - **Notes**: the statuses active, retrieved, expired, and revoked have
+      the screen names that [F-97](../traceability/findings.md#f-97) chose:
+      "Actief", "Opgehaald", "Verlopen", and "Ingetrokken". Their form on
+      screen follows the text guideline. The backend refuses a second revocation and does not
       accept it silently. So a double click gets a message.
 
 ### REQ-120: For every consent and after every revocation, the portal points the citizen to their rights at the consumer {#req-120}
@@ -1645,7 +1693,7 @@ waits for [Q-42](../traceability/open-questions.md#q-42).
 
 ## Consent register data model {#consent-register}
 
-The toestemmingsregister must keep certain data for production. The data
+The consent register must keep certain data for production. The data
 model follows from the requirements. It is no requirement with its own
 number: every data item refers to the requirement or functional
 requirement that it follows from. Where an open question decides the
@@ -1690,7 +1738,7 @@ The register keeps these data items for each consent:
 |---|---|---|
 | Consent ID | Own ID of the register. It is in the proof and is the key for the status query. | [REQ-68](consent.md#req-68) |
 | Citizen | The reference to the citizen. | [REQ-20](pseudonymization.md#req-20) |
-| Consumer | OIN of the dienstverlener to whom the citizen gave the consent. For an integrator, the represented party. | [REQ-12](consent.md#req-12), [REQ-106](consent.md#req-106) |
+| Consumer | OIN of the service provider to whom the citizen gave the consent. For an integrator, the represented party. | [REQ-12](consent.md#req-12), [REQ-106](consent.md#req-106) |
 | Use case | The service from the catalog for which the consent applies. | [REQ-12](consent.md#req-12), FR-32 |
 | Scope per source | For each source: the scope and the fields for which the citizen gave consent. One representation. A flat list of scopes can be derived from it. | [REQ-12](consent.md#req-12) |
 | Created | Moment of granting. | FR-22 |
@@ -1728,7 +1776,7 @@ Open questions decide these places in the model:
 | Authorized representative | In whose name a consent given by a representative is, and whether the register records the representative with it. | [Q-73](../traceability/open-questions.md#q-73) |
 | Refusal | A record of the refusal, a count for each consumer, or nothing in the register. | [Q-43](../traceability/open-questions.md#q-43) |
 | Mandatory set | Whether the register records for each consent which fields were mandatory, or whether this comes from the catalog. | [Q-45](../traceability/open-questions.md#q-45) |
-| Integrator | With option (a), a field for the integrator with the consent. With option (b), nothing in the register: the mandate is in the onboarding register. | [Q-46](../traceability/open-questions.md#q-46) |
+| Integrator | With option (a), a field for the integrator with the consent. With option (b), nothing in the register: the mandate is in the admission register. | [Q-46](../traceability/open-questions.md#q-46) |
 | Volumes | Size and load. This decides storage and indexes, and does not change the data. | [Q-47](../traceability/open-questions.md#q-47) |
 | Moment of revocation | A field with the consent, or only in the LDV log. | [Q-48](../traceability/open-questions.md#q-48) |
 | Proof of the interaction | PSA S01 asks for it in the record. The record that the citizen saw the information follows from [REQ-107](consent.md#req-107). It is open whether the register records the version of the information shown. | [Q-51](../traceability/open-questions.md#q-51) |

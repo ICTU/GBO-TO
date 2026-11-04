@@ -61,8 +61,8 @@ The demo has five rules, as the following table shows:
 |---|---|---|---|
 | DVT0001 | consent | `bri` | Income declaration fields under consent |
 | LVG0001 | consent | `lvg` | Ownership check at the LVG, scope `lvg:vbo:eigendom` |
-| EUD0001 | pid | `bri` | Inkomensverklaring to the wallet, years 2024 and 2025 |
-| EUD0002 | pid | `brp` | Akte van overlijden to the wallet |
+| EUD0001 | pid | `bri` | Income statement (inkomensverklaring) to the wallet, years 2024 and 2025 |
+| EUD0002 | pid | `brp` | Death certificate (akte van overlijden) to the wallet |
 | ASI0001 | pid | `brp` | BRP fields for the ASIP |
 
 ## Consequences
@@ -83,7 +83,7 @@ The demo has five rules, as the following table shows:
 
     For more information, see [Authorization](../concepts/authorization.md).
 
-- The dienstencatalogus with a legal anchor from
+- The service catalog (dienstencatalogus) with a legal anchor from
   [ADR-0008](0008-dienstencatalogus-ceiling.md) stays an open governance
   question. [Risks and technical debt](../risks.md) tracks it.
 - gbo-demo v0.9.0 has no test that makes sure that every rule checks the

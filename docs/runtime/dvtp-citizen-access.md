@@ -1,6 +1,7 @@
 # DvTP: the citizen views and revokes consents
 
-A logged-in citizen opens "Mijn toestemmingen" in the toestemmingsportaal.
+A logged-in citizen opens the page My consents (shown as "Mijn
+toestemmingen") in the consent portal (toestemmingsportaal).
 The portal shows the consents of the citizen with their status, and the
 citizen revokes one consent. The portal finds the consents through its own
 reference to the citizen, without a BSNk call. A revocation takes effect at
@@ -20,10 +21,10 @@ sequenceDiagram
     box rgb(221,235,247) Citizen
       actor B as Citizen browser
     end
-    box rgb(254,220,216) Toestemmingsvoorziening
+    box rgb(254,220,216) Consent facility
       participant PF as Portal frontend
       participant PB as Consent portal backend
-      participant CR as Toestemmingsregister
+      participant CR as Consent register
     end
     box rgb(237,233,254) Records
       participant LB as logboek-toestemming
@@ -32,14 +33,14 @@ sequenceDiagram
       participant PDP as OpenFTV PDP
     end
 
-    B->>PF: Log in (DigiD mock) and open Mijn toestemmingen
+    B->>PF: Log in (DigiD mock) and open My consents
     PF->>PB: GET /portal/consents (portal token)
     PB->>PB: subject_ref = HMAC of the BSN (SUBJECT_REF_KEY)
     PB->>LB: LDV record bsn-pseudonimisering,<br/>reason toestemmingen-inzien
     PB->>CR: GET /consents?subject_ref={subject_ref}
     CR-->>PB: Consents of this subject_ref
     PB-->>PF: List with effective_status per consent
-    PF-->>B: Overview with Actief, Verlopen and Ingetrokken
+    PF-->>B: Overview with active, expired, and revoked
     B->>PF: Revoke consent {id}
     PF->>PB: DELETE /portal/consents/{id} (portal token)
     PB->>PB: subject_ref = HMAC of the BSN
@@ -73,7 +74,7 @@ carries the following data:
 | 5 | Portal backend → register | `GET /consents?subject_ref={subject_ref}` | `subject_ref` | — | Medium. The register refuses a listing without `subject_ref` ([`TestAnUnscopedListingIsRefused`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/ldv_test.go#L253)). Only the network keeps other callers out ([REQ-39](../requirements/consent.md#req-39), [Q-58](../traceability/open-questions.md#q-58)) |
 | 6 | Register → portal backend | — | — | Records with `consent_id`, `subject_ref`, `dienstverlener_oin`, `scopes`, `use_case`, `status`, `valid_until` | The records hold no BSN, no PI or PP, and no proof values ([REQ-69](../requirements/pseudonymization.md#req-69), [`TestNoConsentAnswerCarriesThePolymorphicValues`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/polymorphic_test.go#L85)). The register logs `dataverwerking.toestemming-inzage` |
 | 7 | Portal backend → portal frontend | — | — | Records plus `effective_status` | The backend derives Revoked from the register status, Expired from `valid_until`, and otherwise Active ([`consent.go#L135-L146`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/consent.go#L135-L146)). The payload holds no BSN ([REQ-20](../requirements/pseudonymization.md#req-20)) |
-| 8 | Portal frontend → citizen | (UI) | — | Overview | The overview shows the statuses Actief, Verlopen, and Ingetrokken ([REQ-38](../requirements/consent.md#req-38)). The status Opgehaald is not built in demo v0.9.0 ([Q-42](../traceability/open-questions.md#q-42), [F-97](../traceability/findings.md#f-97)). The overview has no export ([REQ-108](../requirements/consent.md#req-108), [Q-52](../traceability/open-questions.md#q-52)) |
+| 8 | Portal frontend → citizen | (UI) | — | Overview | The overview shows the statuses active (shown as "Actief"), expired (shown as "Verlopen"), and revoked (shown as "Ingetrokken") ([REQ-38](../requirements/consent.md#req-38)). The status retrieved (shown as "Opgehaald") is not built in demo v0.9.0 ([Q-42](../traceability/open-questions.md#q-42), [F-97](../traceability/findings.md#f-97)). The overview has no export ([REQ-108](../requirements/consent.md#req-108), [Q-52](../traceability/open-questions.md#q-52)) |
 | 9 | Citizen → portal frontend | (UI) | Revoke on `consent_id` | — | The UI shows the button only for an active consent ([`MijnToestemmingenDetail.tsx#L127`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/MijnToestemmingenDetail.tsx#L127)) |
 | 10 | Portal frontend → portal backend | `DELETE /portal/consents/{id}` | `consent_id`, portal token | — | Revocation changes the status of the record. The register keeps the record |
 | 11 | Portal backend (internal) | — | BSN | `subject_ref` | As hop 3 |

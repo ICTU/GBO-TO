@@ -95,7 +95,7 @@ flowchart LR
     gw("Source gateway")
   end
   adm[("PIP: admission register<br/>parties, mandates")]
-  tr[("PIP: toestemmingsregister<br/>keys, consent status")]
+  tr[("PIP: consent register<br/>keys, consent status")]
   adl[("ADL")]
 
   out -- "request + raw body" --> pep
@@ -116,7 +116,7 @@ flowchart LR
   style pdp fill:#F4F5F7,stroke:#16A34A
   click map "#from-query-to-decision" "Decision pipeline"
   click eng "#the-rules" "The rules"
-  click tr "../../dvtp/consent-service/" "Toestemmingsvoorziening"
+  click tr "../../dvtp/consent-service/" "Consent facility"
   click adm "#admission-of-parties" "Admission"
 ```
 
@@ -130,7 +130,7 @@ The parts have these roles:
 | PEP | The FSC Inway. Its AuthZEN plugin sends every request with the raw body to the PDP and forwards the request only on an allow. There is no separate PEP service ([ADR-0002](../../decisions/0002-opa-rego-authzen.md)). |
 | Request mapper | Turns the GraphQL body into a list of fields with their arguments, following the FTV GraphQL profile. It does nothing else ([ADR-0013](../../decisions/0013-pdp-request-mapper.md)). |
 | Policy | Rego code that selects the regime, checks the consent proof and decides each field. The policy is data for the PDP, so a bronhouder changes it without a new build. |
-| PIP: toestemmingsregister | Gives the status of a consent for every request, over FSC. Gives the keys to check the proof. DvTP only. |
+| PIP: consent register (toestemmingsregister) | Gives the status of a consent for every request, over FSC. Gives the keys to check the proof. DvTP only. |
 | PIP: admission register | Lists the admitted parties and the mandates of integrators. OpenFTV pulls it every five seconds. |
 
 ## From query to decision
@@ -234,8 +234,8 @@ it serves, and the fields it can grant:
 |---|---|---|---|
 | DVT0001 | consent | `bri` | Income declaration fields, per consented year |
 | LVG0001 | consent | `lvg` | The ownership check of the LVG pilot |
-| EUD0001 | PID | `bri` | Inkomensverklaring to the wallet, years 2024 and 2025 |
-| EUD0002 | PID | `brp` | Akte van overlijden to the wallet |
+| EUD0001 | PID | `bri` | Income statement (inkomensverklaring) to the wallet, years 2024 and 2025 |
+| EUD0002 | PID | `brp` | Death certificate (akte van overlijden) to the wallet |
 | ASI0001 | PID | `brp` | The BRP fields behind the ASI attributes, for the ASIP only |
 
 A rule binds to a field only on its own services. A field name such as

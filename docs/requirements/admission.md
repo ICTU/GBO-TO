@@ -1,6 +1,6 @@
 # Admission and connection requirements
 
-These requirements cover who can connect to a source. The first part holds requirements on the admission register and the contract decision. The second part holds candidate connection conditions for the parties that connect. For the design, see [Admission of parties](../building-blocks/gbo-basis/authorization.md#admission-of-parties).
+These requirements cover who can connect to a source. The first part holds requirements on the admission register (toelatingsregister) and the contract decision. The second part holds candidate connection conditions for the parties that connect. For the design, see [Admission of parties](../building-blocks/gbo-basis/authorization.md#admission-of-parties).
 
 This page has the following parts:
 
@@ -51,7 +51,8 @@ The design decision is
 
     - **Source**: design:
         - [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-          ("deelname vereist een voorafgaande toelatingsbeslissing", facility "deelnemersregister").
+          (participation needs a prior admission decision, "deelname vereist een voorafgaande toelatingsbeslissing",
+          and the facility is a participant register, "deelnemersregister").
         - [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie)
           (the PDP consults the participant status, among other sources).
         - FR-30 criteria 1 and 2, and FR-16 criterion 2.
@@ -103,7 +104,8 @@ The design decision is
 
     - **Source**: design.
       [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-      ("de inrichting behandelt technische identiteit en toelatingsstatus apart van de rol en bevoegdheid in een concrete interactie").
+      (the setup handles technical identity and admission status apart from
+      the role and authority in one interaction: "de inrichting behandelt technische identiteit en toelatingsstatus apart van de rol en bevoegdheid in een concrete interactie").
     - **Addressee**: GBO-delivered component: the reference policy.
     - **Evidence**: [PR #228](https://github.com/ICTU/GBO-demo/pull/228). The
       rule set is its own package without an import, in
@@ -189,7 +191,8 @@ The design decision is
 
     - **Source**: design.
       [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-      ("schorsing of beëindiging leidt tijdig tot intrekking van de toegang"),
+      (a suspension or termination leads in time to a withdrawal of access:
+      "schorsing of beëindiging leidt tijdig tot intrekking van de toegang"),
       made stricter: the consent does not change. Also FR-31 criterion 2 and
       FR-36 criterion 4.
     - **Addressee**: interface agreement between source and management
@@ -216,7 +219,7 @@ The design decision is
           the pull interval of 5 s
           ([`dvtp-onboarding.yaml#L9`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml#L9)).
         - A suspension or departure does not revoke the consents. The citizen
-          sees them as Active while the party cannot use them.
+          sees them as active (shown as "Actief") while the party cannot use them.
         - A consumer with a new OIN is a new party. Old consents become
           unusable and do not move to the new party.
         - New consent requests of a suspended consumer belong to the check of
@@ -248,12 +251,17 @@ The design decision is
 
     - **Source**: design:
         - [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid)
-          ("iedere component legt de gebeurtenissen vast die voor zijn verantwoordelijkheid relevant zijn",
+          (each component records the events that are relevant to its
+          responsibility, and measures protect log data against unauthorized
+          change and deletion:
+          "iedere component legt de gebeurtenissen vast die voor zijn verantwoordelijkheid relevant zijn",
           "maatregelen beschermen loggegevens tegen ongeautoriseerde wijziging en verwijdering").
         - [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-          ("schorsing of beëindiging leidt tijdig tot intrekking van de toegang").
+          (a suspension or termination leads in time to a withdrawal of access:
+          "schorsing of beëindiging leidt tijdig tot intrekking van de toegang").
         - [D-11](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/)
-          ("beheerrechten zijn beperkt, tijdelijk en aantoonbaar toegekend").
+          (management rights are limited, temporary, and provably granted:
+          "beheerrechten zijn beperkt, tijdelijk en aantoonbaar toegekend").
         - [P-12](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
     - **Addressee**: GBO-delivered component: the admission register, the
       activation in the EUDI adapter, and the authorization server of the ASI.
@@ -280,12 +288,13 @@ The design decision is
 
 The demo asks participants for certain behavior to make the chain work.
 The TO records these demands as candidate connection conditions (AV-NN).
-They cover all trajectories: generic, DvTP, and EUDI. None of them is an
+They cover every channel: GBO Basis, DvTP, and EUDI. None of them is an
 approved condition.
 
 [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
-names "aansluitvoorwaarden per deelnemersgroep" as an agreement that is
-still open. FR-30 lets the operator of the DvTP facility check selection
+names connection conditions per participant group
+("aansluitvoorwaarden per deelnemersgroep") as an agreement that is still
+open. FR-30 lets the operator of the DvTP facility check selection
 criteria and connection conditions. The framework falls under PSA open
 decision [B-09](https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister).
 
@@ -299,10 +308,10 @@ refer to a requirement (REQ) that enforces the same behavior on the GBO
 side.
 
 The connection conditions name three participant groups: private
-consumer, integrator, and bronhouder. Each trajectory puts its candidates
+consumer, integrator, and bronhouder. Each channel puts its candidates
 on one of these groups:
 
-| Trajectory | Obliged party | Candidates |
+| Channel | Obliged party | Candidates |
 |---|---|---|
 | All channels | bronhouder | [AV-07](#av-07) |
 | DvTP | private consumer | [AV-01](#av-01), [AV-02](#av-02), [AV-03](#av-03), [AV-04](#av-04), [AV-05](#av-05), [AV-14](#av-14), [AV-15](#av-15) |
@@ -320,7 +329,7 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: private consumer
-    - **Trajectory**: DvTP
+    - **Channel**: DvTP
     - **Source**: [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid)
       (a request identifier across the whole chain) and
       [Q-24](../traceability/answered-questions.md#q-24). This candidate replaces
@@ -337,7 +346,7 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: private consumer
-    - **Trajectory**: DvTP
+    - **Channel**: DvTP
     - **Source**: the LDV read extension (the chain starts at the application
       that started the processing),
       [F-68](../traceability/findings.md#f-68), and
@@ -349,7 +358,7 @@ on one of these groups:
       starting point can also come from the records of the register
       ([REQ-75](consent.md#req-75)).
 
-### AV-03: Consumer uses the consent service and BSNk PP {#av-03}
+### AV-03: Consumer uses the consent facility and BSNk PP {#av-03}
 
 > A private consumer that takes part in DvTP SHOULD use the central
 > consent function and BSNk PP.
@@ -359,9 +368,12 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: private consumer
-    - **Trajectory**: DvTP
+    - **Channel**: DvTP
     - **Source**: the table of facilities in the
-      [GO](https://ictu.github.io/GBO-GO/main/) (section 5): "Een private dienstverlener die deelneemt, moet de toestemmingsvoorziening en BSNk PP gebruiken en aan de aansluitvoorwaarden voldoen."
+      [GO](https://ictu.github.io/GBO-GO/main/) (section 5). A participating
+      private service provider (dienstverlener) must use the consent facility
+      (toestemmingsvoorziening) and BSNk PP, and must meet the connection
+      conditions: "Een private dienstverlener die deelneemt, moet de toestemmingsvoorziening en BSNk PP gebruiken en aan de aansluitvoorwaarden voldoen."
 
 ### AV-04: Consumer has its own FSC peer with PKIoverheid certificate and OIN {#av-04}
 
@@ -373,7 +385,7 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: private consumer
-    - **Trajectory**: DvTP
+    - **Channel**: DvTP
     - **Source**: FR-33 and FR-34 (v0.9), the
       [GO](https://ictu.github.io/GBO-GO/main/) (S04 building blocks
       PKIoverheid and OIN),
@@ -393,7 +405,7 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: private consumer
-    - **Trajectory**: DvTP
+    - **Channel**: DvTP
     - **Source**: [REQ-68](consent.md#req-68) (the policy binds the query
       subject to the proof). With a real BSNk, a PI is randomized. So only the
       exact value binds
@@ -411,15 +423,15 @@ on one of these groups:
 
 > An integrator SHOULD be admitted separately, with its own organization
 > identity means. It SHOULD have a processing agreement with the
-> dienstverlener, and SHOULD NOT store personal data persistently. It
-> SHOULD have a registration for each dienstverlener and use case.
+> service provider, and SHOULD NOT store personal data persistently. It
+> SHOULD have a registration for each service provider and use case.
 
 - **Status**: candidate
 
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: integrator
-    - **Trajectory**: DvTP
+    - **Channel**: DvTP
     - **Source**:
         - FR-18 and FR-37 (v0.9).
         - [PSA S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel)
@@ -431,7 +443,7 @@ on one of these groups:
       and mandate), [REQ-61](admission.md#req-61),
       [ADR 0034](../decisions/0034-integrator-delegation.md)
 
-### AV-07: Source holder publishes a machine-readable description for each data service {#av-07}
+### AV-07: Bronhouder publishes a machine-readable description for each data service {#av-07}
 
 > A bronhouder SHOULD publish a machine-readable and versionable
 > description at the fixed location. It SHOULD publish one for each data
@@ -449,12 +461,17 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: bronhouder
-    - **Trajectory**: all channels
+    - **Channel**: all channels
     - **Source**:
         - [PSA S07](https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting)
-          ("gepubliceerde informatie beschrijft schema's, versies, foutmeldingen en beschikbaarheidskenmerken").
+          (published information describes schemas, versions, error
+          messages, and availability properties:
+          "gepubliceerde informatie beschrijft schema's, versies, foutmeldingen en beschikbaarheidskenmerken").
         - [PSA S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus)
-          ("verwijst naar een beheerd schema en begrippenkader",
+          (a reference to a managed schema and concept framework, a
+          machine-readable and versionable form, quality properties and
+          provenance information, and references to managed objects where
+          possible: "verwijst naar een beheerd schema en begrippenkader",
           "machineleesbaar en versieerbaar",
           "kwaliteitskenmerken en herkomstinformatie",
           "verwijst waar mogelijk naar beheerde objecten").
@@ -463,7 +480,7 @@ on one of these groups:
     - **Notes**: the candidate applies to every data flow: DvTP, EUDI
       issuance, ASI, and OOTS.
 
-### AV-08: Source holder without its own endpoint provably agrees with a taken-over description {#av-08}
+### AV-08: Bronhouder without its own endpoint provably agrees with a taken-over description {#av-08}
 
 > A bronhouder that publishes no metadata endpoint of its own SHOULD
 > provably agree with the service description that the operator keeps on
@@ -474,12 +491,12 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: bronhouder
-    - **Trajectory**: EUDI
+    - **Channel**: EUDI
     - **Source**: [F-71](../traceability/findings.md#f-71) and the exception
       in [REQ-64](sources-identity.md#req-64).
     - **Related**: [REQ-64](sources-identity.md#req-64)
 
-### AV-09: Source holder keeps decryption keys of an older version while proofs for that version are valid {#av-09}
+### AV-09: Bronhouder keeps decryption keys of an older version while proofs for that version are valid {#av-09}
 
 > A bronhouder SHOULD keep the keys with which it decrypts the values in a
 > consent proof. It SHOULD keep a key version as long as valid proofs made
@@ -490,14 +507,14 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: bronhouder
-    - **Trajectory**: DvTP
+    - **Channel**: DvTP
     - **Source**: [REQ-82](pseudonymization.md#req-82) and
       [BSNK-08](pseudonymization.md#bsnk-08) (an encrypted value belongs to
       one key version).
     - **Related**: [REQ-82](pseudonymization.md#req-82),
       [F-78](../traceability/findings.md#f-78)
 
-### AV-10: Source holder logs every living data subject of a relation attestation {#av-10}
+### AV-10: Bronhouder logs every living data subject of a relation attestation {#av-10}
 
 > An attestation can hold data about someone other than the requester. For
 > such an attestation, a bronhouder SHOULD record in its processing log
@@ -509,13 +526,13 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: bronhouder
-    - **Trajectory**: EUDI
+    - **Channel**: EUDI
     - **Source**: [REQ-57](eudi-issuance.md#req-57) and
       [REQ-72](logging-audit.md#req-72).
     - **Related**: [REQ-57](eudi-issuance.md#req-57),
       [REQ-72](logging-audit.md#req-72)
 
-### AV-11: Source holder tests its view for relation attestations {#av-11}
+### AV-11: Bronhouder tests its view for relation attestations {#av-11}
 
 > A bronhouder can supply a relation (for example a marriage) through a
 > view of its own. It SHOULD then prove with tests that this view returns
@@ -526,11 +543,11 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: bronhouder
-    - **Trajectory**: EUDI
+    - **Channel**: EUDI
     - **Source**: [REQ-57](eudi-issuance.md#req-57).
     - **Related**: [REQ-57](eudi-issuance.md#req-57)
 
-### AV-12: Source holder as provider has a public validity and revocation policy {#av-12}
+### AV-12: Bronhouder as provider has a public validity and revocation policy {#av-12}
 
 > A bronhouder that has attestations issued SHOULD have a written and
 > public policy for validity and revocation. It SHOULD publish the validity
@@ -541,7 +558,7 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: bronhouder
-    - **Trajectory**: EUDI
+    - **Channel**: EUDI
     - **Source**: Implementing Regulation (EU)
       [2025/1569](https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj),
       article 4(1), [REQ-77](eudi-issuance.md#req-77), and
@@ -549,7 +566,7 @@ on one of these groups:
     - **Related**: [REQ-77](eudi-issuance.md#req-77),
       [REQ-64](sources-identity.md#req-64)
 
-### AV-13: Source holder gives the instruction to revoke an attestation {#av-13}
+### AV-13: Bronhouder gives the instruction to revoke an attestation {#av-13}
 
 > If the data in an issued attestation is no longer correct, a bronhouder
 > SHOULD tell the issuance function that the attestation must be revoked.
@@ -559,7 +576,7 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: bronhouder
-    - **Trajectory**: EUDI
+    - **Channel**: EUDI
     - **Source**: Implementing Regulation (EU)
       [2025/1569](https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj),
       article 4(2) and 4(3), and [REQ-77](eudi-issuance.md#req-77).
@@ -579,9 +596,10 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: private consumer
-    - **Trajectory**: DvTP
+    - **Channel**: DvTP
     - **Source**:
-        - FR-25 criterion 2 (contact details "vastgelegd tijdens onboarding/configuratie").
+        - FR-25 criterion 2 (contact details recorded during onboarding or
+          configuration: "vastgelegd tijdens onboarding/configuratie").
         - [REQ-120](consent.md#req-120) (the portal shows them with
           every consent and after a revocation).
         - [Q-62](../traceability/open-questions.md#q-62) sub-question 2.
@@ -601,11 +619,12 @@ on one of these groups:
 ??? note "Source, evidence and notes"
 
     - **Obliged party**: private consumer
-    - **Trajectory**: DvTP
+    - **Channel**: DvTP
     - **Source**:
         - FR-36 criteria 1 and 2.
         - [PSA S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal)
-          ("de inrichting biedt een gelijkwaardig alternatief als wetgeving of beleid dat vereist").
+          (the setup offers an equivalent alternative if law or policy
+          requires it: "de inrichting biedt een gelijkwaardig alternatief als wetgeving of beleid dat vereist").
         - [REQ-117](consent.md#req-117) (the screen names the alternative).
         - [Q-62](../traceability/open-questions.md#q-62) sub-question 3.
     - **Related**: [REQ-117](consent.md#req-117)

@@ -45,6 +45,7 @@ markdown_extensions:
   - admonition
   - attr_list
   # Mermaid diagrammen
+  - abbr
   - pymdownx.details
   - pymdownx.superfences:
       custom_fences:
@@ -56,6 +57,8 @@ markdown_extensions:
         - docs
         - includes
       check_paths: true
+      auto_append:
+        - abbreviations.md
   # Automatische inhoudsopgave
   - toc:
       permalink: true
@@ -122,10 +125,10 @@ nav:
               - Records: building-blocks/gbo-basis/records.md
           - DvTP channel:
               - DvTP channel: building-blocks/dvtp/index.md
-              - Toestemmingsvoorziening: building-blocks/dvtp/consent-service.md
+              - Consent facility: building-blocks/dvtp/consent-service.md
           - EUDI wallet channel:
               - EUDI wallet channel: building-blocks/eudi/index.md
-              - PubEAA provider: building-blocks/eudi/pubeaa.md
+              - PuB-EAA provider: building-blocks/eudi/pubeaa.md
               - ASI provider: building-blocks/eudi/asi.md
           - OOTS channel: building-blocks/oots.md
           - Component catalog: building-blocks/components.md

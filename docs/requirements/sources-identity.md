@@ -13,7 +13,7 @@ These requirements cover how a source publishes its service description,
 and how GBO validates and activates that description. [REQ-64](#req-64)
 applies to every GBO-delivered component that must know something per
 source or per service, in every data flow: EUDI issuance, the ASIP, and
-the consent service (DvTP). [REQ-65](#req-65) and [REQ-66](#req-66)
+the consent facility (toestemmingsvoorziening) of DvTP. [REQ-65](#req-65) and [REQ-66](#req-66)
 describe activation as the issuance route and the shared Source Registry
 implement it.
 
@@ -31,7 +31,7 @@ mechanism.
 Evidence links to gbo-demo point at tag `v0.9.0`.
 ### REQ-64: A GBO component works only with the service description the source publishes itself, after validation {#req-64}
 
-> A GBO-delivered component MUST take the service description of a source only from what the source publishes itself. The description covers the data service, the query with declared parameters, the mapping, the attestation schema, the validity per attestation type, and the offer. The component MUST NOT keep that description itself, add to it, or carry it per source in code. This applies to every GBO-delivered component that must know something per source or per service, in every data flow. These data flows are issuance, the ASIP, and the consent service (the offer of the source per data set). A new service or data set of a source MUST be usable without a code change in such a component.
+> A GBO-delivered component MUST take the service description of a source only from what the source publishes itself. The description covers the data service, the query with declared parameters, the mapping, the attestation schema, the validity per attestation type, and the offer. The component MUST NOT keep that description itself, add to it, or carry it per source in code. This applies to every GBO-delivered component that must know something per source or per service, in every data flow. These data flows are issuance, the ASIP, and the consent facility (the offer of the source per data set). A new service or data set of a source MUST be usable without a code change in such a component.
 
 > Before use, the component MUST validate the description on schema, origin (the publishing party is the bronhouder of the certificate set), version, validity window, and binding to the contract for the data service. The runtime MUST work only from a validated, activated version ([REQ-66](#req-66)). Every request that follows from it goes through the PDP of the source ([REQ-44](authorization.md#req-44)). The description MUST name the read API of the logbook of the source, and the chain MUST fill `dpl.read.nextLogbookId` from it.
 
@@ -79,7 +79,7 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
         - for the exception:
             [D-13](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/)
     - **Addressee**: GBO-delivered component: the reconciler and the runtime
-        of the EUDI adapter, the ASIP, and the consent service. Interface
+        of the EUDI adapter, the ASIP, and the consent facility. Interface
         agreement: the form of the publication and the validation rules. What
         the bronhouder must publish is in
         [AV-07](admission.md#av-07) and
@@ -382,7 +382,7 @@ the certificate roles. Evidence links to gbo-demo point at tag `v0.9.0`.
     - **Addressee**: interface agreement for every channel: DvTP, EUDI
         issuance (PuB-EAA), and the Authentic Source Interface.
     - **Evidence**: all three channels call through their own FSC Outway:
-        - the dienstverlener backend
+        - the backend of the service provider (dienstverlener)
             ([`main.go#L82`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/main.go#L82))
         - the EUDI adapter
             ([`main.go#L115`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L115))
@@ -412,7 +412,7 @@ the certificate roles. Evidence links to gbo-demo point at tag `v0.9.0`.
             is not bound to the certificate
             ([Q-60](../traceability/open-questions.md#q-60)).
 
-### REQ-67: The legal identity of a source holder comes from its certificate and not from configuration {#req-67}
+### REQ-67: The legal identity of a bronhouder comes from its certificate and not from configuration {#req-67}
 
 > A GBO component can put the legal identity of a bronhouder (OIN and
 > organization name) in an attestation or a decision record. The component
