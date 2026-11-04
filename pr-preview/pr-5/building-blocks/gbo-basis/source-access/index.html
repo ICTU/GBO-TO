@@ -1360,7 +1360,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1476,7 +1476,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4643,16 +4643,17 @@
 
 
 <h1 id="generic-source-access">Generic source access<a class="headerlink" href="#generic-source-access" title="Permanent link">&para;</a></h1>
-<p>The Globaal Ontwerp calls this part "generieke bronontsluiting". It is the
-path behind the PEP: after the PDP allows a request, the source gateway
+<p>The Globaal Ontwerp calls this part "generieke bronontsluiting", which
+means generic source access. It is the
+path behind the <abbr title="Policy Enforcement Point">PEP</abbr>: after the <abbr title="Policy Decision Point">PDP</abbr> allows a request, the source gateway
 passes it to the source API. Under consent, the gateway first puts the
 citizen into the query. The source answers one GraphQL query and returns
 only the fields that the query selects. The
 <a href="../../../concepts/pseudonymization/">Pseudonymization</a> and
 <a href="../../../concepts/authorization/">Authorization</a> concept pages have the
 detail and the links to the code.</p>
-<p><a href="../../">Overview</a> › <a href="../">GBO Basis</a> › Generic source access</p>
-<h2 id="components-behind-the-pep">Components behind the PEP<a class="headerlink" href="#components-behind-the-pep" title="Permanent link">&para;</a></h2>
+<p><a href="../../">Overview</a> › <a href="../"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a> › Generic source access</p>
+<h2 id="components-behind-the-pep">Components behind the <abbr title="Policy Enforcement Point">PEP</abbr><a class="headerlink" href="#components-behind-the-pep" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
   out["Outway of&lt;br/&gt;the caller"]
   subgraph bh["At the bronhouder"]
@@ -4717,22 +4718,22 @@ border: click to zoom in.</em></p>
 <tbody>
 <tr>
 <td>Source gateway</td>
-<td>Accepts only the request shape that the PDP judged. Under consent, it replaces the placeholder with the own value of the source. Without consent, it passes the query on unchanged.</td>
+<td>Accepts only the request shape that the <abbr title="Policy Decision Point">PDP</abbr> judged. Under consent, it replaces the placeholder with the own value of the source. Without consent, it passes the query on unchanged.</td>
 <td>Verifies the consent proof again, or forwards a literal subject under a consent proof</td>
 </tr>
 <tr>
 <td>Decryption component</td>
-<td>Reads a VI or a VP with the keys of the source.</td>
+<td>Reads a <abbr title="Encrypted identity">VI</abbr> or a <abbr title="Encrypted pseudonym">VP</abbr> with the keys of the source.</td>
 <td>Calls BSNk or another service at query time (<a href="../../../requirements/pseudonymization/#req-21">REQ-21</a>)</td>
 </tr>
 <tr>
 <td>Source API</td>
-<td>Runs the GraphQL query and logs the processing in the LDV logbook of its controller.</td>
+<td>Runs the GraphQL query and logs the processing in the <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook of its controller.</td>
 <td>Returns a field that the query did not select (<a href="../../../requirements/authorization/#req-08">REQ-08</a>)</td>
 </tr>
 <tr>
 <td>Schema copy and pins</td>
-<td>One copy of the source schema per FSC service, so the PDP can resolve each field. The policy bundle pins its digest.</td>
+<td>One copy of the source schema per <abbr title="Federated Service Connectivity">FSC</abbr> service, so the <abbr title="Policy Decision Point">PDP</abbr> can resolve each field. The policy bundle pins its digest.</td>
 <td>Changes without a new policy bundle</td>
 </tr>
 </tbody>
@@ -4740,14 +4741,14 @@ border: click to zoom in.</em></p>
 <p>The source gateway belongs to the source, and each source has its own
 instance. It sits between the Inway and the API
 (<a href="../../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>). The
-gateway writes two LDV records: one for the decryption and one for the
+gateway writes two <abbr title="Logboek Dataverwerkingen">LDV</abbr> records: one for the decryption and one for the
 query that it forwards. The answer goes back to the caller through the
-Inway. A GBO-delivered channel component calls the source again for each
+Inway. A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered channel component calls the source again for each
 request and does not store the answer
 (<a href="../../../requirements/authorization/#req-11">REQ-11</a>).</p>
 <h2 id="the-transport-subset">The transport subset<a class="headerlink" href="#the-transport-subset" title="Permanent link">&para;</a></h2>
-<p>The PDP judges one form of request. The source gateway accepts only that
-form, so a request that the PDP never judged cannot run. In demo v0.9.0,
+<p>The <abbr title="Policy Decision Point">PDP</abbr> judges one form of request. The source gateway accepts only that
+form, so a request that the <abbr title="Policy Decision Point">PDP</abbr> never judged cannot run. In demo v0.9.0,
 the gateway refuses a request in these cases:</p>
 <table>
 <thead>
@@ -4782,7 +4783,7 @@ the gateway refuses a request in these cases:</p>
 <p>The path check compares the raw request target byte for byte. It does not
 clean or decode the path
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/transport.go"><code>transport.go</code></a>).
-The PDP refuses the same forms. The second check at the gateway covers a
+The <abbr title="Policy Decision Point">PDP</abbr> refuses the same forms. The second check at the gateway covers a
 request that reaches the gateway by another route.</p>
 <h2 id="placeholder-substitution-under-consent">Placeholder substitution under consent<a class="headerlink" href="#placeholder-substitution-under-consent" title="Permanent link">&para;</a></h2>
 <p>Under consent, the consumer does not know who the citizen is. Its query
@@ -4791,7 +4792,7 @@ citizen after the allow:</p>
 <div class="mermaid">sequenceDiagram
   autonumber
   box rgb(241,239,232) Consumer
-    participant DV as Dienstverlener
+    participant DV as Service provider
   end
   box rgb(220,252,231) GBO Basis at the source
     participant IN as FSC Inway (PEP)
@@ -4823,7 +4824,7 @@ citizen after the allow:</p>
     API--&gt;&gt;DV: only the selected fields
   end</div>
 <p class="caption"><em>Figure 2: Substitution of the placeholder after the allow. The runtime
-page <a href="../../../runtime/dvtp-query/">DvTP query</a> has every hop.</em></p>
+page <a href="../../../runtime/dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a> has every hop.</em></p>
 <p>The query names the form that the source API takes. Each placeholder maps
 to one value in the consent proof:</p>
 <table>
@@ -4838,13 +4839,13 @@ to one value in the consent proof:</p>
 <tbody>
 <tr>
 <td><code>consent:identity</code></td>
-<td>VI, <code>encrypted_subject[&lt;OIN&gt;].identity</code></td>
-<td>The BSN</td>
-<td>Only a source on the BSN authorization list</td>
+<td><abbr title="Encrypted identity">VI</abbr>, <code>encrypted_subject[&lt;OIN&gt;].identity</code></td>
+<td>The <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>Only a source on the <abbr title="Burgerservicenummer">BSN</abbr> authorization list</td>
 </tr>
 <tr>
 <td><code>consent:pseudonym</code></td>
-<td>VP, <code>encrypted_subject[&lt;OIN&gt;].pseudonym</code></td>
+<td><abbr title="Encrypted pseudonym">VP</abbr>, <code>encrypted_subject[&lt;OIN&gt;].pseudonym</code></td>
 <td>The own pseudonym of the source</td>
 <td>Every source</td>
 </tr>
@@ -4852,31 +4853,31 @@ to one value in the consent proof:</p>
 </table>
 <p>Under a consent, the subject comes only from the proof
 (<a href="../../../requirements/pseudonymization/#req-79">REQ-79</a>). The gateway
-takes only the value for its own OIN. It accepts the result only if the
-decrypted value names that OIN as the recipient
+takes only the value for its own <abbr title="Organisatie-identificatienummer">OIN</abbr>. It accepts the result only if the
+decrypted value names that <abbr title="Organisatie-identificatienummer">OIN</abbr> as the recipient
 (<a href="../../../requirements/pseudonymization/#req-80">REQ-80</a>). The key in
 the proof is not evidence. The value that BSNk made is the evidence.</p>
 <p>The gateway refuses the request in three cases, and the request goes no
 further:</p>
 <ul>
-<li>The proof has no value in the requested form, for example no VI for a
-  source that is not on the BSN authorization list.</li>
+<li>The proof has no value in the requested form, for example no <abbr title="Encrypted identity">VI</abbr> for a
+  source that is not on the <abbr title="Burgerservicenummer">BSN</abbr> authorization list.</li>
 <li>The decrypted value names another recipient.</li>
 <li>The query names the subject with a literal value under a consent proof.</li>
 </ul>
 <p>Substitution works only on query variables. If the query text holds a
-literal placeholder, the PDP allows it, the gateway leaves it, and the
+literal placeholder, the <abbr title="Policy Decision Point">PDP</abbr> allows it, the gateway leaves it, and the
 query finds nobody. In demo v0.9.0, no rule accepts <code>consent:pseudonym</code>,
 and no source API answers on a pseudonym
 (<a href="https://github.com/ICTU/GBO-demo/issues/474">#474</a>).</p>
 <h2 id="pass-through-without-consent">Pass-through without consent<a class="headerlink" href="#pass-through-without-consent" title="Permanent link">&para;</a></h2>
 <p>The evidence decides what the gateway does, as it decides the regime at
-the PDP. The gateway reads no grant property:</p>
+the <abbr title="Policy Decision Point">PDP</abbr>. The gateway reads no grant property:</p>
 <table>
 <thead>
 <tr>
 <th>Evidence in the request</th>
-<th>Regime at the PDP</th>
+<th>Regime at the <abbr title="Policy Decision Point">PDP</abbr></th>
 <th>Gateway</th>
 </tr>
 </thead>
@@ -4889,23 +4890,23 @@ the PDP. The gateway reads no grant property:</p>
 <tr>
 <td>Consent proof, subject is a literal value</td>
 <td>Consent</td>
-<td>Refuses: the PDP denies this, so it arrives only by another route</td>
+<td>Refuses: the <abbr title="Policy Decision Point">PDP</abbr> denies this, so it arrives only by another route</td>
 </tr>
 <tr>
 <td>No consent proof</td>
-<td>PID</td>
+<td><abbr title="Person Identification Data">PID</abbr></td>
 <td>Passes the query on unchanged</td>
 </tr>
 </tbody>
 </table>
-<p>The EUDI adapter and the ASIP send no consent proof. They put the BSN from
-the PID or from the access token in the query variables themselves. As a
-result, the BSN is in the PDP input and in both decision logs
+<p>The EUDI adapter and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> send no consent proof. They put the <abbr title="Burgerservicenummer">BSN</abbr> from
+the <abbr title="Person Identification Data">PID</abbr> or from the access token in the query variables themselves. As a
+result, the <abbr title="Burgerservicenummer">BSN</abbr> is in the <abbr title="Policy Decision Point">PDP</abbr> input and in both decision logs
 (<a href="../../../requirements/logging-audit/#req-60">REQ-60</a>). The proposed fix
-keeps identifiers out of the PDP input
+keeps identifiers out of the <abbr title="Policy Decision Point">PDP</abbr> input
 (<a href="../../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>).</p>
 <h2 id="network-isolation-is-the-control">Network isolation is the control<a class="headerlink" href="#network-isolation-is-the-control" title="Permanent link">&para;</a></h2>
-<p>The gateway does not verify the consent proof again. The PDP verified it
+<p>The gateway does not verify the consent proof again. The <abbr title="Policy Decision Point">PDP</abbr> verified it
 on the same request, and a consumer holds real proofs. So the rule "only
 after the decision" depends on one thing: nothing but the Inway reaches
 the gateway (<a href="../../../requirements/pseudonymization/#req-81">REQ-81</a>):</p>
@@ -4963,17 +4964,17 @@ source APIs, the decryption component, and the source logbooks share
 <p>The isolation has three limits
 (<a href="../../../traceability/findings/#f-79">F-79</a>):</p>
 <ul>
-<li>The source APIs are also on <code>backend</code> and <code>fsc-infra</code>, because the FSC
+<li>The source APIs are also on <code>backend</code> and <code>fsc-infra</code>, because the <abbr title="Federated Service Connectivity">FSC</abbr>
   metadata services point at them directly. A container on those networks
-  can reach a source API without the PDP.</li>
+  can reach a source API without the <abbr title="Policy Decision Point">PDP</abbr>.</li>
 <li>The Helm chart has no NetworkPolicy. A Kubernetes deployment needs one,
   or an equivalent control.</li>
 <li>A nonce that binds a value to one consent, as a second line, is not
   built.</li>
 </ul>
-<h2 id="the-pdp-copy-of-the-schema">The PDP copy of the schema<a class="headerlink" href="#the-pdp-copy-of-the-schema" title="Permanent link">&para;</a></h2>
-<p>The source owns its GraphQL schema. The PDP needs the schema to give each
-field its parent type. So the PDP keeps its own copy, and three controls
+<h2 id="the-pdp-copy-of-the-schema">The <abbr title="Policy Decision Point">PDP</abbr> copy of the schema<a class="headerlink" href="#the-pdp-copy-of-the-schema" title="Permanent link">&para;</a></h2>
+<p>The source owns its GraphQL schema. The <abbr title="Policy Decision Point">PDP</abbr> needs the schema to give each
+field its parent type. So the <abbr title="Policy Decision Point">PDP</abbr> keeps its own copy, and three controls
 keep the judged request equal to the executed request:</p>
 <div class="mermaid">flowchart LR
   subgraph srcs["Source"]
@@ -5016,7 +5017,7 @@ keep the judged request equal to the executed request:</p>
   style pdpg fill:#F4F5F7,stroke:#16A34A
   style srcs fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
   click map "../../../concepts/authorization/#query-mapping-ftv-graphql-profile" "Query mapping"</div>
-<p class="caption"><em>Figure 4: The PDP copy of the schema, the pins, and the drift check.</em></p>
+<p class="caption"><em>Figure 4: The <abbr title="Policy Decision Point">PDP</abbr> copy of the schema, the pins, and the drift check.</em></p>
 <p>The three controls work as follows:</p>
 <table>
 <thead>
@@ -5039,23 +5040,23 @@ keep the judged request equal to the executed request:</p>
 </tr>
 <tr>
 <td>Transport subset</td>
-<td>The gateway runs only the request form that the PDP judged.</td>
+<td>The gateway runs only the request form that the <abbr title="Policy Decision Point">PDP</abbr> judged.</td>
 <td><a href="#the-transport-subset">The transport subset</a></td>
 </tr>
 </tbody>
 </table>
 <p>The copy has no directives. In demo v0.9.0, the copies are <code>bd.graphql</code>
 for <code>bri</code>, <code>eudi/brp.graphql</code> for <code>brp</code>, and <code>lvg.graphql</code> for <code>lvg</code>. The
-year selector is an argument in the schema. As a result, the PDP can check
+year selector is an argument in the schema. As a result, the <abbr title="Policy Decision Point">PDP</abbr> can check
 consent per year. A change to a source schema needs a new copy, new pins,
 and a new policy bundle.</p>
 <h2 id="invariants-that-stay-at-the-source">Invariants that stay at the source<a class="headerlink" href="#invariants-that-stay-at-the-source" title="Permanent link">&para;</a></h2>
-<p>Some rules depend on data that only the source sees. The PDP cannot check
+<p>Some rules depend on data that only the source sees. The <abbr title="Policy Decision Point">PDP</abbr> cannot check
 them, so the source holds them and their tests.</p>
-<p>The akte van overlijden is the example in the demo. A surviving partner
-discloses her own PID and gets an attestation about her deceased partner.
+<p>The death certificate (akte van overlijden) is the example in the demo. A surviving partner
+discloses her own <abbr title="Person Identification Data">PID</abbr> and gets an attestation about her deceased partner.
 The BRP source offers the flat view <code>akteVanOverlijden(bsn)</code>. The source
-picks the marriage and the deceased partner. The PDP sees only the output
+picks the marriage and the deceased partner. The <abbr title="Policy Decision Point">PDP</abbr> sees only the output
 fields of the view
 (<a href="../../../traceability/findings/#f-47">F-47</a>).</p>
 <p><a href="../../../requirements/eudi-issuance/#req-57">REQ-57</a> asks for more. The
@@ -5070,7 +5071,7 @@ gateway, and its own logbook:</p>
 <table>
 <thead>
 <tr>
-<th>FSC service</th>
+<th><abbr title="Federated Service Connectivity">FSC</abbr> service</th>
 <th>Source</th>
 <th>Offers</th>
 <th>Rules</th>
@@ -5088,7 +5089,7 @@ gateway, and its own logbook:</p>
 <tr>
 <td><code>brp</code></td>
 <td>BRP profile of RvIG (<code>brp-graphql-server</code>, <code>brp-sidecar</code>)</td>
-<td>Persoonslijst and the akte van overlijden view</td>
+<td>Personal record (persoonslijst) and the death certificate view</td>
 <td>EUD0002, ASI0001</td>
 <td><code>logboek-brp</code></td>
 </tr>
@@ -5104,10 +5105,10 @@ gateway, and its own logbook:</p>
 <p>The demo takes two shortcuts in this part:</p>
 <ul>
 <li>The three sources share one decryption component.</li>
-<li>The three sources share one OIN.</li>
+<li>The three sources share one <abbr title="Organisatie-identificatienummer">OIN</abbr>.</li>
 </ul>
 <p>Production needs one decryption component per source, each with its own
-OIN. Because of the shortcuts, the demo cannot show that the values of
+<abbr title="Organisatie-identificatienummer">OIN</abbr>. Because of the shortcuts, the demo cannot show that the values of
 two sources are not linkable.</p>
 <h2 id="compared-with-the-globaal-ontwerp">Compared with the Globaal Ontwerp<a class="headerlink" href="#compared-with-the-globaal-ontwerp" title="Permanent link">&para;</a></h2>
 <p>The demo follows the Globaal Ontwerp in the use of GraphQL for selective
@@ -5123,17 +5124,17 @@ queries. It differs in three places:</p>
 <tbody>
 <tr>
 <td>Allowed queries</td>
-<td>A dienstencatalogus lists the allowed queries per application</td>
+<td>A service catalog (dienstencatalogus) lists the allowed queries per application</td>
 <td>The rules are the catalog: a field that no rule names is denied (<a href="../../../decisions/0009-closed-world-rules/">ADR-0009</a>)</td>
 </tr>
 <tr>
 <td>Source without GraphQL</td>
-<td>A GBO translation layer turns an existing API into a GraphQL source</td>
+<td>A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> translation layer turns an existing API into a GraphQL source</td>
 <td>Not built. All three sources run GraphQL (<a href="../../../decisions/0027-onboarding-toolkit/">ADR-0027</a>, proposed)</td>
 </tr>
 <tr>
-<td>From proof to BSN</td>
-<td>BSNk PP keeps the BSN away from the private dienstverlener</td>
+<td>From proof to <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> keeps the <abbr title="Burgerservicenummer">BSN</abbr> away from the private service provider (dienstverlener)</td>
 <td>The same, and the source gateway converts its own value after the allow. BSNk is not in the query path</td>
 </tr>
 </tbody>
@@ -5143,13 +5144,13 @@ queries. It differs in three places:</p>
 <ul>
 <li>The isolation of the gateway outside Docker Compose, and a nonce as a
   second line (<a href="../../../traceability/findings/#f-79">F-79</a>).</li>
-<li>The PDP checks that the subject comes from the proof. It does not check
+<li>The <abbr title="Policy Decision Point">PDP</abbr> checks that the subject comes from the proof. It does not check
   who the subject is (<a href="../../../traceability/findings/#f-77">F-77</a>).</li>
 <li>A relation to another person stays an invariant of the source that the
   policy cannot check (<a href="../../../traceability/findings/#f-47">F-47</a>).</li>
-<li>In the PID regime, the BSN is in the PDP input and in both decision
+<li>In the <abbr title="Person Identification Data">PID</abbr> regime, the <abbr title="Burgerservicenummer">BSN</abbr> is in the <abbr title="Policy Decision Point">PDP</abbr> input and in both decision
   logs (<a href="../../../traceability/findings/#f-54">F-54</a>).</li>
-<li>How the PDP models fields, recursion, and arguments for future sources
+<li>How the <abbr title="Policy Decision Point">PDP</abbr> models fields, recursion, and arguments for future sources
   (<a href="../../../traceability/open-questions/#q-14">Q-14</a>).</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -5170,6 +5171,7 @@ queries. It differs in three places:</p>
 <li>Demo increments: <a href="../../../traceability/increments/#sl-22">SL-22</a> (done),
   <a href="../../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

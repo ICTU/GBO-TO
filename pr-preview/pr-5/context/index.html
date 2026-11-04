@@ -808,12 +808,12 @@
   <a href="#koppelvlak-inventory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Koppelvlak inventory
+        Interface inventory
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Koppelvlak inventory">
+    <nav class="md-nav" aria-label="Interface inventory">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1362,7 +1362,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1478,7 +1478,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4584,91 +4584,68 @@
 
 
 <h1 id="context-and-scope">Context and scope<a class="headerlink" href="#context-and-scope" title="Permanent link">&para;</a></h1>
-<p>The GBO technical system connects to external actors and systems. This
-chapter lists every koppelvlak on the system boundary and between GBO
+<p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> technical system connects to external actors and systems. This
+chapter lists every interface (koppelvlak) on the system boundary and between <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 components. It covers the technical context only. The
 <a href="https://ictu.github.io/GBO-GO/main/#2-voorgestelde-oplossingsrichting">GO solution direction</a>
 and the
 <a href="https://ictu.github.io/GBO-PSA/main/oplossingsrichting/">PSA solution direction</a>
 give the business context: which parties exchange which data, and why.</p>
 <h2 id="technical-context">Technical context<a class="headerlink" href="#technical-context" title="Permanent link">&para;</a></h2>
-<p>The <a href="../building-blocks/components/">building block view</a> describes each GBO
-component. Dashed elements in the diagram are designed but not built. The
-diagram shows the system boundary in
-<a href="https://github.com/ICTU/GBO-demo">gbo-demo</a> v0.9.0:</p>
-<div class="mermaid">graph TB
-    subgraph External["External actors and systems"]
-        CIT["Citizen&lt;br/&gt;browser + DigiD"]
-        WALLET["EUDI wallet&lt;br/&gt;NL Wallet app"]
-        DV["Private consumer&lt;br/&gt;FSC Outway"]
-        INT["Integrator&lt;br/&gt;FSC Outway, delegated"]
-        GOV["Government consumer&lt;br/&gt;FSC Outway"]:::planned
-        EU["EU procedure portal&lt;br/&gt;AS4"]:::planned
-        QTSP[QTSP]
-        DIP[Discover Interface]
-        RRP[Register of relying parties]
-        BSNK["BSNk PP&lt;br/&gt;(Logius)"]
-    end
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has the same shape as in the
+<a href="https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing">Globaal Ontwerp</a>:
+external parties use one of the channels, and every channel reaches the
+source through <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis. The following figure shows who is on the other
+side of each interface in gbo-demo v0.9.0. Dashed blocks are designed but
+not built. Click a block to zoom in.</p>
+<div class="mermaid">flowchart TB
+  subgraph ext["External parties"]
+    direction LR
+    gov["Government consumer"]
+    dv["Private consumer&lt;br/&gt;or integrator"]
+    cit(["Citizen&lt;br/&gt;browser + DigiD"])
+    wallet["EUDI wallet&lt;br/&gt;NL Wallet app"]
+    qtsp["QTSP"]
+    eu["EU procedure portal"]
+  end
+  subgraph ch["GBO channels"]
+    direction LR
+    tv("Consent facility&lt;br/&gt;portal + register")
+    pub("PuB-EAA provider&lt;br/&gt;adapter + issuance server")
+    asi("ASI provider&lt;br/&gt;authorization server + ASIP")
+    oots("OOTS adapter")
+  end
+  subgraph svc["External services"]
+    direction LR
+    bsnk["BSNk PP&lt;br/&gt;Logius"]
+    rrp["Register of&lt;br/&gt;relying parties"]
+    dip["Discover Interface"]
+  end
+  subgraph basis["GBO Basis at the source"]
+    direction LR
+    pep("FSC Inway = PEP&lt;br/&gt;+ PDP")
+    src[("Bronhouder: source&lt;br/&gt;gateway + GraphQL API")]
+  end
 
-    subgraph GBO["GBO shared services"]
-        PORTAL[Toestemmingsportaal]
-        CREG[Toestemmingsregister]
-        ONBOARD[Admission register]
-        PDP["OpenFTV PDP&lt;br/&gt;OPA/Rego"]
-        ADL[("ADL")]
-        EUDIADP["EUDI adapter +&lt;br/&gt;issuance server"]
-        SREG[("Source registry")]
-        ASIP[ASIP]
-        AZSP[ASI authorization server]
-        WV[Wallet verifier]
-        OOTS[OOTS adapter]:::planned
-    end
-
-    subgraph FSC["FSC group"]
-        MGR[FSC Manager per org]
-        INWAY[FSC Inway per bronhouder]
-    end
-
-    subgraph BRON["Bronhouder"]
-        SIDECAR[Source gateway]
-        DEC[Decryption component]
-        GQL[GraphQL source API]
-        META["Source metadata&lt;br/&gt;/.well-known/gbo"]
-        LOGBOOK[("LDV logbook")]
-    end
-
-    CIT --&gt;|HTTPS| PORTAL
-    PORTAL --&gt;|"/v2 activate, transform"| BSNK
-    PORTAL --&gt;|REST| CREG
-    WALLET --&gt;|OpenID4VP / OpenID4VCI| EUDIADP
-    DV --&gt;|"FSC: mTLS + access token"| INWAY
-    INT --&gt;|FSC delegated grant| INWAY
-    GOV -.-&gt;|FSC| INWAY
-    EU -.-&gt;|AS4| OOTS
-    OOTS -.-&gt;|FSC| INWAY
-    QTSP --&gt;|"OAuth: register, token"| AZSP
-    QTSP --&gt;|"HTTPS verify/retrieve + DPoP"| ASIP
-    QTSP --&gt;|discover| DIP
-    DIP --&gt;|read records| ASIP
-    CIT --&gt;|login, approval| AZSP
-    WALLET --&gt;|OpenID4VP| WV
-    AZSP --&gt; WV
-    AZSP --&gt;|entitlement lookup| RRP
-    ASIP --&gt;|FSC via own Outway| INWAY
-    ASIP --&gt;|read releases| SREG
-    EUDIADP --&gt;|FSC via Outway| INWAY
-    EUDIADP --&gt;|"reconcile over FSC"| META
-    EUDIADP --&gt; SREG
-    INWAY --&gt;|AuthZEN evaluation| PDP
-    MGR --&gt;|AuthZEN contract decision| PDP
-    PDP --&gt;|PIP pull| ONBOARD
-    PDP --&gt;|JWKS| CREG
-    PDP --&gt;|consent-status over FSC| CREG
-    PDP --&gt; ADL
-    INWAY --&gt; SIDECAR
-    SIDECAR --&gt;|decrypt own value| DEC
-    SIDECAR --&gt; GQL
-    SIDECAR -.-&gt;|LDV records| LOGBOOK
+  gov ~~~ dv ~~~ cit ~~~ wallet ~~~ qtsp ~~~ eu
+  tv ~~~ pub ~~~ asi ~~~ oots
+  bsnk ~~~ rrp ~~~ dip
+  cit -- "HTTPS: consent" --&gt; tv
+  dv -- "redirect" --&gt; tv
+  wallet -- "OpenID4VP, OpenID4VCI" --&gt; pub
+  wallet -- "OpenID4VP: login" --&gt; asi
+  qtsp -- "OAuth, verify, retrieve" --&gt; asi
+  eu -. "AS4" .-&gt; oots
+  dv == "FSC: query + consent proof" ==&gt; pep
+  gov -. "FSC" .-&gt; pep
+  pub -- "FSC" --&gt; pep
+  asi -- "FSC" --&gt; pep
+  oots -. "FSC" .-&gt; pep
+  tv &lt;-. "consent status, FSC" .- pep
+  pep == "after allow" ==&gt; src
+  tv -- "at consent only" --&gt; bsnk
+  asi -- "entitlement" --&gt; rrp
+  qtsp -. "discover" .-&gt; dip
 
   %% GBO diagram palette: the same colors as the Globaal Ontwerp
   classDef basis fill:#DCFCE7,stroke:#16A34A,color:#0F172A
@@ -4681,50 +4658,126 @@ diagram shows the system boundary in
   classDef planned fill:#FFFFFF,stroke:#9CA3AF,color:#6B7280,stroke-dasharray:6 4
   classDef zoom stroke-width:3px
 
-    class CIT source
-    class WALLET,DV,INT,QTSP,DIP,RRP,BSNK ext
-    class PORTAL,CREG dvtp
-    class ONBOARD,ADL,SREG,LOGBOOK store
-    class PDP,MGR,INWAY,SIDECAR,DEC basis
-    class EUDIADP,ASIP,AZSP,WV eudi
-    class GQL,META source
-    style External fill:#F4F5F7,stroke:#D1D5DB
-    style GBO fill:#F4F5F7,stroke:#D1D5DB
-    style FSC fill:#F4F5F7,stroke:#16A34A
-    style BRON fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3</div>
-<p>Four points in this diagram are easy to misread:</p>
+  class cit source
+  class dv,wallet,qtsp,bsnk,rrp,dip ext
+  class eu,gov,oots planned
+  class tv dvtp
+  class pub,asi eudi
+  class pep basis
+  class src source
+  class tv,pub,asi,oots,pep,src zoom
+  style ext fill:#F4F5F7,stroke:#D1D5DB
+  style ch fill:#F4F5F7,stroke:#D1D5DB
+  style basis fill:#F0FDF4,stroke:#16A34A
+  style svc fill:#F4F5F7,stroke:#D1D5DB
+  click tv "../building-blocks/dvtp/consent-service/" "Consent facility"
+  click pub "../building-blocks/eudi/pubeaa/" "PuB-EAA provider"
+  click asi "../building-blocks/eudi/asi/" "ASI provider"
+  click oots "../building-blocks/oots/" "OOTS channel"
+  click pep "../building-blocks/gbo-basis/" "GBO Basis"
+  click src "../building-blocks/gbo-basis/source-access/" "Source access"</div>
+<p class="caption"><em>Figure 1: The system context. Thick lines: the path of a data request.
+Dashed: designed, not built.</em></p>
+<p>Inside the boundary, the <abbr title="Policy Decision Point">PDP</abbr> is the hub. It reads two registers, writes
+the decision record, and decides on contracts as well as on requests:</p>
+<div class="mermaid">flowchart LR
+  subgraph fsc["FSC at the source"]
+    direction TB
+    inw("FSC Inway&lt;br/&gt;PEP")
+    mgr("FSC Manager&lt;br/&gt;contracts")
+  end
+  pdp("OpenFTV PDP&lt;br/&gt;OPA/Rego")
+  subgraph reg["Registers and records"]
+    direction TB
+    adm[("Admission register")]
+    tr[("Consent register")]
+    adl[("ADL&lt;br/&gt;decision records")]
+  end
+  subgraph src["At the bronhouder"]
+    direction TB
+    gw("Source gateway")
+    dec("Decryption&lt;br/&gt;component")
+    ldv[("LDV logbook")]
+  end
+  subgraph eudi["EUDI components"]
+    direction TB
+    adp("EUDI adapter&lt;br/&gt;+ reconciler")
+    sreg[("Source registry")]
+    asip("ASIP")
+  end
+
+  inw -- "AuthZEN: request" --&gt; pdp
+  mgr -- "AuthZEN: contract" --&gt; pdp
+  adm -. "PIP pull, every 5 s" .-&gt; pdp
+  pdp -- "keys (JWKS) + status over FSC" --&gt; tr
+  pdp --&gt; adl
+  inw -- "after allow" --&gt; gw
+  gw --&gt; dec
+  gw -.-&gt; ldv
+  adp -- "writes releases" --&gt; sreg
+  asip -- "reads releases" --&gt; sreg
+
+  %% GBO diagram palette: the same colors as the Globaal Ontwerp
+  classDef basis fill:#DCFCE7,stroke:#16A34A,color:#0F172A
+  classDef dvtp fill:#FEDCD8,stroke:#E28F80,color:#1E293B
+  classDef eudi fill:#FFEDD5,stroke:#EA580C,color:#0F172A
+  classDef source fill:#DDEBF7,stroke:#6F94B8,color:#1E293B
+  classDef ext fill:#F1EFE8,stroke:#5F5E5A,color:#444441
+  classDef store fill:#EDE9FE,stroke:#7C3AED,color:#1E1B4B
+  classDef mock fill:#F3F4F6,stroke:#9CA3AF,color:#374151,stroke-dasharray:4 3
+  classDef planned fill:#FFFFFF,stroke:#9CA3AF,color:#6B7280,stroke-dasharray:6 4
+  classDef zoom stroke-width:3px
+
+  class inw,mgr,pdp,gw,dec basis
+  class adm,adl,ldv,sreg store
+  class tr dvtp
+  class adp,asip eudi
+  class pdp,tr,sreg,adl zoom
+  style fsc fill:#F0FDF4,stroke:#16A34A
+  style reg fill:#F4F5F7,stroke:#D1D5DB
+  style src fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
+  style eudi fill:#FFF7ED,stroke:#EA580C
+  click pdp "../building-blocks/gbo-basis/authorization/" "Authorization"
+  click tr "../building-blocks/dvtp/consent-service/" "Consent facility"
+  click sreg "../building-blocks/gbo-basis/source-configuration/" "Source configuration"
+  click adl "../building-blocks/gbo-basis/records/" "Records"</div>
+<p class="caption"><em>Figure 2: The interfaces between <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components.</em></p>
+<p>The <a href="#koppelvlak-inventory">interface inventory</a> lists every interface
+with its protocol and code. The
+<a href="../building-blocks/">building block view</a> zooms in per channel.</p>
+<p>Four points in these diagrams are easy to misread:</p>
 <ul>
-<li>Only the portal backend calls BSNk, at consent time. Neither the PDP nor
+<li>Only the portal backend calls BSNk, at consent time. Neither the <abbr title="Policy Decision Point">PDP</abbr> nor
   the source gateway calls BSNk. The source reads its own value with
   its own decryption component
   (<a href="../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>).</li>
-<li>The PDP gets the consent status over FSC: from its own Outway (peer
+<li>The <abbr title="Policy Decision Point">PDP</abbr> gets the consent status over <abbr title="Federated Service Connectivity">FSC</abbr>: from its own Outway (peer
   <code>…0800</code>) to the register's Inway (peer <code>…0700</code>). Only the public keys
   come directly from the register
   (<a href="../decisions/0032-consent-proof/">ADR-0032</a>).</li>
-<li>The QTSP is not an FSC participant. It is an OAuth client of the ASI
-  authorization server and calls the ASIP over HTTPS. The ASIP is the FSC
+<li>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> is not an <abbr title="Federated Service Connectivity">FSC</abbr> participant. It is an OAuth client of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>
+  authorization server and calls the <abbr title="Authentic Source Interface Provider">ASIP</abbr> over HTTPS. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> is the <abbr title="Federated Service Connectivity">FSC</abbr>
   participant toward the source
   (<a href="../traceability/findings/#f-87">F-87</a>,
   <a href="../decisions/0037-asi-oauth-front-door/">ADR-0037</a>).</li>
-<li>The ASI has four roles. GBO provides the ASIP and the authorization
-  server. The Discover Interface and the QTSP are external. For these two
+<li>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> has four roles. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> provides the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and the authorization
+  server. The Discover Interface and the <abbr title="Qualified Trust Service Provider">QTSP</abbr> are external. For these two
   roles, the demo has a stub and a reference client. It is open who
-  operates the ASIP and the authorization server
+  operates the <abbr title="Authentic Source Interface Provider">ASIP</abbr> and the authorization server
   (<a href="../traceability/open-questions/#q-37">Q-37</a>).</li>
 </ul>
-<h2 id="koppelvlak-inventory">Koppelvlak inventory<a class="headerlink" href="#koppelvlak-inventory" title="Permanent link">&para;</a></h2>
+<h2 id="koppelvlak-inventory">Interface inventory<a class="headerlink" href="#koppelvlak-inventory" title="Permanent link">&para;</a></h2>
 <p>Every interface has a row in one of the tables in the following sections.
 A row gives the standard that the interface follows and its implementation
 in gbo-demo. Rows marked <em>designed</em> are not built in demo v0.9.0. Paths in
 the last column are relative to
 <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0">gbo-demo v0.9.0</a>.</p>
-<h3 id="dvtp-consent">DvTP consent<a class="headerlink" href="#dvtp-consent" title="Permanent link">&para;</a></h3>
-<p>The DvTP consent chain uses these interfaces:</p>
+<h3 id="dvtp-consent"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consent<a class="headerlink" href="#dvtp-consent" title="Permanent link">&para;</a></h3>
+<p>The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consent chain uses these interfaces:</p>
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -4733,54 +4786,54 @@ the last column are relative to
 <tbody>
 <tr>
 <td>Consent initiation</td>
-<td>Consumer → toestemmingsportaal, and back</td>
+<td>Consumer → consent portal (toestemmingsportaal), and back</td>
 <td>HTTPS redirect with consumer, scopes, purpose, and return URL. The return carries the consent proof in the URL fragment, or <code>status=denied</code> (<a href="../requirements/consent/#req-37">REQ-37</a>, <a href="../requirements/consent/#req-119">REQ-119</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/toestemmingsportaal-frontend">toestemmingsportaal-frontend</a></td>
 </tr>
 <tr>
 <td>Citizen login</td>
-<td>Citizen ↔ toestemmingsportaal</td>
-<td>DigiD (mock): the citizen types a test BSN, and the backend signs a portal token with the BSN in <code>sub</code>. Real DigiD gives the identity in an assertion (<a href="../requirements/consent/#req-24">REQ-24</a>).</td>
+<td>Citizen ↔ consent portal</td>
+<td>DigiD (mock): the citizen types a test <abbr title="Burgerservicenummer">BSN</abbr>, and the backend signs a portal token with the <abbr title="Burgerservicenummer">BSN</abbr> in <code>sub</code>. Real DigiD gives the identity in an assertion (<a href="../requirements/consent/#req-24">REQ-24</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-portal-backend/portalhttp">portalhttp</a></td>
 </tr>
 <tr>
 <td>Consent registration</td>
-<td>Portal backend ↔ toestemmingsregister</td>
-<td>REST: <code>POST /consents</code>, <code>GET /consents?subject_ref=…</code>, <code>GET</code> and <code>DELETE /consents/{id}</code>, <code>GET</code> and <code>PUT /subjects/{ref}/polymorphic</code>. No BSN crosses this interface (<a href="../requirements/consent/#req-23">REQ-23</a>, <a href="../requirements/consent/#req-39">REQ-39</a>).</td>
+<td>Portal backend ↔ consent register (toestemmingsregister)</td>
+<td>REST: <code>POST /consents</code>, <code>GET /consents?subject_ref=…</code>, <code>GET</code> and <code>DELETE /consents/{id}</code>, <code>GET</code> and <code>PUT /subjects/{ref}/polymorphic</code>. No <abbr title="Burgerservicenummer">BSN</abbr> crosses this interface (<a href="../requirements/consent/#req-23">REQ-23</a>, <a href="../requirements/consent/#req-39">REQ-39</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/main.go#L350-L376">consent-register/main.go</a></td>
 </tr>
 <tr>
-<td>BSNk PP</td>
+<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr></td>
 <td>Portal backend → BSNk</td>
 <td><code>/v2/activate</code>, <code>/v2/transform</code>, and <code>/v2/bsn-authorisation-list</code>. The mock follows the BSNk interface as JSON and does not encrypt. Production BSNk uses SOAP with PKIoverheid (<a href="../requirements/pseudonymization/#bsnk-11">BSNK-11</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bsnk-mock/README.md">bsnk-mock</a></td>
 </tr>
 <tr>
 <td>Consent proof</td>
-<td>Consumer → Inway → PDP and source gateway</td>
+<td>Consumer → Inway → <abbr title="Policy Decision Point">PDP</abbr> and source gateway</td>
 <td>Signed JWT <code>gbo-consent+jwt</code> (ES256) in the <code>X-GBO-Consent-Token</code> header, with <code>encrypted_subject</code> per source. The query names the subject with the placeholder <code>consent:identity</code> or <code>consent:pseudonym</code> (<a href="../requirements/pseudonymization/#req-79">REQ-79</a>, <a href="../requirements/admission/#av-05">AV-05</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go">consent_token.go</a></td>
 </tr>
 <tr>
 <td>Consent keys</td>
-<td>PDP → toestemmingsregister</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → consent register</td>
 <td><code>GET /.well-known/jwks.json</code>, cached for 300 s</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego">consent.rego</a></td>
 </tr>
 <tr>
 <td>Consent status</td>
-<td>PDP Outway (<code>…0800</code>) → register Inway (<code>…0700</code>)</td>
-<td>FSC service <code>consent-status</code>: <code>GET /consents/{id}/status</code> on a status-only listener, with no cache and a 2 s timeout. The register refuses a call without an FSC peer (<a href="../requirements/consent/#req-76">REQ-76</a>).</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> Outway (<code>…0800</code>) → register Inway (<code>…0700</code>)</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> service <code>consent-status</code>: <code>GET /consents/{id}/status</code> on a status-only listener, with no cache and a 2 s timeout. The register refuses a call without an <abbr title="Federated Service Connectivity">FSC</abbr> peer (<a href="../requirements/consent/#req-76">REQ-76</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/status.go">status.go</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L647-L668">Makefile</a></td>
 </tr>
 </tbody>
 </table>
-<h3 id="authorization-and-fsc">Authorization and FSC<a class="headerlink" href="#authorization-and-fsc" title="Permanent link">&para;</a></h3>
-<p>The authorization chain and the FSC group use these interfaces:</p>
+<h3 id="authorization-and-fsc">Authorization and <abbr title="Federated Service Connectivity">FSC</abbr><a class="headerlink" href="#authorization-and-fsc" title="Permanent link">&para;</a></h3>
+<p>The authorization chain and the <abbr title="Federated Service Connectivity">FSC</abbr> group use these interfaces:</p>
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -4790,31 +4843,31 @@ the last column are relative to
 <tr>
 <td>Data request</td>
 <td>Consumer Outway ↔ bronhouder Inway</td>
-<td>FSC (OpenFSC v2.4.0): mTLS, access token, and grant hash. Grants carry no properties.</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> (OpenFSC v2.4.0): mTLS, access token, and grant hash. Grants carry no properties.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml">fsc-infra</a></td>
 </tr>
 <tr>
 <td>Delegated data request</td>
 <td>Integrator Outway ↔ bronhouder Inway</td>
-<td>FSC <code>DelegatedServiceConnectionGrant</code>, signed by the integrator, the represented consumer, and the provider (<a href="../requirements/consent/#req-106">REQ-106</a>)</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> <code>DelegatedServiceConnectionGrant</code>, signed by the integrator, the represented consumer, and the provider (<a href="../requirements/consent/#req-106">REQ-106</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-delegation-int.sh">seed-bri-delegation-int.sh</a></td>
 </tr>
 <tr>
 <td>Authorization</td>
-<td>Inway (PEP) ↔ PDP</td>
-<td>OpenID AuthZEN 1.0, <code>POST /authzen/v1/evaluation</code> over HTTPS. The Inway passes the raw body, and the PDP maps it per the FTV GraphQL profile (<a href="../requirements/authorization/#req-42">REQ-42</a>).</td>
+<td>Inway (<abbr title="Policy Enforcement Point">PEP</abbr>) ↔ <abbr title="Policy Decision Point">PDP</abbr></td>
+<td>OpenID <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> 1.0, <code>POST /authzen/v1/evaluation</code> over HTTPS. The Inway passes the raw body, and the <abbr title="Policy Decision Point">PDP</abbr> maps it per the <abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL profile (<a href="../requirements/authorization/#req-42">REQ-42</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/openftv-pdp">openftv-pdp</a></td>
 </tr>
 <tr>
 <td>Contract decision</td>
-<td>Provider Manager → PDP</td>
-<td>AuthZEN autosign request for each submitted contract (<a href="../requirements/admission/#req-62">REQ-62</a>)</td>
+<td>Provider Manager → <abbr title="Policy Decision Point">PDP</abbr></td>
+<td><abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> autosign request for each submitted contract (<a href="../requirements/admission/#req-62">REQ-62</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego">autosign.rego</a></td>
 </tr>
 <tr>
 <td>Participant admission</td>
-<td>PDP ← admission register</td>
-<td>OpenFTV PIP pull, <code>GET /internal/openftv/participants</code>, every 5 s, on a network that only the PDP shares (<a href="../requirements/admission/#req-61">REQ-61</a>)</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> ← admission register</td>
+<td><abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> <abbr title="Policy Information Point">PIP</abbr> pull, <code>GET /internal/openftv/participants</code>, every 5 s, on a network that only the <abbr title="Policy Decision Point">PDP</abbr> shares (<a href="../requirements/admission/#req-61">REQ-61</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml">dvtp-onboarding.yaml</a></td>
 </tr>
 </tbody>
@@ -4824,7 +4877,7 @@ the last column are relative to
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -4846,7 +4899,7 @@ the last column are relative to
 <tr>
 <td>Source metadata</td>
 <td>Reconciler ← source</td>
-<td><code>GET /.well-known/gbo</code> over a separate FSC metadata service, per <code>gbo-source-metadata</code> 1.0 or 1.1 (<a href="../requirements/sources-identity/#req-64">REQ-64</a>)</td>
+<td><code>GET /.well-known/gbo</code> over a separate <abbr title="Federated Service Connectivity">FSC</abbr> metadata service, per <code>gbo-source-metadata</code> 1.0 or 1.1 (<a href="../requirements/sources-identity/#req-64">REQ-64</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/gbo-source-metadata-v1.schema.json">schema</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/graphql-server/source_metadata.go">source_metadata.go</a></td>
 </tr>
 </tbody>
@@ -4856,7 +4909,7 @@ the last column are relative to
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -4866,7 +4919,7 @@ the last column are relative to
 <tr>
 <td>Wallet issuance</td>
 <td>EUDI wallet ↔ issuance server</td>
-<td>OpenID4VCI with OpenID4VP disclosure, SD-JWT VC (<code>dc+sd-jwt</code>)</td>
+<td><abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> with <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> disclosure, SD-JWT VC (<code>dc+sd-jwt</code>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-issuance-server">eudi-issuance-server</a> (nl-wallet v0.5.0)</td>
 </tr>
 <tr>
@@ -4889,13 +4942,13 @@ the last column are relative to
 </tr>
 <tr>
 <td>Source registry</td>
-<td>EUDI adapter, issuance init step, ASIP ← source registry</td>
+<td>EUDI adapter, issuance init step, <abbr title="Authentic Source Interface Provider">ASIP</abbr> ← source registry</td>
 <td>PostgreSQL, read-only role on releases and the active pointer</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/source-registry">source-registry</a></td>
 </tr>
 <tr>
-<td>QTSP test statement</td>
-<td>Issuance server → reference QTSP</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> test statement</td>
+<td>Issuance server → reference <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td>Callback on a secret path over CA-pinned HTTPS (use case <code>qtsp-attestation</code>). Demo scaffolding.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/qtsp_issuance.go">qtsp_issuance.go</a></td>
 </tr>
@@ -4906,7 +4959,7 @@ the last column are relative to
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -4914,27 +4967,27 @@ the last column are relative to
 </thead>
 <tbody>
 <tr>
-<td>ASI discovery</td>
-<td>QTSP ↔ Discover Interface, and Discover Interface ← ASIP records</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> discovery</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> ↔ Discover Interface, and Discover Interface ← <abbr title="Authentic Source Interface Provider">ASIP</abbr> records</td>
 <td>ETSI TS 119 478 clause 5.3 and Annex A. <code>dataService</code> records (clause 5.3.3) at <code>/&lt;ds&gt;/dataservices</code> (<a href="../requirements/asi/#req-99">REQ-99</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-discovery-stub">asi-discovery-stub</a> (stub), <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-provider">asi-provider</a></td>
 </tr>
 <tr>
-<td>ASI contract</td>
-<td>QTSP ← ASIP</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> contract</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> ← <abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
 <td>ETSI Annex B OpenAPI with completions. <code>x-oauth-authorization-server</code> names the authorization server (<a href="../requirements/asi/#req-100">REQ-100</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-provider/openapi">asi-provider/openapi</a></td>
 </tr>
 <tr>
-<td>ASI server metadata</td>
-<td>QTSP, ASIP ← authorization server</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> server metadata</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr>, <abbr title="Authentic Source Interface Provider">ASIP</abbr> ← authorization server</td>
 <td>RFC 8414 metadata and JWKS</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-authorization-server">asi-authorization-server</a></td>
 </tr>
 <tr>
-<td>QTSP registration</td>
-<td>QTSP → authorization server</td>
-<td>RFC 7591 <code>POST /register</code> with a software statement sealed by the QTSP certificate (<code>x5c</code>, <code>registryURI</code>) (<a href="../requirements/asi/#req-88">REQ-88</a>)</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> registration</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> → authorization server</td>
+<td>RFC 7591 <code>POST /register</code> with a software statement sealed by the <abbr title="Qualified Trust Service Provider">QTSP</abbr> certificate (<code>x5c</code>, <code>registryURI</code>) (<a href="../requirements/asi/#req-88">REQ-88</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-authorization-server">asi-authorization-server</a></td>
 </tr>
 <tr>
@@ -4944,39 +4997,39 @@ the last column are relative to
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/testdata/register.json">register.json</a></td>
 </tr>
 <tr>
-<td>ASI authorization</td>
-<td>Citizen browser ↔ authorization server ↔ QTSP</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization</td>
+<td>Citizen browser ↔ authorization server ↔ <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td>OAuth 2.0 code flow, PKCE S256, RFC 8707 <code>resource</code> (exactly one data service), optional RFC 9396 <code>authorization_details</code> (<a href="../requirements/asi/#req-90">REQ-90</a>, <a href="../requirements/asi/#req-95">REQ-95</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-authorization-server">asi-authorization-server</a></td>
 </tr>
 <tr>
 <td>Citizen identification</td>
 <td>Wallet ↔ wallet verifier ↔ authorization server</td>
-<td>OpenID4VP, PID <code>urn:eudi:pid:nl:1</code>. A DigiD mock is the second means (<a href="../requirements/asi/#req-102">REQ-102</a>).</td>
+<td><abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr>, <abbr title="Person Identification Data">PID</abbr> <code>urn:eudi:pid:nl:1</code>. A DigiD mock is the second means (<a href="../requirements/asi/#req-102">REQ-102</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-wallet-verifier">asi-wallet-verifier</a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-authorization-server/internal/digidmock">digidmock</a></td>
 </tr>
 <tr>
-<td>ASI token</td>
-<td>Authorization server → QTSP → ASIP</td>
-<td>RFC 9068 JWT (ES256), DPoP (RFC 9449), <code>private_key_jwt</code> (<a href="../requirements/asi/#req-86">REQ-86</a>, <a href="../requirements/asi/#req-87">REQ-87</a>)</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> token</td>
+<td>Authorization server → <abbr title="Qualified Trust Service Provider">QTSP</abbr> → <abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
+<td>RFC 9068 JWT (ES256), <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr> (RFC 9449), <code>private_key_jwt</code> (<a href="../requirements/asi/#req-86">REQ-86</a>, <a href="../requirements/asi/#req-87">REQ-87</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-provider/internal/accesstoken">accesstoken</a></td>
 </tr>
 <tr>
-<td>ASI verify and retrieve</td>
-<td>QTSP ↔ ASIP</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verify and retrieve</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> ↔ <abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
 <td>ETSI TS 119 478 clauses 6.1.1 and 6.1.2 at <code>/&lt;ds&gt;/authsrc-api/verify</code> and <code>/retrieve</code>. Errors follow RFC 9457. The seal is in <code>X-JWS-Signature</code> (detached JWS) (<a href="../requirements/asi/#req-83">REQ-83</a>, <a href="../requirements/asi/#req-112">REQ-112</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L99-L105">handler.go</a></td>
 </tr>
 <tr>
-<td>ASIP source query</td>
-<td>ASIP Outway (<code>…1200</code>) ↔ provider Inway</td>
-<td>FSC and AuthZEN (rule ASI0001). One GraphQL query per request.</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> source query</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> Outway (<code>…1200</code>) ↔ provider Inway</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> and <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> (rule ASI0001). One GraphQL query per request.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-provider/internal/graphqlsource">graphqlsource</a></td>
 </tr>
 <tr>
-<td>ASI source description</td>
-<td>Reconciler ← source, and ASIP ← source registry</td>
-<td><code>gbo-source-metadata</code> 1.1, capability <code>asi</code>. The ASIP reads a release snapshot.</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> source description</td>
+<td>Reconciler ← source, and <abbr title="Authentic Source Interface Provider">ASIP</abbr> ← source registry</td>
+<td><code>gbo-source-metadata</code> 1.1, capability <code>asi</code>. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> reads a release snapshot.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-mapping">asi-mapping</a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/source-registry">source-registry</a></td>
 </tr>
 </tbody>
@@ -4986,7 +5039,7 @@ the last column are relative to
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -4995,26 +5048,26 @@ the last column are relative to
 <tbody>
 <tr>
 <td>Decision records</td>
-<td>PDP → ADL, and reader → ADL</td>
-<td>Logius ADL in Postgres <code>ftv_adl</code>. Readers use a SELECT-only role (<a href="../requirements/logging-audit/#req-71">REQ-71</a>).</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → <abbr title="Authorization Decision Log">ADL</abbr>, and reader → <abbr title="Authorization Decision Log">ADL</abbr></td>
+<td>Logius <abbr title="Authorization Decision Log">ADL</abbr> in Postgres <code>ftv_adl</code>. Readers use a SELECT-only role (<a href="../requirements/logging-audit/#req-71">REQ-71</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/adl/adl-reader.sql">adl-reader.sql</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/adl.go">adl.go</a></td>
 </tr>
 <tr>
 <td>Processing records</td>
 <td>Component → logbook of its controller</td>
-<td>LDV v1.0.0 write, <code>POST /logboek/records</code>, over HTTPS with JSON and a bearer write token (<a href="../requirements/logging-audit/#req-72">REQ-72</a>)</td>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr> v1.0.0 write, <code>POST /logboek/records</code>, over HTTPS with JSON and a bearer write token (<a href="../requirements/logging-audit/#req-72">REQ-72</a>)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-client">ldv-client</a></td>
 </tr>
 <tr>
 <td>Processing-record read</td>
 <td>Auditor, portal → logbook</td>
-<td>LDV read extension, <code>POST /data-processing-operations</code> on trace ID, processing activity, or data subject. A read is possible with a read token only.</td>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr> read extension, <code>POST /data-processing-operations</code> on trace ID, processing activity, or data subject. A read is possible with a read token only.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek">ldv-logboek</a></td>
 </tr>
 <tr>
 <td>Transaction logs</td>
 <td>Auditors ← txlog of each peer</td>
-<td>FSC txlog API, <code>GET /v1/logs</code> over mTLS. The demo reads the txlog API inside each organization. Access in production is an open question (<a href="../traceability/findings-closed/#f-42">F-42</a>, <a href="../traceability/open-questions/#q-08">Q-08</a>).</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> txlog API, <code>GET /v1/logs</code> over mTLS. The demo reads the txlog API inside each organization. Access in production is an open question (<a href="../traceability/findings-closed/#f-42">F-42</a>, <a href="../traceability/open-questions/#q-08">Q-08</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/fsctxlog.go">fsctxlog.go</a></td>
 </tr>
 <tr>
@@ -5036,7 +5089,7 @@ the last column are relative to
 <table>
 <thead>
 <tr>
-<th>Koppelvlak</th>
+<th>Interface</th>
 <th>Between</th>
 <th>Protocol and standard</th>
 <th>Implemented in</th>
@@ -5044,37 +5097,37 @@ the last column are relative to
 </thead>
 <tbody>
 <tr>
-<td>OOTS evidence exchange</td>
-<td>EU access points ↔ OOTS adapter</td>
-<td>AS4/eDelivery and OOTS-EDM. This interface is <em>designed</em>. For more information, see <a href="../decisions/0020-as4-bridge-for-oots/">ADR-0020</a> and <a href="../traceability/open-questions/#q-79">Q-79</a>.</td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr> evidence exchange</td>
+<td>EU access points ↔ <abbr title="Once-Only Technical System">OOTS</abbr> adapter</td>
+<td>AS4/eDelivery and <abbr title="Once-Only Technical System">OOTS</abbr>-EDM. This interface is <em>designed</em>. For more information, see <a href="../decisions/0020-as4-bridge-for-oots/">ADR-0020</a> and <a href="../traceability/open-questions/#q-79">Q-79</a>.</td>
 <td>—</td>
 </tr>
 <tr>
 <td>Government data request</td>
 <td>Government consumer ↔ bronhouder Inway</td>
-<td>FSC with its own positive evidence. This interface is <em>designed</em>. For more information, see <a href="../runtime/design-level/">design-level scenarios</a>.</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> with its own positive evidence. This interface is <em>designed</em>. For more information, see <a href="../runtime/design-level/">design-level scenarios</a>.</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
 <h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
-<p>The demo implements three trajectories end to end, at demo grade:</p>
+<p>The demo implements three routes end to end, at demo grade:</p>
 <ol>
-<li>The DvTP query under consent, with an integrator variant and the LVG
+<li>The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query under consent, with an integrator variant and the LVG
    pilot as a second consumer and source.</li>
-<li>EUDI issuance of PuB-EAA attestations.</li>
-<li>ASI verification and retrieval for QTSPs (ETSI TS 119 478 clause 6.1).</li>
+<li>EUDI issuance of <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> attestations.</li>
+<li><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification and retrieval for QTSPs (ETSI TS 119 478 clause 6.1).</li>
 </ol>
-<p>Two trajectories are design-level: SDG-OOTS and Gov-to-Gov. The
+<p>Two routes are design-level: SDG-<abbr title="Once-Only Technical System">OOTS</abbr> and <abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr>. The
 <a href="../runtime/">runtime view</a> has a scenario for each.</p>
 <p>This design covers the following parts of the system:</p>
 <ul>
-<li>the authorization chain: PEP, PDP, PIPs, policies, and contract decisions</li>
+<li>the authorization chain: <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, PIPs, policies, and contract decisions</li>
 <li>the consent chain: portal, register, consent proof, and status service</li>
 <li>pseudonymization at consent time and decryption at the source</li>
-<li>the FSC group configuration and the admission register</li>
+<li>the <abbr title="Federated Service Connectivity">FSC</abbr> group configuration and the admission register</li>
 <li>EUDI issuance, source onboarding, and the source registry</li>
-<li>the Authentic Source Interface: ASIP, authorization server, and discovery
+<li>the Authentic Source Interface: <abbr title="Authentic Source Interface Provider">ASIP</abbr>, authorization server, and discovery
   records</li>
 <li>logging, audit, and observability</li>
 </ul>
@@ -5082,14 +5135,14 @@ the last column are relative to
 <ul>
 <li>the internal architecture of bronhouder systems behind the GraphQL API</li>
 <li>the EUDI wallet, DigiD, and BSNk themselves</li>
-<li>the QTSP, the Discover Interface, and the national register of relying
+<li>the <abbr title="Qualified Trust Service Provider">QTSP</abbr>, the Discover Interface, and the national register of relying
   parties</li>
-<li>the relying-party side of wallet presentations, which touches no GBO
+<li>the relying-party side of wallet presentations, which touches no <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
   infrastructure</li>
-<li>the EU OOTS common services</li>
+<li>the EU <abbr title="Once-Only Technical System">OOTS</abbr> common services</li>
 </ul>
 <p>The developer tooling of the demo is scaffolding: the developer portal,
-the consumer mocks, <code>keyper-mock</code>, and the reference QTSP. This tooling is
+the consumer mocks, <code>keyper-mock</code>, and the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>. This tooling is
 outside the target architecture. The <a href="../deployment/">deployment view</a> marks
 each unit as target architecture or scaffolding.</p>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -5129,6 +5182,7 @@ each unit as target architecture or scaffolding.</p>
   <a href="../traceability/increments/#sl-47">SL-47</a>,
   <a href="../traceability/increments/#sl-51">SL-51</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4587,39 +4587,39 @@
   
 
 
-<h1 id="adr-0043-keep-identifiers-out-of-the-pdp-input-instead-of-masking-decision-logs">ADR-0043: Keep identifiers out of the PDP input instead of masking decision logs<a class="headerlink" href="#adr-0043-keep-identifiers-out-of-the-pdp-input-instead-of-masking-decision-logs" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0043-keep-identifiers-out-of-the-pdp-input-instead-of-masking-decision-logs">ADR-0043: Keep identifiers out of the <abbr title="Policy Decision Point">PDP</abbr> input instead of masking decision logs<a class="headerlink" href="#adr-0043-keep-identifiers-out-of-the-pdp-input-instead-of-masking-decision-logs" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: proposed (waits for demo <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>)</li>
 <li>Date: 2026-11-02</li>
 <li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a>, <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a>, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">S09</a></li>
 <li>Deliberation: <a href="../../requirements/logging-audit/#req-60">REQ-60</a>, <a href="../../traceability/findings/#f-54">F-54</a>, and demo <a href="https://github.com/ICTU/GBO-demo/issues/149">#149</a>, <a href="https://github.com/ICTU/GBO-demo/issues/364">#364</a>, <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/CHANGELOG.md#L588-L602">CHANGELOG</a></li>
-<li>Implemented in: not implemented. The plain BSN enters the PDP input at <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L273">eudi-adapter source_metadata.go</a> and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/source.go#L94">asi-provider graphqlsource/source.go</a>.</li>
+<li>Implemented in: not implemented. The plain <abbr title="Burgerservicenummer">BSN</abbr> enters the <abbr title="Policy Decision Point">PDP</abbr> input at <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L273">eudi-adapter source_metadata.go</a> and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/graphqlsource/source.go#L94">asi-provider graphqlsource/source.go</a>.</li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>Logging must hold no BSN that the processing does not need
+<p>Logging must hold no <abbr title="Burgerservicenummer">BSN</abbr> that the processing does not need
 (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>). Two decision logs
-record the PDP input: the ADL and the console decision log
+record the <abbr title="Policy Decision Point">PDP</abbr> input: the <abbr title="Authorization Decision Log">ADL</abbr> and the console decision log
 (<a href="../0036-adl-decision-record/">ADR-0036</a>). The routes differ:</p>
 <ul>
-<li>In the consent route, the PDP input holds a placeholder and no
+<li>In the consent route, the <abbr title="Policy Decision Point">PDP</abbr> input holds a placeholder and no
   identifier (<a href="../0032-consent-proof/">ADR-0032</a>). This route meets the
   requirement.</li>
-<li>In the EUDI and ASI routes, the query variables hold the plain BSN from
-  the PID or the token. As a result, both decision logs hold the BSN.</li>
+<li>In the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> routes, the query variables hold the plain <abbr title="Burgerservicenummer">BSN</abbr> from
+  the <abbr title="Person Identification Data">PID</abbr> or the token. As a result, both decision logs hold the <abbr title="Burgerservicenummer">BSN</abbr>.</li>
 </ul>
 <p>Masking in the policy engine had no effect
-(<a href="../../traceability/findings/#f-54">F-54</a>). The demo then kept the BSN
+(<a href="../../traceability/findings/#f-54">F-54</a>). The demo then kept the <abbr title="Burgerservicenummer">BSN</abbr>
 out through the construction of the input: the request mapper
-pseudonymized the BSN through BSNk. The demo removed that step when the
+pseudonymized the <abbr title="Burgerservicenummer">BSN</abbr> through BSNk. The demo removed that step when the
 mapper became a pure mapper
 (<a href="https://github.com/ICTU/GBO-demo/issues/364">#364</a>). The demo accepts
-the BSN in both logs until
+the <abbr title="Burgerservicenummer">BSN</abbr> in both logs until
 <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a> decides between
 masking and "transform first".</p>
 <h2 id="proposed-decision">Proposed decision<a class="headerlink" href="#proposed-decision" title="Permanent link">&para;</a></h2>
 <p>The proposal has three parts:</p>
 <ul>
-<li>A component that builds PDP input leaves out or replaces every
+<li>A component that builds <abbr title="Policy Decision Point">PDP</abbr> input leaves out or replaces every
   identifying value that the decision does not need.</li>
 <li>If the component cannot do that, the request does not continue.</li>
 <li>Masking in the engine or in the log pipeline is a second line only,
@@ -4631,27 +4631,27 @@ masking in #368, <a href="../../requirements/logging-audit/#req-60">REQ-60</a> m
 change, because it says "never rely only on masking".</p>
 <h2 id="considered-options">Considered options<a class="headerlink" href="#considered-options" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Keep identifiers out of the input (proposed). The PDP never receives
+<li>Keep identifiers out of the input (proposed). The <abbr title="Policy Decision Point">PDP</abbr> never receives
    the value, so no log can hold it.</li>
 <li>Mask the decision logs. The value still reaches the engine. A change
    in the log shape can leak the value again without notice, as F-54
    showed.</li>
-<li>Transform the BSN to a pseudonym before the PDP, as the earlier
+<li>Transform the <abbr title="Burgerservicenummer">BSN</abbr> to a pseudonym before the <abbr title="Policy Decision Point">PDP</abbr>, as the earlier
    mapper did. This option needs a BSNk call in the decision path, and
    no rule reads the result.</li>
 </ol>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>If the proposal is accepted, the EUDI adapter and the ASIP must build
-  their PDP input without the BSN. The source still needs the BSN after
+<li>If the proposal is accepted, the EUDI adapter and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> must build
+  their <abbr title="Policy Decision Point">PDP</abbr> input without the <abbr title="Burgerservicenummer">BSN</abbr>. The source still needs the <abbr title="Burgerservicenummer">BSN</abbr> after
   the allow. For this reason, the value must reach the source another
   way, as in the consent route
   (<a href="../0033-gateway-decrypts-after-allow/">ADR-0033</a>).</li>
-<li>LDV records never hold a BSN. The logbook refuses any record with a
-  run of nine digits that passes the elfproef
+<li><abbr title="Logboek Dataverwerkingen">LDV</abbr> records never hold a <abbr title="Burgerservicenummer">BSN</abbr>. The logbook refuses any record with a
+  run of nine digits that passes the <abbr title="Burgerservicenummer">BSN</abbr> checksum (elfproef)
   (<a href="../0026-ldv-integration/">ADR-0026</a>). This ADR covers the decision
   logs only.</li>
-<li>Until a decision on #368, the BSN in the EUDI and ASI decision logs is
+<li>Until a decision on #368, the <abbr title="Burgerservicenummer">BSN</abbr> in the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> decision logs is
   a known risk (<a href="../../risks/">Risks and technical debt</a>).</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -4661,6 +4661,7 @@ change, because it says "never rely only on masking".</p>
 <li>Open questions: <a href="../../traceability/open-questions/#q-08">Q-08</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-29">SL-29</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

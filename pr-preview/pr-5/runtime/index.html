@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -1567,7 +1567,7 @@
   <a href="#trajectories" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Trajectories
+        Routes
       
     </span>
   </a>
@@ -4581,9 +4581,9 @@ names the open points.</p>
   (<a href="../decisions/0004-federated-authorization/">ADR-0004</a>,
   <a href="../decisions/0002-opa-rego-authzen/">ADR-0002</a>), in this order:</p>
 <ol>
-<li>the FSC Outway of the consumer,</li>
-<li>the FSC Inway of the source, as PEP,</li>
-<li>the PDP of the source,</li>
+<li>the <abbr title="Federated Service Connectivity">FSC</abbr> Outway of the consumer (afnemer),</li>
+<li>the <abbr title="Federated Service Connectivity">FSC</abbr> Inway of the source, as <abbr title="Policy Enforcement Point">PEP</abbr>,</li>
+<li>the <abbr title="Policy Decision Point">PDP</abbr> of the source,</li>
 <li>the source gateway,</li>
 <li>the source API.</li>
 </ol>
@@ -4591,7 +4591,7 @@ names the open points.</p>
 </li>
 <li>
 <p><strong>Management plane.</strong> No citizen data travels. The scenarios in this
-  plane admit parties, take sources into use, and bring policy to the PDP.
+  plane admit parties, take sources into use, and bring policy to the <abbr title="Policy Decision Point">PDP</abbr>.
   These scenarios come before the first request.</p>
 </li>
 </ul>
@@ -4601,7 +4601,7 @@ names the open points.</p>
 <tr>
 <th>Scenario</th>
 <th>Page</th>
-<th>Trajectory</th>
+<th>Route</th>
 <th>Actor</th>
 <th>Status</th>
 <th>Main ADRs</th>
@@ -4610,30 +4610,30 @@ names the open points.</p>
 <tbody>
 <tr>
 <td>Citizen grants consent</td>
-<td><a href="dvtp-consent/">DvTP consent</a></td>
-<td>DvTP</td>
-<td>Citizen at a dienstverlener</td>
+<td><a href="dvtp-consent/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consent</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>Citizen at a service provider (dienstverlener)</td>
 <td>built</td>
 <td><a href="../decisions/0032-consent-proof/">0032</a>, <a href="../decisions/0005-bsnk-pp/">0005</a>, <a href="../decisions/0040-route-d-citizen-recognition/">0040</a></td>
 </tr>
 <tr>
 <td>Consumer requests data under consent, directly or through an integrator</td>
-<td><a href="dvtp-query/">DvTP query</a></td>
-<td>DvTP</td>
-<td>Consumer (dienstverlener) or integrator</td>
+<td><a href="dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>Consumer or integrator</td>
 <td>built</td>
 <td><a href="../decisions/0031-regime-from-evidence/">0031</a>, <a href="../decisions/0032-consent-proof/">0032</a>, <a href="../decisions/0033-gateway-decrypts-after-allow/">0033</a>, <a href="../decisions/0034-integrator-delegation/">0034</a>, <a href="../decisions/0013-pdp-request-mapper/">0013</a></td>
 </tr>
 <tr>
 <td>Citizen views and revokes consents</td>
-<td><a href="dvtp-citizen-access/">DvTP citizen access</a></td>
-<td>DvTP</td>
+<td><a href="dvtp-citizen-access/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> citizen access</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>Citizen</td>
 <td>built</td>
 <td><a href="../decisions/0032-consent-proof/">0032</a>, <a href="../decisions/0040-route-d-citizen-recognition/">0040</a></td>
 </tr>
 <tr>
-<td>Citizen receives an attestation (PuB-EAA route)</td>
+<td>Citizen receives an attestation (<abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route)</td>
 <td><a href="eudi-issuance/">EUDI issuance</a></td>
 <td>EUDI issuance</td>
 <td>Citizen with a wallet</td>
@@ -4641,10 +4641,10 @@ names the open points.</p>
 <td><a href="../decisions/0018-eudi-disclosure-issuance/">0018</a>, <a href="../decisions/0016-source-owned-metadata/">0016</a>, <a href="../decisions/0017-gbo-simple-v1/">0017</a>, <a href="../decisions/0028-pubeaa-productization/">0028</a></td>
 </tr>
 <tr>
-<td>QTSP verifies or retrieves attributes</td>
-<td><a href="asi-verification/">ASI verification</a></td>
-<td>ASI verification</td>
-<td>QTSP, citizen</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies or retrieves attributes</td>
+<td><a href="asi-verification/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification</a></td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr>, citizen</td>
 <td>built</td>
 <td><a href="../decisions/0037-asi-oauth-front-door/">0037</a>, <a href="../decisions/0038-asi-data-service-per-source/">0038</a>, <a href="../decisions/0039-asi-source-described-attributes/">0039</a>, <a href="../decisions/0041-asi-seal-format/">0041</a></td>
 </tr>
@@ -4652,7 +4652,7 @@ names the open points.</p>
 <td>Contract admission and source activation</td>
 <td><a href="admission/">Admission and activation</a></td>
 <td>all (management plane)</td>
-<td>Consumer, FSC Manager of the provider, operator</td>
+<td>Consumer, <abbr title="Federated Service Connectivity">FSC</abbr> Manager of the provider, operator</td>
 <td>built</td>
 <td><a href="../decisions/0015-contract-acceptance-by-policy/">0015</a>, <a href="../decisions/0034-integrator-delegation/">0034</a>, <a href="../decisions/0016-source-owned-metadata/">0016</a>, <a href="../decisions/0023-identity-convergence/">0023</a></td>
 </tr>
@@ -4660,22 +4660,22 @@ names the open points.</p>
 <td>Policy distribution</td>
 <td><a href="policy-distribution/">Policy distribution</a></td>
 <td>all (management plane)</td>
-<td>Operator of the source holder</td>
+<td>Operator of the bronhouder</td>
 <td>built (bundle mode is opt-in)</td>
 <td><a href="../decisions/0021-central-pap-signed-bundles/">0021</a>, <a href="../decisions/0002-opa-rego-authzen/">0002</a></td>
 </tr>
 <tr>
 <td>Government consumer requests data under a legal basis</td>
-<td><a href="design-level/#gov-to-gov">Gov-to-Gov</a></td>
-<td>Gov-to-Gov</td>
+<td><a href="design-level/#gov-to-gov"><abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr></a></td>
+<td><abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr></td>
 <td>Government consumer</td>
 <td>design-level</td>
 <td><a href="../decisions/0031-regime-from-evidence/">0031</a>, <a href="../decisions/0004-federated-authorization/">0004</a></td>
 </tr>
 <tr>
 <td>Cross-border evidence request</td>
-<td><a href="design-level/#sdg-oots">SDG-OOTS</a></td>
-<td>SDG-OOTS</td>
+<td><a href="design-level/#sdg-oots">SDG-<abbr title="Once-Only Technical System">OOTS</abbr></a></td>
+<td>SDG-<abbr title="Once-Only Technical System">OOTS</abbr></td>
 <td>Competent authority in another member state</td>
 <td>design-level</td>
 <td><a href="../decisions/0020-as4-bridge-for-oots/">0020</a>, <a href="../decisions/0031-regime-from-evidence/">0031</a></td>
@@ -4685,50 +4685,50 @@ names the open points.</p>
 <td><a href="design-level/#relying-party-presentation">Relying-party presentation</a></td>
 <td>EUDI presentation</td>
 <td>Citizen, relying party</td>
-<td>design-level (no GBO runtime)</td>
+<td>design-level (no <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> runtime)</td>
 <td><a href="../decisions/0018-eudi-disclosure-issuance/">0018</a>, <a href="../decisions/0028-pubeaa-productization/">0028</a>, <a href="../decisions/0023-identity-convergence/">0023</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="trajectories">Trajectories<a class="headerlink" href="#trajectories" title="Permanent link">&para;</a></h2>
-<p>A trajectory is a route from a source to a party that uses the data. The
-PDP of the source judges each request under one regime. The evidence in
+<h2 id="trajectories">Routes<a class="headerlink" href="#trajectories" title="Permanent link">&para;</a></h2>
+<p>A route is a path from a source to a party that uses the data. The
+<abbr title="Policy Decision Point">PDP</abbr> of the source judges each request under one regime. The evidence in
 the request selects the regime
 (<a href="../decisions/0031-regime-from-evidence/">ADR-0031</a>,
 <a href="../concepts/authorization/#regime-selection">Authorization</a>).</p>
-<p>Three trajectories are built in gbo-demo v0.9.0:</p>
+<p>Three routes are built in gbo-demo v0.9.0:</p>
 <ul>
-<li><strong>DvTP.</strong> A private consumer reads source data with the consent of the
-  citizen. The request carries a signed consent proof, so the PDP uses
-  the consent regime. The consumer never gets a BSN
+<li><strong><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>.</strong> A private consumer reads source data with the consent of the
+  citizen. The request carries a signed consent proof, so the <abbr title="Policy Decision Point">PDP</abbr> uses
+  the consent regime. The consumer never gets a <abbr title="Burgerservicenummer">BSN</abbr>
   (<a href="../concepts/consent/">Consent</a>).</li>
-<li><strong>EUDI issuance.</strong> The GBO issuance facility reads source data for a
-  citizen who discloses a PID from the wallet. The request carries no
-  consent proof, so the PDP uses the PID regime. The bronhouder is the
-  PuB-EAA provider. GBO operates the technical facility
+<li><strong>EUDI issuance.</strong> The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility reads source data for a
+  citizen who discloses a <abbr title="Person Identification Data">PID</abbr> from the wallet. The request carries no
+  consent proof, so the <abbr title="Policy Decision Point">PDP</abbr> uses the <abbr title="Person Identification Data">PID</abbr> regime. The bronhouder is the
+  <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical facility
   (<a href="../decisions/0028-pubeaa-productization/">ADR-0028</a>).</li>
-<li><strong>ASI verification.</strong> A QTSP verifies or retrieves attributes at the
-  ASI provider (ASIP). The ASIP calls the source over FSC under the PID
-  regime. The QTSP itself is not an FSC participant
+<li><strong><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification.</strong> A <abbr title="Qualified Trust Service Provider">QTSP</abbr> verifies or retrieves attributes at the
+  <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider (<abbr title="Authentic Source Interface Provider">ASIP</abbr>). The <abbr title="Authentic Source Interface Provider">ASIP</abbr> calls the source over <abbr title="Federated Service Connectivity">FSC</abbr> under the <abbr title="Person Identification Data">PID</abbr>
+  regime. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> itself is not an <abbr title="Federated Service Connectivity">FSC</abbr> participant
   (<a href="../traceability/findings/#f-87">F-87</a>).</li>
 </ul>
-<p>Three trajectories exist only at design level:</p>
+<p>Three routes exist only at design level:</p>
 <ul>
-<li><strong>Gov-to-Gov.</strong> A government consumer reads source data under a legal
+<li><strong><abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr>.</strong> A government consumer reads source data under a legal
   basis. The regime needs its own positive evidence. No rule set for this
   regime exists.</li>
-<li><strong>SDG-OOTS.</strong> A competent authority in another member state requests
+<li><strong>SDG-<abbr title="Once-Only Technical System">OOTS</abbr>.</strong> A competent authority in another member state requests
   evidence through the Once-Only Technical System. AS4 exists only at the
   edge. No implementation exists.</li>
 <li><strong>Relying-party presentation.</strong> The citizen presents a wallet
-  attestation to a relying party. No GBO decision component and no source
+  attestation to a relying party. No <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> decision component and no source
   take part.</li>
 </ul>
 <h2 id="data-classification">Data classification<a class="headerlink" href="#data-classification" title="Permanent link">&para;</a></h2>
 <p>The data-per-hop tables use the tags of the classification table in
 <a href="../concepts/consent/#what-travels-where">Consent: what travels where</a>.
-That table gives each data item (for example the consent proof, VI, VP,
-<code>subject_ref</code>, and BSN) a meaning, a sensitivity, and the hops where it
+That table gives each data item (for example the consent proof, <abbr title="Encrypted identity">VI</abbr>, <abbr title="Encrypted pseudonym">VP</abbr>,
+<code>subject_ref</code>, and <abbr title="Burgerservicenummer">BSN</abbr>) a meaning, a sensitivity, and the hops where it
 occurs. The runtime pages add only items that the table does not have,
 for example contract proposals, admission records, and policy bundles.
 Those items carry no citizen data.</p>
@@ -4742,6 +4742,7 @@ coarse code (<a href="../requirements/authorization/#req-06">REQ-06</a>,
 <li>Open questions: <a href="../traceability/open-questions/#q-30">Q-30</a> (open), <a href="../traceability/open-questions/#q-79">Q-79</a> (open)</li>
 <li>Demo increments: <a href="../traceability/increments/#sl-48">SL-48</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4573,7 +4573,7 @@
 
 
 <h1 id="deployment-view">Deployment view<a class="headerlink" href="#deployment-view" title="Permanent link">&para;</a></h1>
-<p>The GBO deployment in this chapter follows the infrastructure configuration
+<p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> deployment in this chapter follows the infrastructure configuration
 of gbo-demo v0.9.0:
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml">docker-compose.yml</a>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml">fsc-infra/docker-compose.yml</a>,
@@ -4600,15 +4600,15 @@ production.</p>
 </tr>
 <tr>
 <td>Simulation</td>
-<td>Kubernetes with the generic <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/deploy/helm/gbo-app">gbo-app Helm chart</a>. Each application is one release with a Deployment or a Job, a Service, and a Gateway API HTTPRoute. It runs in the MinEZK and MinBZK tenants.</td>
-<td>Public demo at <a href="https://gbo.simulatie.datastelsel.nl/">gbo.simulatie.datastelsel.nl</a></td>
+<td>Kubernetes with the generic <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/deploy/helm/gbo-app">gbo-app Helm chart</a>. Each application is one release with a Deployment or a Job, a Service, and a Gateway API HTTPRoute. It runs in two tenants: MinEZK (Ministry of Economic Affairs and Climate Policy) and MinBZK (Ministry of the Interior and Kingdom Relations).</td>
+<td>Public demo at <a href="https://gbo.simulatie.datastelsel.nl/"><code>gbo.simulatie.datastelsel.nl</code></a></td>
 </tr>
 </tbody>
 </table>
 <p>Compose profiles switch on optional parts. The base (no profile) runs the
-PDP and its databases, the admission register, and the consent register.
+<abbr title="Policy Decision Point">PDP</abbr> and its databases, the admission register (toelatingsregister), and the consent register (toestemmingsregister).
 It also runs the BD and BRP sources with their gateways, the BSNk mock, the
-decryption component, the LDV logbooks, the developer portal, and
+decryption component, the <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbooks, the developer portal, and
 observability. Each profile adds parts to the base:</p>
 <table>
 <thead>
@@ -4621,7 +4621,7 @@ observability. Each profile adds parts to the base:</p>
 <tbody>
 <tr>
 <td><code>dvtp</code></td>
-<td>Toestemmingsportaal, consumer backends and frontends (Hypotheek-BV, Installatie Register with <code>keyper-mock</code>), and the LVG source and gateway</td>
+<td>Consent portal (toestemmingsportaal), consumer backends and frontends (Hypotheek-BV, Installatie Register with <code>keyper-mock</code>), and the LVG source and gateway</td>
 <td><code>demo-dvtp</code></td>
 </tr>
 <tr>
@@ -4646,24 +4646,24 @@ observability. Each profile adds parts to the base:</p>
 </tr>
 <tr>
 <td><code>asi</code></td>
-<td>ASIP, ASI authorization server, wallet verifier, discovery stub, reference QTSP, and the <code>asip-*</code> peer in <code>fsc-infra</code></td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr>, <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server, wallet verifier, discovery stub, reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>, and the <code>asip-*</code> peer in <code>fsc-infra</code></td>
 <td><code>demo-asi</code> (after <code>demo-eudi</code> or <code>demo-full</code>)</td>
 </tr>
 <tr>
 <td><code>manager</code></td>
-<td>OpenFTV Manager, its UI, and Keycloak</td>
+<td><abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager, its UI, and Keycloak</td>
 <td><code>demo-manager</code></td>
 </tr>
 </tbody>
 </table>
-<p>In demo v0.9.0, the ASI route runs only locally. The chart has no values
-for the ASI services. Issue <a href="https://github.com/ICTU/GBO-demo/issues/594">#594</a>
+<p>In demo v0.9.0, the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route runs only locally. The chart has no values
+for the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> services. Issue <a href="https://github.com/ICTU/GBO-demo/issues/594">#594</a>
 covers the deployment to the simulation environment. The simulation uses
 its own Peer IDs, for example <code>0000009961MINEZK0000</code> for the issuance peer.</p>
 <h2 id="deployment-units-and-network-zones">Deployment units and network zones<a class="headerlink" href="#deployment-units-and-network-zones" title="Permanent link">&para;</a></h2>
 <p>The local stack separates traffic with Docker networks. The isolation of
 the source gateway is a security control. The gateway acts on the consent
-token after the PDP allows the request. It does not verify the token again
+token after the <abbr title="Policy Decision Point">PDP</abbr> allows the request. It does not verify the token again
 (<a href="../requirements/pseudonymization/#req-81">REQ-81</a>,
 <a href="../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>). The local
 stack has these networks:</p>
@@ -4688,12 +4688,12 @@ stack has these networks:</p>
 </tr>
 <tr>
 <td><code>dvtp-onboarding</code></td>
-<td>PDP and admission register only</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> and admission register only</td>
 <td>Keeps admission data away from other services</td>
 </tr>
 <tr>
 <td><code>eudi</code></td>
-<td>Issuance chain, <code>postgres-eudi</code>, reconciler, ASIP, and reference QTSP</td>
+<td>Issuance chain, <code>postgres-eudi</code>, reconciler, <abbr title="Authentic Source Interface Provider">ASIP</abbr>, and reference <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td>Source registry and issuance</td>
 </tr>
 <tr>
@@ -4708,8 +4708,8 @@ stack has these networks:</p>
 </tr>
 <tr>
 <td><code>fsc-infra</code></td>
-<td>FSC components and the services they reach</td>
-<td>FSC transport</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> components and the services they reach</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> transport</td>
 </tr>
 </tbody>
 </table>
@@ -4718,9 +4718,9 @@ stack has these networks:</p>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L829-L836">docker-compose.yml</a>).
 Two limits apply to this isolation:</p>
 <ul>
-<li>The source APIs are also on <code>backend</code> and <code>fsc-infra</code>. The FSC metadata
+<li>The source APIs are also on <code>backend</code> and <code>fsc-infra</code>. The <abbr title="Federated Service Connectivity">FSC</abbr> metadata
   services of BD and RvIG point at them directly. In the demo, a container on
-  those networks can reach a source API without the PDP. Production must
+  those networks can reach a source API without the <abbr title="Policy Decision Point">PDP</abbr>. Production must
   limit a source API to its gateway and its metadata path.</li>
 <li>The chart has no NetworkPolicy. A Kubernetes deployment needs one, or an
   equivalent control (<a href="../traceability/findings/#f-79">F-79</a>).</li>
@@ -4730,7 +4730,7 @@ must serve only the portal backend
 (<a href="../requirements/consent/#req-39">REQ-39</a>). The API does not
 authenticate the caller. It is open whether it must
 (<a href="../traceability/open-questions/#q-58">Q-58</a>).</p>
-<p>The status listener of the register answers only with the FSC peer that
+<p>The status listener of the register answers only with the <abbr title="Federated Service Connectivity">FSC</abbr> peer that
 <code>cr-inway</code> forwards (<a href="../requirements/consent/#req-76">REQ-76</a>). In the
 demo, the listener is also reachable on the compose networks. Production
 does not accept that exposure.</p>
@@ -4806,9 +4806,9 @@ does not accept that exposure.</p>
     style GATEWAYS fill:#F4F5F7,stroke:#16A34A
     style SOURCES fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
     style GBO fill:#F4F5F7,stroke:#D1D5DB</div>
-<h3 id="fsc-peers">FSC peers<a class="headerlink" href="#fsc-peers" title="Permanent link">&para;</a></h3>
-<p>The FSC group <code>fsc-demo</code> runs OpenFSC v2.4.0. Each organization has its own
-FSC components, a txlog API, and a Peer ID. A self-hosted directory peer and
+<h3 id="fsc-peers"><abbr title="Federated Service Connectivity">FSC</abbr> peers<a class="headerlink" href="#fsc-peers" title="Permanent link">&para;</a></h3>
+<p>The <abbr title="Federated Service Connectivity">FSC</abbr> group <code>fsc-demo</code> runs OpenFSC v2.4.0. Each organization has its own
+<abbr title="Federated Service Connectivity">FSC</abbr> components, a txlog API, and a Peer ID. A self-hosted directory peer and
 certificate portal serve the group. The group has these peers:</p>
 <table>
 <thead>
@@ -4827,7 +4827,7 @@ certificate portal serve the group. The group has these peers:</p>
 <td>Group registry. It signs service publications automatically. It signs nothing else.</td>
 </tr>
 <tr>
-<td>EDI issuer (GBO)</td>
+<td>EDI issuer (<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>)</td>
 <td><code>…0100</code></td>
 <td><code>edi-manager</code>, <code>edi-outway</code>, <code>edi-controller</code>, <code>edi-txlog-api</code></td>
 <td>Consumer for EUDI issuance (<code>bri</code>, <code>brp</code>) and for the metadata services. The EUDI rules list it as a designated issuer.</td>
@@ -4836,28 +4836,28 @@ certificate portal serve the group. The group has these peers:</p>
 <td>Belastingdienst mock</td>
 <td><code>…0200</code></td>
 <td><code>bd-manager</code>, <code>bd-inway</code>, <code>bd-controller</code>, <code>bd-txlog-api</code></td>
-<td>Provider of <code>bri</code>, <code>brp</code> (RvIG), <code>lvg</code>, <code>gbo-metadata-bd</code>, and <code>gbo-metadata-rvig</code>. Its Manager decides contracts through the PDP. Its Inway is the PEP.</td>
+<td>Provider of <code>bri</code>, <code>brp</code> (RvIG), <code>lvg</code>, <code>gbo-metadata-bd</code>, and <code>gbo-metadata-rvig</code>. Its Manager decides contracts through the <abbr title="Policy Decision Point">PDP</abbr>. Its Inway is the <abbr title="Policy Enforcement Point">PEP</abbr>.</td>
 </tr>
 <tr>
-<td>Hypotheekverlener mock</td>
+<td>Mortgage lender mock (Hypotheek-BV)</td>
 <td><code>…0300</code></td>
 <td><code>hv-manager</code>, <code>hv-outway</code>, <code>hv-controller</code>, <code>hv-txlog-api</code></td>
-<td>DvTP consumer of <code>bri</code></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consumer of <code>bri</code></td>
 </tr>
 <tr>
 <td>BRP/RvIG mock</td>
 <td><code>…0400</code></td>
 <td><code>brp-manager</code>, <code>brp-inway</code>, <code>brp-controller</code>, <code>brp-txlog-api</code></td>
-<td>Provider peer with its own PEP and contract decision. The default demo publishes RvIG on <code>…0200</code> instead. <code>make fsc-seed-brp</code> publishes <code>brp</code> here.</td>
+<td>Provider peer with its own <abbr title="Policy Enforcement Point">PEP</abbr> and contract decision. The default demo publishes RvIG on <code>…0200</code> instead. <code>make fsc-seed-brp</code> publishes <code>brp</code> here.</td>
 </tr>
 <tr>
-<td>Toestemmingsregister (GBO)</td>
+<td>Consent register (<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>)</td>
 <td><code>…0700</code></td>
 <td><code>cr-manager</code>, <code>cr-inway</code>, <code>cr-controller</code>, <code>cr-txlog-api</code></td>
-<td>Provider of <code>consent-status</code>. The Inway has no AuthZEN hook. The Manager decides contracts through the PDP.</td>
+<td>Provider of <code>consent-status</code>. The Inway has no <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> hook. The Manager decides contracts through the <abbr title="Policy Decision Point">PDP</abbr>.</td>
 </tr>
 <tr>
-<td>PDP (GBO)</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> (<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>)</td>
 <td><code>…0800</code></td>
 <td><code>pdp-manager</code>, <code>pdp-outway</code>, <code>pdp-controller</code>, <code>pdp-txlog-api</code></td>
 <td>Consumer of <code>consent-status</code></td>
@@ -4866,7 +4866,7 @@ certificate portal serve the group. The group has these peers:</p>
 <td>Installatie Register</td>
 <td><code>…1000</code></td>
 <td><code>ir-manager</code>, <code>ir-outway</code>, <code>ir-controller</code>, <code>ir-txlog-api</code></td>
-<td>DvTP consumer of <code>lvg</code></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consumer of <code>lvg</code></td>
 </tr>
 <tr>
 <td>Integrator (opt-in)</td>
@@ -4875,20 +4875,20 @@ certificate portal serve the group. The group has these peers:</p>
 <td>Delegated consumer of <code>bri</code> for Hypotheek-BV</td>
 </tr>
 <tr>
-<td>ASIP (GBO, opt-in)</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> (<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, opt-in)</td>
 <td><code>…1200</code></td>
 <td><code>asip-manager</code>, <code>asip-outway</code>, <code>asip-controller</code>, <code>asip-txlog-api</code> (profile <code>asi</code>)</td>
 <td>Consumer of <code>brp</code> on <code>…0200</code> with grant link <code>/brp</code>. The admission register lists it as a system participant.</td>
 </tr>
 </tbody>
 </table>
-<p>One FSC peer can host more than one logical source. In the default demo,
-the RvIG and LVG sources use the Belastingdienst peer <code>…0200</code> and its OIN.
+<p>One <abbr title="Federated Service Connectivity">FSC</abbr> peer can host more than one logical source. In the default demo,
+the RvIG and LVG sources use the Belastingdienst peer <code>…0200</code> and its <abbr title="Organisatie-identificatienummer">OIN</abbr>.
 Each source still has its own service, gateway, metadata document, and
 certificate set. This shared peer is a demo shortcut. The demo therefore
-does not show one OIN per bronhouder
+does not show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per bronhouder
 (<a href="../requirements/sources-identity/#req-67">REQ-67</a>).</p>
-<h3 id="asi-units">ASI units<a class="headerlink" href="#asi-units" title="Permanent link">&para;</a></h3>
+<h3 id="asi-units"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> units<a class="headerlink" href="#asi-units" title="Permanent link">&para;</a></h3>
 <p>The <code>asi</code> profile runs these units:</p>
 <table>
 <thead>
@@ -4944,15 +4944,15 @@ and a ReadWriteOnce volume.</p>
 adapter, and the issuance server
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/deploy/helm/gbo-app/README.md">chart README</a>).</p>
 <h2 id="certificates-and-pki">Certificates and PKI<a class="headerlink" href="#certificates-and-pki" title="Permanent link">&para;</a></h2>
-<p>FSC traffic is mTLS inside a self-generated PKI. cfssl serves a root CA
+<p><abbr title="Federated Service Connectivity">FSC</abbr> traffic is mTLS inside a self-generated PKI. cfssl serves a root CA
 and an intermediate CA, with a certificate portal for CSRs. Each
-organization gets a group certificate with its OIN in <code>serialNumber</code> and
+organization gets a group certificate with its <abbr title="Organisatie-identificatienummer">OIN</abbr> in <code>serialNumber</code> and
 its name in <code>O</code>. It also gets internal mTLS certificates
 (<a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/fsc-infra/pki">fsc-infra/pki</a>).
 The legal identity of an organization comes from its certificate
 (<a href="../requirements/sources-identity/#req-67">REQ-67</a>).</p>
 <p>Private keys are not in Git. Each checkout generates them again.</p>
-<p>The EUDI and ASI material comes from two pre-provisioned development CAs:
+<p>The EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> material comes from two pre-provisioned development CAs:
 an issuer CA and a reader CA. The Makefile refuses to generate them. A
 separate privileged command mints leaf certificates under them. The
 runtime gets leaves and public CA certificates. It never gets a CA private
@@ -4968,15 +4968,15 @@ key. The demo has the following certificate and key material:</p>
 </thead>
 <tbody>
 <tr>
-<td>FSC group and internal certificates, per organization</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> group and internal certificates, per organization</td>
 <td><code>fsc-infra/pki</code> bootstrap scripts (cfssl)</td>
-<td>The FSC components of that organization</td>
+<td>The <abbr title="Federated Service Connectivity">FSC</abbr> components of that organization</td>
 <td>PKIoverheid (<a href="../requirements/sources-identity/#req-46">REQ-46</a>)</td>
 </tr>
 <tr>
-<td>PDP AuthZEN TLS certificate</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> TLS certificate</td>
 <td><code>generate-pdp-cert.sh</code></td>
-<td>PDP. Inways and Managers pin it as CA.</td>
+<td><abbr title="Policy Decision Point">PDP</abbr>. Inways and Managers pin it as CA.</td>
 <td>Platform TLS (Helm: Secret <code>openftv-pdp-tls</code>)</td>
 </tr>
 <tr>
@@ -4987,7 +4987,7 @@ key. The demo has the following certificate and key material:</p>
 </tr>
 <tr>
 <td>Source decryption keys</td>
-<td>Demo keys in the gateway image, for the shared demo OIN</td>
+<td>Demo keys in the gateway image, for the shared demo <abbr title="Organisatie-identificatienummer">OIN</abbr></td>
 <td>Source gateway and decryption component. A deployment mounts its own keys (<code>SUBJECT_KEYS_DIR</code>).</td>
 <td>BSNk key delivery per source (<a href="../requirements/pseudonymization/#bsnk-09">BSNK-09</a>). Old key versions stay available as long as consent proofs that use them are valid (<a href="../requirements/admission/#av-09">AV-09</a>).</td>
 </tr>
@@ -4998,21 +4998,21 @@ key. The demo has the following certificate and key material:</p>
 <td>Qualified seal certificate in a QSCD, access and registration certificates, and a status-list certificate. Key custody is an open question (<a href="../traceability/open-questions/#q-17">Q-17</a>).</td>
 </tr>
 <tr>
-<td>Reference QTSP issuance set: reader, issuer, status list, callback TLS</td>
+<td>Reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> issuance set: reader, issuer, status list, callback TLS</td>
 <td><code>make provision-qtsp-issuance-certificates</code></td>
-<td>Issuance server, reference QTSP</td>
-<td>Outside GBO. The QTSP holds its own set.</td>
+<td>Issuance server, reference <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
+<td>Outside <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> holds its own set.</td>
 </tr>
 <tr>
-<td>ASIP seal certificate</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> seal certificate</td>
 <td><code>make provision-asip-seal-certificate</code> (issuer CA)</td>
-<td>ASIP</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
 <td>Qualified seal certificate. It is open who holds it (<a href="../traceability/open-questions/#q-28">Q-28</a>, <a href="../decisions/0041-asi-seal-format/">ADR-0041</a>).</td>
 </tr>
 <tr>
-<td>QTSP client certificate</td>
+<td><abbr title="Qualified Trust Service Provider">QTSP</abbr> client certificate</td>
 <td><code>make provision-asip-qtsp-certificate</code> (reader CA)</td>
-<td>Reference QTSP</td>
+<td>Reference <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td>Wallet-relying-party access certificate (<a href="../traceability/open-questions/#q-35">Q-35</a>)</td>
 </tr>
 <tr>
@@ -5022,7 +5022,7 @@ key. The demo has the following certificate and key material:</p>
 <td>Access certificate</td>
 </tr>
 <tr>
-<td>ASI authorization server signing key</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server signing key</td>
 <td>If <code>AZSP_SIGNING_KEY_FILE</code> is not set, the server makes an ephemeral key at start.</td>
 <td>Authorization server</td>
 <td>Managed key</td>
@@ -5031,19 +5031,19 @@ key. The demo has the following certificate and key material:</p>
 </table>
 <p>Missing or incomplete EUDI material blocks only that source
 (<a href="../requirements/eudi-issuance/#req-58">REQ-58</a>). The issuance server
-trusts the pre-production NL PID issuer CA. Its PID trust list also holds
+trusts the pre-production NL <abbr title="Person Identification Data">PID</abbr> issuer CA. Its <abbr title="Person Identification Data">PID</abbr> trust list also holds
 the development issuer CA and the issuer CA of every source. This list is
-too broad (<a href="../requirements/eudi-issuance/#req-45">REQ-45</a>). The ASI wallet
-verifier trusts a fixed list: the pre-production PID issuer and the
+too broad (<a href="../requirements/eudi-issuance/#req-45">REQ-45</a>). The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> wallet
+verifier trusts a fixed list: the pre-production <abbr title="Person Identification Data">PID</abbr> issuer and the
 development issuer CA. Neither list is the EU Trusted List.</p>
 <p>Production needs separate certificate roles per bronhouder for EUDI:
 access, registration, qualified seal, and status list. It is open which
-trust list anchors PuB-EAA providers
+trust list anchors <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> providers
 (<a href="../traceability/open-questions/#q-30">Q-30</a>). <a href="../concepts/identity-trust/">Identity and
 trust</a> and
 <a href="../decisions/0023-identity-convergence/">ADR-0023</a> explain the roles.</p>
 <h2 id="data-stores">Data stores<a class="headerlink" href="#data-stores" title="Permanent link">&para;</a></h2>
-<p>GBO and the demo keep data in these stores:</p>
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> and the demo keep data in these stores:</p>
 <table>
 <thead>
 <tr>
@@ -5054,9 +5054,9 @@ trust</a> and
 </thead>
 <tbody>
 <tr>
-<td>Toestemmingsregister</td>
+<td>Consent register</td>
 <td>In memory by default. Postgres is optional.</td>
-<td>Consent records and the portal's PI and PP per <code>subject_ref</code> (<a href="../requirements/pseudonymization/#req-69">REQ-69</a>). No BSN, no VI, and no VP.</td>
+<td>Consent records and the portal's <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> per <code>subject_ref</code> (<a href="../requirements/pseudonymization/#req-69">REQ-69</a>). No <abbr title="Burgerservicenummer">BSN</abbr>, no <abbr title="Encrypted identity">VI</abbr>, and no <abbr title="Encrypted pseudonym">VP</abbr>.</td>
 </tr>
 <tr>
 <td>Admission register</td>
@@ -5066,25 +5066,25 @@ trust</a> and
 <tr>
 <td>Authorization Decision Log</td>
 <td>Postgres <code>postgres-ftv</code>, database <code>ftv_adl</code>, in every profile. Readers use the SELECT-only role <code>adl_reader</code>.</td>
-<td>One record per PDP evaluation (<a href="../requirements/logging-audit/#req-71">REQ-71</a>)</td>
+<td>One record per <abbr title="Policy Decision Point">PDP</abbr> evaluation (<a href="../requirements/logging-audit/#req-71">REQ-71</a>)</td>
 </tr>
 <tr>
-<td>OpenFTV Manager (opt-in)</td>
+<td><abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager (opt-in)</td>
 <td>Same <code>postgres-ftv</code> instance</td>
 <td>Policies and the bundle</td>
 </tr>
 <tr>
-<td>LDV logbooks</td>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr> logbooks</td>
 <td>Seven SQLite volumes <code>logboek-*-data</code></td>
 <td>Processing records per controller (<a href="../requirements/logging-audit/#req-72">REQ-72</a>)</td>
 </tr>
 <tr>
-<td>LDV outboxes</td>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr> outboxes</td>
 <td>Volume <code>ldv-outbox-*</code> per writer</td>
 <td>Records that wait for delivery to the logbook</td>
 </tr>
 <tr>
-<td>FSC txlogs</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> txlogs</td>
 <td>Postgres in <code>fsc-infra</code>, one database per peer</td>
 <td>Transport records</td>
 </tr>
@@ -5109,14 +5109,14 @@ trust</a> and
 <td>Operator-managed descriptions for sources without an endpoint</td>
 </tr>
 <tr>
-<td>GBO attribute catalog</td>
-<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json">schemas/asi-attributes.json</a></td>
-<td><code>value_schema</code> per ASI attribute identifier</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> attribute catalog</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json"><code>schemas/asi-attributes.json</code></a></td>
+<td><code>value_schema</code> per <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attribute identifier</td>
 </tr>
 <tr>
-<td>ASI state</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> state</td>
 <td>In memory, plus a register stub file</td>
-<td>Registrations, codes, and transactions of the authorization server. Logins and pending statements of the reference QTSP.</td>
+<td>Registrations, codes, and transactions of the authorization server. Logins and pending statements of the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>.</td>
 </tr>
 <tr>
 <td>Jaeger, Loki</td>
@@ -5129,17 +5129,17 @@ trust</a> and
 <p>The stores fall into two groups with different duties
 (<a href="../concepts/logging/">logging</a>):</p>
 <ul>
-<li>Audit stores hold the authoritative records: the ADL for decisions, the
-  LDV logbooks for processings, and the FSC txlogs for transport
+<li>Audit stores hold the authoritative records: the <abbr title="Authorization Decision Log">ADL</abbr> for decisions, the
+  <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbooks for processings, and the <abbr title="Federated Service Connectivity">FSC</abbr> txlogs for transport
   (<a href="../requirements/logging-audit/#req-32">REQ-32</a>). Each peer has its own
-  txlog API. This includes the GBO peers <code>cr</code>, <code>pdp</code>, and <code>asip</code>.</li>
+  txlog API. This includes the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> peers <code>cr</code>, <code>pdp</code>, and <code>asip</code>.</li>
 <li>Observability stores are for debugging. An OpenTelemetry collector
   receives OTLP from all services. It exports to Jaeger and to the
   developer portal's live event stream. Promtail ships container logs to
   Loki, including the engine's console decision log. Grafana shows
   dashboards. These stores are never the record of a decision.</li>
 </ul>
-<p>One W3C trace ID per request joins the records. The FSC transaction ID is
+<p>One W3C trace ID per request joins the records. The <abbr title="Federated Service Connectivity">FSC</abbr> transaction ID is
 recorded next to it (<a href="../decisions/0035-w3c-trace-context/">ADR-0035</a>). On
 the simulation platform, one observability stack runs in MinEZK, and
 MinBZK shares it
@@ -5152,17 +5152,17 @@ The demo-grade choices in the following lists must change for production.
 <a href="../risks/">Risks and technical debt</a> tracks them.</p>
 <p>Authorization and consent have these demo-grade choices:</p>
 <ul>
-<li>One PDP serves all providers. The target is a PDP per source holder
-  (<a href="../decisions/0004-federated-authorization/">ADR-0004</a>). The PDP does not
-  start without its ADL database, so <code>postgres-ftv</code> runs in every profile.</li>
-<li>Every DvTP decision needs the consent status, live, over FSC. By
+<li>One <abbr title="Policy Decision Point">PDP</abbr> serves all providers. The target is a <abbr title="Policy Decision Point">PDP</abbr> per bronhouder
+  (<a href="../decisions/0004-federated-authorization/">ADR-0004</a>). The <abbr title="Policy Decision Point">PDP</abbr> does not
+  start without its <abbr title="Authorization Decision Log">ADL</abbr> database, so <code>postgres-ftv</code> runs in every profile.</li>
+<li>Every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> decision needs the consent status, live, over <abbr title="Federated Service Connectivity">FSC</abbr>. By
   default, the register keeps its data in memory. Production needs a
   replicated store and an availability target for this role
   (<a href="../requirements/consent/#req-75">REQ-75</a>).</li>
-<li>The PDP pulls the admission register every 5 s. If the register is
-  missing, the PDP denies contracts with <code>ADMISSION_REGISTER_UNAVAILABLE</code>.
+<li>The <abbr title="Policy Decision Point">PDP</abbr> pulls the admission register every 5 s. If the register is
+  missing, the <abbr title="Policy Decision Point">PDP</abbr> denies contracts with <code>ADMISSION_REGISTER_UNAVAILABLE</code>.
   It denies delegated calls with <code>INTEGRATOR_REGISTER_UNAVAILABLE</code>.</li>
-<li>The LDV logbooks are off the critical path. If a logbook is down, the
+<li>The <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbooks are off the critical path. If a logbook is down, the
   outbox delays the record. The request still completes.</li>
 </ul>
 <p>EUDI issuance has these demo-grade choices:</p>
@@ -5176,15 +5176,15 @@ The demo-grade choices in the following lists must change for production.
 <li>The adapter callback must be reachable over public HTTPS. It needs caller
   authentication (<a href="../requirements/eudi-issuance/#req-45">REQ-45</a>).</li>
 </ul>
-<p>The ASI chain has these demo-grade choices:</p>
+<p>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> chain has these demo-grade choices:</p>
 <ul>
 <li>The authorization server keeps registrations in memory. After a restart,
-  every QTSP registers again. Without <code>AZSP_SIGNING_KEY_FILE</code>, issued
+  every <abbr title="Qualified Trust Service Provider">QTSP</abbr> registers again. Without <code>AZSP_SIGNING_KEY_FILE</code>, issued
   tokens also stop working after a restart.</li>
 <li>If the register is unreachable at a re-check, the client stays active
   (<a href="../traceability/open-questions/#q-34">Q-34</a>).</li>
 <li>If the current source description or the keys of the authorization
-  server are missing, the ASIP fails closed (503).</li>
+  server are missing, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> fails closed (503).</li>
 </ul>
 <p>In production, the mocked services become external dependencies with their
 own availability: BSNk, DigiD, and the register of relying parties.</p>
@@ -5227,6 +5227,7 @@ own availability: BSNk, DigiD, and the register of relying parties.</p>
   <a href="../traceability/increments/#sl-37">SL-37</a>,
   <a href="../traceability/increments/#sl-49">SL-49</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4576,19 +4576,19 @@
   
 
 
-<h1 id="adr-0003-fsc-for-all-domestic-connectivity">ADR-0003: FSC for all domestic connectivity<a class="headerlink" href="#adr-0003-fsc-for-all-domestic-connectivity" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0003-fsc-for-all-domestic-connectivity">ADR-0003: <abbr title="Federated Service Connectivity">FSC</abbr> for all domestic connectivity<a class="headerlink" href="#adr-0003-fsc-for-all-domestic-connectivity" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: accepted</li>
-<li>Date: 2026-08-24 (ported from the reference architecture, updated 2026-11-02 for REQ-46 and the ASIP peer, gbo-demo v0.9.0)</li>
+<li>Date: 2026-08-24 (ported from the reference architecture, updated 2026-11-02 for REQ-46 and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer, gbo-demo v0.9.0)</li>
 <li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-03</a>, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel">S04</a>, <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-07</a> (trust through recognized admission and trust anchors)</li>
 <li>Deliberation: Reference architecture v0.6.2, decision 6 (archived and unpublished), <a href="../../requirements/sources-identity/#req-46">REQ-46</a></li>
-<li>Implemented in: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml">fsc-infra/docker-compose.yml</a> (OpenFSC v2.4.0 group: a directory peer and nine organization peers, among them the ASIP peer <code>…1200</code> at <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L1664-L1669">#L1664-L1669</a>). Each channel has its own Outway in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/main.go#L82">dienstverlener-backend/main.go#L82</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L115">eudi-adapter/main.go#L115</a>, and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/main.go#L83-L85">asi-provider/main.go#L83-L85</a>.</li>
+<li>Implemented in: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml">fsc-infra/docker-compose.yml</a> (OpenFSC v2.4.0 group: a directory peer and nine organization peers, among them the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer <code>…1200</code> at <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L1664-L1669">#L1664-L1669</a>). Each channel has its own Outway in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/main.go#L82">dienstverlener-backend/main.go#L82</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L115">eudi-adapter/main.go#L115</a>, and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/main.go#L83-L85">asi-provider/main.go#L83-L85</a>.</li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>Bronhouders must implement one connectivity stack for all trajectories,
-and not one stack for each trajectory.</p>
+<p>Bronhouders must implement one connectivity stack for all routes,
+and not one stack for each route.</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>FSC (Federated Service Connectivity) carries all domestic traffic. FSC
+<p><abbr title="Federated Service Connectivity">FSC</abbr> (Federated Service Connectivity) carries all domestic traffic. <abbr title="Federated Service Connectivity">FSC</abbr>
 gives these functions:</p>
 <ul>
 <li>mTLS with group certificates</li>
@@ -4596,36 +4596,36 @@ gives these functions:</p>
 <li>access tokens from the Manager of the provider</li>
 <li>transaction logs for each hop</li>
 </ul>
-<p>A channel that calls a source for an external party uses its own FSC
+<p>A channel that calls a source for an external party uses its own <abbr title="Federated Service Connectivity">FSC</abbr>
 Outway with a valid certificate
-(<a href="../../requirements/sources-identity/#req-46">REQ-46</a>). FSC establishes the
+(<a href="../../requirements/sources-identity/#req-46">REQ-46</a>). <abbr title="Federated Service Connectivity">FSC</abbr> establishes the
 identity of the calling organization. The authorization of each request
 stays a separate layer (<a href="../0031-regime-from-evidence/">ADR-0031</a>).</p>
-<p>External protocols end at the edge of GBO:</p>
+<p>External protocols end at the edge of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>:</p>
 <ul>
-<li>A bridge at the edge translates cross-border OOTS traffic to FSC
+<li>A bridge at the edge translates cross-border <abbr title="Once-Only Technical System">OOTS</abbr> traffic to <abbr title="Federated Service Connectivity">FSC</abbr>
   (<a href="../0020-as4-bridge-for-oots/">ADR-0020</a>).</li>
 <li>Wallet protocols end at the EUDI chain
   (<a href="../0018-eudi-disclosure-issuance/">ADR-0018</a>). The EUDI adapter is an
-  FSC consumer.</li>
-<li>QTSP protocols (ETSI TS 119 478 clause 6.1) end at the ASIP
-  (<a href="../0037-asi-oauth-front-door/">ADR-0037</a>). The QTSP is not an FSC
-  participant. The ASIP is an FSC consumer with a peer of its own
-  (<code>…1200</code>), so the source sees the ASIP as the actor.</li>
+  <abbr title="Federated Service Connectivity">FSC</abbr> consumer.</li>
+<li><abbr title="Qualified Trust Service Provider">QTSP</abbr> protocols (ETSI TS 119 478 clause 6.1) end at the <abbr title="Authentic Source Interface Provider">ASIP</abbr>
+  (<a href="../0037-asi-oauth-front-door/">ADR-0037</a>). The <abbr title="Qualified Trust Service Provider">QTSP</abbr> is not an <abbr title="Federated Service Connectivity">FSC</abbr>
+  participant. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> is an <abbr title="Federated Service Connectivity">FSC</abbr> consumer with a peer of its own
+  (<code>…1200</code>), so the source sees the <abbr title="Authentic Source Interface Provider">ASIP</abbr> as the actor.</li>
 </ul>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>A bronhouder connects once (Inway plus contracts) and serves every
-  trajectory.</li>
-<li>The Inway is also the PEP
+  route.</li>
+<li>The Inway is also the <abbr title="Policy Enforcement Point">PEP</abbr>
   (<a href="../0004-federated-authorization/">ADR-0004</a>).</li>
 <li>No channel goes directly into a source service or into its
   authorization.</li>
-<li>FSC refuses a connection with an expired or revoked certificate.
+<li><abbr title="Federated Service Connectivity">FSC</abbr> refuses a connection with an expired or revoked certificate.
   open-fsc checks revocation with a CRL cache. The Inway, the Outway, and
   the Manager each have a switch that turns this check off. That switch
   must stay on. The demo does not check the revocation behavior.</li>
-<li>FSC does not propagate W3C trace context. The correlation model of
+<li><abbr title="Federated Service Connectivity">FSC</abbr> does not propagate W3C trace context. The correlation model of
   <a href="../0035-w3c-trace-context/">ADR-0035</a> compensates for this.</li>
 </ul>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
@@ -4640,6 +4640,7 @@ a suspension takes effect
   <a href="../../traceability/increments/#sl-39">SL-39</a>,
   <a href="../../traceability/increments/#sl-42">SL-42</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

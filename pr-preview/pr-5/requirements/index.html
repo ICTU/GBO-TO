@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1298,7 +1298,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4650,9 +4650,9 @@
 
 
 <h1 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h1>
-<p>A requirement in this technical design is a testable demand on what GBO
-builds, or on the interfaces between GBO and other parties. It follows
-from the design (GO, PSA, FR-DvTP), or the GBO team derived it from
+<p>A requirement in this technical design is a testable demand on what <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
+builds, or on the interfaces between <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> and other parties. It follows
+from the design (GO, PSA, FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>), or the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> team derived it from
 building the demo. Each requirement states where it comes from.</p>
 <p>The arc42 sections explain the design, and the
 <a href="../decisions/">architecture decisions</a> record the choices. A
@@ -4669,7 +4669,7 @@ findings, open questions, and demo increments.</p>
 <li><strong>Sourced</strong>: it names the passage in the design that it follows from.
    For a requirement derived from the demo, the source is the principle
    or capability that it serves, with one sentence about the reason.</li>
-<li><strong>Addressed</strong>: it is addressed to a component that GBO delivers, or to
+<li><strong>Addressed</strong>: it is addressed to a component that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers, or to
    an interface agreement (see <a href="#addressee">Addressee</a>).</li>
 <li><strong>A need</strong>: it describes the need and does not describe the chosen
    solution.</li>
@@ -4741,7 +4741,7 @@ serves. Related choices go into one ADR. The ADRs are in
 <ul>
 <li><strong>Source</strong>: the value is <code>design</code> if the design already states or
   sharpens the requirement. The value is <code>derived</code> if the requirement
-  comes from the demo. PSA and GO links go to the published site. FR-DvTP
+  comes from the demo. PSA and GO links go to the published site. FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>
   criteria are named without a link until the FRs are public. The
   archived reference architecture (v0.6.2) is no longer a source. The PSA
   passage replaces it.</li>
@@ -4788,23 +4788,23 @@ serves. Related choices go into one ADR. The ADRs are in
 </tr>
 </tbody>
 </table>
-<p>If a requirement was never approved and no longer holds, the GBO team
+<p>If a requirement was never approved and no longer holds, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> team
 removes it and does not withdraw it. Nobody uses its number again. For
 more information, see <a href="#removed-numbers">Removed numbers</a>.</p>
-<h3 id="addressee">Addressee: a MUST is only about what GBO builds<a class="headerlink" href="#addressee" title="Permanent link">&para;</a></h3>
+<h3 id="addressee">Addressee: a MUST is only about what <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> builds<a class="headerlink" href="#addressee" title="Permanent link">&para;</a></h3>
 <p>The system is federative (<a href="../traceability/answered-questions/#q-02">Q-02</a>),
 and <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>
 puts the bronhouder in control. So a requirement that prescribes how a
-bronhouder configures its own PDP, PAP, or policy engine is no
+bronhouder configures its own <abbr title="Policy Decision Point">PDP</abbr>, <abbr title="Policy Administration Point">PAP</abbr>, or policy engine is no
 requirement. Nobody can enforce it in practice. Each requirement names
 its addressee:</p>
 <ul>
-<li><strong>GBO-delivered component</strong>: software that GBO builds and delivers as a
+<li><strong><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered component</strong>: software that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> builds and delivers as a
   generic component or reference implementation. A MUST applies, because
-  it is a demand on an artifact of GBO itself. Delivery does not mean
+  it is a demand on an artifact of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> itself. Delivery does not mean
   operation: most of these components run at the source (behind the
-  Inway: PEP and PDP, adapters, request mappers, gateways). The
-  requirement binds the GBO build. It does not limit the freedom of a
+  Inway: <abbr title="Policy Enforcement Point">PEP</abbr> and <abbr title="Policy Decision Point">PDP</abbr>, adapters, request mappers, gateways). The
+  requirement binds the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> build. It does not limit the freedom of a
   source to choose something else.</li>
 <li><strong>Interface agreement</strong>: behavior at the outside that every participant
   must deliver, because it follows from system or legal demands. For
@@ -4814,7 +4814,7 @@ its addressee:</p>
 <li><strong>Guideline for bronhouders</strong>: the internal configuration at a source.
   At most SHOULD, with the reason, or a selection criterion for a product.</li>
 </ul>
-<p>Three other namespaces hold what is not a requirement on GBO:</p>
+<p>Three other namespaces hold what is not a requirement on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>:</p>
 <ul>
 <li><strong><code>RL-NN</code></strong>: guidelines for bronhouders, on
   <a href="authorization/#policy-management">Policy management</a>. Matrix and findings can
@@ -4823,16 +4823,16 @@ its addressee:</p>
   be answered before it can become a requirement.</li>
 <li><strong><code>AV-NN</code></strong>: candidate connection conditions, obligations for other
   participants, on <a href="admission/#connection-conditions">Connection conditions</a>.</li>
-<li><strong><code>BSNK-NN</code></strong>: preconditions that BSNk PP, an external facility,
-  imposes on GBO, on <a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a>.</li>
+<li><strong><code>BSNK-NN</code></strong>: preconditions that BSNk <abbr title="Polymorphic pseudonym">PP</abbr>, an external facility,
+  imposes on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, on <a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a>.</li>
 </ul>
 <p>If you write a requirement, do two checks:</p>
 <ol>
 <li><em>Does the MUST sentence name a product or an implementation form that
-   GBO does not deliver</em>? If so, reword the sentence to the role (PAP,
-   PDP, management API), and change the addressee. The use of a
+   <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not deliver</em>? If so, reword the sentence to the role (<abbr title="Policy Administration Point">PAP</abbr>,
+   <abbr title="Policy Decision Point">PDP</abbr>, management API), and change the addressee. The use of a
    product in the demo is a demo choice. It belongs in the evidence.</li>
-<li><em>Does the requirement assume that GBO runs something?</em> That is almost
+<li><em>Does the requirement assume that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> runs something?</em> That is almost
    never certain. It is open which facilities are really central
    (<a href="../traceability/answered-questions/#q-10">Q-10</a>,
    <a href="../traceability/answered-questions/#q-02">Q-02</a>). The demo runs
@@ -4840,20 +4840,21 @@ its addressee:</p>
    requirement on the artifact or on the interface.</li>
 </ol>
 <h3 id="organization-of-the-pages">Organization of the pages<a class="headerlink" href="#organization-of-the-pages" title="Permanent link">&para;</a></h3>
-<p>Topic pages are grouped by trajectory: Generic (needed for every
-channel), DvTP, and EUDI. A requirement that belongs to one trajectory
-only is on a topic page of that trajectory. If a requirement moves to
+<p>Topic pages are grouped by channel, as in the
+<a href="../building-blocks/">building block view</a>: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis (needed for
+every channel), <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, and EUDI. A requirement that belongs to one channel
+only is on a topic page of that channel. If a requirement moves to
 another page, its number does not change.</p>
 <h2 id="all-requirements">All requirements<a class="headerlink" href="#all-requirements" title="Permanent link">&para;</a></h2>
-<p>Every live number is in one of the following tables. The trajectory is Generic (needed for every channel), DvTP, or EUDI. The source is <code>design</code> if the design already states the requirement, and <code>derived</code> if it comes from building the demo.</p>
+<p>Every live number is in one of the following tables. The channel is <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis (needed for every channel), <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, or EUDI. The source is <code>design</code> if the design already states the requirement, and <code>derived</code> if it comes from building the demo.</p>
 <h3 id="requirements-req">Requirements (REQ)<a class="headerlink" href="#requirements-req" title="Permanent link">&para;</a></h3>
-<p>These requirements apply to GBO-delivered components and interface agreements:</p>
+<p>These requirements apply to <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-delivered components and interface agreements:</p>
 <table>
 <thead>
 <tr>
 <th>ID</th>
 <th>Title</th>
-<th>Trajectory</th>
+<th>Channel</th>
 <th>Topic page</th>
 <th>Source (design/derived)</th>
 <th>Status</th>
@@ -4862,8 +4863,8 @@ another page, its number does not change.</p>
 <tbody>
 <tr>
 <td><a href="authorization/#req-04">REQ-04</a></td>
-<td>The source delivers only after a positive decision by its PDP</td>
-<td>Generic</td>
+<td>The source delivers only after a positive decision by its <abbr title="Policy Decision Point">PDP</abbr></td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/">Authorization</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -4871,7 +4872,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="authorization/#req-06">REQ-06</a></td>
 <td>A denial carries a machine-readable reason: coarse for the consumer, full for the operator</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/">Authorization</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -4879,7 +4880,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="authorization/#req-08">REQ-08</a></td>
 <td>Source access delivers only the fields that the request selects</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/#data-minimization">Data minimization</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -4887,15 +4888,15 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-10">REQ-10</a></td>
 <td>Consent covers a whole data set, and the citizen does not pick fields within a set</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="authorization/#req-11">REQ-11</a></td>
-<td>A GBO component fetches source data from the source for each request and does not store it</td>
-<td>Generic</td>
+<td>A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component fetches source data from the source for each request and does not store it</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/#data-minimization">Data minimization</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -4903,47 +4904,47 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-12">REQ-12</a></td>
 <td>A consent is bound to one consumer, one service, and a named data scope</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="consent/#req-14">REQ-14</a></td>
 <td>After revocation, the chain denies every later request on that consent</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="authorization/#req-17">REQ-17</a></td>
-<td>The PDP decides on every field that the source runs, and denies an uncertain field list</td>
-<td>Generic</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> decides on every field that the source runs, and denies an uncertain field list</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/#query-enforcement">Query enforcement</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="authorization/#req-18">REQ-18</a></td>
-<td>The PDP decides on facts that it established itself, and never on what the consumer declares</td>
-<td>Generic</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> decides on facts that it established itself, and never on what the consumer declares</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/">Authorization</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="consent/#req-19">REQ-19</a></td>
-<td>A consent has a finite validity, and after that the PDP denies</td>
-<td>DvTP</td>
+<td>A consent has a finite validity, and after that the <abbr title="Policy Decision Point">PDP</abbr> denies</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#consent-lifecycle">Consent lifecycle</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="pseudonymization/#req-20">REQ-20</a></td>
-<td>In the consent path the consumer gets no BSN in the proof or in the response</td>
-<td>DvTP</td>
+<td>In the consent path the consumer gets no <abbr title="Burgerservicenummer">BSN</abbr> in the proof or in the response</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/">Pseudonymization</a></td>
 <td>design</td>
 <td>draft</td>
@@ -4951,15 +4952,15 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="pseudonymization/#req-21">REQ-21</a></td>
 <td>The source converts the value from the proof itself, only after a positive decision and without a central party</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/">Pseudonymization</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="consent/#req-23">REQ-23</a></td>
-<td>The consent register gets no BSN, not even temporarily</td>
-<td>DvTP</td>
+<td>The consent register (toestemmingsregister) gets no <abbr title="Burgerservicenummer">BSN</abbr>, not even temporarily</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#consent-roles">Consent roles</a></td>
 <td>design</td>
 <td>draft</td>
@@ -4967,7 +4968,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-24">REQ-24</a></td>
 <td>The citizen identity comes from the authentication service assertion at the required assurance level and not from client input</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#consent-roles">Consent roles</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -4975,7 +4976,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="logging-audit/#req-32">REQ-32</a></td>
 <td>Audit records are protected, complete, and stored apart from operational logs</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="logging-audit/#decision-audit">Decision audit</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -4983,7 +4984,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-37">REQ-37</a></td>
 <td>A consent request names the consumer, the service, the requested data sets, and the return address</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#consent-initiation">Consent initiation</a></td>
 <td>design</td>
 <td>draft</td>
@@ -4991,7 +4992,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-38">REQ-38</a></td>
 <td>A logged-in citizen can view consents with status and revoke them</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#citizen-access">Citizen access</a></td>
 <td>design</td>
 <td>draft</td>
@@ -4999,7 +5000,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-39">REQ-39</a></td>
 <td>Only the consent backend can create, query, and revoke the consents of a citizen in the register</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#citizen-access">Citizen access</a></td>
 <td>design</td>
 <td>draft</td>
@@ -5007,30 +5008,30 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-40">REQ-40</a></td>
 <td>A citizen sees and revokes only their own consents</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#citizen-access">Citizen access</a></td>
 <td>design</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="authorization/#req-42">REQ-42</a></td>
-<td>The authorization request follows an open PEP-PDP profile, and the PEP passes the request on unchanged</td>
-<td>Generic</td>
+<td>The authorization request follows an open <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> profile, and the <abbr title="Policy Enforcement Point">PEP</abbr> passes the request on unchanged</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/">Authorization</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="authorization/#req-44">REQ-44</a></td>
-<td>A channel adapter translates protocol, and the decision on source data lies with the PDP of the source</td>
-<td>Generic</td>
+<td>A channel adapter translates protocol, and the decision on source data lies with the <abbr title="Policy Decision Point">PDP</abbr> of the source</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/">Authorization</a></td>
 <td>derived</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="eudi-issuance/#req-45">REQ-45</a></td>
-<td>The source is queried only about the citizen from a verified PID disclosure</td>
+<td>The source is queried only about the citizen from a verified <abbr title="Person Identification Data">PID</abbr> disclosure</td>
 <td>EUDI</td>
 <td><a href="eudi-issuance/">EUDI issuance</a></td>
 <td>design</td>
@@ -5038,8 +5039,8 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="sources-identity/#req-46">REQ-46</a></td>
-<td>Every channel that calls a source on behalf of an external party does so through FSC, with a valid certificate</td>
-<td>Generic</td>
+<td>Every channel that calls a source on behalf of an external party does so through <abbr title="Federated Service Connectivity">FSC</abbr>, with a valid certificate</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="sources-identity/#identity-trust">Identity and trust</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5047,7 +5048,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="authorization/#req-48">REQ-48</a></td>
 <td>Every rule checks actor and scope itself, and a request passes only if no check denies</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/">Authorization</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5055,7 +5056,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="logging-audit/#req-55">REQ-55</a></td>
 <td>One trace ID per request across the whole chain, and the transaction ID can be linked to it</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="logging-audit/#observability">Observability</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5070,7 +5071,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="eudi-issuance/#req-58">REQ-58</a></td>
-<td>Every source holder has its own certificate set for issuance, and missing material fails</td>
+<td>Every bronhouder has its own certificate set for issuance, and missing material fails</td>
 <td>EUDI</td>
 <td><a href="eudi-issuance/">EUDI issuance</a></td>
 <td>design</td>
@@ -5079,15 +5080,15 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="logging-audit/#req-59">REQ-59</a></td>
 <td>The decision record names the policy version that decided</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="logging-audit/#decision-audit">Decision audit</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="logging-audit/#req-60">REQ-60</a></td>
-<td>Logging contains no BSN that the processing does not need</td>
-<td>Generic</td>
+<td>Logging contains no <abbr title="Burgerservicenummer">BSN</abbr> that the processing does not need</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="logging-audit/#decision-audit">Decision audit</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5095,7 +5096,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="admission/#req-61">REQ-61</a></td>
 <td>Admission comes from a register and not from decision policy</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="admission/">Admission and contracts</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5103,7 +5104,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="admission/#req-62">REQ-62</a></td>
 <td>The admission decision on a contract is its own rule set, separate from request policy</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="admission/">Admission and contracts</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5111,15 +5112,15 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="admission/#req-63">REQ-63</a></td>
 <td>An automated refusal of a contract proposal is recoverable</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="admission/">Admission and contracts</a></td>
 <td>derived</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="sources-identity/#req-64">REQ-64</a></td>
-<td>A GBO component works only with the service description the source publishes itself, after validation</td>
-<td>Generic</td>
+<td>A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component works only with the service description the source publishes itself, after validation</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="sources-identity/#source-metadata">Source metadata</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5127,7 +5128,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="sources-identity/#req-65">REQ-65</a></td>
 <td>Only an explicit management action takes a source into use, and a valid contract is not enough</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="sources-identity/#source-metadata">Source metadata</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5135,47 +5136,47 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="sources-identity/#req-66">REQ-66</a></td>
 <td>Source metadata fails closed per source, ages within bounds, and can be rolled back</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="sources-identity/#source-metadata">Source metadata</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="sources-identity/#req-67">REQ-67</a></td>
-<td>The legal identity of a source holder comes from its certificate and not from configuration</td>
-<td>Generic</td>
+<td>The legal identity of a bronhouder comes from its certificate and not from configuration</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="sources-identity/#identity-trust">Identity and trust</a></td>
 <td>design</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="consent/#req-68">REQ-68</a></td>
-<td>The PDP decides only on a consent whose origin, binding, and current status it establishes itself</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> decides only on a consent whose origin, binding, and current status it establishes itself</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="pseudonymization/#req-69">REQ-69</a></td>
 <td>The consent register stores the polymorphic values under its own reference and no encrypted values per party</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/">Pseudonymization</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="logging-audit/#req-71">REQ-71</a></td>
-<td>Every authorization decision is in an ADL-conformant decision record, and that record is the audit source</td>
-<td>Generic</td>
+<td>Every authorization decision is in an <abbr title="Authorization Decision Log">ADL</abbr>-conformant decision record, and that record is the audit source</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="logging-audit/#decision-audit">Decision audit</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="logging-audit/#req-72">REQ-72</a></td>
-<td>A GBO component that processes personal data writes an LDV log record for each processing at its controller</td>
-<td>Generic</td>
+<td>A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component that processes personal data writes an <abbr title="Logboek Dataverwerkingen">LDV</abbr> log record for each processing at its controller</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="logging-audit/#processing-logging">Processing logging</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5183,7 +5184,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="authorization/#req-74">REQ-74</a></td>
 <td>The authorization regime follows from the evidence a request carries</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/">Authorization</a></td>
 <td>derived</td>
 <td>ready for review</td>
@@ -5191,22 +5192,22 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-75">REQ-75</a></td>
 <td>Consent status is available within a set propagation time, availability, and latency</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="consent/#req-76">REQ-76</a></td>
-<td>The register gives consent status only to an authenticated, authorized PDP, over FSC, and records who asked</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td>The register gives consent status only to an authenticated, authorized <abbr title="Policy Decision Point">PDP</abbr>, over <abbr title="Federated Service Connectivity">FSC</abbr>, and records who asked</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="eudi-issuance/#req-77">REQ-77</a></td>
-<td>An attestation gets the validity and revocation policy of the source holder</td>
+<td>An attestation gets the validity and revocation policy of the bronhouder</td>
 <td>EUDI</td>
 <td><a href="eudi-issuance/">EUDI issuance</a></td>
 <td>design</td>
@@ -5223,7 +5224,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="pseudonymization/#req-79">REQ-79</a></td>
 <td>Under a consent the subject comes only from the proof</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/">Pseudonymization</a></td>
 <td>derived</td>
 <td>ready for review</td>
@@ -5231,7 +5232,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="pseudonymization/#req-80">REQ-80</a></td>
 <td>The proof carries a value per party that only that party can read, and the recipient checks that the value is meant for it</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/">Pseudonymization</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5239,22 +5240,22 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="pseudonymization/#req-81">REQ-81</a></td>
 <td>Only the component that enforces the decision reaches the source gateway</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/">Pseudonymization</a></td>
 <td>derived</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="pseudonymization/#req-82">REQ-82</a></td>
-<td>When consent is given, the consent service knows the OIN, the key version, and the BSN authorization of each source</td>
-<td>DvTP</td>
+<td>When consent is given, the consent facility (toestemmingsvoorziening) knows the <abbr title="Organisatie-identificatienummer">OIN</abbr>, the key version, and the <abbr title="Burgerservicenummer">BSN</abbr> authorization of each source</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/">Pseudonymization</a></td>
 <td>derived</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="asi/#req-83">REQ-83</a></td>
-<td>Every ASIP verification result is sealed</td>
+<td>Every <abbr title="Authentic Source Interface Provider">ASIP</abbr> verification result is sealed</td>
 <td>EUDI</td>
 <td><a href="asi/">Authentic Source Interface</a></td>
 <td>design</td>
@@ -5286,7 +5287,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="asi/#req-87">REQ-87</a></td>
-<td>The ASIP takes the citizen only from a valid token bound to the QTSP that covers the operation</td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> takes the citizen only from a valid token bound to the <abbr title="Qualified Trust Service Provider">QTSP</abbr> that covers the operation</td>
 <td>EUDI</td>
 <td><a href="asi/">Authentic Source Interface</a></td>
 <td>design</td>
@@ -5294,7 +5295,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="asi/#req-88">REQ-88</a></td>
-<td>Only a QTSP with the <code>QEAA_Provider</code> right in the register becomes a client</td>
+<td>Only a <abbr title="Qualified Trust Service Provider">QTSP</abbr> with the <code>QEAA_Provider</code> right in the register becomes a client</td>
 <td>EUDI</td>
 <td><a href="asi/">Authentic Source Interface</a></td>
 <td>design</td>
@@ -5326,7 +5327,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="asi/#req-92">REQ-92</a></td>
-<td>The ASIP asks the source only for the fields of the requested attributes</td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> asks the source only for the fields of the requested attributes</td>
 <td>EUDI</td>
 <td><a href="asi/">Authentic Source Interface</a></td>
 <td>derived</td>
@@ -5342,7 +5343,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="asi/#req-94">REQ-94</a></td>
-<td>Every ASI response names the one authentic source responsible for it</td>
+<td>Every <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> response names the one authentic source responsible for it</td>
 <td>EUDI</td>
 <td><a href="asi/">Authentic Source Interface</a></td>
 <td>design</td>
@@ -5358,15 +5359,15 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="authorization/#req-97">REQ-97</a></td>
-<td>Every rule names the FSC services it applies to</td>
-<td>Generic</td>
+<td>Every rule names the <abbr title="Federated Service Connectivity">FSC</abbr> services it applies to</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/">Authorization</a></td>
 <td>derived</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="asi/#req-99">REQ-99</a></td>
-<td>The ASIP provides a discovery record for each attribute and data service, with a path to endpoint, contract, and authorization server</td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> provides a discovery record for each attribute and data service, with a path to endpoint, contract, and authorization server</td>
 <td>EUDI</td>
 <td><a href="asi/">Authentic Source Interface</a></td>
 <td>design</td>
@@ -5390,7 +5391,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="asi/#req-102">REQ-102</a></td>
-<td>The authorization server identifies the citizen with the EUDI wallet through OpenID4VP and asks only the PID attributes in its registration</td>
+<td>The authorization server identifies the citizen with the EUDI wallet through <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> and asks only the <abbr title="Person Identification Data">PID</abbr> attributes in its registration</td>
 <td>EUDI</td>
 <td><a href="asi/">Authentic Source Interface</a></td>
 <td>design</td>
@@ -5398,7 +5399,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="asi/#req-103">REQ-103</a></td>
-<td>An authorization can be bound to the requested attributes, and the ASIP then processes only those attributes</td>
+<td>An authorization can be bound to the requested attributes, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> then processes only those attributes</td>
 <td>EUDI</td>
 <td><a href="asi/">Authentic Source Interface</a></td>
 <td>design</td>
@@ -5407,23 +5408,23 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-106">REQ-106</a></td>
 <td>An integrator acts only with a registered mandate, and the consent binds the represented party</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="consent/#req-107">REQ-107</a></td>
 <td>Consent can be given only after confirmation that the citizen saw the information</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="consent/#req-108">REQ-108</a></td>
 <td>The citizen can export the overview of consents</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#citizen-access">Citizen access</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5431,7 +5432,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-109">REQ-109</a></td>
 <td>Revocation is possible only for a valid consent</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#citizen-access">Citizen access</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5439,7 +5440,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="admission/#req-110">REQ-110</a></td>
 <td>A suspended or departed consumer gets no more data, even with a valid consent</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="admission/">Admission and contracts</a></td>
 <td>design</td>
 <td>draft</td>
@@ -5447,14 +5448,14 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-111">REQ-111</a></td>
 <td>What the citizen sees about the consumer, and the return address, come from the registration and not from the request</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#consent-initiation">Consent initiation</a></td>
 <td>design</td>
 <td>ready for review</td>
 </tr>
 <tr>
 <td><a href="asi/#req-112">REQ-112</a></td>
-<td>The ASIP offers the clause 6.1 interface</td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> offers the clause 6.1 interface</td>
 <td>EUDI</td>
 <td><a href="asi/">Authentic Source Interface</a></td>
 <td>design</td>
@@ -5478,7 +5479,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="asi/#req-115">REQ-115</a></td>
-<td>The ASIP verifies attribute fragments</td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> verifies attribute fragments</td>
 <td>EUDI</td>
 <td><a href="asi/">Authentic Source Interface</a></td>
 <td>design</td>
@@ -5495,23 +5496,23 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-117">REQ-117</a></td>
 <td>Before choosing, the citizen sees in plain language who asks what, for what, and for how long</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="consent/#req-118">REQ-118</a></td>
 <td>If a service excludes delegation, an authorized representative cannot give consent for it</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="consent/#req-119">REQ-119</a></td>
 <td>After every outcome the citizen returns to the consumer with that outcome</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#consent-initiation">Consent initiation</a></td>
 <td>design</td>
 <td>draft</td>
@@ -5519,7 +5520,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-120">REQ-120</a></td>
 <td>For every consent and after every revocation, the portal points the citizen to their rights at the consumer</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="consent/#citizen-access">Citizen access</a></td>
 <td>design</td>
 <td>draft</td>
@@ -5527,23 +5528,23 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="consent/#req-121">REQ-121</a></td>
 <td>Screen, initiation check, and reference policy follow the same data-set description</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="consent/#req-122">REQ-122</a></td>
 <td>The citizen gets a confirmation of their choice</td>
-<td>DvTP</td>
-<td><a href="consent/">Consent (DvTP)</a></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><a href="consent/">Consent (<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>)</a></td>
 <td>design</td>
 <td>draft</td>
 </tr>
 <tr>
 <td><a href="admission/#req-123">REQ-123</a></td>
 <td>Every change to an admission, mandate, or activation is traceable</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="admission/">Admission and contracts</a></td>
 <td>design</td>
 <td>draft</td>
@@ -5565,7 +5566,7 @@ another page, its number does not change.</p>
 <tr>
 <th>ID</th>
 <th>Title</th>
-<th>Trajectory</th>
+<th>Channel</th>
 <th>Topic page</th>
 <th>Source (design/derived)</th>
 <th>Status</th>
@@ -5574,8 +5575,8 @@ another page, its number does not change.</p>
 <tbody>
 <tr>
 <td><a href="authorization/#rl-01">RL-01</a></td>
-<td>Deliver policy as a versioned bundle instead of baking it into the PDP</td>
-<td>Generic</td>
+<td>Deliver policy as a versioned bundle instead of baking it into the <abbr title="Policy Decision Point">PDP</abbr></td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/#policy-management">Policy management</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5583,7 +5584,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="authorization/#rl-02">RL-02</a></td>
 <td>Authorize the management API with its own policy set and deny on an empty store</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/#policy-management">Policy management</a></td>
 <td>derived</td>
 <td>ready for review</td>
@@ -5591,7 +5592,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="authorization/#rl-03">RL-03</a></td>
 <td>Separate writing from publishing, and publish with a non-personal, short-lived identity</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/#policy-management">Policy management</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5599,7 +5600,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="authorization/#rl-04">RL-04</a></td>
 <td>Withdraw policy instead of deleting it, and reconcile the deployed set with version control</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/#policy-management">Policy management</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5607,7 +5608,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="authorization/#rl-05">RL-05</a></td>
 <td>Validate a bundle before activation, and fall back visibly to the last valid set</td>
-<td>Generic</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="authorization/#policy-management">Policy management</a></td>
 <td>design</td>
 <td>ready for review</td>
@@ -5621,7 +5622,7 @@ another page, its number does not change.</p>
 <tr>
 <th>ID</th>
 <th>Title</th>
-<th>Trajectory</th>
+<th>Channel</th>
 <th>Topic page</th>
 <th>Source (design/derived)</th>
 <th>Status</th>
@@ -5631,31 +5632,31 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="admission/#av-01">AV-01</a></td>
 <td>Consumer sends trace context and records the transaction ID</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
 <td>candidate</td>
 </tr>
 <tr>
 <td><a href="admission/#av-02">AV-02</a></td>
-<td>Consumer records its processing according to LDV</td>
-<td>DvTP</td>
+<td>Consumer records its processing according to <abbr title="Logboek Dataverwerkingen">LDV</abbr></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
 <td>candidate</td>
 </tr>
 <tr>
 <td><a href="admission/#av-03">AV-03</a></td>
-<td>Consumer uses the consent service and BSNk PP</td>
-<td>DvTP</td>
+<td>Consumer uses the consent facility and BSNk <abbr title="Polymorphic pseudonym">PP</abbr></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
 <td>candidate</td>
 </tr>
 <tr>
 <td><a href="admission/#av-04">AV-04</a></td>
-<td>Consumer has its own FSC peer with PKIoverheid certificate and OIN</td>
-<td>DvTP</td>
+<td>Consumer has its own <abbr title="Federated Service Connectivity">FSC</abbr> peer with PKIoverheid certificate and <abbr title="Organisatie-identificatienummer">OIN</abbr></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
 <td>candidate</td>
@@ -5663,7 +5664,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="admission/#av-05">AV-05</a></td>
 <td>Consumer sends the consent proof unchanged</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
 <td>candidate</td>
@@ -5671,22 +5672,22 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="admission/#av-06">AV-06</a></td>
 <td>Integrator is admitted separately and acts as processor</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
 <td>candidate</td>
 </tr>
 <tr>
 <td><a href="admission/#av-07">AV-07</a></td>
-<td>Source holder publishes a machine-readable description for each data service</td>
-<td>Generic</td>
+<td>Bronhouder publishes a machine-readable description for each data service</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
 <td>candidate</td>
 </tr>
 <tr>
 <td><a href="admission/#av-08">AV-08</a></td>
-<td>Source holder without its own endpoint provably agrees with a taken-over description</td>
+<td>Bronhouder without its own endpoint provably agrees with a taken-over description</td>
 <td>EUDI</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
@@ -5694,15 +5695,15 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="admission/#av-09">AV-09</a></td>
-<td>Source holder keeps decryption keys of an older version while proofs for that version are valid</td>
-<td>DvTP</td>
+<td>Bronhouder keeps decryption keys of an older version while proofs for that version are valid</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
 <td>candidate</td>
 </tr>
 <tr>
 <td><a href="admission/#av-10">AV-10</a></td>
-<td>Source holder logs every living data subject of a relation attestation</td>
+<td>Bronhouder logs every living data subject of a relation attestation</td>
 <td>EUDI</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
@@ -5710,7 +5711,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="admission/#av-11">AV-11</a></td>
-<td>Source holder tests its view for relation attestations</td>
+<td>Bronhouder tests its view for relation attestations</td>
 <td>EUDI</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
@@ -5718,7 +5719,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="admission/#av-12">AV-12</a></td>
-<td>Source holder as provider has a public validity and revocation policy</td>
+<td>Bronhouder as provider has a public validity and revocation policy</td>
 <td>EUDI</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
@@ -5726,7 +5727,7 @@ another page, its number does not change.</p>
 </tr>
 <tr>
 <td><a href="admission/#av-13">AV-13</a></td>
-<td>Source holder gives the instruction to revoke an attestation</td>
+<td>Bronhouder gives the instruction to revoke an attestation</td>
 <td>EUDI</td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
@@ -5735,7 +5736,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="admission/#av-14">AV-14</a></td>
 <td>Consumer has registered contact details for GDPR rights</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
 <td>candidate</td>
@@ -5743,21 +5744,21 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="admission/#av-15">AV-15</a></td>
 <td>Consumer declares an equivalent alternative at admission</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="admission/#connection-conditions">Connection conditions</a></td>
 <td>—</td>
 <td>candidate</td>
 </tr>
 </tbody>
 </table>
-<h3 id="bsnk-pp-preconditions-bsnk">BSNk PP preconditions (BSNK)<a class="headerlink" href="#bsnk-pp-preconditions-bsnk" title="Permanent link">&para;</a></h3>
-<p>BSNk PP imposes these preconditions on GBO, and they have no status of their own:</p>
+<h3 id="bsnk-pp-preconditions-bsnk">BSNk <abbr title="Polymorphic pseudonym">PP</abbr> preconditions (BSNK)<a class="headerlink" href="#bsnk-pp-preconditions-bsnk" title="Permanent link">&para;</a></h3>
+<p>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> imposes these preconditions on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, and they have no status of their own:</p>
 <table>
 <thead>
 <tr>
 <th>ID</th>
 <th>Title</th>
-<th>Trajectory</th>
+<th>Channel</th>
 <th>Topic page</th>
 <th>Source (design/derived)</th>
 <th>Status</th>
@@ -5767,23 +5768,23 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="pseudonymization/#bsnk-01">BSNK-01</a></td>
 <td>Only a recognized party can activate and transform</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a></td>
 <td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="pseudonymization/#bsnk-02">BSNK-02</a></td>
-<td>Activation needs the BSN and check data</td>
-<td>DvTP</td>
+<td>Activation needs the <abbr title="Burgerservicenummer">BSN</abbr> and check data</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a></td>
 <td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="pseudonymization/#bsnk-03">BSNK-03</a></td>
-<td>A PI belongs to the requester and nobody else</td>
-<td>DvTP</td>
+<td>A <abbr title="Polymorphic identity">PI</abbr> belongs to the requester and nobody else</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a></td>
 <td>—</td>
 <td>—</td>
@@ -5791,7 +5792,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="pseudonymization/#bsnk-04">BSNK-04</a></td>
 <td>Transformation is possible only while the citizen is logged in</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a></td>
 <td>—</td>
 <td>—</td>
@@ -5799,23 +5800,23 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="pseudonymization/#bsnk-05">BSNK-05</a></td>
 <td>At most four recipients per request</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a></td>
 <td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="pseudonymization/#bsnk-06">BSNK-06</a></td>
-<td>The BSN Authorization List sets BSN or pseudonym</td>
-<td>DvTP</td>
+<td>The <abbr title="Burgerservicenummer">BSN</abbr> Authorization List sets <abbr title="Burgerservicenummer">BSN</abbr> or pseudonym</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a></td>
 <td>—</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="pseudonymization/#bsnk-07">BSNK-07</a></td>
-<td>The recipient is an OIN</td>
-<td>DvTP</td>
+<td>The recipient is an <abbr title="Organisatie-identificatienummer">OIN</abbr></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a></td>
 <td>—</td>
 <td>—</td>
@@ -5823,7 +5824,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="pseudonymization/#bsnk-08">BSNK-08</a></td>
 <td>An encrypted value belongs to one key version</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a></td>
 <td>—</td>
 <td>—</td>
@@ -5831,7 +5832,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="pseudonymization/#bsnk-09">BSNK-09</a></td>
 <td>The recipient gets its keys through an Access Service or Key Requester</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a></td>
 <td>—</td>
 <td>—</td>
@@ -5839,7 +5840,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="pseudonymization/#bsnk-10">BSNK-10</a></td>
 <td>The party that activates has the inspection duty</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a></td>
 <td>—</td>
 <td>—</td>
@@ -5847,7 +5848,7 @@ another page, its number does not change.</p>
 <tr>
 <td><a href="pseudonymization/#bsnk-11">BSNK-11</a></td>
 <td>The interfaces are SOAP with PKIoverheid</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td><a href="pseudonymization/#bsnk-preconditions">BSNk preconditions</a></td>
 <td>—</td>
 <td>—</td>
@@ -5855,7 +5856,7 @@ another page, its number does not change.</p>
 </tbody>
 </table>
 <h2 id="removed-numbers">Removed numbers<a class="headerlink" href="#removed-numbers" title="Permanent link">&para;</a></h2>
-<p>If a requirement was never approved and no longer holds, the GBO team removes it. Nobody uses its number again. Topic pages list their own removed numbers with the reason. Each removed number has a disposition and, where one exists, a successor:</p>
+<p>If a requirement was never approved and no longer holds, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> team removes it. Nobody uses its number again. Topic pages list their own removed numbers with the reason. Each removed number has a disposition and, where one exists, a successor:</p>
 <table>
 <thead>
 <tr>
@@ -6043,15 +6044,16 @@ another page, its number does not change.</p>
 <tr>
 <td>REQ-104</td>
 <td>removed</td>
-<td><a href="asi/#req-88">REQ-88</a> (a duty of the QTSP under ETSI and eIDAS)</td>
+<td><a href="asi/#req-88">REQ-88</a> (a duty of the <abbr title="Qualified Trust Service Provider">QTSP</abbr> under ETSI and eIDAS)</td>
 </tr>
 <tr>
 <td>REQ-105</td>
 <td>removed</td>
-<td><a href="asi/#req-88">REQ-88</a> (a duty of the QTSP under ETSI and eIDAS)</td>
+<td><a href="asi/#req-88">REQ-88</a> (a duty of the <abbr title="Qualified Trust Service Provider">QTSP</abbr> under ETSI and eIDAS)</td>
 </tr>
 </tbody>
 </table>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

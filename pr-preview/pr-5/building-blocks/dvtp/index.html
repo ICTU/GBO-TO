@@ -1305,7 +1305,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1421,7 +1421,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4587,25 +4587,25 @@
   
 
 
-<h1 id="dvtp-channel">DvTP channel<a class="headerlink" href="#dvtp-channel" title="Permanent link">&para;</a></h1>
-<p>In the DvTP channel, a private dienstverlener gets source data about a
+<h1 id="dvtp-channel"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel<a class="headerlink" href="#dvtp-channel" title="Permanent link">&para;</a></h1>
+<p>In the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel, a private service provider (dienstverlener) gets source data about a
 citizen, with the consent of that citizen. The channel adds two things to
-GBO Basis. In the toestemmingsvoorziening, the citizen gives and revokes
-consent. The pseudonimiseervoorziening of BSNk makes sure that the
-dienstverlener never gets a BSN. This is interaction pattern C of the
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis. In the consent facility (toestemmingsvoorziening), the citizen gives and revokes
+consent. The pseudonymization facility (pseudonimiseervoorziening) of BSNk makes sure that the
+service provider never gets a <abbr title="Burgerservicenummer">BSN</abbr>. This is interaction pattern C of the
 <a href="https://ictu.github.io/GBO-GO/main/#patroon-c-gegevensverzoek-van-private-dienstverlener-dvtp">Globaal Ontwerp</a>.</p>
-<p><a href="../">Overview</a> › DvTP channel</p>
+<p><a href="../">Overview</a> › <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel</p>
 <h2 id="inside-the-channel">Inside the channel<a class="headerlink" href="#inside-the-channel" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
   burger(["Citizen"])
   subgraph cons["Consumer side"]
     direction TB
-    dv["Dienstverlener"]
+    dv["Service provider"]
     int["Integrator&lt;br/&gt;&lt;i&gt;optional&lt;/i&gt;"]
   end
-  subgraph tv["Toestemmingsvoorziening"]
+  subgraph tv["Consent facility"]
     direction LR
-    pf("Portal&lt;br/&gt;frontend") --&gt; pb("Portal&lt;br/&gt;backend") --&gt; tr[("Toestemmings-&lt;br/&gt;register")]
+    pf("Portal&lt;br/&gt;frontend") --&gt; pb("Portal&lt;br/&gt;backend") --&gt; tr[("Consent&lt;br/&gt;register")]
   end
   subgraph ext["External services"]
     direction LR
@@ -4647,14 +4647,14 @@ dienstverlener never gets a BSN. This is interaction pattern C of the
   style cons fill:#F4F5F7,stroke:#D1D5DB
   style ext fill:#F4F5F7,stroke:#D1D5DB
 
-  click pf "consent-service/" "Toestemmingsvoorziening"
-  click pb "consent-service/" "Toestemmingsvoorziening"
-  click tr "consent-service/" "Toestemmingsvoorziening"
+  click pf "consent-service/" "Consent facility"
+  click pb "consent-service/" "Consent facility"
+  click tr "consent-service/" "Consent facility"
   click pdp "../gbo-basis/authorization/" "Authorization"
   click bsnk "../../concepts/pseudonymization/" "Pseudonymization"
   click int "../../runtime/dvtp-query/#variant-an-integrator-calls-for-the-consumer" "Integrator variant"</div>
-<p class="caption"><em>Figure 1: The DvTP channel. Pink: GBO components of the channel. Green:
-GBO Basis at the source.</em></p>
+<p class="caption"><em>Figure 1: The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel. Pink: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components of the channel. Green:
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis at the source.</em></p>
 <p>The channel has these parts:</p>
 <table>
 <thead>
@@ -4666,43 +4666,43 @@ GBO Basis at the source.</em></p>
 </thead>
 <tbody>
 <tr>
-<td>Toestemmingsvoorziening</td>
+<td>Consent facility</td>
 <td>The citizen sees the request, logs in, and gives or refuses consent. Later the citizen views and revokes consents. The register signs a consent proof and answers the status of a consent.</td>
-<td><a href="consent-service/">Toestemmingsvoorziening</a></td>
+<td><a href="consent-service/">Consent facility</a></td>
 </tr>
 <tr>
-<td>Pseudonimiseervoorziening</td>
-<td>BSNk PP turns the BSN into values that only one party can read. The channel calls it only when a citizen gives consent.</td>
+<td>Pseudonymization facility</td>
+<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> turns the <abbr title="Burgerservicenummer">BSN</abbr> into values that only one party can read. The channel calls it only when a citizen gives consent.</td>
 <td><a href="../../concepts/pseudonymization/">Pseudonymization</a></td>
 </tr>
 <tr>
-<td>Dienstverlener</td>
-<td>Starts the request, keeps the proof, and sends it with every query. It never gets a BSN or another number for the citizen.</td>
-<td><a href="../../runtime/dvtp-query/">DvTP query</a></td>
+<td>Service provider</td>
+<td>Starts the request, keeps the proof, and sends it with every query. It never gets a <abbr title="Burgerservicenummer">BSN</abbr> or another number for the citizen.</td>
+<td><a href="../../runtime/dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a></td>
 </tr>
 <tr>
 <td>Integrator</td>
-<td>A software party that calls the source for a dienstverlener, under an FSC delegation and a registered mandate.</td>
+<td>A software party that calls the source for a service provider, under an <abbr title="Federated Service Connectivity">FSC</abbr> delegation and a registered mandate.</td>
 <td><a href="../../decisions/0034-integrator-delegation/">ADR-0034</a></td>
 </tr>
 <tr>
-<td>GBO Basis</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td>Checks the proof and the consent status for every request, and fills in the citizen only after an allow.</td>
-<td><a href="../gbo-basis/">GBO Basis</a></td>
+<td><a href="../gbo-basis/"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a></td>
 </tr>
 </tbody>
 </table>
 <h2 id="two-phases">Two phases<a class="headerlink" href="#two-phases" title="Permanent link">&para;</a></h2>
 <p>The channel works in two phases, as in the Globaal Ontwerp. In phase 1,
-the citizen gives consent. In phase 2, the dienstverlener queries a source
+the citizen gives consent. In phase 2, the service provider queries a source
 under that consent, as often as the consent allows:</p>
 <div class="mermaid">sequenceDiagram
   autonumber
   actor B as Citizen
   box rgb(241,239,232) Consumer
-    participant DV as Dienstverlener
+    participant DV as Service provider
   end
-  box rgb(254,220,216) Toestemmingsvoorziening
+  box rgb(254,220,216) Consent facility
     participant P as Portal
     participant TR as Register
   end
@@ -4740,15 +4740,15 @@ under that consent, as often as the consent allows:</p>
   GW-&gt;&gt;S: query with the BSN
   S--&gt;&gt;DV: only the selected fields
   end</div>
-<p class="caption"><em>Figure 2: The two phases of DvTP. Every step names the essence only.
+<p class="caption"><em>Figure 2: The two phases of <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>. Every step names the essence only.
 The runtime pages have every hop.</em></p>
 <p>For every hop, with the data and the error paths, see
-<a href="../../runtime/dvtp-consent/">DvTP consent</a> and
-<a href="../../runtime/dvtp-query/">DvTP query</a>. Viewing and revoking a consent
-is a third flow: <a href="../../runtime/dvtp-citizen-access/">DvTP citizen access</a>.</p>
+<a href="../../runtime/dvtp-consent/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consent</a> and
+<a href="../../runtime/dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a>. Viewing and revoking a consent
+is a third flow: <a href="../../runtime/dvtp-citizen-access/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> citizen access</a>.</p>
 <h2 id="who-sees-which-identifier">Who sees which identifier<a class="headerlink" href="#who-sees-which-identifier" title="Permanent link">&para;</a></h2>
-<p>The channel is built so that the BSN appears in as few places as
-possible. The dienstverlener holds no identifier for the citizen at all:</p>
+<p>The channel is built so that the <abbr title="Burgerservicenummer">BSN</abbr> appears in as few places as
+possible. The service provider holds no identifier for the citizen at all:</p>
 <div class="mermaid">flowchart LR
   subgraph bsn["Sees the BSN"]
     direction TB
@@ -4764,7 +4764,7 @@ possible. The dienstverlener holds no identifier for the citizen at all:</p>
   end
   subgraph none["Sees no identifier"]
     direction TB
-    dv["Dienstverlener&lt;br/&gt;proof + placeholder"]
+    dv["Service provider&lt;br/&gt;proof + placeholder"]
     int["Integrator"]
   end
   %% GBO diagram palette: the same colors as the Globaal Ontwerp
@@ -4785,14 +4785,14 @@ possible. The dienstverlener holds no identifier for the citizen at all:</p>
   style bsn fill:#FFF1F0,stroke:#E28F80
   style pseudo fill:#FFF7ED,stroke:#EA580C
   style none fill:#F0FDF4,stroke:#16A34A</div>
-<p class="caption"><em>Figure 3: Where the BSN can appear in the DvTP channel.</em></p>
+<p class="caption"><em>Figure 3: Where the <abbr title="Burgerservicenummer">BSN</abbr> can appear in the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel.</em></p>
 <p>The consent proof carries one encrypted value per source. Only that source
 can decrypt its value. The value becomes the own pseudonym of the source,
-or the BSN if the source has the right to process the BSN
+or the <abbr title="Burgerservicenummer">BSN</abbr> if the source has the right to process the <abbr title="Burgerservicenummer">BSN</abbr>
 (<a href="../../decisions/0032-consent-proof/">ADR-0032</a>,
 <a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>). In its
-query, the dienstverlener names the citizen with a fixed placeholder.</p>
-<p>This has a cost. The dienstverlener cannot recognize the same citizen
+query, the service provider names the citizen with a fixed placeholder.</p>
+<p>This has a cost. The service provider cannot recognize the same citizen
 across two consents, and it logs under the consent, not under the person
 (<a href="../../traceability/findings/#f-76">F-76</a>).</p>
 <h2 id="compared-with-the-globaal-ontwerp">Compared with the Globaal Ontwerp<a class="headerlink" href="#compared-with-the-globaal-ontwerp" title="Permanent link">&para;</a></h2>
@@ -4808,7 +4808,7 @@ of three steps:</p>
 </thead>
 <tbody>
 <tr>
-<td>What the dienstverlener gets</td>
+<td>What the service provider gets</td>
 <td>A consent ID and an encrypted identity</td>
 <td>A signed consent proof that holds the consent ID and an encrypted value per source</td>
 </tr>
@@ -4820,7 +4820,7 @@ of three steps:</p>
 <tr>
 <td>Who checks the consent</td>
 <td>The bronhouder asks the register</td>
-<td>The PDP of the source checks the proof itself, then asks the register for the status over FSC</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> of the source checks the proof itself, then asks the register for the status over <abbr title="Federated Service Connectivity">FSC</abbr></td>
 </tr>
 </tbody>
 </table>
@@ -4830,10 +4830,10 @@ the portal backend are one system, and which of them talks to BSNk, is
 open (<a href="../../traceability/open-questions/#q-49">Q-49</a>,
 <a href="../../decisions/0040-route-d-citizen-recognition/">ADR-0040</a>).</p>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
-<p>The main open points in the DvTP channel are these:</p>
+<p>The main open points in the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> channel are these:</p>
 <ul>
-<li>Whether a private dienstverlener without a public task can connect to
-  BSNk PP at all (<a href="../../traceability/open-questions/#q-01">Q-01</a>).</li>
+<li>Whether a private service provider without a public task can connect to
+  BSNk <abbr title="Polymorphic pseudonym">PP</abbr> at all (<a href="../../traceability/open-questions/#q-01">Q-01</a>).</li>
 <li>Who sets the validity period of a consent
   (<a href="../../traceability/open-questions/#q-13">Q-13</a>).</li>
 <li>Whether the proof must also name the integrator
@@ -4860,6 +4860,7 @@ open (<a href="../../traceability/open-questions/#q-49">Q-49</a>,
   <a href="../../traceability/increments/#sl-47">SL-47</a> (done),
   <a href="../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 
