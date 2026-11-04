@@ -166,7 +166,9 @@ example "consent register (toestemmingsregister)". After that, use the
 English term only. Never translate proper names: Gemeenschappelijke
 Bronontsluiting, Globaal Ontwerp, Projectstartarchitectuur, Technisch
 Ontwerp, MijnOverheid, DigiD, Logius, BSN, Autorisatielijst BSN,
-Basisinrichting OOTS, Logboek Dataverwerkingen, GBO Basis. The linter
+Basisinrichting OOTS, Logboek Dataverwerkingen, GBO Basis, Delen van
+gegevens via Toestemming met Private dienstverleners. The government
+term "bronhouder" also stays in Dutch, without a translation. The linter
 skips these names (`PROPER_NAMES` in `scripts/style_lint.py`). Quotes from Dutch sources stay in Dutch.
 
 The glossary is the source for all domain and system terms. Each

@@ -41,9 +41,9 @@ An organization in the chain has three identifiers
 | OIN | the legal organization (bronhouder, consumer) | `serialNumber` of the organization's certificate |
 | Organization name | the legal name that a wallet or a record shows | exactly one `O` attribute of the same certificate |
 
-If the source holder runs its own peer, its Peer ID is its OIN. In other cases,
+If the bronhouder runs its own peer, its Peer ID is its OIN. In other cases,
 the two values can differ. One peer can offer services of more than one
-source holder. Simulation Peer IDs are not OINs, for example
+bronhouder. Simulation Peer IDs are not OINs, for example
 `0000009950HYPBV00000`. Until [SL-49](../traceability/increments.md#sl-49)
 ([PR #242](https://github.com/ICTU/GBO-demo/pull/242)), the demo used one
 field for both values. In demo v0.9.0, the source configuration keeps
@@ -56,7 +56,7 @@ The alternative is that policy takes that link from the admission register
 
 ## The legal identity comes from the certificate
 
-A GBO component can put the OIN or name of a source holder in an attestation
+A GBO component can put the OIN or name of a bronhouder in an attestation
 or a decision record. The component takes that value from verified
 certificate material. A value that an operator can fill in freely is never
 the source ([REQ-67](../requirements/sources-identity.md#req-67),
@@ -90,7 +90,7 @@ This rule has these consequences:
   [PR #277](https://github.com/ICTU/GBO-demo/pull/277) showed this.
 - In the default demo onboarding, the Belastingdienst peer publishes RvIG
   with the Belastingdienst OIN. This is a demo shortcut, and it does not
-  show one OIN per source holder. The certificate sets still differ per
+  show one OIN per bronhouder. The certificate sets still differ per
   source.
 
 ## Every channel goes through FSC
@@ -155,9 +155,9 @@ This is a dependency outside the decision scope of GBO.
 
 ## EUDI issuance: a certificate set per source
 
-The issuance facility keeps a certificate set per source holder. The set has
+The issuance facility keeps a certificate set per bronhouder. The set has
 issuer, reader (access), and status-list certificates. The facility never
-signs with the set of another source holder
+signs with the set of another bronhouder
 ([REQ-58](../requirements/eudi-issuance.md#req-58)). The issuer name and
 the purpose that the wallet shows are bound to these certificates. A
 fallback to the set of another source made the wallet show the wrong issuer
@@ -168,7 +168,7 @@ see [Source onboarding](source-onboarding.md#a-certificate-set-per-source).
 
 ## EUDI trust roles
 
-GBO issues attestations for source holders. Each of these source holders needs
+GBO issues attestations for bronhouders. Each of these bronhouders needs
 its own certificate per role, and one certificate never fills two roles
 ([ADR-0023](../decisions/0023-identity-convergence.md), part B, proposed,
 [F-81](../traceability/findings.md#f-81)). The roles are as follows:
@@ -184,9 +184,9 @@ its own certificate per role, and one certificate never fills two roles
 [ADR-0028](../decisions/0028-pubeaa-productization.md) sets the roles and
 responsibilities around these certificates:
 
-- Each source holder is the PuB-EAA provider of its attestations. GBO operates
+- Each bronhouder is the PuB-EAA provider of its attestations. GBO operates
   the technical issuance facility. GBO is probably the `EEAIssuer` in the
-  notification of each source holder. It is open who designates the Dutch
+  notification of each bronhouder. It is open who designates the Dutch
   PuB-EAA issuer, and who supervises
   ([Q-28](../traceability/open-questions.md#q-28)).
 - The issuer registers as relying party with the entitlement
@@ -197,7 +197,7 @@ responsibilities around these certificates:
   ([Q-30](../traceability/open-questions.md#q-30)). No decision exists for
   either list.
 - It is open who holds the seal and status-list keys. The options are the
-  central facility, a remote signing service, or an HSM at the source holder
+  central facility, a remote signing service, or an HSM at the bronhouder
   ([Q-17](../traceability/open-questions.md#q-17)). In the demo, the
   central issuance server holds them.
 
@@ -252,7 +252,7 @@ The demo and production use different PKI parts:
 | Organization certificates | Per organization, a group certificate with `serialNumber` = OIN, and internal mTLS certificates ([`bootstrap-bd-mock.sh#L48`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/pki/bootstrap-bd-mock.sh#L48)) | PKIoverheid certificates of each organization |
 | PDP AuthZEN endpoint | A self-signed certificate that the Inways pin as CA ([`generate-pdp-cert.sh`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/pki/generate-pdp-cert.sh)) | An organization certificate |
 | EUDI issuer and reader CAs | Two pre-provisioned development CAs. The demo never generates them, and onboarding stops without them ([`Makefile#L268-L272`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L268-L272)) | A QTSP for the seal, an access CA, and a registration certificate provider |
-| Source leaf certificates | The development CA provider mints source-bound issuer, reader, and status-list leafs, under a separate privileged command ([`Makefile#L326-L336`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L326-L336)) | Issued per source holder, per role |
+| Source leaf certificates | The development CA provider mints source-bound issuer, reader, and status-list leafs, under a separate privileged command ([`Makefile#L326-L336`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L326-L336)) | Issued per bronhouder, per role |
 | ASIP seal and QTSP client certificates | From the same development CAs ([`Makefile#L276-L283`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L276-L283), [`#L320-L324`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L320-L324)) | A qualified seal certificate, and access certificates of admitted QTSPs |
 | PID trust anchor | The BZK pre-production PID issuer CA | The notified PID providers |
 

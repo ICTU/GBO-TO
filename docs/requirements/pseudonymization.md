@@ -135,7 +135,7 @@ share one OIN and one decryption component.
         - [PSA S03](https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering)
           ("de inrichting voert identiteitsvertaling alleen uit voor een
           toegestane dienst en gegevensvraag"), with the provision "veilige
-          omzetting aan de kant van de source holder (bronhouder)"
+          omzetting aan de kant van de bronhouder"
         - FR-35 criterion 3
         - precondition [BSNK-04](pseudonymization.md#bsnk-04): BSNk
           transforms only while the citizen is logged in, so it does not
@@ -457,7 +457,7 @@ share one OIN and one decryption component.
       PEP has a real proof converted without a decision. A consumer has such
       proofs.
     - **Addressee**: GBO-delivered component: the source gateway and the
-      deployment that GBO delivers with it. Guideline for source holders: the
+      deployment that GBO delivers with it. Guideline for bronhouders: the
       isolation in their own network.
     - **Evidence**: [PR #469](https://github.com/ICTU/GBO-demo/pull/469) gives
       this evidence:
@@ -1443,7 +1443,7 @@ The GBO team did not verify the following points:
   input for activation (p. 93)?
 - How long does a VI stay usable? It carries an issue month and no end
   date (p. 177). The specification says nothing about this.
-- Do source holders already have BSNk keys from their DigiD connection?
+- Do bronhouders already have BSNk keys from their DigiD connection?
 - Can a party use the certificate that it already has for FSC for the key
   request? The certificate must have the OIN in `Subject.serialNumber`
   and allow keyEncipherment (p. 154).

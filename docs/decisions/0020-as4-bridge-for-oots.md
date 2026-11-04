@@ -19,15 +19,15 @@ GBO builds an OOTS-adapter at its edge. The adapter has three parts:
 
 - A Domibus access point receives AS4 messages.
 - An OOTS-EDM adapter maps evidence requests.
-- An FSC translator forwards the requests to source holders (bronhouders) over the standard
+- An FSC translator forwards the requests to bronhouders over the standard
   FSC and PEP-PDP chain.
 
-The source holder sees a normal FSC request. AS4 exists only at the edge, in
+The bronhouder sees a normal FSC request. AS4 exists only at the edge, in
 line with the national Basisinrichting OOTS.
 
 ## Consequences
 
-- Source holders serve cross-border requests without work that is specific
+- Bronhouders serve cross-border requests without work that is specific
   to OOTS.
 - The mapping of evidence types depends on canonical semantic models
   ([ADR-0024](0024-canonical-semantic-models.md)).

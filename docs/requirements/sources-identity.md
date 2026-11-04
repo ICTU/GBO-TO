@@ -33,7 +33,7 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 > A GBO-delivered component MUST take the service description of a source only from what the source publishes itself. The description covers the data service, the query with declared parameters, the mapping, the attestation schema, the validity per attestation type, and the offer. The component MUST NOT keep that description itself, add to it, or carry it per source in code. This applies to every GBO-delivered component that must know something per source or per service, in every data flow. These data flows are issuance, the ASIP, and the consent facility (the offer of the source per data set). A new service or data set of a source MUST be usable without a code change in such a component.
 
-> Before use, the component MUST validate the description on schema, origin (the publishing party is the source holder (bronhouder) of the certificate set), version, validity window, and binding to the contract for the data service. The runtime MUST work only from a validated, activated version ([REQ-66](#req-66)). Every request that follows from it goes through the PDP of the source ([REQ-44](authorization.md#req-44)). The description MUST name the read API of the logbook of the source, and the chain MUST fill `dpl.read.nextLogbookId` from it.
+> Before use, the component MUST validate the description on schema, origin (the publishing party is the bronhouder of the certificate set), version, validity window, and binding to the contract for the data service. The runtime MUST work only from a validated, activated version ([REQ-66](#req-66)). Every request that follows from it goes through the PDP of the source ([REQ-44](authorization.md#req-44)). The description MUST name the read API of the logbook of the source, and the chain MUST fill `dpl.read.nextLogbookId` from it.
 
 > If the answer of the source does not fit the published mapping exactly, or holds more than one result, issuance MUST refuse. It MUST NOT pick a result, and it MUST NOT add or convert a value.
 
@@ -57,17 +57,17 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
     - **Source**: design:
         - [PSA S07](https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting)
-            ("the source holder can in principle add new services through the
+            ("the bronhouder can in principle add new services through the
             source-specific GBO configuration")
         - [PSA S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus)
-            ("the source holder manages a source-specific GBO configuration that
+            ("the bronhouder manages a source-specific GBO configuration that
             records which data services are available for which data flows, and
             which schemas, mappings and other processing instructions apply",
             "central GBO facilities can consult the configuration relevant to them
             in machine readable form", "the configuration can be validated,
             versioned and traced")
         - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte)
-            (the source holder records mapping and attestation schema in its GBO
+            (the bronhouder records mapping and attestation schema in its GBO
             configuration)
         - [GO](https://ictu.github.io/GBO-GO/main/) ("the mapping happens
             centrally with the settings from the decentral configuration
@@ -81,7 +81,7 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
     - **Addressee**: GBO-delivered component: the reconciler and the runtime
         of the EUDI adapter, the ASIP, and the consent facility. Interface
         agreement: the form of the publication and the validation rules. What
-        the source holder must publish is in
+        the bronhouder must publish is in
         [AV-07](admission.md#av-07) and
         [AV-08](admission.md#av-08).
     - **Evidence**: [PR #219](https://github.com/ICTU/GBO-demo/pull/219),
@@ -168,7 +168,7 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
             signed.
         - The exception for a source without an endpoint follows D-13. The
             demo builds the exception as visible (`data_transport_authenticated`)
-            and temporary (`expires_at`). The agreement of the source holder is only
+            and temporary (`expires_at`). The agreement of the bronhouder is only
             an instruction in the README
             ([AV-08](admission.md#av-08),
             [F-71](../traceability/findings.md#f-71)). The local compose also has
@@ -269,7 +269,7 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
         isolation, the requirement is derived. It serves
         [P-15](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/) and
         [D-04](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/). If the
-        configuration of one source fails, issuance for other source holders must
+        configuration of one source fails, issuance for other bronhouders must
         not fail with it.
     - **Addressee**: GBO-delivered component: the reconciler, the release
         register, and the runtime of the issuance facility.
@@ -343,7 +343,7 @@ on the [requirements overview](index.md#removed-numbers).
 
 These requirements cover how GBO establishes who an organization is, and
 how channels reach a source. FSC establishes the identity of the calling
-organization on every channel. The legal identity of a source holder (OIN
+organization on every channel. The legal identity of a bronhouder (OIN
 and name) comes from its certificate. It does not come from configuration
 that an operator can fill in. Authorization for each request stays a
 separate layer: see [Authorization](authorization.md).
@@ -354,9 +354,9 @@ the certificate roles. Evidence links to gbo-demo point at tag `v0.9.0`.
 
 ### REQ-46: Every channel that calls a source on behalf of an external party does so through FSC, with a valid certificate {#req-46}
 
-> Every channel that calls a service of a source holder on behalf of an
+> Every channel that calls a service of a bronhouder on behalf of an
 > external party MUST do so through FSC. A channel MUST NOT enter the
-> service of the source holder, or the authorization for it, directly. FSC
+> service of the bronhouder, or the authorization for it, directly. FSC
 > establishes the identity of the calling organization. The authorization
 > for each request (consent, PID binding, legal basis) stays a separate
 > layer of the channel. If the certificate of the calling party is expired
@@ -412,12 +412,12 @@ the certificate roles. Evidence links to gbo-demo point at tag `v0.9.0`.
             is not bound to the certificate
             ([Q-60](../traceability/open-questions.md#q-60)).
 
-### REQ-67: The legal identity of a source holder comes from its certificate and not from configuration {#req-67}
+### REQ-67: The legal identity of a bronhouder comes from its certificate and not from configuration {#req-67}
 
-> A GBO component can put the legal identity of a source holder (OIN and
+> A GBO component can put the legal identity of a bronhouder (OIN and
 > organization name) in an attestation or a decision record. The component
 > MUST then take it from verified certificate material of that
-> source holder. A value that an
+> bronhouder. A value that an
 > operator can fill in freely MUST NOT be the source for it.
 
 | Case | Outcome |
@@ -463,8 +463,8 @@ the certificate roles. Evidence links to gbo-demo point at tag `v0.9.0`.
         - It is open whether policy can read the Peer ID of a consumer as its
             OIN: [Q-68](../traceability/open-questions.md#q-68).
         - In FSC the Peer ID is the `subject.serialNumber` of the FSC
-            certificate. If the peer is the source holder itself, the Peer ID is the
-            OIN. One peer can offer services of more than one source holder. So the
+            certificate. If the peer is the bronhouder itself, the Peer ID is the
+            OIN. One peer can offer services of more than one bronhouder. So the
             source configuration keeps `provider_peer_id` apart from
             the OIN in the certificate
             ([`source_configuration.go#L35-L44`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_configuration.go#L35-L44)).
@@ -477,7 +477,7 @@ the certificate roles. Evidence links to gbo-demo point at tag `v0.9.0`.
             [PR #277](https://github.com/ICTU/GBO-demo/pull/277)).
         - In the default demo onboarding, RvIG is published through the
             Belastingdienst peer with the Belastingdienst OIN. That is a demo
-            shortcut, and it does not show one OIN for each source holder. The
+            shortcut, and it does not show one OIN for each bronhouder. The
             certificate sets still differ for each source.
 
 ### Removed numbers

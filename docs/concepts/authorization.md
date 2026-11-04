@@ -53,7 +53,7 @@ also has a part at request time: the mandate check
 ```mermaid
 flowchart LR
     C[Consumer Outway] -->|mTLS + FSC token| IN
-    subgraph SRC[Source holder]
+    subgraph SRC[Bronhouder]
         IN[FSC Inway = PEP]
         subgraph PDP[OpenFTV PDP v0.1.0]
             MAP[FTV GraphQL mapper]

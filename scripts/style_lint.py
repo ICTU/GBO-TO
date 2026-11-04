@@ -77,7 +77,8 @@ WEAK_CONTRAST = re.compile(r"\brather than\b|, not (?:a |an |the )?\w+", re.I)
 PROPER_NAMES = re.compile(
     r"Gemeenschappelijke Bronontsluiting|Globaal Ontwerp|Technisch Ontwerp|"
     r"Projectstartarchitectuur|Basisinrichting OOTS|Logboek Dataverwerkingen|"
-    r"Federatieve Toegangsverlening|Autorisatielijst BSN|MijnOverheid")
+    r"Federatieve Toegangsverlening|Autorisatielijst BSN|MijnOverheid|"
+    r"Delen van gegevens via Toestemming met Private dienstverleners")
 ING_HEADING = re.compile(r"^#{1,6} [A-Z][a-z]+ing\b")
 
 

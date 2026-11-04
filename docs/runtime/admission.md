@@ -24,7 +24,7 @@ and [ADR-0016](../decisions/0016-source-owned-metadata.md).
 ## Scenario 1: contract admission {#contract-admission}
 
 A consumer, an integrator, or a GBO component (the issuance facility, the
-ASIP, the PDP itself) wants to connect to an FSC service of a source holder (bronhouder). The party creates a contract proposal in its own FSC Manager. The
+ASIP, the PDP itself) wants to connect to an FSC service of a bronhouder. The party creates a contract proposal in its own FSC Manager. The
 FSC Manager of the provider does not sign on a flag. It sends every proposal
 to the OpenFTV PDP as an AuthZEN evaluation and signs only on allow
 ([`fsc-infra/docker-compose.yml#L701-L702`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L701-L702)).
@@ -77,7 +77,7 @@ Each hop of contract admission carries the following data:
 
 | # | From → to | Interface | Data | Notes |
 |---|---|---|---|---|
-| 1 | Administrator → register | Register UI (`localhost:9415`), CSRF-protected forms | FSC Peer ID (20 characters), display name, `active`, Peer IDs of the admitted source holders | The register has no accounts. Anyone who reaches the UI locally is administrator ([README](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/README.md)). Integrations (`acts_for`) and technical participants are part of the deployment configuration. The UI does not manage them |
+| 1 | Administrator → register | Register UI (`localhost:9415`), CSRF-protected forms | FSC Peer ID (20 characters), display name, `active`, Peer IDs of the admitted bronhouders | The register has no accounts. Anyone who reaches the UI locally is administrator ([README](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/README.md)). Integrations (`acts_for`) and technical participants are part of the deployment configuration. The UI does not manage them |
 | 2 to 3 | PDP → register | `GET /internal/openftv/participants` ([`handler.go#L63`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/internal/httpapi/handler.go#L63)), interval 5 s, timeout 2 s | `data.entities.dvtp_participant`, keyed by Peer ID: `name`, `active`, `allowed_source_peer_ids`, `acts_for` ([`dvtp-onboarding.yaml`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml#L1-L31)) | The pull uses a network that only the register and the PDP share. Every entry carries `acts_for`. If the party acts for nobody, `acts_for` is empty. As a result, a withdrawn mandate replaces the old entity |
 | 4 | Consumer → own FSC Manager | `POST /v1/contracts`, internal API, mTLS ([`seed-bri-connection-hv.sh#L113-L135`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-connection-hv.sh#L113-L135)) | Contract content: grant (type and service), validity, the peers | FSC grants carry no properties ([ADR-0031](../decisions/0031-regime-from-evidence.md)) |
 | 5 | Consumer Manager → provider Manager | FSC Manager interface, mTLS with the organization certificate (demo CA) | Signed contract proposal | The contract hash identifies the proposal. A new submission is a new proposal with a new hash |
@@ -375,7 +375,7 @@ Source activation in gbo-demo v0.9.0 has these properties and gaps:
   the description. Its origin is the authenticated FSC transport plus the
   OIN from the certificate. The document itself has no signature. The
   `file` transport is a visible, temporary exception for a source without
-  an endpoint. The demo does not record the agreement of the source holder
+  an endpoint. The demo does not record the agreement of the bronhouder
   ([F-71](../traceability/findings.md#f-71),
   [AV-08](../requirements/admission.md#av-08)).
 - **Releases have a full lifecycle**

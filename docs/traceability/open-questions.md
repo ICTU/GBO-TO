@@ -159,9 +159,9 @@ denies the request.
 - **Status**: open
 
 GBO offers a central, optional facility that issues attestations for the
-EUDI Wallet, and each source holder (bronhouder) stays responsible for its
-attestations. Can the facility hold the seal key of a source holder, or
-must it call a signing facility under control of the source holder? It
+EUDI Wallet, and each bronhouder stays responsible for its
+attestations. Can the facility hold the seal key of a bronhouder, or
+must it call a signing facility under control of the bronhouder? It
 is also open who holds the qualified seal certificate, which names the
 authentic source, and the status-list certificate. Key custody and
 certificate holding are legal and governance decisions. As a working
@@ -170,15 +170,15 @@ source, and keys in files, which decides nothing for production.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: BZK, RDI, and source holders, with a legal review. PSA [B-13](https://ictu.github.io/GBO-PSA/main/vraagstukken/) and the open decisions of [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [issue #225](https://github.com/ICTU/GBO-demo/issues/225).
+    - **Forum**: BZK, RDI, and bronhouders, with a legal review. PSA [B-13](https://ictu.github.io/GBO-PSA/main/vraagstukken/) and the open decisions of [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [issue #225](https://github.com/ICTU/GBO-demo/issues/225).
     - **Question**: The question became a key and seal question, with three parts:
-        1. Can a central PuB-EAA facility hold and use the seal key material of a source holder? Or must sealing go through a signing facility that the source holder manages (remote signing, an HSM at the source)?
+        1. Can a central PuB-EAA facility hold and use the seal key material of a bronhouder? Or must sealing go through a signing facility that the bronhouder manages (remote signing, an HSM at the source)?
         2. Who holds the qualified seal certificate?
         3. Is the status-list certificate of the source or of the facility?
     - **Answer so far**:
-        - The choice "one issuance server per source holder or one central server" is obsolete.
+        - The choice "one issuance server per bronhouder or one central server" is obsolete.
         - The [GO](https://ictu.github.io/GBO-GO/main/#uitgifte-van-attestaties-voor-de-eudi-wallet-pubeaa-uitgifte) gives GBO the technical role of a central, optional issuance facility: "GBO is not itself a PubEAA provider".
-        - In PSA S11, the source holder stays legally and materially responsible.
+        - In PSA S11, the bronhouder stays legally and materially responsible.
         - The source publishes its own attestation schema and offer ([F-57](findings.md#f-57), [REQ-64](../requirements/sources-identity.md#req-64)).
         - Issuer and reader certificates are a set per source. If material is missing, issuance fails hard ([REQ-58](../requirements/eudi-issuance.md#req-58)).
         - Onboarding is [REQ-65](../requirements/sources-identity.md#req-65) and B-09.
@@ -187,8 +187,8 @@ source, and keys in files, which decides nothing for production.
         - Attestations: the seal on a PuB-EAA is created in a QSCD (ETSI TS 119 471, REQ-EAASP-7.5.3-02, through CIR 2026/1735). The seal uses a qualified certificate per ETSI TS 119 412-6 clause 8. That certificate names the authentic source and the legal basis (eIDAS art. 45f(1)(b)).
         - ASI results: from January 1, 2027, the public sector body or the designated intermediary seals them. It uses at least an advanced seal on a qualified seal certificate. A QSCD is not required there (CIR 2025/1569 art. 9(4), as amended by 2026/1735).
     - **Options**:
-        - (a) The central facility holds the key of each source holder.
-        - (b) Remote signing or an HSM under control of the source holder, which the facility calls.
+        - (a) The central facility holds the key of each bronhouder.
+        - (b) Remote signing or an HSM under control of the bronhouder, which the facility calls.
     - **Current working assumption**: One issuance server with a certificate set per source. The demo keeps the keys in files at the facility. This choice decides nothing about production.
     - **Related**: [F-66](findings-closed.md#f-66), [F-80](findings.md#f-80), [F-81](findings.md#f-81), [REQ-58](../requirements/eudi-issuance.md#req-58), [Q-07](answered-questions.md#q-07), [Q-28](#q-28), [Q-32](#q-32), [Q-37](#q-37), [ADR 0028](../decisions/0028-pubeaa-productization.md), [ADR 0041](../decisions/0041-asi-seal-format.md).
 
@@ -196,7 +196,7 @@ source, and keys in files, which decides nothing for production.
 
 - **Status**: open
 
-Can a source holder identify a citizen with a BSN from a verified EUDI
+Can a bronhouder identify a citizen with a BSN from a verified EUDI
 Wallet PID, with the legal status of a BSN from DigiD? If so, the chain
 must show how the verified disclosure binds to the source query. This is
 a national legal question, because eIDAS does not name the BSN and the
@@ -208,7 +208,7 @@ binds the BSN of the source query to a verified PID.
 ??? note "Options, working assumption and links"
 
     - **Forum**: lawyer and BZK. PSA [B-08](https://ictu.github.io/GBO-PSA/main/vraagstukken/) (identity matching), [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
-    - **Question**: The question is about a BSN from a verified PID disclosure (EUDI Wallet). Can a source holder use that BSN to identify the citizen in a source query, with the same legal status as a BSN from DigiD? If so, which binding between the verified disclosure and the query must the chain show ([issue #133](https://github.com/ICTU/GBO-demo/issues/133))?
+    - **Question**: The question is about a BSN from a verified PID disclosure (EUDI Wallet). Can a bronhouder use that BSN to identify the citizen in a source query, with the same legal status as a BSN from DigiD? If so, which binding between the verified disclosure and the query must the chain show ([issue #133](https://github.com/ICTU/GBO-demo/issues/133))?
     - **Answer so far**: The original question was split.
         - Presentation and combination of attestations by verifiers are outside GBO (GO pattern A).
         - The designation of the Dutch PID issuer is an external dependency.
@@ -333,12 +333,12 @@ shows as two data subjects.
 
 - **Status**: open
 
-A source holder can issue a PuB-EAA itself, or a public body that the
-member state designates issues it on behalf of source holders. For
+A bronhouder can issue a PuB-EAA itself, or a public body that the
+member state designates issues it on behalf of bronhouders. For
 verification of attributes by QTSPs, the law also names a designated
 intermediary. The question is whether the Netherlands designates GBO or
 the management organization for one or both roles, and who supervises
-PuB-EAA issuance. In the working assumption, the source holder is the
+PuB-EAA issuance. In the working assumption, the bronhouder is the
 PuB-EAA provider and GBO runs the technical issuance facility. For
 verification, the demo acts as the designated intermediary, but nobody
 designated it.
@@ -347,7 +347,7 @@ designated it.
 
     - **Forum**: BZK (system responsibility), RDI (supervision of trust services). PSA [B-13, B-14](https://ictu.github.io/GBO-PSA/main/vraagstukken/), [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
     - **Question**: The legal acts give the following background:
-        - The source holder itself can issue a PuB-EAA. "A public sector body that is designated by the Member State" can also issue it on behalf of source holders (art. 3(46)).
+        - The bronhouder itself can issue a PuB-EAA. "A public sector body that is designated by the Member State" can also issue it on behalf of bronhouders (art. 3(46)).
         - For verification by QTSPs, Annex VI names "designated intermediaries recognized at national level".
         - CIR 2025/1569 art. 9(4), as amended by 2026/1735, lets "the designated intermediary recognized at national level" seal the result.
         - The member state notifies a PuB-EAA issuer with a conformity assessment report (art. 45f(3)).
@@ -355,15 +355,15 @@ designated it.
 
         Two sub-questions follow:
 
-        1. Does the Netherlands designate GBO, or the management organization, as PuB-EAA issuer on behalf of source holders (eIDAS art. 3(46))? And as the nationally recognized intermediary for verification (eIDAS Annex VI, CIR 2025/1569 art. 9)?
+        1. Does the Netherlands designate GBO, or the management organization, as PuB-EAA issuer on behalf of bronhouders (eIDAS art. 3(46))? And as the nationally recognized intermediary for verification (eIDAS Annex VI, CIR 2025/1569 art. 9)?
         2. Which body supervises PuB-EAA issuance?
 
     - **Why the demo cannot answer it**: Designation and supervision are administrative decisions.
     - **Options**:
         - (a) GBO or the management organization gets a designation for both roles.
         - (b) GBO or the management organization gets a designation only for verification.
-        - (c) No designation. Each source holder issues and verifies itself, and GBO supplies the technology.
-    - **Current working assumption**: The source holder is the PuB-EAA provider, and GBO runs the technical issuance facility ([ADR 0028](../decisions/0028-pubeaa-productization.md)). For the ASI the demo acts as a designated intermediary ([Q-37](#q-37)). Neither is designated.
+        - (c) No designation. Each bronhouder issues and verifies itself, and GBO supplies the technology.
+    - **Current working assumption**: The bronhouder is the PuB-EAA provider, and GBO runs the technical issuance facility ([ADR 0028](../decisions/0028-pubeaa-productization.md)). For the ASI the demo acts as a designated intermediary ([Q-37](#q-37)). Neither is designated.
     - **Related**: [F-80](findings.md#f-80), [F-81](findings.md#f-81), [Q-17](#q-17), [Q-30](#q-30), [Q-31](#q-31), [Q-37](#q-37), [ADR 0028](../decisions/0028-pubeaa-productization.md), [ADR 0037](../decisions/0037-asi-oauth-front-door.md).
 
 ### Q-29: Is there a legal basis to verify attributes for private QTSPs, and does the ASI return the value on a match? {#q-29}
@@ -633,14 +633,14 @@ status.
 
     - **Related**: [F-86](findings.md#f-86), [F-88](findings.md#f-88), [F-94](findings.md#f-94), [REQ-45](../requirements/eudi-issuance.md#req-45), [REQ-86](../requirements/asi.md#req-86), [REQ-90](../requirements/asi.md#req-90), [REQ-102](../requirements/asi.md#req-102), [E7](standards-feedback.md#e7), [Q-18](#q-18), [Q-29](#q-29), [Q-40](#q-40).
 
-### Q-37: What is GBO's role in the ASI: designated intermediary, technical supplier to source holders, or authentic source itself? {#q-37}
+### Q-37: What is GBO's role in the ASI: designated intermediary, technical supplier to bronhouders, or authentic source itself? {#q-37}
 
 - **Status**: open
 
 GBO builds one ASIP for several authentic sources, and the law allows an
 ASIP to be the source itself or a designated intermediary. The question
 is whether GBO becomes that designated intermediary, stays a technical
-supplier to each source holder, or becomes an authentic source itself.
+supplier to each bronhouder, or becomes an authentic source itself.
 The role decides who seals the result and who answers for the
 correctness of the data. The working assumption is the intermediary
 model, which the GBO team saw as likely on October 14, 2026. The demo
@@ -649,7 +649,7 @@ all of them.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: BZK (system responsibility), the source holders, and a lawyer or DPO.
+    - **Forum**: BZK (system responsibility), the bronhouders, and a lawyer or DPO.
     - **Question**: GBO builds one ASIP for more than one authentic source ([F-89](findings.md#f-89)). The sources describe the role of an ASIP in these ways:
 
         - ETSI TS 119 478 says that the ASIP "can be an authentic source or an intermediary acting on its behalf" (clause 4.2).
@@ -658,12 +658,12 @@ all of them.
         - 2026/1735 lets the source "or the designated intermediary" seal the result.
         - eIDAS art. 3(47) defines an authentic source as a system that "contains and provides" the data. That system is a primary source "or recognized as authentic in accordance with Union or national law".
 
-        Does GBO (or the management organization) become the designated intermediary for ASI verification on behalf of the source holders? Or does each source holder stay ASIP itself, with GBO as technical supplier? Or is GBO itself recognized as an authentic source? In each case, who seals, and who answers for the correctness of the data?
+        Does GBO (or the management organization) become the designated intermediary for ASI verification on behalf of the bronhouders? Or does each bronhouder stay ASIP itself, with GBO as technical supplier? Or is GBO itself recognized as an authentic source? In each case, who seals, and who answers for the correctness of the data?
 
     - **Why the demo cannot answer it**: The role follows from a designation and from the statutory responsibility for correctness. Those are administrative and legal decisions.
     - **Options**:
-        - (X) GBO is the designated intermediary. `provider` is GBO, `authenticSource` is the source holder. GBO seals with one qualified seal of its own. This needs a national designation. The responsibility for correctness stays with the source holder.
-        - (Y) Each source holder is ASIP itself, and GBO supplies the technology. `provider` is the source holder, there is no `authenticSource`, and each source holder seals itself. GBO is processor or technical service provider. GBO can possibly run one hosted service that has an identity and a seal per source.
+        - (X) GBO is the designated intermediary. `provider` is GBO, `authenticSource` is the bronhouder. GBO seals with one qualified seal of its own. This needs a national designation. The responsibility for correctness stays with the bronhouder.
+        - (Y) Each bronhouder is ASIP itself, and GBO supplies the technology. `provider` is the bronhouder, there is no `authenticSource`, and each bronhouder seals itself. GBO is processor or technical service provider. GBO can possibly run one hosted service that has an identity and a seal per source.
         - (Z) GBO is itself the authentic source. `provider` is GBO, and there is no `authenticSource`. This needs statutory recognition of the GBO system as authentic. GBO then answers for data it does not manage, next to the base register that the law designates.
     - **Current working assumption**: Model X. In the team estimate of October 14, 2026, model X is likely and model Z is not. The demo has `provider` "GBO demo ASIP" ([`dataservices.json#L6`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/config/dataservices.json#L6)). In its source description, the demo names the BRP as authentic source by its legal name. The demo uses one seal.
 
@@ -676,7 +676,7 @@ all of them.
 - **Status**: partly answered
 
 The ASIP must turn a verification request into a query on the source.
-One part is answered: the source holder manages the link between an
+One part is answered: the bronhouder manages the link between an
 attribute and its own schema, in the metadata that it publishes. The
 demo builds this: the ASIP derives one query per request from that
 description, and the code adapter for the BRP is removed. Still open is
@@ -686,11 +686,11 @@ sources, and configuration or a published description fits tens of sources.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: The management organization, the source holders, and GBO architecture.
+    - **Forum**: The management organization, the bronhouders, and GBO architecture.
     - **Question**:
         1. How many sources must the ASIP open up, and how fast must a new source connect?
-        2. Who manages the link between an attribute and the schema of the source: GBO in the ASIP, or the source holder in a published description?
-    - **Answer so far**: Sub-question 2 is answered (October 27, 2026): the source holder manages the link, in its published description. The team chose option c. The source describes the attributes that it offers for verification in its source metadata. It does this as capability `asi`, next to `eudi`, in the same document. As a result, the ASIP becomes generic ([issue #592](https://github.com/ICTU/GBO-demo/issues/592)). The plan contains these choices:
+        2. Who manages the link between an attribute and the schema of the source: GBO in the ASIP, or the bronhouder in a published description?
+    - **Answer so far**: Sub-question 2 is answered (October 27, 2026): the bronhouder manages the link, in its published description. The team chose option c. The source describes the attributes that it offers for verification in its source metadata. It does this as capability `asi`, next to `eudi`, in the same document. As a result, the ASIP becomes generic ([issue #592](https://github.com/ICTU/GBO-demo/issues/592)). The plan contains these choices:
 
         - Each attribute has a `selection`. The ASIP merges the selections of the requested attributes into one query ([REQ-92](../requirements/asi.md#req-92) still applies).
         - There is no field for fuzzy matching. The ASIP applies `MatchWithVariation` only to text values. The value schema shows which values are text. ETSI leaves fuzzy matching to the ASIP and defines it as orthographic variation.
@@ -819,7 +819,7 @@ shows no retrieved status, only Active, Expired, and Revoked.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: The tech lead, and for option B also the source holders.
+    - **Forum**: The tech lead, and for option B also the bronhouders.
     - **Question**: FR-11 and FR-22 (FR-DvTP v0.9) require that the register records whether and when data was first retrieved under a consent. After the review of [F-19](findings.md#f-19), this information is a field in the register. The register does not derive it from the audit log. The open point is how the register learns of a successful delivery. It has three sub-questions:
 
         1. Does "retrieved" mean that data was delivered, or that a source used the consent?
@@ -959,7 +959,7 @@ status query gave 14.5 ms at the median and 82 ms at most.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: The tech lead, the management organization, the service providers and source holders (expected use per use case), and BSNk (transformation capacity).
+    - **Forum**: The tech lead, the management organization, the service providers and bronhouders (expected use per use case), and BSNk (transformation capacity).
     - **Question**: Which volumes must the register, the status query, and the BSNk link handle, at start and after a few years? Who supplies the estimate? These figures are necessary for each moment:
 
         1. Citizens with at least one consent.
@@ -1419,7 +1419,7 @@ is synchronous.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: PSA/GO authors, source holders, BZK, PSA [S08](https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter), [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
+    - **Forum**: PSA/GO authors, bronhouders, BZK, PSA [S08](https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter), [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
     - **Question**: REQ-ASIP-4.3-04 (ETSI TS 119 478) lets an ASIP choose between two interfaces: the clause 6.1 interface (HTTP and OAuth) and the clause 6.2 interface (ISO 15000). For verify, Annex IV of CIR 2026/1735 designates clause 6.1.1, clause 6.2.3, or both. Only clause 6.2 has a deferred response (6.2.3.2.3, 6.2.4.3.3), for a source that cannot answer immediately. Clause 6.1 is synchronous. The question has three parts:
         1. Is clause 6.1 sufficient, or must a Dutch ASIP also offer clause 6.2?
         2. Are there sources that cannot answer immediately, so that they need a deferred response?
@@ -1531,7 +1531,7 @@ Peer ID directly with the consumer OIN in the consent.
 ??? note "Options, working assumption and links"
 
     - **Forum**: tech lead, management organization (certificate profile and register), PSA [S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel).
-    - **Question**: Is "Peer ID = OIN" a system rule that policy can build on? Or must the link between peer and organization come from the admission register? In FSC, the Peer ID is the `serialNumber` of the FSC certificate. With a PKIoverheid certificate, that value is the OIN. PSA S04 requires that the setup "links the technical identity to the admitted legal organization and role". [REQ-67](../requirements/sources-identity.md#req-67) fixes this link only for the source holder side.
+    - **Question**: Is "Peer ID = OIN" a system rule that policy can build on? Or must the link between peer and organization come from the admission register? In FSC, the Peer ID is the `serialNumber` of the FSC certificate. With a PKIoverheid certificate, that value is the OIN. PSA S04 requires that the setup "links the technical identity to the admitted legal organization and role". [REQ-67](../requirements/sources-identity.md#req-67) fixes this link only for the bronhouder side.
     - **Why the demo cannot answer it**: In the demo, every peer is one organization with an OIN as Peer ID, so both options behave the same.
     - **Options**: The link between peer and organization can come from one of two places:
         - (a) Peer ID = OIN as a system rule. The certificate profile guarantees this rule, and policy can read the Peer ID as OIN.
@@ -1616,7 +1616,7 @@ addition, and puts the voorvoegsel in the family name.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: BZK (registration in the catalogue), BRP source holder, PSA/GO authors (ASI profile).
+    - **Forum**: BZK (registration in the catalogue), BRP bronhouder, PSA/GO authors (ASI profile).
     - **Question**: The ASIP compares an attribute as a JSON object. The object has the form of the JSON Schema that is registered for the attribute in the catalogue of attributes (ETSI TS 119 478 REQ-ASIP-6.1.1.1-06-02-01). As long as the catalogue has no schemas, GBO sets the schema per attribute identifier itself. In its source metadata, the source then describes how it maps its fields to that schema.
 
         The BRP splits the house number into huisnummer, huisletter, and huisnummertoevoeging. It splits the surname into voorvoegsel and geslachtsnaam. The PID divides the address differently. CIR 2024/2977 first had a `resident_house_number` "including any affix or suffix". Since the amendment 2026/1731, that field is gone, and `resident_street` is "including the house number and any affix or suffix thereof".
@@ -1729,7 +1729,7 @@ into the register in advance.
 
 - **Status**: open
 
-The functional requirements ask the source holder to seal all outgoing
+The functional requirements ask the bronhouder to seal all outgoing
 data sets with a qualified electronic seal, without naming the standard.
 In the ASI, the ASIP already seals every result, and in issuance the
 attestation carries the seal of the issuer. A DvTP source response has
@@ -1740,8 +1740,8 @@ is one seal for every channel, and in the demo only the ASI seals.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: tech lead, owner of FR-DvTP, source holders.
-    - **Question**: FR-27 requires that the source holder seals all outgoing data sets with a qualified electronic seal. The seal makes origin and integrity provable (criterion 1). The seal must meet "applicable system standards" (criterion 2), but FR-27 does not name the standard.
+    - **Forum**: tech lead, owner of FR-DvTP, bronhouders.
+    - **Question**: FR-27 requires that the bronhouder seals all outgoing data sets with a qualified electronic seal. The seal makes origin and integrity provable (criterion 1). The seal must meet "applicable system standards" (criterion 2), but FR-27 does not name the standard.
 
         In the ASI, the ASIP already seals every verification result ([REQ-83](../requirements/asi.md#req-83)). [Q-32](#q-32) covers the format. In issuance, the attestation carries the seal of the issuer ([Q-17](#q-17)).
 
@@ -1774,7 +1774,7 @@ one validity per consent, equal to the expiry time of the proof.
 ??? note "Options, working assumption and links"
 
     - **Forum**: tech lead, owner of FR-DvTP, management organization (duration per service in the catalog).
-    - **Question**: Must a consent have a separate validity per source? Or does one validity apply to the whole consent? FR-38 criterion 2 lets each consent rule refer to "(source holder, data element, validity period)". So FR-38 has a validity per source. [REQ-19](../requirements/consent.md#req-19) and the [register data model](../requirements/consent.md#consent-register) know one valid-until per consent. The proof has one expiry time, equal to that valid-until.
+    - **Question**: Must a consent have a separate validity per source? Or does one validity apply to the whole consent? FR-38 criterion 2 lets each consent rule refer to "(bronhouder, data element, validity period)". So FR-38 has a validity per source. [REQ-19](../requirements/consent.md#req-19) and the [register data model](../requirements/consent.md#consent-register) know one valid-until per consent. The proof has one expiry time, equal to that valid-until.
     - **Why the demo cannot answer it**: Under one consent, the demo calls one source, so the difference is not visible.
     - **Options**: The validity can apply at one of two levels:
         - (a) One validity per consent, as in REQ-19. FR-38 must then change.
@@ -1830,7 +1830,7 @@ language.
 ??? note "Options, working assumption and links"
 
     - **Forum**: tech lead, PSA [S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie), [S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie).
-    - **Question**: Which option does GBO follow for its reference policy? Does the requirement also apply to policy that a source holder writes itself, or only as a guideline (RL)? PSA S05 requires that "the interface and the policy are product-independent". S06 requires that policy is "not tied to one specific policy language or implementation" (see also [P-09](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)). [REQ-42](../requirements/authorization.md#req-42) covers the interface.
+    - **Question**: Which option does GBO follow for its reference policy? Does the requirement also apply to policy that a bronhouder writes itself, or only as a guideline (RL)? PSA S05 requires that "the interface and the policy are product-independent". S06 requires that policy is "not tied to one specific policy language or implementation" (see also [P-09](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)). [REQ-42](../requirements/authorization.md#req-42) covers the interface.
 
         The reference policy that GBO delivers is in one policy language, for one engine. A source that chooses another PDP cannot take this policy over. That source also cannot show that its decisions are the same.
 
@@ -1861,7 +1861,7 @@ There is no working assumption, because the demo has no OOTS route.
     - **Forum**: BZK and OOTS coordination, tech lead, PSA [B-12](https://ictu.github.io/GBO-PSA/main/vraagstukken/), [S08](https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter), [S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus).
     - **Question**: Does GBO build the OOTS adapter, or does the OOTS-V operator extend its facility with the GBO interface? Where is the boundary between OOTS-V and the mapping function?
 
-        PSA S08 lets the OOTS adapter connect to the national interface of OOTS-V. OOTS requests use the same generic authorization and logging as other data requests. Source holders do not depend on AS4/eDelivery. The Basisinrichting OOTS stays responsible for transport, discovery, and the European process interaction. If the source holder configures a mapping, a central mapping function translates to OOTS-EDM.
+        PSA S08 lets the OOTS adapter connect to the national interface of OOTS-V. OOTS requests use the same generic authorization and logging as other data requests. Bronhouders do not depend on AS4/eDelivery. The Basisinrichting OOTS stays responsible for transport, discovery, and the European process interaction. If the bronhouder configures a mapping, a central mapping function translates to OOTS-EDM.
 
         Who builds the adapter is an open decision of S08. This design has no OOTS requirement. Three items depend on the choice:
         - The route of an OOTS request to the source.

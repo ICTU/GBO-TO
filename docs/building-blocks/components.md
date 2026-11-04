@@ -37,7 +37,7 @@ graph TB
         TXLOG[Txlog API]
     end
 
-    subgraph SRC["Source holder (per source: BD, RvIG, LVG)"]
+    subgraph SRC["Bronhouder (per source: BD, RvIG, LVG)"]
         SIDE["Source gateway<br/>(bron-sidecar)"]
         DEC[Decryption component]
         GQL[GraphQL source API]
@@ -129,7 +129,7 @@ The authorization chain has the following components:
 | Consent PIP | Verifies the consent token in policy: ES256 signature, issuer, audience, type, validity with 30 s skew, and required claims. It fetches the JWKS directly from the register and caches it for 300 s. It fetches the status for each evaluation over FSC, through the PDP's Outway. The status fetch has no cache and a 2 s timeout. Every failure has its own reason code. The engine copies the resolved consent into its response. | [policies/gbo/consent.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego) |
 | Authorization rules | Five plain-Rego rules, listed in the next table. Each rule names its regime, its FSC services, and its fields. It also states its own reasons to deny. | [policies/gbo/rules](https://github.com/ICTU/GBO-demo/tree/v0.9.0/policies/gbo/rules) |
 | Contract acceptance policy | Decides whether a provider's FSC Manager signs a submitted contract. It accepts grant types service connection and delegated service connection. It applies eight ordered refusal codes, from `NOT_AN_AUTOSIGN_REQUEST` to `DELEGATION_NOT_REGISTERED`. It keeps a missing register (`ADMISSION_REGISTER_UNAVAILABLE`) apart from a missing entry (`PARTY_NOT_IN_REGISTRY`). | [policies/fsc/autosign.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L167-L174) |
-| Admission register | Holds the admitted participants: source holders (bronhouders), GBO system participants (EDI issuer, PDP, ASIP), and consumers. Each entry has `active` and `allowed_source_peer_ids`. The register also holds integrator mandates (`integrations`) and serves them as `acts_for`. OpenFTV pulls it every 5 s over a network that only the PDP shares. The register deactivates an entry and never deletes it. It keeps no change log ([REQ-123](../requirements/admission.md#req-123)). It is a SQLite database with an admin UI. | [services/dvtp-onboarding-register](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register), [PIP pull](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml) |
+| Admission register | Holds the admitted participants: bronhouders, GBO system participants (EDI issuer, PDP, ASIP), and consumers. Each entry has `active` and `allowed_source_peer_ids`. The register also holds integrator mandates (`integrations`) and serves them as `acts_for`. OpenFTV pulls it every 5 s over a network that only the PDP shares. The register deactivates an entry and never deletes it. It keeps no change log ([REQ-123](../requirements/admission.md#req-123)). It is a SQLite database with an admin UI. | [services/dvtp-onboarding-register](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register), [PIP pull](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml) |
 
 The PID regime has no positive evidence of its own. A request without a
 consent token enters it ([F-70](../traceability/findings.md#f-70)). For this
@@ -212,9 +212,9 @@ section).
 [Pseudonymization](../concepts/pseudonymization.md) explains the values. The
 decision is [ADR-0032](../decisions/0032-consent-proof.md).
 
-## Level 2: source holder {#level-2-bronhouder}
+## Level 2: bronhouder {#level-2-bronhouder}
 
-The source holder runs the following components:
+The bronhouder runs the following components:
 
 | Component | Responsibility | Implementation |
 |---|---|---|
@@ -362,7 +362,7 @@ An optional `data_access` block (`transport`, `provider_peer_id`) gives the
 data leg a different transport than the metadata leg. The `file` transport
 is an exception for a source without its own endpoint. In that case, the
 operator takes over the description. GBO does not record the agreement of
-the source holder
+the bronhouder
 ([F-71](../traceability/findings.md#f-71), [AV-08](../requirements/admission.md#av-08)).
 
 The legal identity of the source comes from the certificate set with the
@@ -385,7 +385,7 @@ In demo v0.9.0, the RvIG source
 ([rvig.yaml](https://github.com/ICTU/GBO-demo/blob/v0.9.0/sources/configured/rvig.yaml))
 uses the Belastingdienst peer `…0200` and the OIN of the Belastingdienst.
 This is a demo shortcut. The demo therefore does not show one OIN per
-source holder.
+bronhouder.
 
 ### Source schema and the PDP copy
 

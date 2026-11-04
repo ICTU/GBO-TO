@@ -44,7 +44,7 @@ flowchart TB
   subgraph basis["GBO Basis at the source"]
     direction LR
     pep("FSC Inway = PEP<br/>+ PDP")
-    src[("Source holder: source<br/>gateway + GraphQL API")]
+    src[("Bronhouder: source<br/>gateway + GraphQL API")]
   end
 
   gov ~~~ dv ~~~ cit ~~~ wallet ~~~ qtsp ~~~ eu
@@ -109,7 +109,7 @@ flowchart LR
     tr[("Consent register")]
     adl[("ADL<br/>decision records")]
   end
-  subgraph src["At the source holder"]
+  subgraph src["At the bronhouder"]
     direction TB
     gw("Source gateway")
     dec("Decryption<br/>component")
@@ -205,15 +205,15 @@ The authorization chain and the FSC group use these interfaces:
 
 | Interface | Between | Protocol and standard | Implemented in |
 |---|---|---|---|
-| Data request | Consumer Outway ↔ source holder (bronhouder) Inway | FSC (OpenFSC v2.4.0): mTLS, access token, and grant hash. Grants carry no properties. | [fsc-infra](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml) |
-| Delegated data request | Integrator Outway ↔ source holder Inway | FSC `DelegatedServiceConnectionGrant`, signed by the integrator, the represented consumer, and the provider ([REQ-106](requirements/consent.md#req-106)) | [seed-bri-delegation-int.sh](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-delegation-int.sh) |
+| Data request | Consumer Outway ↔ bronhouder Inway | FSC (OpenFSC v2.4.0): mTLS, access token, and grant hash. Grants carry no properties. | [fsc-infra](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml) |
+| Delegated data request | Integrator Outway ↔ bronhouder Inway | FSC `DelegatedServiceConnectionGrant`, signed by the integrator, the represented consumer, and the provider ([REQ-106](requirements/consent.md#req-106)) | [seed-bri-delegation-int.sh](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-delegation-int.sh) |
 | Authorization | Inway (PEP) ↔ PDP | OpenID AuthZEN 1.0, `POST /authzen/v1/evaluation` over HTTPS. The Inway passes the raw body, and the PDP maps it per the FTV GraphQL profile ([REQ-42](requirements/authorization.md#req-42)). | [openftv-pdp](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/openftv-pdp) |
 | Contract decision | Provider Manager → PDP | AuthZEN autosign request for each submitted contract ([REQ-62](requirements/admission.md#req-62)) | [autosign.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego) |
 | Participant admission | PDP ← admission register | OpenFTV PIP pull, `GET /internal/openftv/participants`, every 5 s, on a network that only the PDP shares ([REQ-61](requirements/admission.md#req-61)) | [dvtp-onboarding.yaml](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml) |
 
-### Source holder {#bronhouder}
+### Bronhouder {#bronhouder}
 
-The source holder uses these interfaces:
+The bronhouder uses these interfaces:
 
 | Interface | Between | Protocol and standard | Implemented in |
 |---|---|---|---|
@@ -272,7 +272,7 @@ Two interfaces are designed but not built in demo v0.9.0:
 | Interface | Between | Protocol and standard | Implemented in |
 |---|---|---|---|
 | OOTS evidence exchange | EU access points ↔ OOTS adapter | AS4/eDelivery and OOTS-EDM. This interface is *designed*. For more information, see [ADR-0020](decisions/0020-as4-bridge-for-oots.md) and [Q-79](traceability/open-questions.md#q-79). | — |
-| Government data request | Government consumer ↔ source holder Inway | FSC with its own positive evidence. This interface is *designed*. For more information, see [design-level scenarios](runtime/design-level.md). | — |
+| Government data request | Government consumer ↔ bronhouder Inway | FSC with its own positive evidence. This interface is *designed*. For more information, see [design-level scenarios](runtime/design-level.md). | — |
 
 ## Scope
 
@@ -299,7 +299,7 @@ This design covers the following parts of the system:
 
 The following parts are out of scope:
 
-- the internal architecture of source holder systems behind the GraphQL API
+- the internal architecture of bronhouder systems behind the GraphQL API
 - the EUDI wallet, DigiD, and BSNk themselves
 - the QTSP, the Discover Interface, and the national register of relying
   parties

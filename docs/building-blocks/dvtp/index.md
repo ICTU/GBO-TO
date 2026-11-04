@@ -194,7 +194,7 @@ of three steps:
 |---|---|---|
 | What the service provider gets | A consent ID and an encrypted identity | A signed consent proof that holds the consent ID and an encrypted value per source |
 | What the register stores | The encrypted identity, scope, purpose, validity | The consent, plus the polymorphic values of the citizen under its own reference. No encrypted values per source |
-| Who checks the consent | The source holder (bronhouder) asks the register | The PDP of the source checks the proof itself, then asks the register for the status over FSC |
+| Who checks the consent | The bronhouder asks the register | The PDP of the source checks the proof itself, then asks the register for the status over FSC |
 
 The design choice behind these differences is in
 [ADR-0032](../../decisions/0032-consent-proof.md). Whether the register and

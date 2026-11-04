@@ -1,6 +1,6 @@
 # Building block view
 
-GBO has one base and three channels. GBO Basis sits at every source holder (bronhouder)
+GBO has one base and three channels. GBO Basis sits at every bronhouder
 and opens the source in one standard way. The DvTP, EUDI and OOTS
 channels each serve a different kind of consumer, and GBO Basis feeds all
 three. This picture is the overview of the
@@ -13,7 +13,7 @@ levels go from this overview, to one page per block, to the
 
 ```mermaid
 flowchart LR
-  subgraph source holder["Source holder"]
+  subgraph bronhouder["Bronhouder"]
     direction LR
     bron[("Government source<br/>BRP · BD · LVG · …")]
     subgraph gbo["GBO Basis"]
@@ -69,7 +69,7 @@ flowchart LR
   class pp,dv,qtsp,wallet,ootsb,eu ext
   class bron,burger source
   class cfg,core,tv,pp,asi,pubeaa,ootsa zoom
-  style source holder fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
+  style bronhouder fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
   style gbo fill:#F4F5F7,stroke:#16A34A
   style eudi fill:#F4F5F7,stroke:#D1D5DB
   style oots fill:#F4F5F7,stroke:#D1D5DB
@@ -96,7 +96,7 @@ The overview has seven GBO blocks. Five of them run in the demo:
 |---|---|---|---|
 | Generic source access | Opens a source over FSC with GraphQL. The PDP of the source decides on every request, field by field. | Built | [GBO Basis](gbo-basis/index.md) |
 | Source configuration | The source describes its own services. GBO validates the description and activates it as a release. | Built | [Source configuration](gbo-basis/source-configuration.md) |
-| GBO tools | Help a source holder that cannot offer GraphQL, through a translation layer. | Design only | [ADR-0027](../decisions/0027-onboarding-toolkit.md) |
+| GBO tools | Help a bronhouder that cannot offer GraphQL, through a translation layer. | Design only | [ADR-0027](../decisions/0027-onboarding-toolkit.md) |
 | Consent facility (toestemmingsvoorziening) | The citizen gives, views and revokes consent. The register signs a consent proof for the consumer. | Built, with a DigiD mock | [DvTP channel](dvtp/index.md) |
 | PuB-EAA provider | Issues an attestation from source data to the wallet of the citizen. | Built on the nl-wallet stack | [PuB-EAA provider](eudi/pubeaa.md) |
 | ASI provider | Lets a QTSP verify or retrieve an attribute at the source (eIDAS article 45e). | Built, demo grade | [ASI provider](eudi/asi.md) |

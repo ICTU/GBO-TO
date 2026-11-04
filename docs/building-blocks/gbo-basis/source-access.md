@@ -16,7 +16,7 @@ detail and the links to the code.
 ```mermaid
 flowchart LR
   out["Outway of<br/>the caller"]
-  subgraph bh["At the source holder"]
+  subgraph bh["At the bronhouder"]
     direction LR
     pep("FSC Inway<br/>PEP")
     subgraph pdpg["PDP"]

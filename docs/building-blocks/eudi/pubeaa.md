@@ -3,7 +3,7 @@
 The PuB-EAA provider issues an attestation with source data to the EUDI
 wallet of the citizen. It is flow A of interaction pattern A in the
 [Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/#patroon-a-burger-gebruikt-eudi-wallet).
-GBO operates the technical issuance facility, and each source holder (bronhouder) stays
+GBO operates the technical issuance facility, and each bronhouder stays
 the PuB-EAA provider of its own attestations
 ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). The
 facility runs on the nl-wallet issuance server
@@ -383,19 +383,19 @@ caller can ask for the akte of any BSN, because of the callback gap.
 
 ## Trust roles and the PuB-EAA provider
 
-Each source holder needs its own certificate per role, and one certificate
+Each bronhouder needs its own certificate per role, and one certificate
 never fills two roles. The following figure shows the roles around one
-source holder:
+bronhouder:
 
 ```mermaid
 flowchart LR
   subgraph legal["Legal role"]
-    bh["Source holder<br/>PuB-EAA provider"]
+    bh["Bronhouder<br/>PuB-EAA provider"]
   end
   subgraph tech["Technical role"]
     fac("GBO issuance facility<br/>probably the EEAIssuer")
   end
-  subgraph certs["Certificate set of one source holder"]
+  subgraph certs["Certificate set of one bronhouder"]
     direction TB
     iss[("Issuer certificate<br/>production: qualified seal<br/>in a QSCD")]
     rdr[("Reader certificate<br/>production: access certificate")]
@@ -431,10 +431,10 @@ decided.*
 {: .caption }
 
 [ADR-0028](../../decisions/0028-pubeaa-productization.md) (proposed)
-divides the roles. The source holder is the PuB-EAA provider and stays
+divides the roles. The bronhouder is the PuB-EAA provider and stays
 legally responsible for content, validity and revocation. GBO operates the
 technical issuance facility and is probably the `EEAIssuer` in the
-notification of each source holder. The facility is optional: a source holder
+notification of each bronhouder. The facility is optional: a bronhouder
 can run its own credential issuer.
 
 Since August 2026, PuB-EAA issuance falls under the same standard as QEAA
@@ -460,7 +460,7 @@ The demo follows flow A of pattern A. It differs in three points:
 
 | Point | Globaal Ontwerp | Demo v0.9.0 |
 |---|---|---|
-| Role of GBO | A technical, central and optional facility. GBO is not a PuB-EAA provider. | The same. The source holder is the provider ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). |
+| Role of GBO | A technical, central and optional facility. GBO is not a PuB-EAA provider. | The same. The bronhouder is the provider ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). |
 | Authorization | An Autorisatievoorziening authorizes the PuB-EAA facility (voorziening) after a PID login. | The issuance server checks the PID itself. No separate authorization service exists. |
 | Semantic mapping | A shared GBO facility translates the format of the source. | The source maps its own fields to claims with gbo-simple-v1. No translation layer exists. |
 

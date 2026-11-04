@@ -12,7 +12,7 @@ Source data must become attestation claims through a mapping. The source
 must be able to declare this mapping in its metadata. GBO must be able to
 execute the mapping without trusting logic from the source.
 
-The source holder (bronhouder) stays responsible for the attestation content. So GBO must
+The bronhouder stays responsible for the attestation content. So GBO must
 not add to the content or convert it
 ([REQ-116](../requirements/eudi-issuance.md#req-116)).
 

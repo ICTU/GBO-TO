@@ -217,7 +217,7 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
       does not alone decide what a party gets. The single interface follows
       from the design:
       [PSA S07](https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting)
-      ("een source holder (bronhouder) gebruikt voor de GBO-interactiepatronen één logisch
+      ("een bronhouder gebruikt voor de GBO-interactiepatronen één logisch
       interface") and
       [P-06 and P-08](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
     - **Addressee**: GBO-delivered component: channel adapters (in demo
@@ -530,7 +530,7 @@ the FTV GraphQL profile for AuthZEN.
               bundle.
             - In the pipeline of the source, before a schema change goes live.
               For a source with its own release cycle, this part belongs to
-              the source holder.
+              the bronhouder.
 
 ### Removed numbers
 
@@ -621,19 +621,19 @@ That rule is [REQ-10](consent.md#req-10) on the consent page.
 The guidelines (RL-NN) cover the management side of the authorization
 function: how a source manages its policy and rolls it out. They are
 generic and apply to every source, whatever the route (DvTP, EUDI,
-ASI). They are guidelines for source holders and are no system requirements.
+ASI). They are guidelines for bronhouders and are no system requirements.
 The design is in
 [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie).
 
 ### Why the items are guidelines and not requirements
 
 The policy administration point (PAP) and the PDP are at the source. The
-PDP is behind the FSC Inway of the source holder. The management function
+PDP is behind the FSC Inway of the bronhouder. The management function
 (OpenFTV Manager) serves exactly that PDP. The demo runs all of this in
 one compose stack. That is a demo artifact and makes no statement about
 the architecture.
 
-So all policy management is in the domain of the source holder:
+So all policy management is in the domain of the bronhouder:
 
 - The policy engine is a product that the source chooses. The demo uses
   OpenFTV, but that is a demo choice and is no rule.
@@ -646,7 +646,7 @@ A GBO MUST on these points is a requirement on the installation of another
 party. Nobody can enforce it, and it conflicts with the federated
 direction of [Q-02](../traceability/answered-questions.md#q-02). For that
 reason, each item is a guideline, written as SHOULD, with the reason and
-the evidence. A source holder can use a guideline as advice, or as a
+the evidence. A bronhouder can use a guideline as advice, or as a
 selection criterion for an engine choice. A guideline is no testable
 requirement.
 
@@ -688,7 +688,7 @@ mean.
       [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie)
       ("beleid is machineleesbaar, versieerbaar",
       "de ontvanger kan de authenticiteit en integriteit van gepubliceerde beleidssets controleren").
-    - **Addressee**: guideline for source holders.
+    - **Addressee**: guideline for bronhouders.
     - **Evidence**: a bundle with a version
       ([`gbo-pdp.yaml#L11-L17`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml#L11-L17)).
       If `PDP_BUNDLE_MANAGER` is set, the PDP fetches the bundle
@@ -721,7 +721,7 @@ mean.
       [D-11](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/). If
       management runs through the decision policy, the outcome is undefined,
       or the decision policy must open the management API.
-    - **Addressee**: guideline for source holders, and a selection criterion for
+    - **Addressee**: guideline for bronhouders, and a selection criterion for
       an engine choice.
     - **Evidence**: an own Cedar store that fails closed
       ([`docker-compose.yml#L254-L269`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L254-L269),
@@ -754,7 +754,7 @@ mean.
       ("beheerrechten zijn beperkt, tijdelijk en aantoonbaar toegekend") and
       [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie)
       (owner, approver).
-    - **Addressee**: guideline for source holders.
+    - **Addressee**: guideline for bronhouders.
     - **Evidence**: roles
       ([`realm-gbo.json#L11-L19`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager-ui/keycloak/realm-gbo.json#L11-L19)),
       a deployment identity with a short-lived token
@@ -785,7 +785,7 @@ mean.
     - **Source**: design.
       [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie)
       ("wijzigingshistorie", "een spoedprocedure en terugrolprocedure zijn beschikbaar").
-    - **Addressee**: guideline for source holders.
+    - **Addressee**: guideline for bronhouders.
     - **Evidence**: [`seed-openftv-manager.py#L116`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/seed-openftv-manager.py#L116)
       (`retire_stale`).
     - **Related**: [REQ-59](logging-audit.md#req-59),
@@ -813,7 +813,7 @@ mean.
       [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie)
       ("tests valideren wijzigingen vóór publicatie",
       "bij storingen vallen zij gecontroleerd terug").
-    - **Addressee**: guideline for source holders.
+    - **Addressee**: guideline for bronhouders.
     - **Evidence**: `make policy-check` runs before every start
       ([`Makefile#L92`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L92),
       [PR #372](https://github.com/ICTU/GBO-demo/pull/372), duplicate names in

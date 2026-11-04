@@ -171,7 +171,7 @@ One FSC peer can host more than one logical source. In the default demo,
 the RvIG and LVG sources use the Belastingdienst peer `…0200` and its OIN.
 Each source still has its own service, gateway, metadata document, and
 certificate set. This shared peer is a demo shortcut. The demo therefore
-does not show one OIN per source holder (bronhouder)
+does not show one OIN per bronhouder
 ([REQ-67](requirements/sources-identity.md#req-67)).
 
 ### ASI units
@@ -239,7 +239,7 @@ too broad ([REQ-45](requirements/eudi-issuance.md#req-45)). The ASI wallet
 verifier trusts a fixed list: the pre-production PID issuer and the
 development issuer CA. Neither list is the EU Trusted List.
 
-Production needs separate certificate roles per source holder for EUDI:
+Production needs separate certificate roles per bronhouder for EUDI:
 access, registration, qualified seal, and status list. It is open which
 trust list anchors PuB-EAA providers
 ([Q-30](traceability/open-questions.md#q-30)). [Identity and
@@ -298,7 +298,7 @@ The demo-grade choices in the following lists must change for production.
 
 Authorization and consent have these demo-grade choices:
 
-- One PDP serves all providers. The target is a PDP per source holder
+- One PDP serves all providers. The target is a PDP per bronhouder
   ([ADR-0004](decisions/0004-federated-authorization.md)). The PDP does not
   start without its ADL database, so `postgres-ftv` runs in every profile.
 - Every DvTP decision needs the consent status, live, over FSC. By

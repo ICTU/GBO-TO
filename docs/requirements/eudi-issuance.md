@@ -5,7 +5,7 @@ wallet (the PuB-EAA route). The citizen discloses a PID from the wallet.
 The nl-wallet issuance server verifies the disclosure and calls the GBO
 EUDI adapter. The adapter queries the source over FSC through the generic
 PEP-PDP chain. Then the issuance server issues the attestation under the
-certificate set of the source holder (bronhouder).
+certificate set of the bronhouder.
 
 This route exposed a generic basis. The generic pages hold that basis:
 
@@ -187,9 +187,9 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
         - More than one result from the source leads to a refusal
             ([REQ-116](#req-116)).
 
-## REQ-58: Every source holder has its own certificate set for issuance, and missing material fails {#req-58}
+## REQ-58: Every bronhouder has its own certificate set for issuance, and missing material fails {#req-58}
 
-> The GBO issuance facility MUST keep a certificate set of its own per source holder. The set holds a certificate that signs attestations, and an access certificate with which issuance shows itself to the wallet. The facility MUST NOT sign an attestation or a request to the wallet with the set of another source holder, in any case. If the set of a source is missing, incomplete, or differs from what is activated, issuance MUST refuse for that source. Issuance MUST NOT fall back to another set.
+> The GBO issuance facility MUST keep a certificate set of its own per bronhouder. The set holds a certificate that signs attestations, and an access certificate with which issuance shows itself to the wallet. The facility MUST NOT sign an attestation or a request to the wallet with the set of another bronhouder, in any case. If the set of a source is missing, incomplete, or differs from what is activated, issuance MUST refuse for that source. Issuance MUST NOT fall back to another set.
 
 | Case | Outcome |
 |---|---|
@@ -262,16 +262,16 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
             ([`qtsp_issuance.go#L109-L131`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/qtsp_issuance.go#L109-L131)).
             Missing QTSP material does not block source issuance.
 
-## REQ-77: An attestation gets the validity and revocation policy of the source holder {#req-77}
+## REQ-77: An attestation gets the validity and revocation policy of the bronhouder {#req-77}
 
-> For each attestation type, the GBO issuance facility MUST apply the validity period that the source holder records. The facility MUST NOT apply a value from its own code. An attestation that is valid for more than 24 hours MUST carry a status reference with which it can be revoked. On instruction of the source holder, the facility MUST be able to revoke an issued attestation, without an action of the holder.
+> For each attestation type, the GBO issuance facility MUST apply the validity period that the bronhouder records. The facility MUST NOT apply a value from its own code. An attestation that is valid for more than 24 hours MUST carry a status reference with which it can be revoked. On instruction of the bronhouder, the facility MUST be able to revoke an issued attestation, without an action of the holder.
 
 | Case | Outcome |
 |---|---|
-| Validity recorded by the source holder | issued with that validity (*proposal, demo v0.9.0 uses 365 days for every source*) |
+| Validity recorded by the bronhouder | issued with that validity (*proposal, demo v0.9.0 uses 365 days for every source*) |
 | Validity longer than 24 hours | status reference in the attestation (*from the code: status list per type*) |
 | Source data changed while the attestation is still valid for at least 24 hours | revoked (*proposal, who signals the change is open*) |
-| Source holder revokes | status set to revoked (*proposal*) |
+| Bronhouder revokes | status set to revoked (*proposal*) |
 
 - **Status**: draft
 
@@ -317,10 +317,10 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
         [Q-18](../traceability/open-questions.md#q-18),
         [ADR 0028](../decisions/0028-pubeaa-productization.md).
     - **Notes**:
-        - The policy itself (paragraph 1) belongs to the source holder as
+        - The policy itself (paragraph 1) belongs to the bronhouder as
             provider. That policy is a candidate connection condition
             ([AV-12](admission.md#av-12)) and no requirement on GBO.
-            The facility revokes technically, on instruction of the source holder
+            The facility revokes technically, on instruction of the bronhouder
             ([AV-13](admission.md#av-13)).
             [Q-17](../traceability/open-questions.md#q-17) covers who holds the
             key of the status list.
@@ -359,7 +359,7 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
         disclosable),
         [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte)
         ("attestations follow an established attestation rulebook and schema",
-        and the source holder records mapping and attestation schema in its GBO
+        and the bronhouder records mapping and attestation schema in its GBO
         configuration), and
         [P-02](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
     - **Addressee**: GBO-delivered component: the mapping profile and the
@@ -388,7 +388,7 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 ## REQ-116: An attestation contains only what the source answered, per its mapping, and an answer that does not fit gives no attestation {#req-116}
 
-> The GBO issuance facility MUST take every claim of an attestation from the answer of the source. It MUST use the mapping that the source holder records in its service description ([REQ-64](sources-identity.md#req-64)). It MUST NOT round, convert, add, or derive a source value beyond what that mapping prescribes.
+> The GBO issuance facility MUST take every claim of an attestation from the answer of the source. It MUST use the mapping that the bronhouder records in its service description ([REQ-64](sources-identity.md#req-64)). It MUST NOT round, convert, add, or derive a source value beyond what that mapping prescribes.
 
 > An answer does not fit the mapping if a mandatory claim is missing or empty. It also does not fit if a value does not have the recorded type, or if the answer holds more than one result. If the answer does not fit the mapping, the facility MUST NOT issue an attestation. That includes an attestation with only the claims that do fit. An answer without a result MUST end as "not found", distinct from an error.
 
@@ -407,9 +407,9 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 ??? note "Source, evidence and notes"
 
     - **Source**: design: [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte)
-        ("the source holder stays legally and substantively responsible for the
+        ("the bronhouder stays legally and substantively responsible for the
         public attributes issued", "if attestation issuance needs a semantic
-        mapping, the source holder records in its GBO configuration which mapping
+        mapping, the bronhouder records in its GBO configuration which mapping
         … applies"),
         [PSA S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus)
         ("the set-up applies validation rules before delivery"), and
@@ -459,7 +459,7 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 ## REQ-124: For every attestation, the versions of the mapping, the source schema, and the attestation schema are traceable {#req-124}
 
-> For every issued attestation, the GBO issuance facility MUST make the applied versions traceable. These are the versions of the mapping of the source holder, of the source schema, and of the attestation schema. The facility MUST apply only the mapping that the source holder recorded for that data service in its GBO configuration ([REQ-116](#req-116)). If the source holder recorded no mapping, the facility MUST convert nothing.
+> For every issued attestation, the GBO issuance facility MUST make the applied versions traceable. These are the versions of the mapping of the bronhouder, of the source schema, and of the attestation schema. The facility MUST apply only the mapping that the bronhouder recorded for that data service in its GBO configuration ([REQ-116](#req-116)). If the bronhouder recorded no mapping, the facility MUST convert nothing.
 
 | Case | Outcome |
 |---|---|
@@ -475,11 +475,11 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
         ("mappings to OOTS-EDM and attestation schemas are explicit. They can be
         traced to the source and target versions used"),
         [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte)
-        (the source holder records in its GBO configuration which mapping applies),
+        (the bronhouder records in its GBO configuration which mapping applies),
         and [D-14](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/).
     - **Addressee**: GBO-delivered component: issuance (the EUDI adapter).
     - **Evidence**: [REQ-116](#req-116) gives the evidence that only the
-        mapping of the source holder is applied. The traceability of the versions
+        mapping of the bronhouder is applied. The traceability of the versions
         is not checked.
     - **Related**: [REQ-59](logging-audit.md#req-59),
         [REQ-64](sources-identity.md#req-64),

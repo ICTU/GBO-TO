@@ -607,7 +607,7 @@ backend, and the consent register.
 > Before the choice, the portal UI MUST show the name of the consumer, the
 > service with its purpose, and the validity period. Per data set, it MUST
 > show the data elements that the consumer gets, and whether the set is
-> mandatory or optional. Per element, it MUST show the source holder (bronhouder) that
+> mandatory or optional. Per element, it MUST show the bronhouder that
 > supplies it, without the values.
 
 > The portal UI MUST show that the consumer is an admitted participant. This
@@ -629,7 +629,7 @@ backend, and the consent register.
 |---|---|
 | Request for known sets | consumer, purpose, valid until, and per set the title and description in B1 (code) |
 | Data elements per set | per set the elements, without values *(proposal: the demo shows only title and description)* |
-| A set with elements of more than one source holder | per element the source holder *(proposal: not built)* |
+| A set with elements of more than one bronhouder | per element the bronhouder *(proposal: not built)* |
 | Admitted, active consumer | the screen states that the consumer is admitted *(proposal: not built)* |
 | Mandatory and optional sets | the screen shows a mandatory set as mandatory, and the citizen cannot switch it off *(proposal)* |
 | Voluntariness and alternative | stated on the screen *(proposal: not built)* |
@@ -760,7 +760,7 @@ backend, and the consent register.
 
 > The portal UI, the consent portal backend, and the reference policy MUST
 > take the data sets from the same description of the service. Per set, that
-> description holds the data elements with their source holder. It also holds
+> description holds the data elements with their bronhouder. It also holds
 > whether the set is mandatory or optional, and the consumers that are
 > allowed to ask for the set.
 
@@ -1103,7 +1103,7 @@ register.
         - The check for each service needs an admission register that knows,
           for each consumer, the services for which it is admitted (FR-30,
           FR-32). [REQ-61](admission.md#req-61) records the admission for each
-          source holder.
+          bronhouder.
         - [Q-69](../traceability/open-questions.md#q-69) asks whether the PDP
           also checks this at the request to the source.
 

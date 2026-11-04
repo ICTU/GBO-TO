@@ -6,7 +6,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: closed
 - **Point**: one policy engine served every request. So the demo implied a central PDP, while PDP placement was an open design question.
-- **Outcome**: [Q-02](answered-questions.md#q-02) set the direction: federated by default, with a PDP per source holder (bronhouder), and a central adapter variant as fallback. In demo v0.9.0, the PDP sits behind the Inway of each source.
+- **Outcome**: [Q-02](answered-questions.md#q-02) set the direction: federated by default, with a PDP per bronhouder, and a central adapter variant as fallback. In demo v0.9.0, the PDP sits behind the Inway of each source.
 - **Landed in**: [ADR-0004](../decisions/0004-federated-authorization.md), [Q-02](answered-questions.md#q-02).
 - **Evidence**: [`docker-compose.yml`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml)
 
@@ -312,7 +312,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: closed
 - **Point**: a fallback to another source's certificates made the wallet show the wrong issuer and purpose ([PR #125](https://github.com/ICTU/GBO-demo/pull/125)).
-- **Outcome**: built. Every source holder has its own certificate set. Missing material causes a hard failure. [Q-17](open-questions.md#q-17) and demo issue [#225](https://github.com/ICTU/GBO-demo/issues/225) cover key management and the status list.
+- **Outcome**: built. Every bronhouder has its own certificate set. Missing material causes a hard failure. [Q-17](open-questions.md#q-17) and demo issue [#225](https://github.com/ICTU/GBO-demo/issues/225) cover key management and the status list.
 - **Landed in**: [REQ-58](../requirements/eudi-issuance.md#req-58), [ADR-0018](../decisions/0018-eudi-disclosure-issuance.md).
 
 ### F-53: Two decision logs side by side and no designated audit source {#f-53}
@@ -333,7 +333,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 ### F-56: The contract payload is thin: the decider sees who, not what {#f-56}
 
 - **Status**: closed
-- **Point**: the FSC Manager sends only the hash, the grant types, and the peer IDs to the contract decision. As a result, admission per service is not possible. Admission is per source holder.
+- **Point**: the FSC Manager sends only the hash, the grant types, and the peer IDs to the contract decision. As a result, admission per service is not possible. Admission is per bronhouder.
 - **Outcome**: accepted on purpose (decision of September 2, 2026). Every regime authorizes the actor and the basis per request ([REQ-48](../requirements/authorization.md#req-48)). Since [PR #363](https://github.com/ICTU/GBO-demo/pull/363), no grant property authorizes anything. Admission per service runs through the catalog and the consent ([Q-22](answered-questions.md#q-22), demo issue [#382](https://github.com/ICTU/GBO-demo/issues/382)). Demo issue [#240](https://github.com/ICTU/GBO-demo/issues/240) lists the triggers to reopen this point.
 - **Landed in**: [REQ-61](../requirements/admission.md#req-61), [ADR-0015](../decisions/0015-contract-acceptance-by-policy.md).
 
@@ -433,7 +433,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: resolved in demo
 - **Point**: the PDP bound rules to field keys `Type.field` ([REQ-17](../requirements/authorization.md#req-17)), without the service. `Query.ingeschrevenPersoon` is in the `bri` schema and in the `brp` schema. As a result, EUD0001 also applied on `brp`. A designated issuer that asked only `__typename` there learned whether a person exists and is a resident.
-- **Outcome**: since [PR #527](https://github.com/ICTU/GBO-demo/pull/527), every rule names the FSC services it applies to, and a test enforces this. Regime and fields decide which rule judges a field, and the service is the third axis. A PDP that serves one source with several schemas also needs this axis. The TO proposes it for PSA S05 and for the guideline for source holders.
+- **Outcome**: since [PR #527](https://github.com/ICTU/GBO-demo/pull/527), every rule names the FSC services it applies to, and a test enforces this. Regime and fields decide which rule judges a field, and the service is the third axis. A PDP that serves one source with several schemas also needs this axis. The TO proposes it for PSA S05 and for the guideline for bronhouders.
 - **Landed in**: [REQ-97](../requirements/authorization.md#req-97), [REQ-74](../requirements/authorization.md#req-74), [ADR-0009](../decisions/0009-closed-world-rules.md).
 - **Evidence**: [`policies/gbo/engine_test.rego#L497`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L497), [`asi0001.rego#L23`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego#L23)
 

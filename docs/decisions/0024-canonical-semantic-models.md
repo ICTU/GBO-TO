@@ -1,4 +1,4 @@
-# ADR-0024: Canonical semantic models per source holder
+# ADR-0024: Canonical semantic models per bronhouder
 
 - Status: proposed
 - Date: 2026-08-24
@@ -32,7 +32,7 @@ route serializations from it:
 
 These points are open:
 
-- The governance between the schemas of the source holders (bronhouders) and the central
+- The governance between the schemas of the bronhouders and the central
   semantics track.
 - The mapping coverage for the evidence types of the OOTS Semantic
   Repository.

@@ -280,8 +280,8 @@ such as the decryption by the source gateway, is a processing
         - FR-31 criterion 1.
     - **Addressee**: GBO-delivered component: source gateway (source gateway),
       consent register (toestemmingsregister) and consent portal (toestemmingsportaal), EUDI adapter, and ASIP.
-      The logbook and the source application of a source holder (bronhouder) belong to that
-      source holder ([P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)).
+      The logbook and the source application of a bronhouder belong to that
+      bronhouder ([P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)).
     - **Evidence**: [ICTU/GBO-demo#302](https://github.com/ICTU/GBO-demo/issues/302),
       [PR #366](https://github.com/ICTU/GBO-demo/pull/366),
       [PR #469](https://github.com/ICTU/GBO-demo/pull/469). Code and tests:

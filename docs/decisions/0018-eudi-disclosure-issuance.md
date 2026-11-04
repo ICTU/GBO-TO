@@ -39,7 +39,7 @@ five steps:
 5. The adapter projects the answer with gbo-simple-v1
    ([ADR-0017](0017-gbo-simple-v1.md)). The server issues the credential
    as `dc+sd-jwt` with immutable type metadata. It uses the certificate
-   set of the source holder (bronhouder) ([ADR-0016](0016-source-owned-metadata.md)).
+   set of the bronhouder ([ADR-0016](0016-source-owned-metadata.md)).
 
 ## Consequences
 
@@ -98,7 +98,7 @@ The following points are open:
   view. The alternative is filter arguments that the policy requires with
   fixed values
   ([ICTU/GBO-demo#425](https://github.com/ICTU/GBO-demo/issues/425)).
-- Validity and revocation for each type. The source holder sets them. If an
+- Validity and revocation for each type. The bronhouder sets them. If an
   attestation is valid for more than 24 hours and the source data changes,
   the attestation must be revoked. GBO has no change feed
   ([REQ-77](../requirements/eudi-issuance.md#req-77),

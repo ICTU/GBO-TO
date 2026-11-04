@@ -12,7 +12,7 @@ For the concepts, see [Authorization](../concepts/authorization.md),
 [Pseudonymization](../concepts/pseudonymization.md#where-the-boundary-is-enforced).
 For the components, see
 [Level 2: authorization chain](../building-blocks/components.md#level-2-authorization-chain)
-and [Level 2: source holder (bronhouder)](../building-blocks/components.md#level-2-bronhouder). The main
+and [Level 2: bronhouder](../building-blocks/components.md#level-2-bronhouder). The main
 decisions are [ADR-0031](../decisions/0031-regime-from-evidence.md),
 [ADR-0032](../decisions/0032-consent-proof.md), and
 [ADR-0033](../decisions/0033-gateway-decrypts-after-allow.md).

@@ -53,7 +53,7 @@ The proposal has five parts:
   qualified certificate for electronic seals (Implementing Regulation
   (EU) 2025/1943, Annex II). The certificate has the registration number
   of the organization as `organizationIdentifier`.
-- It is open who holds that certificate: the source holder (bronhouder), or the
+- It is open who holds that certificate: the bronhouder, or the
   designated intermediary ([Q-17](../traceability/open-questions.md#q-17),
   [Q-28](../traceability/open-questions.md#q-28)).
 

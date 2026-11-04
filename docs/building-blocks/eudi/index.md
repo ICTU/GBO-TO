@@ -77,7 +77,7 @@ The channel has these parts:
 
 | Part | Role | Zoom in |
 |---|---|---|
-| PuB-EAA provider | The technical issuance facility. The issuance server asks the wallet for the PID. The EUDI adapter gets the source data and turns it into claims. The source holder (bronhouder) stays the PuB-EAA provider ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). | [PuB-EAA provider](pubeaa.md) |
+| PuB-EAA provider | The technical issuance facility. The issuance server asks the wallet for the PID. The EUDI adapter gets the source data and turns it into claims. The bronhouder stays the PuB-EAA provider ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). | [PuB-EAA provider](pubeaa.md) |
 | ASI provider | Lets a QTSP verify or retrieve attributes at the source (eIDAS article 45e). It has its own OAuth authorization server. The QTSP is an OAuth client there, and not an FSC participant ([F-87](../../traceability/findings.md#f-87)). | [ASI provider](asi.md) |
 | Source registry | Holds the active release of every source description. The source describes its attestations (`eudi`) and its attributes (`asi`) itself. | [Source onboarding](../../concepts/source-onboarding.md) |
 | GBO Basis | Decides every request of the channel under the PID regime, with the rules EUD0001, EUD0002 and ASI0001. | [GBO Basis](../gbo-basis/index.md) |

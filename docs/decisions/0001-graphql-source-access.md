@@ -16,7 +16,7 @@ same logic twice.
 
 ## Decision
 
-Source holders (bronhouders) expose GraphQL endpoints. The selection set of the consumer is
+Bronhouders expose GraphQL endpoints. The selection set of the consumer is
 the data minimization: the query names exactly the fields that the
 consumer wants. The policy engine authorizes that query field by field.
 

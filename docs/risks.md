@@ -33,7 +33,7 @@ Each risk belongs to one group:
 | [R17](#r17) | GraphQL is not a recognized FDS datadienst type | Governance |
 | [R18](#r18) | Integrator mandates have no validity and no governance | Governance |
 | [R19](#r19) | LDV gaps: citizen view, activity register, ASIP | Governance |
-| [R20](#r20) | Onboarding cost for small source holders (bronhouders) | Governance |
+| [R20](#r20) | Onboarding cost for small bronhouders | Governance |
 | [R21](#r21) | The absence of a consent proof selects the PID regime | Security |
 | [R22](#r22) | BSN in the decision logs of the EUDI and ASI routes | Privacy |
 | [R23](#r23) | The ADL record is incomplete behind the FSC Inway | Audit |
@@ -511,10 +511,10 @@ Each risk belongs to one group:
 
 ### R11: The demo runs one PDP for all providers {#r11}
 
-- **Risk**: The target model has a PAP and a PDP at each source holder
+- **Risk**: The target model has a PAP and a PDP at each bronhouder
   ([ADR-0021](decisions/0021-central-pap-signed-bundles.md)). The demo
   runs one shared PDP.
-- **Impact**: The demo does not show policy separation between source holders.
+- **Impact**: The demo does not show policy separation between bronhouders.
 - **Follow-up**: Run a PDP per provider in the simulation deployment.
 - **Related**: [Q-21](traceability/answered-questions.md#q-21) (answered).
 
@@ -635,7 +635,7 @@ Each risk belongs to one group:
   [F-64](traceability/findings-closed.md#f-64),
   [SL-50](traceability/increments.md#sl-50).
 
-### R20: Onboarding cost for small source holders {#r20}
+### R20: Onboarding cost for small bronhouders {#r20}
 
 - **Risk**: The cost to connect a source stays high for small
   organizations.

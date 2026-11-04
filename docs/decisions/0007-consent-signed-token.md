@@ -29,7 +29,7 @@ original decision as history.
 
 The PDP needs consent evidence that it can verify and that can be revoked.
 The evidence must work without exposing the BSN. Also, one consent must
-cover more than one source holder (bronhouder).
+cover more than one bronhouder.
 
 ## Decision (superseded)
 
@@ -39,7 +39,7 @@ The consent register (toestemmingsregister) issues an ES256-signed JWT of type
 - `consent_id`
 - `pi`
 - `scopes`
-- `scope_entries` (per source holder)
+- `scope_entries` (per bronhouder)
 - `dienstverlener_oin`
 - `valid_until` (= `exp`)
 

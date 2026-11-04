@@ -1,7 +1,7 @@
 # Policy rules and their management
 
 The Globaal Ontwerp names "Beleidsregels" as a block of GBO Basis: policy
-rules decide who can get which data. Each source holder (bronhouder) owns, writes and
+rules decide who can get which data. Each bronhouder owns, writes and
 publishes the policy that its own PDP evaluates. GBO supplies a reference
 policy set, the engine choice, and five guidelines, but no central policy
 service ([ADR-0021](../../decisions/0021-central-pap-signed-bundles.md)).
@@ -70,7 +70,7 @@ set has four parts:
 | Contract policy | `fsc/autosign.rego` | Decides for the FSC Manager of the source whether to sign a contract ([ADR-0015](../../decisions/0015-contract-acceptance-by-policy.md)) |
 
 A new access verdict is a new rule file with tests. The engine does not
-change. The policy is data for the PDP, so a source holder changes it
+change. The policy is data for the PDP, so a bronhouder changes it
 without a new build. The contract policy is a separate rule set from the
 request policy, in the same bundle
 ([REQ-62](../../requirements/admission.md#req-62)).
@@ -85,14 +85,14 @@ with each request.
 
 The policy belongs to the source
 ([P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)). The
-question who can manage and publish the policy of a source holder has an
-answer: the source holder itself
+question who can manage and publish the policy of a bronhouder has an
+answer: the bronhouder itself
 ([Q-21](../../traceability/answered-questions.md#q-21), October 28,
 2026). Each party has a fixed role:
 
 | Party | Does | Never does |
 |---|---|---|
-| Source holder | Writes, approves and publishes its own policy. Runs its own PAP and PDP. | Hands its policy to a central PAP |
+| Bronhouder | Writes, approves and publishes its own policy. Runs its own PAP and PDP. | Hands its policy to a central PAP |
 | GBO | Supplies the reference policy set, the engine choice and the guidelines RL-01 to RL-05. | Sets requirements on the policy installation of another party |
 | Another organization that builds or hosts bundles | Signs the bundles. The PDP verifies them. | Publishes without a signature across the organization boundary |
 
@@ -237,14 +237,14 @@ Bundle mode has these properties:
   writes and publishes.
 - The bundle has no signature. Inside one organization, signing is not
   planned ([#426](https://github.com/ICTU/GBO-demo/issues/426)). If a
-  source holder lets another organization build or host its bundles,
+  bronhouder lets another organization build or host its bundles,
   signing and verification become a requirement
   ([F-09](../../traceability/findings-closed.md#f-09)).
 
 Two components have the name Manager. The OpenFTV Manager manages policy.
 The FSC Manager manages contracts and issues access tokens.
 
-## Guidelines for source holders {#guidelines-for-bronhouders}
+## Guidelines for bronhouders {#guidelines-for-bronhouders}
 
 GBO gives five guidelines for policy management. Each guideline has a
 status in demo v0.9.0:
@@ -270,7 +270,7 @@ AuthZEN and Rego. It differs in the management of the policy:
 
 | Topic | Globaal Ontwerp | Demo v0.9.0 |
 |---|---|---|
-| Place of the PAP | A PAP manages the policies and distributes them to the PDPs of the source holders | A PAP and a PDP at each source holder. No central PAP ([ADR-0021](../../decisions/0021-central-pap-signed-bundles.md)) |
+| Place of the PAP | A PAP manages the policies and distributes them to the PDPs of the bronhouders | A PAP and a PDP at each bronhouder. No central PAP ([ADR-0021](../../decisions/0021-central-pap-signed-bundles.md)) |
 | Bundles | Signed policy bundles | A bundle with an ID and a version, without a signature. Signing only across an organization boundary |
 | Policy language | ODRL in the PAP | Rego for every decision, and Cedar for the API of the OpenFTV Manager ([Q-78](../../traceability/open-questions.md#q-78)) |
 

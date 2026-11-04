@@ -885,7 +885,7 @@ ASIP. The profile needs these external facilities to apply in full:
           act on behalf of the authentic source".
         - [ETSI TS 119 478](https://www.etsi.org/deliver/etsi_ts/119400_119499/119478/01.01.01_60/ts_119478v010101p.pdf) REQ-ASIP-6.1.1.2-07, -08, and
           REQ-ASIP-6.1.2.2-04 (one `authenticSource`).
-        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) ("de source holder (bronhouder) blijft juridisch en
+        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) ("de bronhouder blijft juridisch en
           inhoudelijk verantwoordelijk").
         - [P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/).
     - **Addressee**: interface agreement: every ASIP. GBO-delivered component:

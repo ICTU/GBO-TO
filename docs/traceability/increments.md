@@ -799,7 +799,7 @@ Epic #336 has four follow-ups:
 - **What it showed**: a second source (BRP) and a second attestation. A
   surviving partner discloses his PID and gets the death certificate of
   the partner. The subject of the attestation is not the person who
-  discloses. Each source holder (bronhouder) needs its own certificate set for
+  discloses. Each bronhouder needs its own certificate set for
   issuance.
 - **Produced**:
     - findings [F-47](findings.md#f-47), [F-49](findings-closed.md#f-49), and
@@ -841,7 +841,7 @@ Epic #336 has four follow-ups:
 - **What it showed**: admission is a registration instead of a policy
   rule. The PDP decides each contract proposal in a policy tree of its
   own, with machine-readable reason codes. An automatic "no" leaves the
-  proposal pending, so it is recoverable. Admission is per source holder.
+  proposal pending, so it is recoverable. Admission is per bronhouder.
   The demo has no admission per service.
 - **Produced**:
     - findings [F-55](findings-closed.md#f-55) and [F-56](findings-closed.md#f-56)
