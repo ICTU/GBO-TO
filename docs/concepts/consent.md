@@ -31,8 +31,8 @@ Five roles take part in consent:
 
 | Role | Component in the demo | Does |
 |---|---|---|
-| Toestemmingsportaal (S02) | `toestemmingsportaal-frontend`, toestemmingsportaal backend | Shows the request, logs the citizen in, makes the values per source at BSNk, and lets the citizen view and revoke consents |
-| Toestemmingsregister (S01) | `consent-register` | Stores the consent record, signs the proof, and answers the status over FSC |
+| Consent portal (S02) | `toestemmingsportaal-frontend`, consent portal backend | Shows the request, logs the citizen in, makes the values per source at BSNk, and lets the citizen view and revoke consents |
+| Consent register (S01) | `consent-register` | Stores the consent record, signs the proof, and answers the status over FSC |
 | Consumer (dienstverlener) | `dienstverlener-backend` | Starts the request, receives the proof, and sends it unchanged with every query |
 | PDP of the source | OpenFTV PDP, `consent.rego` | Verifies the proof and gets the status at every request |
 | Source gateway | `bron-sidecar` | After the allow, decrypts its own value from the proof |
@@ -72,11 +72,11 @@ Within a set, the citizen does not pick fields
 ([REQ-10](../requirements/consent.md#req-10)). The portal shows only the
 data sets that the consumer asks for. It refuses a data set that it
 cannot describe. For the record model, see
-[Toestemmingsregister](../requirements/consent.md#consent-register).
+[consent register](../requirements/consent.md#consent-register).
 
 ## The consent proof
 
-When the citizen gives consent, the toestemmingsregister signs a JWT with
+When the citizen gives consent, the consent register signs a JWT with
 these parts
 ([`consent_token.go#L130-L152`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L130-L152)):
 
@@ -162,7 +162,7 @@ sequenceDiagram
       participant CRIN as Register Inway
     end
     box rgb(254,220,216) DvTP
-      participant CR as Toestemmingsregister
+      participant CR as Consent register
     end
     IN->>PDP: AuthZEN evaluation with X-GBO-Consent-Token
     opt JWKS not cached, older than 300 s, or unknown kid

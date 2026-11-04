@@ -53,7 +53,7 @@ also has a part at request time: the mandate check
 ```mermaid
 flowchart LR
     C[Consumer Outway] -->|mTLS + FSC token| IN
-    subgraph SRC[Bronhouder]
+    subgraph SRC[Source holder]
         IN[FSC Inway = PEP]
         subgraph PDP[OpenFTV PDP v0.1.0]
             MAP[FTV GraphQL mapper]
@@ -64,7 +64,7 @@ flowchart LR
         API[Source API]
     end
     REG[(Admission register)]
-    CR[(Toestemmingsregister)]
+    CR[(Consent register)]
     IN -->|AuthZEN evaluation, raw body| MAP
     MAP -->|field list| POL
     POL -->|status over FSC| OUT
@@ -100,7 +100,7 @@ The components in the diagram have these roles:
   It does not verify consent, does not call BSNk, and reads no flow. The
   policy establishes every fact that it decides on
   ([REQ-18](../requirements/authorization.md#req-18)).
-- PIP 1 is the toestemmingsregister. During evaluation, the policy calls
+- PIP 1 is the consent register (toestemmingsregister). During evaluation, the policy calls
   the register for the status of the consent. The call goes over FSC,
   through the own Outway of the PDP
   ([`docker-compose.yml#L141-L142`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L141-L142)).
@@ -418,7 +418,7 @@ Each administrator request code maps to one consumer code
 | `COVERAGE_UNVERIFIABLE INVALID_QUERY` | `FIELD_NOT_PERMITTED` |
 | `COVERAGE_UNVERIFIABLE` with another subcode | `COVERAGE_UNVERIFIABLE <subcode>` |
 | `OPERATION_NOT_SUPPORTED`, `NO_DATA_FIELDS` | the same code |
-| `PIP_UNAVAILABLE` (the toestemmingsregister, its keys, or the admission register did not answer) | `ACCESS_DENIED` |
+| `PIP_UNAVAILABLE` (the consent register, its keys, or the admission register did not answer) | `ACCESS_DENIED` |
 | `CONFIG_ERROR` (`MAPPER_OUTPUT_MISSING`, `SCHEMA_MISMATCH`, `SCHEMA_UNAVAILABLE`, `RULE_NOT_EVALUABLE`) | `ACCESS_DENIED` |
 
 To the consumer, a fault at the source looks like a normal denial. For

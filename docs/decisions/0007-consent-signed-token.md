@@ -29,21 +29,21 @@ original decision as history.
 
 The PDP needs consent evidence that it can verify and that can be revoked.
 The evidence must work without exposing the BSN. Also, one consent must
-cover more than one bronhouder.
+cover more than one source holder (bronhouder).
 
 ## Decision (superseded)
 
-The toestemmingsregister issues an ES256-signed JWT of type
+The consent register (toestemmingsregister) issues an ES256-signed JWT of type
 `gbo-consent+jwt` with these claims:
 
 - `consent_id`
 - `pi`
 - `scopes`
-- `scope_entries` (per bronhouder)
+- `scope_entries` (per source holder)
 - `dienstverlener_oin`
 - `valid_until` (= `exp`)
 
-The dienstverlener presents the token in the `X-Gbo-Consent-Token` header.
+The service provider (dienstverlener) presents the token in the `X-Gbo-Consent-Token` header.
 For each request, the PDP does three things:
 
 1. It verifies the signature against the JWKS of the register.

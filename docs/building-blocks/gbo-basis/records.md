@@ -103,7 +103,7 @@ sequenceDiagram
     participant GW as Source gateway
   end
   box rgb(254,220,216) DvTP
-    participant CR as Toestemmingsregister
+    participant CR as Consent register
   end
   box rgb(237,233,254) Records
     participant TX as FSC txlogs
@@ -179,7 +179,7 @@ seven logbooks:
 | `logboek-bd` | Belastingdienst | `bron-sidecar`, `graphql-server` |
 | `logboek-brp` | RvIG | `brp-sidecar`, `brp-graphql-server` |
 | `logboek-lvg` | LVG | `lvg-sidecar`, `lvg-graphql-server` |
-| `logboek-toestemming` | GBO toestemmingsvoorziening | `consent-register`, `consent-portal-backend` |
+| `logboek-toestemming` | GBO consent facility (toestemmingsvoorziening) | `consent-register`, `consent-portal-backend` |
 | `logboek-eudi-adapter` | GBO issuance facility | `eudi-adapter` |
 | `logboek-afnemer` | Hypotheek-BV (demo consumer) | `dienstverlener-backend`, `integrator-backend` |
 | `logboek-ir` | Installatie Register (demo consumer) | `ir-backend` |

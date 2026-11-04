@@ -77,7 +77,7 @@ The channel has these parts:
 
 | Part | Role | Zoom in |
 |---|---|---|
-| PuB-EAA provider | The technical issuance facility. The issuance server asks the wallet for the PID. The EUDI adapter gets the source data and turns it into claims. The bronhouder stays the PuB-EAA provider ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). | [PuB-EAA provider](pubeaa.md) |
+| PuB-EAA provider | The technical issuance facility. The issuance server asks the wallet for the PID. The EUDI adapter gets the source data and turns it into claims. The source holder (bronhouder) stays the PuB-EAA provider ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). | [PuB-EAA provider](pubeaa.md) |
 | ASI provider | Lets a QTSP verify or retrieve attributes at the source (eIDAS article 45e). It has its own OAuth authorization server. The QTSP is an OAuth client there, and not an FSC participant ([F-87](../../traceability/findings.md#f-87)). | [ASI provider](asi.md) |
 | Source registry | Holds the active release of every source description. The source describes its attestations (`eudi`) and its attributes (`asi`) itself. | [Source onboarding](../../concepts/source-onboarding.md) |
 | GBO Basis | Decides every request of the channel under the PID regime, with the rules EUD0001, EUD0002 and ASI0001. | [GBO Basis](../gbo-basis/index.md) |
@@ -129,7 +129,7 @@ sequenceDiagram
 
 The facility signs with the certificate set of the source. The wallet shows
 the source as the issuer. GBO plays no part when the citizen later presents
-the attestation to a dienstverlener. For every hop, with the data and the
+the attestation to a service provider (dienstverlener). For every hop, with the data and the
 error paths, see [EUDI issuance](../../runtime/eudi-issuance.md).
 
 ## Flow B: a QTSP verifies at the source
@@ -309,8 +309,8 @@ The demo follows the two flows of pattern A. It differs in six steps:
 
 | Step | Globaal Ontwerp | Demo v0.9.0 |
 |---|---|---|
-| Start of flow A | The wallet sends a credential request to the PuB-EAA voorziening. | The citizen scans a QR code. The issuance server first asks for the PID (disclosure-based issuance, [ADR-0018](../../decisions/0018-eudi-disclosure-issuance.md)). |
-| Authorization in flow A | An Autorisatievoorziening asks the wallet for the PID and authorizes the PuB-EAA voorziening. | No separate service. The nl-wallet issuance server checks the PID and calls the adapter. The adapter does not authenticate that call. |
+| Start of flow A | The wallet sends a credential request to the PuB-EAA facility (voorziening). | The citizen scans a QR code. The issuance server first asks for the PID (disclosure-based issuance, [ADR-0018](../../decisions/0018-eudi-disclosure-issuance.md)). |
+| Authorization in flow A | An Autorisatievoorziening asks the wallet for the PID and authorizes the PuB-EAA facility. | No separate service. The nl-wallet issuance server checks the PID and calls the adapter. The adapter does not authenticate that call. |
 | Authorization in flow B | The verify and retrieve service uses the same Autorisatievoorziening of GBO. | The ASI provider has its own OAuth authorization server, with a wallet verifier and a DigiD mock ([ADR-0037](../../decisions/0037-asi-oauth-front-door.md)). |
 | Approval by the citizen | The wallet shows the request and asks for consent. | Flow A: the citizen shares the PID. Flow B: the citizen logs in. Neither is a stored consent. |
 | Format of the attestation | SD-JWT VC or mdoc | SD-JWT VC (`dc+sd-jwt`) only |

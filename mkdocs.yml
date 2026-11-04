@@ -125,7 +125,7 @@ nav:
               - Records: building-blocks/gbo-basis/records.md
           - DvTP channel:
               - DvTP channel: building-blocks/dvtp/index.md
-              - Toestemmingsvoorziening: building-blocks/dvtp/consent-service.md
+              - Consent facility: building-blocks/dvtp/consent-service.md
           - EUDI wallet channel:
               - EUDI wallet channel: building-blocks/eudi/index.md
               - PuB-EAA provider: building-blocks/eudi/pubeaa.md

@@ -1,4 +1,4 @@
-# ADR-0008: Dienstencatalogus as a data-driven policy ceiling
+# ADR-0008: Service catalog as a data-driven policy ceiling
 
 - Status: superseded by [ADR-0009](0009-closed-world-rules.md)
 - Date: 2026-08-24 (ported from reference architecture v0.6.2)
@@ -13,10 +13,10 @@ limits what a consent screen can ask for and what a query can select.
 
 ## Decision (superseded)
 
-GBO keeps a wettelijke dienstencatalogus as a separate register with a
+GBO keeps a wettelijke service catalog (dienstencatalogus) as a separate register with a
 legal anchor. The register maps each scope to its allowed fields
 (`data.dienstencatalogus[scope].allowed_fields`). The PDP checks every
-query against the catalog. The toestemmingsportaal shows only catalog entries.
+query against the catalog. The consent portal (toestemmingsportaal) shows only catalog entries.
 
 ## Why it was superseded
 

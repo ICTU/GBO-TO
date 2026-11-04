@@ -6,7 +6,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: closed
 - **Point**: one policy engine served every request. So the demo implied a central PDP, while PDP placement was an open design question.
-- **Outcome**: [Q-02](answered-questions.md#q-02) set the direction: federated by default, with a PDP per bronhouder, and a central adapter variant as fallback. In demo v0.9.0, the PDP sits behind the Inway of each source.
+- **Outcome**: [Q-02](answered-questions.md#q-02) set the direction: federated by default, with a PDP per source holder (bronhouder), and a central adapter variant as fallback. In demo v0.9.0, the PDP sits behind the Inway of each source.
 - **Landed in**: [ADR-0004](../decisions/0004-federated-authorization.md), [Q-02](answered-questions.md#q-02).
 - **Evidence**: [`docker-compose.yml`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml)
 
@@ -50,7 +50,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
     - The legal identity comes from the certificate ([F-60](#f-60)).
     - [Q-07](answered-questions.md#q-07) answers the question of the PKIoverheid anchor.
     - No source asks for a certificate-bound token (RFC 8705). FR-34 v0.9 asks for a binding only outside the secure connection.
-    - The review found a further gap: nothing proves that the browser initiation comes from the dienstverlener (FR-34, criterion 1). Demo issue [#427](https://github.com/ICTU/GBO-demo/issues/427), [REQ-111](../requirements/consent.md#req-111), and [Q-60](open-questions.md#q-60) record this gap.
+    - The review found a further gap: nothing proves that the browser initiation comes from the service provider (dienstverlener) (FR-34, criterion 1). Demo issue [#427](https://github.com/ICTU/GBO-demo/issues/427), [REQ-111](../requirements/consent.md#req-111), and [Q-60](open-questions.md#q-60) record this gap.
 - **Landed in**: [REQ-46](../requirements/sources-identity.md#req-46), [REQ-67](../requirements/sources-identity.md#req-67), [ADR-0003](../decisions/0003-fsc-connectivity.md), [ADR-0023](../decisions/0023-identity-convergence.md).
 
 ### F-09: No policy lifecycle: hot reload without bundle, signing or versioning {#f-09}
@@ -87,7 +87,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: closed
 - **Point**: the claim was that the DigiD token and the pseudonym must not reach the consumer either. By that claim, REQ-20 was too narrow.
-- **Outcome**: the GO and [PSA S03](https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering) say that the dienstverlener never gets the BSN. It gets only a party-specific pseudonym. So REQ-20 is correct. In demo v0.9.0, the return redirect carries the signed consent proof. [Q-01](open-questions.md#q-01) covers the form of the pseudonym.
+- **Outcome**: the GO and [PSA S03](https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering) say that the service provider never gets the BSN. It gets only a party-specific pseudonym. So REQ-20 is correct. In demo v0.9.0, the return redirect carries the signed consent proof. [Q-01](open-questions.md#q-01) covers the form of the pseudonym.
 - **Landed in**: [REQ-20](../requirements/pseudonymization.md#req-20), [REQ-80](../requirements/pseudonymization.md#req-80).
 
 ### F-16: No single trace across consent issuance and the DvTP query {#f-16}
@@ -97,7 +97,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 - **Outcome**: the two are separate units of work, often hours or days apart. One trace for both conflicts with OTel semantics. The audit axis between them is `consent_id`. The decision record carries `consent_id` next to the trace ID.
 - **Landed in**: [REQ-55](../requirements/logging-audit.md#req-55), [REQ-71](../requirements/logging-audit.md#req-71), [ADR-0035](../decisions/0035-w3c-trace-context.md).
 
-### F-17: Scope descriptions in the toestemmingsportaal are hard-coded {#f-17}
+### F-17: Scope descriptions in the consent portal are hard-coded {#f-17}
 
 - **Status**: closed
 - **Point**: the portal shows hard-coded scope texts, separate from what policy enforces. The DvTP scopes are spread over policy, a generated field map, and `scopeGroups.ts`.
@@ -312,7 +312,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: closed
 - **Point**: a fallback to another source's certificates made the wallet show the wrong issuer and purpose ([PR #125](https://github.com/ICTU/GBO-demo/pull/125)).
-- **Outcome**: built. Every bronhouder has its own certificate set. Missing material causes a hard failure. [Q-17](open-questions.md#q-17) and demo issue [#225](https://github.com/ICTU/GBO-demo/issues/225) cover key management and the status list.
+- **Outcome**: built. Every source holder has its own certificate set. Missing material causes a hard failure. [Q-17](open-questions.md#q-17) and demo issue [#225](https://github.com/ICTU/GBO-demo/issues/225) cover key management and the status list.
 - **Landed in**: [REQ-58](../requirements/eudi-issuance.md#req-58), [ADR-0018](../decisions/0018-eudi-disclosure-issuance.md).
 
 ### F-53: Two decision logs side by side and no designated audit source {#f-53}
@@ -333,7 +333,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 ### F-56: The contract payload is thin: the decider sees who, not what {#f-56}
 
 - **Status**: closed
-- **Point**: the FSC Manager sends only the hash, the grant types, and the peer IDs to the contract decision. As a result, admission per service is not possible. Admission is per bronhouder.
+- **Point**: the FSC Manager sends only the hash, the grant types, and the peer IDs to the contract decision. As a result, admission per service is not possible. Admission is per source holder.
 - **Outcome**: accepted on purpose (decision of September 2, 2026). Every regime authorizes the actor and the basis per request ([REQ-48](../requirements/authorization.md#req-48)). Since [PR #363](https://github.com/ICTU/GBO-demo/pull/363), no grant property authorizes anything. Admission per service runs through the catalog and the consent ([Q-22](answered-questions.md#q-22), demo issue [#382](https://github.com/ICTU/GBO-demo/issues/382)). Demo issue [#240](https://github.com/ICTU/GBO-demo/issues/240) lists the triggers to reopen this point.
 - **Landed in**: [REQ-61](../requirements/admission.md#req-61), [ADR-0015](../decisions/0015-contract-acceptance-by-policy.md).
 
@@ -393,7 +393,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: closed
 - **Point**: LDV puts the data subject in `dpl.core.data_subject_id`. LDV recommends a pseudonym, with an explicit type field. The read extension builds a chain from the starting application through `nextLogbookId`.
-- **Outcome**: this supports [REQ-60](../requirements/logging-audit.md#req-60): a pseudonym in the log is the recommended form. With recipient-specific pseudonyms, access across organizations can search only on the trace ID. A search on the subject is not possible. The idea that the toestemmingsportaal reads the whole chain through `nextLogbookId` does not work in DvTP, because GBO does not start the chain ([F-68](findings.md#f-68)). Citizen access goes per controller (GDPR art. 15). Each controller logs under its own pseudonym ([F-69](#f-69)).
+- **Outcome**: this supports [REQ-60](../requirements/logging-audit.md#req-60): a pseudonym in the log is the recommended form. With recipient-specific pseudonyms, access across organizations can search only on the trace ID. A search on the subject is not possible. The consent portal (toestemmingsportaal) cannot read the whole chain through `nextLogbookId` in DvTP, because GBO does not start the chain ([F-68](findings.md#f-68)). Citizen access goes per controller (GDPR art. 15). Each controller logs under its own pseudonym ([F-69](#f-69)).
 - **Landed in**: [REQ-60](../requirements/logging-audit.md#req-60), [REQ-72](../requirements/logging-audit.md#req-72), [Q-01](open-questions.md#q-01), [Q-08](open-questions.md#q-08), [ADR-0026](../decisions/0026-ldv-integration.md).
 
 ### F-66: Erratum: the PuB-EAA seal and the Access CA were confused with PKIoverheid {#f-66}
@@ -424,7 +424,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 ### F-73: The actor binding of consent assumes that the consumer calls itself, and an integrator breaks that assumption {#f-73}
 
 - **Status**: closed
-- **Point**: the consent proof binds the consumer to the transport caller. FR-18 and FR-37 v0.9 let an integrator call as a processor for the dienstverlener, with its own identity. In that case, the binding fails, or it needs an exception that empties it.
+- **Point**: the consent proof binds the consumer to the transport caller. FR-18 and FR-37 v0.9 let an integrator call as a processor for the service provider, with its own identity. In that case, the binding fails, or it needs an exception that empties it.
 - **Outcome**: FR-37 v0.9, criterion 4, and [PSA S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie) answer the design: the decision uses both the acting party and the represented party. The consent binds the represented party. The integrator connects under an FSC delegated grant and needs a registered mandate. Demo issue [#379](https://github.com/ICTU/GBO-demo/issues/379) built this. In demo v0.9.0, the autosign policy admits a registered delegation pair. The broad representation model stays with PSA B-19.
 - **Landed in**: [REQ-106](../requirements/consent.md#req-106), [AV-06](../requirements/admission.md#av-06), [Q-12](answered-questions.md#q-12), [Q-46](open-questions.md#q-46), [ADR-0034](../decisions/0034-integrator-delegation.md).
 - **Evidence**: [`docs/integrator.md`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/integrator.md), [`policies/fsc/autosign.rego#L119-L124`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L119-L124)
@@ -433,7 +433,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: resolved in demo
 - **Point**: the PDP bound rules to field keys `Type.field` ([REQ-17](../requirements/authorization.md#req-17)), without the service. `Query.ingeschrevenPersoon` is in the `bri` schema and in the `brp` schema. As a result, EUD0001 also applied on `brp`. A designated issuer that asked only `__typename` there learned whether a person exists and is a resident.
-- **Outcome**: since [PR #527](https://github.com/ICTU/GBO-demo/pull/527), every rule names the FSC services it applies to, and a test enforces this. Regime and fields decide which rule judges a field, and the service is the third axis. A PDP that serves one source with several schemas also needs this axis. The TO proposes it for PSA S05 and for the guideline for bronhouders.
+- **Outcome**: since [PR #527](https://github.com/ICTU/GBO-demo/pull/527), every rule names the FSC services it applies to, and a test enforces this. Regime and fields decide which rule judges a field, and the service is the third axis. A PDP that serves one source with several schemas also needs this axis. The TO proposes it for PSA S05 and for the guideline for source holders.
 - **Landed in**: [REQ-97](../requirements/authorization.md#req-97), [REQ-74](../requirements/authorization.md#req-74), [ADR-0009](../decisions/0009-closed-world-rules.md).
 - **Evidence**: [`policies/gbo/engine_test.rego#L497`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L497), [`asi0001.rego#L23`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego#L23)
 

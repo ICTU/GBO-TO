@@ -1,10 +1,10 @@
 # DvTP channel
 
-In the DvTP channel, a private dienstverlener gets source data about a
+In the DvTP channel, a private service provider (dienstverlener) gets source data about a
 citizen, with the consent of that citizen. The channel adds two things to
-GBO Basis. In the toestemmingsvoorziening, the citizen gives and revokes
-consent. The pseudonimiseervoorziening of BSNk makes sure that the
-dienstverlener never gets a BSN. This is interaction pattern C of the
+GBO Basis. In the consent facility (toestemmingsvoorziening), the citizen gives and revokes
+consent. The pseudonymization facility (pseudonimiseervoorziening) of BSNk makes sure that the
+service provider never gets a BSN. This is interaction pattern C of the
 [Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/#patroon-c-gegevensverzoek-van-private-dienstverlener-dvtp).
 
 [Overview](../index.md) › DvTP channel
@@ -16,10 +16,10 @@ flowchart LR
   burger(["Citizen"])
   subgraph cons["Consumer side"]
     direction TB
-    dv["Dienstverlener"]
+    dv["Service provider"]
     int["Integrator<br/><i>optional</i>"]
   end
-  subgraph tv["Toestemmingsvoorziening"]
+  subgraph tv["Consent facility"]
     direction LR
     pf("Portal<br/>frontend") --> pb("Portal<br/>backend") --> tr[("Toestemmings-<br/>register")]
   end
@@ -69,16 +69,16 @@ The channel has these parts:
 
 | Part | Role | Zoom in |
 |---|---|---|
-| Toestemmingsvoorziening | The citizen sees the request, logs in, and gives or refuses consent. Later the citizen views and revokes consents. The register signs a consent proof and answers the status of a consent. | [Toestemmingsvoorziening](consent-service.md) |
-| Pseudonimiseervoorziening | BSNk PP turns the BSN into values that only one party can read. The channel calls it only when a citizen gives consent. | [Pseudonymization](../../concepts/pseudonymization.md) |
-| Dienstverlener | Starts the request, keeps the proof, and sends it with every query. It never gets a BSN or another number for the citizen. | [DvTP query](../../runtime/dvtp-query.md) |
-| Integrator | A software party that calls the source for a dienstverlener, under an FSC delegation and a registered mandate. | [ADR-0034](../../decisions/0034-integrator-delegation.md) |
+| Consent facility | The citizen sees the request, logs in, and gives or refuses consent. Later the citizen views and revokes consents. The register signs a consent proof and answers the status of a consent. | [consent facility](consent-service.md) |
+| Pseudonymization facility | BSNk PP turns the BSN into values that only one party can read. The channel calls it only when a citizen gives consent. | [Pseudonymization](../../concepts/pseudonymization.md) |
+| Service provider | Starts the request, keeps the proof, and sends it with every query. It never gets a BSN or another number for the citizen. | [DvTP query](../../runtime/dvtp-query.md) |
+| Integrator | A software party that calls the source for a service provider, under an FSC delegation and a registered mandate. | [ADR-0034](../../decisions/0034-integrator-delegation.md) |
 | GBO Basis | Checks the proof and the consent status for every request, and fills in the citizen only after an allow. | [GBO Basis](../gbo-basis/index.md) |
 
 ## Two phases
 
 The channel works in two phases, as in the Globaal Ontwerp. In phase 1,
-the citizen gives consent. In phase 2, the dienstverlener queries a source
+the citizen gives consent. In phase 2, the service provider queries a source
 under that consent, as often as the consent allows:
 
 ```mermaid
@@ -86,9 +86,9 @@ sequenceDiagram
   autonumber
   actor B as Citizen
   box rgb(241,239,232) Consumer
-    participant DV as Dienstverlener
+    participant DV as Service provider
   end
-  box rgb(254,220,216) Toestemmingsvoorziening
+  box rgb(254,220,216) Consent facility
     participant P as Portal
     participant TR as Register
   end
@@ -140,7 +140,7 @@ is a third flow: [DvTP citizen access](../../runtime/dvtp-citizen-access.md).
 ## Who sees which identifier
 
 The channel is built so that the BSN appears in as few places as
-possible. The dienstverlener holds no identifier for the citizen at all:
+possible. The service provider holds no identifier for the citizen at all:
 
 ```mermaid
 flowchart LR
@@ -158,7 +158,7 @@ flowchart LR
   end
   subgraph none["Sees no identifier"]
     direction TB
-    dv["Dienstverlener<br/>proof + placeholder"]
+    dv["Service provider<br/>proof + placeholder"]
     int["Integrator"]
   end
 --8<-- "mermaid/classes.mmd"
@@ -179,9 +179,9 @@ can decrypt its value. The value becomes the own pseudonym of the source,
 or the BSN if the source has the right to process the BSN
 ([ADR-0032](../../decisions/0032-consent-proof.md),
 [ADR-0033](../../decisions/0033-gateway-decrypts-after-allow.md)). In its
-query, the dienstverlener names the citizen with a fixed placeholder.
+query, the service provider names the citizen with a fixed placeholder.
 
-This has a cost. The dienstverlener cannot recognize the same citizen
+This has a cost. The service provider cannot recognize the same citizen
 across two consents, and it logs under the consent, not under the person
 ([F-76](../../traceability/findings.md#f-76)).
 
@@ -192,9 +192,9 @@ of three steps:
 
 | Step | Globaal Ontwerp | Demo v0.9.0 |
 |---|---|---|
-| What the dienstverlener gets | A consent ID and an encrypted identity | A signed consent proof that holds the consent ID and an encrypted value per source |
+| What the service provider gets | A consent ID and an encrypted identity | A signed consent proof that holds the consent ID and an encrypted value per source |
 | What the register stores | The encrypted identity, scope, purpose, validity | The consent, plus the polymorphic values of the citizen under its own reference. No encrypted values per source |
-| Who checks the consent | The bronhouder asks the register | The PDP of the source checks the proof itself, then asks the register for the status over FSC |
+| Who checks the consent | The source holder (bronhouder) asks the register | The PDP of the source checks the proof itself, then asks the register for the status over FSC |
 
 The design choice behind these differences is in
 [ADR-0032](../../decisions/0032-consent-proof.md). Whether the register and
@@ -206,7 +206,7 @@ open ([Q-49](../../traceability/open-questions.md#q-49),
 
 The main open points in the DvTP channel are these:
 
-- Whether a private dienstverlener without a public task can connect to
+- Whether a private service provider without a public task can connect to
   BSNk PP at all ([Q-01](../../traceability/open-questions.md#q-01)).
 - Who sets the validity period of a consent
   ([Q-13](../../traceability/open-questions.md#q-13)).

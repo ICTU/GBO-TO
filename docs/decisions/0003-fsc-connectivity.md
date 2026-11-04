@@ -8,7 +8,7 @@
 
 ## Context and problem statement
 
-Bronhouders must implement one connectivity stack for all routes,
+Source holders (bronhouders) must implement one connectivity stack for all routes,
 and not one stack for each route.
 
 ## Decision
@@ -41,7 +41,7 @@ External protocols end at the edge of GBO:
 
 ## Consequences
 
-- A bronhouder connects once (Inway plus contracts) and serves every
+- A source holder connects once (Inway plus contracts) and serves every
   route.
 - The Inway is also the PEP
   ([ADR-0004](0004-federated-authorization.md)).

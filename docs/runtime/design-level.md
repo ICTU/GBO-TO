@@ -90,7 +90,7 @@ The Gov-to-Gov design has these open points:
 - It is open what form the positive evidence for the legal basis has, and
   who issues it ([REQ-74](../requirements/authorization.md#req-74)).
 - It is open where the legal-basis data lives (which consumer, which
-  service, which grondslag, which fields), and who maintains it. ADR-0004
+  service, which legal basis, which fields), and who maintains it. ADR-0004
   puts it in policy data.
 - The PID actor lists must stay disjoint from the consumers of other
   regimes. If a Gov-to-Gov consumer omits its evidence, it must not enter
@@ -103,7 +103,7 @@ citizen or company through the Once-Only Technical System. The design is
 an OOTS adapter at the GBO edge
 ([ADR-0020](../decisions/0020-as4-bridge-for-oots.md),
 [PSA S08](https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter)).
-eDelivery AS4 exists only at the edge. The bronhouder sees a normal FSC
+eDelivery AS4 exists only at the edge. The source holder (bronhouder) sees a normal FSC
 request through the standard PEP-PDP chain. It is open who builds the
 adapter ([Q-79](../traceability/open-questions.md#q-79)).
 
@@ -238,7 +238,7 @@ For this scenario, demo v0.9.0 has these limits:
 - Trust uses the development CA chain. The test wallet and the demo
   verifiers trust the development issuer CA.
 - Every attestation is valid for 365 days. A status list exists per type,
-  but revocation on instruction of the bronhouder is not built
+  but revocation on instruction of the source holder is not built
   ([REQ-77](../requirements/eudi-issuance.md#req-77)).
 
 ### Open points
@@ -249,7 +249,7 @@ The relying-party scenario has these open points:
   ([Q-30](../traceability/open-questions.md#q-30)) and the designation of
   the Dutch PuB-EAA issuer ([Q-28](../traceability/open-questions.md#q-28))
   are open. In production, the relying party verifies the seal of the
-  bronhouder as PuB-EAA provider. GBO operates the technical facility
+  source holder as PuB-EAA provider. GBO operates the technical facility
   ([ADR-0028](../decisions/0028-pubeaa-productization.md)).
   [ADR-0023](../decisions/0023-identity-convergence.md) proposes the EUDI
   certificate roles.

@@ -1,65 +1,68 @@
 # Glossary
 
-The TO uses one term for each concept. The following tables give that
-term, its meaning, and the words that the TO does not use for the same
-concept. The style linter (`scripts/style_lint.py`) reports every word
-from a "Do not use" column in running text, so the terms stay consistent.
-Code names, quotes from sources, and IDs are exempt.
+The TO is written in English. Each concept has one English term. On its
+first use on a page, the term gets the Dutch name of the Globaal Ontwerp
+in parentheses, for example "consent register (toestemmingsregister)".
+After that, the page uses the English term only. Proper names stay as
+they are: MijnOverheid, DigiD, Logius, BSN, Autorisatielijst BSN,
+Basisinrichting OOTS, Logboek Dataverwerkingen.
 
-The TO keeps the Dutch names of the GBO facilities, as the
-[Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing)
-uses them. For the full begrippenlijst of the GBO stelsel, see the
+The following tables give each term, the Dutch name, its meaning, and the
+words that the TO does not use for the same concept. The style linter
+(`scripts/style_lint.py`) reports every word from a "Do not use" column
+in running text. A Dutch name directly inside parentheses is allowed.
+Code names, quotes from sources, and IDs are exempt. For the full
+begrippenlijst of the GBO stelsel, see the
 [GO begrippenlijst](https://ictu.github.io/GBO-GO/main/bijlage_begrippenlijst/).
 
 ## Building blocks and channels
 
-These terms follow the
-[building block view](building-blocks/index.md):
+These terms follow the [building block view](building-blocks/index.md):
 
-| Term | Meaning | Do not use |
-|---|---|---|
-| GBO Basis | The part of GBO at every bronhouder: FSC, the PEP and the PDP, the source gateway, source configuration, and the records. It feeds every channel ([GBO Basis](building-blocks/gbo-basis/index.md)). | — |
-| Channel | A way in which GBO serves one kind of consumer (kanaal in the GO). The three channels are DvTP, EUDI wallet, and OOTS. | trajectory |
-| Route | One end-to-end flow through a channel: the DvTP route, the PuB-EAA route, the ASI route, the SDG-OOTS route, and the Gov-to-Gov route. | trajectory |
-| Toestemmingsvoorziening | The GBO facility of the DvTP channel where the citizen gives, views, and revokes consent. It consists of the toestemmingsportaal and the toestemmingsregister ([Toestemmingsvoorziening](building-blocks/dvtp/consent-service.md)). | consent service |
-| Toestemmingsportaal | The citizen-facing application of the toestemmingsvoorziening (PSA S02). It has a frontend and a backend. The short form "portal backend" is allowed. | consent portal |
-| Toestemmingsregister | The register of consents (PSA S01). It signs the consent proof and answers the consent status. | consent register |
-| Pseudonimiseervoorziening | BSNk PP as the GO names it: the Logius facility that the DvTP channel uses at consent time. | — |
-| PuB-EAA provider | The GBO block of the EUDI wallet channel that issues an attestation from source data to the wallet ([PuB-EAA provider](building-blocks/eudi/pubeaa.md)). Legally, the bronhouder is the provider. | PubEAA |
-| Issuance facility | The technical part of the PuB-EAA provider that GBO runs: the issuance server and the EUDI adapter ([ADR-0028](decisions/0028-pubeaa-productization.md)). | — |
-| ASI | Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e). | — |
-| ASI provider | The GBO block of the EUDI wallet channel that offers the ASI. It consists of the ASIP and the ASI authorization server ([ASI provider](building-blocks/eudi/asi.md)). | — |
-| OOTS adapter | The GBO block of the OOTS channel that answers EU evidence requests. Design only ([OOTS channel](building-blocks/oots.md)). | — |
-| Source gateway | The component in front of a source API (code name `bron-sidecar`). After the allow decision, it decrypts the value for its own OIN ([ADR-0033](decisions/0033-gateway-decrypts-after-allow.md)). | sidecar |
-| Decryption component | The component of a source that reads the VI or VP for that source with its own keys. The source gateway calls it after the allow decision. | — |
-| Admission register | The register of admitted participants and integrator mandates. The PDP pulls it as a PIP (code name `dvtp-onboarding-register`). | onboarding register |
-| Source registry | The store of source descriptions: candidates, immutable releases, and the active release. | — |
-| Source metadata | The description that a source publishes of its own services, at `/.well-known/gbo` ([Source configuration](building-blocks/gbo-basis/source-configuration.md)). | — |
-| EUDI adapter | The component between the issuance server and the FSC chain. In the demo, its FSC peer is called "EDI issuer" (`edi-…`). | — |
-| Wallet verifier | The nl-wallet verification server that the ASI authorization server uses for a login with the NL Wallet. | — |
-| Integrator | A software party that calls a source on behalf of a consumer, under an FSC delegated grant and a registered mandate ([ADR-0034](decisions/0034-integrator-delegation.md)). | — |
+| Term | Dutch (GO) | Meaning | Do not use |
+|---|---|---|---|
+| GBO Basis | GBO Basis | The part of GBO at every source holder: FSC, the PEP and the PDP, the source gateway, source configuration, and the records. It feeds every channel ([GBO Basis](building-blocks/gbo-basis/index.md)). | — |
+| Channel | kanaal | A way in which GBO serves one kind of consumer. The three channels are DvTP, EUDI wallet, and OOTS. | trajectory |
+| Route | — | One end-to-end flow through a channel: the DvTP route, the PuB-EAA route, the ASI route, the SDG-OOTS route, and the Gov-to-Gov route. | trajectory |
+| Facility | voorziening | A shared function that GBO or another party provides, for example the consent facility. | voorziening |
+| Consent facility | toestemmingsvoorziening | The GBO facility of the DvTP channel where the citizen gives, views, and revokes consent. It consists of the consent portal and the consent register ([Consent facility](building-blocks/dvtp/consent-service.md)). | toestemmingsvoorziening, consent service |
+| Consent portal | toestemmingsportaal | The citizen-facing application of the consent facility (PSA S02). It has a frontend and a backend. The short form "portal backend" is allowed. | toestemmingsportaal |
+| Consent register | toestemmingsregister | The register of consents (PSA S01). It signs the consent proof and answers the consent status. | toestemmingsregister |
+| Pseudonymization facility | pseudonimiseervoorziening | BSNk PP: the Logius facility that the DvTP channel uses at consent time. | pseudonimiseervoorziening |
+| PuB-EAA provider | PubEAA-voorziening | The GBO block of the EUDI wallet channel that issues an attestation from source data to the wallet ([PuB-EAA provider](building-blocks/eudi/pubeaa.md)). Legally, the source holder is the provider. | PubEAA |
+| Issuance facility | — | The technical part of the PuB-EAA provider that GBO runs: the issuance server and the EUDI adapter ([ADR-0028](decisions/0028-pubeaa-productization.md)). | — |
+| ASI | — | Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e). | — |
+| ASI provider | ASI-provider | The GBO block of the EUDI wallet channel that offers the ASI. It consists of the ASIP and the ASI authorization server ([ASI provider](building-blocks/eudi/asi.md)). | — |
+| OOTS adapter | OOTS-adapter | The GBO block of the OOTS channel that answers EU evidence requests. Design only ([OOTS channel](building-blocks/oots.md)). | — |
+| Source gateway | — | The component in front of a source API (code name `bron-sidecar`). After the allow decision, it decrypts the value for its own OIN ([ADR-0033](decisions/0033-gateway-decrypts-after-allow.md)). | sidecar |
+| Decryption component | — | The component of a source that reads the VI or VP for that source with its own keys. The source gateway calls it after the allow decision. | — |
+| Admission register | toelatingsregister | The register of admitted participants and integrator mandates. The PDP pulls it as a PIP (code name `dvtp-onboarding-register`). | onboarding register |
+| Source registry | — | The store of source descriptions: candidates, immutable releases, and the active release. | — |
+| Source metadata | — | The description that a source publishes of its own services, at `/.well-known/gbo` ([Source configuration](building-blocks/gbo-basis/source-configuration.md)). | — |
+| EUDI adapter | — | The component between the issuance server and the FSC chain. In the demo, its FSC peer is called "EDI issuer" (`edi-…`). | — |
+| Wallet verifier | — | The nl-wallet verification server that the ASI authorization server uses for a login with the NL Wallet. | — |
+| Integrator | integrator | A software party that calls a source on behalf of a consumer, under an FSC delegated grant and a registered mandate ([ADR-0034](decisions/0034-integrator-delegation.md)). | — |
 
 ## Domain terms
 
-The TO uses these English words for Dutch domain terms. Some Dutch terms
-stay in Dutch because the GO and the PSA use them as names:
-
-| Term | Dutch | Meaning | Do not use |
+| Term | Dutch (GO) | Meaning | Do not use |
 |---|---|---|---|
-| Bronhouder | bronhouder | The organization responsible for an authentic register and its ontsluiting. | source holder |
+| Source holder | bronhouder | The organization responsible for an authentic register and the access to it. | bronhouder |
+| Source | bron | A system of a source holder that answers queries. | — |
+| Source access | bronontsluiting | The provision of register data through a standard interface. | bronontsluiting |
 | Citizen | burger | The data subject in GBO flows. | — |
 | Consent | toestemming | The informed agreement of the citizen to a specific data exchange. | — |
-| Consumer | afnemer | An organization that asks a bronhouder for data, in any channel. | — |
+| Consumer | afnemer | An organization that asks a source holder for data, in any channel. | afnemer |
+| Service provider | dienstverlener | The private party that is the consumer in the DvTP channel. | dienstverlener |
 | Controller | Verantwoordelijke | The party that decides on a processing (AVG). Under LDV, each controller keeps its own logbook. | — |
-| Data set | gegevensset | A named group of fields that a consent covers as a whole ([REQ-10](requirements/consent.md#req-10)). | — |
 | Data subject | Betrokkene | The person whom a processing is about (AVG and LDV term). | — |
-| Dienstverlener | dienstverlener | The private party that is the consumer in the DvTP channel. | service provider |
-| Dienstencatalogus | dienstencatalogus | The legally anchored register of the maximum scope that a consumer can ask for per use case. See [ADR-0008](decisions/0008-dienstencatalogus-ceiling.md). | — |
-| Doelbinding | doelbinding | Processing of data is allowed only for the stated purpose. | — |
-| Grondslag | grondslag | The legal ground for a processing or a provision of data. A grondslag set directly by law is a wettelijke grondslag. | — |
-| Koppelvlak | koppelvlak | A specified technical interface between parties or components. | — |
+| Data set | gegevensset | A named group of fields that a consent covers as a whole ([REQ-10](requirements/consent.md#req-10)). | gegevensset |
+| Service catalog | dienstencatalogus | The legally anchored register of the maximum scope that a consumer can ask for per use case. See [ADR-0008](decisions/0008-dienstencatalogus-ceiling.md). | dienstencatalogus |
+| Purpose limitation | doelbinding | Processing of data is allowed only for the stated purpose. | — |
+| Legal basis | grondslag | The legal ground for a processing or a provision of data. A legal basis set directly by law is a statutory basis (wettelijke grondslag). | grondslag |
+| Interface | koppelvlak | A specified technical interface between parties or components. | koppelvlak |
+| Interaction pattern | interactiepatroon | One of the patterns of the GO: A (EUDI wallet), B (OOTS), C (DvTP). | interactiepatronen |
 | Processing | verwerking | Any operation on personal data (AVG term). | — |
-| Source | bron | A system of a bronhouder that answers queries. | — |
 
 ## Consent, identity, and pseudonyms
 

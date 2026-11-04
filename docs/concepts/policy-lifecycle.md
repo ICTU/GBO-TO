@@ -1,6 +1,6 @@
 # Policy lifecycle
 
-Each bronhouder owns, writes, and publishes the policy that its own PDP
+Each source holder (bronhouder) owns, writes, and publishes the policy that its own PDP
 evaluates. GBO supplies a reference policy set, an engine choice, and
 guidelines. GBO does not supply a central policy service. The following
 sections show how a policy travels from version control to a decision in
@@ -14,15 +14,15 @@ The decision is
 management-plane scenario, see
 [Policy distribution](../runtime/policy-distribution.md).
 
-## Ownership per bronhouder {#ownership-per-source-holder}
+## Ownership per source holder {#ownership-per-source-holder}
 
-The PAP and the PDP are at each bronhouder. The PDP is behind the FSC
-Inway of the bronhouder, and the management function serves only that
+The PAP and the PDP are at each source holder. The PDP is behind the FSC
+Inway of the source holder, and the management function serves only that
 PDP. The policy belongs to the source
 ([P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)).
 
-The question of who can manage and publish the policy of a bronhouder
-has an answer: the bronhouder itself
+The question of who can manage and publish the policy of a source holder
+has an answer: the source holder itself
 ([Q-21](../traceability/answered-questions.md#q-21), October 28, 2026). PSA S06
 sets the norm for publication control. The norm asks for these items:
 
@@ -190,7 +190,7 @@ The distribution has these properties:
   gets a signature only when it crosses an organization boundary. Inside
   one organization, signing is not planned
   ([#426](https://github.com/ICTU/GBO-demo/issues/426), closed as not
-  planned). If a bronhouder lets another organization build or host
+  planned). If a source holder lets another organization build or host
   its bundles, signing and verification become a requirement
   ([F-09](../traceability/findings-closed.md#f-09)).
 
@@ -220,7 +220,7 @@ stay disjoint from the consent consumers
 [Authorization](authorization.md#regime-selection)). In demo v0.9.0, the
 lists are policy data and not register data.
 
-## Guidelines for bronhouders {#guidelines-for-source-holders}
+## Guidelines for source holders {#guidelines-for-source-holders}
 
 Each guideline has a demo status in demo v0.9.0:
 
@@ -232,7 +232,7 @@ Each guideline has a demo status in demo v0.9.0:
 | [RL-04](../requirements/authorization.md#rl-04) Withdraw policy, and do not delete it. Reconcile with version control | Built: `retire_stale` at every seed |
 | [RL-05](../requirements/authorization.md#rl-05) Validate a bundle before activation. Fall back visibly to the last valid set | Local check built (`make policy-check`). Visible fallback not built |
 
-Each guideline is a SHOULD for the bronhouder. A promotion rule names
+Each guideline is a SHOULD for the source holder. A promotion rule names
 when the guideline becomes a requirement.
 
 ## Policy version and the decision record

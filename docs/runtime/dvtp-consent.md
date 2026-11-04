@@ -1,8 +1,8 @@
 # DvTP: the citizen gives consent
 
 A citizen at a private consumer (dienstverlener) goes to the
-toestemmingsportaal, logs in, and gives consent for one or more data sets.
-The result is a consent record in the toestemmingsregister and a signed
+consent portal (toestemmingsportaal), logs in, and gives consent for one or more data sets.
+The result is a consent record in the consent register (toestemmingsregister) and a signed
 consent proof. The proof goes back to the consumer. The consumer uses the
 proof in [DvTP query](dvtp-query.md).
 
@@ -25,10 +25,10 @@ sequenceDiagram
     box rgb(241,239,232) Consumer
       participant DVF as Consumer frontend
     end
-    box rgb(254,220,216) Toestemmingsvoorziening
+    box rgb(254,220,216) Consent facility
       participant PF as Portal frontend
-      participant PB as Toestemmingsportaal backend
-      participant CR as Toestemmingsregister
+      participant PB as Consent portal backend
+      participant CR as Consent register
     end
     box rgb(241,239,232) External
       participant BSNK as BSNk mock
@@ -155,7 +155,7 @@ The consent flow in gbo-demo v0.9.0 has these properties and gaps:
   ([REQ-82](../requirements/pseudonymization.md#req-82)).
 - **BSNk recognition is open.** Only a recognized party can activate and
   transform ([BSNK-01](../requirements/pseudonymization.md#bsnk-01)).
-  It is open whether the toestemmingsvoorziening can be a recognized party. It is
+  It is open whether the consent facility (toestemmingsvoorziening) can be a recognized party. It is
   also open whether the register and the portal backend are one BSNk
   participant
   ([F-75](../traceability/findings.md#f-75),

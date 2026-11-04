@@ -83,7 +83,7 @@ The PEP, the PDP and two PIPs work together as follows:
 ```mermaid
 flowchart LR
   out["Outway of<br/>the caller"]
-  subgraph src["At the bronhouder"]
+  subgraph src["At the source holder"]
     direction LR
     pep("FSC Inway<br/>PEP")
     subgraph pdp["PDP: OpenFTV v0.1.0"]
@@ -95,7 +95,7 @@ flowchart LR
     gw("Source gateway")
   end
   adm[("PIP: admission register<br/>parties, mandates")]
-  tr[("PIP: toestemmingsregister<br/>keys, consent status")]
+  tr[("PIP: consent register<br/>keys, consent status")]
   adl[("ADL")]
 
   out -- "request + raw body" --> pep
@@ -129,8 +129,8 @@ The parts have these roles:
 |---|---|
 | PEP | The FSC Inway. Its AuthZEN plugin sends every request with the raw body to the PDP and forwards the request only on an allow. There is no separate PEP service ([ADR-0002](../../decisions/0002-opa-rego-authzen.md)). |
 | Request mapper | Turns the GraphQL body into a list of fields with their arguments, following the FTV GraphQL profile. It does nothing else ([ADR-0013](../../decisions/0013-pdp-request-mapper.md)). |
-| Policy | Rego code that selects the regime, checks the consent proof and decides each field. The policy is data for the PDP, so a bronhouder changes it without a new build. |
-| PIP: toestemmingsregister | Gives the status of a consent for every request, over FSC. Gives the keys to check the proof. DvTP only. |
+| Policy | Rego code that selects the regime, checks the consent proof and decides each field. The policy is data for the PDP, so a source holder (bronhouder) changes it without a new build. |
+| PIP: consent register (toestemmingsregister) | Gives the status of a consent for every request, over FSC. Gives the keys to check the proof. DvTP only. |
 | PIP: admission register | Lists the admitted parties and the mandates of integrators. OpenFTV pulls it every five seconds. |
 
 ## From query to decision

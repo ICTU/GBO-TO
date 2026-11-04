@@ -16,7 +16,7 @@ detail and the links to the code.
 ```mermaid
 flowchart LR
   out["Outway of<br/>the caller"]
-  subgraph bh["At the bronhouder"]
+  subgraph bh["At the source holder"]
     direction LR
     pep("FSC Inway<br/>PEP")
     subgraph pdpg["PDP"]
@@ -108,7 +108,7 @@ citizen after the allow:
 sequenceDiagram
   autonumber
   box rgb(241,239,232) Consumer
-    participant DV as Dienstverlener
+    participant DV as Service provider
   end
   box rgb(220,252,231) GBO Basis at the source
     participant IN as FSC Inway (PEP)
@@ -360,9 +360,9 @@ queries. It differs in three places:
 
 | Topic | Globaal Ontwerp | Demo v0.9.0 |
 |---|---|---|
-| Allowed queries | A dienstencatalogus lists the allowed queries per application | The rules are the catalog: a field that no rule names is denied ([ADR-0009](../../decisions/0009-closed-world-rules.md)) |
+| Allowed queries | A service catalog (dienstencatalogus) lists the allowed queries per application | The rules are the catalog: a field that no rule names is denied ([ADR-0009](../../decisions/0009-closed-world-rules.md)) |
 | Source without GraphQL | A GBO translation layer turns an existing API into a GraphQL source | Not built. All three sources run GraphQL ([ADR-0027](../../decisions/0027-onboarding-toolkit.md), proposed) |
-| From proof to BSN | BSNk PP keeps the BSN away from the private dienstverlener | The same, and the source gateway converts its own value after the allow. BSNk is not in the query path |
+| From proof to BSN | BSNk PP keeps the BSN away from the private service provider (dienstverlener) | The same, and the source gateway converts its own value after the allow. BSNk is not in the query path |
 
 ## Open points
 

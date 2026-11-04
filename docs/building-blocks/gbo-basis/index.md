@@ -1,10 +1,10 @@
 # GBO Basis
 
 GBO Basis opens a government source in one standard way, for every
-channel. It runs at the bronhouder: each source has its own FSC Inway, its
+channel. It runs at the source holder (bronhouder): each source has its own FSC Inway, its
 own PDP and its own source gateway. No central server decides for all
 sources ([ADR-0004](../../decisions/0004-federated-authorization.md)).
-GBO delivers the components, and the bronhouder runs them
+GBO delivers the components, and the source holder runs them
 ([P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)).
 
 [Overview](../index.md) › GBO Basis
@@ -18,7 +18,7 @@ shows the components that make up these parts in gbo-demo v0.9.0:
 ```mermaid
 flowchart LR
   caller["Caller<br/>(any channel)"]
-  subgraph bh["Bronhouder"]
+  subgraph bh["Source holder"]
     direction LR
     subgraph fsc["Standard interface: FSC"]
       direction TB
@@ -45,7 +45,7 @@ flowchart LR
     reg[("Source registry")]
     tools("GBO tools<br/><i>design only</i>")
   end
-  tr[("Toestemmingsregister")]
+  tr[("Consent register")]
 
   caller -- "FSC request" --> inway
   caller -. "contract proposal" .-> mgr
@@ -94,10 +94,10 @@ The parts have the following roles:
 | Standard interface | FSC Inway, FSC Manager, FSC Outway of the caller | Every connection to a source runs over FSC, with mTLS and a contract ([ADR-0003](../../decisions/0003-fsc-connectivity.md)). The Inway is the PEP. | [FSC group](../components.md#level-2-fsc-group) |
 | Configurable authorization | PDP, policy set, admission register | The PDP decides on every request and on every contract proposal. Policy is configuration, not code. | [Authorization](authorization.md) |
 | Generic source access | Source gateway, decryption component, source API | The source answers one GraphQL query. Under consent, the gateway first puts the citizen in the query. | [Source access](source-access.md) |
-| Policy rules | Policy set, its tests and its distribution | The rules are data for the PDP. Each bronhouder manages its own set. | [Policy rules](policy.md) |
+| Policy rules | Policy set, its tests and its distribution | The rules are data for the PDP. Each source holder manages its own set. | [Policy rules](policy.md) |
 | Records | ADL, LDV logbooks, FSC txlog | Every decision, processing and transport leaves a record, linked by one trace ID. | [Records](records.md) |
 | Source configuration | Source metadata, source registry | The source describes its own services. GBO validates and activates that description. | [Source configuration](source-configuration.md) |
-| GBO tools | Translation layer, onboarding toolkit | Help a bronhouder without a GraphQL API. Not built. | [ADR-0027](../../decisions/0027-onboarding-toolkit.md) |
+| GBO tools | Translation layer, onboarding toolkit | Help a source holder without a GraphQL API. Not built. | [ADR-0027](../../decisions/0027-onboarding-toolkit.md) |
 
 ## The request path
 
@@ -111,7 +111,7 @@ sequenceDiagram
   box rgb(241,239,232) Channel
     participant C as Caller
   end
-  box rgb(220,252,231) GBO Basis at the bronhouder
+  box rgb(220,252,231) GBO Basis at the source holder
     participant IN as FSC Inway (PEP)
     participant PDP as PDP
     participant GW as Source gateway
@@ -169,15 +169,15 @@ The steps work as follows:
    ([REQ-08](../../requirements/authorization.md#req-08)). It logs the
    processing in its own LDV logbook.
 
-## What the bronhouder runs
+## What the source holder runs {#what-the-bronhouder-runs}
 
-GBO delivers the components as reference components. The bronhouder
+GBO delivers the components as reference components. The source holder
 chooses to run them, or a working equivalent that meets the same
 interfaces. The following figure shows who owns what at one source:
 
 ```mermaid
 flowchart TB
-  subgraph own["Owned by the bronhouder"]
+  subgraph own["Owned by the source holder"]
     direction LR
     api[("Source API<br/>and schema")]
     meta[("Service description")]
@@ -185,7 +185,7 @@ flowchart TB
     log[("LDV logbook")]
     pol("Policy set<br/>and its management")
   end
-  subgraph deliv["Delivered by GBO, run by the bronhouder"]
+  subgraph deliv["Delivered by GBO, run by the source holder"]
     direction LR
     inway("FSC Inway")
     pdp("PDP")
@@ -196,7 +196,7 @@ flowchart TB
     direction LR
     adm[("Admission register")]
     reg[("Source registry")]
-    tr[("Toestemmingsregister")]
+    tr[("Consent register")]
   end
   own ~~~ deliv ~~~ run
 --8<-- "mermaid/classes.mmd"
@@ -213,7 +213,7 @@ flowchart TB
 {: .caption }
 
 The PEP, the PDP, policy management and source access are decentral, at
-the bronhouder. The toestemmingsvoorziening is central and mandatory for
+the source holder. The consent facility (toestemmingsvoorziening) is central and mandatory for
 DvTP ([Q-10](../../traceability/answered-questions.md#q-10),
 [ADR-0021](../../decisions/0021-central-pap-signed-bundles.md)). The PSA
 has not decided who operates the central facilities (open decisions

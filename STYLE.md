@@ -159,16 +159,20 @@ unless that is the purpose of the change.
 | increment (SL-NN) | demo increment | slice |
 | demo baseline | gbo-demo v0.9.0, "the demo" | "the current demo", "now" |
 
-Keep these Dutch domain terms (the glossary defines them): bronhouder,
-toestemmingsvoorziening, toestemmingsportaal, toestemmingsregister,
-pseudonimiseervoorziening, dienstverlener, grondslag, doelbinding,
-koppelvlak, MijnOverheid, Autorisatielijst BSN.
+The TO is written in English. Use the English term from the
+[glossary](docs/glossary.md) for every domain concept. On the first use
+on a page, add the Dutch name of the Globaal Ontwerp in parentheses, for
+example "consent register (toestemmingsregister)". After that, use the
+English term only. Never translate proper names: MijnOverheid, DigiD,
+Logius, BSN, Autorisatielijst BSN, Basisinrichting OOTS, Logboek
+Dataverwerkingen, GBO Basis. Quotes from Dutch sources stay in Dutch.
 
-The [glossary](docs/glossary.md) is the source for all domain and system
-terms. Each glossary table has a "Do not use" column. The linter reports
-those words as errors in every page except the glossary. When you add a
-term, add it to the glossary first. `scripts/gen_abbreviations.py` turns
-the abbreviations into tooltips on every page.
+The glossary is the source for all domain and system terms. Each
+glossary table has a "Do not use" column. The linter reports those words
+as errors in every page except the glossary, unless the word stands
+directly inside parentheses. When you add a term, add it to the glossary
+first. `scripts/gen_abbreviations.py` turns the abbreviations into
+tooltips on every page.
 
 US spelling (authorization, organization, recognize, pseudonymization).
 

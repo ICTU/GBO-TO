@@ -38,7 +38,7 @@ regime follows from the evidence that the request carries
 ([ADR-0031](0031-regime-from-evidence.md)).
 
 For legal-basis routes (Gov-to-Gov), the design evaluates the
-grondslag locally from policy data, without a PIP call. The demo does not
+legal basis (grondslag) locally from policy data, without a PIP call. The demo does not
 implement this path. The path needs its own positive evidence, because a
 declared flow is not sufficient ([ADR-0031](0031-regime-from-evidence.md)).
 For more information, see [Risks and technical debt](../risks.md).

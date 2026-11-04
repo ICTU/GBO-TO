@@ -1,6 +1,6 @@
 # DvTP: the citizen views and revokes consents
 
-A logged-in citizen opens "Mijn toestemmingen" in the toestemmingsportaal.
+A logged-in citizen opens "Mijn toestemmingen" in the consent portal (toestemmingsportaal).
 The portal shows the consents of the citizen with their status, and the
 citizen revokes one consent. The portal finds the consents through its own
 reference to the citizen, without a BSNk call. A revocation takes effect at
@@ -20,10 +20,10 @@ sequenceDiagram
     box rgb(221,235,247) Citizen
       actor B as Citizen browser
     end
-    box rgb(254,220,216) Toestemmingsvoorziening
+    box rgb(254,220,216) Consent facility
       participant PF as Portal frontend
-      participant PB as Toestemmingsportaal backend
-      participant CR as Toestemmingsregister
+      participant PB as Consent portal backend
+      participant CR as Consent register
     end
     box rgb(237,233,254) Records
       participant LB as logboek-toestemming

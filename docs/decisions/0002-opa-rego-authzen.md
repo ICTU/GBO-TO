@@ -12,7 +12,7 @@ GBO needs one policy engine and one PEP-PDP protocol for all routes.
 Then the authorization logic is in policy and not in application code.
 
 Every source also needs an enforcement point in front of it. The interface
-of that point is the same at every source, so bronhouders must know it.
+of that point is the same at every source, so source holders (bronhouders) must know it.
 
 ## Decision
 

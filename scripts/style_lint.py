@@ -103,7 +103,7 @@ def glossary_banned():
 
 
 BANNED = glossary_banned()
-BANNED_RX = [(re.compile(r"(?<![-/\w])(?<!trust )(?<!technical )" + re.escape(w) + r"s?\b", re.I), w, t)
+BANNED_RX = [(re.compile(r"(?<![-/\w(])(?<!trust )(?<!technical )" + re.escape(w) + r"(?:s|en|ken)?\b", re.I), w, t)
              for w, t in BANNED.items()]
 
 

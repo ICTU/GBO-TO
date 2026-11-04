@@ -4,7 +4,7 @@ In the OOTS channel, a public authority in another EU member state gets
 evidence from a Dutch source. The authority needs the evidence for a
 procedure under the Single Digital Gateway Regulation. The Basisinrichting OOTS handles the European
 transport and the interaction with the citizen. GBO adds an OOTS adapter
-in front of GBO Basis, so the bronhouder sees a normal FSC request. This
+in front of GBO Basis, so the source holder (bronhouder) sees a normal FSC request. This
 is interaction pattern B of the
 [Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/#patroon-b-grensoverschrijdend-verzoek-via-oots).
 The channel is design only: it is not built in demo v0.9.0.
@@ -69,7 +69,7 @@ The channel has these parts:
 |---|---|---|
 | Basisinrichting OOTS | Delivered by RINIS for the ministries of BZK and EZK. Its part OOTS-V receives evidence requests and has the citizen authenticate again. It checks for a mix-up of identities, fetches the data, and shows them to the citizen before it sends them. Not a GBO component | [GO pattern B](https://ictu.github.io/GBO-GO/main/#patroon-b-grensoverschrijdend-verzoek-via-oots) |
 | Protocol adapter | Translates the OOTS request into a GraphQL query over FSC and passes it on. It decides nothing about source data ([REQ-44](../requirements/authorization.md#req-44)) | [ADR-0020](../decisions/0020-as4-bridge-for-oots.md) |
-| Semantic mapping | Maps the source format to the SDG Evidence Data Model, if the bronhouder configures a mapping. Optional for the bronhouder | [ADR-0024](../decisions/0024-canonical-semantic-models.md) |
+| Semantic mapping | Maps the source format to the SDG Evidence Data Model, if the source holder configures a mapping. Optional for the source holder | [ADR-0024](../decisions/0024-canonical-semantic-models.md) |
 | GBO Basis | Decides at the source, field by field, and only then asks the source. The same chain as for every other channel | [GBO Basis](gbo-basis/index.md) |
 
 ## One evidence request
@@ -118,7 +118,7 @@ every hop.*
 
 OOTS-V sends the data only after the citizen agrees. The member states
 use eDelivery, AS4, ebMS and RegRep. OOTS-EDM specifies the request and
-response messages, and SDG-EDM describes the evidence. The bronhouder
+response messages, and SDG-EDM describes the evidence. The source holder
 applies none of these standards itself.
 
 ## Two designs for the edge
@@ -155,7 +155,7 @@ flowchart LR
 *Figure 3: Where the AS4 edge sits in the two designs.*
 {: .caption }
 
-In both designs, AS4 exists only at the edge, and the bronhouder sees a
+In both designs, AS4 exists only at the edge, and the source holder sees a
 normal FSC request through the standard PEP and PDP chain. The difference
 is who builds the protocol translation. It is open whether GBO builds the
 adapter, or the OOTS-V operator extends its facility with the GBO
@@ -172,7 +172,7 @@ part of GBO Basis and adds no decision of its own:
 | FSC connection and admission | The adapter calls the source as an FSC consumer, with a contract after admission ([REQ-46](../requirements/sources-identity.md#req-46)) | Design |
 | PDP and policy | The PDP of the source decides on every field. OOTS needs a regime, evidence and a rule of its own | Not designed |
 | Source gateway | Without a consent proof, the gateway passes the query on unchanged | Built for other channels |
-| Source configuration | The Globaal Ontwerp takes the mapping configuration from the bronhouder. The source document has no OOTS capability | Not designed |
+| Source configuration | The Globaal Ontwerp takes the mapping configuration from the source holder. The source document has no OOTS capability | Not designed |
 | Records | ADL, LDV and the FSC txlog record the request like any other request | Built for other channels |
 
 A channel adapter that GBO delivers does only protocol translation
@@ -180,13 +180,13 @@ A channel adapter that GBO delivers does only protocol translation
 which data a party gets. It does not fetch decision information such as
 consent or admission. It carries no knowledge of a source in code. It
 uses the source access that the source offers for all interaction
-patterns, and never a koppelvlak for one channel.
+patterns, and never a interface (koppelvlak) for one channel.
 
 The mapping depends on a canonical model per source. The proposed
-decision makes the GraphQL schema of the bronprofiel that canonical model
+decision makes the GraphQL schema of the source profile (bronprofiel) that canonical model
 ([ADR-0024](../decisions/0024-canonical-semantic-models.md), proposed).
 GBO then derives the OOTS-EDM evidence-type mappings from it. No central
-canonical model exists. Bronhouders and domains own their models
+canonical model exists. Source holders and domains own their models
 ([Q-11](../traceability/answered-questions.md#q-11)).
 
 ## What demo v0.9.0 does
@@ -233,7 +233,7 @@ edge, and the demo has no part of it:
 |---|---|---|---|
 | AS4 access point | In the Basisinrichting OOTS | Domibus at the GBO edge ([ADR-0020](../decisions/0020-as4-bridge-for-oots.md)) | None |
 | Protocol translation to GraphQL | A translator in the Basisinrichting OOTS. OOTS-V must also support GraphQL | The FSC translator of the GBO adapter | None |
-| Semantic mapping | An optional GBO facility, configured by the bronhouder | An OOTS-EDM adapter, based on the canonical model per source ([ADR-0024](../decisions/0024-canonical-semantic-models.md)) | None |
+| Semantic mapping | An optional GBO facility, configured by the source holder | An OOTS-EDM adapter, based on the canonical model per source ([ADR-0024](../decisions/0024-canonical-semantic-models.md)) | None |
 | Basis for the request | Policy checks a basis other than consent | A legal-basis path in the Gov-to-Gov style, needed and not built | No rule: the PDP denies |
 
 ## Open points

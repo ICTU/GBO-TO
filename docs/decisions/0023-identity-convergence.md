@@ -45,7 +45,7 @@ recognition and the BSNk participant.
 
 The decision for organization identity has five parts:
 
-1. The legal identity of a bronhouder (OIN and organization name) comes
+1. The legal identity of a source holder (bronhouder) (OIN and organization name) comes
    from its verified certificate material. It does not come from
    configuration ([REQ-67](../requirements/sources-identity.md#req-67)).
    The OIN is the 20-digit `serialNumber`. The name is exactly one `O`
@@ -55,7 +55,7 @@ The decision for organization identity has five parts:
    or without exactly one organization name.
 3. The configuration holds the FSC Peer ID separately from the OIN
    (`provider_peer_id`). One peer can offer services of more than one
-   bronhouder.
+   source holder.
 4. The runtime gets leaf material and public CA certificates, never CA
    private keys. A separate privileged command does the provisioning.
 5. FSC participants use PKIoverheid certificates
@@ -63,7 +63,7 @@ The decision for organization identity has five parts:
 
 ### Part B: EUDI certificate roles (proposed)
 
-GBO issues attestations for a bronhouder. Each such bronhouder needs its
+GBO issues attestations for a source holder. Each such source holder needs its
 own certificates, one per role. One certificate never fills two roles.
 The roles are as follows:
 
@@ -83,7 +83,7 @@ set per source fail-hard ([ADR-0016](0016-source-owned-metadata.md)).
 
 ## Consequences
 
-- An attestation and a decision record name the bronhouder with an
+- An attestation and a decision record name the source holder with an
   identity that an operator cannot fill in freely.
 - Consents are bound to the identity of the consumer. If that identity
   changes, the consents become unusable. The migration in
@@ -92,7 +92,7 @@ set per source fail-hard ([ADR-0016](0016-source-owned-metadata.md)).
   binding is real.
 - In the default demo onboarding, the demo publishes RvIG through the
   Belastingdienst peer with the Belastingdienst OIN. That is a demo
-  shortcut, so it does not show one OIN per bronhouder. The certificate
+  shortcut, so it does not show one OIN per source holder. The certificate
   sets still differ per source.
 - The demo development CA stands in for all EUDI roles at once.
   Production separates the roles.
@@ -112,7 +112,7 @@ These points are open:
   specifications contradict each other
   ([Q-30](../traceability/open-questions.md#q-30)).
 - Who holds the keys of the seal and status-list certificates: the
-  bronhouder, or the central issuance facility
+  source holder, or the central issuance facility
   ([Q-17](../traceability/open-questions.md#q-17))?
 - How does the migration from the self-generated CAs of the demo work?
 

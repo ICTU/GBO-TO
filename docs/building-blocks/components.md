@@ -19,8 +19,8 @@ graph TB
     end
 
     subgraph CONSENT["Consent chain (DvTP)"]
-        PORTAL["Toestemmingsportaal<br/>frontend + backend"]
-        CREG[Toestemmingsregister]
+        PORTAL["Consent portal<br/>frontend + backend"]
+        CREG[Consent register]
     end
 
     subgraph AUTHZ["Authorization chain"]
@@ -37,7 +37,7 @@ graph TB
         TXLOG[Txlog API]
     end
 
-    subgraph SRC["Bronhouder (per source: BD, RvIG, LVG)"]
+    subgraph SRC["Source holder (per source: BD, RvIG, LVG)"]
         SIDE["Source gateway<br/>(bron-sidecar)"]
         DEC[Decryption component]
         GQL[GraphQL source API]
@@ -129,7 +129,7 @@ The authorization chain has the following components:
 | Consent PIP | Verifies the consent token in policy: ES256 signature, issuer, audience, type, validity with 30 s skew, and required claims. It fetches the JWKS directly from the register and caches it for 300 s. It fetches the status for each evaluation over FSC, through the PDP's Outway. The status fetch has no cache and a 2 s timeout. Every failure has its own reason code. The engine copies the resolved consent into its response. | [policies/gbo/consent.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego) |
 | Authorization rules | Five plain-Rego rules, listed in the next table. Each rule names its regime, its FSC services, and its fields. It also states its own reasons to deny. | [policies/gbo/rules](https://github.com/ICTU/GBO-demo/tree/v0.9.0/policies/gbo/rules) |
 | Contract acceptance policy | Decides whether a provider's FSC Manager signs a submitted contract. It accepts grant types service connection and delegated service connection. It applies eight ordered refusal codes, from `NOT_AN_AUTOSIGN_REQUEST` to `DELEGATION_NOT_REGISTERED`. It keeps a missing register (`ADMISSION_REGISTER_UNAVAILABLE`) apart from a missing entry (`PARTY_NOT_IN_REGISTRY`). | [policies/fsc/autosign.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L167-L174) |
-| Admission register | Holds the admitted participants: bronhouders, GBO system participants (EDI issuer, PDP, ASIP), and consumers. Each entry has `active` and `allowed_source_peer_ids`. The register also holds integrator mandates (`integrations`) and serves them as `acts_for`. OpenFTV pulls it every 5 s over a network that only the PDP shares. The register deactivates an entry and never deletes it. It keeps no change log ([REQ-123](../requirements/admission.md#req-123)). It is a SQLite database with an admin UI. | [services/dvtp-onboarding-register](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register), [PIP pull](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml) |
+| Admission register | Holds the admitted participants: source holders (bronhouders), GBO system participants (EDI issuer, PDP, ASIP), and consumers. Each entry has `active` and `allowed_source_peer_ids`. The register also holds integrator mandates (`integrations`) and serves them as `acts_for`. OpenFTV pulls it every 5 s over a network that only the PDP shares. The register deactivates an entry and never deletes it. It keeps no change log ([REQ-123](../requirements/admission.md#req-123)). It is a SQLite database with an admin UI. | [services/dvtp-onboarding-register](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register), [PIP pull](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml) |
 
 The PID regime has no positive evidence of its own. A request without a
 consent token enters it ([F-70](../traceability/findings.md#f-70)). For this
@@ -199,9 +199,9 @@ The consent chain has the following components:
 
 | Component | Responsibility | Implementation |
 |---|---|---|
-| Toestemmingsportaal frontend | The citizen UI. It has a DigiD login (mock), one toggle per data set, a consent overview, and revocation. It shows only the requested data sets and refuses a data set that it cannot describe. It checks the return origin against an allowlist. It returns the consent proof in the URL fragment, or `status=denied`. | [toestemmingsportaal-frontend](https://github.com/ICTU/GBO-demo/tree/v0.9.0/toestemmingsportaal-frontend) |
-| Toestemmingsportaal backend | Keeps the BSN away from the register and the consumer. The type system enforces this boundary, and the backend never sends a BSN to the register. It derives `subject_ref` as a keyed HMAC of the BSN, with a key version. It activates a citizen at BSNk once and stores PI and PP in the register. At each consent, it reads the BSN authorization list and has BSNk transform the values. Every configured source gets a VP. Only a source on the list also gets a VI. | [services/consent-portal-backend](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-portal-backend), [portal.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go), [subjectref.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/subjectref.go) |
-| Toestemmingsregister | Stores consent records: `subject_ref`, consumer, scopes, scope entries per source, purpose (`use_case`), validity, and status. It also stores the portal's PI and PP per `subject_ref` (route D, [ADR-0040](../decisions/0040-route-d-citizen-recognition.md)). It stores no BSN, no VI, and no VP. It signs the consent proof and serves the JWKS. A separate listener serves only the status, published as the FSC service `consent-status`. By default, the register keeps its data in memory. If it uses Postgres, it requires a persistent signing key. | [services/consent-register](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-register), [status.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/status.go), [polymorphic.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/polymorphic.go) |
+| Consent portal (toestemmingsportaal) frontend | The citizen UI. It has a DigiD login (mock), one toggle per data set, a consent overview, and revocation. It shows only the requested data sets and refuses a data set that it cannot describe. It checks the return origin against an allowlist. It returns the consent proof in the URL fragment, or `status=denied`. | [toestemmingsportaal-frontend](https://github.com/ICTU/GBO-demo/tree/v0.9.0/toestemmingsportaal-frontend) |
+| Consent portal backend | Keeps the BSN away from the register and the consumer. The type system enforces this boundary, and the backend never sends a BSN to the register. It derives `subject_ref` as a keyed HMAC of the BSN, with a key version. It activates a citizen at BSNk once and stores PI and PP in the register. At each consent, it reads the BSN authorization list and has BSNk transform the values. Every configured source gets a VP. Only a source on the list also gets a VI. | [services/consent-portal-backend](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-portal-backend), [portal.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go), [subjectref.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/subjectref.go) |
+| Consent register (toestemmingsregister) | Stores consent records: `subject_ref`, consumer, scopes, scope entries per source, purpose (`use_case`), validity, and status. It also stores the portal's PI and PP per `subject_ref` (route D, [ADR-0040](../decisions/0040-route-d-citizen-recognition.md)). It stores no BSN, no VI, and no VP. It signs the consent proof and serves the JWKS. A separate listener serves only the status, published as the FSC service `consent-status`. By default, the register keeps its data in memory. If it uses Postgres, it requires a persistent signing key. | [services/consent-register](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-register), [status.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/status.go), [polymorphic.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/polymorphic.go) |
 | Consent proof | ES256 JWT, type `gbo-consent+jwt`. Claims: `consent_id`, `encrypted_subject`, `scopes`, `scope_entries`, `dienstverlener_oin`, `valid_until` (equal to `exp`), `iss`, `aud`, `iat`, `nbf`, `jti`. `encrypted_subject` holds a `pseudonym` per source OIN. For a source on the BSN authorization list, it also holds an `identity`. Each value has a `key_set_version`. `dienstverlener_oin` holds the consumer's FSC Peer ID ([Q-68](../traceability/open-questions.md#q-68)). The PDP denies a token in the old form with `pi`. | [consent_token.go](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L22-L80) |
 
 The consumer holds no citizen identifier. Its query names the subject with
@@ -212,9 +212,9 @@ section).
 [Pseudonymization](../concepts/pseudonymization.md) explains the values. The
 decision is [ADR-0032](../decisions/0032-consent-proof.md).
 
-## Level 2: bronhouder
+## Level 2: source holder {#level-2-bronhouder}
 
-The bronhouder runs the following components:
+The source holder runs the following components:
 
 | Component | Responsibility | Implementation |
 |---|---|---|
@@ -362,7 +362,7 @@ An optional `data_access` block (`transport`, `provider_peer_id`) gives the
 data leg a different transport than the metadata leg. The `file` transport
 is an exception for a source without its own endpoint. In that case, the
 operator takes over the description. GBO does not record the agreement of
-the bronhouder
+the source holder
 ([F-71](../traceability/findings.md#f-71), [AV-08](../requirements/admission.md#av-08)).
 
 The legal identity of the source comes from the certificate set with the
@@ -385,7 +385,7 @@ In demo v0.9.0, the RvIG source
 ([rvig.yaml](https://github.com/ICTU/GBO-demo/blob/v0.9.0/sources/configured/rvig.yaml))
 uses the Belastingdienst peer `…0200` and the OIN of the Belastingdienst.
 This is a demo shortcut. The demo therefore does not show one OIN per
-bronhouder.
+source holder.
 
 ### Source schema and the PDP copy
 
@@ -432,7 +432,7 @@ the following components:
 | Component | Responsibility | Implementation |
 |---|---|---|
 | Directory | The registry of the group. It signs service publications automatically. It signs nothing else. | [fsc-infra/docker-compose.yml](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml) |
-| Manager (per organization) | Issues access tokens for contracted connections. The token carries the signed `service_name`, which binds the PDP rules to a service. The provider Managers of BD, BRP, and the toestemmingsregister decide contract acceptance through the PDP (AuthZEN autosign). | [bd-manager](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L701-L702) |
+| Manager (per organization) | Issues access tokens for contracted connections. The token carries the signed `service_name`, which binds the PDP rules to a service. The provider Managers of BD, BRP, and the consent register decide contract acceptance through the PDP (AuthZEN autosign). | [bd-manager](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L701-L702) |
 | Inway (per provider) | `bd-inway` and `brp-inway` are the PEP. Their AuthZEN plugin sends every request with its body to the PDP before the request reaches the source gateway. `cr-inway` has no AuthZEN hook. Behind `cr-inway`, the contract authorizes `consent-status`, and the register reads the calling peer from the `Fsc-Authorization` token. | [bd-inway](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L773-L775), [cr-inway](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L1117) |
 | Outway (per consumer) | Opens mTLS connections to Inways under a grant hash. Grant links give each contracted service a path: `/bri`, `/brp`, `/lvg`, `/consent-status`. | [seed-bri-contract.sh](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-contract.sh) |
 | Grants | Service-connection grants carry no properties. The demo removed `flow` in [PR #363](https://github.com/ICTU/GBO-demo/pull/363) and `subject_id_type` in [#473](https://github.com/ICTU/GBO-demo/issues/473). The regime follows from the evidence on the request ([ADR-0031](../decisions/0031-regime-from-evidence.md)). | [seed-bri-contract.sh](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-contract.sh#L60-L71) |
@@ -525,7 +525,7 @@ The demo runs seven logbooks. Each controller logs its own processings
 | `logboek-bd` | Belastingdienst | `graphql-server`, `bron-sidecar` |
 | `logboek-brp` | RvIG | `brp-graphql-server`, `brp-sidecar` |
 | `logboek-lvg` | LVG | `lvg-graphql-server`, `lvg-sidecar` |
-| `logboek-toestemming` | GBO toestemmingsvoorziening | `consent-register`, `consent-portal-backend` |
+| `logboek-toestemming` | GBO consent facility (toestemmingsvoorziening) | `consent-register`, `consent-portal-backend` |
 | `logboek-eudi-adapter` | GBO issuance facility | `eudi-adapter` |
 | `logboek-afnemer` | Hypotheek-BV (consumer) | `dienstverlener-backend`, `integrator-backend` |
 | `logboek-ir` | Installatie Register (consumer) | `ir-backend` |
@@ -542,7 +542,7 @@ The demo has the following shared services and mocks:
 | Component | Responsibility | Implementation |
 |---|---|---|
 | BSNk PP mock | Follows the BSNk interface as JSON instead of SOAP: `/v2/activate`, `/v2/transform`, `/v2/provide-dv-keys`, `/v2/bsn-authorisation-list`, and `/v2/scheme-keys`. It enforces the rules of BSNk. A PI or PP belongs to its requester. A transformation has at most four parties. Only a party on the BSN authorization list gets an identity. It does not encrypt: anyone who holds a value can read it. Only the portal backend calls it, at consent time. | [services/bsnk-mock](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/bsnk-mock), [README](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bsnk-mock/README.md) |
-| DigiD mocks | The toestemmingsportaal has a DigiD login page. The user types a test BSN, and the portal backend signs a portal token with it. The ASI authorization server has its own stub (see the ASI chain). Demo scaffolding. | [DigiDAuth.tsx](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/DigiDAuth.tsx), [portalhttp](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-portal-backend/portalhttp) |
+| DigiD mocks | The consent portal has a DigiD login page. The user types a test BSN, and the portal backend signs a portal token with it. The ASI authorization server has its own stub (see the ASI chain). Demo scaffolding. | [DigiDAuth.tsx](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/DigiDAuth.tsx), [portalhttp](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-portal-backend/portalhttp) |
 | Consumer backend and frontend | Mock consumer Hypotheek-BV (peer `…0300`). It starts the consent flow, receives the proof and sends the DvTP query with the placeholder. `QUERY_KIND` selects the source (`bd` or `lvg`) and its placeholder. It writes its own LDV records. Demo scaffolding. | [services/dienstverlener-backend](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dienstverlener-backend), [dienstverlener-mock](https://github.com/ICTU/GBO-demo/tree/v0.9.0/dienstverlener-mock) |
 | Installatie Register (LVG pilot) | `keyper-mock` is the IR/Keyper frontend. It has the installer request, the owner approval, and the installer data. `ir-backend` is the consumer backend with `QUERY_KIND=lvg` on its own peer `…1000`. Under one consent, IR calls LVG again at each installer access. IR holds the second consent (citizen to installer). GBO does not hold it. Demo scaffolding. | [keyper-mock](https://github.com/ICTU/GBO-demo/tree/v0.9.0/keyper-mock), [docs/lvg-ir.md](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/lvg-ir.md) |
 | Integrator backend | Consumer backend on the integrator peer `…1100`. It calls `bri` for Hypotheek-BV under a delegated grant. It is opt-in: run `make demo-integrator`. Demo scaffolding. | [docs/integrator.md](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/integrator.md) |

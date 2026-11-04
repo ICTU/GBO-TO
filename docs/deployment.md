@@ -20,14 +20,14 @@ The demo runs in two environments:
 | Simulation | Kubernetes with the generic [gbo-app Helm chart](https://github.com/ICTU/GBO-demo/tree/v0.9.0/deploy/helm/gbo-app). Each application is one release with a Deployment or a Job, a Service, and a Gateway API HTTPRoute. It runs in the MinEZK and MinBZK tenants. | Public demo at [gbo.simulatie.datastelsel.nl](https://gbo.simulatie.datastelsel.nl/) |
 
 Compose profiles switch on optional parts. The base (no profile) runs the
-PDP and its databases, the admission register, and the toestemmingsregister.
+PDP and its databases, the admission register, and the consent register (toestemmingsregister).
 It also runs the BD and BRP sources with their gateways, the BSNk mock, the
 decryption component, the LDV logbooks, the developer portal, and
 observability. Each profile adds parts to the base:
 
 | Profile | Adds | Make target |
 |---|---|---|
-| `dvtp` | Toestemmingsportaal, consumer backends and frontends (Hypotheek-BV, Installatie Register with `keyper-mock`), and the LVG source and gateway | `demo-dvtp` |
+| `dvtp` | Consent portal (toestemmingsportaal), consumer backends and frontends (Hypotheek-BV, Installatie Register with `keyper-mock`), and the LVG source and gateway | `demo-dvtp` |
 | `eudi` | Issuance chain: `postgres-eudi`, source registry bootstrap and migrations, issuance migrations, configuration materializer, issuance server, and EUDI adapter | `demo-eudi` |
 | `onboarding` | Source reconciler as the registry writer, with `postgres-eudi` and the registry jobs | `onboard-demo-sources` |
 | `full` | `dvtp` and `eudi` together | `demo-full` |
@@ -71,7 +71,7 @@ Two limits apply to this isolation:
 - The chart has no NetworkPolicy. A Kubernetes deployment needs one, or an
   equivalent control ([F-79](traceability/findings.md#f-79)).
 
-The toestemmingsregister also relies on network placement. Its portal API
+The consent register also relies on network placement. Its portal API
 must serve only the portal backend
 ([REQ-39](requirements/consent.md#req-39)). The API does not
 authenticate the caller. It is open whether it must
@@ -161,7 +161,7 @@ certificate portal serve the group. The group has these peers:
 | Belastingdienst mock | `…0200` | `bd-manager`, `bd-inway`, `bd-controller`, `bd-txlog-api` | Provider of `bri`, `brp` (RvIG), `lvg`, `gbo-metadata-bd`, and `gbo-metadata-rvig`. Its Manager decides contracts through the PDP. Its Inway is the PEP. |
 | Hypotheekverlener mock | `…0300` | `hv-manager`, `hv-outway`, `hv-controller`, `hv-txlog-api` | DvTP consumer of `bri` |
 | BRP/RvIG mock | `…0400` | `brp-manager`, `brp-inway`, `brp-controller`, `brp-txlog-api` | Provider peer with its own PEP and contract decision. The default demo publishes RvIG on `…0200` instead. `make fsc-seed-brp` publishes `brp` here. |
-| Toestemmingsregister (GBO) | `…0700` | `cr-manager`, `cr-inway`, `cr-controller`, `cr-txlog-api` | Provider of `consent-status`. The Inway has no AuthZEN hook. The Manager decides contracts through the PDP. |
+| Consent register (GBO) | `…0700` | `cr-manager`, `cr-inway`, `cr-controller`, `cr-txlog-api` | Provider of `consent-status`. The Inway has no AuthZEN hook. The Manager decides contracts through the PDP. |
 | PDP (GBO) | `…0800` | `pdp-manager`, `pdp-outway`, `pdp-controller`, `pdp-txlog-api` | Consumer of `consent-status` |
 | Installatie Register | `…1000` | `ir-manager`, `ir-outway`, `ir-controller`, `ir-txlog-api` | DvTP consumer of `lvg` |
 | Integrator (opt-in) | `…1100` | `int-*` (profile `integrator`) | Delegated consumer of `bri` for Hypotheek-BV |
@@ -171,7 +171,7 @@ One FSC peer can host more than one logical source. In the default demo,
 the RvIG and LVG sources use the Belastingdienst peer `…0200` and its OIN.
 Each source still has its own service, gateway, metadata document, and
 certificate set. This shared peer is a demo shortcut. The demo therefore
-does not show one OIN per bronhouder
+does not show one OIN per source holder (bronhouder)
 ([REQ-67](requirements/sources-identity.md#req-67)).
 
 ### ASI units
@@ -222,7 +222,7 @@ key. The demo has the following certificate and key material:
 |---|---|---|---|
 | FSC group and internal certificates, per organization | `fsc-infra/pki` bootstrap scripts (cfssl) | The FSC components of that organization | PKIoverheid ([REQ-46](requirements/sources-identity.md#req-46)) |
 | PDP AuthZEN TLS certificate | `generate-pdp-cert.sh` | PDP. Inways and Managers pin it as CA. | Platform TLS (Helm: Secret `openftv-pdp-tls`) |
-| Consent proof signing key | Toestemmingsregister at start, or a mounted file (`CONSENT_SIGNING_KEY_PATH`, required with a persistent store) | Toestemmingsregister | Managed key. Key rotation is an open question ([Q-55](traceability/open-questions.md#q-55)). |
+| Consent proof signing key | Consent register at start, or a mounted file (`CONSENT_SIGNING_KEY_PATH`, required with a persistent store) | Consent register | Managed key. Key rotation is an open question ([Q-55](traceability/open-questions.md#q-55)). |
 | Source decryption keys | Demo keys in the gateway image, for the shared demo OIN | Source gateway and decryption component. A deployment mounts its own keys (`SUBJECT_KEYS_DIR`). | BSNk key delivery per source ([BSNK-09](requirements/pseudonymization.md#bsnk-09)). Old key versions stay available as long as consent proofs that use them are valid ([AV-09](requirements/admission.md#av-09)). |
 | EUDI certificate set per source: issuer, reader, status list | `make provision-development-certificates` | Issuance server (private keys through the init step) and reconciler (public leaves only) | Qualified seal certificate in a QSCD, access and registration certificates, and a status-list certificate. Key custody is an open question ([Q-17](traceability/open-questions.md#q-17)). |
 | Reference QTSP issuance set: reader, issuer, status list, callback TLS | `make provision-qtsp-issuance-certificates` | Issuance server, reference QTSP | Outside GBO. The QTSP holds its own set. |
@@ -239,7 +239,7 @@ too broad ([REQ-45](requirements/eudi-issuance.md#req-45)). The ASI wallet
 verifier trusts a fixed list: the pre-production PID issuer and the
 development issuer CA. Neither list is the EU Trusted List.
 
-Production needs separate certificate roles per bronhouder for EUDI:
+Production needs separate certificate roles per source holder for EUDI:
 access, registration, qualified seal, and status list. It is open which
 trust list anchors PuB-EAA providers
 ([Q-30](traceability/open-questions.md#q-30)). [Identity and
@@ -252,7 +252,7 @@ GBO and the demo keep data in these stores:
 
 | Store | Backing | Content |
 |---|---|---|
-| Toestemmingsregister | In memory by default. Postgres is optional. | Consent records and the portal's PI and PP per `subject_ref` ([REQ-69](requirements/pseudonymization.md#req-69)). No BSN, no VI, and no VP. |
+| Consent register | In memory by default. Postgres is optional. | Consent records and the portal's PI and PP per `subject_ref` ([REQ-69](requirements/pseudonymization.md#req-69)). No BSN, no VI, and no VP. |
 | Admission register | SQLite volume `dvtp-onboarding-data` | Participants and integrator mandates |
 | Authorization Decision Log | Postgres `postgres-ftv`, database `ftv_adl`, in every profile. Readers use the SELECT-only role `adl_reader`. | One record per PDP evaluation ([REQ-71](requirements/logging-audit.md#req-71)) |
 | OpenFTV Manager (opt-in) | Same `postgres-ftv` instance | Policies and the bundle |
@@ -298,7 +298,7 @@ The demo-grade choices in the following lists must change for production.
 
 Authorization and consent have these demo-grade choices:
 
-- One PDP serves all providers. The target is a PDP per bronhouder
+- One PDP serves all providers. The target is a PDP per source holder
   ([ADR-0004](decisions/0004-federated-authorization.md)). The PDP does not
   start without its ADL database, so `postgres-ftv` runs in every profile.
 - Every DvTP decision needs the consent status, live, over FSC. By

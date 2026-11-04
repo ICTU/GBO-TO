@@ -53,7 +53,7 @@ contain only the PI.
 - Each role stays separate, in line with datasoevereiniteit:
     - The PEP stays a pure enforcement point.
     - The PDP does no data transformation.
-    - Only the bronhouder holds BSN authority.
+    - Only the source holder (bronhouder) holds BSN authority.
 - The meaning of the identifier is a grant property that both peers
   countersign ([ADR-0030](0030-grant-properties.md)). So a caller cannot
   choose how the source interprets its subject identifier.

@@ -12,7 +12,7 @@ For the concepts, see [Authorization](../concepts/authorization.md),
 [Pseudonymization](../concepts/pseudonymization.md#where-the-boundary-is-enforced).
 For the components, see
 [Level 2: authorization chain](../building-blocks/components.md#level-2-authorization-chain)
-and [Level 2: bronhouder](../building-blocks/components.md#level-2-bronhouder). The main
+and [Level 2: source holder (bronhouder)](../building-blocks/components.md#level-2-bronhouder). The main
 decisions are [ADR-0031](../decisions/0031-regime-from-evidence.md),
 [ADR-0032](../decisions/0032-consent-proof.md), and
 [ADR-0033](../decisions/0033-gateway-decrypts-after-allow.md).
@@ -41,7 +41,7 @@ sequenceDiagram
       participant CRIN as Register Inway
     end
     box rgb(254,220,216) DvTP
-      participant CR as Toestemmingsregister
+      participant CR as Consent register
     end
     box rgb(220,252,231) GBO Basis at the source
       participant SC as bron-sidecar
@@ -170,11 +170,11 @@ It is open whether the proof must name the integrator
 The LVG pilot uses the same consent pattern with a different consumer and
 a different source
 ([`lvg-ir.md`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/lvg-ir.md)).
-The Installatie Register (IR) asks the Landelijke Voorziening Gebouwen
+The Installatie Register (IR) asks the Landelijke facility (voorziening) Gebouwen
 (LVG) whether a building unit belongs to the citizen. The citizen gives two
 consents:
 
-- One consent to IR in the toestemmingsportaal (scope `lvg:vbo:eigendom`).
+- One consent to IR in the consent portal (toestemmingsportaal) (scope `lvg:vbo:eigendom`).
   This consent is in GBO.
 - One consent to the installer inside IR. This consent is not in GBO.
 

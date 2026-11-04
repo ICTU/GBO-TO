@@ -71,7 +71,7 @@ Each requirement entry has this format:
 
 - **Source**: design — PSA S04, FR-34 criterion 1
              or: derived — serves PSA S01: why, in one sentence
-- **Addressee**: GBO-delivered component | interface agreement | guideline for bronhouders
+- **Addressee**: GBO-delivered component | interface agreement | guideline for source holders
 - **Evidence**: demo issue or PR, with a permalink to the test or the code;
                or: not built — issue
 - **Related**: links only (REQ, F, Q, ADR)
@@ -115,8 +115,8 @@ more information, see [Removed numbers](#removed-numbers).
 
 The system is federative ([Q-02](../traceability/answered-questions.md#q-02)),
 and [P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)
-puts the bronhouder in control. So a requirement that prescribes how a
-bronhouder configures its own PDP, PAP, or policy engine is no
+puts the source holder (bronhouder) in control. So a requirement that prescribes how a
+source holder configures its own PDP, PAP, or policy engine is no
 requirement. Nobody can enforce it in practice. Each requirement names
 its addressee:
 
@@ -132,12 +132,12 @@ its addressee:
   example, you can trace which policy version a decision used. A MUST
   applies, but only to the observable result. It never applies to the
   internal configuration or the product.
-- **Guideline for bronhouders**: the internal configuration at a source.
+- **Guideline for source holders**: the internal configuration at a source.
   At most SHOULD, with the reason, or a selection criterion for a product.
 
 Three other namespaces hold what is not a requirement on GBO:
 
-- **`RL-NN`**: guidelines for bronhouders, on
+- **`RL-NN`**: guidelines for source holders, on
   [Policy management](authorization.md#policy-management). Matrix and findings can
   refer to them like a requirement, without the suggestion that they are
   one. Each guideline has a promotion rule: the open question that must
@@ -190,7 +190,7 @@ These requirements apply to GBO-delivered components and interface agreements:
 | [REQ-19](consent.md#req-19) | A consent has a finite validity, and after that the PDP denies | DvTP | [Consent lifecycle](consent.md#consent-lifecycle) | design | ready for review |
 | [REQ-20](pseudonymization.md#req-20) | In the consent path the consumer gets no BSN in the proof or in the response | DvTP | [Pseudonymization](pseudonymization.md) | design | draft |
 | [REQ-21](pseudonymization.md#req-21) | The source converts the value from the proof itself, only after a positive decision and without a central party | DvTP | [Pseudonymization](pseudonymization.md) | design | ready for review |
-| [REQ-23](consent.md#req-23) | The toestemmingsregister gets no BSN, not even temporarily | DvTP | [Consent roles](consent.md#consent-roles) | design | draft |
+| [REQ-23](consent.md#req-23) | The consent register (toestemmingsregister) gets no BSN, not even temporarily | DvTP | [Consent roles](consent.md#consent-roles) | design | draft |
 | [REQ-24](consent.md#req-24) | The citizen identity comes from the authentication service assertion at the required assurance level and not from client input | DvTP | [Consent roles](consent.md#consent-roles) | design | ready for review |
 | [REQ-32](logging-audit.md#req-32) | Audit records are protected, complete, and stored apart from operational logs | GBO Basis | [Decision audit](logging-audit.md#decision-audit) | design | ready for review |
 | [REQ-37](consent.md#req-37) | A consent request names the consumer, the service, the requested data sets, and the return address | DvTP | [Consent initiation](consent.md#consent-initiation) | design | draft |
@@ -204,7 +204,7 @@ These requirements apply to GBO-delivered components and interface agreements:
 | [REQ-48](authorization.md#req-48) | Every rule checks actor and scope itself, and a request passes only if no check denies | GBO Basis | [Authorization](authorization.md) | design | ready for review |
 | [REQ-55](logging-audit.md#req-55) | One trace ID per request across the whole chain, and the transaction ID can be linked to it | GBO Basis | [Observability](logging-audit.md#observability) | design | ready for review |
 | [REQ-57](eudi-issuance.md#req-57) | An attestation about someone other than the requester follows an agreed relation from the verified requester | EUDI | [EUDI issuance](eudi-issuance.md) | derived | draft |
-| [REQ-58](eudi-issuance.md#req-58) | Every bronhouder has its own certificate set for issuance, and missing material fails | EUDI | [EUDI issuance](eudi-issuance.md) | design | ready for review |
+| [REQ-58](eudi-issuance.md#req-58) | Every source holder has its own certificate set for issuance, and missing material fails | EUDI | [EUDI issuance](eudi-issuance.md) | design | ready for review |
 | [REQ-59](logging-audit.md#req-59) | The decision record names the policy version that decided | GBO Basis | [Decision audit](logging-audit.md#decision-audit) | design | ready for review |
 | [REQ-60](logging-audit.md#req-60) | Logging contains no BSN that the processing does not need | GBO Basis | [Decision audit](logging-audit.md#decision-audit) | design | ready for review |
 | [REQ-61](admission.md#req-61) | Admission comes from a register and not from decision policy | GBO Basis | [Admission and contracts](admission.md) | design | ready for review |
@@ -213,20 +213,20 @@ These requirements apply to GBO-delivered components and interface agreements:
 | [REQ-64](sources-identity.md#req-64) | A GBO component works only with the service description the source publishes itself, after validation | GBO Basis | [Source metadata](sources-identity.md#source-metadata) | design | ready for review |
 | [REQ-65](sources-identity.md#req-65) | Only an explicit management action takes a source into use, and a valid contract is not enough | GBO Basis | [Source metadata](sources-identity.md#source-metadata) | design | ready for review |
 | [REQ-66](sources-identity.md#req-66) | Source metadata fails closed per source, ages within bounds, and can be rolled back | GBO Basis | [Source metadata](sources-identity.md#source-metadata) | design | ready for review |
-| [REQ-67](sources-identity.md#req-67) | The legal identity of a bronhouder comes from its certificate and not from configuration | GBO Basis | [Identity and trust](sources-identity.md#identity-trust) | design | draft |
+| [REQ-67](sources-identity.md#req-67) | The legal identity of a source holder comes from its certificate and not from configuration | GBO Basis | [Identity and trust](sources-identity.md#identity-trust) | design | draft |
 | [REQ-68](consent.md#req-68) | The PDP decides only on a consent whose origin, binding, and current status it establishes itself | DvTP | [Consent (DvTP)](consent.md) | design | draft |
-| [REQ-69](pseudonymization.md#req-69) | The toestemmingsregister stores the polymorphic values under its own reference and no encrypted values per party | DvTP | [Pseudonymization](pseudonymization.md) | design | ready for review |
+| [REQ-69](pseudonymization.md#req-69) | The consent register stores the polymorphic values under its own reference and no encrypted values per party | DvTP | [Pseudonymization](pseudonymization.md) | design | ready for review |
 | [REQ-71](logging-audit.md#req-71) | Every authorization decision is in an ADL-conformant decision record, and that record is the audit source | GBO Basis | [Decision audit](logging-audit.md#decision-audit) | design | ready for review |
 | [REQ-72](logging-audit.md#req-72) | A GBO component that processes personal data writes an LDV log record for each processing at its controller | GBO Basis | [Processing logging](logging-audit.md#processing-logging) | design | ready for review |
 | [REQ-74](authorization.md#req-74) | The authorization regime follows from the evidence a request carries | GBO Basis | [Authorization](authorization.md) | derived | ready for review |
 | [REQ-75](consent.md#req-75) | Consent status is available within a set propagation time, availability, and latency | DvTP | [Consent (DvTP)](consent.md) | design | draft |
 | [REQ-76](consent.md#req-76) | The register gives consent status only to an authenticated, authorized PDP, over FSC, and records who asked | DvTP | [Consent (DvTP)](consent.md) | design | draft |
-| [REQ-77](eudi-issuance.md#req-77) | An attestation gets the validity and revocation policy of the bronhouder | EUDI | [EUDI issuance](eudi-issuance.md) | design | draft |
+| [REQ-77](eudi-issuance.md#req-77) | An attestation gets the validity and revocation policy of the source holder | EUDI | [EUDI issuance](eudi-issuance.md) | design | draft |
 | [REQ-78](eudi-issuance.md#req-78) | Issuance issues nested claims, with selective disclosure per element as the schema prescribes | EUDI | [EUDI issuance](eudi-issuance.md) | design | draft |
 | [REQ-79](pseudonymization.md#req-79) | Under a consent the subject comes only from the proof | DvTP | [Pseudonymization](pseudonymization.md) | derived | ready for review |
 | [REQ-80](pseudonymization.md#req-80) | The proof carries a value per party that only that party can read, and the recipient checks that the value is meant for it | DvTP | [Pseudonymization](pseudonymization.md) | design | ready for review |
 | [REQ-81](pseudonymization.md#req-81) | Only the component that enforces the decision reaches the source gateway | DvTP | [Pseudonymization](pseudonymization.md) | derived | ready for review |
-| [REQ-82](pseudonymization.md#req-82) | When consent is given, the toestemmingsvoorziening knows the OIN, the key version, and the BSN authorization of each source | DvTP | [Pseudonymization](pseudonymization.md) | derived | draft |
+| [REQ-82](pseudonymization.md#req-82) | When consent is given, the consent facility (toestemmingsvoorziening) knows the OIN, the key version, and the BSN authorization of each source | DvTP | [Pseudonymization](pseudonymization.md) | derived | draft |
 | [REQ-83](asi.md#req-83) | Every ASIP verification result is sealed | EUDI | [Authentic Source Interface](asi.md) | design | ready for review |
 | [REQ-84](asi.md#req-84) | `Unknown` only means the source has no (complete) value | EUDI | [Authentic Source Interface](asi.md) | design | ready for review |
 | [REQ-85](asi.md#req-85) | The verify response contains no value from the source | EUDI | [Authentic Source Interface](asi.md) | derived | draft |
@@ -266,9 +266,9 @@ These requirements apply to GBO-delivered components and interface agreements:
 | [REQ-123](admission.md#req-123) | Every change to an admission, mandate, or activation is traceable | GBO Basis | [Admission and contracts](admission.md) | design | draft |
 | [REQ-124](eudi-issuance.md#req-124) | For every attestation, the versions of the mapping, the source schema, and the attestation schema are traceable | EUDI | [EUDI issuance](eudi-issuance.md) | design | draft |
 
-### Guidelines for bronhouders (RL)
+### Guidelines for source holders (RL) {#guidelines-for-bronhouders-rl}
 
-The guidelines apply to the internal configuration of a bronhouder, and each guideline has a promotion rule:
+The guidelines apply to the internal configuration of a source holder, and each guideline has a promotion rule:
 
 | ID | Title | Channel | Topic page | Source (design/derived) | Status |
 |---|---|---|---|---|---|
@@ -286,17 +286,17 @@ The candidates are obligations for other participants, and each entry names the 
 |---|---|---|---|---|---|
 | [AV-01](admission.md#av-01) | Consumer sends trace context and records the transaction ID | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 | [AV-02](admission.md#av-02) | Consumer records its processing according to LDV | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
-| [AV-03](admission.md#av-03) | Consumer uses the toestemmingsvoorziening and BSNk PP | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
+| [AV-03](admission.md#av-03) | Consumer uses the consent facility and BSNk PP | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 | [AV-04](admission.md#av-04) | Consumer has its own FSC peer with PKIoverheid certificate and OIN | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 | [AV-05](admission.md#av-05) | Consumer sends the consent proof unchanged | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 | [AV-06](admission.md#av-06) | Integrator is admitted separately and acts as processor | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
-| [AV-07](admission.md#av-07) | Bronhouder publishes a machine-readable description for each data service | GBO Basis | [Connection conditions](admission.md#connection-conditions) | — | candidate |
-| [AV-08](admission.md#av-08) | Bronhouder without its own endpoint provably agrees with a taken-over description | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
-| [AV-09](admission.md#av-09) | Bronhouder keeps decryption keys of an older version while proofs for that version are valid | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
-| [AV-10](admission.md#av-10) | Bronhouder logs every living data subject of a relation attestation | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
-| [AV-11](admission.md#av-11) | Bronhouder tests its view for relation attestations | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
-| [AV-12](admission.md#av-12) | Bronhouder as provider has a public validity and revocation policy | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
-| [AV-13](admission.md#av-13) | Bronhouder gives the instruction to revoke an attestation | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
+| [AV-07](admission.md#av-07) | Source holder publishes a machine-readable description for each data service | GBO Basis | [Connection conditions](admission.md#connection-conditions) | — | candidate |
+| [AV-08](admission.md#av-08) | Source holder without its own endpoint provably agrees with a taken-over description | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
+| [AV-09](admission.md#av-09) | Source holder keeps decryption keys of an older version while proofs for that version are valid | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
+| [AV-10](admission.md#av-10) | Source holder logs every living data subject of a relation attestation | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
+| [AV-11](admission.md#av-11) | Source holder tests its view for relation attestations | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
+| [AV-12](admission.md#av-12) | Source holder as provider has a public validity and revocation policy | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
+| [AV-13](admission.md#av-13) | Source holder gives the instruction to revoke an attestation | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 | [AV-14](admission.md#av-14) | Consumer has registered contact details for GDPR rights | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 | [AV-15](admission.md#av-15) | Consumer declares an equivalent alternative at admission | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 

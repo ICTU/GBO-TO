@@ -67,7 +67,7 @@ The proposal left these points open:
 - The PDP policy set for QTSP verification (Trusted List check, citizen
   authorization, attribute scope).
 - The design of the authorization server (I4), and its relation to the
-  toestemmingsvoorziening.
+  consent facility (toestemmingsvoorziening).
 - The timeline pressure from the Article 45e deadline. For more
   information, see [Risks and technical debt](../risks.md).
 

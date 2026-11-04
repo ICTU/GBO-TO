@@ -10,7 +10,7 @@ This page has the following parts:
 ## Admission register and contracts {#admission}
 
 The admission requirements cover the step before a request. They answer
-three questions: can this party connect, to which bronhouder, and who
+three questions: can this party connect, to which source holder (bronhouder), and who
 decides that. The requirements are generic. They apply to every party that
 connects through FSC: in DvTP, EUDI issuance, and the ASI route.
 [Authorization](authorization.md) covers the authorization of one request.
@@ -27,9 +27,9 @@ The design decision is
 
 > The admission of a participant MUST come from a participant register
 > that the PDP consults as an information source. Admission covers whether
-> a party is allowed to connect, to which bronhouder, and whether that
+> a party is allowed to connect, to which source holder, and whether that
 > admission is active. If a party is not actively admitted there to the
-> bronhouder, it MUST NOT get a new contract. It MUST be possible to add,
+> source holder, it MUST NOT get a new contract. It MUST be possible to add,
 > suspend, extend, or withdraw an admission without a change of decision
 > policy and without a restart of the PDP. The reference policy MAY
 > co-sign only for grants that the admission decision covers. These grants
@@ -38,10 +38,10 @@ The design decision is
 
 | Case | Outcome |
 |---|---|
-| Party actively admitted to this bronhouder | contract co-signed |
+| Party actively admitted to this source holder | contract co-signed |
 | Party not in the register | refused: `PARTY_NOT_IN_REGISTRY` |
 | Party suspended | refused: `PARTY_NOT_ACTIVE` |
-| Party admitted, but not to this bronhouder | refused: `SOURCE_NOT_ALLOWED` |
+| Party admitted, but not to this source holder | refused: `SOURCE_NOT_ALLOWED` |
 | Register gives no data | refused: `ADMISSION_REGISTER_UNAVAILABLE` |
 | Proposal with another kind of grant, with both kinds at the same time, or without a grant | refused: `GRANT_TYPE_NOT_ALLOWED`. The proposal stays pending (code) |
 
@@ -299,16 +299,16 @@ refer to a requirement (REQ) that enforces the same behavior on the GBO
 side.
 
 The connection conditions name three participant groups: private
-consumer, integrator, and bronhouder. Each channel puts its candidates
+consumer, integrator, and source holder. Each channel puts its candidates
 on one of these groups:
 
 | Channel | Obliged party | Candidates |
 |---|---|---|
-| All channels | bronhouder | [AV-07](#av-07) |
+| All channels | source holder | [AV-07](#av-07) |
 | DvTP | private consumer | [AV-01](#av-01), [AV-02](#av-02), [AV-03](#av-03), [AV-04](#av-04), [AV-05](#av-05), [AV-14](#av-14), [AV-15](#av-15) |
 | DvTP | integrator | [AV-06](#av-06) |
-| DvTP | bronhouder | [AV-09](#av-09) |
-| EUDI | bronhouder | [AV-08](#av-08), [AV-10](#av-10), [AV-11](#av-11), [AV-12](#av-12), [AV-13](#av-13) |
+| DvTP | source holder | [AV-09](#av-09) |
+| EUDI | source holder | [AV-08](#av-08), [AV-10](#av-10), [AV-11](#av-11), [AV-12](#av-12), [AV-13](#av-13) |
 
 ### AV-01: Consumer sends trace context and records the transaction ID {#av-01}
 
@@ -349,7 +349,7 @@ on one of these groups:
       starting point can also come from the records of the register
       ([REQ-75](consent.md#req-75)).
 
-### AV-03: Consumer uses the toestemmingsvoorziening and BSNk PP {#av-03}
+### AV-03: Consumer uses the consent facility and BSNk PP {#av-03}
 
 > A private consumer that takes part in DvTP SHOULD use the central
 > consent function and BSNk PP.
@@ -411,8 +411,8 @@ on one of these groups:
 
 > An integrator SHOULD be admitted separately, with its own organization
 > identity means. It SHOULD have a processing agreement with the
-> dienstverlener, and SHOULD NOT store personal data persistently. It
-> SHOULD have a registration for each dienstverlener and use case.
+> service provider (dienstverlener), and SHOULD NOT store personal data persistently. It
+> SHOULD have a registration for each service provider and use case.
 
 - **Status**: candidate
 
@@ -431,15 +431,15 @@ on one of these groups:
       and mandate), [REQ-61](admission.md#req-61),
       [ADR 0034](../decisions/0034-integrator-delegation.md)
 
-### AV-07: Bronhouder publishes a machine-readable description for each data service {#av-07}
+### AV-07: Source holder publishes a machine-readable description for each data service {#av-07}
 
-> A bronhouder SHOULD publish a machine-readable and versionable
+> A source holder SHOULD publish a machine-readable and versionable
 > description at the fixed location. It SHOULD publish one for each data
 > service and for every data flow in which it offers that service. The
 > description contains the schema and its version, a reference to the
 > concept framework, the error messages, and the availability
 > properties. It also contains quality properties and provenance
-> information. It also holds the mappings that the bronhouder fixes for that flow, and the URL
+> information. It also holds the mappings that the source holder fixes for that flow, and the URL
 > of the LDV read API of its logbook. Where possible, the description
 > SHOULD refer to managed objects (the service in the catalog, the schema,
 > the mapping) instead of repeating them.
@@ -448,7 +448,7 @@ on one of these groups:
 
 ??? note "Source, evidence and notes"
 
-    - **Obliged party**: bronhouder
+    - **Obliged party**: source holder
     - **Channel**: all channels
     - **Source**:
         - [PSA S07](https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting)
@@ -463,9 +463,9 @@ on one of these groups:
     - **Notes**: the candidate applies to every data flow: DvTP, EUDI
       issuance, ASI, and OOTS.
 
-### AV-08: Bronhouder without its own endpoint provably agrees with a taken-over description {#av-08}
+### AV-08: Source holder without its own endpoint provably agrees with a taken-over description {#av-08}
 
-> A bronhouder that publishes no metadata endpoint of its own SHOULD
+> A source holder that publishes no metadata endpoint of its own SHOULD
 > provably agree with the service description that the operator keeps on
 > its behalf.
 
@@ -473,15 +473,15 @@ on one of these groups:
 
 ??? note "Source, evidence and notes"
 
-    - **Obliged party**: bronhouder
+    - **Obliged party**: source holder
     - **Channel**: EUDI
     - **Source**: [F-71](../traceability/findings.md#f-71) and the exception
       in [REQ-64](sources-identity.md#req-64).
     - **Related**: [REQ-64](sources-identity.md#req-64)
 
-### AV-09: Bronhouder keeps decryption keys of an older version while proofs for that version are valid {#av-09}
+### AV-09: Source holder keeps decryption keys of an older version while proofs for that version are valid {#av-09}
 
-> A bronhouder SHOULD keep the keys with which it decrypts the values in a
+> A source holder SHOULD keep the keys with which it decrypts the values in a
 > consent proof. It SHOULD keep a key version as long as valid proofs made
 > with that key version exist.
 
@@ -489,7 +489,7 @@ on one of these groups:
 
 ??? note "Source, evidence and notes"
 
-    - **Obliged party**: bronhouder
+    - **Obliged party**: source holder
     - **Channel**: DvTP
     - **Source**: [REQ-82](pseudonymization.md#req-82) and
       [BSNK-08](pseudonymization.md#bsnk-08) (an encrypted value belongs to
@@ -497,10 +497,10 @@ on one of these groups:
     - **Related**: [REQ-82](pseudonymization.md#req-82),
       [F-78](../traceability/findings.md#f-78)
 
-### AV-10: Bronhouder logs every living data subject of a relation attestation {#av-10}
+### AV-10: Source holder logs every living data subject of a relation attestation {#av-10}
 
 > An attestation can hold data about someone other than the requester. For
-> such an attestation, a bronhouder SHOULD record in its processing log
+> such an attestation, a source holder SHOULD record in its processing log
 > every living data subject whose data it supplies. A record of the
 > requester alone is not enough.
 
@@ -508,16 +508,16 @@ on one of these groups:
 
 ??? note "Source, evidence and notes"
 
-    - **Obliged party**: bronhouder
+    - **Obliged party**: source holder
     - **Channel**: EUDI
     - **Source**: [REQ-57](eudi-issuance.md#req-57) and
       [REQ-72](logging-audit.md#req-72).
     - **Related**: [REQ-57](eudi-issuance.md#req-57),
       [REQ-72](logging-audit.md#req-72)
 
-### AV-11: Bronhouder tests its view for relation attestations {#av-11}
+### AV-11: Source holder tests its view for relation attestations {#av-11}
 
-> A bronhouder can supply a relation (for example a marriage) through a
+> A source holder can supply a relation (for example a marriage) through a
 > view of its own. It SHOULD then prove with tests that this view returns
 > only the relation of the identified citizen.
 
@@ -525,14 +525,14 @@ on one of these groups:
 
 ??? note "Source, evidence and notes"
 
-    - **Obliged party**: bronhouder
+    - **Obliged party**: source holder
     - **Channel**: EUDI
     - **Source**: [REQ-57](eudi-issuance.md#req-57).
     - **Related**: [REQ-57](eudi-issuance.md#req-57)
 
-### AV-12: Bronhouder as provider has a public validity and revocation policy {#av-12}
+### AV-12: Source holder as provider has a public validity and revocation policy {#av-12}
 
-> A bronhouder that has attestations issued SHOULD have a written and
+> A source holder that has attestations issued SHOULD have a written and
 > public policy for validity and revocation. It SHOULD publish the validity
 > period for each attestation type in its configuration.
 
@@ -540,7 +540,7 @@ on one of these groups:
 
 ??? note "Source, evidence and notes"
 
-    - **Obliged party**: bronhouder
+    - **Obliged party**: source holder
     - **Channel**: EUDI
     - **Source**: Implementing Regulation (EU)
       [2025/1569](https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj),
@@ -549,16 +549,16 @@ on one of these groups:
     - **Related**: [REQ-77](eudi-issuance.md#req-77),
       [REQ-64](sources-identity.md#req-64)
 
-### AV-13: Bronhouder gives the instruction to revoke an attestation {#av-13}
+### AV-13: Source holder gives the instruction to revoke an attestation {#av-13}
 
-> If the data in an issued attestation is no longer correct, a bronhouder
+> If the data in an issued attestation is no longer correct, a source holder
 > SHOULD tell the issuance function that the attestation must be revoked.
 
 - **Status**: candidate
 
 ??? note "Source, evidence and notes"
 
-    - **Obliged party**: bronhouder
+    - **Obliged party**: source holder
     - **Channel**: EUDI
     - **Source**: Implementing Regulation (EU)
       [2025/1569](https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj),

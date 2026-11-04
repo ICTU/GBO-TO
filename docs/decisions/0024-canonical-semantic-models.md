@@ -1,10 +1,10 @@
-# ADR-0024: Canonical semantic models per bronhouder
+# ADR-0024: Canonical semantic models per source holder
 
 - Status: proposed
 - Date: 2026-08-24
 - Satisfies: [S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus), [D-14](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/), [GO F4](https://ictu.github.io/GBO-GO/main/#f4-semantiek-eenheid-van-taal)
 - Deliberation: reference architecture v0.6.2, gap 3 (archived and unpublished)
-- Implemented in: partially. The GraphQL schemas of the sources come from the [gbo-semantiek bronprofielen](https://github.com/ICTU/gbo-semantiek). No route serializations other than SD-JWT VC exist.
+- Implemented in: partially. The GraphQL schemas of the sources come from the [gbo-semantiek source profiles (bronprofielen)](https://github.com/ICTU/gbo-semantiek). No route serializations other than SD-JWT VC exist.
 
 ## Context and problem statement
 
@@ -19,7 +19,7 @@ mapping.
 
 ## Proposed decision
 
-The bronprofiel GraphQL schema is the canonical model per source. The
+The source profile GraphQL schema is the canonical model per source. The
 GBO-Semantiek track maintains this schema. GBO generates or defines the
 route serializations from it:
 
@@ -32,7 +32,7 @@ route serializations from it:
 
 These points are open:
 
-- The governance between the schemas of the bronhouders and the central
+- The governance between the schemas of the source holders (bronhouders) and the central
   semantics track.
 - The mapping coverage for the evidence types of the OOTS Semantic
   Repository.

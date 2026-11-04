@@ -5,9 +5,9 @@ this scenario, and no citizen data travels. The management plane decides
 who changes the rules. The decision plane decides who gets which data. The
 two planes are separate ([F-51](../traceability/findings.md#f-51)).
 
-The scenario takes place at the bronhouder. The PDP is behind the FSC
-Inway of the bronhouder, and the OpenFTV Manager serves exactly that
-PDP. Policy management stays with each bronhouder
+The scenario takes place at the source holder (bronhouder). The PDP is behind the FSC
+Inway of the source holder, and the OpenFTV Manager serves exactly that
+PDP. Policy management stays with each source holder
 ([Q-21](../traceability/answered-questions.md#q-21),
 [ADR-0021](../decisions/0021-central-pap-signed-bundles.md)). In the demo,
 everything runs in one compose stack. This setup is a demo artifact and

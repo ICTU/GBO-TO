@@ -15,7 +15,7 @@ the pseudonym to the BSN. The API of the source requires the BSN.
 
 The PEP intercepts the query of the consumer. After the policy decision,
 the PEP resolves `consent_id → PI → BSNk Transform → BSN`. Then it puts the
-BSN into the internal query of the bronhouder.
+BSN into the internal query of the source holder (bronhouder).
 
 ## Why it was superseded
 

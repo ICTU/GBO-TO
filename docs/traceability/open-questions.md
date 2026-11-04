@@ -1,7 +1,7 @@
 # Open questions
 
 An open question is a question that the demo cannot answer. It needs a
-decision by the PSA, by a stelsel forum (G5, Logius, the standards gremia),
+decision by the PSA, by a system (stelsel) forum (G5, Logius, the standards gremia),
 or a legal assessment. Each entry names the forum, the options, and the
 working assumption. The demo and this TO use the working assumption until
 the forum decides the question. An architecture decision that waits for a
@@ -28,7 +28,7 @@ source decrypts itself.
 ??? note "Options, working assumption and links"
 
     - **Forum**: PSA [B-07](https://ictu.github.io/GBO-PSA/main/vraagstukken/) (pseudonymous identity). Sub-question 1: Logius (BSNk management organization) and BZK. Sub-question 2: lawyer and BZK.
-    - **Question**: PSA and GO set the direction of the form. PSA [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/) says that a consumer without a statutory power gets "a party-specific identity or pseudonym" that cannot be linked outside its context. The [GO](https://ictu.github.io/GBO-GO/main/#toestemming-en-grondslag-als-afdwingbaar-autorisatiemechanisme) says the same for the private dienstverlener. Two sub-questions stay open:
+    - **Question**: PSA and GO set the direction of the form. PSA [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/) says that a consumer without a statutory power gets "a party-specific identity or pseudonym" that cannot be linked outside its context. The [GO](https://ictu.github.io/GBO-GO/main/#toestemming-en-grondslag-als-afdwingbaar-autorisatiemechanisme) says the same for the private service provider (dienstverlener). Two sub-questions stay open:
         1. Is a private consumer without a public task allowed to connect to BSNk PP as a recipient? If so, on which legal basis?
         2. The consumer carries an encrypted identity for the source that the consumer cannot decrypt. Is that a processing of the BSN by the consumer?
     - **Answer so far**:
@@ -36,7 +36,7 @@ source decrypts itself.
         - The consent proof carries an encrypted value per party. Each source decrypts its own value locally ([REQ-21](../requirements/pseudonymization.md#req-21), [REQ-80](../requirements/pseudonymization.md#req-80)).
         - The BSNk technical specifications v11.2 agree. The key belongs to the OIN and not to the FSC peer. Two peers with the same OIN share one encrypted value and one key.
         - A pseudonym per service needs a separate OIN ([BSNK-07](../requirements/pseudonymization.md#bsnk-07)).
-    - **Why the demo cannot answer it**: Both sub-questions are legal questions (Wabb, GDPR). Technically, BSNk can do it. Every dienstverlener with a PKIoverheid certificate gets keys for pseudonyms. BSNk also supports an OIN derived from a KvK number (specification p. 23, p. 67). But the specification is written for dienstverleners with a public task (p. 26). In the reading of the GBO team, a consumer without a public task falls outside it.
+    - **Why the demo cannot answer it**: Both sub-questions are legal questions (Wabb, GDPR). Technically, BSNk can do it. Every service provider with a PKIoverheid certificate gets keys for pseudonyms. BSNk also supports an OIN derived from a KvK number (specification p. 23, p. 67). But the specification is written for service providers with a public task (p. 26). In the reading of the GBO team, a consumer without a public task falls outside it.
     - **Options**:
         - (a) No pseudonym for the consumer. The consumer then has no citizen identifier at all. This option affects three things:
             - the identifier that the consumer logs under ([Q-27](#q-27)),
@@ -48,13 +48,13 @@ source decrypts itself.
         - Since [PR #477](https://github.com/ICTU/GBO-demo/pull/477), the proof carries a VP for every source. For a source on the BSN Authorization List, it also carries an encrypted identity (VI). Thus sub-question 2 is already the practice of the demo.
         - [Issue #478](https://github.com/ICTU/GBO-demo/issues/478) tracks a pseudonym for the consumer. [Issue #377](https://github.com/ICTU/GBO-demo/issues/377) tracks a test against the real BSNk PP.
         - A point for the choice of form: with a pseudonym per recipient, the LDV `dataSubjectId` differs per controller (Verantwoordelijke). Chain-wide citizen access can then search only by trace ID, from the own organization ([F-65](findings-closed.md#f-65)). This is a privacy property and not a defect.
-    - **Related**: [F-65](findings-closed.md#f-65), [F-75](findings.md#f-75), [F-76](findings.md#f-76), [REQ-20](../requirements/pseudonymization.md#req-20), [REQ-21](../requirements/pseudonymization.md#req-21), [REQ-80](../requirements/pseudonymization.md#req-80), [BSNK-07](../requirements/pseudonymization.md#bsnk-07), [Q-26](#q-26) (recognition of the toestemmingsvoorziening at BSNk), [Q-27](#q-27), [ADR 0005](../decisions/0005-bsnk-pp.md), [ADR 0033](../decisions/0033-gateway-decrypts-after-allow.md).
+    - **Related**: [F-65](findings-closed.md#f-65), [F-75](findings.md#f-75), [F-76](findings.md#f-76), [REQ-20](../requirements/pseudonymization.md#req-20), [REQ-21](../requirements/pseudonymization.md#req-21), [REQ-80](../requirements/pseudonymization.md#req-80), [BSNK-07](../requirements/pseudonymization.md#bsnk-07), [Q-26](#q-26) (recognition of the consent facility (toestemmingsvoorziening) at BSNk), [Q-27](#q-27), [ADR 0005](../decisions/0005-bsnk-pp.md), [ADR 0033](../decisions/0033-gateway-decrypts-after-allow.md).
 
 ### Q-08: What belongs in the LDV (processing log), and who holds the retention duty? {#q-08}
 
 - **Status**: open
 
-GBO builds and runs three components: the toestemmingsregister, the EUDI
+GBO builds and runs three components: the consent register (toestemmingsregister), the EUDI
 adapter, and the issuance server. Each component records its own
 processings in an LDV logbook, and the PDP records every decision in the
 ADL. Nobody decided how
@@ -67,7 +67,7 @@ retention policy or tamper evidence.
 ??? note "Options, working assumption and links"
 
     - **Forum**: management organization and privacy officer. PSA [S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid) ("agreements set retention, access, inspection and destruction explicitly"), [B-10](https://ictu.github.io/GBO-PSA/main/vraagstukken/).
-    - **Question**: GBO builds and operates three components: the toestemmingsregister, the eudi-adapter, and the issuance server. Which retention periods apply to the LDV and ADL records of these components? And who can read those records?
+    - **Question**: GBO builds and operates three components: the consent register, the eudi-adapter, and the issuance server. Which retention periods apply to the LDV and ADL records of these components? And who can read those records?
     - **Answer so far**:
         - The field schema is LDV plus ADL (PSA S09).
         - The ADL is the authoritative decision log ([PR #373](https://github.com/ICTU/GBO-demo/pull/373)). The policy version goes in `adl.core.policies` ([REQ-59](../requirements/logging-audit.md#req-59)).
@@ -95,7 +95,7 @@ is open whether the citizen really must be able to change the period,
 and within which bounds. The choice is a policy and UX question under
 the GDPR, which the demo can show but cannot decide. The demo deviates
 from the requirements: the consumer sends the end date, and the citizen
-cannot change the period. Without an end date, the toestemmingsregister
+cannot change the period. Without an end date, the consent register
 uses one year.
 
 ??? note "Options, working assumption and links"
@@ -159,9 +159,9 @@ denies the request.
 - **Status**: open
 
 GBO offers a central, optional facility that issues attestations for the
-EUDI Wallet, and each bronhouder stays responsible for its
-attestations. Can the facility hold the seal key of a bronhouder, or
-must it call a signing facility under control of the bronhouder? It
+EUDI Wallet, and each source holder (bronhouder) stays responsible for its
+attestations. Can the facility hold the seal key of a source holder, or
+must it call a signing facility under control of the source holder? It
 is also open who holds the qualified seal certificate, which names the
 authentic source, and the status-list certificate. Key custody and
 certificate holding are legal and governance decisions. As a working
@@ -170,15 +170,15 @@ source, and keys in files, which decides nothing for production.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: BZK, RDI, and bronhouders, with a legal review. PSA [B-13](https://ictu.github.io/GBO-PSA/main/vraagstukken/) and the open decisions of [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [issue #225](https://github.com/ICTU/GBO-demo/issues/225).
+    - **Forum**: BZK, RDI, and source holders, with a legal review. PSA [B-13](https://ictu.github.io/GBO-PSA/main/vraagstukken/) and the open decisions of [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte), [issue #225](https://github.com/ICTU/GBO-demo/issues/225).
     - **Question**: The question became a key and seal question, with three parts:
-        1. Can a central PuB-EAA facility hold and use the seal key material of a bronhouder? Or must sealing go through a signing facility that the bronhouder manages (remote signing, an HSM at the source)?
+        1. Can a central PuB-EAA facility hold and use the seal key material of a source holder? Or must sealing go through a signing facility that the source holder manages (remote signing, an HSM at the source)?
         2. Who holds the qualified seal certificate?
         3. Is the status-list certificate of the source or of the facility?
     - **Answer so far**:
         - The choice "one issuance server per source holder or one central server" is obsolete.
         - The [GO](https://ictu.github.io/GBO-GO/main/#uitgifte-van-attestaties-voor-de-eudi-wallet-pubeaa-uitgifte) gives GBO the technical role of a central, optional issuance facility: "GBO is not itself a PubEAA provider".
-        - In PSA S11, the bronhouder stays legally and materially responsible.
+        - In PSA S11, the source holder stays legally and materially responsible.
         - The source publishes its own attestation schema and offer ([F-57](findings.md#f-57), [REQ-64](../requirements/sources-identity.md#req-64)).
         - Issuer and reader certificates are a set per source. If material is missing, issuance fails hard ([REQ-58](../requirements/eudi-issuance.md#req-58)).
         - Onboarding is [REQ-65](../requirements/sources-identity.md#req-65) and B-09.
@@ -187,8 +187,8 @@ source, and keys in files, which decides nothing for production.
         - Attestations: the seal on a PuB-EAA is created in a QSCD (ETSI TS 119 471, REQ-EAASP-7.5.3-02, through CIR 2026/1735). The seal uses a qualified certificate per ETSI TS 119 412-6 clause 8. That certificate names the authentic source and the legal basis (eIDAS art. 45f(1)(b)).
         - ASI results: from January 1, 2027, the public sector body or the designated intermediary seals them. It uses at least an advanced seal on a qualified seal certificate. A QSCD is not required there (CIR 2025/1569 art. 9(4), as amended by 2026/1735).
     - **Options**:
-        - (a) The central facility holds the key of each bronhouder.
-        - (b) Remote signing or an HSM under control of the bronhouder, which the facility calls.
+        - (a) The central facility holds the key of each source holder.
+        - (b) Remote signing or an HSM under control of the source holder, which the facility calls.
     - **Current working assumption**: One issuance server with a certificate set per source. The demo keeps the keys in files at the facility. This choice decides nothing about production.
     - **Related**: [F-66](findings-closed.md#f-66), [F-80](findings.md#f-80), [F-81](findings.md#f-81), [REQ-58](../requirements/eudi-issuance.md#req-58), [Q-07](answered-questions.md#q-07), [Q-28](#q-28), [Q-32](#q-32), [Q-37](#q-37), [ADR 0028](../decisions/0028-pubeaa-productization.md), [ADR 0041](../decisions/0041-asi-seal-format.md).
 
@@ -196,7 +196,7 @@ source, and keys in files, which decides nothing for production.
 
 - **Status**: open
 
-Can a bronhouder identify a citizen with a BSN from a verified EUDI
+Can a source holder identify a citizen with a BSN from a verified EUDI
 Wallet PID, with the legal status of a BSN from DigiD? If so, the chain
 must show how the verified disclosure binds to the source query. This is
 a national legal question, because eIDAS does not name the BSN and the
@@ -208,7 +208,7 @@ binds the BSN of the source query to a verified PID.
 ??? note "Options, working assumption and links"
 
     - **Forum**: lawyer and BZK. PSA [B-08](https://ictu.github.io/GBO-PSA/main/vraagstukken/) (identity matching), [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
-    - **Question**: The question is about a BSN from a verified PID disclosure (EUDI Wallet). Can a bronhouder use that BSN to identify the citizen in a source query, with the same legal status as a BSN from DigiD? If so, which binding between the verified disclosure and the query must the chain show ([issue #133](https://github.com/ICTU/GBO-demo/issues/133))?
+    - **Question**: The question is about a BSN from a verified PID disclosure (EUDI Wallet). Can a source holder use that BSN to identify the citizen in a source query, with the same legal status as a BSN from DigiD? If so, which binding between the verified disclosure and the query must the chain show ([issue #133](https://github.com/ICTU/GBO-demo/issues/133))?
     - **Answer so far**: The original question was split.
         - Presentation and combination of attestations by verifiers are outside GBO (GO pattern A).
         - The designation of the Dutch PID issuer is an external dependency.
@@ -231,7 +231,7 @@ binds the BSN of the source query to a verified PID.
 
 - **Status**: open
 
-If the PDP of a source checks a consent status, the toestemmingsregister
+If the PDP of a source checks a consent status, the consent register
 logs that check in its own LDV logbook. The PDP writes only an ADL
 decision record, and the ADL has no field that points to another LDV
 logbook. A reader who follows the standard links therefore cannot get
@@ -243,14 +243,14 @@ by a search on the trace ID.
 ??? note "Options, working assumption and links"
 
     - **Forum**: Logius (maintainers of ADL and LDV), [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid).
-    - **Question**: The status check is a processing of the toestemmingsregister. The register records it in its logbook under the trace of the request.
+    - **Question**: The status check is a processing of the consent register. The register records it in its logbook under the trace of the request.
         - The caller is the PDP of the source. The PDP writes an ADL record and no LDV record ([F-63](findings-closed.md#f-63)).
         - Thus no LDV record at the source points to the consent logbook with `nextLogbookId`. The ADL has no equivalent. A reader who follows the standard route does not get to the consent logbook ([F-68](findings.md#f-68), point 2).
         - ADL 1.0.0 gives `adl.core.information` a reference per information source (PIP). That reference must be "sufficient to retrieve, on demand, the data … that affected the authorization decision".
         - That field is for rebuilding the input of the decision, in a free format. It does not mention LDV or `nextLogbookId`.
         - If a GBO profile uses the field as a pointer to an LDV logbook, that meaning is a GBO invention. Thus it does not close the gap.
 
-        A PDP calls a PIP (the toestemmingsregister). The register records that call itself as an LDV processing. How does the ADL record point to that LDV logbook, so that an LDV reader can follow the chain across the decision step? Is `adl.core.information` meant for this, or does a separate link field belong here, like `dpl.read.nextLogbookId`?
+        A PDP calls a PIP (the consent register). The register records that call itself as an LDV processing. How does the ADL record point to that LDV logbook, so that an LDV reader can follow the chain across the decision step? Is `adl.core.information` meant for this, or does a separate link field belong here, like `dpl.read.nextLogbookId`?
 
     - **Why the demo cannot answer it**: Option 1 adds a component that the design does not have. Option 2 changes the family of standards. Option 3 is a choice not to act. All three are design decisions. Option 2 needs Logius.
     - **Options**:
@@ -260,13 +260,13 @@ by a search on the trace ID.
     - **Current working assumption**: Option 3. The record of the register is found by trace ID ([PR #371](https://github.com/ICTU/GBO-demo/pull/371)), with a verified caller ([issue #383](https://github.com/ICTU/GBO-demo/issues/383)). The demo log viewer shows the consent logbook as "reached without pointer".
     - **Related**: [F-63](findings-closed.md#f-63), [F-68](findings.md#f-68), [REQ-72](../requirements/logging-audit.md#req-72), [REQ-76](../requirements/consent.md#req-76), [Q-08](#q-08), [Q-23](answered-questions.md#q-23), [ADR 0026](../decisions/0026-ldv-integration.md), [ADR 0036](../decisions/0036-adl-decision-record.md).
 
-### Q-26: Can the toestemmingsvoorziening become a recognized BSNk party, and in which role? {#q-26}
+### Q-26: Can the consent facility become a recognized BSNk party, and in which role? {#q-26}
 
 - **Status**: open
 
-In the design, the toestemmingsvoorziening fetches an encrypted identity or
+In the design, the consent facility fetches an encrypted identity or
 pseudonym per party from BSNk. BSNk serves only recognized parties, such
-as means issuers and authorization services, and a toestemmingsvoorziening is
+as means issuers and authorization services, and a consent facility is
 none of these. The minister of BZK decides on recognition and its role.
 Several practical points are open too, such as how the service
 recognizes a citizen at a later login and how it gets the
@@ -277,8 +277,8 @@ the encrypted values.
 ??? note "Options, working assumption and links"
 
     - **Forum**: BZK and Logius (BSNk management organization). Also MijnOverheid for sub-questions 2, 3 and 5, and RvIG for sub-question 8. PSA [B-07](https://ictu.github.io/GBO-PSA/main/vraagstukken/), [S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie).
-    - **Question**: In the design of [issue #364](https://github.com/ICTU/GBO-demo/issues/364) the toestemmingsvoorziening fetches an encrypted identity or an encrypted pseudonym per party from BSNk. Which part of the toestemmingsvoorziening is the BSNk participant (register, portal backend, or both as one) is [Q-49](#q-49). Sub-questions:
-        1. In which role can a toestemmingsvoorziening be recognized: means issuer, authorization service (Machtigingsdienst), or a new role?
+    - **Question**: In the design of [issue #364](https://github.com/ICTU/GBO-demo/issues/364) the consent facility fetches an encrypted identity or an encrypted pseudonym per party from BSNk. Which part of the consent facility is the BSNk participant (register, portal backend, or both as one) is [Q-49](#q-49). Sub-questions:
+        1. In which role can a consent facility be recognized: means issuer, authorization service (Machtigingsdienst), or a new role?
         2. Can the service be exempted from the check data at activation, because the citizen is already identified with DigiD at MijnOverheid ([BSNK-02](../requirements/pseudonymization.md#bsnk-02))?
         3. Does the login at MijnOverheid count as authentication by the service, as the specification requires before a transformation ([BSNK-04](../requirements/pseudonymization.md#bsnk-04))?
         4. How does the service appear in the overview of login means that the citizen sees in MijnOverheid ([BSNK-10](../requirements/pseudonymization.md#bsnk-10))?
@@ -290,7 +290,7 @@ the encrypted values.
             - Not known: how Logius delivers it (file or service, signed or not, format). Also not known: how long an edition is valid and where that is stated. Further open points are how the service gets access, and how a source gets on the list (request to RvIG, lead time).
     - **Why the demo cannot answer it**:
         - Recognition is a decision of the minister of BZK (specification p. 24).
-        - BSNk allows activation and transformation only to recognized parties: means issuer, authentication service, authorization service, or the eIDAS message service ([BSNK-01](../requirements/pseudonymization.md#bsnk-01)). A toestemmingsvoorziening is none of these.
+        - BSNk allows activation and transformation only to recognized parties: means issuer, authentication service, authorization service, or the eIDAS message service ([BSNK-01](../requirements/pseudonymization.md#bsnk-01)). A consent facility is none of these.
         - The specification names future roles, among them attribute services, without detail (p. 34).
         - The login cannot deliver the values. The citizen logs in at MijnOverheid, and the sources are known only at consent ([F-75](findings.md#f-75)).
         - The demo can show the behavior with a mock. It cannot decide the role or its conditions.
@@ -320,10 +320,10 @@ shows as two data subjects.
         2. Is it sufficient for the right of access that the citizen finds his processings at the consumer through his consents?
     - **Why the demo cannot answer it**:
         - Whether a reference to the legal basis is a valid `data_subject_id` is an interpretation of the LDV standard.
-        - Whether access through the toestemmingsregister is sufficient is a GDPR question.
+        - Whether access through the consent register is sufficient is a GDPR question.
         - Nobody checked whether the standard allows a record without a pseudonym of its own.
     - **Options**:
-        - (1) The reference to the legal basis. The consumer holds no extra data. Citizen access goes through the toestemmingsregister, which knows whose consents they are.
+        - (1) The reference to the legal basis. The consumer holds no extra data. Citizen access goes through the consent register, which knows whose consents they are.
         - (2) A pseudonym for the consumer (a VP from BSNk). The consumer then logs under a pseudonym from its own space, as [REQ-72](../requirements/logging-audit.md#req-72) asks. It also recognizes the citizen across consents. This option needs a yes on [Q-01](#q-01) sub-question 1. The build is in [issue #478](https://github.com/ICTU/GBO-demo/issues/478).
         - (3) The own customer reference of the consumer, which it knows from its own process outside GBO. GBO cannot enforce or check it.
     - **Current working assumption**: Option 1. The demo consumer puts the consent ID in the field, with its own `data_subject_id_type` `consent-id` ([`logbook.go#L22`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/logbook/logbook.go#L22)). The consent ID is not a pseudonym. One citizen with two consents shows as two data subjects ([F-76](findings.md#f-76)).
@@ -333,12 +333,12 @@ shows as two data subjects.
 
 - **Status**: open
 
-A bronhouder can issue a PuB-EAA itself, or a public body that the
-member state designates issues it on behalf of bronhouders. For
+A source holder can issue a PuB-EAA itself, or a public body that the
+member state designates issues it on behalf of source holders. For
 verification of attributes by QTSPs, the law also names a designated
 intermediary. The question is whether the Netherlands designates GBO or
 the management organization for one or both roles, and who supervises
-PuB-EAA issuance. In the working assumption, the bronhouder is the
+PuB-EAA issuance. In the working assumption, the source holder is the
 PuB-EAA provider and GBO runs the technical issuance facility. For
 verification, the demo acts as the designated intermediary, but nobody
 designated it.
@@ -347,7 +347,7 @@ designated it.
 
     - **Forum**: BZK (system responsibility), RDI (supervision of trust services). PSA [B-13, B-14](https://ictu.github.io/GBO-PSA/main/vraagstukken/), [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
     - **Question**: The legal acts give the following background:
-        - The bronhouder itself can issue a PuB-EAA. "A public sector body that is designated by the Member State" can also issue it on behalf of bronhouders (art. 3(46)).
+        - The source holder itself can issue a PuB-EAA. "A public sector body that is designated by the Member State" can also issue it on behalf of source holders (art. 3(46)).
         - For verification by QTSPs, Annex VI names "designated intermediaries recognized at national level".
         - CIR 2025/1569 art. 9(4), as amended by 2026/1735, lets "the designated intermediary recognized at national level" seal the result.
         - The member state notifies a PuB-EAA issuer with a conformity assessment report (art. 45f(3)).
@@ -355,15 +355,15 @@ designated it.
 
         Two sub-questions follow:
 
-        1. Does the Netherlands designate GBO, or the management organization, as PuB-EAA issuer on behalf of bronhouders (eIDAS art. 3(46))? And as the nationally recognized intermediary for verification (eIDAS Annex VI, CIR 2025/1569 art. 9)?
+        1. Does the Netherlands designate GBO, or the management organization, as PuB-EAA issuer on behalf of source holders (eIDAS art. 3(46))? And as the nationally recognized intermediary for verification (eIDAS Annex VI, CIR 2025/1569 art. 9)?
         2. Which body supervises PuB-EAA issuance?
 
     - **Why the demo cannot answer it**: Designation and supervision are administrative decisions.
     - **Options**:
         - (a) GBO or the management organization gets a designation for both roles.
         - (b) GBO or the management organization gets a designation only for verification.
-        - (c) No designation. Each bronhouder issues and verifies itself, and GBO supplies the technology.
-    - **Current working assumption**: The bronhouder is the PuB-EAA provider, and GBO runs the technical issuance facility ([ADR 0028](../decisions/0028-pubeaa-productization.md)). For the ASI the demo acts as a designated intermediary ([Q-37](#q-37)). Neither is designated.
+        - (c) No designation. Each source holder issues and verifies itself, and GBO supplies the technology.
+    - **Current working assumption**: The source holder is the PuB-EAA provider, and GBO runs the technical issuance facility ([ADR 0028](../decisions/0028-pubeaa-productization.md)). For the ASI the demo acts as a designated intermediary ([Q-37](#q-37)). Neither is designated.
     - **Related**: [F-80](findings.md#f-80), [F-81](findings.md#f-81), [Q-17](#q-17), [Q-30](#q-30), [Q-31](#q-31), [Q-37](#q-37), [ADR 0028](../decisions/0028-pubeaa-productization.md), [ADR 0037](../decisions/0037-asi-oauth-front-door.md).
 
 ### Q-29: Is there a legal basis to verify attributes for private QTSPs, and does the ASI return the value on a match? {#q-29}
@@ -633,14 +633,14 @@ status.
 
     - **Related**: [F-86](findings.md#f-86), [F-88](findings.md#f-88), [F-94](findings.md#f-94), [REQ-45](../requirements/eudi-issuance.md#req-45), [REQ-86](../requirements/asi.md#req-86), [REQ-90](../requirements/asi.md#req-90), [REQ-102](../requirements/asi.md#req-102), [E7](standards-feedback.md#e7), [Q-18](#q-18), [Q-29](#q-29), [Q-40](#q-40).
 
-### Q-37: What is GBO's role in the ASI: designated intermediary, technical supplier to bronhouders, or authentic source itself? {#q-37}
+### Q-37: What is GBO's role in the ASI: designated intermediary, technical supplier to source holders, or authentic source itself? {#q-37}
 
 - **Status**: open
 
 GBO builds one ASIP for several authentic sources, and the law allows an
 ASIP to be the source itself or a designated intermediary. The question
 is whether GBO becomes that designated intermediary, stays a technical
-supplier to each bronhouder, or becomes an authentic source itself.
+supplier to each source holder, or becomes an authentic source itself.
 The role decides who seals the result and who answers for the
 correctness of the data. The working assumption is the intermediary
 model, which the GBO team saw as likely on October 14, 2026. The demo
@@ -649,7 +649,7 @@ all of them.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: BZK (system responsibility), the bronhouders, and a lawyer or DPO.
+    - **Forum**: BZK (system responsibility), the source holders, and a lawyer or DPO.
     - **Question**: GBO builds one ASIP for more than one authentic source ([F-89](findings.md#f-89)). The sources describe the role of an ASIP in these ways:
 
         - ETSI TS 119 478 says that the ASIP "can be an authentic source or an intermediary acting on its behalf" (clause 4.2).
@@ -658,12 +658,12 @@ all of them.
         - 2026/1735 lets the source "or the designated intermediary" seal the result.
         - eIDAS art. 3(47) defines an authentic source as a system that "contains and provides" the data. That system is a primary source "or recognized as authentic in accordance with Union or national law".
 
-        Does GBO (or the management organization) become the designated intermediary for ASI verification on behalf of the bronhouders? Or does each bronhouder stay ASIP itself, with GBO as technical supplier? Or is GBO itself recognized as an authentic source? In each case, who seals, and who answers for the correctness of the data?
+        Does GBO (or the management organization) become the designated intermediary for ASI verification on behalf of the source holders? Or does each source holder stay ASIP itself, with GBO as technical supplier? Or is GBO itself recognized as an authentic source? In each case, who seals, and who answers for the correctness of the data?
 
     - **Why the demo cannot answer it**: The role follows from a designation and from the statutory responsibility for correctness. Those are administrative and legal decisions.
     - **Options**:
-        - (X) GBO is the designated intermediary. `provider` is GBO, `authenticSource` is the bronhouder. GBO seals with one qualified seal of its own. This needs a national designation. The responsibility for correctness stays with the bronhouder.
-        - (Y) Each bronhouder is ASIP itself, and GBO supplies the technology. `provider` is the bronhouder, there is no `authenticSource`, and each bronhouder seals itself. GBO is processor or technical service provider. GBO can possibly run one hosted service that has an identity and a seal per source.
+        - (X) GBO is the designated intermediary. `provider` is GBO, `authenticSource` is the source holder. GBO seals with one qualified seal of its own. This needs a national designation. The responsibility for correctness stays with the source holder.
+        - (Y) Each source holder is ASIP itself, and GBO supplies the technology. `provider` is the source holder, there is no `authenticSource`, and each source holder seals itself. GBO is processor or technical service provider. GBO can possibly run one hosted service that has an identity and a seal per source.
         - (Z) GBO is itself the authentic source. `provider` is GBO, and there is no `authenticSource`. This needs statutory recognition of the GBO system as authentic. GBO then answers for data it does not manage, next to the base register that the law designates.
     - **Current working assumption**: Model X. In the team estimate of October 14, 2026, model X is likely and model Z is not. The demo has `provider` "GBO demo ASIP" ([`dataservices.json#L6`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/config/dataservices.json#L6)). In its source description, the demo names the BRP as authentic source by its legal name. The demo uses one seal.
 
@@ -676,7 +676,7 @@ all of them.
 - **Status**: partly answered
 
 The ASIP must turn a verification request into a query on the source.
-One part is answered: the bronhouder manages the link between an
+One part is answered: the source holder manages the link between an
 attribute and its own schema, in the metadata that it publishes. The
 demo builds this: the ASIP derives one query per request from that
 description, and the code adapter for the BRP is removed. Still open is
@@ -686,11 +686,11 @@ sources, and configuration or a published description fits tens of sources.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: The management organization, the bronhouders, and GBO architecture.
+    - **Forum**: The management organization, the source holders, and GBO architecture.
     - **Question**:
         1. How many sources must the ASIP open up, and how fast must a new source connect?
-        2. Who manages the link between an attribute and the schema of the source: GBO in the ASIP, or the bronhouder in a published description?
-    - **Answer so far**: Sub-question 2 is answered (October 27, 2026): the bronhouder manages the link, in its published description. The team chose option c. The source describes the attributes that it offers for verification in its source metadata. It does this as capability `asi`, next to `eudi`, in the same document. As a result, the ASIP becomes generic ([issue #592](https://github.com/ICTU/GBO-demo/issues/592)). The plan contains these choices:
+        2. Who manages the link between an attribute and the schema of the source: GBO in the ASIP, or the source holder in a published description?
+    - **Answer so far**: Sub-question 2 is answered (October 27, 2026): the source holder manages the link, in its published description. The team chose option c. The source describes the attributes that it offers for verification in its source metadata. It does this as capability `asi`, next to `eudi`, in the same document. As a result, the ASIP becomes generic ([issue #592](https://github.com/ICTU/GBO-demo/issues/592)). The plan contains these choices:
 
         - Each attribute has a `selection`. The ASIP merges the selections of the requested attributes into one query ([REQ-92](../requirements/asi.md#req-92) still applies).
         - There is no field for fuzzy matching. The ASIP applies `MatchWithVariation` only to text values. The value schema shows which values are text. ETSI leaves fuzzy matching to the ASIP and defines it as orthographic variation.
@@ -809,7 +809,7 @@ and issued tokens stay valid until they expire, at most 10 minutes.
 
 - **Status**: open
 
-The functional requirements ask the toestemmingsregister to record
+The functional requirements ask the consent register to record
 whether and when a source first retrieved data under a consent. The
 register cannot see a delivery, so the question is how it learns of one.
 It is also open whether retrieved means a delivery or a use of the
@@ -819,7 +819,7 @@ shows no retrieved status, only Active, Expired, and Revoked.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: The tech lead, and for option B also the bronhouders.
+    - **Forum**: The tech lead, and for option B also the source holders.
     - **Question**: FR-11 and FR-22 (FR-DvTP v0.9) require that the register records whether and when data was first retrieved under a consent. After the review of [F-19](findings.md#f-19), this information is a field in the register. The register does not derive it from the audit log. The open point is how the register learns of a successful delivery. It has three sub-questions:
 
         1. Does "retrieved" mean that data was delivered, or that a source used the consent?
@@ -868,7 +868,7 @@ citizen to the consumer with a denied status and records nothing.
 
 - **Status**: partly answered
 
-After every outcome, the toestemmingsportaal sends the citizen back to a
+After every outcome, the consent portal (toestemmingsportaal) sends the citizen back to a
 registered address of the consumer. On success, the signed consent proof
 tells the consumer what is allowed, and on refusal or error a separate
 outcome is necessary. It is open which outcomes the consumer must tell
@@ -890,30 +890,30 @@ redirect.
     - **Why the demo cannot answer it**: The set of outcomes is a design choice that every consumer must implement. The transfer depends on the redirect protocol (OIDC, PAR, or an own extension) and on the check of the return address ([issue #427](https://github.com/ICTU/GBO-demo/issues/427)).
     - **Options for the transfer**:
         - (a) The proof in the return redirect through the browser, as in demo v0.9.0. This option is simple. But the proof passes through the browser. Also, a URL has a limited length, and the proof carries a value per source.
-        - (b) A short-lived code in the return redirect that the consumer exchanges for the proof over FSC (the OAuth authorization-code pattern). The proof does not touch the browser, but the consumer calls a service of the toestemmingsvoorziening.
+        - (b) A short-lived code in the return redirect that the consumer exchanges for the proof over FSC (the OAuth authorization-code pattern). The proof does not touch the browser, but the consumer calls a service of the consent facility.
     - **Current working assumption**: The demo puts the signed proof in the URL fragment of the return redirect ([`PortaalBevestiging.tsx#L60`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalBevestiging.tsx#L60)). The demo deviates on one point. Next to "refuse", the consent screen has a "cancel" button. This button goes back to the login screen and does not return the citizen to the consumer ([`PortaalConsent.tsx#L108`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L108)). The plan in [issue #599](https://github.com/ICTU/GBO-demo/issues/599) is to remove this button.
     - **Related**: FR-14, FR-34 criterion 1, [REQ-37](../requirements/consent.md#req-37), [REQ-119](../requirements/consent.md#req-119), [Q-43](#q-43), [Q-60](#q-60), [Q-61](#q-61).
 
-### Q-45: Does the toestemmingsvoorziening enforce the minimal mandatory set, and who decides which sets are mandatory? {#q-45}
+### Q-45: Does the consent facility enforce the minimal mandatory set, and who decides which sets are mandatory? {#q-45}
 
 - **Status**: open
 
 The functional requirements keep the minimal mandatory set always on,
-but no source says whether the toestemmingsvoorziening enforces it. It is also
+but no source says whether the consent facility enforces it. It is also
 open who decides which sets are mandatory, and what happens when a
 consent lacks the mandatory set. The choice affects the service catalog
-and the initiation request of the consumer. If the toestemmingsvoorziening
+and the initiation request of the consumer. If the consent facility
 enforces the set, both the UI and the backend enforce it. The demo has
 no mandatory set and enforces none.
 
 ??? note "Options, working assumption and links"
 
     - **Forum**: The tech lead, and the management organization (service catalog).
-    - **Question**: FR-10 says that the minimal mandatory set is always on. Optional sets can be switched on or off. A citizen cannot consent to part of a set. No source says whether the toestemmingsvoorziening enforces this. Three sub-questions are open:
+    - **Question**: FR-10 says that the minimal mandatory set is always on. Optional sets can be switched on or off. A citizen cannot consent to part of a set. No source says whether the consent facility enforces this. Three sub-questions are open:
 
-        1. Does the toestemmingsvoorziening enforce that every consent contains the mandatory set?
+        1. Does the consent facility enforce that every consent contains the mandatory set?
         2. Who decides which sets are mandatory? The description of FR-10 answers this in part. The consumer sets the composition of the mandatory set, within the legal ceiling of the service catalog (FR-32). It is open whether the consumer does this per request or once at setup. If per request, the initiation request ([REQ-37](../requirements/consent.md#req-37)) must name the mandatory sets.
-        3. If the toestemmingsvoorziening enforces the set and the mandatory set is missing, what happens? Does the service deny with an error to the consumer, or does something else happen?
+        3. If the consent facility enforces the set and the mandatory set is missing, what happens? Does the service deny with an error to the consumer, or does something else happen?
 
     - **Why the demo cannot answer it**: A missing mandatory set can be an error, or a choice of the citizen with consequences for the consumer. That is a design choice. The decision on who sets "mandatory" affects the service catalog of the management organization. It also affects the initiation request of the consumer.
     - **Options**: See sub-questions 2 and 3.
@@ -939,16 +939,16 @@ integrator without a mandate.
     - **Question**: Must the proof bind the integrator, or is the mandate in the register sufficient?
     - **Why the demo cannot answer it**: The demo shows that both options work. The necessary binding is a balance between abuse risk and manageability.
     - **Options**:
-        - (a) The integrator is also in the proof. Then only that integrator can use the proof. But if the dienstverlener changes integrator, running consents become unusable.
-        - (b) Only the mandate in the register, as in demo v0.9.0. A change of integrator needs no action from the citizen. But every registered integrator of that dienstverlener can use the proof.
-    - **Current working assumption**: Option b. The proof binds the represented party (the dienstverlener). The integrator has its own mandate per dienstverlener and rule in the admission register. Without a mandate, the PDP denies with `INTEGRATOR_NOT_REGISTERED` ([`engine.rego#L253-L259`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L253-L259), [PR #464](https://github.com/ICTU/GBO-demo/pull/464), design from [F-73](findings-closed.md#f-73)). FR-DvTP v0.9 removed FR-06 (the citizen sees the integrator).
+        - (a) The integrator is also in the proof. Then only that integrator can use the proof. But if the service provider changes integrator, running consents become unusable.
+        - (b) Only the mandate in the register, as in demo v0.9.0. A change of integrator needs no action from the citizen. But every registered integrator of that service provider can use the proof.
+    - **Current working assumption**: Option b. The proof binds the represented party (the service provider). The integrator has its own mandate per service provider and rule in the admission register. Without a mandate, the PDP denies with `INTEGRATOR_NOT_REGISTERED` ([`engine.rego#L253-L259`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L253-L259), [PR #464](https://github.com/ICTU/GBO-demo/pull/464), design from [F-73](findings-closed.md#f-73)). FR-DvTP v0.9 removed FR-06 (the citizen sees the integrator).
     - **Related**: FR-18, FR-37, [REQ-106](../requirements/consent.md#req-106), [AV-06](../requirements/admission.md#av-06), [F-73](findings-closed.md#f-73), [ADR 0034](../decisions/0034-integrator-delegation.md), [Q-44](#q-44), [Q-68](#q-68).
 
 ### Q-47: Which volumes must the chain handle, at start and later? {#q-47}
 
 - **Status**: open
 
-The chain needs volume figures for the toestemmingsregister, the status
+The chain needs volume figures for the consent register, the status
 query, and the BSNk link, at start and after a few years. The figures
 are citizens with a consent, new consents per day, and status queries
 per second at average and peak. They matter because every request does
@@ -959,7 +959,7 @@ status query gave 14.5 ms at the median and 82 ms at most.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: The tech lead, the management organization, the dienstverleners and bronhouders (expected use per use case), and BSNk (transformation capacity).
+    - **Forum**: The tech lead, the management organization, the service providers and source holders (expected use per use case), and BSNk (transformation capacity).
     - **Question**: Which volumes must the register, the status query, and the BSNk link handle, at start and after a few years? Who supplies the estimate? These figures are necessary for each moment:
 
         1. Citizens with at least one consent.
@@ -977,7 +977,7 @@ status query gave 14.5 ms at the median and 82 ms at most.
 
 The functional requirements ask for status insight for the citizen and
 for a revocation that takes effect immediately. The question is whether
-the toestemmingsregister keeps the moment of revocation with the
+the consent register keeps the moment of revocation with the
 consent, or whether the LDV log is enough. With the moment in the
 register, the overview and the status query can show it, and otherwise
 the portal must read the log. It is a choice about access and evidence.
@@ -995,11 +995,11 @@ and the moment is in the LDV record of the change.
     - **Current working assumption**: The register keeps only the status (active or revoked) per consent. The moment is in the LDV record of the change ([REQ-72](../requirements/logging-audit.md#req-72)). The register writes that record through an outbox, in the same transaction as the change.
     - **Related**: FR-22, FR-24, [REQ-68](../requirements/consent.md#req-68), [REQ-72](../requirements/logging-audit.md#req-72), [REQ-109](../requirements/consent.md#req-109), [Q-42](#q-42) (same question for another moment), [register data model](../requirements/consent.md#consent-register).
 
-### Q-49: Are the toestemmingsregister and the toestemmingsportaal backend one system, and who is the BSNk participant? {#q-49}
+### Q-49: Are the consent register and the consent portal backend one system, and who is the BSNk participant? {#q-49}
 
 - **Status**: open
 
-The PSA describes the toestemmingsregister and the toestemmingsportaal
+The PSA describes the consent register and the consent portal
 as capabilities and leaves their setup open. The question is whether the
 register and the portal backend become one system or two, and which
 party is the BSNk participant. The answer matters because a polymorphic
@@ -1012,7 +1012,7 @@ one participant.
 ??? note "Options, working assumption and links"
 
     - **Forum**: The tech lead, the management organization, and BZK and Logius (BSNk management organization) for the recognition. PSA [S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie), [S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal).
-    - **Question**: Do the register and the toestemmingsportaal backend become one system or two? Which party is the BSNk participant? The PSA describes S01 and S02 as capabilities and does not describe them as systems. For S01, the PSA lists "central or federated setup" and "management organization" as open decisions.
+    - **Question**: Do the register and the consent portal backend become one system or two? Which party is the BSNk participant? The PSA describes S01 and S02 as capabilities and does not describe them as systems. For S01, the PSA lists "central or federated setup" and "management organization" as open decisions.
     - **Why the demo cannot answer it**: The demo runs both as separate services under one operator. Which setup and which participant fit is a decision about management, recognition, and responsibility.
     - **Options**:
         - (a) One system, one BSNk participant.
@@ -1024,12 +1024,12 @@ one participant.
 
     - **Related**: [REQ-23](../requirements/consent.md#req-23), [REQ-69](../requirements/pseudonymization.md#req-69), [BSNK-03](../requirements/pseudonymization.md#bsnk-03), [Q-26](#q-26), [Q-57](#q-57), [Q-58](#q-58), [register data model](../requirements/consent.md#consent-register).
 
-### Q-50: How does the toestemmingsportaal backend inside MijnOverheid get the verified citizen identity? {#q-50}
+### Q-50: How does the consent portal backend inside MijnOverheid get the verified citizen identity? {#q-50}
 
 - **Status**: open
 
 The citizen logs in at MijnOverheid, and the backend of the
-toestemmingsportaal runs inside it. The question is which evidence of
+consent portal runs inside it. The question is which evidence of
 that login MijnOverheid can give to the backend, and how the backend
 checks it. This matters because the backend must take the citizen
 identity from a validated login assertion and never from client input.
@@ -1040,7 +1040,7 @@ demo backend makes its own portal token after a mock login.
 ??? note "Options, working assumption and links"
 
     - **Forum**: MijnOverheid and the tech lead. PSA [S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal).
-    - **Question**: Which evidence of the login can MijnOverheid give to the toestemmingsportaal backend, and how does the backend check it? [REQ-24](../requirements/consent.md#req-24) requires that the backend takes the citizen identity from the validated assertion of the authentication service (FR-01 criterion 2). The backend must not take it from client input.
+    - **Question**: Which evidence of the login can MijnOverheid give to the consent portal backend, and how does the backend check it? [REQ-24](../requirements/consent.md#req-24) requires that the backend takes the citizen identity from the validated assertion of the authentication service (FR-01 criterion 2). The backend must not take it from client input.
 
         GBO builds the UI inside MijnOverheid, and the citizen logs in there. The working assumption on the [BSNk preconditions](../requirements/pseudonymization.md#bsnk-preconditions) page is that MijnOverheid passes the BSN after login. That page does not say how. It is unknown whether a token of the authentication service is available at that moment.
 
@@ -1137,7 +1137,7 @@ FSC contract, but it can still send requests with an existing contract.
 
 - **Status**: open
 
-The toestemmingsregister is the only place that holds the consents and
+The consent register is the only place that holds the consents and
 the polymorphic values of a citizen. The question is which storage RINIS
 offers, and which requirements apply for durability, acceptable loss,
 recovery time and consistency after recovery. This matters because the
@@ -1163,7 +1163,7 @@ service, Postgres is the obvious choice.
 
 - **Status**: open
 
-The toestemmingsregister signs every consent proof, and the PDPs of the
+The consent register signs every consent proof, and the PDPs of the
 sources verify it with a public key. The question is where the signing
 key is stored, how it rotates, and how it is revoked after a leak. It is
 also open how the PDPs get the public keys. This matters because whoever
@@ -1190,7 +1190,7 @@ persistent store, the demo requires a fixed key from a file.
 
 - **Status**: open
 
-The toestemmingsportaal recognizes a citizen by an HMAC of the BSN under
+The consent portal recognizes a citizen by an HMAC of the BSN under
 a secret key, and the register stores consents under that reference.
 With a new key, the same BSN gives a different reference, so the portal
 no longer finds the existing consents. The register cannot move them
@@ -1220,7 +1220,7 @@ older consents.
 
 - **Status**: open
 
-For each citizen, the toestemmingsregister keeps the polymorphic
+For each citizen, the consent register keeps the polymorphic
 identity and pseudonym of the first activation. From these values, BSNk
 makes an encrypted identity or an encrypted pseudonym for every party.
 As a result, a party that has the values and can call the portal can
@@ -1241,12 +1241,12 @@ own.
     - **Current working assumption**: The demo stores the values unencrypted, in a table of their own.
     - **Related**: [REQ-69](../requirements/pseudonymization.md#req-69), [BSNK-03](../requirements/pseudonymization.md#bsnk-03), [ADR 0040](../decisions/0040-route-d-citizen-recognition.md), [Q-49](#q-49) (who stores), [Q-55](#q-55), [Q-58](#q-58), [Q-63](#q-63).
 
-### Q-58: Must the register authenticate the toestemmingsportaal backend, or is network isolation enough? {#q-58}
+### Q-58: Must the register authenticate the consent portal backend, or is network isolation enough? {#q-58}
 
 - **Status**: open
 
-The toestemmingsportaal backend is the only caller that creates, reads
-and revokes consents in the toestemmingsregister. The question is
+The consent portal backend is the only caller that creates, reads
+and revokes consents in the consent register. The question is
 whether the register must authenticate that backend, for example with
 mTLS or over FSC, or whether network isolation is enough. This matters
 because a party that reaches the register directly can create or revoke
@@ -1258,7 +1258,7 @@ its own listener over FSC.
 ??? note "Options, working assumption and links"
 
     - **Forum**: tech lead, RINIS (network design).
-    - **Question**: Does the register authenticate the toestemmingsportaal backend? If so, how? The backend is the only caller of the register to create, read, and revoke consents. Citizens reach the register only through the backend ([REQ-39](../requirements/consent.md#req-39)). [REQ-76](../requirements/consent.md#req-76) requires authentication only for the status query by the PDP of the source. A party that reaches the register directly can create or revoke consents for every citizen.
+    - **Question**: Does the register authenticate the consent portal backend? If so, how? The backend is the only caller of the register to create, read, and revoke consents. Citizens reach the register only through the backend ([REQ-39](../requirements/consent.md#req-39)). [REQ-76](../requirements/consent.md#req-76) requires authentication only for the status query by the PDP of the source. A party that reaches the register directly can create or revoke consents for every citizen.
     - **Why the demo cannot answer it**: The demo runs both components in one network, without authentication. The choice depends on the deployment.
     - **Options**: The register can rely on one of two protections:
         - (a) The register authenticates the backend, for example with mTLS or over FSC. The register also checks that only this caller can do these actions.
@@ -1270,7 +1270,7 @@ its own listener over FSC.
 
 - **Status**: open
 
-GBO builds the UI of the toestemmingsportaal inside MijnOverheid. The
+GBO builds the UI of the consent portal inside MijnOverheid. The
 question is which security requirements apply to that UI, and which of
 them MijnOverheid already imposes. Examples are a content security
 policy, session management and protection against open redirects. The
@@ -1281,7 +1281,7 @@ against a fixed list of origins.
 ??? note "Options, working assumption and links"
 
     - **Forum**: MijnOverheid, tech lead, security officer.
-    - **Question**: Which security requirements apply to the UI inside MijnOverheid? Which of them does MijnOverheid already impose? GBO builds the UI of the toestemmingsportaal inside MijnOverheid. Security requirements apply to this UI, for example a content security policy, session management, and protection against open redirects. The return to the consumer is a redirect, so the portal must check the return address ([issue #427](https://github.com/ICTU/GBO-demo/issues/427)).
+    - **Question**: Which security requirements apply to the UI inside MijnOverheid? Which of them does MijnOverheid already impose? GBO builds the UI of the consent portal inside MijnOverheid. Security requirements apply to this UI, for example a content security policy, session management, and protection against open redirects. The return to the consumer is a redirect, so the portal must check the return address ([issue #427](https://github.com/ICTU/GBO-demo/issues/427)).
     - **Why the demo cannot answer it**: The demo runs outside MijnOverheid.
     - **Options**: None. The necessary input is the requirements that MijnOverheid sets for contributions to its code base, and the additions that GBO must make.
     - **Current working assumption**: In the demo, only the frontend checks the return address. It checks against a fixed list of origins ([`useRedirectContext.ts#L11-L26`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/useRedirectContext.ts#L11-L26)).
@@ -1292,7 +1292,7 @@ against a fixed list of origins.
 - **Status**: open
 
 The functional requirements say that the initiation request of a
-consumer must provably come from that dienstverlener. The portal backend
+consumer must provably come from that service provider. The portal backend
 takes name, purpose and return address from the registration, so a
 forged request only gives a consent for the real consumer. A third party
 can still start a request for a consumer that asked for nothing. The
@@ -1306,14 +1306,14 @@ checks.
     - **Forum**: owner of FR-DvTP, tech lead, MijnOverheid (what the login can keep).
     - **Question**: Besides the checks of [REQ-111](../requirements/consent.md#req-111), is a provable origin of the initiation request necessary? If so, does the consumer sign the request in the URL, or send it in advance over FSC?
 
-        FR-34 criterion 1 requires that the initiation request "provably comes from" the dienstverlener. The criterion also requires verification of the request against the registered means of identification of the dienstverlener. Under REQ-111, the backend takes name and purpose from the registration. The backend also checks the return address against the registered addresses, and it checks the status of the consumer. As a result, a forged request can only lead to a consent for the real consumer, with the correct name and for a registered scope. The return also goes to the address of that consumer.
+        FR-34 criterion 1 requires that the initiation request "provably comes from" the service provider. The criterion also requires verification of the request against the registered means of identification of the service provider. Under REQ-111, the backend takes name and purpose from the registration. The backend also checks the return address against the registered addresses, and it checks the status of the consumer. As a result, a forged request can only lead to a consent for the real consumer, with the correct name and for a registered scope. The return also goes to the address of that consumer.
 
         One risk remains: a third party can start a request on behalf of a consumer that asked for nothing. Only that consumer can use the proof ([REQ-68](../requirements/consent.md#req-68)).
 
     - **Why the demo cannot answer it**: Whether the residual risk is acceptable is a decision. The demo can build each option ([issue #427](https://github.com/ICTU/GBO-demo/issues/427)).
     - **Options**: The question has three options:
         - (a) Necessary, through a signed request in the URL. No FSC is necessary, but the content goes through the browser and MijnOverheid.
-        - (b) Necessary, through a request that the consumer sends in advance over FSC. Only a reference goes through the browser (PAR, RFC 9126). This option needs an FSC service of the toestemmingsvoorziening for consumers.
+        - (b) Necessary, through a request that the consumer sends in advance over FSC. Only a reference goes through the browser (PAR, RFC 9126). This option needs an FSC service of the consent facility for consumers.
         - (c) Not necessary. Then FR-34 criterion 1 loses that part.
 
         For options a and b, the request or the reference must survive the MijnOverheid login (FR-13).
@@ -1321,15 +1321,15 @@ checks.
     - **Current working assumption**: The demo sends the context as query parameters. It keeps the context in the browser session during the mock login. The backend in demo v0.9.0 does not do the REQ-111 checks.
     - **Related**: FR-12, FR-13, FR-34, [REQ-37](../requirements/consent.md#req-37), [REQ-111](../requirements/consent.md#req-111), [Q-44](#q-44) (transfer of the proof, same options), [Q-50](#q-50), [Q-53](#q-53), [Q-61](#q-61).
 
-### Q-61: What must MijnOverheid deliver or allow for the portal UI and the link to the toestemmingsvoorziening? {#q-61}
+### Q-61: What must MijnOverheid deliver or allow for the portal UI and the link to the consent facility? {#q-61}
 
 - **Status**: open
 
-GBO builds the UI of the toestemmingsportaal as a contribution to the
-MijnOverheid code base, so several requirements depend on what
+GBO builds the UI of the consent portal as a contribution to the
+MijnOverheid code base. Several requirements therefore depend on what
 MijnOverheid delivers or allows. This question collects the points
 without a question of their own, so that one meeting can discuss them
-all. They include the koppelvlak to the portal backend, the redirect
+all. They include the interface (koppelvlak) to the portal backend, the redirect
 protocol, the request context across the login, and ownership of the UI.
 Others are accessibility, house style, the switch to the apps, and
 delegation. There is no working assumption apart from the imitated shell
@@ -1338,14 +1338,14 @@ in which the demo runs the portal.
 ??? note "Options, working assumption and links"
 
     - **Forum**: MijnOverheid (Logius), tech lead, PSA [S02](https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal).
-    - **Question**: GBO builds the UI of the toestemmingsportaal as a contribution to the MijnOverheid code base. The citizen logs in there. As a result, several requirements depend on what MijnOverheid delivers. Some of them have their own question: the verified citizen identity ([Q-50](#q-50)), the UI security requirements ([Q-59](#q-59)), and the export format ([Q-52](#q-52)). [Q-60](#q-60) covers what the login can keep for a signed or pre-sent request. This question collects the other requirements, so that one meeting can discuss them all:
-        1. **Koppelvlak**: which form does the link between MijnOverheid and the toestemmingsportaal backend get? How does this link relate to the koppelvlak DelenVanMijnGegevens?
+    - **Question**: GBO builds the UI of the consent portal as a contribution to the MijnOverheid code base. The citizen logs in there. As a result, several requirements depend on what MijnOverheid delivers. Some of them have their own question: the verified citizen identity ([Q-50](#q-50)), the UI security requirements ([Q-59](#q-59)), and the export format ([Q-52](#q-52)). [Q-60](#q-60) covers what the login can keep for a signed or pre-sent request. This question collects the other requirements, so that one meeting can discuss them all:
+        1. **Interface**: which form does the link between MijnOverheid and the consent portal backend get? How does this link relate to the interface DelenVanMijnGegevens?
         2. **Redirect protocol**: do initiation and return follow an existing protocol (OIDC, PAR), or a separate agreement?
         3. **Contributions**: on which stack does the GBO UI go into MijnOverheid? Which review and release process applies, who owns the UI, and who fixes bugs in production?
         4. **Context across the login (FR-13)**: how does the request of the consumer stay available while the citizen logs in?
         5. **Accessibility and house style**: which accessibility standard applies to the whole UI, and who checks it? Which house style or component library does MijnOverheid prescribe?
         6. **Web and app (FR-15)**: how does the switch to the DigiD app or the MijnOverheid app work? How does the citizen go back to the app of the consumer?
-        7. **Delegation (FR-02)**: does MijnOverheid pass on that the citizen acts on behalf of another person? In that case, who blocks: MijnOverheid or the toestemmingsvoorziening?
+        7. **Delegation (FR-02)**: does MijnOverheid pass on that the citizen acts on behalf of another person? In that case, who blocks: MijnOverheid or the consent facility?
     - **Why the demo cannot answer it**: The demo has no MijnOverheid. The portal runs in an imitated shell.
     - **Options**: Each sub-question has its own options.
     - **Current working assumption**: None, apart from the demo shell.
@@ -1383,7 +1383,7 @@ configuration values.
 
 - **Status**: open
 
-The toestemmingsregister keeps a record per consent, and the polymorphic
+The consent register keeps a record per consent, and the polymorphic
 values per citizen under a reference. The question is how long it keeps
 expired or revoked consents, the values of a citizen without a running
 consent, and empty references. It is also open how long the citizen sees
@@ -1419,7 +1419,7 @@ is synchronous.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: PSA/GO authors, bronhouders, BZK, PSA [S08](https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter), [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
+    - **Forum**: PSA/GO authors, source holders, BZK, PSA [S08](https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter), [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
     - **Question**: REQ-ASIP-4.3-04 (ETSI TS 119 478) lets an ASIP choose between two interfaces: the clause 6.1 interface (HTTP and OAuth) and the clause 6.2 interface (ISO 15000). For verify, Annex IV of CIR 2026/1735 designates clause 6.1.1, clause 6.2.3, or both. Only clause 6.2 has a deferred response (6.2.3.2.3, 6.2.4.3.3), for a source that cannot answer immediately. Clause 6.1 is synchronous. The question has three parts:
         1. Is clause 6.1 sufficient, or must a Dutch ASIP also offer clause 6.2?
         2. Are there sources that cannot answer immediately, so that they need a deferred response?
@@ -1440,7 +1440,7 @@ while another person acts on behalf of that subject. ETSI makes support
 optional and leaves the details out of the specification. The question
 is whether the ASI must support such requests, and if so, whether the
 authorization server or the ASIP checks the evidence of representation.
-Support needs a grondslag, a source for the representation and an
+Support needs a legal basis (grondslag), a source for the representation and an
 agreement on who checks it. The working assumption is no support, and
 the ASI answers such a request with status 501.
 
@@ -1450,7 +1450,7 @@ the ASI answers such a request with status 501.
     - **Question**: REQ-ASIP-6.1.1.1-12 leaves an ASIP free to support requests with `mandate`. With such a request, the QTSP asks for attributes of a subject, and another person acts on behalf of that subject. ETSI leaves the details of `mandate` out of the specification (NOTE 3 at REQ-ASIP-6.1.1.1-13). The question has two parts:
         1. Must the ASI support requests on behalf of another person?
         2. If so, where does the evidence of the representation come from? Does the authorization server or the ASIP check it?
-    - **Why the demo cannot answer it**: Representation needs a grondslag, a source for the representation, and an agreement on who checks it. PSA S04 lists the governance of representation as an open point.
+    - **Why the demo cannot answer it**: Representation needs a legal basis, a source for the representation, and an agreement on who checks it. PSA S04 lists the governance of representation as an open point.
     - **Options**: The ASI can handle representation in one of three ways:
         - (a) No support.
         - (b) Support, with the check at the authorization server.
@@ -1531,7 +1531,7 @@ Peer ID directly with the consumer OIN in the consent.
 ??? note "Options, working assumption and links"
 
     - **Forum**: tech lead, management organization (certificate profile and register), PSA [S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel).
-    - **Question**: Is "Peer ID = OIN" a system rule that policy can build on? Or must the link between peer and organization come from the admission register? In FSC, the Peer ID is the `serialNumber` of the FSC certificate. With a PKIoverheid certificate, that value is the OIN. PSA S04 requires that the setup "links the technical identity to the admitted legal organization and role". [REQ-67](../requirements/sources-identity.md#req-67) fixes this link only for the bronhouder side.
+    - **Question**: Is "Peer ID = OIN" a system rule that policy can build on? Or must the link between peer and organization come from the admission register? In FSC, the Peer ID is the `serialNumber` of the FSC certificate. With a PKIoverheid certificate, that value is the OIN. PSA S04 requires that the setup "links the technical identity to the admitted legal organization and role". [REQ-67](../requirements/sources-identity.md#req-67) fixes this link only for the source holder side.
     - **Why the demo cannot answer it**: In the demo, every peer is one organization with an OIN as Peer ID, so both options behave the same.
     - **Options**: The link between peer and organization can come from one of two places:
         - (a) Peer ID = OIN as a system rule. The certificate profile guarantees this rule, and policy can read the Peer ID as OIN.
@@ -1557,7 +1557,7 @@ working assumption is that the service follows from the data set only.
     - **Forum**: tech lead, management organization (catalog).
     - **Question**: [REQ-12](../requirements/consent.md#req-12) binds a consent to one consumer, one service with its purpose, and at least one data set. The purpose is in the register record, but the proof does not contain it. As a result, the PDP does not check the purpose. FR-17 criterion 1 names the purpose at retrieval. The question has two parts:
         1. Must the proof bind the purpose or the service? Or is the data set sufficient until the catalog exists?
-        2. At the source request, does the PDP also check that the consumer is admitted for the service (FR-16 criterion 2)? At initiation, the toestemmingsportaal backend already checks this ([REQ-111](../requirements/consent.md#req-111)). To do this check, the PDP must know the service. That depends on the same choice: the service in the proof, or in the contract.
+        2. At the source request, does the PDP also check that the consumer is admitted for the service (FR-16 criterion 2)? At initiation, the consent portal backend already checks this ([REQ-111](../requirements/consent.md#req-111)). To do this check, the PDP must know the service. That depends on the same choice: the service in the proof, or in the contract.
     - **Why the demo cannot answer it**: The demo has one service per data set, so the difference is not visible.
     - **Options**: The PDP can learn the service in one of three ways:
         - (a) The proof carries the service or the purpose. The PDP denies a request that does not belong to that service.
@@ -1616,7 +1616,7 @@ addition, and puts the voorvoegsel in the family name.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: BZK (registration in the catalogue), BRP bronhouder, PSA/GO authors (ASI profile).
+    - **Forum**: BZK (registration in the catalogue), BRP source holder, PSA/GO authors (ASI profile).
     - **Question**: The ASIP compares an attribute as a JSON object. The object has the form of the JSON Schema that is registered for the attribute in the catalogue of attributes (ETSI TS 119 478 REQ-ASIP-6.1.1.1-06-02-01). As long as the catalogue has no schemas, GBO sets the schema per attribute identifier itself. In its source metadata, the source then describes how it maps its fields to that schema.
 
         The BRP splits the house number into huisnummer, huisletter, and huisnummertoevoeging. It splits the surname into voorvoegsel and geslachtsnaam. The PID divides the address differently. CIR 2024/2977 first had a `resident_house_number` "including any affix or suffix". Since the amendment 2026/1731, that field is gone, and `resident_street` is "including the house number and any affix or suffix thereof".
@@ -1650,7 +1650,7 @@ attributes.
 ??? note "Options, working assumption and links"
 
     - **Forum**: tech lead, and Logius for option 2.
-    - **Question**: Is the LDV core sufficient (option 1)? If citizen access needs the consent ID, is an extension at Logius (option 2) necessary only for that attribute? LDV allows an attribute outside `dpl.core` only within an approved extension ([LDV, `attributes`](https://logius-standaarden.github.io/logboek-dataverwerkingen/#attributes)). In demo v0.9.0, the toestemmingsregister, the toestemmingsportaal backend, and the EUDI adapter write `dpl.gbo.*` attributes. Examples are the consent ID, `sourceId`, `typeId`, the attestation claims, and the reason for pseudonymization. That extension is local and has no approval, so the demo does not meet [REQ-72](../requirements/logging-audit.md#req-72) ("according to Logboek Dataverwerkingen").
+    - **Question**: Is the LDV core sufficient (option 1)? If citizen access needs the consent ID, is an extension at Logius (option 2) necessary only for that attribute? LDV allows an attribute outside `dpl.core` only within an approved extension ([LDV, `attributes`](https://logius-standaarden.github.io/logboek-dataverwerkingen/#attributes)). In demo v0.9.0, the consent register, the consent portal backend, and the EUDI adapter write `dpl.gbo.*` attributes. Examples are the consent ID, `sourceId`, `typeId`, the attestation claims, and the reason for pseudonymization. That extension is local and has no approval, so the demo does not meet [REQ-72](../requirements/logging-audit.md#req-72) ("according to Logboek Dataverwerkingen").
     - **Why the demo cannot answer it**: The demo writes the attributes because it can. Whether they are necessary, and whether an extension gets approved, is a choice about conformance and an agreement with the operator of the standard.
     - **Options**: The GBO components can handle the extra attributes in one of three ways:
         - (1) Core only: the GBO components write no `dpl.gbo.*`. What is necessary follows from the processing activity, the status, or `data_subject_id_type`.
@@ -1676,16 +1676,16 @@ working assumption, because the demo has no mandates.
 ??? note "Options, working assumption and links"
 
     - **Forum**: tech lead, lawyer, MijnOverheid and Logius (mandates), BZK and Logius (BSNk), PSA [B-19](https://ictu.github.io/GBO-PSA/main/vraagstukken/).
-    - **Question**: If the grondslag of the service does not exclude delegation, FR-02 criterion 4 (FR-DvTP v0.9) lets an authorized representative give consent. Criterion 3 says that "the citizen" is then the representative. The requirements assume one person. The identity comes from the login ([REQ-24](../requirements/consent.md#req-24)), and the citizen sees only their own consents ([REQ-40](../requirements/consent.md#req-40)). The register knows the citizen under one reference, with the polymorphic values of that citizen ([REQ-69](../requirements/pseudonymization.md#req-69)). BSNk transforms only while the citizen is logged in ([BSNK-04](../requirements/pseudonymization.md#bsnk-04)).
+    - **Question**: If the legal basis of the service does not exclude delegation, FR-02 criterion 4 (FR-DvTP v0.9) lets an authorized representative give consent. Criterion 3 says that "the citizen" is then the representative. The requirements assume one person. The identity comes from the login ([REQ-24](../requirements/consent.md#req-24)), and the citizen sees only their own consents ([REQ-40](../requirements/consent.md#req-40)). The register knows the citizen under one reference, with the polymorphic values of that citizen ([REQ-69](../requirements/pseudonymization.md#req-69)). BSNk transforms only while the citizen is logged in ([BSNK-04](../requirements/pseudonymization.md#bsnk-04)).
 
-        For a mandate service, BSNk requires that the mandate is registered. With a mandate, the data belongs to the represented person, while the representative is logged in. If a service excludes delegation, the toestemmingsvoorziening refuses ([REQ-118](../requirements/consent.md#req-118)). This question is about the services that allow delegation. The question has four parts:
+        For a mandate service, BSNk requires that the mandate is registered. With a mandate, the data belongs to the represented person, while the representative is logged in. If a service excludes delegation, the consent facility refuses ([REQ-118](../requirements/consent.md#req-118)). This question is about the services that allow delegation. The question has four parts:
         1. In whose name is the consent: the represented person or the representative?
         2. Does the register record that a representative gave the consent, and which representative?
         3. Who sees the consent in the overview, and who can revoke it?
-        4. On the login of the representative, can the toestemmingsvoorziening have BSNk make a value for the represented person? Or does that need another role ([Q-26](#q-26))?
+        4. On the login of the representative, can the consent facility have BSNk make a value for the represented person? Or does that need another role ([Q-26](#q-26))?
 
     - **Why the demo cannot answer it**: The demo has no mandates. Who the data subject is, and who can view and revoke the consent, is a legal choice.
-    - **Options**: The toestemmingsvoorziening can handle a representative in one of three ways:
+    - **Options**: The consent facility can handle a representative in one of three ways:
         - (a) The consent is in the name of the represented person. The register records the representative with it, and both persons see the consent.
         - (b) The consent is in the name of the represented person. The representative appears only in the LDV log.
         - (c) Allow delegation for no service, until a service asks for it.
@@ -1693,11 +1693,11 @@ working assumption, because the demo has no mandates.
     - **Related**: FR-02, FR-20, FR-23, [REQ-118](../requirements/consent.md#req-118), [REQ-24](../requirements/consent.md#req-24), [REQ-40](../requirements/consent.md#req-40), [REQ-69](../requirements/pseudonymization.md#req-69), [BSNK-04](../requirements/pseudonymization.md#bsnk-04), [Q-26](#q-26), [Q-61](#q-61) sub-question 7, [Q-65](#q-65).
     - **History**: this question had the number Q-71 before.
 
-### Q-74: Does GBO build the registration and onboarding facility for dienstverleners, or the management organization? {#q-74}
+### Q-74: Does GBO build the registration and onboarding facility for service providers, or the management organization? {#q-74}
 
 - **Status**: open
 
-Three requirements describe a facility where a dienstverlener logs in
+Three requirements describe a facility where a service provider logs in
 with eHerkenning, applies with supporting documents, and gets its
 certificate checked. GBO builds the admission register, but that
 register knows only FSC Peer IDs and has no accounts or certificates. In
@@ -1710,7 +1710,7 @@ into the register in advance.
 ??? note "Options, working assumption and links"
 
     - **Forum**: tech lead.
-    - **Question**: Three requirements describe a facility where a dienstverlener registers and manages its connection:
+    - **Question**: Three requirements describe a facility where a service provider registers and manages its connection:
         - FR-03: login with eHerkenning or another recognized means. Onboarding functions are available only after authentication.
         - FR-29: start an application after login, with supporting documents.
         - FR-33 criterion 2: at registration, check validity, revocation status, and issuer of the certificate.
@@ -1720,7 +1720,7 @@ into the register in advance.
     - **Why the demo cannot answer it**: The demo has no registration process. Participants are in the register in advance. Who builds the facility is a decision about the division of roles in the build phase.
     - **Options**: The facility can come from one of two parties:
         - (a) The management organization builds or buys the registration and onboarding facility. GBO delivers the admission register with its management interface.
-        - (b) GBO builds the registration and review flow on top of the admission register, as self-service for dienstverleners. With option b, FR-03, FR-29, and FR-33 criterion 2 become requirements on that component.
+        - (b) GBO builds the registration and review flow on top of the admission register, as self-service for service providers. With option b, FR-03, FR-29, and FR-33 criterion 2 become requirements on that component.
     - **Current working assumption**: None. The demo register has its participants loaded in advance.
     - **Related**: FR-03, FR-29, FR-30, FR-33, [REQ-61](../requirements/admission.md#req-61), [REQ-123](../requirements/admission.md#req-123), [Q-06](answered-questions.md#q-06), [Q-22](answered-questions.md#q-22).
     - **History**: this question had the number Q-72 before.
@@ -1729,7 +1729,7 @@ into the register in advance.
 
 - **Status**: open
 
-The functional requirements ask the bronhouder to seal all outgoing
+The functional requirements ask the source holder to seal all outgoing
 data sets with a qualified electronic seal, without naming the standard.
 In the ASI, the ASIP already seals every result, and in issuance the
 attestation carries the seal of the issuer. A DvTP source response has
@@ -1740,8 +1740,8 @@ is one seal for every channel, and in the demo only the ASI seals.
 
 ??? note "Options, working assumption and links"
 
-    - **Forum**: tech lead, owner of FR-DvTP, bronhouders.
-    - **Question**: FR-27 requires that the bronhouder seals all outgoing data sets with a qualified electronic seal. The seal makes origin and integrity provable (criterion 1). The seal must meet "applicable system standards" (criterion 2), but FR-27 does not name the standard.
+    - **Forum**: tech lead, owner of FR-DvTP, source holders.
+    - **Question**: FR-27 requires that the source holder seals all outgoing data sets with a qualified electronic seal. The seal makes origin and integrity provable (criterion 1). The seal must meet "applicable system standards" (criterion 2), but FR-27 does not name the standard.
 
         In the ASI, the ASIP already seals every verification result ([REQ-83](../requirements/asi.md#req-83)). [Q-32](#q-32) covers the format. In issuance, the attestation carries the seal of the issuer ([Q-17](#q-17)).
 
@@ -1787,7 +1787,7 @@ one validity per consent, equal to the expiry time of the proof.
 
 - **Status**: open
 
-The PSA asks the toestemmingsregister to support granting, change,
+The PSA asks the consent register to support granting, change,
 revocation and expiry of a consent, but no requirement covers change.
 The consent proof binds the data sets and the validity, so a change also
 affects the proof that the consumer holds. The question is which changes
@@ -1830,7 +1830,7 @@ language.
 ??? note "Options, working assumption and links"
 
     - **Forum**: tech lead, PSA [S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie), [S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie).
-    - **Question**: Which option does GBO follow for its reference policy? Does the requirement also apply to policy that a bronhouder writes itself, or only as a guideline (RL)? PSA S05 requires that "the interface and the policy are product-independent". S06 requires that policy is "not tied to one specific policy language or implementation" (see also [P-09](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)). [REQ-42](../requirements/authorization.md#req-42) covers the interface.
+    - **Question**: Which option does GBO follow for its reference policy? Does the requirement also apply to policy that a source holder writes itself, or only as a guideline (RL)? PSA S05 requires that "the interface and the policy are product-independent". S06 requires that policy is "not tied to one specific policy language or implementation" (see also [P-09](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)). [REQ-42](../requirements/authorization.md#req-42) covers the interface.
 
         The reference policy that GBO delivers is in one policy language, for one engine. A source that chooses another PDP cannot take this policy over. That source also cannot show that its decisions are the same.
 
@@ -1847,7 +1847,7 @@ language.
 
 - **Status**: open
 
-The PSA lets an OOTS adapter connect to the national koppelvlak of
+The PSA lets an OOTS adapter connect to the national interface of
 OOTS-V, and OOTS requests use the same authorization and logging as
 other requests. The question is whether GBO builds that adapter, or the
 OOTS-V operator extends its facility with the GBO interface. The choice
@@ -1861,7 +1861,7 @@ There is no working assumption, because the demo has no OOTS route.
     - **Forum**: BZK and OOTS coordination, tech lead, PSA [B-12](https://ictu.github.io/GBO-PSA/main/vraagstukken/), [S08](https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter), [S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus).
     - **Question**: Does GBO build the OOTS adapter, or does the OOTS-V operator extend its facility with the GBO interface? Where is the boundary between OOTS-V and the mapping function?
 
-        PSA S08 lets the OOTS adapter connect to the national koppelvlak of OOTS-V. OOTS requests use the same generic authorization and logging as other data requests. Bronhouders do not depend on AS4/eDelivery. The Basisinrichting OOTS stays responsible for transport, discovery, and the European process interaction. If the bronhouder configures a mapping, a central mapping function translates to OOTS-EDM.
+        PSA S08 lets the OOTS adapter connect to the national interface of OOTS-V. OOTS requests use the same generic authorization and logging as other data requests. Source holders do not depend on AS4/eDelivery. The Basisinrichting OOTS stays responsible for transport, discovery, and the European process interaction. If the source holder configures a mapping, a central mapping function translates to OOTS-EDM.
 
         Who builds the adapter is an open decision of S08. This design has no OOTS requirement. Three items depend on the choice:
         - The route of an OOTS request to the source.
@@ -1870,7 +1870,7 @@ There is no working assumption, because the demo has no OOTS route.
 
     - **Why the demo cannot answer it**: The demo does not touch OOTS.
     - **Options**: The OOTS adapter can come from one of two parties:
-        - (a) GBO builds the OOTS adapter, behind the national koppelvlak of OOTS-V.
+        - (a) GBO builds the OOTS adapter, behind the national interface of OOTS-V.
         - (b) The OOTS-V operator extends its facility with the GBO interface. GBO delivers only the generic source access.
     - **Current working assumption**: None. The demo has no OOTS route.
     - **Related**: [REQ-04](../requirements/authorization.md#req-04), [REQ-44](../requirements/authorization.md#req-44), [REQ-46](../requirements/sources-identity.md#req-46), [REQ-74](../requirements/authorization.md#req-74), [REQ-124](../requirements/eudi-issuance.md#req-124), [ADR 0031](../decisions/0031-regime-from-evidence.md), [ADR 0020](../decisions/0020-as4-bridge-for-oots.md), [Q-64](#q-64), [Q-67](#q-67).

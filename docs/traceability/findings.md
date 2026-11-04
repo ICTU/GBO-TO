@@ -36,8 +36,8 @@ For the open findings per PSA theme, see
 - **Status**: open
 
 The consent detail page shows when the citizen gave a consent, when a
-dienstverlener first used it, and when it ended. The
-toestemmingsregister keeps only the start and end dates, so the demo
+service provider (dienstverlener) first used it, and when it ended. The
+consent register (toestemmingsregister) keeps only the start and end dates, so the demo
 cannot show the first use. FR-11 and FR-22 require that the register
 itself records whether and when data was first retrieved. The open point
 is how the register learns of a successful delivery at the source. Three
@@ -49,7 +49,7 @@ source after delivery, or derivation from the LDV chain.
     - **Type**: capability gap
     - **Trigger**: [SL-06b](increments.md#sl-06b). The consent detail page shows a history with issued, first used, and revoked or expired.
     - **Observation**: the register keeps `created_at` and `valid_until`, but no use event ([`consent-register/main.go#L36-L46`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/main.go#L36-L46)). The decision logs hold `consent_id` per allow. These logs are a query log and hold no consent state. The demo shows only issued and revoked or expired.
-    - **Why it matters**: FR-11 v0.9 and FR-22 v0.9 require that the toestemmingsregister records whether and when data was first retrieved. So the first use is a field in the register. The register does not derive it from the audit log. Single use no longer applies ([Q-04](answered-questions.md#q-04)), so this finding does not depend on Q-04 any more.
+    - **Why it matters**: FR-11 v0.9 and FR-22 v0.9 require that the consent register records whether and when data was first retrieved. So the first use is a field in the register. The register does not derive it from the audit log. Single use no longer applies ([Q-04](answered-questions.md#q-04)), so this finding does not depend on Q-04 any more.
     - **Proposal**: the open point is how the register learns of a successful delivery at the source. [Q-42](open-questions.md#q-42) gives three options:
         - (A) The first status query by a PDP.
         - (B) A report from the source after delivery. Option B adds an interface per source.
@@ -97,7 +97,7 @@ fails. The demo therefore lets the PDP pull its bundles at start-up,
 which meets the PSA. The weak point is in the implementation: every rule
 that allows management sits in the policy for citizen data. The proposal
 is a separate authorization path for management, as a guideline for
-bronhouders, because each source keeps its own PAP and PDP.
+source holders (bronhouders), because each source keeps its own PAP and PDP.
 
 ??? note "Evidence, impact and proposal"
 
@@ -110,7 +110,7 @@ bronhouders, because each source keeps its own PAP and PDP.
         - While its policy store is empty, the engine also installs a no-auth mode.
         - On the Manager side, the bundle pull needs its own Cedar policy since OpenFTV v0.1.0 ([`pdp-bundle.cedar`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/pdp-bundle.cedar)).
     - **Why it matters**: every rule that allows management sits in the policy that decides on citizen data. Pull meets [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie), which asks only that a component reliably gets a valid policy version. The GO and the PSA have no gap here. The gap is in the implementation.
-    - **Proposal**: a PDP needs a separate authorization path for management. Then push works without a wider decision policy ([RL-02](../requirements/authorization.md#rl-02)). The point was reported to the OpenFTV maintainers. [Q-21](answered-questions.md#q-21) keeps PAP and PDP at each source. RL-02 therefore stays a guideline for bronhouders and is no requirement.
+    - **Proposal**: a PDP needs a separate authorization path for management. Then push works without a wider decision policy ([RL-02](../requirements/authorization.md#rl-02)). The point was reported to the OpenFTV maintainers. [Q-21](answered-questions.md#q-21) keeps PAP and PDP at each source. RL-02 therefore stays a guideline for source holders and is no requirement.
     - **Related**: [RL-02](../requirements/authorization.md#rl-02), [F-09](findings-closed.md#f-09), [F-52](#f-52), [Q-21](answered-questions.md#q-21), [ADR-0021](../decisions/0021-central-pap-signed-bundles.md).
 
 ### F-52: The policy store is cumulative and cannot delete, and one duplicate package breaks every decision {#f-52}
@@ -176,7 +176,7 @@ finds the source through its valid contracts, validates the description,
 and activates it in one step. The issuance configuration and the offers
 in the frontend come from this description, so a source can join without
 a change in GBO code. For the EUDI branch, this design gives the GO
-service catalogue a concrete form, which the bronhouder manages with a
+service catalogue a concrete form, which the source holder manages with a
 common profile. Three points stay open: a link to the DCAT-AP-NL
 description, central findability, and a conflict with the wish for no
 fixed DvTP queries.
@@ -190,7 +190,7 @@ fixed DvTP queries.
         - The reconciler finds sources through valid contracts. It validates schema, origin, version, validity, and contract binding. Then it activates the document atomically.
         - The issuance configuration and the frontend offers are generated from this document.
         - Two sources (BD, BRP) use the same path, without fallback.
-    - **Why it matters**: the GO has two catalogs: a data catalog that follows DCAT-AP-NL, and a service catalog. The service catalog lists the allowed data requests. It is "managed federatively with a common profile and central findability", and the bronhouder manages it ([GO §6](https://ictu.github.io/GBO-GO/main/#6-impact-op-betrokken-partijen)). `/.well-known/gbo` is that service catalog, and the validation profile of the reconciler is the common profile. This design gives [P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/) a concrete form. It answers [Q-19](answered-questions.md#q-19) for the EUDI branch.
+    - **Why it matters**: the GO has two catalogs: a data catalog that follows DCAT-AP-NL, and a service catalog. The service catalog lists the allowed data requests. It is "managed federatively with a common profile and central findability", and the source holder manages it ([GO §6](https://ictu.github.io/GBO-GO/main/#6-impact-op-betrokken-partijen)). `/.well-known/gbo` is that service catalog, and the validation profile of the reconciler is the common profile. This design gives [P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/) a concrete form. It answers [Q-19](answered-questions.md#q-19) for the EUDI branch.
     - **Proposal**: keep [REQ-64](../requirements/sources-identity.md#req-64). Three points stay open:
         1. The description does not refer to the DCAT-AP-NL description of the data set or data service. This point is an addition to REQ-64.
         2. Central findability is missing. It belongs with the catalog of the management organization.
@@ -209,7 +209,7 @@ follows pointers forward to each next logbook. In DvTP, a private
 consumer starts the processing, and LDV does not bind that party, so
 nobody knows which sources one processing touched. The PDP at the source
 also writes only decision records, so no record at the source points to
-the consent logbook. The proposal uses the toestemmingsregister as an
+the consent logbook. The proposal uses the consent register as an
 index: every retrieval leads to a status lookup there, and the register
 logs each lookup. The step from the source to the register is open with
 Logius.
@@ -267,7 +267,7 @@ description in a directory. The operator then decides the query, the
 mapping, and the wallet claims for the product of another party. Four
 bounds stay in place, among them the pinned contract and the check of
 the OIN against the certificate. The design allows this only as an
-exception, with the recorded agreement of the bronhouder as first
+exception, with the recorded agreement of the source holder as first
 condition, and that condition is not built.
 
 ??? note "Evidence, impact and proposal"
@@ -283,7 +283,7 @@ condition, and that condition is not built.
             - the OIN check against the certificate
             - promotion as a separate step
     - **Why it matters**: [F-57](#f-57) and [REQ-64](../requirements/sources-identity.md#req-64) put the description at the source ([PSA P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)). Whoever controls the document decides the query, the mapping, and the wallet claims. With `file` transport, the operator controls the document. The origin check then falls back to the OIN in the certificate.
-    - **Proposal**: the design is in [REQ-64](../requirements/sources-identity.md#req-64), as an exception clause, and in [AV-08](../requirements/admission.md#av-08). Its first condition is the recorded agreement of the bronhouder. That condition is not built. Demo issue [#221](https://github.com/ICTU/GBO-demo/issues/221) (open) covers the trust model per transport, including an unsecured variant. According to the [Q-06](answered-questions.md#q-06) review, this is no governance question.
+    - **Proposal**: the design is in [REQ-64](../requirements/sources-identity.md#req-64), as an exception clause, and in [AV-08](../requirements/admission.md#av-08). Its first condition is the recorded agreement of the source holder. That condition is not built. Demo issue [#221](https://github.com/ICTU/GBO-demo/issues/221) (open) covers the trust model per transport, including an unsecured variant. According to the [Q-06](answered-questions.md#q-06) review, this is no governance question.
     - **Related**: [F-57](#f-57), [F-58](findings-closed.md#f-58), [REQ-64](../requirements/sources-identity.md#req-64), [REQ-65](../requirements/sources-identity.md#req-65), [AV-08](../requirements/admission.md#av-08), [Q-06](answered-questions.md#q-06), [ADR-0016](../decisions/0016-source-owned-metadata.md).
 
 ### F-72: The decision record can carry only what the consumer also gets to see {#f-72}
@@ -303,11 +303,11 @@ from the record.
     - **Trigger**: [PR #373](https://github.com/ICTU/GBO-demo/pull/373) (closes demo issue [#332](https://github.com/ICTU/GBO-demo/issues/332)) made the ADL the audit source. The change had to choose how decision detail gets into the ADL.
     - **Observation**:
         - OpenFTV reads only `allow` and `reason` from the policy. `reason` becomes `reason_user.en` in the AuthZEN answer. The ADL stores that answer unchanged ([`policies/authz.rego#L42-L48`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/authz.rego#L42-L48)). Per-field detail and the step trace are only in the console log of the engine, and that log is observability.
-        - Detail in `reason_admin` does not solve this. The FSC Inway returns the reason to the consumer, so everything in it reaches a private party. Since [PR #375](https://github.com/ICTU/GBO-demo/pull/375), the dienstverlener backend filters which reason code the citizen sees. In demo v0.9.0, the Inway drops the reason (OpenFSC #308).
+        - Detail in `reason_admin` does not solve this. The FSC Inway returns the reason to the consumer, so everything in it reaches a private party. Since [PR #375](https://github.com/ICTU/GBO-demo/pull/375), the service provider backend filters which reason code the citizen sees. In demo v0.9.0, the Inway drops the reason (OpenFSC #308).
         - The ADL records show `policies: 0`, so they hold no policy version ([REQ-59](../requirements/logging-audit.md#req-59)).
         - Behind the Inway, the ADL record has its own trace and no `adl.fsc.transaction_id` (demo issue [#369](https://github.com/ICTU/GBO-demo/issues/369), open).
     - **Why it matters**: in this design, the AuthZEN answer is both the audit record and the error message to the consumer. What a supervisor must reconstruct is then limited to what the consumer is allowed to know ([PSA P-12](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid), FR-31). Since [PR #371](https://github.com/ICTU/GBO-demo/pull/371), the policy fetches the consent status during evaluation. If the record does not hold that answer, nobody can replay the decision ([F-61](findings-closed.md#f-61)).
-    - **Proposal**: ADL 1.0.0 already has a channel next to the answer. ADL does not ask for per-field detail. It replays a decision from the request, policy, information, and configuration, and it prefers references to copies. Ask OpenFTV to fill `adl.core.policies` (`0` in demo v0.9.0), `adl.core.information` (the toestemmingsregister answer), and, where possible, `adl.core.configuration`. [REQ-71](../requirements/logging-audit.md#req-71) holds the corrected requirement. Personal data in the record (demo issue [#368](https://github.com/ICTU/GBO-demo/issues/368)) is a separate point (see [ADR-0043](../decisions/0043-identifiers-out-of-pdp-input.md)).
+    - **Proposal**: ADL 1.0.0 already has a channel next to the answer. ADL does not ask for per-field detail. It replays a decision from the request, policy, information, and configuration, and it prefers references to copies. Ask OpenFTV to fill `adl.core.policies` (`0` in demo v0.9.0), `adl.core.information` (the consent register answer), and, where possible, `adl.core.configuration`. [REQ-71](../requirements/logging-audit.md#req-71) holds the corrected requirement. Personal data in the record (demo issue [#368](https://github.com/ICTU/GBO-demo/issues/368)) is a separate point (see [ADR-0043](../decisions/0043-identifiers-out-of-pdp-input.md)).
     - **Related**: [F-53](findings-closed.md#f-53), [F-54](#f-54), [F-61](findings-closed.md#f-61), [F-63](findings-closed.md#f-63), [REQ-06](../requirements/authorization.md#req-06), [REQ-59](../requirements/logging-audit.md#req-59), [REQ-71](../requirements/logging-audit.md#req-71), [Q-08](open-questions.md#q-08), [ADR-0036](../decisions/0036-adl-decision-record.md), [ADR-0043](../decisions/0043-identifiers-out-of-pdp-input.md).
 
 ### F-74: DvTP scope comes from the demand side, EUDI scope from the supply side, and the intersection is what is technically allowed {#f-74}
@@ -329,14 +329,14 @@ text, with a check of the intersection at activation.
     - **Trigger**: a review of [Q-19](answered-questions.md#q-19) against FR-DvTP v0.9 (September 16, 2026).
     - **Observation**:
         - For EUDI, the source publishes its offer, and GBO validates and activates it ([F-57](#f-57), [REQ-64](../requirements/sources-identity.md#req-64)).
-        - For DvTP, FR-32 v0.9 describes a statutory service catalogue. Per use case, the catalogue sets the legal ceiling of what can be requested. The sector need defines the catalogue, and the operator of the DvTP facility keeps it. Data sets link to dienstverleners. Each data set is marked mandatory, optional, or minimal.
+        - For DvTP, FR-32 v0.9 describes a statutory service catalogue. Per use case, the catalogue sets the legal ceiling of what can be requested. The sector need defines the catalogue, and the operator of the DvTP facility keeps it. Data sets link to service providers. Each data set is marked mandatory, optional, or minimal.
         - FR-38 v0.9, criterion 5, limits the scope of a request to that ceiling. The demand side is therefore normative.
         - In the demo, the DvTP scopes are spread over policy, portal, and field map ([F-17](findings-closed.md#f-17)).
     - **Why it matters**: what a DvTP consumer can request is the intersection of the source offer (its schema, [Q-14](open-questions.md#q-14)) and the legal ceiling per use case. [REQ-64](../requirements/sources-identity.md#req-64) covers only the supply side. No GO, PSA, or FR text names the intersection ([PSA S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus), B-03, FR-10 v0.9).
-    - **Proposal**: one DvTP catalogue per FR-32, as the single source for scopes, fields, portal text, and the link to dienstverleners. At activation, an intersection check runs. Demo issue [#382](https://github.com/ICTU/GBO-demo/issues/382) (open) and [REQ-121](../requirements/consent.md#req-121) cover this proposal. A schema with enforceable filters (demo issue [#425](https://github.com/ICTU/GBO-demo/issues/425)) is one form for the ceiling ([Q-14](open-questions.md#q-14)). The intersection is a proposal for the GO (PSA B-03).
+    - **Proposal**: one DvTP catalogue per FR-32, as the single source for scopes, fields, portal text, and the link to service providers. At activation, an intersection check runs. Demo issue [#382](https://github.com/ICTU/GBO-demo/issues/382) (open) and [REQ-121](../requirements/consent.md#req-121) cover this proposal. A schema with enforceable filters (demo issue [#425](https://github.com/ICTU/GBO-demo/issues/425)) is one form for the ceiling ([Q-14](open-questions.md#q-14)). The intersection is a proposal for the GO (PSA B-03).
     - **Related**: [F-17](findings-closed.md#f-17), [F-47](#f-47), [F-57](#f-57), [F-78](#f-78), [REQ-10](../requirements/consent.md#req-10), [REQ-64](../requirements/sources-identity.md#req-64), [REQ-121](../requirements/consent.md#req-121), [Q-14](open-questions.md#q-14), [Q-19](answered-questions.md#q-19), [Q-45](open-questions.md#q-45), [ADR-0008](../decisions/0008-dienstencatalogus-ceiling.md).
 
-### F-75: The BSNk design fits the specification, but the toestemmingsvoorziening can fetch the values only as a recognized party {#f-75}
+### F-75: The BSNk design fits the specification, but the consent facility can fetch the values only as a recognized party {#f-75}
 
 - **Status**: open
 
@@ -346,7 +346,7 @@ keeps BSNk out of the request path. One point does not fit: only a
 recognized BSNk party can activate and transform values. The citizen
 logs in at MijnOverheid before the sources are known, so the login
 cannot deliver the values. The remaining work is administrative and
-legal: the toestemmingsvoorziening must become a recognized party, and someone
+legal: the consent facility (toestemmingsvoorziening) must become a recognized party, and someone
 must decide who the BSNk participant is.
 
 ??? note "Evidence, impact and proposal"
@@ -370,7 +370,7 @@ must decide who the BSNk participant is.
             - an encrypted identity only for a source on the BSN Authorization List
             - requests of at most four parties ([BSNK-05](../requirements/pseudonymization.md#bsnk-05))
         - The spike on the real BSNk PP (demo issue [#377](https://github.com/ICTU/GBO-demo/issues/377)) closed on October 21, 2026. Its result: the mock follows the BSNk interface and rules. Real activation, transport, key handling, and the agreement for private recipients wait for pre-production access.
-    - **Why it matters**: [PSA P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie), B-07, and GO §5 make BSNk PP mandatory for DvTP. Nothing technical blocks the design. The remaining work is administrative and legal. The toestemmingsvoorziening must become a recognized BSNk party, in a role that BSNk was not written for.
+    - **Why it matters**: [PSA P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [S01](https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie), B-07, and GO §5 make BSNk PP mandatory for DvTP. Nothing technical blocks the design. The remaining work is administrative and legal. The consent facility must become a recognized BSNk party, in a role that BSNk was not written for.
     - **Proposal**: use [BSNK-01 to BSNK-11](../requirements/pseudonymization.md#bsnk-preconditions) as the check for each build step and for the trial with the real BSNk PP. Submit the recognition question ([Q-26](open-questions.md#q-26)). Decide who the BSNk participant is ([Q-49](open-questions.md#q-49), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md), proposed). Two points stay open in the demo: a pseudonym for the consumer (demo issue [#478](https://github.com/ICTU/GBO-demo/issues/478)), and how the BSN Authorization List is delivered in practice ([Q-26](open-questions.md#q-26)).
     - **Related**: [F-76](#f-76) to [F-79](#f-79), [REQ-20](../requirements/pseudonymization.md#req-20), [REQ-21](../requirements/pseudonymization.md#req-21), [REQ-69](../requirements/pseudonymization.md#req-69), [REQ-80](../requirements/pseudonymization.md#req-80), [Q-01](open-questions.md#q-01), [Q-26](open-questions.md#q-26), [Q-49](open-questions.md#q-49), [ADR-0005](../decisions/0005-bsnk-pp.md), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md).
 
@@ -378,9 +378,9 @@ must decide who the BSNk participant is.
 
 - **Status**: open
 
-The dienstverlener never learns who the citizen is. It holds a consent
+The service provider never learns who the citizen is. It holds a consent
 proof and names the citizen with a placeholder. This goes further than
-"no BSN for private parties", and it has side effects. The dienstverlener
+"no BSN for private parties", and it has side effects. The service provider
 logs under the consent ID, so one citizen with two consents is two
 people in its logbook. It cannot tell that two consents come from the
 same person, and it can answer a request for access only through the
@@ -393,10 +393,10 @@ consents.
     - **Observation**:
         - The consumer reads only `consent_id` and `scopes` from the proof. It names the subject with a placeholder.
         - Its logbook names the data subject by the consent ID, under the subject type `consent-id` ([`logbook.go#L22`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/logbook/logbook.go#L22)).
-        - In one query chain, the same citizen is `c-…` at the consumer, `LP-…` at the source, and `EP-…` at the toestemmingsregister (seen in the running demo, September 30, 2026).
+        - In one query chain, the same citizen is `c-…` at the consumer, `LP-…` at the source, and `EP-…` at the consent register (seen in the running demo, September 30, 2026).
     - **Why it matters**: [PSA P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/) says "BSN-free for private consumers". This design goes further: the consumer is identifier-free. The design does not name three effects of this choice:
         1. Logging: [REQ-72](../requirements/logging-audit.md#req-72) asks for a pseudonym from the own space of the controller. The consumer has none. A consent ID is no pseudonym. One citizen with two consents is two data subjects in the consumer logbook.
-        2. Access: if a citizen asks the consumer what it processed about them, the consumer can find that citizen only through their consents. The toestemmingsregister translates the citizen to consents (FR-31, [F-68](#f-68)).
+        2. Access: if a citizen asks the consumer what it processed about them, the consumer can find that citizen only through their consents. The consent register translates the citizen to consents (FR-31, [F-68](#f-68)).
         3. Recognition: through GBO, the consumer cannot tell that two consents are from the same person. That is data minimization ([PSA P-02](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)), but it is a design choice. With a VP, the consumer can tell, and it then has a pseudonym to log under.
     - **Proposal**: add a rule to [REQ-72](../requirements/logging-audit.md#req-72) for a party without an identifier of the data subject. That party logs under the reference to the legal basis, with its own `data_subject_id_type`. Submit the question whether that rule fits LDV ([Q-27](open-questions.md#q-27)). Make "VP for the consumer or not" an explicit design choice, with these three effects ([Q-01](open-questions.md#q-01)).
     - **Related**: [F-69](findings-closed.md#f-69), [F-75](#f-75), [F-77](#f-77), [REQ-20](../requirements/pseudonymization.md#req-20), [REQ-72](../requirements/logging-audit.md#req-72), [AV-02](../requirements/admission.md#av-02), [Q-01](open-questions.md#q-01), [Q-27](open-questions.md#q-27).
@@ -526,11 +526,11 @@ which format, and who is the intermediary stay open.
 - **Status**: open (the demo is not checked against it)
 
 Since August 2026, EU law puts PuB-EAA issuance under the same standard
-as QEAA issuance. The issuer is the bronhouder itself or a public sector
+as QEAA issuance. The issuer is the source holder itself or a public sector
 body that the member state designates. The issuer needs a qualified seal
 certificate with a fixed profile, a notification by the member state,
 and a registration as relying party. For GBO, this probably means one
-notification per bronhouder, with GBO as the party that issues on its
+notification per source holder, with GBO as the party that issues on its
 behalf. The demo is not checked against the standard, and none of the acts in this reading says
 who designates the issuer or who supervises.
 
@@ -539,12 +539,12 @@ who designates the issuer or who supervises.
     - **Type**: external requirement (regulation)
     - **Trigger**: a reading of the EUDI implementing acts (October 5 to 6, 2026) and the ARF v3.0.0.
     - **Observation**:
-        - **Who can issue**: eIDAS art. 3(46) names two options. The issuer is the bronhouder itself, or "a public sector body that is designated by the Member State" on behalf of bronhouders.
+        - **Who can issue**: eIDAS art. 3(46) names two options. The issuer is the source holder itself, or "a public sector body that is designated by the Member State" on behalf of source holders.
         - **Certificate**: the qualified certificate under the seal names the authentic source and the legal basis (eIDAS art. 45f(1)(b)). The profile is ETSI TS 119 412-6 clause 8, QcType `id-etsi-qct-eidaspsbeaa` (CIR 2026/1731).
         - **Standard**: CIR 2026/1735 replaces Annex I of 2025/1569 with ETSI TS 119 471 V1.1.1 and EN 319 401 V3.2.1, for QEAA and PuB-EAA providers. This change applies from entry into force (calculated: August 11, 2026). The provider makes the attestation seal in a QSCD.
         - **Notification and registration**: the member state notifies the issuer with a conformity assessment report (eIDAS art. 45f(3)). The issuer registers as relying party with the entitlement `PUB_EAA_Provider` (CIR 2025/848, Annex I, point 12(d)). The issuer has an access certificate. Since CIR 2026/1730, it also has a registration certificate.
         - **Protocol**: OpenID4VCI per ETSI TS 119 472-3, with checks on the wallet instance attestation and the key attestation (CIR 2026/1731).
-        - ARF technical specification TS2 assumes that the bronhouder is the PuB-EAA provider. A party that issues on behalf of the bronhouder goes in the field `EEAIssuer`. For GBO, that probably means one notification per bronhouder, with GBO as `EEAIssuer`.
+        - ARF technical specification TS2 assumes that the source holder is the PuB-EAA provider. A party that issues on behalf of the source holder goes in the field `EEAIssuer`. For GBO, that probably means one notification per source holder, with GBO as `EEAIssuer`.
         - The intermediary model of TS5 applies only to relying parties. It does not apply to issuance.
         - Under the ARF technical specifications, each registered service needs its own access and registration certificate (Reg_10a, Reg_10c). Each Dutch attestation type needs a rulebook.
     - **Why it matters**: the demo issues through the nl-wallet issuance server and the EUDI adapter, with a certificate set per source ([REQ-58](../requirements/eudi-issuance.md#req-58)). That fits art. 45f(1)(b). The demo is not checked against TS 119 471, the certificate profile, or the checks of TS 119 472-3. None of the acts in this reading says who designates the issuer and who supervises.
@@ -570,7 +570,7 @@ long-lived attestations with change notifications from the source.
     - **Trigger**: a reading of the ARF v3.0.0 (October 6, 2026).
     - **Observation**: ARF VCR_09 says that a provider "SHALL revoke that PID or attestation if the value of one or more of the attributes … was changed". This rule applies to a revocable attestation that is valid for 24 hours or more. An attestation that is valid for less than 24 hours does not have to be revocable. If an authentic source sets the value, "the Provider is responsible for ensuring that this third party notifies them about such changes".
     - **Why it matters**: GBO is designed for queries. In the demo, the adapter fetches the data from the source at issuance. The source sends no change notifications. A provider of long-lived PuB-EAAs needs such a notification stream. The alternative is short-lived attestations (less than 24 hours) that the provider issues again often.
-    - **Proposal**: add a choice per attestation type to [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) and B-13. The two options are short-lived attestations that the provider issues again often, or long-lived attestations with a change notification stream from the source. The ARF is not binding, but the requirement follows from the duty to revoke on changed data. [REQ-77](../requirements/eudi-issuance.md#req-77), [AV-12](../requirements/admission.md#av-12), and [AV-13](../requirements/admission.md#av-13) cover the validity and revocation policy per bronhouder.
+    - **Proposal**: add a choice per attestation type to [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte) and B-13. The two options are short-lived attestations that the provider issues again often, or long-lived attestations with a change notification stream from the source. The ARF is not binding, but the requirement follows from the duty to revoke on changed data. [REQ-77](../requirements/eudi-issuance.md#req-77), [AV-12](../requirements/admission.md#av-12), and [AV-13](../requirements/admission.md#av-13) cover the validity and revocation policy per source holder.
     - **Related**: [F-81](#f-81), [REQ-77](../requirements/eudi-issuance.md#req-77), [AV-12](../requirements/admission.md#av-12), [AV-13](../requirements/admission.md#av-13), [ADR-0018](../decisions/0018-eudi-disclosure-issuance.md).
 
 ### F-83: Approval in the wallet is not a legal basis, so the EUDI route and DvTP consent cannot lean on each other {#f-83}
@@ -751,7 +751,7 @@ and reports the gap to ETSI.
         - The Data Service Directory describes a `dataService` per attribute, with `endpointURI` and `provider` (REQ-DIP-5.3.3-03). One verify request with attributes of two sources does not fit one response.
         - The demo offers one data service per source under `/<dataservice>/authsrc-api`. Each data service has its own contract, catalogue entry, and token audience ([REQ-94](../requirements/asi.md#req-94), [REQ-95](../requirements/asi.md#req-95), [PR #529](https://github.com/ICTU/GBO-demo/pull/529), [`config/dataservices.json`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/config/dataservices.json)).
         - The reference QTSP follows this layout. It picks the data service that delivers all requested attributes. If no data service delivers all of them, the QTSP refuses the request before the authorization server and advises to split it ([REQ-99](../requirements/asi.md#req-99), [PR #535](https://github.com/ICTU/GBO-demo/pull/535)).
-    - **Why it matters**: a token is valid for one data service. Attributes from two sources need two authorizations, with two citizen interactions. [Q-37](open-questions.md#q-37) asks whether one ASIP for several sources makes GBO an intermediary, or whether each bronhouder stays ASIP. The data-service layout fits both answers.
+    - **Why it matters**: a token is valid for one data service. Attributes from two sources need two authorizations, with two citizen interactions. [Q-37](open-questions.md#q-37) asks whether one ASIP for several sources makes GBO an intermediary, or whether each source holder stays ASIP. The data-service layout fits both answers.
     - **Proposal**: the demo choice is [ADR-0038](../decisions/0038-asi-data-service-per-source.md) (accepted). Record three points in the PSA (S11, B-14): one data service per authentic source, the source in each response, and one token per data service. A possible improvement is several sources in one authorization (RFC 8707 §2.2, one token per resource). Send the gap to ETSI ([E3](standards-feedback.md#e3)).
     - **Related**: [REQ-91](../requirements/asi.md#req-91), [REQ-94](../requirements/asi.md#req-94), [REQ-95](../requirements/asi.md#req-95), [REQ-99](../requirements/asi.md#req-99), [Q-37](open-questions.md#q-37), [E3](standards-feedback.md#e3), [ADR-0038](../decisions/0038-asi-data-service-per-source.md).
 
@@ -945,7 +945,7 @@ that matches the criteria.
 FR-DvTP v0.9 conflicts with decisions or with its own criteria on four
 points, and the PSA is ambiguous on one point. FR-39 and FR-26 put
 policy and a first check at a central place, while the decisions keep
-PAP and PDP at each bronhouder. FR-25 assumes that revocation ends at
+PAP and PDP at each source holder. FR-25 assumes that revocation ends at
 retrieval, and FR-35 describes register contents that differ from the
 chosen design. The PSA calls pseudonymization "transparent" to the
 citizen, which can mean invisible or explained. The FR-DvTP owner must
@@ -957,15 +957,15 @@ builders do not get two conflicting sources.
     - **Type**: contradiction in the source
     - **Trigger**: a design round compared FR-DvTP v0.9 and the PSA with the requirements (November 2, 2026).
     - **Observation**:
-        - **FR-39** puts the authorization policy at a central policy authority. Its criteria cover centrally managed, sealed bundles (criteria 1 and 2), an RFC process (3), and governance of the authority (4). Criterion 5 puts the mapping of the service catalogue to scopes in that central policy. The decision in demo issue [#426](https://github.com/ICTU/GBO-demo/issues/426) replaced this model ([Q-21](answered-questions.md#q-21), closed October 28, 2026). Under that decision, policy management stays at each source, PAP and PDP sit at the bronhouder, and [RL-01 to RL-05](../requirements/authorization.md#policy-management) stay guidelines. Criterion 5 then belongs in the service description ([REQ-121](../requirements/consent.md#req-121)) instead of a central policy.
-        - **FR-26**, dependency 2, says: "the bronhouder receives a request only after the central authorization component (FR-17) did the first check". That conflicts with [Q-02](answered-questions.md#q-02) (PEP, PDP, and PAP decentral at the bronhouder) and with [REQ-04](../requirements/authorization.md#req-04) and [REQ-68](../requirements/consent.md#req-68): the PDP of the source does the check. The FR-26 criteria themselves are covered.
+        - **FR-39** puts the authorization policy at a central policy authority. Its criteria cover centrally managed, sealed bundles (criteria 1 and 2), an RFC process (3), and governance of the authority (4). Criterion 5 puts the mapping of the service catalogue to scopes in that central policy. The decision in demo issue [#426](https://github.com/ICTU/GBO-demo/issues/426) replaced this model ([Q-21](answered-questions.md#q-21), closed October 28, 2026). Under that decision, policy management stays at each source, PAP and PDP sit at the source holder, and [RL-01 to RL-05](../requirements/authorization.md#policy-management) stay guidelines. Criterion 5 then belongs in the service description ([REQ-121](../requirements/consent.md#req-121)) instead of a central policy.
+        - **FR-26**, dependency 2, says: "the bronhouder receives a request only after the central authorization component (FR-17) did the first check". That conflicts with [Q-02](answered-questions.md#q-02) (PEP, PDP, and PAP decentral at the source holder) and with [REQ-04](../requirements/authorization.md#req-04) and [REQ-68](../requirements/consent.md#req-68): the PDP of the source does the check. The FR-26 criteria themselves are covered.
         - **FR-25** applies the pointer to GDPR rights only "when a consent can no longer be cancelled technically (because the data is retrieved)". Its dependency says "only activated when FR-24 is active (revocation no longer possible)". But FR-23 and FR-24, criterion 1, allow revocation after retrieval while the consent is valid ([REQ-109](../requirements/consent.md#req-109)). For that reason, [REQ-120](../requirements/consent.md#req-120) shows the pointer with every consent and after every revocation.
-        - **FR-35**, criterion 1, says: "only a party-specific identifier in place of the BSN and the consent proof are recorded". The design chooses otherwise on purpose ([REQ-69](../requirements/pseudonymization.md#req-69), [toestemmingsregister data model](../requirements/consent.md#consent-register), route D in [ADR-0040](../decisions/0040-route-d-citizen-recognition.md)). The register keeps the polymorphic PI and PP under its own reference. It keeps no party-specific values, and it signs the proof without keeping it. Both approaches keep no BSN, but they record different data.
+        - **FR-35**, criterion 1, says: "only a party-specific identifier in place of the BSN and the consent proof are recorded". The design chooses otherwise on purpose ([REQ-69](../requirements/pseudonymization.md#req-69), [consent register data model](../requirements/consent.md#consent-register), route D in [ADR-0040](../decisions/0040-route-d-citizen-recognition.md)). The register keeps the polymorphic PI and PP under its own reference. It keeps no party-specific values, and it signs the proof without keeping it. Both approaches keep no BSN, but they record different data.
         - **PSA S02** says: "pseudonymization and technical identifiers are transparent to the citizen. The interface does not present them as a choice of content." The second part is clear and is in [REQ-117](../requirements/consent.md#req-117). "Transparent" can mean two things: the citizen sees nothing of it, or the interface explains it to the citizen ([PSA P-13](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)).
     - **Why it matters**: the requirements follow the decisions ([Q-02](answered-questions.md#q-02), [Q-21](answered-questions.md#q-21)) and the chosen design (route D). If the FR-DvTP text stays, builders and reviewers get two conflicting sources. The S02 UI requirement stays incomplete until the meaning of "transparent" is fixed.
     - **Proposal**:
         - The owner of FR-DvTP must make four changes:
-            - Rewrite FR-39 to policy at the bronhouder, with the catalogue-to-set mapping in the service description.
+            - Rewrite FR-39 to policy at the source holder, with the catalogue-to-set mapping in the service description.
             - Make FR-26 dependency 2 refer to the PDP of the source instead of a central authorization component.
             - Detach FR-25 from "revocation no longer possible". Apply it to every consent and after a revocation.
             - Make FR-35, criterion 1, describe what the register really keeps: its own reference with PI and PP, no party-specific values, and not the proof.
@@ -985,7 +985,7 @@ In total, 34 findings are open. The review of September 21, 2026 closed 28 of 39
 
 - **Closed**: [F-09](findings-closed.md#f-09) (signing only across an organization boundary, [ADR-0021](../decisions/0021-central-pap-signed-bundles.md)).
 - **Open**: [F-51](#f-51) (management endpoints behind the decision policy), [F-52](#f-52) (cumulative store), and [F-98](#f-98) (FR-39 still describes a central policy authority).
-- **Decided**: policy management stays at each source. PAP and PDP sit at the bronhouder ([Q-21](answered-questions.md#q-21)). [RL-01 to RL-05](../requirements/authorization.md#policy-management) are guidelines for bronhouders.
+- **Decided**: policy management stays at each source. PAP and PDP sit at the source holder ([Q-21](answered-questions.md#q-21)). [RL-01 to RL-05](../requirements/authorization.md#policy-management) are guidelines for source holders.
 - **PSA to decide**: whether bundle signing is required when a bundle crosses an organization boundary ([ADR-0021](../decisions/0021-central-pap-signed-bundles.md)).
 
 ### Consent and its lifecycle
@@ -1005,16 +1005,16 @@ In total, 34 findings are open. The review of September 21, 2026 closed 28 of 39
 
 ### Pseudonymization and BSNk
 
-- **Open**: [F-75](#f-75) (the toestemmingsvoorziening must be a recognized BSNk party), [F-76](#f-76) (the consumer has no citizen identifier), [F-77](#f-77) (one subject per request), and [F-79](#f-79) (only the Inway reaches the source gateway, with the roll-out outside Compose and the nonce open).
+- **Open**: [F-75](#f-75) (the consent facility must be a recognized BSNk party), [F-76](#f-76) (the consumer has no citizen identifier), [F-77](#f-77) (one subject per request), and [F-79](#f-79) (only the Inway reaches the source gateway, with the roll-out outside Compose and the nonce open).
 - **Decided in the TO**: the source gateway decrypts its own value after the allow ([ADR-0033](../decisions/0033-gateway-decrypts-after-allow.md)). Route D for citizen recognition is proposed ([ADR-0040](../decisions/0040-route-d-citizen-recognition.md)).
 - **PSA to decide**:
-    1. Recognition of the toestemmingsvoorziening at BSNk, and who the BSNk participant is ([Q-26](open-questions.md#q-26), [Q-49](open-questions.md#q-49)).
+    1. Recognition of the consent facility at BSNk, and who the BSNk participant is ([Q-26](open-questions.md#q-26), [Q-49](open-questions.md#q-49)).
     2. Whether the consumer gets a pseudonym (VP), with its effects on logging, access, and recognition ([Q-01](open-questions.md#q-01)).
     3. Queries about more than one person.
 
 ### Admission and service descriptions
 
-- **Open**: [F-57](#f-57) (the source owns its description, but the DCAT-AP-NL reference and central findability are missing), and [F-71](#f-71) (an operator takes over a description, and the recorded agreement of the bronhouder is not built).
+- **Open**: [F-57](#f-57) (the source owns its description, but the DCAT-AP-NL reference and central findability are missing), and [F-71](#f-71) (an operator takes over a description, and the recorded agreement of the source holder is not built).
 - **Decided**: admission is a register entry instead of a policy rule ([F-55](findings-closed.md#f-55)).
 - **PSA to decide**: accept or reject the role split "the source publishes, GBO validates and activates" (S10), and decide where central findability lives.
 

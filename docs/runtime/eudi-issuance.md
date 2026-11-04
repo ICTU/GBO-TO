@@ -1,7 +1,7 @@
 # EUDI issuance: the PuB-EAA route
 
 A citizen scans a QR code, shares the PID from the NL Wallet, and gets an
-attestation with data from an authentic source. The bronhouder is the
+attestation with data from an authentic source. The source holder (bronhouder) is the
 PuB-EAA provider. GBO operates the technical issuance facility
 ([ADR-0028](../decisions/0028-pubeaa-productization.md),
 [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte)).
@@ -135,7 +135,7 @@ steps of the sequence:
 | 18 | edi-outway → bd-inway | FSC, mTLS | Body 1:1 with the **BSN** | Every channel goes through FSC with a valid certificate ([REQ-46](../requirements/sources-identity.md#req-46)). |
 | 19 | bd-inway → PDP | `POST /authzen/v1/evaluation` | AuthZEN envelope: Outway peer `…0100`, service `bri`, and the body with the **BSN** | The Inway is the PEP. The mapper parses the GraphQL and does not call BSNk ([Regime selection](../concepts/authorization.md#regime-selection)). |
 | 20 | PDP → bd-inway | AuthZEN response | Allow or deny, per field | The request has no consent token, so the PID regime applies. EUD0001 checks the designated issuer, the BSN in the root argument, and `allowed_years` ([`eud0001.rego#L45-L75`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001.rego#L45-L75), [REQ-74](../requirements/authorization.md#req-74), [REQ-97](../requirements/authorization.md#req-97)). The PDP writes the BSN to the ADL and the console decision log ([REQ-60](../requirements/logging-audit.md#req-60)). |
-| 21 to 22 | bd-inway → gateway → source | `POST /graphql` | The judged query with the **BSN** | The request has no consent token, so the gateway passes it through unchanged ([Level 2: bronhouder](../building-blocks/components.md#level-2-bronhouder)). The source logs its own processing. |
+| 21 to 22 | bd-inway → gateway → source | `POST /graphql` | The judged query with the **BSN** | The request has no consent token, so the gateway passes it through unchanged ([Level 2: source holder](../building-blocks/components.md#level-2-bronhouder)). The source logs its own processing. |
 | 23 | Source → adapter | GraphQL response | **Income data** for the year | Back through the same FSC chain, 1:1. |
 | 24 | Adapter (internal) | gbo-simple-v1 | In: the response at `result_pointer`. Out: flat **claims** | Exactly one result gives claims. Zero results is `no_data`. Any error gives no attestation ([REQ-116](../requirements/eudi-issuance.md#req-116)). Only scalar claims ([REQ-78](../requirements/eudi-issuance.md#req-78)). |
 | 25 | Adapter → logbook | LDV write | Record `dataverwerking.attestatie-samenstellen` | The record names the number of claims without their values. It points at the logbook of the source. The adapter writes it for every outcome after the call to the source. If the logbook does not acknowledge the record, the adapter withholds the answer ([`main.go#L283-L292`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L283-L292)). |
@@ -346,7 +346,7 @@ Demo v0.9.0 does not have these items:
 - The BSN out of the PDP input
   ([#368](https://github.com/ICTU/GBO-demo/issues/368),
   [ADR-0043](../decisions/0043-identifiers-out-of-pdp-input.md), proposed).
-- Validity and revocation per type, set by the bronhouder, with revocation
+- Validity and revocation per type, set by the source holder, with revocation
   on instruction or on a change in the source
   ([REQ-77](../requirements/eudi-issuance.md#req-77),
   [AV-12](../requirements/admission.md#av-12),

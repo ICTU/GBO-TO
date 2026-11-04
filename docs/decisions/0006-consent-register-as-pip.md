@@ -16,7 +16,7 @@ Then the question is how the consent evidence gets to the decision.
 
 A register records the consent and acts as a Policy Information Point
 (PIP). For each request, the PDP looks up the consent by `consent_id`. The
-consent proof that the dienstverlener receives is an opaque reference.
+consent proof that the service provider (dienstverlener) receives is an opaque reference.
 
 ## Why it was superseded
 

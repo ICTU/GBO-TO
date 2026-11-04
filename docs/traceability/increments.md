@@ -29,7 +29,7 @@ that was not part of an increment.
 
 - **Status**: done
 - **Demo work**: before the public repository.
-- **What it showed**: the toestemmingsregister sets an expiry time, and the
+- **What it showed**: the consent register (toestemmingsregister) sets an expiry time, and the
   policy denies an expired consent. If the expiry time is missing or
   unreadable, the policy also denies. The policy gives a separate reason
   code for each failed check (not found, withdrawn, expired, scope
@@ -59,7 +59,7 @@ that was not part of an increment.
 - **Demo work**: before the public repository.
 - **What it showed**: the demo kept the BSN away from private consumers
   without a decision on the pseudonym form ([Q-01](open-questions.md#q-01)).
-  The toestemmingsregister stored a polymorphic identity (PI) instead of the
+  The consent register stored a polymorphic identity (PI) instead of the
   BSN. The PEP resolved the BSN only after an allow. For a denied
   request, the PEP did not resolve the BSN at all.
 - **Produced**: [REQ-20](../requirements/pseudonymization.md#req-20) and
@@ -127,8 +127,8 @@ that was not part of an increment.
 
 - **Status**: done
 - **Demo work**: before the public repository.
-- **What it showed**: a citizen goes from a mock dienstverlener website
-  to the toestemmingsportaal inside a MijnOverheid shell. He logs in with a
+- **What it showed**: a citizen goes from a mock service provider (dienstverlener) website
+  to the consent portal (toestemmingsportaal) inside a MijnOverheid shell. He logs in with a
   DigiD mock, gives consent, and returns. The redirect carries the
   consumer, the service, the purpose, the data sets, and the return
   address. The result page fetches real data through the whole chain.
@@ -202,12 +202,12 @@ that was not part of an increment.
   correlation part of [F-07](findings-closed.md#f-07).
 - **Explained in**: [Logging](../concepts/logging.md)
 
-### SL-11: Toestemmingsportaal backend (S02) {#sl-11}
+### SL-11: Consent portal backend (S02) {#sl-11}
 
 - **Status**: done
 - **Demo work**: before the public repository.
-- **What it showed**: the toestemmingsportaal (PSA S02) became a service of
-  its own, apart from the toestemmingsregister (S01). The DigiD mock gives a
+- **What it showed**: the consent portal (PSA S02) became a service of
+  its own, apart from the consent register (S01). The DigiD mock gives a
   token, and the backend takes the citizen identity only from that token.
   The backend calls BSNk, so the register gets no BSN.
 - **Produced**: [REQ-23](../requirements/consent.md#req-23),
@@ -216,7 +216,7 @@ that was not part of an increment.
 - **Explained in**: [Building blocks](../building-blocks/components.md),
   [Citizen grants consent](../runtime/dvtp-consent.md)
 
-### SL-12: Toestemmingsregister persistence {#sl-12}
+### SL-12: Consent register persistence {#sl-12}
 
 - **Status**: planned
 - **Demo work**: none as an increment.
@@ -744,7 +744,7 @@ Epic #336 has four follow-ups:
 - **Explained in**: [Logging](../concepts/logging.md),
   [ADR-0035](../decisions/0035-w3c-trace-context.md)
 
-### SL-39: eudi-adapter to real FSC Outway {#sl-39}
+### SL-39: Eudi-adapter to real FSC Outway {#sl-39}
 
 - **Status**: done
 - **Demo work**: before the public repository.
@@ -756,7 +756,7 @@ Epic #336 has four follow-ups:
   [F-14](findings-closed.md#f-14) (resolved).
 - **Explained in**: [EUDI issuance](../runtime/eudi-issuance.md)
 
-### SL-40: pdp-service as AuthZEN endpoint behind FSC Inway (EUDI) {#sl-40}
+### SL-40: Pdp-service as AuthZEN endpoint behind FSC Inway (EUDI) {#sl-40}
 
 - **Status**: done
 - **Demo work**: before the public repository.
@@ -799,7 +799,7 @@ Epic #336 has four follow-ups:
 - **What it showed**: a second source (BRP) and a second attestation. A
   surviving partner discloses his PID and gets the death certificate of
   the partner. The subject of the attestation is not the person who
-  discloses. Each bronhouder needs its own certificate set for
+  discloses. Each source holder (bronhouder) needs its own certificate set for
   issuance.
 - **Produced**:
     - findings [F-47](findings.md#f-47), [F-49](findings-closed.md#f-49), and
@@ -841,7 +841,7 @@ Epic #336 has four follow-ups:
 - **What it showed**: admission is a registration instead of a policy
   rule. The PDP decides each contract proposal in a policy tree of its
   own, with machine-readable reason codes. An automatic "no" leaves the
-  proposal pending, so it is recoverable. Admission is per bronhouder.
+  proposal pending, so it is recoverable. Admission is per source holder.
   The demo has no admission per service.
 - **Produced**:
     - findings [F-55](findings-closed.md#f-55) and [F-56](findings-closed.md#f-56)
@@ -886,7 +886,7 @@ Epic #336 has four follow-ups:
 
 - **Status**: done
 - **Demo work**: [PR #238](https://github.com/ICTU/GBO-demo/pull/238)
-- **What it showed**: the toestemmingsregister issues a signed consent proof
+- **What it showed**: the consent register issues a signed consent proof
   (ES256, with a JWKS). The policy verifies the signature and binds the
   consumer in the proof to the verified caller. The status check stays
   online and fails closed. The validity period is in the signed proof, so

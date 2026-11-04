@@ -1,6 +1,6 @@
 # Source configuration
 
-The Globaal Ontwerp gives each bronhouder a "decentraal
+The Globaal Ontwerp gives each source holder (bronhouder) a "decentraal
 configuratiecomponent": the source configures what the central GBO
 facilities offer for it. In the demo, the source describes its own
 services in one document. GBO validates that description and activates
@@ -15,7 +15,7 @@ the detail and the links to the code.
 
 ```mermaid
 flowchart LR
-  subgraph bh["At the bronhouder"]
+  subgraph bh["At the source holder"]
     direction TB
     meta[("Source document<br/>/.well-known/gbo")]
     pep("PEP + PDP<br/>metadata service")
@@ -83,17 +83,17 @@ release therefore needs a controlled restart of that server.
 ## Who owns what
 
 Four parties own a part of the description of one source. GBO never adds
-to the part of the bronhouder
+to the part of the source holder
 ([REQ-64](../../requirements/sources-identity.md#req-64)):
 
 ```mermaid
 flowchart LR
-  subgraph own["Owned by the bronhouder"]
+  subgraph own["Owned by the source holder"]
     direction TB
     doc[("Source document<br/>service, query, offers,<br/>claims, attributes")]
     cs[("Certificate set<br/>OIN, organization name,<br/>issuer name")]
   end
-  subgraph agr["Agreed between bronhouder and GBO"]
+  subgraph agr["Agreed between source holder and GBO"]
     direction TB
     fsc[("FSC contracts<br/>and grant hashes")]
   end
@@ -144,7 +144,7 @@ transports:
 | Transport | Metadata leg | Data leg | Use |
 |---|---|---|---|
 | `fsc` | Fixed path `/.well-known/gbo`, through a separate FSC metadata service | The data service in the document, under its contract | The intended form |
-| `file` | A document in the metadata directory of the operator | Not possible: a file cannot answer a query | A source without its own endpoint, as a temporary exception that needs the agreement of the bronhouder ([AV-08](../../requirements/admission.md#av-08)) |
+| `file` | A document in the metadata directory of the operator | Not possible: a file cannot answer a query | A source without its own endpoint, as a temporary exception that needs the agreement of the source holder ([AV-08](../../requirements/admission.md#av-08)) |
 | `unsecured` | An absolute HTTP or HTTPS URL, without FSC headers or redirects | An absolute URL | Local demonstrations only |
 
 The reconciler refuses `fsc` metadata with `unsecured` data. The registry
@@ -335,14 +335,14 @@ authenticated FSC transport and the OIN in the certificate set.
 
 ## Compared with the Globaal Ontwerp
 
-The demo follows the idea of the Globaal Ontwerp: the bronhouder
+The demo follows the idea of the Globaal Ontwerp: the source holder
 configures, and the central facilities read that configuration. It differs
 in three places:
 
 | Topic | Globaal Ontwerp | Demo v0.9.0 |
 |---|---|---|
-| Form of the configuration | A decentral configuration component at the bronhouder | One closed JSON document per source at `/.well-known/gbo`, a proposal for PSA S10 ([ADR-0016](../../decisions/0016-source-owned-metadata.md)) |
-| Findability | A dienstencatalogus with a shared profile and central findability, based on DCAT-AP-NL | No central findability and no DCAT-AP-NL reference ([F-57](../../traceability/findings.md#f-57)) |
+| Form of the configuration | A decentral configuration component at the source holder | One closed JSON document per source at `/.well-known/gbo`, a proposal for PSA S10 ([ADR-0016](../../decisions/0016-source-owned-metadata.md)) |
+| Findability | A service catalog (dienstencatalogus) with a shared profile and central findability, based on DCAT-AP-NL | No central findability and no DCAT-AP-NL reference ([F-57](../../traceability/findings.md#f-57)) |
 | Channels | Every channel reads the configuration | EUDI and ASI read it. DvTP does not: the GBO rules hold the DvTP offer ([F-74](../../traceability/findings.md#f-74)) |
 
 ## Open points
@@ -352,7 +352,7 @@ The main open points in source configuration are these:
 - The description lacks the read API of the logbook of the source, a
   DCAT-AP-NL reference and central findability
   ([F-57](../../traceability/findings.md#f-57)).
-- The `file` transport has no recorded agreement of the bronhouder
+- The `file` transport has no recorded agreement of the source holder
   ([F-71](../../traceability/findings.md#f-71)).
 - DvTP scope comes from the demand side and EUDI scope from the supply
   side ([F-74](../../traceability/findings.md#f-74)).

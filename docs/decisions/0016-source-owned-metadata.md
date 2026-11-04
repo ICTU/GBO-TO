@@ -102,7 +102,7 @@ version with other content is not activated either.
 
 ### Certificate set per source (fail-hard)
 
-Issuance keeps one certificate set for each bronhouder
+Issuance keeps one certificate set for each source holder (bronhouder)
 ([REQ-58](../requirements/eudi-issuance.md#req-58)). The set holds the
 issuer, reader (access), and status-list certificates. Issuance never
 shares or substitutes a set.
@@ -162,7 +162,7 @@ status separately (`transport_authenticated`,
   instead of the source. This is a D-13 exception.
   `data_transport_authenticated` makes the exception visible, and
   `expires_at` makes it temporary. The exception needs recorded consent of
-  the bronhouder
+  the source holder
   ([AV-08](../requirements/admission.md#av-08),
   [F-71](../traceability/findings.md#f-71)). The demo does not record that
   consent.

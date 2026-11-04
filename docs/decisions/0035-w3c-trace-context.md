@@ -13,7 +13,7 @@
 ## Context and problem statement
 
 An auditor must follow one request through the consumer, the PDP, the
-source gateway, the source, and the toestemmingsregister. Three standards
+source gateway, the source, and the consent register (toestemmingsregister). Three standards
 record parts of the request:
 
 - LDV (processing records) and the ADL (decision records) require that a

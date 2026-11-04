@@ -1,4 +1,4 @@
-# ADR-0017: gbo-simple-v1 as the attestation mapping profile
+# ADR-0017: Gbo-simple-v1 as the attestation mapping profile
 
 - Status: accepted
 - Date: 2026-08-24 (updated 2026-11-02: scope `eudi` only, claims model, error contract, gbo-demo v0.9.0)
@@ -12,7 +12,7 @@ Source data must become attestation claims through a mapping. The source
 must be able to declare this mapping in its metadata. GBO must be able to
 execute the mapping without trusting logic from the source.
 
-The bronhouder stays responsible for the attestation content. So GBO must
+The source holder (bronhouder) stays responsible for the attestation content. So GBO must
 not add to the content or convert it
 ([REQ-116](../requirements/eudi-issuance.md#req-116)).
 

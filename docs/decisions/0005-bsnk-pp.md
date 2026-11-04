@@ -17,19 +17,19 @@ encryption of the BSN still gives them a universal correlation key.
 GBO uses the BSNk PP polymorphic pseudonym infrastructure and calls it
 only at consent time. The decision has these parts:
 
-- The toestemmingsvoorziening activates the BSN of the citizen once, into a PI
-  and a PP. These belong to the toestemmingsvoorziening only
+- The consent facility (toestemmingsvoorziening) activates the BSN of the citizen once, into a PI
+  and a PP. These belong to the consent facility only
   ([BSNK-03](../requirements/pseudonymization.md#bsnk-03)).
   [ADR-0040](0040-route-d-citizen-recognition.md) (proposed) describes how
-  the toestemmingsvoorziening recognizes the citizen later.
+  the consent facility recognizes the citizen later.
 - At each consent, while the citizen is logged in
-  ([BSNK-04](../requirements/pseudonymization.md#bsnk-04)), the toestemmingsvoorziening asks BSNk to transform the PI and the PP. BSNk returns values
+  ([BSNK-04](../requirements/pseudonymization.md#bsnk-04)), the consent facility asks BSNk to transform the PI and the PP. BSNk returns values
   for each recipient OIN:
     - an encrypted pseudonym (VP) for every source
     - an encrypted identity (VI) only for a source on the BSN
       authorization list
       ([BSNK-06](../requirements/pseudonymization.md#bsnk-06))
-- The toestemmingsvoorziening splits the call into requests of four parties at
+- The consent facility splits the call into requests of four parties at
   most ([BSNK-05](../requirements/pseudonymization.md#bsnk-05)).
 - The values travel in the consent proof
   ([ADR-0032](0032-consent-proof.md)). After the allow, each recipient
@@ -41,7 +41,7 @@ only at consent time. The decision has these parts:
 
 - The values of different parties cannot be linked. No party outside
   government can derive the BSN.
-- The toestemmingsvoorziening must be a recognized BSNk participant
+- The consent facility must be a recognized BSNk participant
   ([BSNK-01](../requirements/pseudonymization.md#bsnk-01),
   [F-75](../traceability/findings.md#f-75),
   [Q-26](../traceability/open-questions.md#q-26)).

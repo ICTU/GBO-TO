@@ -83,7 +83,7 @@ The demo has five rules, as the following table shows:
 
     For more information, see [Authorization](../concepts/authorization.md).
 
-- The dienstencatalogus with a legal anchor from
+- The service catalog (dienstencatalogus) with a legal anchor from
   [ADR-0008](0008-dienstencatalogus-ceiling.md) stays an open governance
   question. [Risks and technical debt](../risks.md) tracks it.
 - gbo-demo v0.9.0 has no test that makes sure that every rule checks the

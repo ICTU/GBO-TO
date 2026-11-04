@@ -1,6 +1,6 @@
 # Building block view
 
-GBO has one base and three channels. GBO Basis sits at every bronhouder
+GBO has one base and three channels. GBO Basis sits at every source holder (bronhouder)
 and opens the source in one standard way. The DvTP, EUDI and OOTS
 channels each serve a different kind of consumer, and GBO Basis feeds all
 three. This picture is the overview of the
@@ -13,7 +13,7 @@ levels go from this overview, to one page per block, to the
 
 ```mermaid
 flowchart LR
-  subgraph bronhouder["Bronhouder"]
+  subgraph source holder["Source holder"]
     direction LR
     bron[("Government source<br/>BRP · BD · LVG · …")]
     subgraph gbo["GBO Basis"]
@@ -38,9 +38,9 @@ flowchart LR
   end
   subgraph dvtp["DvTP channel"]
     direction LR
-    tv("Toestemmingsvoorziening<br/>portal + register")
-    pp["Pseudonimiseervoorziening<br/>BSNk PP"]
-    dv["Private<br/>dienstverlener"]
+    tv("Consent facility<br/>portal + register")
+    pp["Pseudonymization facility<br/>BSNk PP"]
+    dv["Private<br/>service provider"]
   end
   burger["Citizen"]
 
@@ -69,7 +69,7 @@ flowchart LR
   class pp,dv,qtsp,wallet,ootsb,eu ext
   class bron,burger source
   class cfg,core,tv,pp,asi,pubeaa,ootsa zoom
-  style bronhouder fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
+  style source holder fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
   style gbo fill:#F4F5F7,stroke:#16A34A
   style eudi fill:#F4F5F7,stroke:#D1D5DB
   style oots fill:#F4F5F7,stroke:#D1D5DB
@@ -96,13 +96,13 @@ The overview has seven GBO blocks. Five of them run in the demo:
 |---|---|---|---|
 | Generic source access | Opens a source over FSC with GraphQL. The PDP of the source decides on every request, field by field. | Built | [GBO Basis](gbo-basis/index.md) |
 | Source configuration | The source describes its own services. GBO validates the description and activates it as a release. | Built | [Source configuration](gbo-basis/source-configuration.md) |
-| GBO tools | Help a bronhouder that cannot offer GraphQL, through a translation layer. | Design only | [ADR-0027](../decisions/0027-onboarding-toolkit.md) |
-| Toestemmingsvoorziening | The citizen gives, views and revokes consent. The register signs a consent proof for the consumer. | Built, with a DigiD mock | [DvTP channel](dvtp/index.md) |
+| GBO tools | Help a source holder that cannot offer GraphQL, through a translation layer. | Design only | [ADR-0027](../decisions/0027-onboarding-toolkit.md) |
+| Consent facility (toestemmingsvoorziening) | The citizen gives, views and revokes consent. The register signs a consent proof for the consumer. | Built, with a DigiD mock | [DvTP channel](dvtp/index.md) |
 | PuB-EAA provider | Issues an attestation from source data to the wallet of the citizen. | Built on the nl-wallet stack | [PuB-EAA provider](eudi/pubeaa.md) |
 | ASI provider | Lets a QTSP verify or retrieve an attribute at the source (eIDAS article 45e). | Built, demo grade | [ASI provider](eudi/asi.md) |
 | OOTS adapter | Answers an EU evidence request with source data. | Design only | [OOTS channel](oots.md) |
 
-The pseudonimiseervoorziening (BSNk PP) and the QTSP are not GBO
+The pseudonymization facility (pseudonimiseervoorziening) (BSNk PP) and the QTSP are not GBO
 components. GBO uses them. The demo runs a mock of BSNk PP.
 
 ## How GBO Basis feeds every channel
@@ -167,7 +167,7 @@ learns who the citizen is:
 
 | Channel | Evidence in the request | Rules | How the source gets the citizen |
 |---|---|---|---|
-| DvTP | A consent proof, signed by the toestemmingsregister | DVT0001, LVG0001 | The source decrypts its own value from the proof |
+| DvTP | A consent proof, signed by the consent register (toestemmingsregister) | DVT0001, LVG0001 | The source decrypts its own value from the proof |
 | PuB-EAA issuance | No consent proof: PID regime | EUD0001, EUD0002 | The adapter puts the BSN from the PID of the wallet in the query |
 | ASI | No consent proof: PID regime | ASI0001 | The ASIP puts the BSN from its access token in the query |
 
@@ -184,11 +184,11 @@ The following table shows where each theme lives in the blocks:
 | Theme | GBO Basis | DvTP | PuB-EAA | ASI |
 |---|---|---|---|---|
 | [Authorization](gbo-basis/authorization.md) | PEP, PDP and rules | DVT0001, LVG0001 | EUD0001, EUD0002 | ASI0001, and an OAuth server of its own |
-| [Consent](../concepts/consent.md) | Status check per request | Toestemmingsvoorziening | Not used | Login is the approval |
+| [Consent](../concepts/consent.md) | Status check per request | Consent facility | Not used | Login is the approval |
 | [Pseudonymization](../concepts/pseudonymization.md) | Source gateway decrypts | Values made at consent | BSN from the PID | BSN in the token |
 | [Source onboarding](../concepts/source-onboarding.md) | Source description, registry | Not used | `eudi` capability | `asi` capability |
 | [Identity and trust](../concepts/identity-trust.md) | FSC certificates, admission | Admission register | Certificate set per source | QTSP register, seal |
-| [Logging and audit](../concepts/logging.md) | ADL, LDV, txlog | Logbook of the toestemmingsvoorziening | Logbook of the adapter | ADL and source logbook. The ASIP writes no LDV records |
+| [Logging and audit](../concepts/logging.md) | ADL, LDV, txlog | Logbook of the consent facility | Logbook of the adapter | ADL and source logbook. The ASIP writes no LDV records |
 
 ## Diagram legend
 

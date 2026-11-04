@@ -23,17 +23,17 @@ Each risk belongs to one group:
 | [R7](#r7) | Data-chain responses are not sealed | Security |
 | [R8](#r8) | Contract acceptance sees the parties but not the service | Security |
 | [R9](#r9) | Demo-grade shared services | Production readiness |
-| [R10](#r10) | The toestemmingsregister is a dependency of every DvTP decision | Production readiness |
+| [R10](#r10) | The consent register (toestemmingsregister) is a dependency of every DvTP decision | Production readiness |
 | [R11](#r11) | The demo runs one PDP for all providers | Production readiness |
 | [R12](#r12) | Policy distribution has no integrity chain and no visible fallback | Production readiness |
 | [R13](#r13) | The PDP mapper is a patch on OpenFTV | Production readiness |
 | [R14](#r14) | New sources need a restart of the issuance server | Production readiness |
-| [R15](#r15) | The legal ceiling of the dienstencatalogus has no technical counterpart | Governance |
+| [R15](#r15) | The legal ceiling of the service catalog (dienstencatalogus) has no technical counterpart | Governance |
 | [R16](#r16) | Rego instead of ODRL | Governance |
 | [R17](#r17) | GraphQL is not a recognized FDS datadienst type | Governance |
 | [R18](#r18) | Integrator mandates have no validity and no governance | Governance |
 | [R19](#r19) | LDV gaps: citizen view, activity register, ASIP | Governance |
-| [R20](#r20) | Onboarding cost for small bronhouders | Governance |
+| [R20](#r20) | Onboarding cost for small source holders (bronhouders) | Governance |
 | [R21](#r21) | The absence of a consent proof selects the PID regime | Security |
 | [R22](#r22) | BSN in the decision logs of the EUDI and ASI routes | Privacy |
 | [R23](#r23) | The ADL record is incomplete behind the FSC Inway | Audit |
@@ -50,7 +50,7 @@ Each risk belongs to one group:
 | [R34](#r34) | Any connected peer can read any consent status | Security |
 | [R35](#r35) | The consumer sets the consent validity | DvTP |
 | [R36](#r36) | Attestations are valid 365 days without a change feed | EUDI |
-| [R37](#r37) | BSNk recognition of the toestemmingsvoorziening is not settled | DvTP |
+| [R37](#r37) | BSNk recognition of the consent facility (toestemmingsvoorziening) is not settled | DvTP |
 
 ## Routes {#trajectories}
 
@@ -101,7 +101,7 @@ Each risk belongs to one group:
 ### R3: No Gov-to-Gov regime and no positive evidence for it {#r3}
 
 - **Risk**: The PDP knows two regimes: consent and PID. No legal-basis
-  regime, rule set, or grondslag data exists. A request without a consent
+  regime, rule set, or legal basis (grondslag) data exists. A request without a consent
   proof falls in the PID regime
   ([ADR-0031](decisions/0031-regime-from-evidence.md)).
 - **Impact**: The two-path access-basis model of
@@ -247,7 +247,7 @@ Each risk belongs to one group:
 ### R32: Only the network protects the register listener {#r32}
 
 - **Risk**: The register listener for create, list, read, and revoke has
-  no caller authentication. The toestemmingsportaal backend is its only
+  no caller authentication. The consent portal (toestemmingsportaal) backend is its only
   intended caller ([REQ-39](requirements/consent.md#req-39)). In
   Compose, the register is on `backend`
   ([`docker-compose.yml#L737-L740`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L737-L740)).
@@ -447,11 +447,11 @@ Each risk belongs to one group:
 - **Related**: [F-11](traceability/findings-closed.md#f-11),
   [REQ-19](requirements/consent.md#req-19).
 
-### R37: BSNk recognition of the toestemmingsvoorziening is not settled {#r37}
+### R37: BSNk recognition of the consent facility is not settled {#r37}
 
 - **Risk**: Only a recognized party can activate and transform
   ([BSNK-01](requirements/pseudonymization.md#bsnk-01)). It is open
-  whether the toestemmingsvoorziening can be that party, and in which role. The
+  whether the consent facility can be that party, and in which role. The
   demo assumes route D: the backend derives and activates, and the
   register stores PI and PP.
 - **Impact**: Route D works only under one condition: the backend and the
@@ -484,7 +484,7 @@ Each risk belongs to one group:
 
 ### R9: Demo-grade shared services {#r9}
 
-- **Risk**: The shared services are demo grade: the toestemmingsregister runs
+- **Risk**: The shared services are demo grade: the consent register runs
   in memory by default, DigiD is a mock, and the PKI is self-generated.
   The BSNk mock follows the BSNk interface (as JSON), but it encrypts
   nothing. The three demo sources share one OIN and one decryption
@@ -497,7 +497,7 @@ Each risk belongs to one group:
 - **Related**: [Q-54](traceability/open-questions.md#q-54),
   [demo mock and production BSNk](concepts/pseudonymization.md#demo-mock-and-production-bsnk).
 
-### R10: The toestemmingsregister is a dependency of every DvTP decision {#r10}
+### R10: The consent register is a dependency of every DvTP decision {#r10}
 
 - **Risk**: For every request, the policy asks for the consent status
   online, without a cache.
@@ -511,10 +511,10 @@ Each risk belongs to one group:
 
 ### R11: The demo runs one PDP for all providers {#r11}
 
-- **Risk**: The target model has a PAP and a PDP at each bronhouder
+- **Risk**: The target model has a PAP and a PDP at each source holder
   ([ADR-0021](decisions/0021-central-pap-signed-bundles.md)). The demo
   runs one shared PDP.
-- **Impact**: The demo does not show policy separation between bronhouders.
+- **Impact**: The demo does not show policy separation between source holders.
 - **Follow-up**: Run a PDP per provider in the simulation deployment.
 - **Related**: [Q-21](traceability/answered-questions.md#q-21) (answered).
 
@@ -557,7 +557,7 @@ Each risk belongs to one group:
 
 ## Governance and standards
 
-### R15: The legal ceiling of the dienstencatalogus has no technical counterpart {#r15}
+### R15: The legal ceiling of the service catalog has no technical counterpart {#r15}
 
 - **Risk**: Rule coverage replaced the catalog artifact. The legally
   anchored ceiling and its governance (the Bureau DvTP process) are not
@@ -635,7 +635,7 @@ Each risk belongs to one group:
   [F-64](traceability/findings-closed.md#f-64),
   [SL-50](traceability/increments.md#sl-50).
 
-### R20: Onboarding cost for small bronhouders {#r20}
+### R20: Onboarding cost for small source holders {#r20}
 
 - **Risk**: The cost to connect a source stays high for small
   organizations.

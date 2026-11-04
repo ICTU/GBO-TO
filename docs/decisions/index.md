@@ -36,7 +36,7 @@ These decisions are accepted:
 | [0017](0017-gbo-simple-v1.md) | gbo-simple-v1 as the attestation mapping profile | [REQ-116](../requirements/eudi-issuance.md#req-116), [REQ-124](../requirements/eudi-issuance.md#req-124) | Applies to the `eudi` capability only |
 | [0018](0018-eudi-disclosure-issuance.md) | EUDI issuance through disclosure-based OpenID4VCI on the nl-wallet stack | [REQ-45](../requirements/eudi-issuance.md#req-45), [REQ-57](../requirements/eudi-issuance.md#req-57), [REQ-78](../requirements/eudi-issuance.md#req-78) | |
 | [0020](0020-as4-bridge-for-oots.md) | AS4 bridge for SDG-OOTS | [REQ-44](../requirements/authorization.md#req-44) | Not implemented in gbo-demo v0.9.0 |
-| [0021](0021-central-pap-signed-bundles.md) | Policy management and distribution per bronhouder | [RL-01](../requirements/authorization.md#rl-01) to [RL-05](../requirements/authorization.md#rl-05) | Rewritten. Signing applies only across an organization boundary |
+| [0021](0021-central-pap-signed-bundles.md) | Policy management and distribution per source holder (bronhouder) | [RL-01](../requirements/authorization.md#rl-01) to [RL-05](../requirements/authorization.md#rl-05) | Rewritten. Signing applies only across an organization boundary |
 | [0023](0023-identity-convergence.md) | Organization identity from the certificate, and separate EUDI certificate roles (part A: organization identity) | [REQ-67](../requirements/sources-identity.md#req-67), [REQ-46](../requirements/sources-identity.md#req-46) | Part B is proposed |
 | [0026](0026-ldv-integration.md) | Each controller logs its own processing in an LDV logbook | [REQ-72](../requirements/logging-audit.md#req-72) | Rewritten |
 | [0031](0031-regime-from-evidence.md) | The authorization regime follows from the evidence a request carries | [REQ-74](../requirements/authorization.md#req-74) | Supersedes 0030 |
@@ -57,9 +57,9 @@ These decisions are proposed:
 | ADR | Proposal | Serves | Waits for |
 |---|---|---|---|
 | [0023](0023-identity-convergence.md) | Organization identity from the certificate, and separate EUDI certificate roles (part B: EUDI certificate roles) | [REQ-58](../requirements/eudi-issuance.md#req-58) | Part A is accepted |
-| [0024](0024-canonical-semantic-models.md) | Canonical semantic models per bronhouder | — | |
+| [0024](0024-canonical-semantic-models.md) | Canonical semantic models per source holder | — | |
 | [0025](0025-graphql-fds-datadienst.md) | GraphQL as a recognized FDS datadienst type | [REQ-08](../requirements/authorization.md#req-08) | |
-| [0027](0027-onboarding-toolkit.md) | Bronhouder onboarding toolkit | [REQ-64](../requirements/sources-identity.md#req-64), [AV-07](../requirements/admission.md#av-07) | [Q-74](../traceability/open-questions.md#q-74) |
+| [0027](0027-onboarding-toolkit.md) | Source holder onboarding toolkit | [REQ-64](../requirements/sources-identity.md#req-64), [AV-07](../requirements/admission.md#av-07) | [Q-74](../traceability/open-questions.md#q-74) |
 | [0028](0028-pubeaa-productization.md) | PuB-EAA Provider productization | [REQ-58](../requirements/eudi-issuance.md#req-58), [REQ-77](../requirements/eudi-issuance.md#req-77) | |
 | [0040](0040-route-d-citizen-recognition.md) | Citizen recognition and the BSNk participant: route D | [REQ-69](../requirements/pseudonymization.md#req-69), [REQ-23](../requirements/consent.md#req-23) | [Q-49](../traceability/open-questions.md#q-49) |
 | [0041](0041-asi-seal-format.md) | Seal format of ASI results | [REQ-83](../requirements/asi.md#req-83) | [Q-32](../traceability/open-questions.md#q-32) |
@@ -72,9 +72,9 @@ These decisions are superseded:
 
 | ADR | Decision | Serves | Superseded by |
 |---|---|---|---|
-| [0006](0006-consent-register-as-pip.md) | Toestemmingsregister as runtime PIP | [REQ-68](../requirements/consent.md#req-68) | [0007](0007-consent-signed-token.md), then [0032](0032-consent-proof.md) |
+| [0006](0006-consent-register-as-pip.md) | Consent register (toestemmingsregister) as runtime PIP | [REQ-68](../requirements/consent.md#req-68) | [0007](0007-consent-signed-token.md), then [0032](0032-consent-proof.md) |
 | [0007](0007-consent-signed-token.md) | Consent as a signed token with a live status check | [REQ-68](../requirements/consent.md#req-68) | [0032](0032-consent-proof.md) |
-| [0008](0008-dienstencatalogus-ceiling.md) | Dienstencatalogus as a data-driven policy ceiling | [REQ-08](../requirements/authorization.md#req-08) | [0009](0009-closed-world-rules.md) |
+| [0008](0008-dienstencatalogus-ceiling.md) | Service catalog (dienstencatalogus) as a data-driven policy ceiling | [REQ-08](../requirements/authorization.md#req-08) | [0009](0009-closed-world-rules.md) |
 | [0010](0010-pep-bsn-resolution.md) | BSN resolution inside the PEP | [REQ-21](../requirements/pseudonymization.md#req-21) | [0011](0011-sidecar-pseudonym-resolution.md), then [0033](0033-gateway-decrypts-after-allow.md) |
 | [0011](0011-sidecar-pseudonym-resolution.md) | Source-owned source gateway resolves pseudonyms, and the PDP never sees a BSN | [REQ-21](../requirements/pseudonymization.md#req-21) | [0033](0033-gateway-decrypts-after-allow.md) |
 | [0012](0012-opa-graphql-parse.md) | Query AST inspection with OPA's `graphql.parse_query` | [REQ-17](../requirements/authorization.md#req-17) | [0013](0013-pdp-request-mapper.md) |

@@ -20,7 +20,7 @@ The behavior on this page is the behavior of gbo-demo v0.9.0
 
 ## Why the source owns its description
 
-The bronhouder keeps control of its data
+The source holder (bronhouder) keeps control of its data
 ([P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)). It
 can add services through its source-specific GBO configuration
 ([S07](https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting)).
@@ -43,7 +43,7 @@ Before this mechanism, every new source, attestation type, or tax year
 was a change in GBO code or in a GBO catalog file. With this mechanism,
 the adapter parameters come from the source
 ([Q-19](../traceability/answered-questions.md#q-19)). In GO terms, the
-document is the service catalog that the bronhouder manages. The
+document is the service catalog that the source holder manages. The
 validation rules of the reconciler are the common profile.
 
 The mechanism (publish, validate, activate, roll back) is a GBO design
@@ -57,9 +57,9 @@ owner:
 | Item | Owner | Where |
 |---|---|---|
 | `source_id`, transport, metadata location, FSC Peer ID | GBO operator | source configuration file (`sources/configured/<source_id>.yaml`) |
-| Legal OIN, organization name, issuer name and logo | bronhouder, through its certificate | certificate set under the key `source_id` ([Identity and trust](identity-trust.md)) |
-| Access to the metadata and data services | bronhouder and GBO, by agreement | FSC contracts and grant hashes |
-| Data service, query, parameters, offers, display, claims, attributes | bronhouder | the source document at `/.well-known/gbo` |
+| Legal OIN, organization name, issuer name and logo | source holder, through its certificate | certificate set under the key `source_id` ([Identity and trust](identity-trust.md)) |
+| Access to the metadata and data services | source holder and GBO, by agreement | FSC contracts and grant hashes |
+| Data service, query, parameters, offers, display, claims, attributes | source holder | the source document at `/.well-known/gbo` |
 | Shape of an ASI attribute value (`value_schema`) | GBO, until the EU catalog of attributes exists | [`schemas/asi-attributes.json`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json) |
 | SD-JWT VC Type Metadata | GBO generates it from the document | Source Registry |
 | Candidates, states, releases, active pointer | GBO | Source Registry (PostgreSQL) |
@@ -180,7 +180,7 @@ an onboarding phase:
   temporary.
 
     The exception is admissible only with recorded agreement of the
-    bronhouder ([AV-08](../requirements/admission.md#av-08),
+    source holder ([AV-08](../requirements/admission.md#av-08),
     [F-71](../traceability/findings.md#f-71)). The demo does not record
     this agreement. The need for agreement is only an instruction in
     [`source-metadata/README.md`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/source-metadata/README.md).
@@ -444,19 +444,19 @@ If the description is absent, has no `asi`, or is stale, the ASIP answers
 ([REQ-93](../requirements/asi.md#req-93)). If no registry is available,
 the ASIP can read a release file (`asi-provider write-release-file`).
 
-## Connection conditions for bronhouders
+## Connection conditions for source holders {#connection-conditions-for-bronhouders}
 
-GBO asks three things of a bronhouder, as candidate connection
+GBO asks three things of a source holder, as candidate connection
 conditions:
 
-- The bronhouder publishes a machine-readable, versioned description for
+- The source holder publishes a machine-readable, versioned description for
   each data service at the fixed location. The description includes the
-  read API of the logbook of the bronhouder
+  read API of the logbook of the source holder
   ([AV-07](../requirements/admission.md#av-07)).
-- If the bronhouder has no endpoint of its own, it agrees provably with
+- If the source holder has no endpoint of its own, it agrees provably with
   the description that the operator keeps
   ([AV-08](../requirements/admission.md#av-08)).
-- The bronhouder provides a certificate set that carries its OIN and
+- The source holder provides a certificate set that carries its OIN and
   organization name ([REQ-67](../requirements/sources-identity.md#req-67)).
 
 ## Open points
