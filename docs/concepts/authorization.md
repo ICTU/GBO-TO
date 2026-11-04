@@ -53,7 +53,7 @@ also has a part at request time: the mandate check
 ```mermaid
 flowchart LR
     C[Consumer Outway] -->|mTLS + FSC token| IN
-    subgraph SRC[Source holder]
+    subgraph SRC[Bronhouder]
         IN[FSC Inway = PEP]
         subgraph PDP[OpenFTV PDP v0.1.0]
             MAP[FTV GraphQL mapper]
@@ -418,7 +418,7 @@ Each administrator request code maps to one consumer code
 | `COVERAGE_UNVERIFIABLE INVALID_QUERY` | `FIELD_NOT_PERMITTED` |
 | `COVERAGE_UNVERIFIABLE` with another subcode | `COVERAGE_UNVERIFIABLE <subcode>` |
 | `OPERATION_NOT_SUPPORTED`, `NO_DATA_FIELDS` | the same code |
-| `PIP_UNAVAILABLE` (the consent register, its keys, or the admission register did not answer) | `ACCESS_DENIED` |
+| `PIP_UNAVAILABLE` (the toestemmingsregister, its keys, or the admission register did not answer) | `ACCESS_DENIED` |
 | `CONFIG_ERROR` (`MAPPER_OUTPUT_MISSING`, `SCHEMA_MISMATCH`, `SCHEMA_UNAVAILABLE`, `RULE_NOT_EVALUABLE`) | `ACCESS_DENIED` |
 
 To the consumer, a fault at the source looks like a normal denial. For

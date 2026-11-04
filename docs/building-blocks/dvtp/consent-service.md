@@ -34,7 +34,7 @@ flowchart LR
   bsnk["BSNk PP<br/><i>mock</i>"]
   inw("Register Inway<br/>FSC service consent-status")
   pdp("PDP of a source")
-  log[("LDV logbook<br/>consent service")]
+  log[("LDV logbook<br/>toestemmingsvoorziening")]
 
   dv -- "redirect: consumer, service,<br/>data sets, return address" --> pf
   burger --> pf

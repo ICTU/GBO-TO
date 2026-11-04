@@ -29,7 +29,7 @@ that was not part of an increment.
 
 - **Status**: done
 - **Demo work**: before the public repository.
-- **What it showed**: the consent register sets an expiry time, and the
+- **What it showed**: the toestemmingsregister sets an expiry time, and the
   policy denies an expired consent. If the expiry time is missing or
   unreadable, the policy also denies. The policy gives a separate reason
   code for each failed check (not found, withdrawn, expired, scope
@@ -59,12 +59,12 @@ that was not part of an increment.
 - **Demo work**: before the public repository.
 - **What it showed**: the demo kept the BSN away from private consumers
   without a decision on the pseudonym form ([Q-01](open-questions.md#q-01)).
-  The consent register stored a polymorphic identity (PI) instead of the
+  The toestemmingsregister stored a polymorphic identity (PI) instead of the
   BSN. The PEP resolved the BSN only after an allow. For a denied
   request, the PEP did not resolve the BSN at all.
 - **Produced**: [REQ-20](../requirements/pseudonymization.md#req-20) and
   [REQ-21](../requirements/pseudonymization.md#req-21). Later, the
-  conversion moved to the source sidecar ([SL-22](#sl-22)). Since
+  conversion moved to the source source gateway ([SL-22](#sl-22)). Since
   [SL-51](#sl-51), the proof carries a value per source, and the source
   decrypts it after the decision.
 - **Explained in**: [Pseudonymization](../concepts/pseudonymization.md)
@@ -93,7 +93,7 @@ that was not part of an increment.
   [REQ-79](../requirements/pseudonymization.md#req-79) and
   [REQ-17](../requirements/authorization.md#req-17)), and
   [REQ-06](../requirements/authorization.md#req-06) (new reason codes).
-  Later, the query translation moved to the source sidecar
+  Later, the query translation moved to the source source gateway
   ([SL-42](#sl-42)).
 - **Explained in**: [Authorization](../concepts/authorization.md)
 
@@ -128,7 +128,7 @@ that was not part of an increment.
 - **Status**: done
 - **Demo work**: before the public repository.
 - **What it showed**: a citizen goes from a mock dienstverlener website
-  to the consent portal inside a MijnOverheid shell. He logs in with a
+  to the toestemmingsportaal inside a MijnOverheid shell. He logs in with a
   DigiD mock, gives consent, and returns. The redirect carries the
   consumer, the service, the purpose, the data sets, and the return
   address. The result page fetches real data through the whole chain.
@@ -202,12 +202,12 @@ that was not part of an increment.
   correlation part of [F-07](findings-closed.md#f-07).
 - **Explained in**: [Logging](../concepts/logging.md)
 
-### SL-11: Consent portal backend (S02) {#sl-11}
+### SL-11: Toestemmingsportaal backend (S02) {#sl-11}
 
 - **Status**: done
 - **Demo work**: before the public repository.
-- **What it showed**: the consent portal (PSA S02) became a service of
-  its own, apart from the consent register (S01). The DigiD mock gives a
+- **What it showed**: the toestemmingsportaal (PSA S02) became a service of
+  its own, apart from the toestemmingsregister (S01). The DigiD mock gives a
   token, and the backend takes the citizen identity only from that token.
   The backend calls BSNk, so the register gets no BSN.
 - **Produced**: [REQ-23](../requirements/consent.md#req-23),
@@ -216,7 +216,7 @@ that was not part of an increment.
 - **Explained in**: [Building blocks](../building-blocks/components.md),
   [Citizen grants consent](../runtime/dvtp-consent.md)
 
-### SL-12: Consent register persistence {#sl-12}
+### SL-12: Toestemmingsregister persistence {#sl-12}
 
 - **Status**: planned
 - **Demo work**: none as an increment.
@@ -336,13 +336,13 @@ that was not part of an increment.
 - **Produced**: none.
 - **Explained in**: no page.
 
-### SL-22: Source sidecar de-pseudonymization (DvTP) {#sl-22}
+### SL-22: Source source gateway de-pseudonymization (DvTP) {#sl-22}
 
 - **Status**: done
 - **Demo work**: before the public repository. It was built together
   with [SL-23](#sl-23) in [SL-42](#sl-42).
 - **What it showed**: the conversion from pseudonym to BSN moved from the
-  PEP to a sidecar at the source, with the keys of the source. Since
+  PEP to a source gateway at the source, with the keys of the source. Since
   then, the GBO core (PEP, PDP, and policy engine) handles no BSN in the
   DvTP path.
 - **Produced**: [F-30](findings-closed.md#f-30),
@@ -426,7 +426,7 @@ that was not part of an increment.
 - **What it showed**: an ASIP mock to ETSI TS 119 478 clause 6.1, with its
   own authorization server, a reference QTSP, and a conformance matrix in
   CI. The QTSP is not an FSC participant. The generic chain (FSC, PDP,
-  sidecar, and source) starts behind the ASIP ([F-87](findings.md#f-87)).
+  source gateway, and source) starts behind the ASIP ([F-87](findings.md#f-87)).
   The citizen logs in with a DigiD mock or the NL Wallet.
 - **Explained in**: [QTSP verification (ASI route)](../runtime/asi-verification.md),
   [ADR-0037](../decisions/0037-asi-oauth-front-door.md),
@@ -781,7 +781,7 @@ Epic #336 has four follow-ups:
 - **Demo work**: before the public repository.
 - **What it showed**: DvTP runs over real FSC too, with a second consumer
   organization. The demo removed the `fsc-mock` and the PEP service. The
-  PDP is the only policy endpoint for DvTP and EUDI. The source sidecar
+  PDP is the only policy endpoint for DvTP and EUDI. The source source gateway
   does the conversion after the decision ([SL-22](#sl-22),
   [SL-23](#sl-23)).
 - **Produced**:
@@ -799,7 +799,7 @@ Epic #336 has four follow-ups:
 - **What it showed**: a second source (BRP) and a second attestation. A
   surviving partner discloses his PID and gets the death certificate of
   the partner. The subject of the attestation is not the person who
-  discloses. Each source holder needs its own certificate set for
+  discloses. Each bronhouder needs its own certificate set for
   issuance.
 - **Produced**:
     - findings [F-47](findings.md#f-47), [F-49](findings-closed.md#f-49), and
@@ -841,7 +841,7 @@ Epic #336 has four follow-ups:
 - **What it showed**: admission is a registration instead of a policy
   rule. The PDP decides each contract proposal in a policy tree of its
   own, with machine-readable reason codes. An automatic "no" leaves the
-  proposal pending, so it is recoverable. Admission is per source holder.
+  proposal pending, so it is recoverable. Admission is per bronhouder.
   The demo has no admission per service.
 - **Produced**:
     - findings [F-55](findings-closed.md#f-55) and [F-56](findings-closed.md#f-56)
@@ -886,7 +886,7 @@ Epic #336 has four follow-ups:
 
 - **Status**: done
 - **Demo work**: [PR #238](https://github.com/ICTU/GBO-demo/pull/238)
-- **What it showed**: the consent register issues a signed consent proof
+- **What it showed**: the toestemmingsregister issues a signed consent proof
   (ES256, with a JWKS). The policy verifies the signature and binds the
   consumer in the proof to the verified caller. The status check stays
   online and fails closed. The validity period is in the signed proof, so

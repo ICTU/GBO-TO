@@ -4,7 +4,7 @@
 - Date: 2026-08-24
 - Satisfies: [S10](https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus), [D-14](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/), [GO F4](https://ictu.github.io/GBO-GO/main/#f4-semantiek-eenheid-van-taal)
 - Deliberation: reference architecture v0.6.2, gap 3 (archived and unpublished)
-- Implemented in: partially. The GraphQL schemas of the sources come from the [gbo-semantiek bronprofielen](https://github.com/ICTU/gbo-semantiek). No trajectory serializations other than SD-JWT VC exist.
+- Implemented in: partially. The GraphQL schemas of the sources come from the [gbo-semantiek bronprofielen](https://github.com/ICTU/gbo-semantiek). No route serializations other than SD-JWT VC exist.
 
 ## Context and problem statement
 
@@ -14,14 +14,14 @@ The same gegevens must appear in three forms:
 - Attestation claims (EUDI).
 - OOTS-EDM evidence (cross-border).
 
-If no canonical model per source exists, every trajectory grows its own
+If no canonical model per source exists, every route grows its own
 mapping.
 
 ## Proposed decision
 
 The bronprofiel GraphQL schema is the canonical model per source. The
 GBO-Semantiek track maintains this schema. GBO generates or defines the
-trajectory serializations from it:
+route serializations from it:
 
 - Attestation attribute schemas and type metadata. The sources already
   publish these, as [ADR-0016](0016-source-owned-metadata.md) decides.

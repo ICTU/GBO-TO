@@ -1,6 +1,6 @@
-# PubEAA provider
+# PuB-EAA provider
 
-The PubEAA provider issues an attestation with source data to the EUDI
+The PuB-EAA provider issues an attestation with source data to the EUDI
 wallet of the citizen. It is flow A of interaction pattern A in the
 [Globaal Ontwerp](https://ictu.github.io/GBO-GO/main/#patroon-a-burger-gebruikt-eudi-wallet).
 GBO operates the technical issuance facility, and each bronhouder stays
@@ -11,7 +11,7 @@ facility runs on the nl-wallet issuance server
 [EUDI issuance](../../runtime/eudi-issuance.md) runtime page has every hop
 and the links to the code.
 
-[Overview](../index.md) › [EUDI wallet channel](index.md) › PubEAA provider
+[Overview](../index.md) › [EUDI wallet channel](index.md) › PuB-EAA provider
 
 ## Components and interfaces
 
@@ -76,7 +76,7 @@ flowchart LR
   click pdp "../../gbo-basis/authorization/#the-rules" "The rules"
 ```
 
-*Figure 1: The components of the PubEAA provider and their interfaces.
+*Figure 1: The components of the PuB-EAA provider and their interfaces.
 Thick border: click to zoom in.*
 {: .caption }
 
@@ -103,7 +103,7 @@ sequenceDiagram
     participant P as Developer portal
     participant W as NL Wallet
   end
-  box rgb(255,237,213) PubEAA provider
+  box rgb(255,237,213) PuB-EAA provider
     participant IS as Issuance server
     participant AD as EUDI adapter
   end
@@ -460,13 +460,13 @@ The demo follows flow A of pattern A. It differs in three points:
 
 | Point | Globaal Ontwerp | Demo v0.9.0 |
 |---|---|---|
-| Role of GBO | A technical, central and optional facility. GBO is not a PubEAA provider. | The same. The bronhouder is the provider ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). |
-| Authorization | An Autorisatievoorziening authorizes the PubEAA voorziening after a PID login. | The issuance server checks the PID itself. No separate authorization service exists. |
+| Role of GBO | A technical, central and optional facility. GBO is not a PuB-EAA provider. | The same. The bronhouder is the provider ([ADR-0028](../../decisions/0028-pubeaa-productization.md), proposed). |
+| Authorization | An Autorisatievoorziening authorizes the PuB-EAA voorziening after a PID login. | The issuance server checks the PID itself. No separate authorization service exists. |
 | Semantic mapping | A shared GBO facility translates the format of the source. | The source maps its own fields to claims with gbo-simple-v1. No translation layer exists. |
 
 ## Open points
 
-The main open points in the PubEAA provider are these:
+The main open points in the PuB-EAA provider are these:
 
 - The callback gap: nothing binds the disclosure to the source query
   ([REQ-45](../../requirements/eudi-issuance.md#req-45),

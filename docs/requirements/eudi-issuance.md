@@ -187,7 +187,7 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
         - More than one result from the source leads to a refusal
             ([REQ-116](#req-116)).
 
-## REQ-58: Every source holder has its own certificate set for issuance, and missing material fails {#req-58}
+## REQ-58: Every bronhouder has its own certificate set for issuance, and missing material fails {#req-58}
 
 > The GBO issuance facility MUST keep a certificate set of its own per bronhouder. The set holds a certificate that signs attestations, and an access certificate with which issuance shows itself to the wallet. The facility MUST NOT sign an attestation or a request to the wallet with the set of another bronhouder, in any case. If the set of a source is missing, incomplete, or differs from what is activated, issuance MUST refuse for that source. Issuance MUST NOT fall back to another set.
 
@@ -262,7 +262,7 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
             ([`qtsp_issuance.go#L109-L131`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/qtsp_issuance.go#L109-L131)).
             Missing QTSP material does not block source issuance.
 
-## REQ-77: An attestation gets the validity and revocation policy of the source holder {#req-77}
+## REQ-77: An attestation gets the validity and revocation policy of the bronhouder {#req-77}
 
 > For each attestation type, the GBO issuance facility MUST apply the validity period that the bronhouder records. The facility MUST NOT apply a value from its own code. An attestation that is valid for more than 24 hours MUST carry a status reference with which it can be revoked. On instruction of the bronhouder, the facility MUST be able to revoke an issued attestation, without an action of the holder.
 
@@ -298,7 +298,7 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
         - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte)
             ("agreements arrange … status, revocation and validity")
         - [GO](https://ictu.github.io/GBO-GO/main/) ("GBO is legally not a
-            PubEAA provider")
+            PuB-EAA provider")
     - **Addressee**: GBO-delivered component: the issuance facility.
     - **Evidence**: not built:
         [ICTU/GBO-demo#381](https://github.com/ICTU/GBO-demo/issues/381) (rows

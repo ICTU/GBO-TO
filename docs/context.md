@@ -31,7 +31,7 @@ flowchart TB
   subgraph ch["GBO channels"]
     direction LR
     tv("Toestemmingsvoorziening<br/>portal + register")
-    pub("PubEAA provider<br/>adapter + issuance server")
+    pub("PuB-EAA provider<br/>adapter + issuance server")
     asi("ASI provider<br/>authorization server + ASIP")
     oots("OOTS adapter")
   end
@@ -81,7 +81,7 @@ flowchart TB
   style basis fill:#F0FDF4,stroke:#16A34A
   style svc fill:#F4F5F7,stroke:#D1D5DB
   click tv "../building-blocks/dvtp/consent-service/" "Toestemmingsvoorziening"
-  click pub "../building-blocks/eudi/pubeaa/" "PubEAA provider"
+  click pub "../building-blocks/eudi/pubeaa/" "PuB-EAA provider"
   click asi "../building-blocks/eudi/asi/" "ASI provider"
   click oots "../building-blocks/oots/" "OOTS channel"
   click pep "../building-blocks/gbo-basis/" "GBO Basis"
@@ -276,14 +276,14 @@ Two interfaces are designed but not built in demo v0.9.0:
 
 ## Scope
 
-The demo implements three trajectories end to end, at demo grade:
+The demo implements three routes end to end, at demo grade:
 
 1. The DvTP query under consent, with an integrator variant and the LVG
    pilot as a second consumer and source.
 2. EUDI issuance of PuB-EAA attestations.
 3. ASI verification and retrieval for QTSPs (ETSI TS 119 478 clause 6.1).
 
-Two trajectories are design-level: SDG-OOTS and Gov-to-Gov. The
+Two routes are design-level: SDG-OOTS and Gov-to-Gov. The
 [runtime view](runtime/index.md) has a scenario for each.
 
 This design covers the following parts of the system:

@@ -219,7 +219,7 @@ without a partial result ([REQ-101](../../requirements/asi.md#req-101)).
 
 After an accepted result, the reference QTSP issues a test statement to
 the wallet. It uses the issuance server of the
-[PubEAA provider](pubeaa.md). The statement has a test marking and is not
+[PuB-EAA provider](pubeaa.md). The statement has a test marking and is not
 a QEAA.
 
 ## One data service per source

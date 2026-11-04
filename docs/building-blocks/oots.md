@@ -186,7 +186,7 @@ The mapping depends on a canonical model per source. The proposed
 decision makes the GraphQL schema of the bronprofiel that canonical model
 ([ADR-0024](../decisions/0024-canonical-semantic-models.md), proposed).
 GBO then derives the OOTS-EDM evidence-type mappings from it. No central
-canonical model exists. Source holders and domains own their models
+canonical model exists. Bronhouders and domains own their models
 ([Q-11](../traceability/answered-questions.md#q-11)).
 
 ## What demo v0.9.0 does

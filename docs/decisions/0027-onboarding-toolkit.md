@@ -9,7 +9,7 @@
 ## Context and problem statement
 
 GBO has one API and one connectivity stack. Even so, the connection of a
-bronhouder involves PKI, FSC components, a sidecar, policies, and
+bronhouder involves PKI, FSC components, a source gateway, policies, and
 metadata. Smaller bronhouders (gemeenten) can lack the capacity for this
 work.
 
@@ -21,7 +21,7 @@ has these parts:
 - FSC Inway and Manager.
 - The bron-sidecar.
 - Contract seeds.
-- Policy templates per trajectory.
+- Policy templates per route.
 - A reference onboarding process: certificate, FSC registration,
   metadata publication, contract, and activation.
 
@@ -33,7 +33,7 @@ GBO offers a GBO-vertaallaag as a shared service.
 These points are open:
 
 - Who operates the shared instances of the vertaallaag?
-- The policy templates are guidance. Each source holder owns and
+- The policy templates are guidance. Each bronhouder owns and
   publishes its own policy ([ADR-0021](0021-central-pap-signed-bundles.md)).
 - How does a source get its BSNk decryption keys as an onboarding step
   ([BSNK-09](../requirements/pseudonymization.md#bsnk-09),

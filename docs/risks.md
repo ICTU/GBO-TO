@@ -14,16 +14,16 @@ Each risk belongs to one group:
 
 | ID | Risk | Group |
 |---|---|---|
-| [R1](#r1) | The ASI exists at demo grade only | Trajectories |
-| [R2](#r2) | The SDG-OOTS bridge is design-level only | Trajectories |
-| [R3](#r3) | No Gov-to-Gov regime and no positive evidence for it | Trajectories |
+| [R1](#r1) | The ASI exists at demo grade only | Routes |
+| [R2](#r2) | The SDG-OOTS bridge is design-level only | Routes |
+| [R3](#r3) | No Gov-to-Gov regime and no positive evidence for it | Routes |
 | [R4](#r4) | The consent proof is a bearer token | Security |
 | [R5](#r5) | The EUDI adapter accepts unauthenticated issuance callbacks | Security |
 | [R6](#r6) | No rate limiting or quota | Security |
 | [R7](#r7) | Data-chain responses are not sealed | Security |
 | [R8](#r8) | Contract acceptance sees the parties but not the service | Security |
 | [R9](#r9) | Demo-grade shared services | Production readiness |
-| [R10](#r10) | The consent register is a dependency of every DvTP decision | Production readiness |
+| [R10](#r10) | The toestemmingsregister is a dependency of every DvTP decision | Production readiness |
 | [R11](#r11) | The demo runs one PDP for all providers | Production readiness |
 | [R12](#r12) | Policy distribution has no integrity chain and no visible fallback | Production readiness |
 | [R13](#r13) | The PDP mapper is a patch on OpenFTV | Production readiness |
@@ -50,9 +50,9 @@ Each risk belongs to one group:
 | [R34](#r34) | Any connected peer can read any consent status | Security |
 | [R35](#r35) | The consumer sets the consent validity | DvTP |
 | [R36](#r36) | Attestations are valid 365 days without a change feed | EUDI |
-| [R37](#r37) | BSNk recognition of the consent service is not settled | DvTP |
+| [R37](#r37) | BSNk recognition of the toestemmingsvoorziening is not settled | DvTP |
 
-## Trajectories
+## Routes {#trajectories}
 
 ### R1: The ASI exists at demo grade only {#r1}
 
@@ -247,7 +247,7 @@ Each risk belongs to one group:
 ### R32: Only the network protects the register listener {#r32}
 
 - **Risk**: The register listener for create, list, read, and revoke has
-  no caller authentication. The consent portal backend is its only
+  no caller authentication. The toestemmingsportaal backend is its only
   intended caller ([REQ-39](requirements/consent.md#req-39)). In
   Compose, the register is on `backend`
   ([`docker-compose.yml#L737-L740`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L737-L740)).
@@ -447,11 +447,11 @@ Each risk belongs to one group:
 - **Related**: [F-11](traceability/findings-closed.md#f-11),
   [REQ-19](requirements/consent.md#req-19).
 
-### R37: BSNk recognition of the consent service is not settled {#r37}
+### R37: BSNk recognition of the toestemmingsvoorziening is not settled {#r37}
 
 - **Risk**: Only a recognized party can activate and transform
   ([BSNK-01](requirements/pseudonymization.md#bsnk-01)). It is open
-  whether the consent service can be that party, and in which role. The
+  whether the toestemmingsvoorziening can be that party, and in which role. The
   demo assumes route D: the backend derives and activates, and the
   register stores PI and PP.
 - **Impact**: Route D works only under one condition: the backend and the
@@ -484,7 +484,7 @@ Each risk belongs to one group:
 
 ### R9: Demo-grade shared services {#r9}
 
-- **Risk**: The shared services are demo grade: the consent register runs
+- **Risk**: The shared services are demo grade: the toestemmingsregister runs
   in memory by default, DigiD is a mock, and the PKI is self-generated.
   The BSNk mock follows the BSNk interface (as JSON), but it encrypts
   nothing. The three demo sources share one OIN and one decryption
@@ -497,7 +497,7 @@ Each risk belongs to one group:
 - **Related**: [Q-54](traceability/open-questions.md#q-54),
   [demo mock and production BSNk](concepts/pseudonymization.md#demo-mock-and-production-bsnk).
 
-### R10: The consent register is a dependency of every DvTP decision {#r10}
+### R10: The toestemmingsregister is a dependency of every DvTP decision {#r10}
 
 - **Risk**: For every request, the policy asks for the consent status
   online, without a cache.
@@ -511,11 +511,10 @@ Each risk belongs to one group:
 
 ### R11: The demo runs one PDP for all providers {#r11}
 
-- **Risk**: The target model has a PAP and a PDP at each source holder
+- **Risk**: The target model has a PAP and a PDP at each bronhouder
   ([ADR-0021](decisions/0021-central-pap-signed-bundles.md)). The demo
   runs one shared PDP.
-- **Impact**: The demo does not show policy separation between source
-  holders.
+- **Impact**: The demo does not show policy separation between bronhouders.
 - **Follow-up**: Run a PDP per provider in the simulation deployment.
 - **Related**: [Q-21](traceability/answered-questions.md#q-21) (answered).
 

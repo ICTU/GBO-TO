@@ -70,7 +70,7 @@ Inway and the source API. The gateway works as follows:
 2. BSN resolution in the PEP ([ADR-0010](0010-pep-bsn-resolution.md)).
    The PEP becomes a middlebox that transforms data in shared
    infrastructure, with a BSNk call in the query path.
-3. The sidecar calls BSNk Transform per request
+3. The source gateway calls BSNk Transform per request
    ([ADR-0011](0011-sidecar-pseudonym-resolution.md)). BSNk transforms
    only while the citizen is logged in, and a query comes later.
 4. Transformation in the PDP. Policy is not a data pipeline

@@ -278,14 +278,14 @@ such as the decryption by the source gateway, is a processing
           "iedere component legt de gebeurtenissen vast die voor zijn verantwoordelijkheid relevant zijn").
         - [GO, reused building blocks](https://ictu.github.io/GBO-GO/main/).
         - FR-31 criterion 1.
-    - **Addressee**: GBO-delivered component: source gateway (sidecar),
+    - **Addressee**: GBO-delivered component: source gateway (source gateway),
       toestemmingsregister and toestemmingsportaal, EUDI adapter, and ASIP.
       The logbook and the source application of a bronhouder belong to that
       bronhouder ([P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)).
     - **Evidence**: [ICTU/GBO-demo#302](https://github.com/ICTU/GBO-demo/issues/302),
       [PR #366](https://github.com/ICTU/GBO-demo/pull/366),
       [PR #469](https://github.com/ICTU/GBO-demo/pull/469). Code and tests:
-        - The sidecar logs decryption and forwarding
+        - The source gateway logs decryption and forwarding
           ([`bron-sidecar/ldv_test.go#L309`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/ldv_test.go#L309)).
         - The EUDI adapter names the holder without a BSN
           ([`eudi-adapter/ldv_test.go#L159`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L159))

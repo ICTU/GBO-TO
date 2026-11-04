@@ -50,7 +50,7 @@ flowchart LR
     C[Consumer backend] -->|traceparent T<br/>Fsc-Transaction-Id X1| OW[Consumer Outway]
     OW --> IW[Source Inway]
     IW -->|AuthZEN| PDP
-    PDP -->|status lookup<br/>T, X1| CR[Consent register]
+    PDP -->|status lookup<br/>T, X1| CR[Toestemmingsregister]
     IW --> GW[Source gateway] --> SRC[Source GraphQL]
 
     C -.-> LA[(Consumer logbook<br/>LDV)]
@@ -115,7 +115,7 @@ the Inway calls the PDP over AuthZEN on a fresh context, with only
 [F-41](../traceability/findings-closed.md#f-41)).
 
 The Inway copies the headers of the original request into the AuthZEN
-context. When the policy calls the consent register for a status, it
+context. When the policy calls the toestemmingsregister for a status, it
 reads the trace from this context. The status request carries the trace
 ID of the request with a new span. It also carries the transaction ID
 ([`consent.rego#L190-L245`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L190-L245)).
@@ -232,7 +232,7 @@ Each record carries five elements:
     |---|---|---|
     | `consent-id` | the consent that the consumer acted under | consumer |
     | `logboek-pseudoniem` | HMAC over the BSN with a key of this controller | sources, EUDI adapter |
-    | `portal-subject` | the reference that the consent portal derives | consent register and portal |
+    | `portal-subject` | the reference that the toestemmingsportaal derives | toestemmingsregister and portal |
     | `brp-persoon-id` | the own record ID of RvIG, for a person named in a certificate about another person | RvIG only |
 
 - A processing activity: `processing_activity_id` refers to a versioned,
@@ -248,7 +248,7 @@ Each record carries five elements:
   placeholder, because the BSNk mock has no read API.
 - The calling party: on a lookup over FSC,
   `dpl.core.foreign_operation.processor` names the FSC peer of the caller.
-  At the consent register, this is the peer verified from
+  At the toestemmingsregister, this is the peer verified from
   `Fsc-Authorization`
   ([`client.go#L441-L452`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-client/client.go#L441-L452),
   [REQ-76](../requirements/consent.md#req-76)).
@@ -285,13 +285,13 @@ The LDV integration rests on six design choices:
     processing that already happened. The primary key
     `(trace_id, span_id)` makes a replay idempotent.
 
-    The consent register keeps its outbox as a table in the same database
+    The toestemmingsregister keeps its outbox as a table in the same database
     as the consents. So a consent and its record commit in one
     transaction.
 
 - Separate write and read tokens: a component that can write cannot read
   with that token.
-- A local extension: the consent register, the portal, and the EUDI
+- A local extension: the toestemmingsregister, the portal, and the EUDI
   adapter write `dpl.gbo.*` attributes. This extension has no approval
   from Logius. The honest claim is "LDV core with a local extension"
   ([Q-72](../traceability/open-questions.md#q-72)).

@@ -26,7 +26,7 @@ flowchart LR
   subgraph eudi["EUDI wallet channel"]
     direction LR
     asi("ASI provider<br/>verify / retrieve")
-    pubeaa("PubEAA provider<br/>attestation issuance")
+    pubeaa("PuB-EAA provider<br/>attestation issuance")
     qtsp["QTSP<br/>(QEAA)"]
     wallet["EUDI wallet"]
   end
@@ -79,7 +79,7 @@ flowchart LR
   click cfg "gbo-basis/source-configuration/" "Source configuration"
   click tv "dvtp/" "DvTP channel"
   click pp "../concepts/pseudonymization/" "Pseudonymization"
-  click pubeaa "eudi/pubeaa/" "PubEAA provider"
+  click pubeaa "eudi/pubeaa/" "PuB-EAA provider"
   click asi "eudi/asi/" "ASI provider"
   click ootsa "oots/" "OOTS channel"
 ```
@@ -98,7 +98,7 @@ The overview has seven GBO blocks. Five of them run in the demo:
 | Source configuration | The source describes its own services. GBO validates the description and activates it as a release. | Built | [Source configuration](gbo-basis/source-configuration.md) |
 | GBO tools | Help a bronhouder that cannot offer GraphQL, through a translation layer. | Design only | [ADR-0027](../decisions/0027-onboarding-toolkit.md) |
 | Toestemmingsvoorziening | The citizen gives, views and revokes consent. The register signs a consent proof for the consumer. | Built, with a DigiD mock | [DvTP channel](dvtp/index.md) |
-| PubEAA provider | Issues an attestation from source data to the wallet of the citizen. | Built on the nl-wallet stack | [PubEAA provider](eudi/pubeaa.md) |
+| PuB-EAA provider | Issues an attestation from source data to the wallet of the citizen. | Built on the nl-wallet stack | [PuB-EAA provider](eudi/pubeaa.md) |
 | ASI provider | Lets a QTSP verify or retrieve an attribute at the source (eIDAS article 45e). | Built, demo grade | [ASI provider](eudi/asi.md) |
 | OOTS adapter | Answers an EU evidence request with source data. | Design only | [OOTS channel](oots.md) |
 
@@ -116,7 +116,7 @@ flowchart LR
   subgraph ch["Channel (one of three)"]
     direction TB
     c1("Consumer backend<br/>DvTP")
-    c2("EUDI adapter<br/>PubEAA")
+    c2("EUDI adapter<br/>PuB-EAA")
     c3("ASIP<br/>ASI")
   end
   out["Outway of the caller"]
@@ -168,7 +168,7 @@ learns who the citizen is:
 | Channel | Evidence in the request | Rules | How the source gets the citizen |
 |---|---|---|---|
 | DvTP | A consent proof, signed by the toestemmingsregister | DVT0001, LVG0001 | The source decrypts its own value from the proof |
-| PubEAA issuance | No consent proof: PID regime | EUD0001, EUD0002 | The adapter puts the BSN from the PID of the wallet in the query |
+| PuB-EAA issuance | No consent proof: PID regime | EUD0001, EUD0002 | The adapter puts the BSN from the PID of the wallet in the query |
 | ASI | No consent proof: PID regime | ASI0001 | The ASIP puts the BSN from its access token in the query |
 
 For the regime rule, see
@@ -181,14 +181,14 @@ This view goes down by block: from a channel to its components. The
 [crosscutting concepts](../concepts/authorization.md) go down by theme.
 The following table shows where each theme lives in the blocks:
 
-| Theme | GBO Basis | DvTP | PubEAA | ASI |
+| Theme | GBO Basis | DvTP | PuB-EAA | ASI |
 |---|---|---|---|---|
 | [Authorization](gbo-basis/authorization.md) | PEP, PDP and rules | DVT0001, LVG0001 | EUD0001, EUD0002 | ASI0001, and an OAuth server of its own |
 | [Consent](../concepts/consent.md) | Status check per request | Toestemmingsvoorziening | Not used | Login is the approval |
 | [Pseudonymization](../concepts/pseudonymization.md) | Source gateway decrypts | Values made at consent | BSN from the PID | BSN in the token |
 | [Source onboarding](../concepts/source-onboarding.md) | Source description, registry | Not used | `eudi` capability | `asi` capability |
 | [Identity and trust](../concepts/identity-trust.md) | FSC certificates, admission | Admission register | Certificate set per source | QTSP register, seal |
-| [Logging and audit](../concepts/logging.md) | ADL, LDV, txlog | Logbook of the consent service | Logbook of the adapter | ADL and source logbook. The ASIP writes no LDV records |
+| [Logging and audit](../concepts/logging.md) | ADL, LDV, txlog | Logbook of the toestemmingsvoorziening | Logbook of the adapter | ADL and source logbook. The ASIP writes no LDV records |
 
 ## Diagram legend
 

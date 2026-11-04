@@ -77,7 +77,7 @@ works as follows:
    in, or refuses without login
    ([REQ-90](../requirements/asi.md#req-90)). The approval is one login
    per request: it is not a stored consent, and it has no relation to
-   the consent register. Approval in a wallet is not a legal basis
+   the toestemmingsregister. Approval in a wallet is not a legal basis
    ([F-83](../traceability/findings.md#f-83)).
 5. Token. The authorization server uses the authorization code flow
    with PKCE S256 and `private_key_jwt`. It issues a DPoP-bound RFC 9068

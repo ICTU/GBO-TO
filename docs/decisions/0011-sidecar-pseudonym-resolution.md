@@ -5,17 +5,17 @@
 - Satisfies: [P-04](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [P-10](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/)
 - Supersedes: [ADR-0010](0010-pep-bsn-resolution.md)
 - Superseded by: [ADR-0033](0033-gateway-decrypts-after-allow.md)
-- Deliberation: source sidecar de-pseudonymization ([SL-22](../traceability/increments.md#sl-22), [F-30](../traceability/findings-closed.md#f-30))
-- Implemented in: changed in gbo-demo. The sidecar does not call BSNk and does not read `subject_id_type` any more ([PR #469](https://github.com/ICTU/GBO-demo/pull/469), [#473](https://github.com/ICTU/GBO-demo/issues/473)). The request mapper does not pseudonymize any more ([#364](https://github.com/ICTU/GBO-demo/issues/364)). Code in gbo-demo v0.9.0: [services/bron-sidecar](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar)
+- Deliberation: source source gateway de-pseudonymization ([SL-22](../traceability/increments.md#sl-22), [F-30](../traceability/findings-closed.md#f-30))
+- Implemented in: changed in gbo-demo. The source gateway does not call BSNk and does not read `subject_id_type` any more ([PR #469](https://github.com/ICTU/GBO-demo/pull/469), [#473](https://github.com/ICTU/GBO-demo/issues/473)). The request mapper does not pseudonymize any more ([#364](https://github.com/ICTU/GBO-demo/issues/364)). Code in gbo-demo v0.9.0: [services/bron-sidecar](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar)
 
 ## Why superseded
 
 The mechanism changed in three places:
 
-- The sidecar does not call BSNk Transform at query time. It takes the
+- The source gateway does not call BSNk Transform at query time. It takes the
   value for its own OIN from the consent proof. The decryption component
   of the source reads this value.
-- The sidecar acts when a consent proof is present. The demo removed the
+- The source gateway acts when a consent proof is present. The demo removed the
   `subject_id_type` grant property
   ([ADR-0031](0031-regime-from-evidence.md)).
 - The PDP request mapper does not pseudonymize a disclosed BSN any more.
@@ -36,8 +36,8 @@ authorization. The BSN must not leak into policy inputs or logs.
 
 ## Decision (superseded)
 
-A sidecar that the source owns sits between the Inway and the GraphQL API.
-The sidecar does the resolution. It reads the `subject_id_type` claim from
+A source gateway that the source owns sits between the Inway and the GraphQL API.
+The source gateway does the resolution. It reads the `subject_id_type` claim from
 the FSC access token:
 
 - For `pseudonym`, it transforms the PI to the BSN through BSNk, with its

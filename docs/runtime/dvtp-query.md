@@ -104,14 +104,14 @@ numbers refer to the steps of the sequence:
 | 13 | Register → PDP | — | — | `{status}` or 404 | Only the status is online. The content of the consent comes from the proof ([F-61](../traceability/findings-closed.md#f-61)) |
 | 14 | PDP (internal) | Rules | Resolved consent, field list, and `subject` | Decision per field | DVT0001 binds the fields of service `bri`. It checks actor binding, placeholder, scope, years, and fields ([REQ-48](../requirements/authorization.md#req-48), [REQ-97](../requirements/authorization.md#req-97), [`dvt0001.rego#L72-L80`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001.rego#L72-L80)). The PDP input holds no BSN and no pseudonym |
 | 15 | PDP → BD Inway | AuthZEN decision | — | `decision: true`, granted fields | The engine adds the resolved consent to its response for the console log ([`engine.rego#L25-L29`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L25-L29)). The ADL records the request and the decision ([ADR-0036](../decisions/0036-adl-decision-record.md)) |
-| 16 | BD Inway → bron-sidecar | `POST /graphql` | Body 1:1, `X-GBO-Consent-Token`, and `Fsc-Authorization` | — | The Inway forwards only after the allow. Only the source Inways reach the sidecar ([REQ-81](../requirements/pseudonymization.md#req-81), [Network isolation](../concepts/pseudonymization.md#network-isolation-is-the-control)) |
-| 17 | Sidecar (internal) | Substitution | Proof, body | VI for `OWN_PEER_OIN` | If the request carries a consent token, the sidecar takes the subject from that token. The sidecar does not verify the token again ([`substitution.go#L105-L107`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L105-L107)) |
-| 18 | Sidecar → decryption component | `POST /signed-encrypted-identity` | VI, own decryption keys, and scheme keys | — | For `consent:pseudonym`, the sidecar sends the VP to `/signed-encrypted-pseudonym`. No BSNk call in the query path ([REQ-21](../requirements/pseudonymization.md#req-21), [BSNK-09](../requirements/pseudonymization.md#bsnk-09)) |
-| 19 | Decryption component → sidecar | — | — | BSN, recipient OIN | **BSN**, inside the source boundary. In the demo, the three sources share one decryption component and one OIN |
-| 20 | Sidecar (internal) | Recipient check and substitution | BSN, recipient | Body with the BSN | The value must name the own OIN as recipient ([REQ-80](../requirements/pseudonymization.md#req-80), [`substitution.go#L213-L232`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L213-L232)). The sidecar logs the decryption in the LDV logbook of the source |
-| 21 | Sidecar → source | `POST /graphql` | `variables.bsn` = BSN | — | **BSN** only at the source. The query and `operationName` stay the same |
-| 22 | Source → sidecar | — | — | `{data}` | Only the selected fields ([REQ-08](../requirements/authorization.md#req-08)). The sidecar logs the forward |
-| 23 to 25 | Sidecar → BD Inway → HV Outway → consumer | — | — | `{data}` | No BSN in the response. The consumer logs its processing under the `consent_id` ([F-76](../traceability/findings.md#f-76), [Q-27](../traceability/open-questions.md#q-27)) |
+| 16 | BD Inway → bron-sidecar | `POST /graphql` | Body 1:1, `X-GBO-Consent-Token`, and `Fsc-Authorization` | — | The Inway forwards only after the allow. Only the source Inways reach the source gateway ([REQ-81](../requirements/pseudonymization.md#req-81), [Network isolation](../concepts/pseudonymization.md#network-isolation-is-the-control)) |
+| 17 | Source gateway (internal) | Substitution | Proof, body | VI for `OWN_PEER_OIN` | If the request carries a consent token, the source gateway takes the subject from that token. The source gateway does not verify the token again ([`substitution.go#L105-L107`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L105-L107)) |
+| 18 | Source gateway → decryption component | `POST /signed-encrypted-identity` | VI, own decryption keys, and scheme keys | — | For `consent:pseudonym`, the source gateway sends the VP to `/signed-encrypted-pseudonym`. No BSNk call in the query path ([REQ-21](../requirements/pseudonymization.md#req-21), [BSNK-09](../requirements/pseudonymization.md#bsnk-09)) |
+| 19 | Decryption component → source gateway | — | — | BSN, recipient OIN | **BSN**, inside the source boundary. In the demo, the three sources share one decryption component and one OIN |
+| 20 | Source gateway (internal) | Recipient check and substitution | BSN, recipient | Body with the BSN | The value must name the own OIN as recipient ([REQ-80](../requirements/pseudonymization.md#req-80), [`substitution.go#L213-L232`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go#L213-L232)). The source gateway logs the decryption in the LDV logbook of the source |
+| 21 | Source gateway → source | `POST /graphql` | `variables.bsn` = BSN | — | **BSN** only at the source. The query and `operationName` stay the same |
+| 22 | Source → source gateway | — | — | `{data}` | Only the selected fields ([REQ-08](../requirements/authorization.md#req-08)). The source gateway logs the forward |
+| 23 to 25 | Source gateway → BD Inway → HV Outway → consumer | — | — | `{data}` | No BSN in the response. The consumer logs its processing under the `consent_id` ([F-76](../traceability/findings.md#f-76), [Q-27](../traceability/open-questions.md#q-27)) |
 
 ## Variant: an integrator calls for the consumer
 
@@ -158,7 +158,7 @@ The integrator variant differs from the direct call in these hops:
 | 6 | The Inway maps the delegator to `subject.attributes.outway_delegator_peer_id`. The policy reads that field and does not read the claim |
 | 7 | The consent binds the represented party. This is the delegator, or else `subject.id` ([`lib.rego#L62-L72`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/lib.rego#L62-L72)). Every delegated call also needs a mandate for that party and the granting rule ([`engine.rego#L253-L266`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L253-L266)) |
 
-At the source, the sidecar and the source log the integrator as
+At the source, the source gateway and the source log the integrator as
 `foreignOperation.processor`. The LDV record has no field for "on behalf
 of". The FSC transaction log of the source records both peers
 ([`integrator.md#L132-L152`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/integrator.md#L132-L152)).
@@ -250,7 +250,7 @@ As a result, the consumer gets a deny without a code. The consumer backend
 then shows `UNAVAILABLE` to the citizen
 ([`denial.go#L12-L56`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/consumer/denial.go#L12-L56)).
 
-On every PDP deny, no request reaches the sidecar or the source. If one
+On every PDP deny, no request reaches the source gateway or the source. If one
 field has more than one reason, the administrator code is the first reason
 in a fixed order
 ([`engine.rego#L321-L339`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L321-L339)).
@@ -276,11 +276,11 @@ The error paths have these triggers and codes:
 | A mutation or a subscription | `OPERATION_NOT_SUPPORTED` | `OPERATION_NOT_SUPPORTED` | [`appendix_a_test.rego#L221-L225`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/appendix_a_test.rego#L221-L225) |
 | A delegated call without a mandate for this party and rule, or from a suspended integrator | `FIELD_NOT_PERMITTED` | `INTEGRATOR_NOT_REGISTERED` | [`engine_test.rego#L621-L629`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L621-L629), [`#L692-L711`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L692-L711) |
 | A delegated call while the admission register is not available | `ACCESS_DENIED` | `PIP_UNAVAILABLE`, trace `INTEGRATOR_REGISTER_UNAVAILABLE` | [`engine_test.rego#L631-L642`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L631-L642) |
-| After the allow: the proof has no value of the asked form for this source (a source not on the BSN authorization list has no VI) | HTTP 400 `the subject of the consent could not be filled in` | Sidecar log `subject substitution failed` (`ErrNoValue`), LDV decryption record with an error status | [`substitution_test.go#L186`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L186) |
+| After the allow: the proof has no value of the asked form for this source (a source not on the BSN authorization list has no VI) | HTTP 400 `the subject of the consent could not be filled in` | Source gateway log `subject substitution failed` (`ErrNoValue`), LDV decryption record with an error status | [`substitution_test.go#L186`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L186) |
 | After the allow: BSNk made the value for a different party | HTTP 400, with the message of the preceding row | `ErrRecipient` | [`substitution_test.go#L112`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L112), [`#L234`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L234) |
-| A request with a literal subject under a proof reaches the sidecar (so it did not pass the PDP) | HTTP 400, with the same message | `ErrLiteralSubject` | [`substitution_test.go#L141`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L141) |
-| The sidecar cannot log the decryption | HTTP 500 | `the decryption could not be logged; refusing the request` | Code only: [`main.go#L236-L244`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/main.go#L236-L244) |
-| A request outside the transport subset reaches the sidecar | HTTP 404, 405, 400, or 415, before any decryption | The transport reason | [`transport_test.go#L14`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/transport_test.go#L14), [`#L83`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/transport_test.go#L83) |
+| A request with a literal subject under a proof reaches the source gateway (so it did not pass the PDP) | HTTP 400, with the same message | `ErrLiteralSubject` | [`substitution_test.go#L141`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L141) |
+| The source gateway cannot log the decryption | HTTP 500 | `the decryption could not be logged; refusing the request` | Code only: [`main.go#L236-L244`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/main.go#L236-L244) |
+| A request outside the transport subset reaches the source gateway | HTTP 404, 405, 400, or 415, before any decryption | The transport reason | [`transport_test.go#L14`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/transport_test.go#L14), [`#L83`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/transport_test.go#L83) |
 
 The code `CONSENT_SCOPE_MISMATCH` does not exist. A consent without a
 matching scope gives `SCOPE_NOT_ALLOWED`. A year outside the consent gives
@@ -312,10 +312,10 @@ The DvTP run in demo v0.9.0 shows these facts:
   PDP does not check who the subject is. It checks only that the subject
   comes from the proof. One request is about one citizen
   ([F-77](../traceability/findings.md#f-77)).
-- The rule "after the decision" depends on network isolation. The sidecar
+- The rule "after the decision" depends on network isolation. The source gateway
   does not verify the token again. A consumer holds real proofs, so a
   second verification gives no protection. Only the source Inways reach
-  the sidecar ([REQ-81](../requirements/pseudonymization.md#req-81),
+  the source gateway ([REQ-81](../requirements/pseudonymization.md#req-81),
   [F-79](../traceability/findings.md#f-79),
   [ADR-0033](../decisions/0033-gateway-decrypts-after-allow.md)). In
   Kubernetes, this isolation needs a NetworkPolicy

@@ -8,7 +8,7 @@
 
 ## Why deferred
 
-In gbo-demo v0.9.0, admission runs through the DvTP onboarding register
+In gbo-demo v0.9.0, admission runs through the Admission register
 and the contract decision of the PDP
 ([REQ-61](../requirements/admission.md#req-61),
 [ADR-0015](0015-contract-acceptance-by-policy.md)). No component called
@@ -45,7 +45,7 @@ The proposal leaves three points open:
 - An extension of the FSC grant schema, through the Logius standards
   process.
 - The freshness of sector register data, and the liability for it.
-- The relation with the DvTP onboarding register: admission versus
+- The relation with the Admission register: admission versus
   membership.
 
 ## Traceability

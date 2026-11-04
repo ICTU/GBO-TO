@@ -6,7 +6,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: closed
 - **Point**: one policy engine served every request. So the demo implied a central PDP, while PDP placement was an open design question.
-- **Outcome**: [Q-02](answered-questions.md#q-02) set the direction: federated by default, with a PDP per source holder, and a central adapter variant as fallback. In demo v0.9.0, the PDP sits behind the Inway of each source.
+- **Outcome**: [Q-02](answered-questions.md#q-02) set the direction: federated by default, with a PDP per bronhouder, and a central adapter variant as fallback. In demo v0.9.0, the PDP sits behind the Inway of each source.
 - **Landed in**: [ADR-0004](../decisions/0004-federated-authorization.md), [Q-02](answered-questions.md#q-02).
 - **Evidence**: [`docker-compose.yml`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml)
 
@@ -97,7 +97,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 - **Outcome**: the two are separate units of work, often hours or days apart. One trace for both conflicts with OTel semantics. The audit axis between them is `consent_id`. The decision record carries `consent_id` next to the trace ID.
 - **Landed in**: [REQ-55](../requirements/logging-audit.md#req-55), [REQ-71](../requirements/logging-audit.md#req-71), [ADR-0035](../decisions/0035-w3c-trace-context.md).
 
-### F-17: Scope descriptions in the consent portal are hard-coded {#f-17}
+### F-17: Scope descriptions in the toestemmingsportaal are hard-coded {#f-17}
 
 - **Status**: closed
 - **Point**: the portal shows hard-coded scope texts, separate from what policy enforces. The DvTP scopes are spread over policy, a generated field map, and `scopeGroups.ts`.
@@ -312,7 +312,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: closed
 - **Point**: a fallback to another source's certificates made the wallet show the wrong issuer and purpose ([PR #125](https://github.com/ICTU/GBO-demo/pull/125)).
-- **Outcome**: built. Every source holder has its own certificate set. Missing material causes a hard failure. [Q-17](open-questions.md#q-17) and demo issue [#225](https://github.com/ICTU/GBO-demo/issues/225) cover key management and the status list.
+- **Outcome**: built. Every bronhouder has its own certificate set. Missing material causes a hard failure. [Q-17](open-questions.md#q-17) and demo issue [#225](https://github.com/ICTU/GBO-demo/issues/225) cover key management and the status list.
 - **Landed in**: [REQ-58](../requirements/eudi-issuance.md#req-58), [ADR-0018](../decisions/0018-eudi-disclosure-issuance.md).
 
 ### F-53: Two decision logs side by side and no designated audit source {#f-53}
@@ -333,7 +333,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 ### F-56: The contract payload is thin: the decider sees who, not what {#f-56}
 
 - **Status**: closed
-- **Point**: the FSC Manager sends only the hash, the grant types, and the peer IDs to the contract decision. As a result, admission per service is not possible. Admission is per source holder.
+- **Point**: the FSC Manager sends only the hash, the grant types, and the peer IDs to the contract decision. As a result, admission per service is not possible. Admission is per bronhouder.
 - **Outcome**: accepted on purpose (decision of September 2, 2026). Every regime authorizes the actor and the basis per request ([REQ-48](../requirements/authorization.md#req-48)). Since [PR #363](https://github.com/ICTU/GBO-demo/pull/363), no grant property authorizes anything. Admission per service runs through the catalog and the consent ([Q-22](answered-questions.md#q-22), demo issue [#382](https://github.com/ICTU/GBO-demo/issues/382)). Demo issue [#240](https://github.com/ICTU/GBO-demo/issues/240) lists the triggers to reopen this point.
 - **Landed in**: [REQ-61](../requirements/admission.md#req-61), [ADR-0015](../decisions/0015-contract-acceptance-by-policy.md).
 
@@ -381,7 +381,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 - **Landed in**: [REQ-71](../requirements/logging-audit.md#req-71), [REQ-72](../requirements/logging-audit.md#req-72), [ADR-0036](../decisions/0036-adl-decision-record.md), [ADR-0026](../decisions/0026-ldv-integration.md).
 - **Evidence**: [`OBSERVABILITY.md#L61-L64`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/OBSERVABILITY.md#L61-L64)
 
-### F-64: The LDV gap is at the processing instead of the decision, and the sidecar transformation is itself a processing {#f-64}
+### F-64: The LDV gap is at the processing instead of the decision, and the source gateway transformation is itself a processing {#f-64}
 
 - **Status**: resolved in demo
 - **Point**: no component wrote LDV records. In LDV terms, these are all processings: the source query, de-pseudonymization at the source, register operations, and attestation building. Each controller (Verantwoordelijke) must log its own processings in its own logbook.
@@ -393,7 +393,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 
 - **Status**: closed
 - **Point**: LDV puts the data subject in `dpl.core.data_subject_id`. LDV recommends a pseudonym, with an explicit type field. The read extension builds a chain from the starting application through `nextLogbookId`.
-- **Outcome**: this supports [REQ-60](../requirements/logging-audit.md#req-60): a pseudonym in the log is the recommended form. With recipient-specific pseudonyms, access across organizations can search only on the trace ID. A search on the subject is not possible. The idea that the consent portal reads the whole chain through `nextLogbookId` does not work in DvTP, because GBO does not start the chain ([F-68](findings.md#f-68)). Citizen access goes per controller (GDPR art. 15). Each controller logs under its own pseudonym ([F-69](#f-69)).
+- **Outcome**: this supports [REQ-60](../requirements/logging-audit.md#req-60): a pseudonym in the log is the recommended form. With recipient-specific pseudonyms, access across organizations can search only on the trace ID. A search on the subject is not possible. The idea that the toestemmingsportaal reads the whole chain through `nextLogbookId` does not work in DvTP, because GBO does not start the chain ([F-68](findings.md#f-68)). Citizen access goes per controller (GDPR art. 15). Each controller logs under its own pseudonym ([F-69](#f-69)).
 - **Landed in**: [REQ-60](../requirements/logging-audit.md#req-60), [REQ-72](../requirements/logging-audit.md#req-72), [Q-01](open-questions.md#q-01), [Q-08](open-questions.md#q-08), [ADR-0026](../decisions/0026-ldv-integration.md).
 
 ### F-66: Erratum: the PuB-EAA seal and the Access CA were confused with PKIoverheid {#f-66}
@@ -417,7 +417,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
 ### F-69: A pseudonym that travels across the chain lands in the logbooks of two controllers {#f-69}
 
 - **Status**: resolved in demo
-- **Point**: the source sidecar logged the PI that it received from the consumer. The same PI was then in the consumer logbook and in the source logbook. A reader with access to both logbooks can join them on the person as well as on the trace.
+- **Point**: the source source gateway logged the PI that it received from the consumer. The same PI was then in the consumer logbook and in the source logbook. A reader with access to both logbooks can join them on the person as well as on the trace.
 - **Outcome**: [REQ-72](../requirements/logging-audit.md#req-72) states that each controller logs under a pseudonym from its own pseudonym space. A controller never logs under an identifier that the caller sends. The demo fixed this in demo issue [#367](https://github.com/ICTU/GBO-demo/issues/367) through [PR #366](https://github.com/ICTU/GBO-demo/pull/366). Since [SL-51](increments.md#sl-51), the cause is gone. No pseudonym travels: the consumer sends a placeholder ([F-76](findings.md#f-76)).
 - **Landed in**: [REQ-72](../requirements/logging-audit.md#req-72), [ADR-0026](../decisions/0026-ldv-integration.md).
 

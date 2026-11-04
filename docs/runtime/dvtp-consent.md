@@ -27,7 +27,7 @@ sequenceDiagram
     end
     box rgb(254,220,216) Toestemmingsvoorziening
       participant PF as Portal frontend
-      participant PB as Consent portal backend
+      participant PB as Toestemmingsportaal backend
       participant CR as Toestemmingsregister
     end
     box rgb(241,239,232) External
@@ -155,7 +155,7 @@ The consent flow in gbo-demo v0.9.0 has these properties and gaps:
   ([REQ-82](../requirements/pseudonymization.md#req-82)).
 - **BSNk recognition is open.** Only a recognized party can activate and
   transform ([BSNK-01](../requirements/pseudonymization.md#bsnk-01)).
-  It is open whether the consent service can be a recognized party. It is
+  It is open whether the toestemmingsvoorziening can be a recognized party. It is
   also open whether the register and the portal backend are one BSNk
   participant
   ([F-75](../traceability/findings.md#f-75),

@@ -16,12 +16,12 @@ requirements on this page cover four topics:
 - what the consent proof carries about the citizen
 - how a request names the subject
 - where the value from the proof becomes a BSN or a source pseudonym
-- what the consent service must know to make those values
+- what the toestemmingsvoorziening must know to make those values
 
 The design of demo increment [SL-51](../traceability/increments.md#sl-51)
 works in four steps:
 
-1. At consent time, the consent portal backend asks BSNk PP for a value
+1. At consent time, the toestemmingsportaal backend asks BSNk PP for a value
    for each receiving source. Every source gets an encrypted pseudonym
    (VP). Only a source on the BSN Authorization List (Autorisatielijst BSN)
    also gets an encrypted identity (VI). BSNk transforms only while the
@@ -50,7 +50,7 @@ encrypt. As a result, anyone can read the values. The three demo sources
 share one OIN and one decryption component.
 ### REQ-20: In the consent path the consumer gets no BSN in the proof or in the response {#req-20}
 
-> In the consent path, the consumer MUST NOT receive a BSN. The BSN MUST NOT be in the consent proof, in another value from the consent service, or in the answer of the source. The consumer MUST be able to make a request without knowing an identifier of the citizen. A rule in the consent regime MUST NOT allow a field that returns the BSN. A policy set MUST enforce that with a test per rule.
+> In the consent path, the consumer MUST NOT receive a BSN. The BSN MUST NOT be in the consent proof, in another value from the toestemmingsvoorziening, or in the answer of the source. The consumer MUST be able to make a request without knowing an identifier of the citizen. A rule in the consent regime MUST NOT allow a field that returns the BSN. A policy set MUST enforce that with a test per rule.
 
 | Case | Outcome |
 |---|---|
@@ -186,7 +186,7 @@ share one OIN and one decryption component.
         - In the demo, the sources share one decryption component and one
           OIN. In production, every source runs its own.
 
-### REQ-69: The consent register stores the polymorphic values under its own reference and no encrypted values per party {#req-69}
+### REQ-69: The toestemmingsregister stores the polymorphic values under its own reference and no encrypted values per party {#req-69}
 
 > The toestemmingsregister MUST NOT record more identifying data about the citizen than it needs to manage and show consents. It MAY keep the polymorphic identity and the polymorphic pseudonym of the first activation under its own reference to the citizen. This reference is not a BSN. It MUST NOT keep the encrypted identity and the encrypted pseudonym for a receiving party. Those values travel in the signed proof to that party.
 
@@ -496,9 +496,9 @@ share one OIN and one decryption component.
           That port falls under [REQ-04](authorization.md#req-04) and not
           under this requirement.
 
-### REQ-82: When consent is given, the consent service knows the OIN, the key version, and the BSN authorization of each source {#req-82}
+### REQ-82: When consent is given, the toestemmingsvoorziening knows the OIN, the key version, and the BSN authorization of each source {#req-82}
 
-> Some sources need to find the citizen under a consent. When the consent is given, the consent service MUST know the identification (OIN) of each of these sources. It MUST also know the current version of the keys of each source and its authorization to process the BSN. The consent service MUST have a value made for each source, in the form that belongs to that authorization. If no value can be made for one of those sources, a consent MUST NOT be given. If it is not established at that moment which sources are allowed to process the BSN, a consent MUST NOT be given either.
+> Some sources need to find the citizen under a consent. When the consent is given, the toestemmingsvoorziening MUST know the identification (OIN) of each of these sources. It MUST also know the current version of the keys of each source and its authorization to process the BSN. The toestemmingsvoorziening MUST have a value made for each source, in the form that belongs to that authorization. If no value can be made for one of those sources, a consent MUST NOT be given. If it is not established at that moment which sources are allowed to process the BSN, a consent MUST NOT be given either.
 
 | Case | Outcome |
 |---|---|
@@ -582,7 +582,7 @@ Logius runs it. BSNk PP sets preconditions for the DvTP design
 that design, the consent proof holds an encrypted value per party. The
 source decrypts its value itself, after the authorization decision.
 
-This page also holds the analysis of how the consent service recognizes a
+This page also holds the analysis of how the toestemmingsvoorziening recognizes a
 citizen at a later login (routes A, B, C, and D). That analysis is the
 basis of [ADR 0040](../decisions/0040-route-d-citizen-recognition.md).
 
@@ -614,7 +614,7 @@ The design starts from four working assumptions:
 - The toestemmingsregister becomes a recognized BSNk participant and
   requests activation and transformation itself.
 
-In the demo, the consent portal backend activates and transforms, and the
+In the demo, the toestemmingsportaal backend activates and transforms, and the
 register stores the polymorphic values. In the rest of this page, "the
 register" means the party that talks to BSNk. Which component that is, is
 open ([Q-49](../traceability/open-questions.md#q-49)).
@@ -725,7 +725,7 @@ BSNk sets 11 preconditions for the design, as listed in the following table:
       citizen, so BSNk admits only assessed parties.
     - **Consequence for the design**: BZK must recognize the register as a
       Middelenuitgever or Machtigingsdienst. Neither role is written for a
-      consent service. The specification names future roles, among them
+      toestemmingsvoorziening. The specification names future roles, among them
       attribute services, but does not work them out (p. 34). After the
       register requests recognition, trials in the test environment are
       possible.
@@ -1150,7 +1150,7 @@ Route D has the following properties:
 The demo builds route D
 ([PR #469](https://github.com/ICTU/GBO-demo/pull/469)):
 
-- The consent portal backend derives its stable key with an HMAC of the
+- The toestemmingsportaal backend derives its stable key with an HMAC of the
   BSN under its own secret key (`SUBJECT_REF_KEY`, versioned,
   [`subjectref.go#L40`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/subjectref.go#L40)).
 - At the first consent, the backend activates and keeps PI and PP under
@@ -1398,7 +1398,7 @@ BSNk does not offer the following:
       108).
     - The directly encrypted identity is in the notation, but no interface
       delivers it.
-- A role for a consent service (p. 34).
+- A role for a toestemmingsvoorziening (p. 34).
 
 ### What the specification offers in addition {#spec-extras}
 

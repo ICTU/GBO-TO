@@ -9,7 +9,9 @@ The house style combines three rule sets:
 - the Google developer documentation style guide (sentence case,
   timeless wording, no Latin abbreviations, no directional language);
 - the humanizer rules (no dashes as connectors, no stock AI words,
-  no staged contrasts, no decorative formatting).
+  no staged contrasts, no decorative formatting);
+- the glossary: a word from a "Do not use" column of docs/glossary.md is
+  an error outside the glossary itself.
 
 The script removes everything that is not prose before it checks:
 code blocks, mermaid diagrams, inline code, URLs, HTML comments and
@@ -73,6 +75,36 @@ DIRECTION = re.compile(r"\b(?:above|below)\b", re.I)
 WEAK_CONTRAST = re.compile(r"\brather than\b|, not (?:a |an |the )?\w+", re.I)
 
 ING_HEADING = re.compile(r"^#{1,6} [A-Z][a-z]+ing\b")
+
+
+def glossary_banned():
+    """Words from the "Do not use" columns of docs/glossary.md."""
+    path = DOCS / "glossary.md"
+    banned = {}
+    if not path.exists():
+        return banned
+    col = None
+    for line in path.read_text().splitlines():
+        if not line.startswith("|"):
+            col = None
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if "Do not use" in cells:
+            col = cells.index("Do not use")
+            continue
+        if col is None or set(line) <= set("|-: "):
+            continue
+        term = re.sub(r"[`*]", "", cells[0])
+        for word in cells[col].split(","):
+            word = word.strip()
+            if word and word != "—":
+                banned[word] = term
+    return banned
+
+
+BANNED = glossary_banned()
+BANNED_RX = [(re.compile(r"(?<![-/\w])(?<!trust )(?<!technical )" + re.escape(w) + r"s?\b", re.I), w, t)
+             for w, t in BANNED.items()]
 
 
 def strip_nonprose(text):
@@ -206,6 +238,12 @@ def lint_file(path):
             m = rx.search(text_nolabel)
             if m:
                 add("E", rule, ln, text_nolabel[max(0, m.start() - 40):m.end() + 60])
+        if rel != "glossary.md":
+            for rx, word, term in BANNED_RX:
+                m = rx.search(text_nolabel)
+                if m:
+                    add("E", f"glossary: use '{term}', not '{word}'", ln,
+                        text_nolabel[max(0, m.start() - 40):m.end() + 60])
         for rx, rule in ((SLOP, "stock word"), (TIME, "time word"),
                          (DIRECTION, "directional word"), (WEAK_CONTRAST, "contrast")):
             m = rx.search(text_nolabel)

@@ -47,7 +47,7 @@ section Properties). It worked as follows:
   header and no default.
 - If a token has no `prp`, the flow is empty. An empty flow matches no
   rule, so the PDP denies with `NO_APPLICABLE_RULE`.
-- The sidecar reads `subject_id_type` from the same claim.
+- The source gateway reads `subject_id_type` from the same claim.
 
 The demo seeded three property sets:
 
@@ -69,7 +69,7 @@ The decision had these consequences:
 - Every peer on a contract needed OpenFSC 2.0 or later. If the contract
   of a peer carried no properties, the PDP denied the peer until a new
   seed.
-- If `subject_id_type` was missing, the fail-safe default of the sidecar
+- If `subject_id_type` was missing, the fail-safe default of the source gateway
   was `direct` (pass-through). If the flow was missing, the default of
   the PDP was deny. This difference was safe, because the PDP decided
   first.

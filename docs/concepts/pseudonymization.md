@@ -39,7 +39,7 @@ the mock does not encrypt. For more information, see
 
 ```mermaid
 flowchart LR
-    subgraph PORTAL[Consent portal backend]
+    subgraph PORTAL[Toestemmingsportaal backend]
         B1[BSN from login]
         REF[subject_ref = HMAC]
     end
@@ -122,8 +122,7 @@ values at consent, so the proof freezes. For more information, see
 
 ## Citizen recognition: route D
 
-To show and revoke the consents of a citizen without a BSN, the consent
-service needs a stable key. A stored PI or PP is not a stable key, because
+To show and revoke the consents of a citizen without a BSN, the toestemmingsvoorziening needs a stable key. A stored PI or PP is not a stable key, because
 BSNk gives other values at every activation. The proposed solution is route
 D ([ADR-0040](../decisions/0040-route-d-citizen-recognition.md), proposed,
 [route D](../requirements/pseudonymization.md#route-d)). Route D works as

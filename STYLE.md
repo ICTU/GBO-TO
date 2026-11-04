@@ -155,13 +155,20 @@ unless that is the purpose of the change.
 | bron | source | data source (except in "authentic source") |
 | burger | citizen | user (except user of software) |
 | toestemming | consent | permission |
-| toestemmingsbewijs | consent proof | consent token (except the JWT type name) |
+| toestemmingsbewijs | consent proof (verified); consent token (the JWT before verification) | — |
 | increment (SL-NN) | demo increment | slice |
 | demo baseline | gbo-demo v0.9.0, "the demo" | "the current demo", "now" |
 
 Keep these Dutch domain terms (the glossary defines them): bronhouder,
-toestemmingsportaal, toestemmingsregister, dienstverlener, grondslag,
-doelbinding, koppelvlak, MijnOverheid, Autorisatielijst BSN.
+toestemmingsvoorziening, toestemmingsportaal, toestemmingsregister,
+pseudonimiseervoorziening, dienstverlener, grondslag, doelbinding,
+koppelvlak, MijnOverheid, Autorisatielijst BSN.
+
+The [glossary](docs/glossary.md) is the source for all domain and system
+terms. Each glossary table has a "Do not use" column. The linter reports
+those words as errors in every page except the glossary. When you add a
+term, add it to the glossary first. `scripts/gen_abbreviations.py` turns
+the abbreviations into tooltips on every page.
 
 US spelling (authorization, organization, recognize, pseudonymization).
 

@@ -20,7 +20,7 @@ The demo runs in two environments:
 | Simulation | Kubernetes with the generic [gbo-app Helm chart](https://github.com/ICTU/GBO-demo/tree/v0.9.0/deploy/helm/gbo-app). Each application is one release with a Deployment or a Job, a Service, and a Gateway API HTTPRoute. It runs in the MinEZK and MinBZK tenants. | Public demo at [gbo.simulatie.datastelsel.nl](https://gbo.simulatie.datastelsel.nl/) |
 
 Compose profiles switch on optional parts. The base (no profile) runs the
-PDP and its databases, the admission register, and the consent register.
+PDP and its databases, the admission register, and the toestemmingsregister.
 It also runs the BD and BRP sources with their gateways, the BSNk mock, the
 decryption component, the LDV logbooks, the developer portal, and
 observability. Each profile adds parts to the base:
@@ -71,7 +71,7 @@ Two limits apply to this isolation:
 - The chart has no NetworkPolicy. A Kubernetes deployment needs one, or an
   equivalent control ([F-79](traceability/findings.md#f-79)).
 
-The consent register also relies on network placement. Its portal API
+The toestemmingsregister also relies on network placement. Its portal API
 must serve only the portal backend
 ([REQ-39](requirements/consent.md#req-39)). The API does not
 authenticate the caller. It is open whether it must
@@ -222,7 +222,7 @@ key. The demo has the following certificate and key material:
 |---|---|---|---|
 | FSC group and internal certificates, per organization | `fsc-infra/pki` bootstrap scripts (cfssl) | The FSC components of that organization | PKIoverheid ([REQ-46](requirements/sources-identity.md#req-46)) |
 | PDP AuthZEN TLS certificate | `generate-pdp-cert.sh` | PDP. Inways and Managers pin it as CA. | Platform TLS (Helm: Secret `openftv-pdp-tls`) |
-| Consent proof signing key | Consent register at start, or a mounted file (`CONSENT_SIGNING_KEY_PATH`, required with a persistent store) | Consent register | Managed key. Key rotation is an open question ([Q-55](traceability/open-questions.md#q-55)). |
+| Consent proof signing key | Toestemmingsregister at start, or a mounted file (`CONSENT_SIGNING_KEY_PATH`, required with a persistent store) | Toestemmingsregister | Managed key. Key rotation is an open question ([Q-55](traceability/open-questions.md#q-55)). |
 | Source decryption keys | Demo keys in the gateway image, for the shared demo OIN | Source gateway and decryption component. A deployment mounts its own keys (`SUBJECT_KEYS_DIR`). | BSNk key delivery per source ([BSNK-09](requirements/pseudonymization.md#bsnk-09)). Old key versions stay available as long as consent proofs that use them are valid ([AV-09](requirements/admission.md#av-09)). |
 | EUDI certificate set per source: issuer, reader, status list | `make provision-development-certificates` | Issuance server (private keys through the init step) and reconciler (public leaves only) | Qualified seal certificate in a QSCD, access and registration certificates, and a status-list certificate. Key custody is an open question ([Q-17](traceability/open-questions.md#q-17)). |
 | Reference QTSP issuance set: reader, issuer, status list, callback TLS | `make provision-qtsp-issuance-certificates` | Issuance server, reference QTSP | Outside GBO. The QTSP holds its own set. |
@@ -298,7 +298,7 @@ The demo-grade choices in the following lists must change for production.
 
 Authorization and consent have these demo-grade choices:
 
-- One PDP serves all providers. The target is a PDP per source holder
+- One PDP serves all providers. The target is a PDP per bronhouder
   ([ADR-0004](decisions/0004-federated-authorization.md)). The PDP does not
   start without its ADL database, so `postgres-ftv` runs in every profile.
 - Every DvTP decision needs the consent status, live, over FSC. By

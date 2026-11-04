@@ -31,7 +31,7 @@ line with the national Basisinrichting OOTS.
   to OOTS.
 - The mapping of evidence types depends on canonical semantic models
   ([ADR-0024](0024-canonical-semantic-models.md)).
-- The trajectory needs a legal-basis policy path in the Gov-to-Gov style.
+- The route needs a legal-basis policy path in the Gov-to-Gov style.
   This path is not implemented either.
   [Risks and technical debt](../risks.md) tracks both gaps.
 

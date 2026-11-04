@@ -85,8 +85,8 @@ no properties. No component reads a `flow`.
   ([engine_test.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L366-L376)).
 - A Gov-to-Gov regime on a legal basis needs its own positive evidence.
   It cannot be a third regime that rests on an absence.
-- The sidecar uses the same evidence. If a consent token is present, the
-  sidecar takes the subject from it. If not, the sidecar passes the
+- The source gateway uses the same evidence. If a consent token is present, the
+  source gateway takes the subject from it. If not, the source gateway passes the
   request through ([ADR-0033](0033-gateway-decrypts-after-allow.md)).
 
 ## Traceability

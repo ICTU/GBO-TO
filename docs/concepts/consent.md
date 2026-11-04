@@ -31,7 +31,7 @@ Five roles take part in consent:
 
 | Role | Component in the demo | Does |
 |---|---|---|
-| Toestemmingsportaal (S02) | `toestemmingsportaal-frontend`, consent portal backend | Shows the request, logs the citizen in, makes the values per source at BSNk, and lets the citizen view and revoke consents |
+| Toestemmingsportaal (S02) | `toestemmingsportaal-frontend`, toestemmingsportaal backend | Shows the request, logs the citizen in, makes the values per source at BSNk, and lets the citizen view and revoke consents |
 | Toestemmingsregister (S01) | `consent-register` | Stores the consent record, signs the proof, and answers the status over FSC |
 | Consumer (dienstverlener) | `dienstverlener-backend` | Starts the request, receives the proof, and sends it unchanged with every query |
 | PDP of the source | OpenFTV PDP, `consent.rego` | Verifies the proof and gets the status at every request |
@@ -72,7 +72,7 @@ Within a set, the citizen does not pick fields
 ([REQ-10](../requirements/consent.md#req-10)). The portal shows only the
 data sets that the consumer asks for. It refuses a data set that it
 cannot describe. For the record model, see
-[Consent register](../requirements/consent.md#consent-register).
+[Toestemmingsregister](../requirements/consent.md#consent-register).
 
 ## The consent proof
 

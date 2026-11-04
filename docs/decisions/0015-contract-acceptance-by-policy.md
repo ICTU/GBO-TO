@@ -20,7 +20,7 @@ The Manager of each provider sends every submitted contract through the
 PDP. The AuthZEN autosign call of the Manager evaluates a dedicated
 contract-acceptance policy (package `doelbinding.auto_sign_contract`).
 
-The policy reads the DvTP onboarding register. OpenFTV pulls this register
+The policy reads the Admission register. OpenFTV pulls this register
 every 5 seconds (attributes `name`, `active`, `allowed_source_peer_ids`,
 `acts_for`).
 

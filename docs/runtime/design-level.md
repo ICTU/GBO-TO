@@ -183,7 +183,7 @@ The OOTS design has these open points:
 The citizen presents a wallet attestation from GBO to a relying party
 over OpenID4VP, with selective disclosure. No GBO decision component and
 no source take part at presentation time. This is the purpose of an
-issuance-based trajectory. The data are fixed at issuance, and the source
+issuance-based route. The data are fixed at issuance, and the source
 carries no presentation load. For the issuance itself, see
 [EUDI issuance](eudi-issuance.md).
 

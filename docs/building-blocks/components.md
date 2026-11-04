@@ -26,7 +26,7 @@ graph TB
     subgraph AUTHZ["Authorization chain"]
         PDP["OpenFTV PDP v0.1.0<br/>FTV GraphQL mapper + OPA/Rego"]
         POL["Policy set<br/>engine, consent PIP, five rules"]
-        ADM["Admission register<br/>(DvTP onboarding register)"]
+        ADM["Admission register<br/>(Admission register)"]
     end
 
     subgraph FSCG["FSC group (per organization)"]
@@ -102,7 +102,7 @@ graph TB
     class BSNK ext
 ```
 
-The demo implements three trajectories end to end: the DvTP query under
+The demo implements three routes end to end: the DvTP query under
 consent, EUDI issuance, and ASI verification for QTSPs. The SDG-OOTS
 adapter has no implementation and is not in this view
 ([ADR-0020](../decisions/0020-as4-bridge-for-oots.md)). The QTSP and the
@@ -129,7 +129,7 @@ The authorization chain has the following components:
 | Consent PIP | Verifies the consent token in policy: ES256 signature, issuer, audience, type, validity with 30 s skew, and required claims. It fetches the JWKS directly from the register and caches it for 300 s. It fetches the status for each evaluation over FSC, through the PDP's Outway. The status fetch has no cache and a 2 s timeout. Every failure has its own reason code. The engine copies the resolved consent into its response. | [policies/gbo/consent.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego) |
 | Authorization rules | Five plain-Rego rules, listed in the next table. Each rule names its regime, its FSC services, and its fields. It also states its own reasons to deny. | [policies/gbo/rules](https://github.com/ICTU/GBO-demo/tree/v0.9.0/policies/gbo/rules) |
 | Contract acceptance policy | Decides whether a provider's FSC Manager signs a submitted contract. It accepts grant types service connection and delegated service connection. It applies eight ordered refusal codes, from `NOT_AN_AUTOSIGN_REQUEST` to `DELEGATION_NOT_REGISTERED`. It keeps a missing register (`ADMISSION_REGISTER_UNAVAILABLE`) apart from a missing entry (`PARTY_NOT_IN_REGISTRY`). | [policies/fsc/autosign.rego](https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L167-L174) |
-| Admission register | Holds the admitted participants: source holders, GBO system participants (EDI issuer, PDP, ASIP), and consumers. Each entry has `active` and `allowed_source_peer_ids`. The register also holds integrator mandates (`integrations`) and serves them as `acts_for`. OpenFTV pulls it every 5 s over a network that only the PDP shares. The register deactivates an entry and never deletes it. It keeps no change log ([REQ-123](../requirements/admission.md#req-123)). It is a SQLite database with an admin UI. | [services/dvtp-onboarding-register](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register), [PIP pull](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml) |
+| Admission register | Holds the admitted participants: bronhouders, GBO system participants (EDI issuer, PDP, ASIP), and consumers. Each entry has `active` and `allowed_source_peer_ids`. The register also holds integrator mandates (`integrations`) and serves them as `acts_for`. OpenFTV pulls it every 5 s over a network that only the PDP shares. The register deactivates an entry and never deletes it. It keeps no change log ([REQ-123](../requirements/admission.md#req-123)). It is a SQLite database with an admin UI. | [services/dvtp-onboarding-register](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register), [PIP pull](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml) |
 
 The PID regime has no positive evidence of its own. A request without a
 consent token enters it ([F-70](../traceability/findings.md#f-70)). For this
@@ -432,7 +432,7 @@ the following components:
 | Component | Responsibility | Implementation |
 |---|---|---|
 | Directory | The registry of the group. It signs service publications automatically. It signs nothing else. | [fsc-infra/docker-compose.yml](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml) |
-| Manager (per organization) | Issues access tokens for contracted connections. The token carries the signed `service_name`, which binds the PDP rules to a service. The provider Managers of BD, BRP, and the consent register decide contract acceptance through the PDP (AuthZEN autosign). | [bd-manager](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L701-L702) |
+| Manager (per organization) | Issues access tokens for contracted connections. The token carries the signed `service_name`, which binds the PDP rules to a service. The provider Managers of BD, BRP, and the toestemmingsregister decide contract acceptance through the PDP (AuthZEN autosign). | [bd-manager](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L701-L702) |
 | Inway (per provider) | `bd-inway` and `brp-inway` are the PEP. Their AuthZEN plugin sends every request with its body to the PDP before the request reaches the source gateway. `cr-inway` has no AuthZEN hook. Behind `cr-inway`, the contract authorizes `consent-status`, and the register reads the calling peer from the `Fsc-Authorization` token. | [bd-inway](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L773-L775), [cr-inway](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L1117) |
 | Outway (per consumer) | Opens mTLS connections to Inways under a grant hash. Grant links give each contracted service a path: `/bri`, `/brp`, `/lvg`, `/consent-status`. | [seed-bri-contract.sh](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-contract.sh) |
 | Grants | Service-connection grants carry no properties. The demo removed `flow` in [PR #363](https://github.com/ICTU/GBO-demo/pull/363) and `subject_id_type` in [#473](https://github.com/ICTU/GBO-demo/issues/473). The regime follows from the evidence on the request ([ADR-0031](../decisions/0031-regime-from-evidence.md)). | [seed-bri-contract.sh](https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-contract.sh#L60-L71) |
@@ -525,7 +525,7 @@ The demo runs seven logbooks. Each controller logs its own processings
 | `logboek-bd` | Belastingdienst | `graphql-server`, `bron-sidecar` |
 | `logboek-brp` | RvIG | `brp-graphql-server`, `brp-sidecar` |
 | `logboek-lvg` | LVG | `lvg-graphql-server`, `lvg-sidecar` |
-| `logboek-toestemming` | GBO consent service | `consent-register`, `consent-portal-backend` |
+| `logboek-toestemming` | GBO toestemmingsvoorziening | `consent-register`, `consent-portal-backend` |
 | `logboek-eudi-adapter` | GBO issuance facility | `eudi-adapter` |
 | `logboek-afnemer` | Hypotheek-BV (consumer) | `dienstverlener-backend`, `integrator-backend` |
 | `logboek-ir` | Installatie Register (consumer) | `ir-backend` |

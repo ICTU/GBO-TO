@@ -620,7 +620,7 @@ That rule is [REQ-10](consent.md#req-10) on the consent page.
 
 The guidelines (RL-NN) cover the management side of the authorization
 function: how a source manages its policy and rolls it out. They are
-generic and apply to every source, whatever the trajectory (DvTP, EUDI,
+generic and apply to every source, whatever the route (DvTP, EUDI,
 ASI). They are guidelines for bronhouders and are no system requirements.
 The design is in
 [PSA S06](https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie).

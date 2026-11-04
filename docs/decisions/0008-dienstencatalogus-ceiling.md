@@ -16,7 +16,7 @@ limits what a consent screen can ask for and what a query can select.
 GBO keeps a wettelijke dienstencatalogus as a separate register with a
 legal anchor. The register maps each scope to its allowed fields
 (`data.dienstencatalogus[scope].allowed_fields`). The PDP checks every
-query against the catalog. The consent portal shows only catalog entries.
+query against the catalog. The toestemmingsportaal shows only catalog entries.
 
 ## Why it was superseded
 

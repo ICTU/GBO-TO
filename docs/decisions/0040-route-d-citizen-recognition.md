@@ -11,7 +11,7 @@
 
 ## Context and problem statement
 
-The consent service needs two things from a citizen who logged in:
+The toestemmingsvoorziening needs two things from a citizen who logged in:
 
 1. A stable key for its own administration. With this key, the service
    shows and revokes the consents of the citizen without a BSN
@@ -30,7 +30,7 @@ recognized BSNk participant can activate and transform
 
 Two points are open ([Q-49](../traceability/open-questions.md#q-49)):
 
-- Are the consent register and the consent portal backend one system?
+- Are the toestemmingsregister and the toestemmingsportaal backend one system?
 - Which of them is the BSNk participant?
 
 The working assumption puts the BSNk calls at the register. The demo
@@ -42,7 +42,7 @@ point (REQ-22) until a decision on Q-49.
 The proposal is route D, under the working assumption that MijnOverheid
 passes the BSN:
 
-- The consent service recognizes the citizen by an HMAC of the BSN, with
+- The toestemmingsvoorziening recognizes the citizen by an HMAC of the BSN, with
   a secret, versioned key:
     - The key is in an HSM or KMS.
     - The input has a fixed prefix and nine digits with leading zeros.
@@ -91,7 +91,7 @@ describes the routes in full. The design weighed four options:
 - A new key gives every citizen a new reference. A migration of existing
   records is not built
   ([Q-56](../traceability/open-questions.md#q-56)).
-- The consent service must become a recognized BSNk participant
+- The toestemmingsvoorziening must become a recognized BSNk participant
   ([F-75](../traceability/findings.md#f-75),
   [Q-26](../traceability/open-questions.md#q-26)).
 

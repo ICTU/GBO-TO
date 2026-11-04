@@ -22,7 +22,7 @@ sequenceDiagram
     end
     box rgb(254,220,216) Toestemmingsvoorziening
       participant PF as Portal frontend
-      participant PB as Consent portal backend
+      participant PB as Toestemmingsportaal backend
       participant CR as Toestemmingsregister
     end
     box rgb(237,233,254) Records

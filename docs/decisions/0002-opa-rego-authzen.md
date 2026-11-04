@@ -8,7 +8,7 @@
 
 ## Context and problem statement
 
-GBO needs one policy engine and one PEP-PDP protocol for all trajectories.
+GBO needs one policy engine and one PEP-PDP protocol for all routes.
 Then the authorization logic is in policy and not in application code.
 
 Every source also needs an enforcement point in front of it. The interface

@@ -71,8 +71,7 @@ The decision has four parts:
       ([#369](https://github.com/ICTU/GBO-demo/issues/369),
       [ADR-0035](0035-w3c-trace-context.md)). The dev portal finds the
       record through the stored request headers.
-    - No pointer leads from the ADL record to the logbook of the consent
-      register ([Q-25](../traceability/open-questions.md#q-25)).
+    - No pointer leads from the ADL record to the logbook of the toestemmingsregister ([Q-25](../traceability/open-questions.md#q-25)).
     - In the EUDI and ASI routes, the record holds the plain BSN
       ([REQ-60](../requirements/logging-audit.md#req-60),
       [ADR-0043](0043-identifiers-out-of-pdp-input.md)).

@@ -8,21 +8,21 @@
 
 ## Context and problem statement
 
-Each source holder runs its own PDP
+Each bronhouder runs its own PDP
 ([ADR-0004](0004-federated-authorization.md)). Someone must write the
 policy for that PDP, publish it, and deliver it to the PDP with integrity.
 The earlier proposal put a central PAP at GBO: a central registry, signed
 bundles, and governance in the GBO gremia.
 
 [Q-21](../traceability/answered-questions.md#q-21) asked who can manage and
-publish the policy of a source holder. The answer is that policy
-management stays with each source holder. The policy belongs to the source
+publish the policy of a bronhouder. The answer is that policy
+management stays with each bronhouder. The policy belongs to the source
 (P-10). Bundle signing inside one organization is not planned
 ([#426](https://github.com/ICTU/GBO-demo/issues/426)).
 
 ## Decision
 
-- The PAP and the PDP are at each source holder. The source holder
+- The PAP and the PDP are at each bronhouder. The bronhouder
   writes, approves, and publishes its own policy. GBO has no central PAP.
 - GBO supplies guidance and no service. The guidance is a reference
   policy set, the engine choice ([ADR-0002](0002-opa-rego-authzen.md)),
@@ -39,7 +39,7 @@ management stays with each source holder. The policy belongs to the source
     - Validate a bundle before activation, and fall back visibly to the
       last valid set (RL-05).
 - A bundle is signed only when it crosses an organization boundary.
-  Inside one organization, signing is not planned. If a source holder lets
+  Inside one organization, signing is not planned. If a bronhouder lets
   another organization build or host its bundles, signing and
   verification become a requirement.
 
@@ -47,11 +47,11 @@ management stays with each source holder. The policy belongs to the source
 
 This decision compared three options:
 
-1. Policy management per source holder (chosen). This option fits P-10
-   and the federated PDP. Each source holder carries the governance cost.
+1. Policy management per bronhouder (chosen). This option fits P-10
+   and the federated PDP. Each bronhouder carries the governance cost.
 2. A central PAP with signed bundles (the earlier proposal). This option
    gives one place to author and approve policy. But it puts the policy
-   of the source holder under another organization, and it needs signing
+   of the bronhouder under another organization, and it needs signing
    across that boundary.
 3. Policy baked into the PDP image. This option has no lifecycle: no
    version, no withdrawal, and no validation before activation

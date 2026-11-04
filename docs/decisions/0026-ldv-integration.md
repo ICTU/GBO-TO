@@ -92,7 +92,7 @@ These points are open:
 - Components write a local `dpl.gbo.*` extension that nobody ratified
   ([Q-72](../traceability/open-questions.md#q-72)).
 - No pointer leads from the decision at the source to the logbook of the
-  consent register ([Q-25](../traceability/open-questions.md#q-25)).
+  toestemmingsregister ([Q-25](../traceability/open-questions.md#q-25)).
 - In demo v0.9.0, the ASIP writes no LDV records.
 - Production needs WORM storage, hash chaining, or a notary for the
   logbooks ([REQ-32](../requirements/logging-audit.md#req-32)).
