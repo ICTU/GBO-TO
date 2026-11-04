@@ -4970,83 +4970,60 @@ and the
 <a href="https://ictu.github.io/GBO-PSA/main/oplossingsrichting/">PSA solution direction</a>
 give the business context: which parties exchange which data, and why.</p>
 <h2 id="context-technical-context">Technical context<a class="headerlink" href="#context-technical-context" title="Permanent link">&para;</a></h2>
-<p>The <a href="#building-blocks-components">building block view</a> describes each GBO
-component. Dashed elements in the diagram are designed but not built. The
-diagram shows the system boundary in
-<a href="https://github.com/ICTU/GBO-demo">gbo-demo</a> v0.9.0:</p>
-<div class="mermaid">graph TB
-    subgraph External["External actors and systems"]
-        CIT["Citizen&lt;br/&gt;browser + DigiD"]
-        WALLET["EUDI wallet&lt;br/&gt;NL Wallet app"]
-        DV["Private consumer&lt;br/&gt;FSC Outway"]
-        INT["Integrator&lt;br/&gt;FSC Outway, delegated"]
-        GOV["Government consumer&lt;br/&gt;FSC Outway"]:::planned
-        EU["EU procedure portal&lt;br/&gt;AS4"]:::planned
-        QTSP[QTSP]
-        DIP[Discover Interface]
-        RRP[Register of relying parties]
-        BSNK["BSNk PP&lt;br/&gt;(Logius)"]
-    end
+<p>GBO has the same shape as in the
+<a href="https://ictu.github.io/GBO-GO/main/#overzicht-voorgestelde-oplossing">Globaal Ontwerp</a>:
+external parties use one of the channels, and every channel reaches the
+source through GBO Basis. The following figure shows who is on the other
+side of each interface in gbo-demo v0.9.0. Dashed blocks are designed but
+not built. Click a block to zoom in.</p>
+<div class="mermaid">flowchart TB
+  subgraph ext["External parties"]
+    direction LR
+    gov["Government consumer"]
+    dv["Private consumer&lt;br/&gt;or integrator"]
+    cit(["Citizen&lt;br/&gt;browser + DigiD"])
+    wallet["EUDI wallet&lt;br/&gt;NL Wallet app"]
+    qtsp["QTSP"]
+    eu["EU procedure portal"]
+  end
+  subgraph ch["GBO channels"]
+    direction LR
+    tv("Toestemmingsvoorziening&lt;br/&gt;portal + register")
+    pub("PubEAA provider&lt;br/&gt;adapter + issuance server")
+    asi("ASI provider&lt;br/&gt;authorization server + ASIP")
+    oots("OOTS adapter")
+  end
+  subgraph svc["External services"]
+    direction LR
+    bsnk["BSNk PP&lt;br/&gt;Logius"]
+    rrp["Register of&lt;br/&gt;relying parties"]
+    dip["Discover Interface"]
+  end
+  subgraph basis["GBO Basis at the source"]
+    direction LR
+    pep("FSC Inway = PEP&lt;br/&gt;+ PDP")
+    src[("Bronhouder: source&lt;br/&gt;gateway + GraphQL API")]
+  end
 
-    subgraph GBO["GBO shared services"]
-        PORTAL[Toestemmingsportaal]
-        CREG[Toestemmingsregister]
-        ONBOARD[Admission register]
-        PDP["OpenFTV PDP&lt;br/&gt;OPA/Rego"]
-        ADL[("ADL")]
-        EUDIADP["EUDI adapter +&lt;br/&gt;issuance server"]
-        SREG[("Source registry")]
-        ASIP[ASIP]
-        AZSP[ASI authorization server]
-        WV[Wallet verifier]
-        OOTS[OOTS adapter]:::planned
-    end
-
-    subgraph FSC["FSC group"]
-        MGR[FSC Manager per org]
-        INWAY[FSC Inway per bronhouder]
-    end
-
-    subgraph BRON["Bronhouder"]
-        SIDECAR[Source gateway]
-        DEC[Decryption component]
-        GQL[GraphQL source API]
-        META["Source metadata&lt;br/&gt;/.well-known/gbo"]
-        LOGBOOK[("LDV logbook")]
-    end
-
-    CIT --&gt;|HTTPS| PORTAL
-    PORTAL --&gt;|"/v2 activate, transform"| BSNK
-    PORTAL --&gt;|REST| CREG
-    WALLET --&gt;|OpenID4VP / OpenID4VCI| EUDIADP
-    DV --&gt;|"FSC: mTLS + access token"| INWAY
-    INT --&gt;|FSC delegated grant| INWAY
-    GOV -.-&gt;|FSC| INWAY
-    EU -.-&gt;|AS4| OOTS
-    OOTS -.-&gt;|FSC| INWAY
-    QTSP --&gt;|"OAuth: register, token"| AZSP
-    QTSP --&gt;|"HTTPS verify/retrieve + DPoP"| ASIP
-    QTSP --&gt;|discover| DIP
-    DIP --&gt;|read records| ASIP
-    CIT --&gt;|login, approval| AZSP
-    WALLET --&gt;|OpenID4VP| WV
-    AZSP --&gt; WV
-    AZSP --&gt;|entitlement lookup| RRP
-    ASIP --&gt;|FSC via own Outway| INWAY
-    ASIP --&gt;|read releases| SREG
-    EUDIADP --&gt;|FSC via Outway| INWAY
-    EUDIADP --&gt;|"reconcile over FSC"| META
-    EUDIADP --&gt; SREG
-    INWAY --&gt;|AuthZEN evaluation| PDP
-    MGR --&gt;|AuthZEN contract decision| PDP
-    PDP --&gt;|PIP pull| ONBOARD
-    PDP --&gt;|JWKS| CREG
-    PDP --&gt;|consent-status over FSC| CREG
-    PDP --&gt; ADL
-    INWAY --&gt; SIDECAR
-    SIDECAR --&gt;|decrypt own value| DEC
-    SIDECAR --&gt; GQL
-    SIDECAR -.-&gt;|LDV records| LOGBOOK
+  gov ~~~ dv ~~~ cit ~~~ wallet ~~~ qtsp ~~~ eu
+  tv ~~~ pub ~~~ asi ~~~ oots
+  bsnk ~~~ rrp ~~~ dip
+  cit -- "HTTPS: consent" --&gt; tv
+  dv -- "redirect" --&gt; tv
+  wallet -- "OpenID4VP, OpenID4VCI" --&gt; pub
+  wallet -- "OpenID4VP: login" --&gt; asi
+  qtsp -- "OAuth, verify, retrieve" --&gt; asi
+  eu -. "AS4" .-&gt; oots
+  dv == "FSC: query + consent proof" ==&gt; pep
+  gov -. "FSC" .-&gt; pep
+  pub -- "FSC" --&gt; pep
+  asi -- "FSC" --&gt; pep
+  oots -. "FSC" .-&gt; pep
+  tv &lt;-. "consent status, FSC" .- pep
+  pep == "after allow" ==&gt; src
+  tv -- "at consent only" --&gt; bsnk
+  asi -- "entitlement" --&gt; rrp
+  qtsp -. "discover" .-&gt; dip
 
   %% GBO diagram palette: the same colors as the Globaal Ontwerp
   classDef basis fill:#DCFCE7,stroke:#16A34A,color:#0F172A
@@ -5059,18 +5036,94 @@ diagram shows the system boundary in
   classDef planned fill:#FFFFFF,stroke:#9CA3AF,color:#6B7280,stroke-dasharray:6 4
   classDef zoom stroke-width:3px
 
-    class CIT source
-    class WALLET,DV,INT,QTSP,DIP,RRP,BSNK ext
-    class PORTAL,CREG dvtp
-    class ONBOARD,ADL,SREG,LOGBOOK store
-    class PDP,MGR,INWAY,SIDECAR,DEC basis
-    class EUDIADP,ASIP,AZSP,WV eudi
-    class GQL,META source
-    style External fill:#F4F5F7,stroke:#D1D5DB
-    style GBO fill:#F4F5F7,stroke:#D1D5DB
-    style FSC fill:#F4F5F7,stroke:#16A34A
-    style BRON fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3</div>
-<p>Four points in this diagram are easy to misread:</p>
+  class cit source
+  class dv,wallet,qtsp,bsnk,rrp,dip ext
+  class eu,gov,oots planned
+  class tv dvtp
+  class pub,asi eudi
+  class pep basis
+  class src source
+  class tv,pub,asi,oots,pep,src zoom
+  style ext fill:#F4F5F7,stroke:#D1D5DB
+  style ch fill:#F4F5F7,stroke:#D1D5DB
+  style basis fill:#F0FDF4,stroke:#16A34A
+  style svc fill:#F4F5F7,stroke:#D1D5DB
+  click tv "../building-blocks/dvtp/consent-service/" "Toestemmingsvoorziening"
+  click pub "../building-blocks/eudi/pubeaa/" "PubEAA provider"
+  click asi "../building-blocks/eudi/asi/" "ASI provider"
+  click oots "../building-blocks/oots/" "OOTS channel"
+  click pep "../building-blocks/gbo-basis/" "GBO Basis"
+  click src "../building-blocks/gbo-basis/source-access/" "Source access"</div>
+<p class="caption"><em>Figure 1: The system context. Thick lines: the path of a data request.
+Dashed: designed, not built.</em></p>
+<p>Inside the boundary, the PDP is the hub. It reads two registers, writes
+the decision record, and decides on contracts as well as on requests:</p>
+<div class="mermaid">flowchart LR
+  subgraph fsc["FSC at the source"]
+    direction TB
+    inw("FSC Inway&lt;br/&gt;PEP")
+    mgr("FSC Manager&lt;br/&gt;contracts")
+  end
+  pdp("OpenFTV PDP&lt;br/&gt;OPA/Rego")
+  subgraph reg["Registers and records"]
+    direction TB
+    adm[("Admission register")]
+    tr[("Toestemmingsregister")]
+    adl[("ADL&lt;br/&gt;decision records")]
+  end
+  subgraph src["At the bronhouder"]
+    direction TB
+    gw("Source gateway")
+    dec("Decryption&lt;br/&gt;component")
+    ldv[("LDV logbook")]
+  end
+  subgraph eudi["EUDI components"]
+    direction TB
+    adp("EUDI adapter&lt;br/&gt;+ reconciler")
+    sreg[("Source registry")]
+    asip("ASIP")
+  end
+
+  inw -- "AuthZEN: request" --&gt; pdp
+  mgr -- "AuthZEN: contract" --&gt; pdp
+  adm -. "PIP pull, every 5 s" .-&gt; pdp
+  pdp -- "keys (JWKS) + status over FSC" --&gt; tr
+  pdp --&gt; adl
+  inw -- "after allow" --&gt; gw
+  gw --&gt; dec
+  gw -.-&gt; ldv
+  adp -- "writes releases" --&gt; sreg
+  asip -- "reads releases" --&gt; sreg
+
+  %% GBO diagram palette: the same colors as the Globaal Ontwerp
+  classDef basis fill:#DCFCE7,stroke:#16A34A,color:#0F172A
+  classDef dvtp fill:#FEDCD8,stroke:#E28F80,color:#1E293B
+  classDef eudi fill:#FFEDD5,stroke:#EA580C,color:#0F172A
+  classDef source fill:#DDEBF7,stroke:#6F94B8,color:#1E293B
+  classDef ext fill:#F1EFE8,stroke:#5F5E5A,color:#444441
+  classDef store fill:#EDE9FE,stroke:#7C3AED,color:#1E1B4B
+  classDef mock fill:#F3F4F6,stroke:#9CA3AF,color:#374151,stroke-dasharray:4 3
+  classDef planned fill:#FFFFFF,stroke:#9CA3AF,color:#6B7280,stroke-dasharray:6 4
+  classDef zoom stroke-width:3px
+
+  class inw,mgr,pdp,gw,dec basis
+  class adm,adl,ldv,sreg store
+  class tr dvtp
+  class adp,asip eudi
+  class pdp,tr,sreg,adl zoom
+  style fsc fill:#F0FDF4,stroke:#16A34A
+  style reg fill:#F4F5F7,stroke:#D1D5DB
+  style src fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
+  style eudi fill:#FFF7ED,stroke:#EA580C
+  click pdp "../building-blocks/gbo-basis/authorization/" "Authorization"
+  click tr "../building-blocks/dvtp/consent-service/" "Toestemmingsvoorziening"
+  click sreg "../building-blocks/gbo-basis/source-configuration/" "Source configuration"
+  click adl "../building-blocks/gbo-basis/records/" "Records"</div>
+<p class="caption"><em>Figure 2: The interfaces between GBO components.</em></p>
+<p>The <a href="#context-koppelvlak-inventory">koppelvlak inventory</a> lists every interface
+with its protocol and code. The
+<a href="#building-blocks">building block view</a> zooms in per channel.</p>
+<p>Four points in these diagrams are easy to misread:</p>
 <ul>
 <li>Only the portal backend calls BSNk, at consent time. Neither the PDP nor
   the source gateway calls BSNk. The source reads its own value with
