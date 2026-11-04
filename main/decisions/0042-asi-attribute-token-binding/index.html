@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4576,24 +4576,24 @@
   
 
 
-<h1 id="adr-0042-optional-per-attribute-token-binding-for-asi-tokens">ADR-0042: Optional per-attribute token binding for ASI tokens<a class="headerlink" href="#adr-0042-optional-per-attribute-token-binding-for-asi-tokens" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0042-optional-per-attribute-token-binding-for-asi-tokens">ADR-0042: Optional per-attribute token binding for <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> tokens<a class="headerlink" href="#adr-0042-optional-per-attribute-token-binding-for-asi-tokens" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: proposed (waits for <a href="../../traceability/open-questions/#q-33">Q-33</a>)</li>
 <li>Date: 2026-11-02</li>
 <li>Satisfies: Implementing Regulation (EU) <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj">2025/1569</a> article 9(5) (a member state can impose access control), <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">S11</a>, <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a></li>
-<li>Deliberation: <a href="../../requirements/asi/#req-103">REQ-103</a>, <a href="../../traceability/findings/#f-95">F-95</a>, and demo <a href="https://github.com/ICTU/GBO-demo/pull/559">PR #559</a>, <a href="https://github.com/ICTU/GBO-demo/issues/571">ICTU/GBO-demo#571</a>, <a href="https://github.com/ICTU/GBO-demo/pull/572">PR #572</a></li>
+<li>Deliberation: <a href="../../requirements/asi/#req-103">REQ-103</a>, <a href="../../traceability/findings/#f-95">F-95</a>, and demo <a href="https://github.com/ICTU/GBO-demo/pull/559">PR #559</a>, <a href="https://github.com/ICTU/GBO-demo/issues/571">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#571</a>, <a href="https://github.com/ICTU/GBO-demo/pull/572">PR #572</a></li>
 <li>Implemented in:<ul>
 <li>The check at the authorization server in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/authorization_details.go#L31-L79">authorization_details.go#L31-L79</a>.</li>
 <li>The request page in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/httpapi/pages.go#L109-L111">pages.go#L109-L111</a>.</li>
 <li>The token in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/tokens.go#L70-L72">tokens.go#L70-L72</a>.</li>
 <li>The mandatory switch in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/main.go#L109">main.go#L109</a>.</li>
-<li>The check at the ASIP in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/accesstoken/accesstoken.go#L177-L197">accesstoken.go#L177-L197</a> and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L346-L356">handler.go#L346-L356</a>.</li>
+<li>The check at the <abbr title="Authentic Source Interface Provider">ASIP</abbr> in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/accesstoken/accesstoken.go#L177-L197">accesstoken.go#L177-L197</a> and <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/handler.go#L346-L356">handler.go#L346-L356</a>.</li>
 </ul>
 </li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
 <p>ETSI TS 119 478 clause 6.1.3.2 binds an access token per operation only
-(<code>verify</code>, <code>retrieve</code>). With one token, the QTSP can ask every attribute
+(<code>verify</code>, <code>retrieve</code>). With one token, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> can ask every attribute
 of the data service, also when the citizen approved something else
 (<a href="../../traceability/findings/#f-95">F-95</a>,
 <a href="../../traceability/standards-feedback/#e5">E5</a>). Article 9(5) of
@@ -4604,7 +4604,7 @@ until that decision.</p>
 <h2 id="proposed-decision">Proposed decision<a class="headerlink" href="#proposed-decision" title="Permanent link">&para;</a></h2>
 <p>The proposal has four parts:</p>
 <ol>
-<li>A QTSP can name the attributes in the authorization request as one
+<li>A <abbr title="Qualified Trust Service Provider">QTSP</abbr> can name the attributes in the authorization request as one
    RFC 9396 <code>authorization_details</code> entry. The entry has the provisional
    type
    <code>https://gbo.example/authorization-details/authentic-source-attributes</code>.
@@ -4618,9 +4618,9 @@ until that decision.</p>
    service and the scope. It refuses an invalid entry with
    <code>invalid_request</code>. It shows the attributes on the request page and
    puts the entry unchanged in the token.</li>
-<li>If the token carries the entry, the ASIP refuses a request for
+<li>If the token carries the entry, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> refuses a request for
    another attribute with 401 <code>insufficient_scope</code>.</li>
-<li>By default, the binding is optional, so a QTSP that implements only
+<li>By default, the binding is optional, so a <abbr title="Qualified Trust Service Provider">QTSP</abbr> that implements only
    ETSI can connect. Without the entry, the authorization is per
    operation, and the description of the data service is the limit. A
    configuration switch makes the entry mandatory
@@ -4628,10 +4628,10 @@ until that decision.</p>
 </ol>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>With the binding, the citizen sees exactly which attributes the QTSP
+<li>With the binding, the citizen sees exactly which attributes the <abbr title="Qualified Trust Service Provider">QTSP</abbr>
   asks (<a href="../../requirements/asi/#req-91">REQ-91</a>). The token is not valid
   for other attributes.</li>
-<li>Only parties that know the GBO type can use the binding. The type
+<li>Only parties that know the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> type can use the binding. The type
   identifier is provisional.</li>
 <li>If the Netherlands makes the binding mandatory, QTSPs that implement
   only ETSI cannot connect. This stays so until ETSI or a national
@@ -4659,6 +4659,7 @@ until that decision.</p>
 <li>Standards feedback: <a href="../../traceability/standards-feedback/#e5">E5</a></li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-28">SL-28</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

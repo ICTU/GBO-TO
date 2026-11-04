@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4669,24 +4669,24 @@ a request, and the open points. The first two scenarios go through the
 same chain as every built data-plane scenario, in this order:</p>
 <ol>
 <li>the Outway,</li>
-<li>the Inway of the source, as PEP,</li>
-<li>the PDP of the source,</li>
+<li>the Inway of the source, as <abbr title="Policy Enforcement Point">PEP</abbr>,</li>
+<li>the <abbr title="Policy Decision Point">PDP</abbr> of the source,</li>
 <li>the source gateway,</li>
 <li>the source API.</li>
 </ol>
-<p>The third scenario uses no GBO runtime.</p>
-<h2 id="gov-to-gov">Gov-to-Gov<a class="headerlink" href="#gov-to-gov" title="Permanent link">&para;</a></h2>
+<p>The third scenario uses no <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> runtime.</p>
+<h2 id="gov-to-gov"><abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr><a class="headerlink" href="#gov-to-gov" title="Permanent link">&para;</a></h2>
 <p>A government consumer reads source data under a legal basis (grondslag).
 The request has no consent and no pseudonymization, because both parties
-can process the BSN. The design makes two decisions:</p>
+can process the <abbr title="Burgerservicenummer">BSN</abbr>. The design makes two decisions:</p>
 <ul>
 <li>The regime follows from the evidence that the request carries. A
-  Gov-to-Gov regime needs its own positive evidence. It cannot be a third
-  regime that the PDP selects because something is absent
+  <abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr> regime needs its own positive evidence. It cannot be a third
+  regime that the <abbr title="Policy Decision Point">PDP</abbr> selects because something is absent
   (<a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>,
   <a href="../../traceability/findings/#f-70">F-70</a>).</li>
-<li>The PDP evaluates the legal basis locally from policy data, with no
-  PIP call (<a href="../../decisions/0004-federated-authorization/">ADR-0004</a>).</li>
+<li>The <abbr title="Policy Decision Point">PDP</abbr> evaluates the legal basis locally from policy data, with no
+  <abbr title="Policy Information Point">PIP</abbr> call (<a href="../../decisions/0004-federated-authorization/">ADR-0004</a>).</li>
 </ul>
 <p>Demo v0.9.0 has no rule set, no evidence format, and no legal-basis data.
 This gap is risk R3 in <a href="../../risks/">Risks and technical debt</a>.</p>
@@ -4717,7 +4717,7 @@ This gap is risk R3 in <a href="../../risks/">Risks and technical debt</a>.</p>
     GW-&gt;&gt;API: Query with the BSN
     API--&gt;&gt;GOV: Requested fields (through Inway and Outway)</div>
 <h3 id="data-per-hop">Data per hop<a class="headerlink" href="#data-per-hop" title="Permanent link">&para;</a></h3>
-<p>Each hop of the Gov-to-Gov request carries the following data:</p>
+<p>Each hop of the <abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr> request carries the following data:</p>
 <table>
 <thead>
 <tr>
@@ -4731,31 +4731,31 @@ This gap is risk R3 in <a href="../../risks/">Risks and technical debt</a>.</p>
 <tr>
 <td>1</td>
 <td>Consumer → Outway</td>
-<td>Query and variables, the BSN as subject, the legal-basis evidence</td>
+<td>Query and variables, the <abbr title="Burgerservicenummer">BSN</abbr> as subject, the legal-basis evidence</td>
 <td>The form of the evidence is open. ADR-0031 rules out declarations, such as a header, a grant property, or a default</td>
 </tr>
 <tr>
 <td>2 to 3</td>
 <td>Outway ↔ provider Manager</td>
-<td>FSC token</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> token</td>
 <td>The contract first passes <a href="../admission/#contract-admission">contract admission</a></td>
 </tr>
 <tr>
 <td>4 to 7</td>
-<td>Inway → PDP → Inway</td>
-<td>PDP input with the BSN</td>
-<td>The BSN is in the PDP input and in the decision logs, as in the EUDI and ASI routes of demo v0.9.0 (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>, <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>)</td>
+<td>Inway → <abbr title="Policy Decision Point">PDP</abbr> → Inway</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> input with the <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>The <abbr title="Burgerservicenummer">BSN</abbr> is in the <abbr title="Policy Decision Point">PDP</abbr> input and in the decision logs, as in the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> routes of demo v0.9.0 (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>, <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>)</td>
 </tr>
 <tr>
 <td>8 to 10</td>
 <td>Inway → gateway → source</td>
-<td>Query with the BSN, then the requested fields</td>
+<td>Query with the <abbr title="Burgerservicenummer">BSN</abbr>, then the requested fields</td>
 <td>The gateway passes a request without a consent token through (<a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>). Each controller logs its own processing (<a href="../../decisions/0026-ldv-integration/">ADR-0026</a>)</td>
 </tr>
 </tbody>
 </table>
 <h3 id="what-v090-does">What v0.9.0 does<a class="headerlink" href="#what-v090-does" title="Permanent link">&para;</a></h3>
-<p>Demo v0.9.0 handles a Gov-to-Gov request as follows:</p>
+<p>Demo v0.9.0 handles a <abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr> request as follows:</p>
 <table>
 <thead>
 <tr>
@@ -4771,8 +4771,8 @@ This gap is risk R3 in <a href="../../risks/">Risks and technical debt</a>.</p>
 <td><a href="../admission/#contract-admission">Admission</a></td>
 </tr>
 <tr>
-<td>Admitted peer, no consent token, a real BSN as subject</td>
-<td>PID regime, denied: <code>ACTOR_NOT_ALLOWED</code> (not a designated issuer)</td>
+<td>Admitted peer, no consent token, a real <abbr title="Burgerservicenummer">BSN</abbr> as subject</td>
+<td><abbr title="Person Identification Data">PID</abbr> regime, denied: <code>ACTOR_NOT_ALLOWED</code> (not a designated issuer)</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L351"><code>engine_test.rego#L351</code></a></td>
 </tr>
 <tr>
@@ -4785,25 +4785,25 @@ This gap is risk R3 in <a href="../../risks/">Risks and technical debt</a>.</p>
 <p>The chain fails closed. Until a rule set with its own evidence exists, a
 government consumer gets no data.</p>
 <h3 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h3>
-<p>The Gov-to-Gov design has these open points:</p>
+<p>The <abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr> design has these open points:</p>
 <ul>
 <li>It is open what form the positive evidence for the legal basis has, and
   who issues it (<a href="../../requirements/authorization/#req-74">REQ-74</a>).</li>
 <li>It is open where the legal-basis data lives (which consumer, which
-  service, which grondslag, which fields), and who maintains it. ADR-0004
+  service, which legal basis, which fields), and who maintains it. ADR-0004
   puts it in policy data.</li>
-<li>The PID actor lists must stay disjoint from the consumers of other
-  regimes. If a Gov-to-Gov consumer omits its evidence, it must not enter
-  the PID regime (<a href="../../traceability/findings/#f-70">F-70</a>).</li>
+<li>The <abbr title="Person Identification Data">PID</abbr> actor lists must stay disjoint from the consumers of other
+  regimes. If a <abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr> consumer omits its evidence, it must not enter
+  the <abbr title="Person Identification Data">PID</abbr> regime (<a href="../../traceability/findings/#f-70">F-70</a>).</li>
 </ul>
-<h2 id="sdg-oots">SDG-OOTS<a class="headerlink" href="#sdg-oots" title="Permanent link">&para;</a></h2>
+<h2 id="sdg-oots">SDG-<abbr title="Once-Only Technical System">OOTS</abbr><a class="headerlink" href="#sdg-oots" title="Permanent link">&para;</a></h2>
 <p>A competent authority in another member state requests evidence about a
 citizen or company through the Once-Only Technical System. The design is
-an OOTS adapter at the GBO edge
+an <abbr title="Once-Only Technical System">OOTS</abbr> adapter at the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> edge
 (<a href="../../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>,
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter">PSA S08</a>).
-eDelivery AS4 exists only at the edge. The bronhouder sees a normal FSC
-request through the standard PEP-PDP chain. It is open who builds the
+eDelivery AS4 exists only at the edge. The bronhouder sees a normal <abbr title="Federated Service Connectivity">FSC</abbr>
+request through the standard <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> chain. It is open who builds the
 adapter (<a href="../../traceability/open-questions/#q-79">Q-79</a>).</p>
 <div class="mermaid">sequenceDiagram
     autonumber
@@ -4838,11 +4838,11 @@ adapter (<a href="../../traceability/open-questions/#q-79">Q-79</a>).</p>
     OA-&gt;&gt;OA: Map to OOTS-EDM evidence
     OA-&gt;&gt;AP: Evidence response
     AP-&gt;&gt;ER: AS4 message: evidence</div>
-<p>The OOTS process steps around the request, such as the identification of
-the user and the preview, stay with the Basisinrichting OOTS. The diagram
+<p>The <abbr title="Once-Only Technical System">OOTS</abbr> process steps around the request, such as the identification of
+the user and the preview, stay with the Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr>. The diagram
 does not show them.</p>
 <h3 id="data-per-hop_1">Data per hop<a class="headerlink" href="#data-per-hop_1" title="Permanent link">&para;</a></h3>
-<p>Each hop of the OOTS request carries the following data:</p>
+<p>Each hop of the <abbr title="Once-Only Technical System">OOTS</abbr> request carries the following data:</p>
 <table>
 <thead>
 <tr>
@@ -4856,8 +4856,8 @@ does not show them.</p>
 <tr>
 <td>1 to 3</td>
 <td>Requester → access point → adapter</td>
-<td>OOTS-EDM evidence request in an AS4 message: evidence type, the subject, the requester</td>
-<td>Transport, discovery, and the European process stay with the Basisinrichting OOTS (<a href="../../traceability/open-questions/#q-79">Q-79</a>)</td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr>-EDM evidence request in an AS4 message: evidence type, the subject, the requester</td>
+<td>Transport, discovery, and the European process stay with the Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr> (<a href="../../traceability/open-questions/#q-79">Q-79</a>)</td>
 </tr>
 <tr>
 <td>4</td>
@@ -4868,39 +4868,40 @@ does not show them.</p>
 <tr>
 <td>5 to 10</td>
 <td>Adapter → source</td>
-<td>GraphQL query and FSC token, then source data</td>
-<td>The same chain as every FSC consumer. The adapter translates the protocol. The decision stays with the PDP of the source (<a href="../../requirements/authorization/#req-44">REQ-44</a>, <a href="../../requirements/sources-identity/#req-46">REQ-46</a>)</td>
+<td>GraphQL query and <abbr title="Federated Service Connectivity">FSC</abbr> token, then source data</td>
+<td>The same chain as every <abbr title="Federated Service Connectivity">FSC</abbr> consumer. The adapter translates the protocol. The decision stays with the <abbr title="Policy Decision Point">PDP</abbr> of the source (<a href="../../requirements/authorization/#req-44">REQ-44</a>, <a href="../../requirements/sources-identity/#req-46">REQ-46</a>)</td>
 </tr>
 <tr>
 <td>11 to 13</td>
 <td>Adapter → requester</td>
-<td>OOTS-EDM evidence</td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr>-EDM evidence</td>
 <td>The mapping version must be traceable, as for issuance (<a href="../../requirements/eudi-issuance/#req-124">REQ-124</a>)</td>
 </tr>
 </tbody>
 </table>
 <h3 id="what-v090-does_1">What v0.9.0 does<a class="headerlink" href="#what-v090-does_1" title="Permanent link">&para;</a></h3>
-<p>The demo does not touch OOTS. It has no adapter, no access point, and no
-rule for OOTS. If an adapter peer sends a request without a consent token, the request
-enters the PID regime and fails the actor check, as in
-<a href="#gov-to-gov">Gov-to-Gov</a>. The gap is risk R2 in
+<p>The demo does not touch <abbr title="Once-Only Technical System">OOTS</abbr>. It has no adapter, no access point, and no
+rule for <abbr title="Once-Only Technical System">OOTS</abbr>. If an adapter peer sends a request without a consent token, the request
+enters the <abbr title="Person Identification Data">PID</abbr> regime and fails the actor check, as in
+<a href="#gov-to-gov"><abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr></a>. The gap is risk R2 in
 <a href="../../risks/">Risks and technical debt</a>.</p>
 <h3 id="open-points_1">Open points<a class="headerlink" href="#open-points_1" title="Permanent link">&para;</a></h3>
-<p>The OOTS design has these open points:</p>
+<p>The <abbr title="Once-Only Technical System">OOTS</abbr> design has these open points:</p>
 <ul>
-<li>It is open who builds the adapter: GBO, or the OOTS-V operator with the
-  GBO interface (<a href="../../traceability/open-questions/#q-79">Q-79</a>).</li>
-<li>The regime and the evidence for an OOTS request are open
+<li>It is open who builds the adapter: <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, or the <abbr title="Once-Only Technical System">OOTS</abbr>-V operator with the
+  <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> interface (<a href="../../traceability/open-questions/#q-79">Q-79</a>). <abbr title="Once-Only Technical System">OOTS</abbr>-V
+  is the part of the Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr> that receives evidence requests.</li>
+<li>The regime and the evidence for an <abbr title="Once-Only Technical System">OOTS</abbr> request are open
   (<a href="../../requirements/authorization/#req-74">REQ-74</a>,
-  <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>). If an OOTS
-  request has no evidence of its own, the PDP denies it.</li>
-<li>The requirements register has no OOTS requirement.</li>
+  <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>). If an <abbr title="Once-Only Technical System">OOTS</abbr>
+  request has no evidence of its own, the <abbr title="Policy Decision Point">PDP</abbr> denies it.</li>
+<li>The requirements register has no <abbr title="Once-Only Technical System">OOTS</abbr> requirement.</li>
 </ul>
 <h2 id="relying-party-presentation">Relying-party presentation<a class="headerlink" href="#relying-party-presentation" title="Permanent link">&para;</a></h2>
-<p>The citizen presents a wallet attestation from GBO to a relying party
-over OpenID4VP, with selective disclosure. No GBO decision component and
+<p>The citizen presents a wallet attestation from <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> to a relying party
+over <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr>, with selective disclosure. No <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> decision component and
 no source take part at presentation time. This is the purpose of an
-issuance-based trajectory. The data are fixed at issuance, and the source
+issuance-based route. The data are fixed at issuance, and the source
 carries no presentation load. For the issuance itself, see
 <a href="../eudi-issuance/">EUDI issuance</a>.</p>
 <div class="mermaid">sequenceDiagram
@@ -4957,22 +4958,22 @@ carries no presentation load. For the issuance itself, see
 <tr>
 <td>5</td>
 <td>Relying party → trust list</td>
-<td>Trust anchor of the PuB-EAA issuer</td>
+<td>Trust anchor of the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuer</td>
 <td>It is open which list applies: a List of Trusted Entities or the trusted lists (<a href="../../traceability/open-questions/#q-30">Q-30</a>)</td>
 </tr>
 <tr>
 <td>7 to 8</td>
 <td>Relying party → issuance facility</td>
 <td>Status list per attestation type, Type Metadata</td>
-<td>Static publications. The relying party fetches the whole list, so the issuer does not learn which attestation the relying party checks. No PDP, no FSC, and no source take part</td>
+<td>Static publications. The relying party fetches the whole list, so the issuer does not learn which attestation the relying party checks. No <abbr title="Policy Decision Point">PDP</abbr>, no <abbr title="Federated Service Connectivity">FSC</abbr>, and no source take part</td>
 </tr>
 </tbody>
 </table>
 <h3 id="what-v090-does_2">What v0.9.0 does<a class="headerlink" href="#what-v090-does_2" title="Permanent link">&para;</a></h3>
 <p>For this scenario, demo v0.9.0 has these limits:</p>
 <ul>
-<li>The demo has no relying party for GBO attestations. The ASI wallet
-  verifier asks only for the PID
+<li>The demo has no relying party for <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> attestations. The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> wallet
+  verifier asks only for the <abbr title="Person Identification Data">PID</abbr>
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-wallet-verifier/README.md"><code>asi-wallet-verifier/README.md</code></a>).</li>
 <li>Trust uses the development CA chain. The test wallet and the demo
   verifiers trust the development issuer CA.</li>
@@ -4983,16 +4984,16 @@ carries no presentation load. For the issuance itself, see
 <h3 id="open-points_2">Open points<a class="headerlink" href="#open-points_2" title="Permanent link">&para;</a></h3>
 <p>The relying-party scenario has these open points:</p>
 <ul>
-<li>The trust list for PuB-EAA providers
+<li>The trust list for <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> providers
   (<a href="../../traceability/open-questions/#q-30">Q-30</a>) and the designation of
-  the Dutch PuB-EAA issuer (<a href="../../traceability/open-questions/#q-28">Q-28</a>)
+  the Dutch <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuer (<a href="../../traceability/open-questions/#q-28">Q-28</a>)
   are open. In production, the relying party verifies the seal of the
-  bronhouder as PuB-EAA provider. GBO operates the technical facility
+  bronhouder as <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical facility
   (<a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>).
   <a href="../../decisions/0023-identity-convergence/">ADR-0023</a> proposes the EUDI
   certificate roles.</li>
-<li>Freshness. The attestation shows the source data at issuance. GBO only
-  reads the source on request. If the data change, GBO gets no signal.
+<li>Freshness. The attestation shows the source data at issuance. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> only
+  reads the source on request. If the data change, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> gets no signal.
   Long-lived attestations need a change feed and revocation
   (<a href="../../traceability/findings/#f-82">F-82</a>).</li>
 </ul>
@@ -5003,6 +5004,7 @@ carries no presentation load. For the issuance itself, see
 <li>Open questions: <a href="../../traceability/open-questions/#q-79">Q-79</a> (open), <a href="../../traceability/open-questions/#q-30">Q-30</a> (open), <a href="../../traceability/open-questions/#q-28">Q-28</a> (open)</li>
 <li>Demo increments: none</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

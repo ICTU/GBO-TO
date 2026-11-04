@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -2028,7 +2028,7 @@
   <a href="#ownership-per-source-holder" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ownership per source holder
+        Ownership per bronhouder
       
     </span>
   </a>
@@ -2083,7 +2083,7 @@
   <a href="#guidelines-for-source-holders" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Guidelines for source holders
+        Guidelines for bronhouders
       
     </span>
   </a>
@@ -4601,9 +4601,9 @@
 
 
 <h1 id="policy-lifecycle">Policy lifecycle<a class="headerlink" href="#policy-lifecycle" title="Permanent link">&para;</a></h1>
-<p>Each source holder owns, writes, and publishes the policy that its own PDP
-evaluates. GBO supplies a reference policy set, an engine choice, and
-guidelines. GBO does not supply a central policy service. The following
+<p>Each bronhouder owns, writes, and publishes the policy that its own <abbr title="Policy Decision Point">PDP</abbr>
+evaluates. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> supplies a reference policy set, an engine choice, and
+guidelines. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not supply a central policy service. The following
 sections show how a policy travels from version control to a decision in
 demo v0.9.0, and which points are open.</p>
 <p>The policy lifecycle realizes
@@ -4613,13 +4613,13 @@ The decision is
 <a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>. For the
 management-plane scenario, see
 <a href="../../runtime/policy-distribution/">Policy distribution</a>.</p>
-<h2 id="ownership-per-source-holder">Ownership per source holder<a class="headerlink" href="#ownership-per-source-holder" title="Permanent link">&para;</a></h2>
-<p>The PAP and the PDP are at each source holder. The PDP is behind the FSC
-Inway of the source holder, and the management function serves only that
-PDP. The policy belongs to the source
+<h2 id="ownership-per-source-holder">Ownership per bronhouder<a class="headerlink" href="#ownership-per-source-holder" title="Permanent link">&para;</a></h2>
+<p>The <abbr title="Policy Administration Point">PAP</abbr> and the <abbr title="Policy Decision Point">PDP</abbr> are at each bronhouder. The <abbr title="Policy Decision Point">PDP</abbr> is behind the <abbr title="Federated Service Connectivity">FSC</abbr>
+Inway of the bronhouder, and the management function serves only that
+<abbr title="Policy Decision Point">PDP</abbr>. The policy belongs to the source
 (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>).</p>
-<p>The question of who can manage and publish the policy of a source holder
-has an answer: the source holder itself
+<p>The question of who can manage and publish the policy of a bronhouder
+has an answer: the bronhouder itself
 (<a href="../../traceability/answered-questions/#q-21">Q-21</a>, October 28, 2026). PSA S06
 sets the norm for publication control. The norm asks for these items:</p>
 <ul>
@@ -4630,11 +4630,11 @@ sets the norm for publication control. The norm asks for these items:</p>
 <li>Tests before publication.</li>
 <li>An emergency and rollback procedure.</li>
 </ul>
-<p>Authority over policy is with competent public parties. As a result, GBO
+<p>Authority over policy is with competent public parties. As a result, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 sets no requirements on the policy installation of another party. The
 management practices are guidelines (RL-01 to RL-05, in the guidelines
 table later on this page). A
-guideline becomes a requirement only if GBO delivers the management setup
+guideline becomes a requirement only if <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers the management setup
 itself (<a href="../../requirements/authorization/#policy-management">Policy management guidelines</a>).</p>
 <p>In the demo, all components run in one compose stack. This is a demo
 artifact and makes no statement about the architecture.</p>
@@ -4654,7 +4654,7 @@ with tests next to the rules. The set has four parts:</p>
 <tr>
 <td>Entrypoint</td>
 <td><code>authz.rego</code></td>
-<td>The package that OpenFTV evaluates. It maps the engine response to <code>allow</code> and <code>reason</code></td>
+<td>The package that <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> evaluates. It maps the engine response to <code>allow</code> and <code>reason</code></td>
 </tr>
 <tr>
 <td>Engine and readers</td>
@@ -4669,7 +4669,7 @@ with tests next to the rules. The set has four parts:</p>
 <tr>
 <td>Contract policy</td>
 <td><code>fsc/autosign.rego</code></td>
-<td>Contract acceptance for the provider's FSC Manager (<a href="../../decisions/0015-contract-acceptance-by-policy/">ADR-0015</a>)</td>
+<td>Contract acceptance for the provider's <abbr title="Federated Service Connectivity">FSC</abbr> Manager (<a href="../../decisions/0015-contract-acceptance-by-policy/">ADR-0015</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -4680,10 +4680,10 @@ change. For the rule model, see
 <ul>
 <li>The schema pins (<code>scripts/gen-graphql-pins.sh</code>).</li>
 <li>The rule list that the developer portal shows (<code>scripts/gen-rules-json.sh</code>).
-  OpenFTV has no data API, so the portal reads a generated file.</li>
+  <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> has no data API, so the portal reads a generated file.</li>
 </ul>
 <h2 id="validation-before-activation">Validation before activation<a class="headerlink" href="#validation-before-activation" title="Permanent link">&para;</a></h2>
-<p>The PDP compiles the policy set as a whole. One bad module does not give a
+<p>The <abbr title="Policy Decision Point">PDP</abbr> compiles the policy set as a whole. One bad module does not give a
 deny. Instead, it breaks every decision
 (<a href="../../traceability/findings/#f-52">F-52</a>). The demo had this type of fault
 several times:</p>
@@ -4692,23 +4692,23 @@ several times:</p>
   request got HTTP 500.</li>
 <li>A non-Rego file under <code>policies/</code> silently removed every policy after it
   in walk order.</li>
-<li>A second file with the same name replaced the first, because the PAP
+<li>A second file with the same name replaced the first, because the <abbr title="Policy Administration Point">PAP</abbr>
   keys policies by file name.</li>
-<li>The PAP reports a module that does not compile as loaded, while the old
+<li>The <abbr title="Policy Administration Point">PAP</abbr> reports a module that does not compile as loaded, while the old
   policy continues to decide
   (<a href="https://github.com/ICTU/GBO-demo/issues/151">#151</a>).</li>
 </ul>
 <p>The local safety net is <code>make policy-check</code>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L92-L106"><code>Makefile#L92-L106</code></a>).
 It refuses non-Rego files and duplicate file names under <code>policies/</code>. Then
-it runs <code>opa check</code>. Every make target that starts the PDP depends on it.</p>
+it runs <code>opa check</code>. Every make target that starts the <abbr title="Policy Decision Point">PDP</abbr> depends on it.</p>
 <p><code>make policy-test</code> adds <code>opa fmt --diff</code> and <code>opa test</code>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L115-L117"><code>Makefile#L115-L117</code></a>).
 CI repeats these steps. CI also checks that the generated files are up to
 date
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/.github/workflows/ci.yml#L135-L182"><code>ci.yml#L135-L182</code></a>).</p>
 <p>Validation and a visible fallback at activation are not built
-(<a href="../../requirements/authorization/#rl-05">RL-05</a>). If a PDP gets a
+(<a href="../../requirements/authorization/#rl-05">RL-05</a>). If a <abbr title="Policy Decision Point">PDP</abbr> gets a
 broken bundle, it does not keep the last valid set. It also does not
 report that a later version did not load. Source metadata has this
 lifecycle in demo v0.9.0: validation before activation, atomic promotion,
@@ -4732,12 +4732,12 @@ resolves to nothing, and every contract stays pending.</p>
 <tbody>
 <tr>
 <td>Mount (default)</td>
-<td>The PDP image carries the policies (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/Dockerfile#L62-L67"><code>Dockerfile#L62-L67</code></a>). Compose mounts <code>./policies</code> over them (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L157"><code>docker-compose.yml#L157</code></a>)</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> image carries the policies (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/Dockerfile#L62-L67"><code>Dockerfile#L62-L67</code></a>). Compose mounts <code>./policies</code> over them (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L157"><code>docker-compose.yml#L157</code></a>)</td>
 <td>Every <code>make demo*</code> target. Edit and save while you write Rego</td>
 </tr>
 <tr>
 <td>Bundle (opt-in)</td>
-<td>The OpenFTV Manager stores the policies in Postgres. Bundle <code>gbo-pdp</code> collects every policy with tag <code>gbo-authz</code>, with a version. If <code>PDP_BUNDLE_MANAGER</code> is set, the PDP pulls the bundle at start (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L145-L149"><code>docker-compose.yml#L145-L149</code></a>)</td>
+<td>The <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager stores the policies in Postgres. Bundle <code>gbo-pdp</code> collects every policy with tag <code>gbo-authz</code>, with a version. If <code>PDP_BUNDLE_MANAGER</code> is set, the <abbr title="Policy Decision Point">PDP</abbr> pulls the bundle at start (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L145-L149"><code>docker-compose.yml#L145-L149</code></a>)</td>
 <td><code>make demo-manager</code>, <code>make manager-seed</code></td>
 </tr>
 </tbody>
@@ -4775,13 +4775,13 @@ distribution mechanism. Policy enters the Manager only through its API.
 An administrator in the management interface uses the same path.</p>
 <p>The distribution has these properties:</p>
 <ul>
-<li>The PDP pulls, and nothing pushes. The PDP authorizes its own management
+<li>The <abbr title="Policy Decision Point">PDP</abbr> pulls, and nothing pushes. The <abbr title="Policy Decision Point">PDP</abbr> authorizes its own management
   endpoints with the decision policy. That policy denies every request
   that is not a data request, so a push gets 403
   (<a href="../../traceability/findings/#f-51">F-51</a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml#L18-L32"><code>gbo-pdp.yaml#L18-L32</code></a>).
-  The bundle has no push targets. The PDP pulls at start, so a new seed
-  needs a PDP restart.</li>
+  The bundle has no push targets. The <abbr title="Policy Decision Point">PDP</abbr> pulls at start, so a new seed
+  needs a <abbr title="Policy Decision Point">PDP</abbr> restart.</li>
 <li>The seed script retires policy and does not delete it. A delete fails
   upstream on a foreign key to the audit trail. The seed script removes
   the bundle tag from every policy that left version control
@@ -4794,8 +4794,8 @@ An administrator in the management interface uses the same path.</p>
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/auditor.cedar"><code>auditor.cedar</code></a>,
   and
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/authz/pdp-bundle.cedar"><code>pdp-bundle.cedar</code></a>.
-  Since OpenFTV v0.1.0, the bundle pull runs through the same authorizer.
-  The PDP shows no identity, so <code>pdp-bundle.cedar</code> allows only GET on the
+  Since <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> v0.1.0, the bundle pull runs through the same authorizer.
+  The <abbr title="Policy Decision Point">PDP</abbr> shows no identity, so <code>pdp-bundle.cedar</code> allows only GET on the
   one bundle path (<a href="../../requirements/authorization/#rl-02">RL-02</a>).</li>
 <li>The Cedar store seeds once. The Manager seeds its Cedar policies into
   Postgres only while the store is empty. After that, the Manager uses the
@@ -4811,15 +4811,15 @@ An administrator in the management interface uses the same path.</p>
   gets a signature only when it crosses an organization boundary. Inside
   one organization, signing is not planned
   (<a href="https://github.com/ICTU/GBO-demo/issues/426">#426</a>, closed as not
-  planned). If a source holder lets another organization build or host
+  planned). If a bronhouder lets another organization build or host
   its bundles, signing and verification become a requirement
   (<a href="../../traceability/findings-closed/#f-09">F-09</a>).</li>
 </ul>
-<p>Two components have the name Manager. The OpenFTV Manager manages policy.
-The FSC Manager manages contracts and issues access tokens. Always name
+<p>Two components have the name Manager. The <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager manages policy.
+The <abbr title="Federated Service Connectivity">FSC</abbr> Manager manages contracts and issues access tokens. Always name
 which Manager you mean.</p>
-<p>The ADL database (<code>postgres-ftv</code>) runs in every profile, because the PDP
-does not start without it. Only the OpenFTV Manager, its management
+<p>The <abbr title="Authorization Decision Log">ADL</abbr> database (<code>postgres-ftv</code>) runs in every profile, because the <abbr title="Policy Decision Point">PDP</abbr>
+does not start without it. Only the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager, its management
 interface, and Keycloak are opt-in.</p>
 <h2 id="policy-data">Policy data<a class="headerlink" href="#policy-data" title="Permanent link">&para;</a></h2>
 <p>Rules use data from four sources, each with its own lifecycle:</p>
@@ -4839,11 +4839,11 @@ interface, and Keycloak are opt-in.</p>
 </tr>
 <tr>
 <td>In the bundle</td>
-<td>Schema digests per FSC service (<code>graphql_schemas.rego</code>)</td>
+<td>Schema digests per <abbr title="Federated Service Connectivity">FSC</abbr> service (<code>graphql_schemas.rego</code>)</td>
 <td>Generated from the bundled schemas. CI checks drift</td>
 </tr>
 <tr>
-<td>PIP pull</td>
+<td><abbr title="Policy Information Point">PIP</abbr> pull</td>
 <td>Admission register: <code>active</code>, <code>allowed_source_peer_ids</code>, integrator mandates <code>acts_for</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml"><code>dvtp-onboarding.yaml</code></a>)</td>
 <td>Refreshed every 5 seconds</td>
 </tr>
@@ -4854,13 +4854,13 @@ interface, and Keycloak are opt-in.</p>
 </tr>
 </tbody>
 </table>
-<p>A place on a PID actor list (<code>designated_issuers</code>, <code>asip</code>) is an admission
+<p>A place on a <abbr title="Person Identification Data">PID</abbr> actor list (<code>designated_issuers</code>, <code>asip</code>) is an admission
 decision with authorization weight. In every environment, those lists must
 stay disjoint from the consent consumers
 (<a href="../../traceability/findings/#f-70">F-70</a>,
 <a href="../authorization/#regime-selection">Authorization</a>). In demo v0.9.0, the
 lists are policy data and not register data.</p>
-<h2 id="guidelines-for-source-holders">Guidelines for source holders<a class="headerlink" href="#guidelines-for-source-holders" title="Permanent link">&para;</a></h2>
+<h2 id="guidelines-for-source-holders">Guidelines for bronhouders<a class="headerlink" href="#guidelines-for-source-holders" title="Permanent link">&para;</a></h2>
 <p>Each guideline has a demo status in demo v0.9.0:</p>
 <table>
 <thead>
@@ -4871,12 +4871,12 @@ lists are policy data and not register data.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../requirements/authorization/#rl-01">RL-01</a> Deliver policy as a versioned bundle. Do not bake it into the PDP</td>
+<td><a href="../../requirements/authorization/#rl-01">RL-01</a> Deliver policy as a versioned bundle. Do not bake it into the <abbr title="Policy Decision Point">PDP</abbr></td>
 <td>Opt-in only (<code>make demo-manager</code>). The default mounts the policies. No signature</td>
 </tr>
 <tr>
 <td><a href="../../requirements/authorization/#rl-02">RL-02</a> Authorize the management API with its own policy set. Deny on an empty store</td>
-<td>Built for the Manager (Cedar). The PDP itself does not obey it (<a href="../../traceability/findings/#f-51">F-51</a>). The engine opens up on an empty store</td>
+<td>Built for the Manager (Cedar). The <abbr title="Policy Decision Point">PDP</abbr> itself does not obey it (<a href="../../traceability/findings/#f-51">F-51</a>). The engine opens up on an empty store</td>
 </tr>
 <tr>
 <td><a href="../../requirements/authorization/#rl-03">RL-03</a> Separate writing from publishing. Publish with a non-personal, short-lived identity</td>
@@ -4892,23 +4892,23 @@ lists are policy data and not register data.</p>
 </tr>
 </tbody>
 </table>
-<p>Each guideline is a SHOULD for the source holder. A promotion rule names
+<p>Each guideline is a SHOULD for the bronhouder. A promotion rule names
 when the guideline becomes a requirement.</p>
 <h2 id="policy-version-and-the-decision-record">Policy version and the decision record<a class="headerlink" href="#policy-version-and-the-decision-record" title="Permanent link">&para;</a></h2>
 <p>The decision record must name the policy version that decided
 (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>). This is not built.
-The ADL records show no policy version, also when the PDP runs on a
+The <abbr title="Authorization Decision Log">ADL</abbr> records show no policy version, also when the <abbr title="Policy Decision Point">PDP</abbr> runs on a
 versioned bundle. Without the version, nobody can trace a decision back to
 the rule text.</p>
 <p>Withdrawn policy stays in the Manager. This is a precondition for the
-trace (RL-04). For the ADL itself, see
+trace (RL-04). For the <abbr title="Authorization Decision Log">ADL</abbr> itself, see
 <a href="../logging/">Logging</a>.</p>
 <h2 id="divergence-rego-not-odrl">Divergence: Rego, not ODRL<a class="headerlink" href="#divergence-rego-not-odrl" title="Permanent link">&para;</a></h2>
-<p>PSA S06 names ODRL as a policy language option. GBO uses Rego for every
-decision, and the OpenFTV Manager uses Cedar for its own API. GBO keeps
+<p>PSA S06 names ODRL as a policy language option. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> uses Rego for every
+decision, and the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager uses Cedar for its own API. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> keeps
 this choice. <a href="../../risks/">Risks and technical debt</a> records the deviation.
 Per <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-13</a>, the
-deviation must go to the standards gremia. It is open how the reference
+deviation must go to the standards bodies. It is open how the reference
 policy shows that it is not tied to one language or engine
 (<a href="../../traceability/open-questions/#q-78">Q-78</a>).</p>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -4918,6 +4918,7 @@ policy shows that it is not tied to one language or engine
 <li>Open questions: <a href="../../traceability/answered-questions/#q-02">Q-02</a> (answered), <a href="../../traceability/answered-questions/#q-21">Q-21</a> (answered), <a href="../../traceability/open-questions/#q-78">Q-78</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-13">SL-13</a> (done), <a href="../../traceability/increments/#sl-44">SL-44</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

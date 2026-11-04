@@ -1294,7 +1294,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1410,7 +1410,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4576,17 +4576,17 @@
   
 
 
-<h1 id="gbo-basis">GBO Basis<a class="headerlink" href="#gbo-basis" title="Permanent link">&para;</a></h1>
-<p>GBO Basis opens a government source in one standard way, for every
-channel. It runs at the bronhouder: each source has its own FSC Inway, its
-own PDP and its own source gateway. No central server decides for all
+<h1 id="gbo-basis"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis<a class="headerlink" href="#gbo-basis" title="Permanent link">&para;</a></h1>
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis opens a government source in one standard way, for every
+channel. It runs at the bronhouder: each source has its own <abbr title="Federated Service Connectivity">FSC</abbr> Inway, its
+own <abbr title="Policy Decision Point">PDP</abbr> and its own source gateway. No central server decides for all
 sources (<a href="../../decisions/0004-federated-authorization/">ADR-0004</a>).
-GBO delivers the components, and the bronhouder runs them
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers the components, and the bronhouder runs them
 (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>).</p>
-<p><a href="../">Overview</a> › GBO Basis</p>
-<h2 id="inside-gbo-basis">Inside GBO Basis<a class="headerlink" href="#inside-gbo-basis" title="Permanent link">&para;</a></h2>
+<p><a href="../">Overview</a> › <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</p>
+<h2 id="inside-gbo-basis">Inside <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis<a class="headerlink" href="#inside-gbo-basis" title="Permanent link">&para;</a></h2>
 <p>The Globaal Ontwerp names four parts: a standard interface, generic source
-access, configurable authorization, and GBO tools. The following figure
+access, configurable authorization, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> tools. The following figure
 shows the components that make up these parts in gbo-demo v0.9.0:</p>
 <div class="mermaid">flowchart LR
   caller["Caller&lt;br/&gt;(any channel)"]
@@ -4617,7 +4617,7 @@ shows the components that make up these parts in gbo-demo v0.9.0:</p>
     reg[("Source registry")]
     tools("GBO tools&lt;br/&gt;&lt;i&gt;design only&lt;/i&gt;")
   end
-  tr[("Toestemmingsregister")]
+  tr[("Consent register")]
 
   caller -- "FSC request" --&gt; inway
   caller -. "contract proposal" .-&gt; mgr
@@ -4664,7 +4664,7 @@ shows the components that make up these parts in gbo-demo v0.9.0:</p>
   click meta "source-configuration/" "Source configuration"
   click reg "source-configuration/" "Source configuration"
   click rec "records/" "Records"</div>
-<p class="caption"><em>Figure 1: The parts of GBO Basis. Thick border: click to zoom in.</em></p>
+<p class="caption"><em>Figure 1: The parts of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis. Thick border: click to zoom in.</em></p>
 <p>The parts have the following roles:</p>
 <table>
 <thead>
@@ -4678,14 +4678,14 @@ shows the components that make up these parts in gbo-demo v0.9.0:</p>
 <tbody>
 <tr>
 <td>Standard interface</td>
-<td>FSC Inway, FSC Manager, FSC Outway of the caller</td>
-<td>Every connection to a source runs over FSC, with mTLS and a contract (<a href="../../decisions/0003-fsc-connectivity/">ADR-0003</a>). The Inway is the PEP.</td>
-<td><a href="../components/#level-2-fsc-group">FSC group</a></td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> Inway, <abbr title="Federated Service Connectivity">FSC</abbr> Manager, <abbr title="Federated Service Connectivity">FSC</abbr> Outway of the caller</td>
+<td>Every connection to a source runs over <abbr title="Federated Service Connectivity">FSC</abbr>, with mTLS and a contract (<a href="../../decisions/0003-fsc-connectivity/">ADR-0003</a>). The Inway is the <abbr title="Policy Enforcement Point">PEP</abbr>.</td>
+<td><a href="../components/#level-2-fsc-group"><abbr title="Federated Service Connectivity">FSC</abbr> group</a></td>
 </tr>
 <tr>
 <td>Configurable authorization</td>
-<td>PDP, policy set, admission register</td>
-<td>The PDP decides on every request and on every contract proposal. Policy is configuration, not code.</td>
+<td><abbr title="Policy Decision Point">PDP</abbr>, policy set, admission register</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> decides on every request and on every contract proposal. Policy is configuration, not code.</td>
 <td><a href="authorization/">Authorization</a></td>
 </tr>
 <tr>
@@ -4697,23 +4697,23 @@ shows the components that make up these parts in gbo-demo v0.9.0:</p>
 <tr>
 <td>Policy rules</td>
 <td>Policy set, its tests and its distribution</td>
-<td>The rules are data for the PDP. Each bronhouder manages its own set.</td>
+<td>The rules are data for the <abbr title="Policy Decision Point">PDP</abbr>. Each bronhouder manages its own set.</td>
 <td><a href="policy/">Policy rules</a></td>
 </tr>
 <tr>
 <td>Records</td>
-<td>ADL, LDV logbooks, FSC txlog</td>
+<td><abbr title="Authorization Decision Log">ADL</abbr>, <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbooks, <abbr title="Federated Service Connectivity">FSC</abbr> txlog</td>
 <td>Every decision, processing and transport leaves a record, linked by one trace ID.</td>
 <td><a href="records/">Records</a></td>
 </tr>
 <tr>
 <td>Source configuration</td>
 <td>Source metadata, source registry</td>
-<td>The source describes its own services. GBO validates and activates that description.</td>
+<td>The source describes its own services. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates and activates that description.</td>
 <td><a href="source-configuration/">Source configuration</a></td>
 </tr>
 <tr>
-<td>GBO tools</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> tools</td>
 <td>Translation layer, onboarding toolkit</td>
 <td>Help a bronhouder without a GraphQL API. Not built.</td>
 <td><a href="../../decisions/0027-onboarding-toolkit/">ADR-0027</a></td>
@@ -4721,7 +4721,7 @@ shows the components that make up these parts in gbo-demo v0.9.0:</p>
 </tbody>
 </table>
 <h2 id="the-request-path">The request path<a class="headerlink" href="#the-request-path" title="Permanent link">&para;</a></h2>
-<p>A request through GBO Basis has the same steps in every channel. The PDP
+<p>A request through <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis has the same steps in every channel. The <abbr title="Policy Decision Point">PDP</abbr>
 decides before anything reaches the source. The source gateway does its
 work only after an allow:</p>
 <div class="mermaid">sequenceDiagram
@@ -4756,35 +4756,35 @@ work only after an allow:</p>
     API-&gt;&gt;R: processing record (LDV)
     API--&gt;&gt;C: only the selected fields
   end</div>
-<p class="caption"><em>Figure 2: One request through GBO Basis.</em></p>
+<p class="caption"><em>Figure 2: One request through <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis.</em></p>
 <p>The steps work as follows:</p>
 <ol>
-<li>The caller sends a GraphQL query through its FSC Outway. The Inway
+<li>The caller sends a GraphQL query through its <abbr title="Federated Service Connectivity">FSC</abbr> Outway. The Inway
    checks the certificate and the contract of the caller.</li>
-<li>The Inway sends the request, with its raw body, to the PDP as an
-   AuthZEN question. The Inway does not read the query
+<li>The Inway sends the request, with its raw body, to the <abbr title="Policy Decision Point">PDP</abbr> as an
+   <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> question. The Inway does not read the query
    (<a href="../../requirements/authorization/#req-42">REQ-42</a>).</li>
-<li>The PDP turns the query into a list of fields, selects the regime from
+<li>The <abbr title="Policy Decision Point">PDP</abbr> turns the query into a list of fields, selects the regime from
    the evidence, and decides each field.
    <a href="authorization/">Authorization</a> shows how.</li>
-<li>The PDP writes the decision to the ADL, the audit record of decisions
+<li>The <abbr title="Policy Decision Point">PDP</abbr> writes the decision to the <abbr title="Authorization Decision Log">ADL</abbr>, the audit record of decisions
    (<a href="../../decisions/0036-adl-decision-record/">ADR-0036</a>).</li>
 <li>On a deny, the source sees nothing. By design, the caller gets a
-   coarse reason code. The FSC Inway of demo v0.9.0 drops that code on
+   coarse reason code. The <abbr title="Federated Service Connectivity">FSC</abbr> Inway of demo v0.9.0 drops that code on
    the way back.</li>
 <li>On an allow, the Inway passes the request to the source gateway. Only
    the Inway can reach the gateway
    (<a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>).</li>
 <li>Under consent, the gateway decrypts the value that the consent proof
-   holds for this source. It puts the BSN or the source pseudonym in the
+   holds for this source. It puts the <abbr title="Burgerservicenummer">BSN</abbr> or the source pseudonym in the
    place of the placeholder. Without a consent proof, it passes the query
    unchanged.</li>
 <li>The source runs the query and returns only the selected fields
    (<a href="../../requirements/authorization/#req-08">REQ-08</a>). It logs the
-   processing in its own LDV logbook.</li>
+   processing in its own <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook.</li>
 </ol>
 <h2 id="what-the-bronhouder-runs">What the bronhouder runs<a class="headerlink" href="#what-the-bronhouder-runs" title="Permanent link">&para;</a></h2>
-<p>GBO delivers the components as reference components. The bronhouder
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers the components as reference components. The bronhouder
 chooses to run them, or a working equivalent that meets the same
 interfaces. The following figure shows who owns what at one source:</p>
 <div class="mermaid">flowchart TB
@@ -4807,7 +4807,7 @@ interfaces. The following figure shows who owns what at one source:</p>
     direction LR
     adm[("Admission register")]
     reg[("Source registry")]
-    tr[("Toestemmingsregister")]
+    tr[("Consent register")]
   end
   own ~~~ deliv ~~~ run
   %% GBO diagram palette: the same colors as the Globaal Ontwerp
@@ -4829,23 +4829,23 @@ interfaces. The following figure shows who owns what at one source:</p>
   style deliv fill:#F4F5F7,stroke:#16A34A
   style run fill:#F4F5F7,stroke:#D1D5DB</div>
 <p class="caption"><em>Figure 3: Ownership at one source.</em></p>
-<p>The PEP, the PDP, policy management and source access are decentral, at
-the bronhouder. The toestemmingsvoorziening is central and mandatory for
-DvTP (<a href="../../traceability/answered-questions/#q-10">Q-10</a>,
+<p>The <abbr title="Policy Enforcement Point">PEP</abbr>, the <abbr title="Policy Decision Point">PDP</abbr>, policy management and source access are decentral, at
+the bronhouder. The consent facility (toestemmingsvoorziening) is central and mandatory for
+<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> (<a href="../../traceability/answered-questions/#q-10">Q-10</a>,
 <a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>). The PSA
 has not decided who operates the central facilities (open decisions
 <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-06 and B-17</a>).
-The demo runs everything in one stack and shares one PDP between the
+The demo runs everything in one stack and shares one <abbr title="Policy Decision Point">PDP</abbr> between the
 sources. That is a demo shortcut.</p>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
-<p>The main open points in GBO Basis are these:</p>
+<p>The main open points in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis are these:</p>
 <ul>
-<li>The PID regime has no positive evidence of its own. A request without a
+<li>The <abbr title="Person Identification Data">PID</abbr> regime has no positive evidence of its own. A request without a
   consent proof enters it (<a href="../../traceability/findings/#f-70">F-70</a>).</li>
 <li>The rule "only after the decision" depends on the network. Only the
   Inway can be allowed to reach the source gateway
   (<a href="../../traceability/findings/#f-79">F-79</a>).</li>
-<li>The ADL record holds only what the consumer also sees
+<li>The <abbr title="Authorization Decision Log">ADL</abbr> record holds only what the consumer also sees
   (<a href="../../traceability/findings/#f-72">F-72</a>).</li>
 <li>A broken policy module stops every decision, without a visible
   fallback (<a href="../../traceability/findings/#f-52">F-52</a>).</li>
@@ -4867,6 +4867,7 @@ sources. That is a demo shortcut.</p>
   <a href="../../traceability/increments/#sl-45">SL-45</a> (done),
   <a href="../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

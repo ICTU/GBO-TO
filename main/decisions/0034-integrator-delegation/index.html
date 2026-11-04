@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4576,7 +4576,7 @@
   
 
 
-<h1 id="adr-0034-an-integrator-connects-under-fsc-delegation-and-the-consent-binds-the-represented-party">ADR-0034: An integrator connects under FSC delegation, and the consent binds the represented party<a class="headerlink" href="#adr-0034-an-integrator-connects-under-fsc-delegation-and-the-consent-binds-the-represented-party" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0034-an-integrator-connects-under-fsc-delegation-and-the-consent-binds-the-represented-party">ADR-0034: An integrator connects under <abbr title="Federated Service Connectivity">FSC</abbr> delegation, and the consent binds the represented party<a class="headerlink" href="#adr-0034-an-integrator-connects-under-fsc-delegation-and-the-consent-binds-the-represented-party" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: accepted</li>
 <li>Date: 2026-11-02</li>
@@ -4588,14 +4588,14 @@
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvtp_helper.rego#L57-L65">dvtp_helper.rego</a>: the consent binds the represented party.</li>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L113-L125">autosign.rego</a>: the delegated grant.</li>
 <li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/internal/onboarding/service.go#L50-L58">onboarding service.go</a>: <code>integrations</code> and <code>acts_for</code>.</li>
-<li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml">dvtp-onboarding.yaml</a>: the PIP pull.</li>
+<li><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml">dvtp-onboarding.yaml</a>: the <abbr title="Policy Information Point">PIP</abbr> pull.</li>
 </ul>
 </li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>A consumer (dienstverlener) can let a software party, the integrator,
+<p>A consumer (afnemer) can let a software party, the integrator,
 call the source for it. The consent binds a consumer. The policy
-compared the <code>dienstverlener_oin</code> of the consent with the FSC peer that
+compared the <code>dienstverlener_oin</code> of the consent with the <abbr title="Federated Service Connectivity">FSC</abbr> peer that
 calls. An integrator breaks that assumption
 (<a href="../../traceability/findings-closed/#f-73">F-73</a>). The integrator calls, but
 the citizen gave consent to the consumer.</p>
@@ -4607,7 +4607,7 @@ registered it (<a href="../../requirements/consent/#req-106">REQ-106</a>).</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p>The decision has four parts:</p>
 <ul>
-<li>Transport. The integrator connects over an FSC
+<li>Transport. The integrator connects over an <abbr title="Federated Service Connectivity">FSC</abbr>
   <code>DelegatedServiceConnection</code> grant (grant type 3). The consumer is the
   delegator and signs the contract.</li>
 <li>Contract admission. The contract decision of the source admits a
@@ -4615,7 +4615,7 @@ registered it (<a href="../../requirements/consent/#req-106">REQ-106</a>).</p>
   If not, the decision refuses with <code>DELEGATION_NOT_REGISTERED</code>
   (<a href="../0015-contract-acceptance-by-policy/">ADR-0015</a>).</li>
 <li>Mandate. The admission register records per integrator the consumers
-  and the rules that it acts for (<code>integrations</code>, pulled into OpenFTV as
+  and the rules that it acts for (<code>integrations</code>, pulled into <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> as
   <code>acts_for</code>). At request time, every delegated call needs a mandate for
   the represented party and the granting rule:<ul>
 <li>If the mandate is missing, the engine denies with
@@ -4627,17 +4627,17 @@ registered it (<a href="../../requirements/consent/#req-106">REQ-106</a>).</p>
 </ul>
 </li>
 <li>Consent binding. The consent binds the represented party. That is the
-  FSC delegator, or the calling peer if there is no delegator. The
+  <abbr title="Federated Service Connectivity">FSC</abbr> delegator, or the calling peer if there is no delegator. The
   consent gives the integrator no mandate.</li>
 </ul>
 <h2 id="considered-options">Considered options<a class="headerlink" href="#considered-options" title="Permanent link">&para;</a></h2>
 <ol>
-<li>FSC delegation plus a mandate in the admission register (chosen).</li>
+<li><abbr title="Federated Service Connectivity">FSC</abbr> delegation plus a mandate in the admission register (chosen).</li>
 <li>The integrator calls with its own direct grant. The source then sees
    only the integrator. Either the consent binding fails, or the
    integrator gets access of its own.</li>
 <li>The integrator in the consent proof. With this option, the citizen
-   also consents to the integrator. FR-DvTP v0.9 does not ask any more to
+   also consents to the integrator. FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 does not ask any more to
    tell the citizen about the integrator. It stays open whether the proof
    names the integrator (<a href="../../traceability/open-questions/#q-46">Q-46</a>).</li>
 <li>No integrator role (the earlier TO). Real consumers use software
@@ -4661,7 +4661,7 @@ registered it (<a href="../../requirements/consent/#req-106">REQ-106</a>).</p>
   decision admits the pair, but not the direction of the delegation. The
   mandate check at request time closes that gap.</li>
 <li>In the demo, the path is opt-in (<code>make demo-integrator</code>, peer <code>…1100</code>).</li>
-<li>One point is open: can policy read the FSC Peer ID as the OIN of the
+<li>One point is open: can policy read the <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID as the <abbr title="Organisatie-identificatienummer">OIN</abbr> of the
   consumer (<a href="../../traceability/open-questions/#q-68">Q-68</a>)?</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -4671,6 +4671,7 @@ registered it (<a href="../../requirements/consent/#req-106">REQ-106</a>).</p>
 <li>Open questions: <a href="../../traceability/answered-questions/#q-12">Q-12</a> (answered), <a href="../../traceability/open-questions/#q-46">Q-46</a> (open), <a href="../../traceability/open-questions/#q-68">Q-68</a> (open)</li>
 <li>Demo increments: none</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

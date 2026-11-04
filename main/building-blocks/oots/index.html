@@ -1190,7 +1190,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1306,7 +1306,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4589,16 +4589,16 @@
   
 
 
-<h1 id="oots-channel">OOTS channel<a class="headerlink" href="#oots-channel" title="Permanent link">&para;</a></h1>
-<p>In the OOTS channel, a public authority in another EU member state gets
+<h1 id="oots-channel"><abbr title="Once-Only Technical System">OOTS</abbr> channel<a class="headerlink" href="#oots-channel" title="Permanent link">&para;</a></h1>
+<p>In the <abbr title="Once-Only Technical System">OOTS</abbr> channel, a public authority in another EU member state gets
 evidence from a Dutch source. The authority needs the evidence for a
-procedure under the Single Digital Gateway Regulation. The Basisinrichting OOTS handles the European
-transport and the interaction with the citizen. GBO adds an OOTS adapter
-in front of GBO Basis, so the bronhouder sees a normal FSC request. This
+procedure under the Single Digital Gateway Regulation. The Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr> handles the European
+transport and the interaction with the citizen. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> adds an <abbr title="Once-Only Technical System">OOTS</abbr> adapter
+in front of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis, so the bronhouder sees a normal <abbr title="Federated Service Connectivity">FSC</abbr> request. This
 is interaction pattern B of the
 <a href="https://ictu.github.io/GBO-GO/main/#patroon-b-grensoverschrijdend-verzoek-via-oots">Globaal Ontwerp</a>.
 The channel is design only: it is not built in demo v0.9.0.</p>
-<p><a href="../">Overview</a> › OOTS channel</p>
+<p><a href="../">Overview</a> › <abbr title="Once-Only Technical System">OOTS</abbr> channel</p>
 <h2 id="inside-the-channel">Inside the channel<a class="headerlink" href="#inside-the-channel" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
   burger(["Citizen"])
@@ -4653,8 +4653,8 @@ The channel is design only: it is not built in demo v0.9.0.</p>
   click map "../../decisions/0024-canonical-semantic-models/" "Canonical semantic models"
   click pdp "../gbo-basis/authorization/" "Authorization"
   click gw "../gbo-basis/source-access/" "Generic source access"</div>
-<p class="caption"><em>Figure 1: The OOTS channel. Dashed: design only (not built in demo
-v0.9.0). Grey: parties outside GBO.</em></p>
+<p class="caption"><em>Figure 1: The <abbr title="Once-Only Technical System">OOTS</abbr> channel. Dashed: design only (not built in demo
+v0.9.0). Grey: parties outside <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</em></p>
 <p>The channel has these parts:</p>
 <table>
 <thead>
@@ -4666,13 +4666,13 @@ v0.9.0). Grey: parties outside GBO.</em></p>
 </thead>
 <tbody>
 <tr>
-<td>Basisinrichting OOTS</td>
-<td>Delivered by RINIS for the ministries of BZK and EZK. Its part OOTS-V receives evidence requests and has the citizen authenticate again. It checks for a mix-up of identities, fetches the data, and shows them to the citizen before it sends them. Not a GBO component</td>
+<td>Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr></td>
+<td>Delivered by RINIS for the Ministry of the Interior (BZK) and the Ministry of Economic Affairs (EZK). Its part <abbr title="Once-Only Technical System">OOTS</abbr>-V receives evidence requests and has the citizen authenticate again. It checks for a mix-up of identities, fetches the data, and shows them to the citizen before it sends them. Not a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component</td>
 <td><a href="https://ictu.github.io/GBO-GO/main/#patroon-b-grensoverschrijdend-verzoek-via-oots">GO pattern B</a></td>
 </tr>
 <tr>
 <td>Protocol adapter</td>
-<td>Translates the OOTS request into a GraphQL query over FSC and passes it on. It decides nothing about source data (<a href="../../requirements/authorization/#req-44">REQ-44</a>)</td>
+<td>Translates the <abbr title="Once-Only Technical System">OOTS</abbr> request into a GraphQL query over <abbr title="Federated Service Connectivity">FSC</abbr> and passes it on. It decides nothing about source data (<a href="../../requirements/authorization/#req-44">REQ-44</a>)</td>
 <td><a href="../../decisions/0020-as4-bridge-for-oots/">ADR-0020</a></td>
 </tr>
 <tr>
@@ -4681,15 +4681,15 @@ v0.9.0). Grey: parties outside GBO.</em></p>
 <td><a href="../../decisions/0024-canonical-semantic-models/">ADR-0024</a></td>
 </tr>
 <tr>
-<td>GBO Basis</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</td>
 <td>Decides at the source, field by field, and only then asks the source. The same chain as for every other channel</td>
-<td><a href="../gbo-basis/">GBO Basis</a></td>
+<td><a href="../gbo-basis/"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a></td>
 </tr>
 </tbody>
 </table>
 <h2 id="one-evidence-request">One evidence request<a class="headerlink" href="#one-evidence-request" title="Permanent link">&para;</a></h2>
-<p>The Globaal Ontwerp describes the request in this order. The OOTS process
-steps stay with the Basisinrichting OOTS:</p>
+<p>The Globaal Ontwerp describes the request in this order. The <abbr title="Once-Only Technical System">OOTS</abbr> process
+steps stay with the Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr>:</p>
 <div class="mermaid">sequenceDiagram
   autonumber
   actor B as Citizen
@@ -4721,11 +4721,11 @@ steps stay with the Basisinrichting OOTS:</p>
   OV-&gt;&gt;B: show the data to share
   B-&gt;&gt;OV: choose what to share
   OV-&gt;&gt;EU: evidence response (eDelivery AS4)</div>
-<p class="caption"><em>Figure 2: One OOTS evidence request, after GO pattern B. The runtime
+<p class="caption"><em>Figure 2: One <abbr title="Once-Only Technical System">OOTS</abbr> evidence request, after GO pattern B. The runtime
 page <a href="../../runtime/design-level/#sdg-oots">Design-level scenarios</a> has
 every hop.</em></p>
-<p>OOTS-V sends the data only after the citizen agrees. The member states
-use eDelivery, AS4, ebMS and RegRep. OOTS-EDM specifies the request and
+<p><abbr title="Once-Only Technical System">OOTS</abbr>-V sends the data only after the citizen agrees. The member states
+use eDelivery, AS4, ebMS and RegRep. <abbr title="Once-Only Technical System">OOTS</abbr>-EDM specifies the request and
 response messages, and SDG-EDM describes the evidence. The bronhouder
 applies none of these standards itself.</p>
 <h2 id="two-designs-for-the-edge">Two designs for the edge<a class="headerlink" href="#two-designs-for-the-edge" title="Permanent link">&para;</a></h2>
@@ -4766,31 +4766,31 @@ in different places:</p>
   style adr fill:#F4F5F7,stroke:#D1D5DB</div>
 <p class="caption"><em>Figure 3: Where the AS4 edge sits in the two designs.</em></p>
 <p>In both designs, AS4 exists only at the edge, and the bronhouder sees a
-normal FSC request through the standard PEP and PDP chain. The difference
-is who builds the protocol translation. It is open whether GBO builds the
-adapter, or the OOTS-V operator extends its facility with the GBO
+normal <abbr title="Federated Service Connectivity">FSC</abbr> request through the standard <abbr title="Policy Enforcement Point">PEP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> chain. The difference
+is who builds the protocol translation. It is open whether <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> builds the
+adapter, or the <abbr title="Once-Only Technical System">OOTS</abbr>-V operator extends its facility with the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 interface (<a href="../../traceability/open-questions/#q-79">Q-79</a>, PSA
 <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-12</a>).</p>
-<h2 id="what-the-adapter-reuses-from-gbo-basis">What the adapter reuses from GBO Basis<a class="headerlink" href="#what-the-adapter-reuses-from-gbo-basis" title="Permanent link">&para;</a></h2>
-<p>The adapter is a protocol adapter in front of GBO Basis. It reuses every
-part of GBO Basis and adds no decision of its own:</p>
+<h2 id="what-the-adapter-reuses-from-gbo-basis">What the adapter reuses from <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis<a class="headerlink" href="#what-the-adapter-reuses-from-gbo-basis" title="Permanent link">&para;</a></h2>
+<p>The adapter is a protocol adapter in front of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis. It reuses every
+part of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis and adds no decision of its own:</p>
 <table>
 <thead>
 <tr>
-<th>Part of GBO Basis</th>
-<th>Use for OOTS</th>
+<th>Part of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</th>
+<th>Use for <abbr title="Once-Only Technical System">OOTS</abbr></th>
 <th>State</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>FSC connection and admission</td>
-<td>The adapter calls the source as an FSC consumer, with a contract after admission (<a href="../../requirements/sources-identity/#req-46">REQ-46</a>)</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> connection and admission</td>
+<td>The adapter calls the source as an <abbr title="Federated Service Connectivity">FSC</abbr> consumer, with a contract after admission (<a href="../../requirements/sources-identity/#req-46">REQ-46</a>)</td>
 <td>Design</td>
 </tr>
 <tr>
-<td>PDP and policy</td>
-<td>The PDP of the source decides on every field. OOTS needs a regime, evidence and a rule of its own</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> and policy</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> of the source decides on every field. <abbr title="Once-Only Technical System">OOTS</abbr> needs a regime, evidence and a rule of its own</td>
 <td>Not designed</td>
 </tr>
 <tr>
@@ -4800,32 +4800,32 @@ part of GBO Basis and adds no decision of its own:</p>
 </tr>
 <tr>
 <td>Source configuration</td>
-<td>The Globaal Ontwerp takes the mapping configuration from the bronhouder. The source document has no OOTS capability</td>
+<td>The Globaal Ontwerp takes the mapping configuration from the bronhouder. The source document has no <abbr title="Once-Only Technical System">OOTS</abbr> capability</td>
 <td>Not designed</td>
 </tr>
 <tr>
 <td>Records</td>
-<td>ADL, LDV and the FSC txlog record the request like any other request</td>
+<td><abbr title="Authorization Decision Log">ADL</abbr>, <abbr title="Logboek Dataverwerkingen">LDV</abbr> and the <abbr title="Federated Service Connectivity">FSC</abbr> txlog record the request like any other request</td>
 <td>Built for other channels</td>
 </tr>
 </tbody>
 </table>
-<p>A channel adapter that GBO delivers does only protocol translation
+<p>A channel adapter that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> delivers does only protocol translation
 (<a href="../../requirements/authorization/#req-44">REQ-44</a>). It does not decide
 which data a party gets. It does not fetch decision information such as
 consent or admission. It carries no knowledge of a source in code. It
 uses the source access that the source offers for all interaction
-patterns, and never a koppelvlak for one channel.</p>
+patterns, and never an interface (koppelvlak) for one channel.</p>
 <p>The mapping depends on a canonical model per source. The proposed
-decision makes the GraphQL schema of the bronprofiel that canonical model
+decision makes the GraphQL schema of the source profile that canonical model
 (<a href="../../decisions/0024-canonical-semantic-models/">ADR-0024</a>, proposed).
-GBO then derives the OOTS-EDM evidence-type mappings from it. No central
-canonical model exists. Source holders and domains own their models
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> then derives the <abbr title="Once-Only Technical System">OOTS</abbr>-EDM evidence-type mappings from it. No central
+canonical model exists. Bronhouders and domains own their models
 (<a href="../../traceability/answered-questions/#q-11">Q-11</a>).</p>
 <h2 id="what-demo-v090-does">What demo v0.9.0 does<a class="headerlink" href="#what-demo-v090-does" title="Permanent link">&para;</a></h2>
-<p>The demo does not touch OOTS. It has no adapter, no access point and no
-rule for OOTS. The following figure shows what happens if a peer sends an
-OOTS-like request today:</p>
+<p>The demo does not touch <abbr title="Once-Only Technical System">OOTS</abbr>. It has no adapter, no access point and no
+rule for <abbr title="Once-Only Technical System">OOTS</abbr>. The following figure shows what happens if a peer sends an
+<abbr title="Once-Only Technical System">OOTS</abbr>-like request today:</p>
 <div class="mermaid">flowchart LR
   r(["Request from an&lt;br/&gt;adapter peer"])
   q{"Consent proof&lt;br/&gt;in the request?"}
@@ -4852,12 +4852,12 @@ OOTS-like request today:</p>
   class d dvtp
   class a zoom
   click a "../gbo-basis/authorization/#regime-from-evidence" "Regime from evidence"</div>
-<p class="caption"><em>Figure 4: An OOTS request in demo v0.9.0 ends in a deny.</em></p>
-<p>The request carries no consent proof, so it enters the PID regime. The
-PID rules admit only named callers, and an OOTS adapter is not one of
+<p class="caption"><em>Figure 4: An <abbr title="Once-Only Technical System">OOTS</abbr> request in demo v0.9.0 ends in a deny.</em></p>
+<p>The request carries no consent proof, so it enters the <abbr title="Person Identification Data">PID</abbr> regime. The
+<abbr title="Person Identification Data">PID</abbr> rules admit only named callers, and an <abbr title="Once-Only Technical System">OOTS</abbr> adapter is not one of
 them. The regime follows from the evidence in the request
 (<a href="../../requirements/authorization/#req-74">REQ-74</a>). Without evidence of
-its own, an OOTS request cannot get an allow. Risk
+its own, an <abbr title="Once-Only Technical System">OOTS</abbr> request cannot get an allow. Risk
 <a href="../../risks/#r2">R2</a> tracks the missing bridge.</p>
 <h2 id="compared-with-the-globaal-ontwerp">Compared with the Globaal Ontwerp<a class="headerlink" href="#compared-with-the-globaal-ontwerp" title="Permanent link">&para;</a></h2>
 <p>The TO design follows pattern B in the main line. It differs in the
@@ -4874,44 +4874,44 @@ edge, and the demo has no part of it:</p>
 <tbody>
 <tr>
 <td>AS4 access point</td>
-<td>In the Basisinrichting OOTS</td>
-<td>Domibus at the GBO edge (<a href="../../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>)</td>
+<td>In the Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr></td>
+<td>Domibus at the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> edge (<a href="../../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>)</td>
 <td>None</td>
 </tr>
 <tr>
 <td>Protocol translation to GraphQL</td>
-<td>A translator in the Basisinrichting OOTS. OOTS-V must also support GraphQL</td>
-<td>The FSC translator of the GBO adapter</td>
+<td>A translator in the Basisinrichting <abbr title="Once-Only Technical System">OOTS</abbr>. <abbr title="Once-Only Technical System">OOTS</abbr>-V must also support GraphQL</td>
+<td>The <abbr title="Federated Service Connectivity">FSC</abbr> translator of the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> adapter</td>
 <td>None</td>
 </tr>
 <tr>
 <td>Semantic mapping</td>
-<td>An optional GBO facility, configured by the bronhouder</td>
-<td>An OOTS-EDM adapter, based on the canonical model per source (<a href="../../decisions/0024-canonical-semantic-models/">ADR-0024</a>)</td>
+<td>An optional <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> facility, configured by the bronhouder</td>
+<td>An <abbr title="Once-Only Technical System">OOTS</abbr>-EDM adapter, based on the canonical model per source (<a href="../../decisions/0024-canonical-semantic-models/">ADR-0024</a>)</td>
 <td>None</td>
 </tr>
 <tr>
 <td>Basis for the request</td>
 <td>Policy checks a basis other than consent</td>
-<td>A legal-basis path in the Gov-to-Gov style, needed and not built</td>
-<td>No rule: the PDP denies</td>
+<td>A legal-basis path in the <abbr title="The route in which a government consumer gets data on a legal basis, without consent">Gov-to-Gov</abbr> style, needed and not built</td>
+<td>No rule: the <abbr title="Policy Decision Point">PDP</abbr> denies</td>
 </tr>
 </tbody>
 </table>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
-<p>The main open points in the OOTS channel are these:</p>
+<p>The main open points in the <abbr title="Once-Only Technical System">OOTS</abbr> channel are these:</p>
 <ul>
-<li>Who builds the adapter, and where the boundary between OOTS-V and the
+<li>Who builds the adapter, and where the boundary between <abbr title="Once-Only Technical System">OOTS</abbr>-V and the
   mapping function is (<a href="../../traceability/open-questions/#q-79">Q-79</a>).</li>
-<li>The regime and the evidence for an OOTS request. A request without
-  evidence of its own enters the PID regime
+<li>The regime and the evidence for an <abbr title="Once-Only Technical System">OOTS</abbr> request. A request without
+  evidence of its own enters the <abbr title="Person Identification Data">PID</abbr> regime
   (<a href="../../traceability/findings/#f-70">F-70</a>).</li>
 <li>Whether the service description of the source must refer to a managed
   schema and concept framework, as PSA S10 asks
   (<a href="../../traceability/answered-questions/#q-11">Q-11</a>).</li>
 <li>The mapping to SDG-EDM needs traceable versions, as
   <a href="../../requirements/eudi-issuance/#req-124">REQ-124</a> asks for issuance.
-  The requirements register has no OOTS requirement
+  The requirements register has no <abbr title="Once-Only Technical System">OOTS</abbr> requirement
   (<a href="../../traceability/open-questions/#q-79">Q-79</a>).</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -4925,6 +4925,7 @@ edge, and the demo has no part of it:</p>
   <a href="../../traceability/open-questions/#q-79">Q-79</a> (open)</li>
 <li>Demo increments: none</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

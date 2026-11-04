@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4556,12 +4556,13 @@
   
 
 
-<h1 id="dvtp-the-citizen-gives-consent">DvTP: the citizen gives consent<a class="headerlink" href="#dvtp-the-citizen-gives-consent" title="Permanent link">&para;</a></h1>
-<p>A citizen at a private consumer (dienstverlener) goes to the
-toestemmingsportaal, logs in, and gives consent for one or more data sets.
-The result is a consent record in the toestemmingsregister and a signed
+<h1 id="dvtp-the-citizen-gives-consent"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>: the citizen gives consent<a class="headerlink" href="#dvtp-the-citizen-gives-consent" title="Permanent link">&para;</a></h1>
+<p>In <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, the consumer is a private service provider (dienstverlener). A
+citizen at the consumer goes to the consent portal (toestemmingsportaal),
+logs in, and gives consent for one or more data sets.
+The result is a consent record in the consent register (toestemmingsregister) and a signed
 consent proof. The proof goes back to the consumer. The consumer uses the
-proof in <a href="../dvtp-query/">DvTP query</a>.</p>
+proof in <a href="../dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a>.</p>
 <p>For the concepts, see <a href="../../concepts/consent/">Consent</a> and
 <a href="../../concepts/pseudonymization/">Pseudonymization</a>. For the components,
 see <a href="../../building-blocks/components/#level-2-consent-chain">Level 2: consent chain</a>.
@@ -4578,10 +4579,10 @@ proposed).</p>
     box rgb(241,239,232) Consumer
       participant DVF as Consumer frontend
     end
-    box rgb(254,220,216) Toestemmingsvoorziening
+    box rgb(254,220,216) Consent facility
       participant PF as Portal frontend
       participant PB as Consent portal backend
-      participant CR as Toestemmingsregister
+      participant CR as Consent register
     end
     box rgb(241,239,232) External
       participant BSNK as BSNk mock
@@ -4647,7 +4648,7 @@ carries the following data:</p>
 <td>Redirect</td>
 <td><code>service</code>, <code>purpose</code>, <code>scope</code>, <code>client_oin</code>, <code>client_name</code>, <code>valid_until</code>, <code>return_url</code></td>
 <td>—</td>
-<td>Low: OIN and scope. All values are unsigned and come from the URL (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/useRedirectContext.ts#L29-L41"><code>useRedirectContext.ts#L29-L41</code></a>). The portal checks only the return origin. <a href="../../requirements/consent/#req-111">REQ-111</a> asks for the name, the purpose, and the return address from the registration. For more information, see <a href="../../traceability/open-questions/#q-60">Q-60</a></td>
+<td>Low: <abbr title="Organisatie-identificatienummer">OIN</abbr> and scope. All values are unsigned and come from the URL (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/useRedirectContext.ts#L29-L41"><code>useRedirectContext.ts#L29-L41</code></a>). The portal checks only the return origin. <a href="../../requirements/consent/#req-111">REQ-111</a> asks for the name, the purpose, and the return address from the registration. For more information, see <a href="../../traceability/open-questions/#q-60">Q-60</a></td>
 </tr>
 <tr>
 <td>3</td>
@@ -4655,7 +4656,7 @@ carries the following data:</p>
 <td>(UI)</td>
 <td>Login with the DigiD mock</td>
 <td>—</td>
-<td>The citizen types the BSN as the password. This shortcut exists only in the demo</td>
+<td>The citizen types the <abbr title="Burgerservicenummer">BSN</abbr> as the password. This shortcut exists only in the demo</td>
 </tr>
 <tr>
 <td>4</td>
@@ -4663,15 +4664,15 @@ carries the following data:</p>
 <td><code>POST /portal/login</code></td>
 <td><code>citizen_bsn</code></td>
 <td>—</td>
-<td>The <strong>BSN</strong> is in the browser and on the wire. In production, the identity comes from the MijnOverheid login (<a href="../../requirements/consent/#req-24">REQ-24</a>, <a href="../../traceability/open-questions/#q-50">Q-50</a>)</td>
+<td>The <strong><abbr title="Burgerservicenummer">BSN</abbr></strong> is in the browser and on the wire. In production, the identity comes from the MijnOverheid login (<a href="../../requirements/consent/#req-24">REQ-24</a>, <a href="../../traceability/open-questions/#q-50">Q-50</a>)</td>
 </tr>
 <tr>
 <td>5</td>
 <td>Portal backend → portal frontend</td>
 <td>—</td>
 <td>—</td>
-<td>Portal token, HS256, <code>sub</code> = BSN</td>
-<td>The <strong>BSN</strong> is inside the token (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/portalhttp/auth.go#L17-L36"><code>auth.go#L17-L36</code></a>). Later calls send this token instead of a raw BSN</td>
+<td>Portal token, HS256, <code>sub</code> = <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>The <strong><abbr title="Burgerservicenummer">BSN</abbr></strong> is inside the token (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/portalhttp/auth.go#L17-L36"><code>auth.go#L17-L36</code></a>). Later calls send this token instead of a raw <abbr title="Burgerservicenummer">BSN</abbr></td>
 </tr>
 <tr>
 <td>6</td>
@@ -4687,15 +4688,15 @@ carries the following data:</p>
 <td><code>POST /portal/consents</code></td>
 <td>Portal token, <code>dienstverlener_oin</code>, <code>scopes</code>, <code>validity_seconds</code>, <code>use_case</code></td>
 <td>—</td>
-<td>The body holds no BSN. The backend takes the BSN from the verified token. <code>use_case</code> is the redirect <code>purpose</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L77-L87"><code>PortaalConsent.tsx#L77-L87</code></a>). The consumer sets the validity (<a href="../../traceability/open-questions/#q-13">Q-13</a>)</td>
+<td>The body holds no <abbr title="Burgerservicenummer">BSN</abbr>. The backend takes the <abbr title="Burgerservicenummer">BSN</abbr> from the verified token. <code>use_case</code> is the redirect <code>purpose</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L77-L87"><code>PortaalConsent.tsx#L77-L87</code></a>). The consumer sets the validity (<a href="../../traceability/open-questions/#q-13">Q-13</a>)</td>
 </tr>
 <tr>
 <td>8</td>
 <td>Portal backend (internal)</td>
 <td>—</td>
-<td>BSN</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr></td>
 <td><code>subject_ref</code></td>
-<td>The portal computes an HMAC of the BSN with its own secret, versioned key (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/subjectref.go#L40-L52"><code>subjectref.go#L40-L52</code></a>, <a href="../../requirements/pseudonymization/#route-d">route D</a>). The portal does not call BSNk</td>
+<td>The portal computes an HMAC of the <abbr title="Burgerservicenummer">BSN</abbr> with its own secret, versioned key (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/subjectref.go#L40-L52"><code>subjectref.go#L40-L52</code></a>, <a href="../../requirements/pseudonymization/#route-d">route D</a>). The portal does not call BSNk</td>
 </tr>
 <tr>
 <td>9</td>
@@ -4717,32 +4718,32 @@ carries the following data:</p>
 <td>11</td>
 <td>Portal backend → BSNk</td>
 <td><code>POST /v2/activate</code></td>
-<td>BSN, requester OIN and key set version of the portal</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr>, requester <abbr title="Organisatie-identificatienummer">OIN</abbr> and key set version of the portal</td>
 <td>—</td>
-<td>The portal sends the <strong>BSN</strong> to BSNk, once per citizen. The mock follows the BSNk interface, but uses JSON instead of SOAP (<a href="../../requirements/pseudonymization/#bsnk-11">BSNK-11</a>)</td>
+<td>The portal sends the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong> to BSNk, once per citizen. The mock follows the BSNk interface, but uses JSON instead of SOAP (<a href="../../requirements/pseudonymization/#bsnk-11">BSNK-11</a>)</td>
 </tr>
 <tr>
 <td>12</td>
 <td>BSNk → portal backend</td>
 <td>—</td>
 <td>—</td>
-<td>PI and PP</td>
+<td><abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr></td>
 <td>Medium. Only the portal, as requester, can use them (<a href="../../requirements/pseudonymization/#bsnk-03">BSNK-03</a>)</td>
 </tr>
 <tr>
 <td>13</td>
 <td>Portal backend → register</td>
 <td><code>PUT /subjects/{subject_ref}/polymorphic</code></td>
-<td><code>subject_ref</code>, PI, PP</td>
+<td><code>subject_ref</code>, <abbr title="Polymorphic identity">PI</abbr>, <abbr title="Polymorphic pseudonym">PP</abbr></td>
 <td>—</td>
-<td>The register keeps PI and PP under the reference (<a href="../../requirements/pseudonymization/#req-69">REQ-69</a>). The register gets no BSN and no per-party value</td>
+<td>The register keeps <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> under the reference (<a href="../../requirements/pseudonymization/#req-69">REQ-69</a>). The register gets no <abbr title="Burgerservicenummer">BSN</abbr> and no per-party value</td>
 </tr>
 <tr>
 <td>14</td>
 <td>Register → portal backend</td>
 <td>—</td>
 <td>—</td>
-<td>PI and PP</td>
+<td><abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr></td>
 <td>Later consent: the portal finds the values again and does not activate (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L298-L321"><code>portal.go#L298-L321</code></a>)</td>
 </tr>
 <tr>
@@ -4758,14 +4759,14 @@ carries the following data:</p>
 <td>BSNk → portal backend</td>
 <td>—</td>
 <td>—</td>
-<td>OINs that can receive the BSN</td>
-<td>The BSN authorization list (<a href="../../requirements/pseudonymization/#bsnk-06">BSNK-06</a>). If the copy is too old and BSNk does not answer, the portal gives no consent</td>
+<td>OINs that can receive the <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>The <abbr title="Burgerservicenummer">BSN</abbr> authorization list (<a href="../../requirements/pseudonymization/#bsnk-06">BSNK-06</a>). If the copy is too old and BSNk does not answer, the portal gives no consent</td>
 </tr>
 <tr>
 <td>17</td>
 <td>Portal backend → BSNk</td>
 <td><code>POST /v2/transform</code></td>
-<td>PP, per source <code>EntityID</code> (OIN), <code>KeySetVersion</code>, <code>IdentifierType=Pseudonym</code></td>
+<td><abbr title="Polymorphic pseudonym">PP</abbr>, per source <code>EntityID</code> (<abbr title="Organisatie-identificatienummer">OIN</abbr>), <code>KeySetVersion</code>, <code>IdentifierType=Pseudonym</code></td>
 <td>—</td>
 <td>The portal makes this call for every source in <code>CONSENT_SOURCES</code>. One call holds at most four parties. More sources give more calls (<a href="../../requirements/pseudonymization/#bsnk-05">BSNK-05</a>)</td>
 </tr>
@@ -4774,14 +4775,14 @@ carries the following data:</p>
 <td>BSNk → portal backend</td>
 <td>—</td>
 <td>—</td>
-<td>VP per source</td>
-<td>Only its own source can read a VP (<a href="../../requirements/pseudonymization/#bsnk-08">BSNK-08</a>). In the demo, anyone can read the values, because the mock does not encrypt</td>
+<td><abbr title="Encrypted pseudonym">VP</abbr> per source</td>
+<td>Only its own source can read a <abbr title="Encrypted pseudonym">VP</abbr> (<a href="../../requirements/pseudonymization/#bsnk-08">BSNK-08</a>). In the demo, anyone can read the values, because the mock does not encrypt</td>
 </tr>
 <tr>
 <td>19</td>
 <td>Portal backend → BSNk</td>
 <td><code>POST /v2/transform</code></td>
-<td>PI, per listed source <code>EntityID</code>, <code>KeySetVersion</code>, <code>IdentifierType=Identity</code></td>
+<td><abbr title="Polymorphic identity">PI</abbr>, per listed source <code>EntityID</code>, <code>KeySetVersion</code>, <code>IdentifierType=Identity</code></td>
 <td>—</td>
 <td>The portal makes this call only for sources on the list. If no source is on the list, this call does not occur. A party can occur only once per call, so each form takes its own call</td>
 </tr>
@@ -4790,16 +4791,16 @@ carries the following data:</p>
 <td>BSNk → portal backend</td>
 <td>—</td>
 <td>—</td>
-<td>VI per listed source</td>
+<td><abbr title="Encrypted identity">VI</abbr> per listed source</td>
 <td>High at the recipient, and unreadable for others. This call and calls 17 and 18 work only while the citizen is logged in (<a href="../../requirements/pseudonymization/#bsnk-04">BSNK-04</a>)</td>
 </tr>
 <tr>
 <td>21</td>
 <td>Portal backend → register</td>
 <td><code>POST /consents</code></td>
-<td><code>encrypted_subject</code> (per OIN a <code>pseudonym</code> and, if listed, an <code>identity</code>, each with <code>key_set_version</code>), <code>subject_ref</code>, <code>dienstverlener_oin</code>, <code>scopes</code>, <code>use_case</code>, <code>validity_seconds</code></td>
+<td><code>encrypted_subject</code> (per <abbr title="Organisatie-identificatienummer">OIN</abbr> a <code>pseudonym</code> and, if listed, an <code>identity</code>, each with <code>key_set_version</code>), <code>subject_ref</code>, <code>dienstverlener_oin</code>, <code>scopes</code>, <code>use_case</code>, <code>validity_seconds</code></td>
 <td>—</td>
-<td>The register never gets a BSN (<a href="../../requirements/consent/#req-23">REQ-23</a>). Before this call, the portal writes its LDV record <code>dataverwerking.bsn-pseudonimisering</code> under <code>subject_ref</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L153-L174"><code>portal.go#L153-L174</code></a>, <a href="../../requirements/logging-audit/#req-72">REQ-72</a>)</td>
+<td>The register never gets a <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../../requirements/consent/#req-23">REQ-23</a>). Before this call, the portal writes its <abbr title="Logboek Dataverwerkingen">LDV</abbr> record <code>dataverwerking.bsn-pseudonimisering</code> under <code>subject_ref</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L153-L174"><code>portal.go#L153-L174</code></a>, <a href="../../requirements/logging-audit/#req-72">REQ-72</a>)</td>
 </tr>
 <tr>
 <td>22</td>
@@ -4815,7 +4816,7 @@ carries the following data:</p>
 <td>—</td>
 <td>—</td>
 <td><code>consent_id</code>, <code>consent_token</code></td>
-<td>Medium-high: the proof. The payload holds no BSN</td>
+<td>Medium-high: the proof. The payload holds no <abbr title="Burgerservicenummer">BSN</abbr></td>
 </tr>
 <tr>
 <td>24</td>
@@ -4851,7 +4852,7 @@ error paths:</p>
 </tr>
 <tr>
 <td>A requested scope that the portal cannot describe</td>
-<td>No redirect. The citizen sees "Onbekend verzoek" and cannot consent (<a href="../../requirements/consent/#req-119">REQ-119</a> gap)</td>
+<td>No redirect. The citizen sees an unknown request (shown as "Onbekend verzoek") and cannot consent (<a href="../../requirements/consent/#req-119">REQ-119</a> gap)</td>
 <td>The scope is in <code>unknown</code> of <code>requestedScopeGroups</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/tests/scopeGroups.test.mjs#L16"><code>scopeGroups.test.mjs#L16</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L63-L75"><code>PortaalConsent.tsx#L63-L75</code></a></td>
 </tr>
@@ -4880,13 +4881,13 @@ error paths:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal_test.go#L639"><code>TestGiveConsentFailsWhenBSNkFails</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/bsnk/bsnk_test.go#L98"><code>TestAnAnswerThatDoesNotMatchIsRefused</code></a></td>
 </tr>
 <tr>
-<td>The copy of the BSN authorization list is too old and BSNk does not answer</td>
+<td>The copy of the <abbr title="Burgerservicenummer">BSN</abbr> authorization list is too old and BSNk does not answer</td>
 <td>No consent (HTTP 502)</td>
 <td><code>read the BSN authorisation list: …</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal_test.go#L512"><code>TestTheAuthorisationListIsNotUsedOutOfDate</code></a></td>
 </tr>
 <tr>
-<td>The portal cannot write its LDV record for the pseudonymization</td>
+<td>The portal cannot write its <abbr title="Logboek Dataverwerkingen">LDV</abbr> record for the pseudonymization</td>
 <td>No consent (HTTP 502)</td>
 <td><code>log pseudonymisation: …</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/logbook_test.go#L116"><code>TestGiveConsentThatCannotBeLoggedCreatesNoConsent</code></a></td>
@@ -4900,7 +4901,7 @@ error paths:</p>
 <tr>
 <td>The register cannot sign, store, or log the consent</td>
 <td>No consent. The register answers 500</td>
-<td><code>could not issue consent token</code>, <code>could not store consent</code>, or the refused LDV record</td>
+<td><code>could not issue consent token</code>, <code>could not store consent</code>, or the refused <abbr title="Logboek Dataverwerkingen">LDV</abbr> record</td>
 <td>Code only: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/main.go#L449-L484"><code>main.go#L449-L484</code></a></td>
 </tr>
 </tbody>
@@ -4909,20 +4910,20 @@ error paths:</p>
 <p>The consent flow in gbo-demo v0.9.0 has these properties and gaps:</p>
 <ul>
 <li>
-<p><strong>The BSN boundary.</strong> The BSN occurs only in these places:</p>
+<p><strong>The <abbr title="Burgerservicenummer">BSN</abbr> boundary.</strong> The <abbr title="Burgerservicenummer">BSN</abbr> occurs only in these places:</p>
 <ul>
 <li>the browser and the portal token (hops 3 to 5),</li>
 <li>the portal backend (hop 8),</li>
 <li>BSNk, at the first consent (hop 11).</li>
 </ul>
-<p>The register and the consumer never see the BSN
+<p>The register and the consumer never see the <abbr title="Burgerservicenummer">BSN</abbr>
 (<a href="../../requirements/pseudonymization/#req-20">REQ-20</a>,
-<a href="../../requirements/consent/#req-23">REQ-23</a>). The BSN in the
+<a href="../../requirements/consent/#req-23">REQ-23</a>). The <abbr title="Burgerservicenummer">BSN</abbr> in the
 browser is a demo shortcut.</p>
 </li>
 <li>
 <p><strong>One activation per citizen.</strong> At every later consent, the portal finds
-  PI and PP under its own reference. Then the portal only transforms
+  <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> under its own reference. Then the portal only transforms
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/main_test.go#L396"><code>TestASecondConsentOnlyTransforms</code></a>).
   A new <code>SUBJECT_REF_KEY</code> gives every citizen a new reference. Migration to
   a new key is not built in demo v0.9.0
@@ -4930,7 +4931,7 @@ browser is a demo shortcut.</p>
 </li>
 <li><strong>No consumer identifier in the proof.</strong> The proof carries values that
   only the sources can read. The consumer does not recognize the citizen
-  across consents (<a href="../../traceability/findings/#f-76">F-76</a>). A VP for the
+  across consents (<a href="../../traceability/findings/#f-76">F-76</a>). A <abbr title="Encrypted pseudonym">VP</abbr> for the
   consumer itself is not built in demo v0.9.0
   (<a href="https://github.com/ICTU/GBO-demo/issues/478">#478</a>).</li>
 <li><strong>The proof freezes at consent.</strong> BSNk makes the values only while the
@@ -4943,7 +4944,7 @@ browser is a demo shortcut.</p>
   (<a href="../../requirements/pseudonymization/#req-82">REQ-82</a>).</li>
 <li><strong>BSNk recognition is open.</strong> Only a recognized party can activate and
   transform (<a href="../../requirements/pseudonymization/#bsnk-01">BSNK-01</a>).
-  It is open whether the consent service can be a recognized party. It is
+  It is open whether the consent facility (toestemmingsvoorziening) can be a recognized party. It is
   also open whether the register and the portal backend are one BSNk
   participant
   (<a href="../../traceability/findings/#f-75">F-75</a>,
@@ -4979,6 +4980,7 @@ browser is a demo shortcut.</p>
 <li>Open questions: <a href="../../traceability/open-questions/#q-13">Q-13</a> (open), <a href="../../traceability/open-questions/#q-26">Q-26</a> (open), <a href="../../traceability/open-questions/#q-43">Q-43</a> (partly answered), <a href="../../traceability/open-questions/#q-44">Q-44</a> (partly answered), <a href="../../traceability/open-questions/#q-49">Q-49</a> (open), <a href="../../traceability/open-questions/#q-50">Q-50</a> (open), <a href="../../traceability/open-questions/#q-51">Q-51</a> (open), <a href="../../traceability/open-questions/#q-56">Q-56</a> (open), <a href="../../traceability/open-questions/#q-60">Q-60</a> (open), <a href="../../traceability/open-questions/#q-69">Q-69</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-06a">SL-06a</a> (done), <a href="../../traceability/increments/#sl-11">SL-11</a> (done), <a href="../../traceability/increments/#sl-47">SL-47</a> (done), <a href="../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

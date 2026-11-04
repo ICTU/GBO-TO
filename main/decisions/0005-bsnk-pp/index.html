@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4565,38 +4565,37 @@
   
 
 
-<h1 id="adr-0005-bsnk-pp-polymorphic-pseudonyms-for-private-sector-access">ADR-0005: BSNk PP polymorphic pseudonyms for private-sector access<a class="headerlink" href="#adr-0005-bsnk-pp-polymorphic-pseudonyms-for-private-sector-access" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0005-bsnk-pp-polymorphic-pseudonyms-for-private-sector-access">ADR-0005: BSNk <abbr title="Polymorphic pseudonym">PP</abbr> polymorphic pseudonyms for private-sector access<a class="headerlink" href="#adr-0005-bsnk-pp-polymorphic-pseudonyms-for-private-sector-access" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: accepted</li>
 <li>Date: 2026-08-24 (updated 2026-11-02: BSNk only at consent time)</li>
-<li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a>, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">S03</a>, <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">PSA vraagstukken: keuze BSNk PP</a></li>
+<li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a>, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">S03</a>, <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">PSA open decisions: choice of BSNk <abbr title="Polymorphic pseudonym">PP</abbr></a></li>
 <li>Deliberation: Reference architecture v0.6.2, decision 4 (archived and unpublished), <a href="../../requirements/pseudonymization/#bsnk-preconditions">BSNk preconditions</a>, <a href="../../traceability/findings/#f-75">F-75</a>, demo <a href="https://github.com/ICTU/GBO-demo/issues/364">#364</a>, <a href="https://github.com/ICTU/GBO-demo/pull/469">PR #469</a>, <a href="https://github.com/ICTU/GBO-demo/pull/477">PR #477</a></li>
-<li>Implemented in: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/bsnk/bsnk.go">consent-portal-backend/bsnk</a> (activate, transform, BSN authorization list), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L194-L202">consent/portal.go</a> (values per party), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bsnk-mock/README.md">services/bsnk-mock</a> (mock of the BSNk interface, also the sources' decryption component)</li>
+<li>Implemented in: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/bsnk/bsnk.go">consent-portal-backend/bsnk</a> (activate, transform, <abbr title="Burgerservicenummer">BSN</abbr> authorization list), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L194-L202">consent/portal.go</a> (values per party), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bsnk-mock/README.md">services/bsnk-mock</a> (mock of the BSNk interface, also the sources' decryption component)</li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>Private parties are not allowed to process the BSN. But DvTP lets them
+<p>Private parties are not allowed to process the <abbr title="Burgerservicenummer">BSN</abbr>. But <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> lets them
 request data from government sources about a specific citizen. Plain
-encryption of the BSN still gives them a universal correlation key.</p>
+encryption of the <abbr title="Burgerservicenummer">BSN</abbr> still gives them a universal correlation key.</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>GBO uses the BSNk PP polymorphic pseudonym infrastructure and calls it
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> uses the BSNk <abbr title="Polymorphic pseudonym">PP</abbr> polymorphic pseudonym infrastructure and calls it
 only at consent time. The decision has these parts:</p>
 <ul>
-<li>The consent service activates the BSN of the citizen once, into a PI
-  and a PP. These belong to the consent service only
+<li>The consent facility (toestemmingsvoorziening) activates the <abbr title="Burgerservicenummer">BSN</abbr> of the citizen once, into a <abbr title="Polymorphic identity">PI</abbr>
+  and a <abbr title="Polymorphic pseudonym">PP</abbr>. These belong to the consent facility only
   (<a href="../../requirements/pseudonymization/#bsnk-03">BSNK-03</a>).
   <a href="../0040-route-d-citizen-recognition/">ADR-0040</a> (proposed) describes how
-  the consent service recognizes the citizen later.</li>
+  the consent facility recognizes the citizen later.</li>
 <li>At each consent, while the citizen is logged in
-  (<a href="../../requirements/pseudonymization/#bsnk-04">BSNK-04</a>), the consent
-  service asks BSNk to transform the PI and the PP. BSNk returns values
-  for each recipient OIN:<ul>
-<li>an encrypted pseudonym (VP) for every source</li>
-<li>an encrypted identity (VI) only for a source on the BSN
+  (<a href="../../requirements/pseudonymization/#bsnk-04">BSNK-04</a>), the consent facility asks BSNk to transform the <abbr title="Polymorphic identity">PI</abbr> and the <abbr title="Polymorphic pseudonym">PP</abbr>. BSNk returns values
+  for each recipient <abbr title="Organisatie-identificatienummer">OIN</abbr>:<ul>
+<li>an encrypted pseudonym (<abbr title="Encrypted pseudonym">VP</abbr>) for every source</li>
+<li>an encrypted identity (<abbr title="Encrypted identity">VI</abbr>) only for a source on the <abbr title="Burgerservicenummer">BSN</abbr>
   authorization list
   (<a href="../../requirements/pseudonymization/#bsnk-06">BSNK-06</a>)</li>
 </ul>
 </li>
-<li>The consent service splits the call into requests of four parties at
+<li>The consent facility splits the call into requests of four parties at
   most (<a href="../../requirements/pseudonymization/#bsnk-05">BSNK-05</a>).</li>
 <li>The values travel in the consent proof
   (<a href="../0032-consent-proof/">ADR-0032</a>). After the allow, each recipient
@@ -4607,8 +4606,8 @@ only at consent time. The decision has these parts:</p>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>The values of different parties cannot be linked. No party outside
-  government can derive the BSN.</li>
-<li>The consent service must be a recognized BSNk participant
+  government can derive the <abbr title="Burgerservicenummer">BSN</abbr>.</li>
+<li>The consent facility must be a recognized BSNk participant
   (<a href="../../requirements/pseudonymization/#bsnk-01">BSNK-01</a>,
   <a href="../../traceability/findings/#f-75">F-75</a>,
   <a href="../../traceability/open-questions/#q-26">Q-26</a>).</li>
@@ -4623,9 +4622,9 @@ only at consent time. The decision has these parts:</p>
   <a href="../../traceability/open-questions/#q-01">Q-01</a>).</li>
 <li>The demo mock follows the BSNk interface, but uses JSON instead of SOAP
   (<a href="../../requirements/pseudonymization/#bsnk-11">BSNK-11</a>). The mock
-  enforces the requester-only PI, the BSN authorization list, and the
+  enforces the requester-only <abbr title="Polymorphic identity">PI</abbr>, the <abbr title="Burgerservicenummer">BSN</abbr> authorization list, and the
   four-party limit. The mock does not encrypt, so anyone can read the
-  values. The three demo sources share one OIN and one decryption
+  values. The three demo sources share one <abbr title="Organisatie-identificatienummer">OIN</abbr> and one decryption
   component.</li>
 <li>For the identifier flow at each boundary, see
   <a href="../../concepts/pseudonymization/">Pseudonymization</a>.</li>
@@ -4637,6 +4636,7 @@ only at consent time. The decision has these parts:</p>
 <li>Open questions: <a href="../../traceability/open-questions/#q-01">Q-01</a> (partly answered), <a href="../../traceability/open-questions/#q-26">Q-26</a> (open)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-02">SL-02</a> (done), <a href="../../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

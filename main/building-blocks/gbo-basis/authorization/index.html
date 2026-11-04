@@ -1327,7 +1327,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1443,7 +1443,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4609,14 +4609,14 @@
   
 
 
-<h1 id="authorization-in-gbo-basis">Authorization in GBO Basis<a class="headerlink" href="#authorization-in-gbo-basis" title="Permanent link">&para;</a></h1>
+<h1 id="authorization-in-gbo-basis">Authorization in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis<a class="headerlink" href="#authorization-in-gbo-basis" title="Permanent link">&para;</a></h1>
 <p>The Globaal Ontwerp calls this part "configurable authorization". Each
-source has a PDP that decides on every request, field by field, with
-rules written as policy. The FSC Inway of the source enforces the
+source has a <abbr title="Policy Decision Point">PDP</abbr> that decides on every request, field by field, with
+rules written as policy. The <abbr title="Federated Service Connectivity">FSC</abbr> Inway of the source enforces the
 decision. This page shows the parts, the order of the checks, and the
 admission of parties. The <a href="../../../concepts/authorization/">Authorization</a>
 concept page has the detail and the links to the code.</p>
-<p><a href="../../">Overview</a> › <a href="../">GBO Basis</a> › Authorization</p>
+<p><a href="../../">Overview</a> › <a href="../"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a> › Authorization</p>
 <h2 id="five-questions-five-places">Five questions, five places<a class="headerlink" href="#five-questions-five-places" title="Permanent link">&para;</a></h2>
 <p>Authorization answers five separate questions. Each question has its own
 place in the chain:</p>
@@ -4680,14 +4680,14 @@ place in the chain:</p>
   click a4 "#the-rules" "The rules"
   click a5 "#from-query-to-decision" "Decision pipeline"</div>
 <p class="caption"><em>Figure 1: The five authorization questions and where each one is
-answered. Grey: FSC, once per connection. Green: the PDP of the source,
+answered. Grey: <abbr title="Federated Service Connectivity">FSC</abbr>, once per connection. Green: the <abbr title="Policy Decision Point">PDP</abbr> of the source,
 for every request.</em></p>
-<p>Questions ① and ② belong to FSC and hold for the whole connection. The
-PDP answers ③ to ⑤ again for every request
+<p>Questions ① and ② belong to <abbr title="Federated Service Connectivity">FSC</abbr> and hold for the whole connection. The
+<abbr title="Policy Decision Point">PDP</abbr> answers ③ to ⑤ again for every request
 (<a href="../../../decisions/0004-federated-authorization/">ADR-0004</a>). No central
 authorization server exists.</p>
 <h2 id="the-parts">The parts<a class="headerlink" href="#the-parts" title="Permanent link">&para;</a></h2>
-<p>The PEP, the PDP and two PIPs work together as follows:</p>
+<p>The <abbr title="Policy Enforcement Point">PEP</abbr>, the <abbr title="Policy Decision Point">PDP</abbr> and two PIPs work together as follows:</p>
 <div class="mermaid">flowchart LR
   out["Outway of&lt;br/&gt;the caller"]
   subgraph src["At the bronhouder"]
@@ -4702,7 +4702,7 @@ authorization server exists.</p>
     gw("Source gateway")
   end
   adm[("PIP: admission register&lt;br/&gt;parties, mandates")]
-  tr[("PIP: toestemmingsregister&lt;br/&gt;keys, consent status")]
+  tr[("PIP: consent register&lt;br/&gt;keys, consent status")]
   adl[("ADL")]
 
   out -- "request + raw body" --&gt; pep
@@ -4733,9 +4733,9 @@ authorization server exists.</p>
   style pdp fill:#F4F5F7,stroke:#16A34A
   click map "#from-query-to-decision" "Decision pipeline"
   click eng "#the-rules" "The rules"
-  click tr "../../dvtp/consent-service/" "Toestemmingsvoorziening"
+  click tr "../../dvtp/consent-service/" "Consent facility"
   click adm "#admission-of-parties" "Admission"</div>
-<p class="caption"><em>Figure 2: PEP, PDP and PIPs at one source.</em></p>
+<p class="caption"><em>Figure 2: <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr> and PIPs at one source.</em></p>
 <p>The parts have these roles:</p>
 <table>
 <thead>
@@ -4746,29 +4746,29 @@ authorization server exists.</p>
 </thead>
 <tbody>
 <tr>
-<td>PEP</td>
-<td>The FSC Inway. Its AuthZEN plugin sends every request with the raw body to the PDP and forwards the request only on an allow. There is no separate PEP service (<a href="../../../decisions/0002-opa-rego-authzen/">ADR-0002</a>).</td>
+<td><abbr title="Policy Enforcement Point">PEP</abbr></td>
+<td>The <abbr title="Federated Service Connectivity">FSC</abbr> Inway. Its <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> plugin sends every request with the raw body to the <abbr title="Policy Decision Point">PDP</abbr> and forwards the request only on an allow. There is no separate <abbr title="Policy Enforcement Point">PEP</abbr> service (<a href="../../../decisions/0002-opa-rego-authzen/">ADR-0002</a>).</td>
 </tr>
 <tr>
 <td>Request mapper</td>
-<td>Turns the GraphQL body into a list of fields with their arguments, following the FTV GraphQL profile. It does nothing else (<a href="../../../decisions/0013-pdp-request-mapper/">ADR-0013</a>).</td>
+<td>Turns the GraphQL body into a list of fields with their arguments, following the <abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL profile. It does nothing else (<a href="../../../decisions/0013-pdp-request-mapper/">ADR-0013</a>).</td>
 </tr>
 <tr>
 <td>Policy</td>
-<td>Rego code that selects the regime, checks the consent proof and decides each field. The policy is data for the PDP, so a bronhouder changes it without a new build.</td>
+<td>Rego code that selects the regime, checks the consent proof and decides each field. The policy is data for the <abbr title="Policy Decision Point">PDP</abbr>, so a bronhouder changes it without a new build.</td>
 </tr>
 <tr>
-<td>PIP: toestemmingsregister</td>
-<td>Gives the status of a consent for every request, over FSC. Gives the keys to check the proof. DvTP only.</td>
+<td><abbr title="Policy Information Point">PIP</abbr>: consent register (toestemmingsregister)</td>
+<td>Gives the status of a consent for every request, over <abbr title="Federated Service Connectivity">FSC</abbr>. Gives the keys to check the proof. <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> only.</td>
 </tr>
 <tr>
-<td>PIP: admission register</td>
-<td>Lists the admitted parties and the mandates of integrators. OpenFTV pulls it every five seconds.</td>
+<td><abbr title="Policy Information Point">PIP</abbr>: admission register</td>
+<td>Lists the admitted parties and the mandates of integrators. <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> pulls it every five seconds.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="from-query-to-decision">From query to decision<a class="headerlink" href="#from-query-to-decision" title="Permanent link">&para;</a></h2>
-<p>The PDP takes a fixed series of steps for each request. The first step
+<p>The <abbr title="Policy Decision Point">PDP</abbr> takes a fixed series of steps for each request. The first step
 that fails decides the outcome:</p>
 <div class="mermaid">flowchart TB
   in(["AuthZEN question&lt;br/&gt;with raw GraphQL body"])
@@ -4811,14 +4811,14 @@ that fails decides the outcome:</p>
   class d1,d2,d3,d4 dvtp
   class cv zoom
   click cv "../../dvtp/consent-service/#the-consent-proof" "Consent proof"</div>
-<p class="caption"><em>Figure 3: The decision pipeline of the PDP. Red: deny.</em></p>
+<p class="caption"><em>Figure 3: The decision pipeline of the <abbr title="Policy Decision Point">PDP</abbr>. Red: deny.</em></p>
 <p>Three properties of this pipeline matter for the design:</p>
 <ul>
 <li><strong>Closed world.</strong> A field that no rule names is denied
   (<code>NO_APPLICABLE_RULE</code>). There is no separate catalog of allowed
   fields: the rules are the catalog
   (<a href="../../../decisions/0009-closed-world-rules/">ADR-0009</a>).</li>
-<li><strong>All or nothing.</strong> The PDP allows the request only if it allows every
+<li><strong>All or nothing.</strong> The <abbr title="Policy Decision Point">PDP</abbr> allows the request only if it allows every
   field. It never removes fields from a query.</li>
 <li><strong>Two layers of reasons.</strong> The consumer gets one coarse code, so it
   cannot learn the schema by trying field names. The administrator of
@@ -4854,17 +4854,17 @@ contract property plays no part
   class x dvtp</div>
 <p class="caption"><em>Figure 4: Regime selection.</em></p>
 <p>The regime only selects which rules apply. Each rule still checks its own
-basis: DVT0001 denies without a verified consent, and the PID rules deny
+basis: DVT0001 denies without a verified consent, and the <abbr title="Person Identification Data">PID</abbr> rules deny
 if a consent token is present.</p>
-<p>Only consent is positive evidence. A request enters the PID regime
+<p>Only consent is positive evidence. A request enters the <abbr title="Person Identification Data">PID</abbr> regime
 because it carries no token
-(<a href="../../../traceability/findings/#f-70">F-70</a>). For that reason, the PID
-rules admit only named callers: the EUDI adapter and the ASIP. These
-lists must never contain a DvTP consumer. The fix in the design is a
-verified PID as positive evidence
+(<a href="../../../traceability/findings/#f-70">F-70</a>). For that reason, the <abbr title="Person Identification Data">PID</abbr>
+rules admit only named callers: the EUDI adapter and the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. These
+lists must never contain a <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consumer. The fix in the design is a
+verified <abbr title="Person Identification Data">PID</abbr> as positive evidence
 (<a href="../../../requirements/eudi-issuance/#req-45">REQ-45</a>).</p>
 <h2 id="the-rules">The rules<a class="headerlink" href="#the-rules" title="Permanent link">&para;</a></h2>
-<p>Demo v0.9.0 has five rules. Each rule names its regime, the FSC services
+<p>Demo v0.9.0 has five rules. Each rule names its regime, the <abbr title="Federated Service Connectivity">FSC</abbr> services
 it serves, and the fields it can grant:</p>
 <table>
 <thead>
@@ -4890,21 +4890,21 @@ it serves, and the fields it can grant:</p>
 </tr>
 <tr>
 <td>EUD0001</td>
-<td>PID</td>
+<td><abbr title="Person Identification Data">PID</abbr></td>
 <td><code>bri</code></td>
-<td>Inkomensverklaring to the wallet, years 2024 and 2025</td>
+<td>Income statement (inkomensverklaring) to the wallet, years 2024 and 2025</td>
 </tr>
 <tr>
 <td>EUD0002</td>
-<td>PID</td>
+<td><abbr title="Person Identification Data">PID</abbr></td>
 <td><code>brp</code></td>
-<td>Akte van overlijden to the wallet</td>
+<td>Death certificate (akte van overlijden) to the wallet</td>
 </tr>
 <tr>
 <td>ASI0001</td>
-<td>PID</td>
+<td><abbr title="Person Identification Data">PID</abbr></td>
 <td><code>brp</code></td>
-<td>The BRP fields behind the ASI attributes, for the ASIP only</td>
+<td>The BRP fields behind the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attributes, for the <abbr title="Authentic Source Interface Provider">ASIP</abbr> only</td>
 </tr>
 </tbody>
 </table>
@@ -4916,11 +4916,11 @@ binding, a rule for one source grants the same field at another source
 <p>Under consent, two checks look inside the query. The citizen must be the
 placeholder <code>consent:identity</code>, never a real number. Every requested year
 must have a consented scope, and a query without a year filter is denied.
-The PDP checks that the citizen comes from the proof. It never learns who
+The <abbr title="Policy Decision Point">PDP</abbr> checks that the citizen comes from the proof. It never learns who
 the citizen is (<a href="../../../traceability/findings/#f-77">F-77</a>).</p>
 <h2 id="admission-of-parties">Admission of parties<a class="headerlink" href="#admission-of-parties" title="Permanent link">&para;</a></h2>
-<p>Before a party can send requests, it needs an FSC contract. The FSC
-Manager of the source asks the same PDP whether to sign it. The contract
+<p>Before a party can send requests, it needs an <abbr title="Federated Service Connectivity">FSC</abbr> contract. The <abbr title="Federated Service Connectivity">FSC</abbr>
+Manager of the source asks the same <abbr title="Policy Decision Point">PDP</abbr> whether to sign it. The contract
 policy reads the admission register and stops at the first failed check:</p>
 <div class="mermaid">flowchart LR
   p(["Contract proposal"])
@@ -4963,13 +4963,13 @@ who can connect. The request rules decide what each request can get
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
 <p>The main open points in authorization are these:</p>
 <ul>
-<li>The PID regime needs positive evidence of its own
+<li>The <abbr title="Person Identification Data">PID</abbr> regime needs positive evidence of its own
   (<a href="../../../traceability/findings/#f-70">F-70</a>,
   <a href="../../../requirements/eudi-issuance/#req-45">REQ-45</a>).</li>
-<li>The ADL record does not hold the consent status that the PDP used, so a
+<li>The <abbr title="Authorization Decision Log">ADL</abbr> record does not hold the consent status that the <abbr title="Policy Decision Point">PDP</abbr> used, so a
   decision cannot be replayed from the record
   (<a href="../../../traceability/findings/#f-72">F-72</a>).</li>
-<li>The FSC Inway of demo v0.9.0 loses the reason code on the way back to
+<li>The <abbr title="Federated Service Connectivity">FSC</abbr> Inway of demo v0.9.0 loses the reason code on the way back to
   the consumer
   (<a href="../../../concepts/authorization/#reason-codes-two-layers">detail</a>).</li>
 <li>How to model fields, recursion and arguments for future sources
@@ -4995,6 +4995,7 @@ who can connect. The request rules decide what each request can get
   <a href="../../../traceability/increments/#sl-45">SL-45</a> (done),
   <a href="../../../traceability/increments/#sl-48">SL-48</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

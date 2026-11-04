@@ -1190,7 +1190,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1306,7 +1306,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4690,7 +4690,7 @@ every component of gbo-demo v0.9.0 with its responsibility and a link to
 its code. Each block is either part of the target architecture or <em>demo
 scaffolding</em>. Demo scaffolding makes the demo usable or observable.</p>
 <p>To read the design from the top down, start at the
-<a href="../">overview</a>. It shows GBO Basis and the channels that GBO Basis
+<a href="../">overview</a>. It shows <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis and the channels that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis
 feeds, and each block there zooms in to this catalog.</p>
 <h2 id="all-components-in-one-view">All components in one view<a class="headerlink" href="#all-components-in-one-view" title="Permanent link">&para;</a></h2>
 <div class="mermaid">graph TB
@@ -4700,14 +4700,14 @@ feeds, and each block there zooms in to this catalog.</p>
     end
 
     subgraph CONSENT["Consent chain (DvTP)"]
-        PORTAL["Toestemmingsportaal&lt;br/&gt;frontend + backend"]
-        CREG[Toestemmingsregister]
+        PORTAL["Consent portal&lt;br/&gt;frontend + backend"]
+        CREG[Consent register]
     end
 
     subgraph AUTHZ["Authorization chain"]
         PDP["OpenFTV PDP v0.1.0&lt;br/&gt;FTV GraphQL mapper + OPA/Rego"]
         POL["Policy set&lt;br/&gt;engine, consent PIP, five rules"]
-        ADM["Admission register&lt;br/&gt;(DvTP onboarding register)"]
+        ADM["Admission register&lt;br/&gt;(dvtp-onboarding-register)"]
     end
 
     subgraph FSCG["FSC group (per organization)"]
@@ -4791,15 +4791,15 @@ feeds, and each block there zooms in to this catalog.</p>
     class GQL,META source
     class ADP,ISS,REC,ASIP,AZSP,WV eudi
     class BSNK ext</div>
-<p>The demo implements three trajectories end to end: the DvTP query under
-consent, EUDI issuance, and ASI verification for QTSPs. The SDG-OOTS
+<p>The demo implements three routes end to end: the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query under
+consent, EUDI issuance, and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification for QTSPs. The SDG-<abbr title="Once-Only Technical System">OOTS</abbr>
 adapter has no implementation and is not in this view
-(<a href="../../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>). The QTSP and the
+(<a href="../../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>). The <abbr title="Qualified Trust Service Provider">QTSP</abbr> and the
 Discover Interface are external roles. The <a href="../../context/">context view</a>
 shows them.</p>
-<p>The status lookup is one edge in the diagram. It runs from the PDP's own
-Outway to the register's Inway, as the FSC service <code>consent-status</code>. The
-dotted LDV edges stand for every component that writes processing records
+<p>The status lookup is one edge in the diagram. It runs from the <abbr title="Policy Decision Point">PDP</abbr>'s own
+Outway to the register's Inway, as the <abbr title="Federated Service Connectivity">FSC</abbr> service <code>consent-status</code>. The
+dotted <abbr title="Logboek Dataverwerkingen">LDV</abbr> edges stand for every component that writes processing records
 (<a href="#level-2-logging-and-audit">Level 2: logging and audit</a>).</p>
 <h2 id="level-2-authorization-chain">Level 2: authorization chain<a class="headerlink" href="#level-2-authorization-chain" title="Permanent link">&para;</a></h2>
 <p>The authorization chain has the following components:</p>
@@ -4813,28 +4813,28 @@ dotted LDV edges stand for every component that writes processing records
 </thead>
 <tbody>
 <tr>
-<td>OpenFTV PDP</td>
-<td>Decides every data request and every FSC contract submission. The build uses OpenFTV tag <code>v0.1.0</code> and patches in the GBO FTV GraphQL mapper. If a patch step changes nothing, the build fails. The PDP offers AuthZEN 1.0 at <code>POST /authzen/v1/evaluation</code> over HTTPS. It writes one ADL record per evaluation. It does not start without the ADL database.</td>
+<td><abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> <abbr title="Policy Decision Point">PDP</abbr></td>
+<td>Decides every data request and every <abbr title="Federated Service Connectivity">FSC</abbr> contract submission. The build uses <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> tag <code>v0.1.0</code> and patches in the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> <abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL mapper. If a patch step changes nothing, the build fails. The <abbr title="Policy Decision Point">PDP</abbr> offers <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> 1.0 at <code>POST /authzen/v1/evaluation</code> over HTTPS. It writes one <abbr title="Authorization Decision Log">ADL</abbr> record per evaluation. It does not start without the <abbr title="Authorization Decision Log">ADL</abbr> database.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/openftv-pdp">services/openftv-pdp</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/Dockerfile#L9">Dockerfile</a></td>
 </tr>
 <tr>
-<td>FTV GraphQL mapper</td>
-<td>Implements the mapping function of the FTV GraphQL profile (<code>ftv-graphql/0.1</code>). It parses the raw body and resolves parent types from the bundled schema of the FSC service in the access token. It returns the field list with arguments as the source executes them, or <code>COVERAGE_UNVERIFIABLE</code> with a subcode. It accepts only queries. For any other operation it returns <code>OPERATION_NOT_SUPPORTED</code>. It applies fixed limits: body 1 MiB, depth 64, and 1000 field records. It verifies no token, reads no flow, and calls no external service.</td>
-<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ftv-graphql-mapper">services/ftv-graphql-mapper</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ftv-graphql-mapper/mapper.go#L252-L268">limits</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/mapper/ftvgraphql.go">OpenFTV adapter</a></td>
+<td><abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL mapper</td>
+<td>Implements the mapping function of the <abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL profile (<code>ftv-graphql/0.1</code>). It parses the raw body and resolves parent types from the bundled schema of the <abbr title="Federated Service Connectivity">FSC</abbr> service in the access token. It returns the field list with arguments as the source executes them, or <code>COVERAGE_UNVERIFIABLE</code> with a subcode. It accepts only queries. For any other operation it returns <code>OPERATION_NOT_SUPPORTED</code>. It applies fixed limits: body 1 MiB, depth 64, and 1000 field records. It verifies no token, reads no flow, and calls no external service.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ftv-graphql-mapper">services/ftv-graphql-mapper</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ftv-graphql-mapper/mapper.go#L252-L268">limits</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/mapper/ftvgraphql.go"><abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> adapter</a></td>
 </tr>
 <tr>
 <td>Bundled schemas and pins</td>
-<td>One directive-free schema per FSC service (<code>bri</code>, <code>brp</code>, <code>lvg</code>). The policy bundle pins the digest of each schema. The policy denies an evaluation against another schema (<code>SCHEMA_MISMATCH</code>). A CI job compares the bundled schemas with the source schemas.</td>
+<td>One directive-free schema per <abbr title="Federated Service Connectivity">FSC</abbr> service (<code>bri</code>, <code>brp</code>, <code>lvg</code>). The policy bundle pins the digest of each schema. The policy denies an evaluation against another schema (<code>SCHEMA_MISMATCH</code>). A CI job compares the bundled schemas with the source schemas.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/schemas/pdp-mirror">schemas/pdp-mirror</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/graphql_schemas.rego">graphql_schemas.rego</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/check-schema-drift.sh">check-schema-drift.sh</a></td>
 </tr>
 <tr>
 <td>Policy entrypoint</td>
-<td>Allows the source-metadata fetch for two known peers, on the two metadata services only. It sends every other request to the rule engine. It passes only <code>allow</code> and the consumer's reason code to OpenFTV.</td>
+<td>Allows the source-metadata fetch for two known peers, on the two metadata services only. It sends every other request to the rule engine. It passes only <code>allow</code> and the consumer's reason code to <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr>.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/authz.rego">policies/authz.rego</a></td>
 </tr>
 <tr>
 <td>Rule engine</td>
-<td>Selects the regime from the evidence. If the request carries a consent token, the regime is consent. Without a token, the regime is PID. The engine binds a field to the rules of that regime that serve the FSC service and name the field key. It denies a field that no rule covers (<code>NO_APPLICABLE_RULE</code>). The first bound rule without a reason grants the field. The engine checks the integrator mandate on every delegated call. It returns a coarse reason code to the consumer and keeps the per-field codes for the operator.</td>
+<td>Selects the regime from the evidence. If the request carries a consent token, the regime is consent. Without a token, the regime is <abbr title="Person Identification Data">PID</abbr>. The engine binds a field to the rules of that regime that serve the <abbr title="Federated Service Connectivity">FSC</abbr> service and name the field key. It denies a field that no rule covers (<code>NO_APPLICABLE_RULE</code>). The first bound rule without a reason grants the field. The engine checks the integrator mandate on every delegated call. It returns a coarse reason code to the consumer and keeps the per-field codes for the operator.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L173-L192">policies/gbo/engine.rego</a></td>
 </tr>
 <tr>
@@ -4843,30 +4843,30 @@ dotted LDV edges stand for every component that writes processing records
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/lib.rego">policies/gbo/lib.rego</a></td>
 </tr>
 <tr>
-<td>Consent PIP</td>
-<td>Verifies the consent token in policy: ES256 signature, issuer, audience, type, validity with 30 s skew, and required claims. It fetches the JWKS directly from the register and caches it for 300 s. It fetches the status for each evaluation over FSC, through the PDP's Outway. The status fetch has no cache and a 2 s timeout. Every failure has its own reason code. The engine copies the resolved consent into its response.</td>
+<td>Consent <abbr title="Policy Information Point">PIP</abbr></td>
+<td>Verifies the consent token in policy: ES256 signature, issuer, audience, type, validity with 30 s skew, and required claims. It fetches the JWKS directly from the register and caches it for 300 s. It fetches the status for each evaluation over <abbr title="Federated Service Connectivity">FSC</abbr>, through the <abbr title="Policy Decision Point">PDP</abbr>'s Outway. The status fetch has no cache and a 2 s timeout. Every failure has its own reason code. The engine copies the resolved consent into its response.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego">policies/gbo/consent.rego</a></td>
 </tr>
 <tr>
 <td>Authorization rules</td>
-<td>Five plain-Rego rules, listed in the next table. Each rule names its regime, its FSC services, and its fields. It also states its own reasons to deny.</td>
+<td>Five plain-Rego rules, listed in the next table. Each rule names its regime, its <abbr title="Federated Service Connectivity">FSC</abbr> services, and its fields. It also states its own reasons to deny.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/policies/gbo/rules">policies/gbo/rules</a></td>
 </tr>
 <tr>
 <td>Contract acceptance policy</td>
-<td>Decides whether a provider's FSC Manager signs a submitted contract. It accepts grant types service connection and delegated service connection. It applies eight ordered refusal codes, from <code>NOT_AN_AUTOSIGN_REQUEST</code> to <code>DELEGATION_NOT_REGISTERED</code>. It keeps a missing register (<code>ADMISSION_REGISTER_UNAVAILABLE</code>) apart from a missing entry (<code>PARTY_NOT_IN_REGISTRY</code>).</td>
+<td>Decides whether a provider's <abbr title="Federated Service Connectivity">FSC</abbr> Manager signs a submitted contract. It accepts grant types service connection and delegated service connection. It applies eight ordered refusal codes, from <code>NOT_AN_AUTOSIGN_REQUEST</code> to <code>DELEGATION_NOT_REGISTERED</code>. It keeps a missing register (<code>ADMISSION_REGISTER_UNAVAILABLE</code>) apart from a missing entry (<code>PARTY_NOT_IN_REGISTRY</code>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L167-L174">policies/fsc/autosign.rego</a></td>
 </tr>
 <tr>
-<td>Admission register</td>
-<td>Holds the admitted participants: source holders, GBO system participants (EDI issuer, PDP, ASIP), and consumers. Each entry has <code>active</code> and <code>allowed_source_peer_ids</code>. The register also holds integrator mandates (<code>integrations</code>) and serves them as <code>acts_for</code>. OpenFTV pulls it every 5 s over a network that only the PDP shares. The register deactivates an entry and never deletes it. It keeps no change log (<a href="../../requirements/admission/#req-123">REQ-123</a>). It is a SQLite database with an admin UI.</td>
-<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register">services/dvtp-onboarding-register</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml">PIP pull</a></td>
+<td>Admission register (toelatingsregister)</td>
+<td>Holds the admitted participants: bronhouders, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> system participants (EDI issuer, <abbr title="Policy Decision Point">PDP</abbr>, <abbr title="Authentic Source Interface Provider">ASIP</abbr>), and consumers. Each entry has <code>active</code> and <code>allowed_source_peer_ids</code>. The register also holds integrator mandates (<code>integrations</code>) and serves them as <code>acts_for</code>. <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> pulls it every 5 s over a network that only the <abbr title="Policy Decision Point">PDP</abbr> shares. The register deactivates an entry and never deletes it. It keeps no change log (<a href="../../requirements/admission/#req-123">REQ-123</a>). It is a SQLite database with an admin UI.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register">services/dvtp-onboarding-register</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml"><abbr title="Policy Information Point">PIP</abbr> pull</a></td>
 </tr>
 </tbody>
 </table>
-<p>The PID regime has no positive evidence of its own. A request without a
+<p>The <abbr title="Person Identification Data">PID</abbr> regime has no positive evidence of its own. A request without a
 consent token enters it (<a href="../../traceability/findings/#f-70">F-70</a>). For this
-reason, the PID rules admit only named actors. These actor lists must stay
+reason, the <abbr title="Person Identification Data">PID</abbr> rules admit only named actors. These actor lists must stay
 apart from the consent consumers. The five rules grant these fields:</p>
 <table>
 <thead>
@@ -4900,7 +4900,7 @@ apart from the consent consumers. The five rules grant these fields:</p>
 <td>EUD0001</td>
 <td>pid</td>
 <td><code>bri</code></td>
-<td>Inkomensverklaring to the wallet, years 2024 and 2025</td>
+<td>Income statement (inkomensverklaring) to the wallet, years 2024 and 2025</td>
 <td><code>PID_NOT_PRESENT</code>, <code>ACTOR_NOT_ALLOWED</code>, <code>YEAR_NOT_ALLOWED</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001.rego">eud0001.rego</a></td>
 </tr>
@@ -4908,7 +4908,7 @@ apart from the consent consumers. The five rules grant these fields:</p>
 <td>EUD0002</td>
 <td>pid</td>
 <td><code>brp</code></td>
-<td>Akte van overlijden to the wallet</td>
+<td>Death certificate ("akte van overlijden") to the wallet</td>
 <td><code>PID_NOT_PRESENT</code>, <code>ACTOR_NOT_ALLOWED</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego">eud0002.rego</a></td>
 </tr>
@@ -4916,7 +4916,7 @@ apart from the consent consumers. The five rules grant these fields:</p>
 <td>ASI0001</td>
 <td>pid</td>
 <td><code>brp</code></td>
-<td>BRP fields behind the ASI attributes, for the ASIP peer <code>…1200</code> only</td>
+<td>Fields of the Personal Records Database (BRP) behind the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attributes, for the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer <code>…1200</code> only</td>
 <td><code>PID_NOT_PRESENT</code>, <code>ACTOR_NOT_ALLOWED</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego">asi0001.rego</a></td>
 </tr>
@@ -4977,23 +4977,23 @@ binding, and the two layers of reason codes. The decisions are in
 </thead>
 <tbody>
 <tr>
-<td>Toestemmingsportaal frontend</td>
+<td>Consent portal (toestemmingsportaal) frontend</td>
 <td>The citizen UI. It has a DigiD login (mock), one toggle per data set, a consent overview, and revocation. It shows only the requested data sets and refuses a data set that it cannot describe. It checks the return origin against an allowlist. It returns the consent proof in the URL fragment, or <code>status=denied</code>.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/toestemmingsportaal-frontend">toestemmingsportaal-frontend</a></td>
 </tr>
 <tr>
-<td>Toestemmingsportaal backend</td>
-<td>Keeps the BSN away from the register and the consumer. The type system enforces this boundary, and the backend never sends a BSN to the register. It derives <code>subject_ref</code> as a keyed HMAC of the BSN, with a key version. It activates a citizen at BSNk once and stores PI and PP in the register. At each consent, it reads the BSN authorization list and has BSNk transform the values. Every configured source gets a VP. Only a source on the list also gets a VI.</td>
+<td>Consent portal backend</td>
+<td>Keeps the <abbr title="Burgerservicenummer">BSN</abbr> away from the register and the consumer. The type system enforces this boundary, and the backend never sends a <abbr title="Burgerservicenummer">BSN</abbr> to the register. It derives <code>subject_ref</code> as a keyed HMAC of the <abbr title="Burgerservicenummer">BSN</abbr>, with a key version. It activates a citizen at BSNk once and stores <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> in the register. At each consent, it reads the <abbr title="Burgerservicenummer">BSN</abbr> authorization list and has BSNk transform the values. Every configured source gets a <abbr title="Encrypted pseudonym">VP</abbr>. Only a source on the list also gets a <abbr title="Encrypted identity">VI</abbr>.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-portal-backend">services/consent-portal-backend</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go">portal.go</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/subjectref.go">subjectref.go</a></td>
 </tr>
 <tr>
-<td>Toestemmingsregister</td>
-<td>Stores consent records: <code>subject_ref</code>, consumer, scopes, scope entries per source, purpose (<code>use_case</code>), validity, and status. It also stores the portal's PI and PP per <code>subject_ref</code> (route D, <a href="../../decisions/0040-route-d-citizen-recognition/">ADR-0040</a>). It stores no BSN, no VI, and no VP. It signs the consent proof and serves the JWKS. A separate listener serves only the status, published as the FSC service <code>consent-status</code>. By default, the register keeps its data in memory. If it uses Postgres, it requires a persistent signing key.</td>
+<td>Consent register (toestemmingsregister)</td>
+<td>Stores consent records: <code>subject_ref</code>, consumer, scopes, scope entries per source, purpose (<code>use_case</code>), validity, and status. It also stores the portal's <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> per <code>subject_ref</code> (route D, <a href="../../decisions/0040-route-d-citizen-recognition/">ADR-0040</a>). It stores no <abbr title="Burgerservicenummer">BSN</abbr>, no <abbr title="Encrypted identity">VI</abbr>, and no <abbr title="Encrypted pseudonym">VP</abbr>. It signs the consent proof and serves the JWKS. A separate listener serves only the status, published as the <abbr title="Federated Service Connectivity">FSC</abbr> service <code>consent-status</code>. By default, the register keeps its data in memory. If it uses Postgres, it requires a persistent signing key.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-register">services/consent-register</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/status.go">status.go</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/polymorphic.go">polymorphic.go</a></td>
 </tr>
 <tr>
 <td>Consent proof</td>
-<td>ES256 JWT, type <code>gbo-consent+jwt</code>. Claims: <code>consent_id</code>, <code>encrypted_subject</code>, <code>scopes</code>, <code>scope_entries</code>, <code>dienstverlener_oin</code>, <code>valid_until</code> (equal to <code>exp</code>), <code>iss</code>, <code>aud</code>, <code>iat</code>, <code>nbf</code>, <code>jti</code>. <code>encrypted_subject</code> holds a <code>pseudonym</code> per source OIN. For a source on the BSN authorization list, it also holds an <code>identity</code>. Each value has a <code>key_set_version</code>. <code>dienstverlener_oin</code> holds the consumer's FSC Peer ID (<a href="../../traceability/open-questions/#q-68">Q-68</a>). The PDP denies a token in the old form with <code>pi</code>.</td>
+<td>ES256 JWT, type <code>gbo-consent+jwt</code>. Claims: <code>consent_id</code>, <code>encrypted_subject</code>, <code>scopes</code>, <code>scope_entries</code>, <code>dienstverlener_oin</code>, <code>valid_until</code> (equal to <code>exp</code>), <code>iss</code>, <code>aud</code>, <code>iat</code>, <code>nbf</code>, <code>jti</code>. <code>encrypted_subject</code> holds a <code>pseudonym</code> per source <abbr title="Organisatie-identificatienummer">OIN</abbr>. For a source on the <abbr title="Burgerservicenummer">BSN</abbr> authorization list, it also holds an <code>identity</code>. Each value has a <code>key_set_version</code>. <code>dienstverlener_oin</code> holds the consumer's <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID (<a href="../../traceability/open-questions/#q-68">Q-68</a>). The <abbr title="Policy Decision Point">PDP</abbr> denies a token in the old form with <code>pi</code>.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L22-L80">consent_token.go</a></td>
 </tr>
 </tbody>
@@ -5018,28 +5018,28 @@ decision is <a href="../../decisions/0032-consent-proof/">ADR-0032</a>.</p>
 <tbody>
 <tr>
 <td>GraphQL source API</td>
-<td>The query endpoint of the source. Sources identify a citizen by BSN. The demo has three sources. Service <code>bri</code> is a Belastingdienst profile with income declarations per year. Service <code>brp</code> is a BRP profile with the persoonslijst and the akte van overlijden view. Service <code>lvg</code> is an LVG mock for the LVG pilot (<code>vbo(bsn, vboId) { vboId }</code>).</td>
+<td>The query endpoint of the source. Sources identify a citizen by <abbr title="Burgerservicenummer">BSN</abbr>. The demo has three sources. Service <code>bri</code> is a Belastingdienst profile with income declarations per year. Service <code>brp</code> is a BRP profile with the personal record (persoonslijst) and the death certificate view. Service <code>lvg</code> is an LVG mock for the LVG pilot (<code>vbo(bsn, vboId) { vboId }</code>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/graphql-server">graphql-server</a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/brp-graphql-server">brp-graphql-server</a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/lvg-graphql-server">lvg-graphql-server</a></td>
 </tr>
 <tr>
 <td>Source gateway (bron-sidecar)</td>
-<td>Source-owned gateway between the Inway and the API, one instance per source. Its behavior depends on the presence of a consent token. With a token, it takes the value for its own OIN from <code>encrypted_subject</code> and has the decryption component read it. It checks that the value names its own OIN. Then it replaces the placeholder. It refuses a literal subject under a token. Without a token, it passes the request through. It accepts only the transport shape the PDP judged: <code>POST</code>, one path, no query string.</td>
+<td>Source-owned gateway between the Inway and the API, one instance per source. Its behavior depends on the presence of a consent token. With a token, it takes the value for its own <abbr title="Organisatie-identificatienummer">OIN</abbr> from <code>encrypted_subject</code> and has the decryption component read it. It checks that the value names its own <abbr title="Organisatie-identificatienummer">OIN</abbr>. Then it replaces the placeholder. It refuses a literal subject under a token. Without a token, it passes the request through. It accepts only the transport shape the <abbr title="Policy Decision Point">PDP</abbr> judged: <code>POST</code>, one path, no query string.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/bron-sidecar">services/bron-sidecar</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution.go">substitution</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/transport.go">transport.go</a></td>
 </tr>
 <tr>
 <td>Decryption component</td>
-<td>Reads a VI or VP with the source's own keys. It calls no other service, so there is no BSNk call at query time. The demo uses the <code>bsnk-mock</code> image with only the decryption endpoints. The three demo sources share one instance and one OIN. Production needs one instance per source.</td>
+<td>Reads a <abbr title="Encrypted identity">VI</abbr> or <abbr title="Encrypted pseudonym">VP</abbr> with the source's own keys. It calls no other service, so there is no BSNk call at query time. The demo uses the <code>bsnk-mock</code> image with only the decryption endpoints. The three demo sources share one instance and one <abbr title="Organisatie-identificatienummer">OIN</abbr>. Production needs one instance per source.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/decryption/decryption.go">decryption.go</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bsnk-mock/README.md">bsnk-mock README</a></td>
 </tr>
 <tr>
 <td>Source metadata endpoint</td>
-<td>Serves the source-owned description at <code>/.well-known/gbo</code> over a separate FSC metadata service.</td>
+<td>Serves the source-owned description at <code>/.well-known/gbo</code> over a separate <abbr title="Federated Service Connectivity">FSC</abbr> metadata service.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/graphql-server/source_metadata.go">source_metadata.go</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/graphql-server/config/gbo-source-metadata.json">BD document</a></td>
 </tr>
 </tbody>
 </table>
 <p>Only the source Inways can reach the source gateway. Because of this
-network isolation, every request at the gateway comes after a PDP
+network isolation, every request at the gateway comes after a <abbr title="Policy Decision Point">PDP</abbr>
 decision. For this reason, the gateway does not verify the token again
 (<a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>,
 <a href="../../traceability/findings/#f-79">F-79</a>). The
@@ -5048,11 +5048,11 @@ networks.</p>
 <h3 id="source-metadata-document">Source metadata document<a class="headerlink" href="#source-metadata-document" title="Permanent link">&para;</a></h3>
 <p>A source describes its own products in one JSON document. It serves the
 document at <code>/.well-known/gbo</code>. For a source without an endpoint, an
-operator supplies it through the <code>file</code> transport. GBO validates the
+operator supplies it through the <code>file</code> transport. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates the
 document against
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/gbo-source-metadata-v1.schema.json">gbo-source-metadata-v1</a>
 (<code>urn:gov:nl:gbo:schema:gbo-source-metadata:1</code>).</p>
-<p>GBO holds no catalog of sources, years, or schemas. This document is the
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> holds no catalog of sources, years, or schemas. This document is the
 catalog, and the source owns it (<a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a>). The document
 format is a proposal for the open PSA decision on S10.</p>
 <p>The document has the following fields:</p>
@@ -5070,7 +5070,7 @@ format is a proposal for the open PSA decision on S10.</p>
 </tr>
 <tr>
 <td><code>source_oin</code>, <code>version</code>, <code>issued_at</code>, <code>expires_at</code></td>
-<td>Envelope. <code>source_oin</code> must match the OIN in the certificate set. <code>version</code> must increase. GBO refuses a validity of less than one hour.</td>
+<td>Envelope. <code>source_oin</code> must match the <abbr title="Organisatie-identificatienummer">OIN</abbr> in the certificate set. <code>version</code> must increase. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> refuses a validity of less than one hour.</td>
 </tr>
 <tr>
 <td><code>capabilities.eudi</code></td>
@@ -5078,7 +5078,7 @@ format is a proposal for the open PSA decision on S10.</p>
 </tr>
 <tr>
 <td><code>type_id</code>, <code>type_version</code></td>
-<td>Identity of the attestation type. With the source ID they form the VCT path <code>/types/{source-id}/{type-id}/v{n}</code>.</td>
+<td>Identity of the attestation type. With the source ID they form the <abbr title="Verifiable credential type identifier">VCT</abbr> path <code>/types/{source-id}/{type-id}/v{n}</code>.</td>
 </tr>
 <tr>
 <td><code>offers[]</code></td>
@@ -5086,7 +5086,7 @@ format is a proposal for the open PSA decision on S10.</p>
 </tr>
 <tr>
 <td><code>graphql</code></td>
-<td>The source-owned query plan: <code>service_reference</code> (the FSC data service), <code>endpoint</code>, <code>document</code> (exactly one read operation), <code>subject_variable</code>, typed <code>parameters</code>, and <code>result_pointer</code> (RFC 6901).</td>
+<td>The source-owned query plan: <code>service_reference</code> (the <abbr title="Federated Service Connectivity">FSC</abbr> data service), <code>endpoint</code>, <code>document</code> (exactly one read operation), <code>subject_variable</code>, typed <code>parameters</code>, and <code>result_pointer</code> (RFC 6901).</td>
 </tr>
 <tr>
 <td><code>mapping_profile</code></td>
@@ -5106,13 +5106,13 @@ format is a proposal for the open PSA decision on S10.</p>
 </tr>
 </tbody>
 </table>
-<p>GBO generates the SD-JWT VC Type Metadata from <code>display</code> and <code>claims</code>. It
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> generates the SD-JWT VC Type Metadata from <code>display</code> and <code>claims</code>. It
 publishes the Type Metadata immutably per version, with <code>vct#integrity</code>.
 A change to <code>claims</code> or <code>display</code> therefore needs a new <code>type_version</code>. The
 schema has no <code>unit</code>. The reconciler refuses reserved claim names (<code>vct</code>,
 <code>iss</code>, <code>status</code>, <code>cnf</code>) and nested objects
 (<a href="../../requirements/eudi-issuance/#req-78">REQ-78</a>).</p>
-<p>The adapter puts the BSN from the PID into <code>$bsn</code> and the year of the offer
+<p>The adapter puts the <abbr title="Burgerservicenummer">BSN</abbr> from the <abbr title="Person Identification Data">PID</abbr> into <code>$bsn</code> and the year of the offer
 into <code>$jaar</code>. It reads the result at <code>result_pointer</code> and copies each
 <code>source.pointer</code> into its claim. This shortened excerpt from the
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/graphql-server/config/gbo-source-metadata.json">Belastingdienst document</a>
@@ -5170,24 +5170,24 @@ excerpt shows two of its attributes:</p>
 </code></pre></div>
 <p>By design, the document leaves out three things:</p>
 <ul>
-<li>The GraphQL schema. The PDP keeps its own bundled copy. It authorizes
+<li>The GraphQL schema. The <abbr title="Policy Decision Point">PDP</abbr> keeps its own bundled copy. It authorizes
   the source's query plan field by field, like any other query.</li>
-<li>Access decisions. The EUD and ASI rules decide which fields a channel
+<li>Access decisions. The EUD and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> rules decide which fields a channel
   can receive. The mapping of the source has no part in that decision.</li>
-<li>The <code>value_schema</code> of an ASI attribute. GBO keeps it per attribute
+<li>The <code>value_schema</code> of an <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attribute. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> keeps it per attribute
   identifier in
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json">schemas/asi-attributes.json</a>
   until an EU catalog of attributes exists.</li>
 </ul>
-<p>Provenance rests on the authenticated FSC transport and the OIN in the
+<p>Provenance rests on the authenticated <abbr title="Federated Service Connectivity">FSC</abbr> transport and the <abbr title="Organisatie-identificatienummer">OIN</abbr> in the
 certificate set. The source does not sign the document. The document also
-has no reference to an LDV read API or a DCAT-AP-NL entry
+has no reference to an <abbr title="Logboek Dataverwerkingen">LDV</abbr> read API or a DCAT-AP-NL entry
 (<a href="../../traceability/findings/#f-57">F-57</a>, <a href="../../requirements/admission/#av-07">AV-07</a>).</p>
-<h3 id="source-configuration-on-the-gbo-side">Source configuration on the GBO side<a class="headerlink" href="#source-configuration-on-the-gbo-side" title="Permanent link">&para;</a></h3>
-<p>The GBO configuration per source is small: one YAML file, named after the
-<code>source_id</code>. The file names where the description comes from and how GBO
+<h3 id="source-configuration-on-the-gbo-side">Source configuration on the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> side<a class="headerlink" href="#source-configuration-on-the-gbo-side" title="Permanent link">&para;</a></h3>
+<p>The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration per source is small: one YAML file, named after the
+<code>source_id</code>. The file names where the description comes from and how <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 reaches the data. This is
-<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/sources/configured/belastingdienst.yaml">sources/configured/belastingdienst.yaml</a>:</p>
+<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/sources/configured/belastingdienst.yaml"><code>sources/configured/belastingdienst.yaml</code></a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">metadata_endpoint</span><span class="p">:</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">transport</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fsc</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">provider_peer_id</span><span class="p">:</span><span class="w"> </span><span class="s">"99999999900000000200"</span>
@@ -5196,17 +5196,17 @@ reaches the data. This is
 <p>An optional <code>data_access</code> block (<code>transport</code>, <code>provider_peer_id</code>) gives the
 data leg a different transport than the metadata leg. The <code>file</code> transport
 is an exception for a source without its own endpoint. In that case, the
-operator takes over the description. GBO does not record the agreement of
+operator takes over the description. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not record the agreement of
 the bronhouder
 (<a href="../../traceability/findings/#f-71">F-71</a>, <a href="../../requirements/admission/#av-08">AV-08</a>).</p>
 <p>The legal identity of the source comes from the certificate set with the
-same <code>source_id</code>. The OIN comes from the certificate's <code>serialNumber</code>, and
-the name comes from its <code>O</code>. GBO refuses a configured value that differs
+same <code>source_id</code>. The <abbr title="Organisatie-identificatienummer">OIN</abbr> comes from the certificate's <code>serialNumber</code>, and
+the name comes from its <code>O</code>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> refuses a configured value that differs
 (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>). The configuration holds
-the FSC Peer ID apart from the OIN. The data service and the grant hash
-come from the source document and the FSC contracts in force. They never
+the <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID apart from the <abbr title="Organisatie-identificatienummer">OIN</abbr>. The data service and the grant hash
+come from the source document and the <abbr title="Federated Service Connectivity">FSC</abbr> contracts in force. They never
 come from this file.</p>
-<p>A valid FSC contract activates nothing. A source becomes active only after
+<p>A valid <abbr title="Federated Service Connectivity">FSC</abbr> contract activates nothing. A source becomes active only after
 three steps: it is configured, its candidate is valid, and an operator
 promotes a release (<a href="../../requirements/sources-identity/#req-65">REQ-65</a>). If
 a precondition is missing, the reconciler reports
@@ -5215,15 +5215,15 @@ a precondition is missing, the reconciler reports
 and <a href="../../runtime/admission/">admission and activation</a> explain the lifecycle.</p>
 <p>In demo v0.9.0, the RvIG source
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/sources/configured/rvig.yaml">rvig.yaml</a>)
-uses the Belastingdienst peer <code>…0200</code> and the OIN of the Belastingdienst.
-This is a demo shortcut. The demo therefore does not show one OIN per
+uses the Belastingdienst peer <code>…0200</code> and the <abbr title="Organisatie-identificatienummer">OIN</abbr> of the Belastingdienst.
+This is a demo shortcut. The demo therefore does not show one <abbr title="Organisatie-identificatienummer">OIN</abbr> per
 bronhouder.</p>
-<h3 id="source-schema-and-the-pdp-copy">Source schema and the PDP copy<a class="headerlink" href="#source-schema-and-the-pdp-copy" title="Permanent link">&para;</a></h3>
-<p>The source owns its schema. The PDP holds a directive-free copy per FSC
+<h3 id="source-schema-and-the-pdp-copy">Source schema and the <abbr title="Policy Decision Point">PDP</abbr> copy<a class="headerlink" href="#source-schema-and-the-pdp-copy" title="Permanent link">&para;</a></h3>
+<p>The source owns its schema. The <abbr title="Policy Decision Point">PDP</abbr> holds a directive-free copy per <abbr title="Federated Service Connectivity">FSC</abbr>
 service to resolve parent types. The year selector is in the query, so the
-PDP can enforce consent per year. This excerpt from the
+<abbr title="Policy Decision Point">PDP</abbr> can enforce consent per year. This excerpt from the
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/pdp-mirror/bd.graphql">BD copy</a>
-shows the DvTP part:</p>
+shows the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> part:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">type</span><span class="w"> </span><span class="err">IngeschrevenPersoon</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nl">bsn</span><span class="p">:</span><span class="w"> </span><span class="n">BSN</span><span class="err">!</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="n">heeftBelastingjaarAangifte</span><span class="p">(</span><span class="n">belastingjaren</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="no">Int</span><span class="err">!]):</span><span class="w"> </span><span class="p">[</span><span class="no">BelastingjaarAangifte</span><span class="err">!]</span>
@@ -5233,7 +5233,7 @@ shows the DvTP part:</p>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="n">ingeschrevenPersoon</span><span class="err">(</span><span class="n">bsn</span><span class="p">:</span><span class="w"> </span><span class="no">BSN</span><span class="err">!)</span><span class="p">:</span><span class="w"> </span><span class="no">IngeschrevenPersoon</span>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
 </code></pre></div>
-<p>The BRP source adds a flat view for the akte van overlijden. The selection
+<p>The BRP source adds a flat view for the death certificate. The selection
 of the deceased partner from the marriage history is a security-sensitive
 invariant. The source holds this selection and its tests. The policy does
 not contain it
@@ -5247,8 +5247,8 @@ and
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="n">akteVanOverlijden</span><span class="p">(</span><span class="n">bsn</span><span class="p">:</span><span class="w"> </span><span class="no">BSN</span><span class="err">!</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="err">[</span><span class="n">AkteVanOverlijden</span><span class="err">!]!</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="level-2-fsc-group">Level 2: FSC group<a class="headerlink" href="#level-2-fsc-group" title="Permanent link">&para;</a></h2>
-<p>The FSC group <code>fsc-demo</code> runs OpenFSC v2.4.0. The
+<h2 id="level-2-fsc-group">Level 2: <abbr title="Federated Service Connectivity">FSC</abbr> group<a class="headerlink" href="#level-2-fsc-group" title="Permanent link">&para;</a></h2>
+<p>The <abbr title="Federated Service Connectivity">FSC</abbr> group <code>fsc-demo</code> runs OpenFSC v2.4.0. The
 <a href="../../deployment/#fsc-peers">deployment view</a> lists the peers. The group has
 the following components:</p>
 <table>
@@ -5267,12 +5267,12 @@ the following components:</p>
 </tr>
 <tr>
 <td>Manager (per organization)</td>
-<td>Issues access tokens for contracted connections. The token carries the signed <code>service_name</code>, which binds the PDP rules to a service. The provider Managers of BD, BRP, and the consent register decide contract acceptance through the PDP (AuthZEN autosign).</td>
+<td>Issues access tokens for contracted connections. The token carries the signed <code>service_name</code>, which binds the <abbr title="Policy Decision Point">PDP</abbr> rules to a service. The provider Managers of BD, BRP, and the consent register decide contract acceptance through the <abbr title="Policy Decision Point">PDP</abbr> (<abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> autosign).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L701-L702">bd-manager</a></td>
 </tr>
 <tr>
 <td>Inway (per provider)</td>
-<td><code>bd-inway</code> and <code>brp-inway</code> are the PEP. Their AuthZEN plugin sends every request with its body to the PDP before the request reaches the source gateway. <code>cr-inway</code> has no AuthZEN hook. Behind <code>cr-inway</code>, the contract authorizes <code>consent-status</code>, and the register reads the calling peer from the <code>Fsc-Authorization</code> token.</td>
+<td><code>bd-inway</code> and <code>brp-inway</code> are the <abbr title="Policy Enforcement Point">PEP</abbr>. Their <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> plugin sends every request with its body to the <abbr title="Policy Decision Point">PDP</abbr> before the request reaches the source gateway. <code>cr-inway</code> has no <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> hook. Behind <code>cr-inway</code>, the contract authorizes <code>consent-status</code>, and the register reads the calling peer from the <code>Fsc-Authorization</code> token.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L773-L775">bd-inway</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L1117">cr-inway</a></td>
 </tr>
 <tr>
@@ -5292,17 +5292,17 @@ the following components:</p>
 </tr>
 <tr>
 <td>Consent-status service</td>
-<td>The register peer <code>…0700</code> publishes <code>consent-status</code>. The PDP peer <code>…0800</code> connects to it with grant link <code>/consent-status</code>. The register's Manager signs the connection only for peers in the admission register.</td>
+<td>The register peer <code>…0700</code> publishes <code>consent-status</code>. The <abbr title="Policy Decision Point">PDP</abbr> peer <code>…0800</code> connects to it with grant link <code>/consent-status</code>. The register's Manager signs the connection only for peers in the admission register.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L647-L668">fsc-seed-consent-status</a></td>
 </tr>
 <tr>
-<td>ASIP peer</td>
-<td>The ASIP peer <code>…1200</code> has an Outway only. It holds a contract for <code>brp</code> on <code>…0200</code> with grant link <code>/brp</code>.</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> peer</td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer <code>…1200</code> has an Outway only. It holds a contract for <code>brp</code> on <code>…0200</code> with grant link <code>/brp</code>.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/Makefile#L711-L729">fsc-seed-asip</a></td>
 </tr>
 <tr>
 <td>Txlog API (per peer)</td>
-<td>Records each transport transaction (FSC-Logging). It is the authoritative transport record. The ADL records the decisions, and the LDV logbooks record the processings.</td>
+<td>Records each transport transaction (<abbr title="Federated Service Connectivity">FSC</abbr>-Logging). It is the authoritative transport record. The <abbr title="Authorization Decision Log">ADL</abbr> records the decisions, and the <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbooks record the processings.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml">fsc-infra/docker-compose.yml</a></td>
 </tr>
 </tbody>
@@ -5320,7 +5320,7 @@ the following components:</p>
 <tbody>
 <tr>
 <td>EUDI adapter</td>
-<td>The bridge between the issuance server and the FSC chain. The issuance server calls <code>POST /attestations/{sourceID}/{typeID}</code>. The adapter takes the BSN from the disclosed PID and builds the query from the source's published <code>graphql</code> block. It calls the source through the EDI Outway with <code>Fsc-Grant-Hash</code> and <code>traceparent</code>. It projects the answer into claims through gbo-simple-v1. It writes two LDV records per issuance: one for the BSN read and one for the assembly of the attestation. It fetches source data per request and stores none (<a href="../../requirements/authorization/#req-11">REQ-11</a>).</td>
+<td>The bridge between the issuance server and the <abbr title="Federated Service Connectivity">FSC</abbr> chain. The issuance server calls <code>POST /attestations/{sourceID}/{typeID}</code>. The adapter takes the <abbr title="Burgerservicenummer">BSN</abbr> from the disclosed <abbr title="Person Identification Data">PID</abbr> and builds the query from the source's published <code>graphql</code> block. It calls the source through the EDI Outway with <code>Fsc-Grant-Hash</code> and <code>traceparent</code>. It projects the answer into claims through gbo-simple-v1. It writes two <abbr title="Logboek Dataverwerkingen">LDV</abbr> records per issuance: one for the <abbr title="Burgerservicenummer">BSN</abbr> read and one for the assembly of the attestation. It fetches source data per request and stores none (<a href="../../requirements/authorization/#req-11">REQ-11</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-adapter">services/eudi-adapter</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L65-L95">routes</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_issuance.go">ldv_issuance.go</a></td>
 </tr>
 <tr>
@@ -5330,22 +5330,22 @@ the following components:</p>
 </tr>
 <tr>
 <td>Issuance error contract</td>
-<td>The adapter returns 400 for offer parameters outside the offer, or for a PID without a BSN. It returns 404 if there is no result. If a result does not fit the claims, it returns 502 with <code>GBO_SIMPLE_PATH_MISSING</code>, <code>GBO_SIMPLE_TYPE_MISMATCH</code>, <code>GBO_SIMPLE_RESULT_TYPE</code>, or <code>GBO_SIMPLE_RESULT_AMBIGUOUS</code>. It never issues a partial attestation (<a href="../../requirements/eudi-issuance/#req-116">REQ-116</a>).</td>
+<td>The adapter returns 400 for offer parameters outside the offer, or for a <abbr title="Person Identification Data">PID</abbr> without a <abbr title="Burgerservicenummer">BSN</abbr>. It returns 404 if there is no result. If a result does not fit the claims, it returns 502 with <code>GBO_SIMPLE_PATH_MISSING</code>, <code>GBO_SIMPLE_TYPE_MISMATCH</code>, <code>GBO_SIMPLE_RESULT_TYPE</code>, or <code>GBO_SIMPLE_RESULT_AMBIGUOUS</code>. It never issues a partial attestation (<a href="../../requirements/eudi-issuance/#req-116">REQ-116</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-adapter/internal/gbosimplev1">internal/gbosimplev1</a></td>
 </tr>
 <tr>
 <td>Issuance server</td>
-<td>The nl-wallet issuance server (v0.5.0). It does OpenID4VP disclosure and OpenID4VCI issuance (<code>dc+sd-jwt</code>). It verifies the PID disclosure against <code>issuer_trust_anchors</code>. That list also holds non-PID anchors: the development issuer CA and the issuer CA of every source. An attestation is valid for 365 days. Each type has one status list (<a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>). A second use case, <code>qtsp-attestation</code>, issues the reference QTSP's test statement. An init step writes the server configuration from the active release.</td>
+<td>The nl-wallet issuance server (v0.5.0). It does <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> disclosure and <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> issuance (<code>dc+sd-jwt</code>). It verifies the <abbr title="Person Identification Data">PID</abbr> disclosure against <code>issuer_trust_anchors</code>. That list also holds non-<abbr title="Person Identification Data">PID</abbr> anchors: the development issuer CA and the issuer CA of every source. An attestation is valid for 365 days. Each type has one status list (<a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>). A second use case, <code>qtsp-attestation</code>, issues the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>'s test statement. An init step writes the server configuration from the active release.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-issuance-server">services/eudi-issuance-server</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_config.go">issuance_config.go</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/qtsp_issuance.go">qtsp_issuance.go</a></td>
 </tr>
 <tr>
 <td>Source reconciler</td>
-<td>Reconciles the configured sources to a desired state. It discovers the FSC contracts. It fetches the source document over FSC, or reads the file for the <code>file</code> transport. It validates the document, and it validates the <code>asi</code> capability against the attribute catalog. Then it writes candidates and statuses. Promotion creates an immutable release and activates it. The <code>--auto-promote</code> flag is for the demo only.</td>
+<td>Reconciles the configured sources to a desired state. It discovers the <abbr title="Federated Service Connectivity">FSC</abbr> contracts. It fetches the source document over <abbr title="Federated Service Connectivity">FSC</abbr>, or reads the file for the <code>file</code> transport. It validates the document, and it validates the <code>asi</code> capability against the attribute catalog. Then it writes candidates and statuses. Promotion creates an immutable release and activates it. The <code>--auto-promote</code> flag is for the demo only.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/reconcile_command.go">reconcile_command.go</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_configuration.go">source_configuration.go</a></td>
 </tr>
 <tr>
 <td>Source registry</td>
-<td>A shared Go module with a PostgreSQL store. The store holds candidates, statuses, immutable releases (content-addressed by SHA-256), and one active-release pointer. It has a writer role and a read-only role. The readers are the adapter, the issuance init step, and the ASIP. The states are <code>pending</code>, <code>active</code>, <code>stale</code>, <code>blocked</code>, and <code>rollout_required</code>. A source is fresh for 15 min and then has a stale grace period of 1 h (<a href="../../requirements/sources-identity/#req-66">REQ-66</a>).</td>
+<td>A shared Go module with a PostgreSQL store. The store holds candidates, statuses, immutable releases (content-addressed by SHA-256), and one active-release pointer. It has a writer role and a read-only role. The readers are the adapter, the issuance init step, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. The states are <code>pending</code>, <code>active</code>, <code>stale</code>, <code>blocked</code>, and <code>rollout_required</code>. A source is fresh for 15 min and then has a stale grace period of 1 h (<a href="../../requirements/sources-identity/#req-66">REQ-66</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/source-registry">services/source-registry</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata_cache.go#L10-L14">source_metadata_cache.go</a></td>
 </tr>
 <tr>
@@ -5365,13 +5365,13 @@ the following components:</p>
 </tr>
 </tbody>
 </table>
-<p>The issuance route runs under the PID regime: it carries no consent token.
-The BSN from the PID is in the PDP input and in both decision logs
+<p>The issuance route runs under the <abbr title="Person Identification Data">PID</abbr> regime: it carries no consent token.
+The <abbr title="Burgerservicenummer">BSN</abbr> from the <abbr title="Person Identification Data">PID</abbr> is in the <abbr title="Policy Decision Point">PDP</abbr> input and in both decision logs
 (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>,
 <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>). The decision is
 <a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>.</p>
-<h2 id="level-2-asi-chain">Level 2: ASI chain<a class="headerlink" href="#level-2-asi-chain" title="Permanent link">&para;</a></h2>
-<p>The ASI chain implements the Authentic Source Interface of ETSI TS 119 478,
+<h2 id="level-2-asi-chain">Level 2: <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> chain<a class="headerlink" href="#level-2-asi-chain" title="Permanent link">&para;</a></h2>
+<p>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> chain implements the Authentic Source Interface of ETSI TS 119 478,
 clause 6.1 (<a href="../../decisions/0037-asi-oauth-front-door/">ADR-0037</a>). The chain
 is demo grade. It uses a stub register, development certificates, and a
 DigiD mock. It has the following components:</p>
@@ -5385,8 +5385,8 @@ DigiD mock. It has the following components:</p>
 </thead>
 <tbody>
 <tr>
-<td>ASIP</td>
-<td>Offers clause 6.1.1 verify and 6.1.2 retrieve per data service at <code>/&lt;ds&gt;/authsrc-api</code>. It first verifies the DPoP-bound token. It takes the BSN only from the token (<a href="../../requirements/asi/#req-87">REQ-87</a>). It derives one GraphQL query per request from the source's <code>asi</code> description and sends it through its own Outway (<a href="../../requirements/asi/#req-92">REQ-92</a>). For each attribute, it answers <code>Match</code>, <code>NoMatch</code>, <code>MatchWithVariation</code>, or <code>Unknown</code>. It never returns a source value (<a href="../../requirements/asi/#req-85">REQ-85</a>). It seals every 200 response with a detached JWS in <code>X-JWS-Signature</code> (<a href="../../requirements/asi/#req-83">REQ-83</a>).</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
+<td>Offers clause 6.1.1 verify and 6.1.2 retrieve per data service at <code>/&lt;ds&gt;/authsrc-api</code>. It first verifies the <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr>-bound token. It takes the <abbr title="Burgerservicenummer">BSN</abbr> only from the token (<a href="../../requirements/asi/#req-87">REQ-87</a>). It derives one GraphQL query per request from the source's <code>asi</code> description and sends it through its own Outway (<a href="../../requirements/asi/#req-92">REQ-92</a>). For each attribute, it answers <code>Match</code>, <code>NoMatch</code>, <code>MatchWithVariation</code>, or <code>Unknown</code>. It never returns a source value (<a href="../../requirements/asi/#req-85">REQ-85</a>). It seals every 200 response with a detached JWS in <code>X-JWS-Signature</code> (<a href="../../requirements/asi/#req-83">REQ-83</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-provider">services/asi-provider</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/seal/seal.go">seal.go</a></td>
 </tr>
 <tr>
@@ -5396,12 +5396,12 @@ DigiD mock. It has the following components:</p>
 </tr>
 <tr>
 <td>Source description (<code>asi</code> capability)</td>
-<td>The source maps its fields onto GBO attribute identifiers. The ASIP reads the active release every 5 s with the reader role. If no current description is available, the data service answers 503.</td>
+<td>The source maps its fields onto <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> attribute identifiers. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> reads the active release every 5 s with the reader role. If no current description is available, the data service answers 503.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-mapping">services/asi-mapping</a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/source-registry">services/source-registry</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json">schemas/asi-attributes.json</a></td>
 </tr>
 <tr>
 <td>Authorization server</td>
-<td>Clause 6.1.3. It registers a QTSP with RFC 7591 and a software statement sealed by the QTSP certificate. It verifies the chain and the entitlement <code>QEAA_Provider</code> in the register (<a href="../../requirements/asi/#req-88">REQ-88</a>). It checks the entitlement again every hour (<a href="../../requirements/asi/#req-89">REQ-89</a>). It runs the code flow with PKCE S256 and <code>private_key_jwt</code>. It issues DPoP-bound RFC 9068 tokens (10 min) for exactly one <code>resource</code> (<a href="../../requirements/asi/#req-95">REQ-95</a>). The request page shows who asks for which data at which source (<a href="../../requirements/asi/#req-91">REQ-91</a>). The login is the approval (<a href="../../requirements/asi/#req-90">REQ-90</a>). The token carries the BSN and <code>acr</code>/<code>amr</code> (<a href="../../requirements/asi/#req-86">REQ-86</a>).</td>
+<td>Clause 6.1.3. It registers a <abbr title="Qualified Trust Service Provider">QTSP</abbr> with RFC 7591 and a software statement sealed by the <abbr title="Qualified Trust Service Provider">QTSP</abbr> certificate. It verifies the chain and the entitlement <code>QEAA_Provider</code> in the register (<a href="../../requirements/asi/#req-88">REQ-88</a>). It checks the entitlement again every hour (<a href="../../requirements/asi/#req-89">REQ-89</a>). It runs the code flow with PKCE S256 and <code>private_key_jwt</code>. It issues <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr>-bound RFC 9068 tokens (10 min) for exactly one <code>resource</code> (<a href="../../requirements/asi/#req-95">REQ-95</a>). The request page shows who asks for which data at which source (<a href="../../requirements/asi/#req-91">REQ-91</a>). The login is the approval (<a href="../../requirements/asi/#req-90">REQ-90</a>). The token carries the <abbr title="Burgerservicenummer">BSN</abbr> and <code>acr</code>/<code>amr</code> (<a href="../../requirements/asi/#req-86">REQ-86</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-authorization-server">services/asi-authorization-server</a></td>
 </tr>
 <tr>
@@ -5411,26 +5411,26 @@ DigiD mock. It has the following components:</p>
 </tr>
 <tr>
 <td>Wallet verifier</td>
-<td>The nl-wallet <code>verification_server</code> (v0.5.0). It runs the OpenID4VP PID disclosure for the authorization server (use case <code>asi-login</code>, BSN required, <a href="../../requirements/asi/#req-102">REQ-102</a>). As a demo shortcut it also serves the reference QTSP (<code>qtsp-login</code>, no BSN).</td>
+<td>The nl-wallet <code>verification_server</code> (v0.5.0). It runs the <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> <abbr title="Person Identification Data">PID</abbr> disclosure for the authorization server (use case <code>asi-login</code>, <abbr title="Burgerservicenummer">BSN</abbr> required, <a href="../../requirements/asi/#req-102">REQ-102</a>). As a demo shortcut it also serves the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> (<code>qtsp-login</code>, no <abbr title="Burgerservicenummer">BSN</abbr>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-wallet-verifier">services/asi-wallet-verifier</a></td>
 </tr>
 <tr>
-<td>DigiD mock (ASI)</td>
-<td>A stub means of identification. It accepts nine digits and returns only a BSN.</td>
+<td>DigiD mock (<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>)</td>
+<td>A stub means of identification. It accepts nine digits and returns only a <abbr title="Burgerservicenummer">BSN</abbr>.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-authorization-server/internal/digidmock">internal/digidmock</a></td>
 </tr>
 <tr>
 <td>Rule ASI0001</td>
-<td>Grants the ASIP peer the BRP fields behind the attributes, on <code>brp</code> only. It does not verify the token or the QTSP.</td>
+<td>Grants the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer the BRP fields behind the attributes, on <code>brp</code> only. It does not verify the token or the <abbr title="Qualified Trust Service Provider">QTSP</abbr>.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego">asi0001.rego</a></td>
 </tr>
 <tr>
 <td>Discover Interface (stub)</td>
-<td>External role. It answers <code>retrieve</code> from the ASIP's <code>dataService</code> records (<a href="../../requirements/asi/#req-99">REQ-99</a>). For <code>search</code>, it returns 501.</td>
+<td>External role. It answers <code>retrieve</code> from the <abbr title="Authentic Source Interface Provider">ASIP</abbr>'s <code>dataService</code> records (<a href="../../requirements/asi/#req-99">REQ-99</a>). For <code>search</code>, it returns 501.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/asi-discovery-stub">services/asi-discovery-stub</a></td>
 </tr>
 <tr>
-<td>Reference QTSP</td>
+<td>Reference <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
 <td>External role, demo scaffolding. It discovers, registers, gets a token, verifies or retrieves, and accepts a result only with a valid seal. Then it issues a test statement, marked "not qualified", to the wallet.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/qtsp-reference">services/qtsp-reference</a></td>
 </tr>
@@ -5442,21 +5442,21 @@ DigiD mock. It has the following components:</p>
 </tbody>
 </table>
 <h3 id="trust-boundary">Trust boundary<a class="headerlink" href="#trust-boundary" title="Permanent link">&para;</a></h3>
-<p>The QTSP is not an FSC participant
+<p>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> is not an <abbr title="Federated Service Connectivity">FSC</abbr> participant
 (<a href="../../traceability/findings/#f-87">F-87</a>). It is an OAuth client of the
 authorization server. Its certificate and its register entitlement admit
-it. It has no FSC contract.</p>
-<p>The ASIP is an FSC consumer peer of its own. For the PDP, the actor is the
-ASIP, never the QTSP or the citizen. The ASIP passes nothing about the
-QTSP into the chain. In demo v0.9.0, the ASIP writes no LDV records.</p>
-<p><a href="../../runtime/asi-verification/">ASI verification</a> shows the flow. The
-<a href="../../requirements/asi/#asi-profile">ASI requirements</a> give the profile per
+it. It has no <abbr title="Federated Service Connectivity">FSC</abbr> contract.</p>
+<p>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> is an <abbr title="Federated Service Connectivity">FSC</abbr> consumer peer of its own. For the <abbr title="Policy Decision Point">PDP</abbr>, the actor is the
+<abbr title="Authentic Source Interface Provider">ASIP</abbr>, never the <abbr title="Qualified Trust Service Provider">QTSP</abbr> or the citizen. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> passes nothing about the
+<abbr title="Qualified Trust Service Provider">QTSP</abbr> into the chain. In demo v0.9.0, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> writes no <abbr title="Logboek Dataverwerkingen">LDV</abbr> records.</p>
+<p><a href="../../runtime/asi-verification/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification</a> shows the flow. The
+<a href="../../requirements/asi/#asi-profile"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> requirements</a> give the profile per
 ETSI clause.</p>
 <h2 id="level-2-logging-and-audit">Level 2: logging and audit<a class="headerlink" href="#level-2-logging-and-audit" title="Permanent link">&para;</a></h2>
-<p>GBO keeps three authoritative records, one per Logius standard
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> keeps three authoritative records, one per Logius standard
 (<a href="../../decisions/0036-adl-decision-record/">ADR-0036</a>,
 <a href="../../decisions/0026-ldv-integration/">ADR-0026</a>). One W3C trace ID joins
-them. The records store the FSC transaction ID next to it
+them. The records store the <abbr title="Federated Service Connectivity">FSC</abbr> transaction ID next to it
 (<a href="../../decisions/0035-w3c-trace-context/">ADR-0035</a>).
 <a href="../../concepts/logging/">Logging</a> explains the model. The logging and audit
 chain has the following components:</p>
@@ -5470,23 +5470,23 @@ chain has the following components:</p>
 </thead>
 <tbody>
 <tr>
-<td>Authorization Decision Log (ADL)</td>
-<td>The authoritative record of each PDP decision, contract decisions included. OpenFTV writes it to Postgres <code>ftv_adl</code>. Readers get a SELECT-only role. It holds the request and <code>{allow, reason}</code>. It has no policy version (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>) and no consent-status answer (<a href="../../traceability/findings/#f-72">F-72</a>). For decisions behind the Inway, it has no trace ID and no transaction ID (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>).</td>
+<td>Authorization Decision Log (<abbr title="Authorization Decision Log">ADL</abbr>)</td>
+<td>The authoritative record of each <abbr title="Policy Decision Point">PDP</abbr> decision, contract decisions included. <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> writes it to Postgres <code>ftv_adl</code>. Readers get a SELECT-only role. It holds the request and <code>{allow, reason}</code>. It has no policy version (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>) and no consent-status answer (<a href="../../traceability/findings/#f-72">F-72</a>). For decisions behind the Inway, it has no trace ID and no transaction ID (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L117-L125">docker-compose.yml</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/adl/adl-reader.sql">adl-reader.sql</a></td>
 </tr>
 <tr>
-<td>LDV logbook</td>
-<td>Demo stand-in for the logbook of each controller (Verantwoordelijke), one instance per controller. It accepts one record per processing (<code>POST /logboek/records</code>) and serves the read extension (<code>POST /data-processing-operations</code>). It keeps a versioned stand-in register of processing activities. It refuses any record with an elfproef-valid run of nine digits. It uses SQLite with <code>synchronous = FULL</code>. Write and read take separate tokens.</td>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook</td>
+<td>Demo stand-in for the logbook of each controller (Verantwoordelijke), one instance per controller. It accepts one record per processing (<code>POST /logboek/records</code>) and serves the read extension (<code>POST /data-processing-operations</code>). It keeps a versioned stand-in register of processing activities. It refuses any record with a run of nine digits that passes the <abbr title="Burgerservicenummer">BSN</abbr> check digit test (elfproef). It uses SQLite with <code>synchronous = FULL</code>. Write and read take separate tokens.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek">services/ldv-logboek</a></td>
 </tr>
 <tr>
-<td>LDV client</td>
-<td>A shared Go module. In production, GBO ships this module to chain participants. It does not ship the logbook. The client takes the trace from <code>traceparent</code>. It writes records and waits for the logbook to acknowledge them. It derives the subject in the controller's own pseudonym space. It sets <code>nextLogbookId</code> on outbound calls. A local durable outbox stores each record before delivery. As a result, a logbook outage delays records but does not fail requests.</td>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr> client</td>
+<td>A shared Go module. In production, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> ships this module to chain participants. It does not ship the logbook. The client takes the trace from <code>traceparent</code>. It writes records and waits for the logbook to acknowledge them. It derives the subject in the controller's own pseudonym space. It sets <code>nextLogbookId</code> on outbound calls. A local durable outbox stores each record before delivery. As a result, a logbook outage delays records but does not fail requests.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-client">services/ldv-client</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-client/outbox.go">outbox.go</a></td>
 </tr>
 <tr>
-<td>FSC txlog</td>
-<td>Authoritative transport record per peer (see FSC group).</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> txlog</td>
+<td>Authoritative transport record per peer (see <abbr title="Federated Service Connectivity">FSC</abbr> group).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml">fsc-infra/docker-compose.yml</a></td>
 </tr>
 <tr>
@@ -5524,12 +5524,12 @@ chain has the following components:</p>
 </tr>
 <tr>
 <td><code>logboek-toestemming</code></td>
-<td>GBO consent service</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> consent facility (toestemmingsvoorziening)</td>
 <td><code>consent-register</code>, <code>consent-portal-backend</code></td>
 </tr>
 <tr>
 <td><code>logboek-eudi-adapter</code></td>
-<td>GBO issuance facility</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> issuance facility</td>
 <td><code>eudi-adapter</code></td>
 </tr>
 <tr>
@@ -5544,8 +5544,8 @@ chain has the following components:</p>
 </tr>
 </tbody>
 </table>
-<p>The register logs each status lookup with the verified FSC peer of the PDP
-as processor (<a href="../../requirements/consent/#req-76">REQ-76</a>). The ASIP writes no
+<p>The register logs each status lookup with the verified <abbr title="Federated Service Connectivity">FSC</abbr> peer of the <abbr title="Policy Decision Point">PDP</abbr>
+as processor (<a href="../../requirements/consent/#req-76">REQ-76</a>). The <abbr title="Authentic Source Interface Provider">ASIP</abbr> writes no
 records. The consumer logbooks follow candidate condition
 <a href="../../requirements/admission/#av-02">AV-02</a>.</p>
 <h2 id="level-2-shared-services-and-mocks">Level 2: shared services and mocks<a class="headerlink" href="#level-2-shared-services-and-mocks" title="Permanent link">&para;</a></h2>
@@ -5560,23 +5560,23 @@ records. The consumer logbooks follow candidate condition
 </thead>
 <tbody>
 <tr>
-<td>BSNk PP mock</td>
-<td>Follows the BSNk interface as JSON instead of SOAP: <code>/v2/activate</code>, <code>/v2/transform</code>, <code>/v2/provide-dv-keys</code>, <code>/v2/bsn-authorisation-list</code>, and <code>/v2/scheme-keys</code>. It enforces the rules of BSNk. A PI or PP belongs to its requester. A transformation has at most four parties. Only a party on the BSN authorization list gets an identity. It does not encrypt: anyone who holds a value can read it. Only the portal backend calls it, at consent time.</td>
+<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> mock</td>
+<td>Follows the BSNk interface as JSON instead of SOAP: <code>/v2/activate</code>, <code>/v2/transform</code>, <code>/v2/provide-dv-keys</code>, <code>/v2/bsn-authorisation-list</code>, and <code>/v2/scheme-keys</code>. It enforces the rules of BSNk. A <abbr title="Polymorphic identity">PI</abbr> or <abbr title="Polymorphic pseudonym">PP</abbr> belongs to its requester. A transformation has at most four parties. Only a party on the <abbr title="Burgerservicenummer">BSN</abbr> authorization list gets an identity. It does not encrypt: anyone who holds a value can read it. Only the portal backend calls it, at consent time.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/bsnk-mock">services/bsnk-mock</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bsnk-mock/README.md">README</a></td>
 </tr>
 <tr>
 <td>DigiD mocks</td>
-<td>The toestemmingsportaal has a DigiD login page. The user types a test BSN, and the portal backend signs a portal token with it. The ASI authorization server has its own stub (see the ASI chain). Demo scaffolding.</td>
+<td>The consent portal has a DigiD login page. The user types a test <abbr title="Burgerservicenummer">BSN</abbr>, and the portal backend signs a portal token with it. The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server has its own stub (see the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> chain). Demo scaffolding.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/DigiDAuth.tsx">DigiDAuth.tsx</a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/consent-portal-backend/portalhttp">portalhttp</a></td>
 </tr>
 <tr>
 <td>Consumer backend and frontend</td>
-<td>Mock consumer Hypotheek-BV (peer <code>…0300</code>). It starts the consent flow, receives the proof and sends the DvTP query with the placeholder. <code>QUERY_KIND</code> selects the source (<code>bd</code> or <code>lvg</code>) and its placeholder. It writes its own LDV records. Demo scaffolding.</td>
+<td>Mock consumer Hypotheek-BV (peer <code>…0300</code>). It starts the consent flow, receives the proof and sends the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query with the placeholder. <code>QUERY_KIND</code> selects the source (<code>bd</code> or <code>lvg</code>) and its placeholder. It writes its own <abbr title="Logboek Dataverwerkingen">LDV</abbr> records. Demo scaffolding.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dienstverlener-backend">services/dienstverlener-backend</a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/dienstverlener-mock">dienstverlener-mock</a></td>
 </tr>
 <tr>
 <td>Installatie Register (LVG pilot)</td>
-<td><code>keyper-mock</code> is the IR/Keyper frontend. It has the installer request, the owner approval, and the installer data. <code>ir-backend</code> is the consumer backend with <code>QUERY_KIND=lvg</code> on its own peer <code>…1000</code>. Under one consent, IR calls LVG again at each installer access. IR holds the second consent (citizen to installer). GBO does not hold it. Demo scaffolding.</td>
+<td><code>keyper-mock</code> is the IR/Keyper frontend. It has the installer request, the owner approval, and the installer data. <code>ir-backend</code> is the consumer backend with <code>QUERY_KIND=lvg</code> on its own peer <code>…1000</code>. Under one consent, IR calls LVG again at each installer access. IR holds the second consent (citizen to installer). <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not hold it. Demo scaffolding.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/keyper-mock">keyper-mock</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/lvg-ir.md">docs/lvg-ir.md</a></td>
 </tr>
 <tr>
@@ -5586,12 +5586,12 @@ records. The consumer logbooks follow candidate condition
 </tr>
 <tr>
 <td>Developer portal and backend</td>
-<td>A cockpit for engineers. It shows the live flow from the trace event stream and a scenario library. It shows the ADL decision next to the engine detail, the LDV chain, the FSC txlogs, and an ASI tab. Rule metadata comes from a generated <code>rules.json</code>. Demo scaffolding.</td>
+<td>A cockpit for engineers. It shows the live flow from the trace event stream and a scenario library. It shows the <abbr title="Authorization Decision Log">ADL</abbr> decision next to the engine detail, the <abbr title="Logboek Dataverwerkingen">LDV</abbr> chain, the <abbr title="Federated Service Connectivity">FSC</abbr> txlogs, and an <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> tab. Rule metadata comes from a generated <code>rules.json</code>. Demo scaffolding.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/developer-portal">developer-portal</a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dev-portal-backend">services/dev-portal-backend</a></td>
 </tr>
 <tr>
-<td>OpenFTV Manager, UI, Keycloak</td>
-<td>Opt-in policy administration point. It keeps the policies in Postgres and makes a tagged bundle that the PDP pulls. For more information, see <a href="../../concepts/policy-lifecycle/">policy lifecycle</a>.</td>
+<td><abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> Manager, UI, Keycloak</td>
+<td>Opt-in policy administration point. It keeps the policies in Postgres and makes a tagged bundle that the <abbr title="Policy Decision Point">PDP</abbr> pulls. For more information, see <a href="../../concepts/policy-lifecycle/">policy lifecycle</a>.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/openftv-manager">services/openftv-manager</a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/openftv-manager-ui">services/openftv-manager-ui</a></td>
 </tr>
 <tr>
@@ -5601,7 +5601,7 @@ records. The consumer logbooks follow candidate condition
 </tr>
 </tbody>
 </table>
-<p>The demo removed the old sector PIP
+<p>The demo removed the old sector <abbr title="Policy Information Point">PIP</abbr>
 (<a href="https://github.com/ICTU/GBO-demo/issues/378">#378</a>). Admission runs
 through the admission register and the contract decision. The decision in
 <a href="../../decisions/0022-sector-grants/">ADR-0022</a> is deferred.</p>
@@ -5657,6 +5657,7 @@ through the admission register and the contract decision. The decision in
   <a href="../../traceability/increments/#sl-50">SL-50</a>,
   <a href="../../traceability/increments/#sl-51">SL-51</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

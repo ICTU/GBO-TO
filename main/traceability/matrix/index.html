@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1298,7 +1298,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4641,12 +4641,12 @@
 <p>This matrix lists the design elements of four sources:</p>
 <ul>
 <li>the Globaal Ontwerp (GO),</li>
-<li>the Project Start Architectuur (PSA),</li>
-<li>the functional requirements for DvTP (FR-DvTP v0.9),</li>
+<li>the Projectstartarchitectuur (PSA),</li>
+<li>the functional requirements for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9),</li>
 <li>the EUDI regulation.</li>
 </ul>
 <p>For each element, the matrix
-records if the <a href="https://github.com/ICTU/GBO-demo">GBO demo</a> covers it,
+records if the <a href="https://github.com/ICTU/GBO-demo"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> demo</a> covers it,
 and gives the evidence. The <a href="../findings/">findings</a> and the
 <a href="../open-questions/">open questions</a> give the reverse direction, from demo
 to design.</p>
@@ -4736,7 +4736,7 @@ historical rows of the <a href="#historical">reference architecture</a>.</p>
 <td>19</td>
 </tr>
 <tr>
-<td><a href="#fr-dvtp">FR: FR-DvTP v0.9</a></td>
+<td><a href="#fr-dvtp">FR: FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9</a></td>
 <td>8</td>
 <td>22</td>
 <td>7</td>
@@ -4760,7 +4760,7 @@ not covered.</p>
 <p>Most partial rows can become covered only after a governance decision or
 with production infrastructure. Three examples of such rows are:</p>
 <ul>
-<li>the LDV schema and retention (<a href="../open-questions/#q-08">Q-08</a>),</li>
+<li>the <abbr title="Logboek Dataverwerkingen">LDV</abbr> schema and retention (<a href="../open-questions/#q-08">Q-08</a>),</li>
 <li>the link of organization identifiers in PSA S04,</li>
 <li>PKIoverheid certificates instead of the demo CA (the direction is
   answered in <a href="../answered-questions/#q-07">Q-07</a>).</li>
@@ -4769,7 +4769,7 @@ with production infrastructure. Three examples of such rows are:</p>
 <ul>
 <li>validate a policy set before activation (<a href="../findings/#f-52">F-52</a>),</li>
 <li>admission per service (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>),</li>
-<li>the BSN in the ASI token (<a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>).</li>
+<li>the <abbr title="Burgerservicenummer">BSN</abbr> in the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> token (<a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>).</li>
 </ul>
 <h2 id="legend">Legend<a class="headerlink" href="#legend" title="Permanent link">&para;</a></h2>
 <p>The status column uses five symbols:</p>
@@ -4814,15 +4814,15 @@ with production infrastructure. Three examples of such rows are:</p>
 <tbody>
 <tr>
 <td>Base</td>
-<td>The shared foundation for all routes: PEP, PDP, PIP, connectivity, audit, and semantics.</td>
+<td>The shared foundation for all routes: <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, <abbr title="Policy Information Point">PIP</abbr>, connectivity, audit, and semantics.</td>
 </tr>
 <tr>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>Specific to the consent route (data sharing with third parties).</td>
 </tr>
 <tr>
 <td>EUDI</td>
-<td>Specific to the EUDI wallet routes: issuance (PuB-EAA) and verification for QTSPs (ASI).</td>
+<td>Specific to the EUDI wallet routes: issuance (<abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr>) and verification for QTSPs (<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>).</td>
 </tr>
 <tr>
 <td>Hook</td>
@@ -4841,11 +4841,11 @@ with production infrastructure. Three examples of such rows are:</p>
   pull request or issue, or a requirement that carries the evidence.</li>
 <li>Some links pin an older demo commit. They are historical evidence for
   the state at the time of the check.</li>
-<li>FR-DvTP v0.9 is not public. The matrix names its criteria without a
+<li>FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 is not public. The matrix names its criteria without a
   link.</li>
 </ul>
 <h2 id="architecture-principles">Architecture principles (P-01 to P-16)<a class="headerlink" href="#architecture-principles" title="Permanent link">&para;</a></h2>
-<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA architectuurprincipes</a>.
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA architecture principles</a>.
 These principles are invariants: the demo must not break them.</p>
 <table>
 <thead>
@@ -4865,7 +4865,7 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../../requirements/consent/#req-14">REQ-14</a>, <a href="../../requirements/consent/#req-19">REQ-19</a></td>
-<td>Before an allow, the PDP checks that the consent is valid, unexpired, and not revoked. A legal-basis path (government to government) is out of scope.</td>
+<td>Before an allow, the <abbr title="Policy Decision Point">PDP</abbr> checks that the consent is valid, unexpired, and not revoked. A legal-basis path (government to government) is out of scope.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a></td>
@@ -4873,7 +4873,7 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="../../requirements/authorization/#req-08">REQ-08</a>, <a href="../../requirements/authorization/#req-17">REQ-17</a></td>
-<td>The PDP decides each field of the parsed query (<a href="../increments/#sl-03a">SL-03a</a>). Under a consent, the subject comes only from the proof (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>).</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> decides each field of the parsed query (<a href="../increments/#sl-03a">SL-03a</a>). Under a consent, the subject comes only from the proof (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-03</a></td>
@@ -4881,14 +4881,14 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="../../requirements/pseudonymization/#req-21">REQ-21</a>, <a href="../../requirements/consent/#req-23">REQ-23</a>, <a href="../../requirements/pseudonymization/#req-69">REQ-69</a>, <a href="../../requirements/pseudonymization/#req-82">REQ-82</a></td>
-<td>The register holds no BSN. The proof carries an encrypted value per source, and the consumer gets no identifier (<a href="../increments/#sl-51">SL-51</a>). In the demo, BSNk is a mock, and the pseudonym form is open (<a href="../open-questions/#q-01">Q-01</a>).</td>
+<td>The register holds no <abbr title="Burgerservicenummer">BSN</abbr>. The proof carries an encrypted value per source, and the consumer gets no identifier (<a href="../increments/#sl-51">SL-51</a>). In the demo, BSNk is a mock, and the pseudonym form is open (<a href="../open-questions/#q-01">Q-01</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a></td>
-<td>BSN-free for private consumers</td>
-<td>DvTP</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr>-free for private consumers</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
-<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L47"><code>consent_token.go#L47</code></a> (no plain BSN in the proof), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/decryption/decryption.go#L76"><code>decryption.go#L76</code></a> (the source decrypts its own value)</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L47"><code>consent_token.go#L47</code></a> (no plain <abbr title="Burgerservicenummer">BSN</abbr> in the proof), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/decryption/decryption.go#L76"><code>decryption.go#L76</code></a> (the source decrypts its own value)</td>
 <td>The consumer has no identifier at all: it sends a placeholder, and the source replaces it after the allow (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>, <a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="../increments/#sl-51">SL-51</a>). <a href="../findings/#f-76">F-76</a> describes the effects on logging and recognition.</td>
 </tr>
 <tr>
@@ -4896,8 +4896,8 @@ These principles are invariants: the demo must not break them.</p>
 <td>Recognized authentication means at an adequate level of assurance</td>
 <td>Base</td>
 <td>○</td>
-<td>DigiD mock in the consent portal (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/DigiDAuth.tsx"><code>DigiDAuth.tsx</code></a>), ASI authorization server with DigiD mock and NL Wallet (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/client.go#L119"><code>client.go#L119</code></a>)</td>
-<td>The demo has no real means at a set level of assurance. Real means are out of scope. <a href="../open-questions/#q-36">Q-36</a> asks which level ETSI TS 119 461 requires for the ASI route, and if DigiD meets it.</td>
+<td>DigiD mock in the consent portal (toestemmingsportaal) (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/DigiDAuth.tsx"><code>DigiDAuth.tsx</code></a>), <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server with DigiD mock and NL Wallet (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/client.go#L119"><code>client.go#L119</code></a>)</td>
+<td>The demo has no real means at a set level of assurance. Real means are out of scope. <a href="../open-questions/#q-36">Q-36</a> asks which level ETSI TS 119 461 requires for the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route, and if DigiD meets it.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-06</a></td>
@@ -4921,7 +4921,7 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="../../requirements/authorization/#req-11">REQ-11</a></td>
-<td>The source stays authoritative, and GBO components keep no copy. The demo does not show reuse explicitly.</td>
+<td>The source stays authoritative, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components keep no copy. The demo does not show reuse explicitly.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-09</a></td>
@@ -4929,15 +4929,15 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml"><code>docker-compose.yml</code></a></td>
-<td>GraphQL, OPA, AuthZEN, OpenFSC with mTLS, OTel, OpenID4VCI, and OpenID4VP are open standards. The GraphQL profile for FSC is a proposal and has no standard status (<a href="#open-decisions">B-02</a>).</td>
+<td>GraphQL, OPA, <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr>, OpenFSC with mTLS, OTel, <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr>, and <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> are open standards. The GraphQL profile for <abbr title="Federated Service Connectivity">FSC</abbr> is a proposal and has no standard status (<a href="#open-decisions">B-02</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a></td>
-<td>Data sovereignty: the source holder keeps control</td>
+<td>Data sovereignty: the bronhouder keeps control</td>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L101"><code>source_metadata.go#L101</code></a> (validation of the source description), <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L171"><code>autosign.rego#L171</code></a></td>
-<td>The source decides who connects (<a href="../increments/#sl-45">SL-45</a>), what is available (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../findings/#f-57">F-57</a>), and when (<a href="../../requirements/sources-identity/#req-65">REQ-65</a>). The PDP behind the source Inway checks each request (<a href="../findings-closed/#f-06">F-06</a> closed). In demo v0.9.0, REQ-64 is built for EUDI and the ASIP (<a href="https://github.com/ICTU/GBO-demo/issues/592">#592</a>). It is not built for DvTP.</td>
+<td>The source decides who connects (<a href="../increments/#sl-45">SL-45</a>), what is available (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../findings/#f-57">F-57</a>), and when (<a href="../../requirements/sources-identity/#req-65">REQ-65</a>). The <abbr title="Policy Decision Point">PDP</abbr> behind the source Inway checks each request (<a href="../findings-closed/#f-06">F-06</a> closed). In demo v0.9.0, REQ-64 is built for EUDI and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> (<a href="https://github.com/ICTU/GBO-demo/issues/592">#592</a>). It is not built for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-11</a></td>
@@ -4952,13 +4952,13 @@ These principles are invariants: the demo must not break them.</p>
 <td>Logging and non-repudiation</td>
 <td>Base</td>
 <td>◐</td>
-<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L125"><code>docker-compose.yml#L125</code></a> (ADL), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/adl.go"><code>adl.go</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek"><code>ldv-logboek</code></a></td>
-<td>The ADL is the audit source (<a href="../../requirements/logging-audit/#req-71">REQ-71</a>), with an LDV logbook per system (<a href="../../requirements/logging-audit/#req-72">REQ-72</a>) and one trace ID (<a href="../../requirements/logging-audit/#req-55">REQ-55</a>). Open: the BSN in both decision logs (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>, <a href="../findings/#f-54">F-54</a>, <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>), field detail only in the console log (<a href="../findings/#f-72">F-72</a>), and production guarantees (<a href="../open-questions/#q-08">Q-08</a>, <a href="../findings-closed/#f-07">F-07</a>).</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L125"><code>docker-compose.yml#L125</code></a> (<abbr title="Authorization Decision Log">ADL</abbr>), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/adl.go"><code>adl.go</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek"><code>ldv-logboek</code></a></td>
+<td>The <abbr title="Authorization Decision Log">ADL</abbr> is the audit source (<a href="../../requirements/logging-audit/#req-71">REQ-71</a>), with an <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook per system (<a href="../../requirements/logging-audit/#req-72">REQ-72</a>) and one trace ID (<a href="../../requirements/logging-audit/#req-55">REQ-55</a>). Open: the <abbr title="Burgerservicenummer">BSN</abbr> in both decision logs (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>, <a href="../findings/#f-54">F-54</a>, <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>), field detail only in the console log (<a href="../findings/#f-72">F-72</a>), and production guarantees (<a href="../open-questions/#q-08">Q-08</a>, <a href="../findings-closed/#f-07">F-07</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-13</a></td>
 <td>Transparency and access for the citizen</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="../../requirements/consent/#req-38">REQ-38</a>, <a href="../../requirements/consent/#req-39">REQ-39</a>, <a href="../../requirements/consent/#req-40">REQ-40</a></td>
 <td>For each consent, the citizen sees who, what, purpose, and duration, and can revoke the consent (<a href="../increments/#sl-06a">SL-06a</a>, <a href="../increments/#sl-06b">SL-06b</a>). Missing: usage status (<a href="../findings/#f-19">F-19</a>) and processing per consent (<a href="../open-questions/#q-25">Q-25</a>).</td>
@@ -4969,7 +4969,7 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="../../requirements/authorization/#req-44">REQ-44</a>, <a href="../../requirements/asi/#req-92">REQ-92</a></td>
-<td>Each capability is a service of its own, and the front ends call it directly (<a href="../increments/#sl-11">SL-11</a>, <a href="../increments/#sl-15">SL-15</a>). The EUDI adapter holds no use-case knowledge (<a href="../increments/#sl-46">SL-46</a>). The generic chain also runs behind the ASIP (<a href="../findings/#f-87">F-87</a>).</td>
+<td>Each capability is a service of its own, and the front ends call it directly (<a href="../increments/#sl-11">SL-11</a>, <a href="../increments/#sl-15">SL-15</a>). The EUDI adapter holds no use-case knowledge (<a href="../increments/#sl-46">SL-46</a>). The generic chain also runs behind the <abbr title="Authentic Source Interface Provider">ASIP</abbr> (<a href="../findings/#f-87">F-87</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-15</a></td>
@@ -4977,7 +4977,7 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml"><code>gbo-pdp.yaml</code></a></td>
-<td>Policy changes reach the PDP as a bundle, without a new PDP image (<a href="../increments/#sl-44">SL-44</a>, <a href="../../requirements/authorization/#rl-01">RL-01</a>). Mostly covered.</td>
+<td>Policy changes reach the <abbr title="Policy Decision Point">PDP</abbr> as a bundle, without a new <abbr title="Policy Decision Point">PDP</abbr> image (<a href="../increments/#sl-44">SL-44</a>, <a href="../../requirements/authorization/#rl-01">RL-01</a>). Mostly covered.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-16</a></td>
@@ -4990,7 +4990,7 @@ These principles are invariants: the demo must not break them.</p>
 </tbody>
 </table>
 <h2 id="design-principles">Design principles (D-01 to D-14)<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h2>
-<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">PSA ontwerpprincipes</a>.</p>
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">PSA design principles</a>.</p>
 <table>
 <thead>
 <tr>
@@ -5008,8 +5008,8 @@ These principles are invariants: the demo must not break them.</p>
 <td>Decentral where possible, central where necessary</td>
 <td>Base</td>
 <td>◐</td>
-<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L773"><code>fsc-infra/docker-compose.yml#L773</code></a> (one shared PDP)</td>
-<td>One shared PDP behind all Inways is a demo shortcut. A PDP per source is possible with bundles (<a href="../increments/#sl-44">SL-44</a>). <a href="../answered-questions/#q-02">Q-02</a> is answered: federated, per source holder.</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L773"><code>fsc-infra/docker-compose.yml#L773</code></a> (one shared <abbr title="Policy Decision Point">PDP</abbr>)</td>
+<td>One shared <abbr title="Policy Decision Point">PDP</abbr> behind all Inways is a demo shortcut. A <abbr title="Policy Decision Point">PDP</abbr> per source is possible with bundles (<a href="../increments/#sl-44">SL-44</a>). <a href="../answered-questions/#q-02">Q-02</a> is answered: federated, per bronhouder.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-02</a></td>
@@ -5041,7 +5041,7 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>✓</td>
 <td><a href="../../requirements/authorization/#req-11">REQ-11</a></td>
-<td>GBO components fetch per request from the source and keep no copy.</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components fetch per request from the source and keep no copy.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-06</a></td>
@@ -5065,7 +5065,7 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>◐</td>
 <td>—</td>
-<td>The demo uses GraphQL, JWT, OTel, and FSC with mTLS. The GraphQL profile for FSC is open (<a href="#open-decisions">B-02</a>).</td>
+<td>The demo uses GraphQL, JWT, OTel, and <abbr title="Federated Service Connectivity">FSC</abbr> with mTLS. The GraphQL profile for <abbr title="Federated Service Connectivity">FSC</abbr> is open (<a href="#open-decisions">B-02</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-09</a></td>
@@ -5081,7 +5081,7 @@ These principles are invariants: the demo must not break them.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/pull/242">PR #242</a> (CA keys outside the runtime), <a href="https://github.com/ICTU/GBO-demo/pull/222">PR #222</a>, <a href="https://github.com/ICTU/GBO-demo/pull/220">PR #220</a>, <a href="../../requirements/pseudonymization/#req-69">REQ-69</a>, <a href="../../requirements/sources-identity/#req-66">REQ-66</a></td>
-<td>The demo has mTLS over FSC, CA keys outside the application runtime, no per-party values in the register, and source metadata that fails closed. Open: there is no penetration test or audit (D-12), and the demo uses its own CA instead of PKIoverheid (<a href="../answered-questions/#q-07">Q-07</a>).</td>
+<td>The demo has mTLS over <abbr title="Federated Service Connectivity">FSC</abbr>, CA keys outside the application runtime, no per-party values in the register, and source metadata that fails closed. Open: there is no penetration test or audit (D-12), and the demo uses its own CA instead of PKIoverheid (<a href="../answered-questions/#q-07">Q-07</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-11</a></td>
@@ -5118,7 +5118,7 @@ These principles are invariants: the demo must not break them.</p>
 </tbody>
 </table>
 <h2 id="generic-functions">Generic functions (F1 to F8)<a class="headerlink" href="#generic-functions" title="Permanent link">&para;</a></h2>
-<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/">PSA generieke functies</a>
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/">PSA generic functions</a>
 and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <table>
 <thead>
@@ -5138,7 +5138,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/fsc-infra"><code>fsc-infra</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a></td>
-<td>Organizations connect as real FSC peers with mTLS, and a register admits them (<a href="../../requirements/admission/#req-61">REQ-61</a>). Transport identity and legal identity are apart (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>). The citizen login is a mock. The demo uses its own CA, and production uses PKIoverheid (<a href="../answered-questions/#q-07">Q-07</a>).</td>
+<td>Organizations connect as real <abbr title="Federated Service Connectivity">FSC</abbr> peers with mTLS, and a register admits them (<a href="../../requirements/admission/#req-61">REQ-61</a>). Transport identity and legal identity are apart (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>). The citizen login is a mock. The demo uses its own CA, and production uses PKIoverheid (<a href="../answered-questions/#q-07">Q-07</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f2-toegang-interactie">F2</a></td>
@@ -5146,7 +5146,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>Base</td>
 <td>✓</td>
 <td><a href="../../requirements/authorization/#req-04">REQ-04</a>, <a href="../../requirements/sources-identity/#req-46">REQ-46</a></td>
-<td>The chain FSC Outway → Inway → PDP → source works end to end.</td>
+<td>The chain <abbr title="Federated Service Connectivity">FSC</abbr> Outway → Inway → <abbr title="Policy Decision Point">PDP</abbr> → source works end to end.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f3-gegevensvoorziening">F3</a></td>
@@ -5154,7 +5154,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="../../requirements/authorization/#req-11">REQ-11</a>, <a href="../../requirements/authorization/#req-97">REQ-97</a></td>
-<td>Three sources answer over FSC: BD, BRP, and LVG. Each DvTP consent and each request reaches only one source (FR-38).</td>
+<td>Three sources answer over <abbr title="Federated Service Connectivity">FSC</abbr>: BD, BRP, and LVG. Each <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consent and each request reaches only one source (FR-38).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f4-semantiek-eenheid-van-taal">F4</a></td>
@@ -5186,7 +5186,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>Base</td>
 <td>○</td>
 <td>—</td>
-<td>The demo has no orchestration or integration layer. An integrator can call under FSC delegation (<a href="../../requirements/consent/#req-106">REQ-106</a>), but there is no FDS broker.</td>
+<td>The demo has no orchestration or integration layer. An integrator can call under <abbr title="Federated Service Connectivity">FSC</abbr> delegation (<a href="../../requirements/consent/#req-106">REQ-106</a>), but there is no FDS broker.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f8-beheer-continuiteit">F8</a></td>
@@ -5215,7 +5215,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie">S01</a></td>
 <td>Consent registration</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L47"><code>consent_token.go#L47</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/postgres_store.go"><code>postgres_store.go</code></a></td>
 <td>The register issues the signed proof (<a href="../../requirements/consent/#req-68">REQ-68</a>) and keeps the polymorphic values under its own reference (<a href="../../requirements/pseudonymization/#req-69">REQ-69</a>). It signs the value per source and does not store it (<a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="../findings/#f-78">F-78</a>, <a href="../../requirements/pseudonymization/#req-82">REQ-82</a>). The local stack runs in memory (<a href="../increments/#sl-12">SL-12</a>).</td>
@@ -5223,7 +5223,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal">S02</a></td>
 <td>Consent portal (citizen interaction)</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="../../requirements/consent/#req-38">REQ-38</a>, <a href="../../requirements/consent/#req-39">REQ-39</a>, <a href="../../requirements/consent/#req-40">REQ-40</a></td>
 <td>The portal has its own backend and front end on a government origin, a DigiD mock token, and an ownership check on revoke (<a href="../increments/#sl-11">SL-11</a>, <a href="../increments/#sl-06b">SL-06b</a>). Not built: the acknowledgment that the citizen read the text (<a href="../../requirements/consent/#req-107">REQ-107</a>), and the export (<a href="../../requirements/consent/#req-108">REQ-108</a>).</td>
@@ -5242,11 +5242,11 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/fsc-infra"><code>fsc-infra</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L171"><code>autosign.rego#L171</code></a></td>
-<td>A register admits organizations to the system, and the PDP decides on contracts (<a href="../../requirements/admission/#req-61">REQ-61</a>, <a href="../../requirements/admission/#req-62">REQ-62</a>). Transport and legal identity are apart (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>, <a href="../findings-closed/#f-60">F-60</a>). Open: PKIoverheid certificates in place of the demo CA (<a href="../answered-questions/#q-07">Q-07</a>).</td>
+<td>A register admits organizations to the system, and the <abbr title="Policy Decision Point">PDP</abbr> decides on contracts (<a href="../../requirements/admission/#req-61">REQ-61</a>, <a href="../../requirements/admission/#req-62">REQ-62</a>). Transport and legal identity are apart (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>, <a href="../findings-closed/#f-60">F-60</a>). Open: PKIoverheid certificates in place of the demo CA (<a href="../answered-questions/#q-07">Q-07</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">S05</a></td>
-<td>Authorization (PEP/PDP/PIP)</td>
+<td>Authorization (<abbr title="Policy Enforcement Point">PEP</abbr>/<abbr title="Policy Decision Point">PDP</abbr>/<abbr title="Policy Information Point">PIP</abbr>)</td>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L173"><code>engine.rego#L173</code></a> (regime), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L268"><code>consent.rego#L268</code></a> (status), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/mapper/ftvgraphql.go"><code>ftvgraphql.go</code></a></td>
@@ -5254,11 +5254,11 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">S06</a></td>
-<td>Policy management and distribution (PAP)</td>
+<td>Policy management and distribution (<abbr title="Policy Administration Point">PAP</abbr>)</td>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml"><code>gbo-pdp.yaml</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/seed-openftv-manager.py"><code>seed-openftv-manager.py</code></a></td>
-<td>The PAP runs at the source side and distributes versioned bundles (<a href="../../requirements/authorization/#rl-01">RL-01</a> to <a href="../../requirements/authorization/#rl-04">RL-04</a>). These RL items are guidelines: management stays with each source holder (<a href="../answered-questions/#q-21">Q-21</a>). Open: validation before activation (<a href="../findings/#f-52">F-52</a>, <a href="../../requirements/authorization/#rl-05">RL-05</a>), push distribution (<a href="../findings/#f-51">F-51</a>), and the policy version in the decision record (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>).</td>
+<td>The <abbr title="Policy Administration Point">PAP</abbr> runs at the source side and distributes versioned bundles (<a href="../../requirements/authorization/#rl-01">RL-01</a> to <a href="../../requirements/authorization/#rl-04">RL-04</a>). These RL items are guidelines: management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>). Open: validation before activation (<a href="../findings/#f-52">F-52</a>, <a href="../../requirements/authorization/#rl-05">RL-05</a>), push distribution (<a href="../findings/#f-51">F-51</a>), and the policy version in the decision record (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">S07</a></td>
@@ -5266,11 +5266,11 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>Base</td>
 <td>✓</td>
 <td><a href="../../requirements/authorization/#req-17">REQ-17</a>, <a href="../../requirements/authorization/#req-97">REQ-97</a></td>
-<td>GraphQL source access works for three sources. PSA S07 asks for pre-registered selective queries. The DvTP path lets the consumer send free queries within a field allowlist (<a href="../open-questions/#q-14">Q-14</a>).</td>
+<td>GraphQL source access works for three sources. PSA S07 asks for pre-registered selective queries. The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> path lets the consumer send free queries within a field allowlist (<a href="../open-questions/#q-14">Q-14</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter">S08</a></td>
-<td>OOTS adapter</td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr> adapter</td>
 <td>Hook</td>
 <td>—</td>
 <td>—</td>
@@ -5282,7 +5282,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/adl.go"><code>adl.go</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek"><code>ldv-logboek</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/observability/grafana/dashboards/request-flow.json"><code>request-flow.json</code></a></td>
-<td>The ADL is the audit source (<a href="../../requirements/logging-audit/#req-71">REQ-71</a>). Each system has an LDV logbook (<a href="../../requirements/logging-audit/#req-72">REQ-72</a>), and the trace comes from <code>traceparent</code> (<a href="../../requirements/logging-audit/#req-55">REQ-55</a>, <a href="../findings-closed/#f-67">F-67</a>). Open: the BSN in the decision logs (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>), and the record behind the Inway without a trace (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>). Also open: the read route to the consent log (<a href="../open-questions/#q-25">Q-25</a>, <a href="../findings/#f-68">F-68</a>), and the register of processing activities (<a href="../open-questions/#q-08">Q-08</a>).</td>
+<td>The <abbr title="Authorization Decision Log">ADL</abbr> is the audit source (<a href="../../requirements/logging-audit/#req-71">REQ-71</a>). Each system has an <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook (<a href="../../requirements/logging-audit/#req-72">REQ-72</a>), and the trace comes from <code>traceparent</code> (<a href="../../requirements/logging-audit/#req-55">REQ-55</a>, <a href="../findings-closed/#f-67">F-67</a>). Open: the <abbr title="Burgerservicenummer">BSN</abbr> in the decision logs (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>), and the record behind the Inway without a trace (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>). Also open: the read route to the consent log (<a href="../open-questions/#q-25">Q-25</a>, <a href="../findings/#f-68">F-68</a>), and the register of processing activities (<a href="../open-questions/#q-08">Q-08</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">S10</a></td>
@@ -5290,11 +5290,11 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/gbo-source-metadata-v1.schema.json"><code>gbo-source-metadata-v1.schema.json</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L101"><code>source_metadata.go#L101</code></a></td>
-<td>The source owns its service description on <code>/.well-known/gbo</code>, and GBO validates and activates it (<a href="../findings/#f-57">F-57</a>, <a href="../../requirements/sources-identity/#req-64">REQ-64</a>). In demo v0.9.0, this is built for EUDI and the ASIP. DvTP scopes come from rule files on the GBO side (<a href="../findings-closed/#f-17">F-17</a>). There is no DCAT-AP-NL reference and no central findability. <a href="../findings/#f-74">F-74</a> covers the DvTP catalogue per FR-32.</td>
+<td>The source owns its service description on <code>/.well-known/gbo</code>, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates and activates it (<a href="../findings/#f-57">F-57</a>, <a href="../../requirements/sources-identity/#req-64">REQ-64</a>). In demo v0.9.0, this is built for EUDI and the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> scopes come from rule files on the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> side (<a href="../findings-closed/#f-17">F-17</a>). There is no DCAT-AP-NL reference and no central findability. <a href="../findings/#f-74">F-74</a> covers the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> catalogue per FR-32.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">S11</a></td>
-<td>Attestation issuance (PuB-EAA / QEAA)</td>
+<td>Attestation issuance (<abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> / <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr>)</td>
 <td>EUDI</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-issuance-server"><code>eudi-issuance-server</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-adapter"><code>eudi-adapter</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego"><code>eud0002.rego</code></a></td>
@@ -5303,7 +5303,7 @@ and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 </tbody>
 </table>
 <h2 id="interaction-patterns">Interaction patterns<a class="headerlink" href="#interaction-patterns" title="Permanent link">&para;</a></h2>
-<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PSA interactiepatronen</a>
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PSA interaction patterns</a>
 and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <table>
 <thead>
@@ -5327,7 +5327,7 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PAT-B</a></td>
-<td>Cross-border SDG/OOTS</td>
+<td>Cross-border SDG/<abbr title="Once-Only Technical System">OOTS</abbr></td>
 <td>Hook</td>
 <td>—</td>
 <td>—</td>
@@ -5335,8 +5335,8 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PAT-C</a></td>
-<td>Data request by a private service provider (DvTP)</td>
-<td>DvTP</td>
+<td>Data request by a private service provider (dienstverlener) in <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../../requirements/consent/#req-14">REQ-14</a>, <a href="../../requirements/consent/#req-19">REQ-19</a></td>
 <td>Consent, query, allow or deny, and revoke work end to end, for the BD and LVG sources, and through an integrator (<a href="https://github.com/ICTU/GBO-demo/pull/464">PR #464</a>).</td>
@@ -5368,27 +5368,27 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <tbody>
 <tr>
 <td>EUDI-1</td>
-<td>PuB-EAA provider and OpenID4VCI issuance</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider and <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> issuance</td>
 <td>EUDI</td>
 <td>◐</td>
 <td><a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>, <a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../../requirements/eudi-issuance/#req-77">REQ-77</a></td>
-<td>Issuance works against mock trust (<a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>). PuB-EAA issuance falls under ETSI TS 119 471 and needs designation (<a href="../findings/#f-81">F-81</a>, <a href="../open-questions/#q-28">Q-28</a>).</td>
+<td>Issuance works against mock trust (<a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>). <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance falls under ETSI TS 119 471 and needs designation (<a href="../findings/#f-81">F-81</a>, <a href="../open-questions/#q-28">Q-28</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider">EUDI-2</a></td>
-<td>Authentic Source Interface (QTSP verification, art. 45e)</td>
+<td>Authentic Source Interface (<abbr title="Qualified Trust Service Provider">QTSP</abbr> verification, art. 45e)</td>
 <td>EUDI</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/seal/seal.go#L45"><code>seal.go#L45</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/registration.go#L222"><code>registration.go#L222</code></a> (re-check), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego#L23"><code>asi0001.rego#L23</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/conformance/etsi-ts-119478.yaml"><code>etsi-ts-119478.yaml</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/asi-route.md"><code>asi-route.md</code></a></td>
-<td><a href="../increments/#sl-28">SL-28</a> is done. It built sealed verify and retrieve, its own authorization server, and the chain behind the ASIP over FSC. It also built discovery, a reference QTSP, and login with a DigiD mock and the NL Wallet. The GBO profile is in the <a href="../../requirements/asi/#asi-profile">ASI profile</a>: <a href="../../requirements/asi/#req-83">REQ-83</a> to <a href="../../requirements/asi/#req-115">REQ-115</a>. Open: the BSN in the token (<a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>, <a href="../findings/#f-86">F-86</a>), and an external QTSP (<a href="https://github.com/ICTU/GBO-demo/issues/594">#594</a>). The ASIP has no certification and seals with a development certificate.</td>
+<td><a href="../increments/#sl-28">SL-28</a> is done. It built sealed verify and retrieve, its own authorization server, and the chain behind the <abbr title="Authentic Source Interface Provider">ASIP</abbr> over <abbr title="Federated Service Connectivity">FSC</abbr>. It also built discovery, a reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>, and login with a DigiD mock and the NL Wallet. The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> profile is in the <a href="../../requirements/asi/#asi-profile"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> profile</a>: <a href="../../requirements/asi/#req-83">REQ-83</a> to <a href="../../requirements/asi/#req-115">REQ-115</a>. Open: the <abbr title="Burgerservicenummer">BSN</abbr> in the token (<a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>, <a href="../findings/#f-86">F-86</a>), and an external <abbr title="Qualified Trust Service Provider">QTSP</abbr> (<a href="https://github.com/ICTU/GBO-demo/issues/594">#594</a>). The <abbr title="Authentic Source Interface Provider">ASIP</abbr> has no certification and seals with a development certificate.</td>
 </tr>
 <tr>
 <td>EUDI-3</td>
-<td>PID presentation and signature verification</td>
+<td><abbr title="Person Identification Data">PID</abbr> presentation and signature verification</td>
 <td>EUDI</td>
 <td>◐</td>
-<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/client.go#L119"><code>client.go#L119</code></a> (ASI route)</td>
-<td>ASI route: the nl-wallet verifier verifies the PID against a fixed list of issuers (<a href="../../requirements/asi/#req-102">REQ-102</a>). Issuance route: the issuance server verifies the PID. The callback to the adapter has no authentication, so nothing binds the BSN to the verified disclosure (<a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>, <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>, <a href="../findings/#f-70">F-70</a>).</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/client.go#L119"><code>client.go#L119</code></a> (<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route)</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route: the nl-wallet verifier verifies the <abbr title="Person Identification Data">PID</abbr> against a fixed list of issuers (<a href="../../requirements/asi/#req-102">REQ-102</a>). Issuance route: the issuance server verifies the <abbr title="Person Identification Data">PID</abbr>. The callback to the adapter has no authentication, so nothing binds the <abbr title="Burgerservicenummer">BSN</abbr> to the verified disclosure (<a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>, <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>, <a href="../findings/#f-70">F-70</a>).</td>
 </tr>
 <tr>
 <td>EUDI-4</td>
@@ -5396,7 +5396,7 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>EUDI</td>
 <td>○</td>
 <td>—</td>
-<td>The demo has no qualified seal. The ASIP seals with a development certificate (<a href="../../requirements/asi/#req-83">REQ-83</a>). For more information, see FR-27.</td>
+<td>The demo has no qualified seal. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> seals with a development certificate (<a href="../../requirements/asi/#req-83">REQ-83</a>). For more information, see FR-27.</td>
 </tr>
 <tr>
 <td>EUDI-5</td>
@@ -5404,7 +5404,7 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>EUDI</td>
 <td>○</td>
 <td>—</td>
-<td>The demo uses mock trust. The list on which PuB-EAA issuers appear is open (<a href="../open-questions/#q-30">Q-30</a>).</td>
+<td>The demo uses mock trust. The list on which <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuers appear is open (<a href="../open-questions/#q-30">Q-30</a>).</td>
 </tr>
 <tr>
 <td>EUDI-6</td>
@@ -5412,7 +5412,7 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>EUDI</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/pull/224">PR #224</a> (schemas published by the source, fixed per version)</td>
-<td>Each source publishes its schemas, and GBO validates and activates them (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>). An integrity reference binds the schema to the credential. <a href="../answered-questions/#q-20">Q-20</a> (closed) covers the claim shape for related-person data.</td>
+<td>Each source publishes its schemas, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates and activates them (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>). An integrity reference binds the schema to the credential. <a href="../answered-questions/#q-20">Q-20</a> (closed) covers the claim shape for related-person data.</td>
 </tr>
 <tr>
 <td>EUDI-7</td>
@@ -5420,7 +5420,7 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>EUDI</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L173"><code>engine.rego#L173</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001.rego"><code>eud0001.rego</code></a></td>
-<td>The regime follows from the evidence (<a href="../../requirements/authorization/#req-74">REQ-74</a>). If a request carries no consent proof, it enters the PID regime. The PID regime has no positive evidence of its own (<a href="../findings/#f-70">F-70</a>, <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>).</td>
+<td>The regime follows from the evidence (<a href="../../requirements/authorization/#req-74">REQ-74</a>). If a request carries no consent proof, it enters the <abbr title="Person Identification Data">PID</abbr> regime. The <abbr title="Person Identification Data">PID</abbr> regime has no positive evidence of its own (<a href="../findings/#f-70">F-70</a>, <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>).</td>
 </tr>
 <tr>
 <td>EUDI-8</td>
@@ -5432,11 +5432,11 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 </tr>
 <tr>
 <td>EUDI-9</td>
-<td>Issuer role and liability (PuB-EAA or QTSP)</td>
+<td>Issuer role and liability (<abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> or <abbr title="Qualified Trust Service Provider">QTSP</abbr>)</td>
 <td>EUDI</td>
 <td>○</td>
 <td>—</td>
-<td>This is governance (<a href="../open-questions/#q-17">Q-17</a>). The reference QTSP issues a test attestation after an ASI verification (<a href="../increments/#sl-28">SL-28</a>, part 13 of epic #336). Role and liability stay a governance matter.</td>
+<td>This is governance (<a href="../open-questions/#q-17">Q-17</a>). The reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues a test attestation after an <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification (<a href="../increments/#sl-28">SL-28</a>, part 13 of epic #336). Role and liability stay a governance matter.</td>
 </tr>
 <tr>
 <td>EUDI-10</td>
@@ -5444,7 +5444,7 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>EUDI</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L173"><code>engine.rego#L173</code></a></td>
-<td>One AuthZEN endpoint for DvTP, EUDI issuance and the ASI route. The regime follows from the evidence (<a href="../../requirements/authorization/#req-74">REQ-74</a>). Approval in the wallet is not a legal basis (<a href="../findings/#f-83">F-83</a>).</td>
+<td>One <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> endpoint for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI issuance and the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route. The regime follows from the evidence (<a href="../../requirements/authorization/#req-74">REQ-74</a>). Approval in the wallet is not a legal basis (<a href="../findings/#f-83">F-83</a>).</td>
 </tr>
 <tr>
 <td>EUDI-11</td>
@@ -5452,7 +5452,7 @@ and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
 <td>EUDI</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego"><code>eud0002.rego</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/brp-graphql-server"><code>brp-graphql-server</code></a></td>
-<td>A surviving partner discloses his PID and gets the death certificate of the partner (<a href="../increments/#sl-43">SL-43</a>). The source fixes the relation, and the PDP limits the output fields. <a href="../../requirements/eudi-issuance/#req-57">REQ-57</a> prefers the relation as enforceable filters in the schema (<a href="https://github.com/ICTU/GBO-demo/issues/425">#425</a>). For more information, see <a href="../findings/#f-47">F-47</a>.</td>
+<td>A surviving partner discloses his <abbr title="Person Identification Data">PID</abbr> and gets the death certificate of the partner (<a href="../increments/#sl-43">SL-43</a>). The source fixes the relation, and the <abbr title="Policy Decision Point">PDP</abbr> limits the output fields. <a href="../../requirements/eudi-issuance/#req-57">REQ-57</a> prefers the relation as enforceable filters in the schema (<a href="https://github.com/ICTU/GBO-demo/issues/425">#425</a>). For more information, see <a href="../findings/#f-47">F-47</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -5475,7 +5475,7 @@ cannot try out have the status "—".</p>
 <tbody>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-01</a></td>
-<td>Governance of GBO agreements</td>
+<td>Governance of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> agreements</td>
 <td>Base</td>
 <td>—</td>
 <td>—</td>
@@ -5487,7 +5487,7 @@ cannot try out have the status "—".</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/ftv-graphql-profile.md"><code>ftv-graphql-profile.md</code></a></td>
-<td>PSA direction: GraphQL, comply or explain. The demo uses GraphQL over FSC for all routes. The profile is a GBO proposal in the OpenFTV working group (<a href="https://github.com/ICTU/GBO-demo/issues/331">#331</a>). For more information, see <a href="../open-questions/#q-14">Q-14</a>.</td>
+<td>PSA direction: GraphQL, comply or explain. The demo uses GraphQL over <abbr title="Federated Service Connectivity">FSC</abbr> for all routes. The profile is a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> proposal in the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> working group (<a href="https://github.com/ICTU/GBO-demo/issues/331">#331</a>). For more information, see <a href="../open-questions/#q-14">Q-14</a>.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-03</a></td>
@@ -5495,15 +5495,15 @@ cannot try out have the status "—".</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="../../requirements/sources-identity/#req-64">REQ-64</a></td>
-<td>PSA direction: federated content, with a common profile for central findability. EUDI and ASI are federated. DvTP scopes are on the GBO side, without a ceiling per use case (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>, <a href="../findings/#f-74">F-74</a>). The demo has no central findability.</td>
+<td>PSA direction: federated content, with a common profile for central findability. EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> are federated. <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> scopes are on the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> side, without a ceiling per use case (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>, <a href="../findings/#f-74">F-74</a>). The demo has no central findability.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-04</a></td>
-<td>PDP placement</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> placement</td>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L773"><code>fsc-infra/docker-compose.yml#L773</code></a></td>
-<td>PSA direction: several variants under one PEP-PDP interface. Demo shortcut: one shared PDP. A PDP per source works with bundles (<a href="../increments/#sl-44">SL-44</a>). For more information, see <a href="../answered-questions/#q-02">Q-02</a> and <a href="../answered-questions/#q-10">Q-10</a>.</td>
+<td>PSA direction: several variants under one <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> interface. Demo shortcut: one shared <abbr title="Policy Decision Point">PDP</abbr>. A <abbr title="Policy Decision Point">PDP</abbr> per source works with bundles (<a href="../increments/#sl-44">SL-44</a>). For more information, see <a href="../answered-questions/#q-02">Q-02</a> and <a href="../answered-questions/#q-10">Q-10</a>.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-05</a></td>
@@ -5511,12 +5511,12 @@ cannot try out have the status "—".</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="../../requirements/authorization/#rl-03">RL-03</a></td>
-<td>PSA direction: content ownership apart from technical management. The PAP splits read, write and publish (<a href="../increments/#sl-44">SL-44</a>). Management stays with each source holder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
+<td>PSA direction: content ownership apart from technical management. The <abbr title="Policy Administration Point">PAP</abbr> splits read, write and publish (<a href="../increments/#sl-44">SL-44</a>). Management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-06</a></td>
-<td>Consent in DvTP</td>
-<td>DvTP</td>
+<td>Consent in <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="../../requirements/consent/#req-68">REQ-68</a></td>
 <td>PSA direction: a central or nationally coherent facility, anchored in law, with an equivalent alternative. The demo has a central register and portal. Missing: the alternative (<a href="../../requirements/admission/#av-15">AV-15</a>). For more information, see <a href="../answered-questions/#q-05">Q-05</a> and <a href="../open-questions/#q-13">Q-13</a>.</td>
@@ -5524,10 +5524,10 @@ cannot try out have the status "—".</p>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-07</a></td>
 <td>Pseudonymous identity</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/bsnk/bsnk.go#L65"><code>bsnk.go#L65</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/decryption/decryption.go#L76"><code>decryption.go#L76</code></a></td>
-<td>The register holds no BSN (<a href="../../requirements/pseudonymization/#req-69">REQ-69</a>). The demo follows the BSNk PP model on a mock (<a href="../increments/#sl-51">SL-51</a>, <a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="../../requirements/pseudonymization/#bsnk-01">BSNK-01</a> to <a href="../../requirements/pseudonymization/#bsnk-11">BSNK-11</a>, <a href="../findings/#f-75">F-75</a>). Open: recognition (<a href="../open-questions/#q-26">Q-26</a>), and a consumer pseudonym (<a href="../open-questions/#q-27">Q-27</a>, <a href="https://github.com/ICTU/GBO-demo/issues/478">#478</a>).</td>
+<td>The register holds no <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../../requirements/pseudonymization/#req-69">REQ-69</a>). The demo follows the BSNk <abbr title="Polymorphic pseudonym">PP</abbr> model on a mock (<a href="../increments/#sl-51">SL-51</a>, <a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="../../requirements/pseudonymization/#bsnk-01">BSNK-01</a> to <a href="../../requirements/pseudonymization/#bsnk-11">BSNK-11</a>, <a href="../findings/#f-75">F-75</a>). Open: recognition (<a href="../open-questions/#q-26">Q-26</a>), and a consumer pseudonym (<a href="../open-questions/#q-27">Q-27</a>, <a href="https://github.com/ICTU/GBO-demo/issues/478">#478</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-08</a></td>
@@ -5535,7 +5535,7 @@ cannot try out have the status "—".</p>
 <td>EUDI</td>
 <td>—</td>
 <td>—</td>
-<td>Not in v1: the PID carries the BSN, so no match is necessary (<a href="../open-questions/#q-18">Q-18</a>).</td>
+<td>Not in v1: the <abbr title="Person Identification Data">PID</abbr> carries the <abbr title="Burgerservicenummer">BSN</abbr>, so no match is necessary (<a href="../open-questions/#q-18">Q-18</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-09</a></td>
@@ -5543,7 +5543,7 @@ cannot try out have the status "—".</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a></td>
-<td>PSA direction: FDS functions plus a legal and organizational framework. Demo: an admission register and FSC peers with certificates (<a href="../increments/#sl-45">SL-45</a>, <a href="../increments/#sl-49">SL-49</a>). The <a href="../../requirements/admission/#connection-conditions">connection conditions</a> are candidates for the framework. <a href="../answered-questions/#q-07">Q-07</a> and <a href="../answered-questions/#q-22">Q-22</a> give the answered direction. The PSA decision <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-09</a> is open.</td>
+<td>PSA direction: FDS functions plus a legal and organizational framework. Demo: an admission register and <abbr title="Federated Service Connectivity">FSC</abbr> peers with certificates (<a href="../increments/#sl-45">SL-45</a>, <a href="../increments/#sl-49">SL-49</a>). The <a href="../../requirements/admission/#connection-conditions">connection conditions</a> are candidates for the framework. <a href="../answered-questions/#q-07">Q-07</a> and <a href="../answered-questions/#q-22">Q-22</a> give the answered direction. The PSA decision <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-09</a> is open.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-10</a></td>
@@ -5551,7 +5551,7 @@ cannot try out have the status "—".</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="../../requirements/logging-audit/#req-55">REQ-55</a>, <a href="../../requirements/logging-audit/#req-71">REQ-71</a>, <a href="../../requirements/logging-audit/#req-72">REQ-72</a></td>
-<td>PSA direction: logs stay decentral, correlation is federated. Open: the read route from ADL to LDV (<a href="../open-questions/#q-25">Q-25</a>) and the access model for the citizen (<a href="../findings-closed/#f-65">F-65</a>, <a href="../findings/#f-68">F-68</a>).</td>
+<td>PSA direction: logs stay decentral, correlation is federated. Open: the read route from <abbr title="Authorization Decision Log">ADL</abbr> to <abbr title="Logboek Dataverwerkingen">LDV</abbr> (<a href="../open-questions/#q-25">Q-25</a>) and the access model for the citizen (<a href="../findings-closed/#f-65">F-65</a>, <a href="../findings/#f-68">F-68</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-11</a></td>
@@ -5563,7 +5563,7 @@ cannot try out have the status "—".</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-12</a></td>
-<td>OOTS function boundaries</td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr> function boundaries</td>
 <td>Hook</td>
 <td>—</td>
 <td>—</td>
@@ -5571,19 +5571,19 @@ cannot try out have the status "—".</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-13</a></td>
-<td>PubEAA issuance model</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance model</td>
 <td>EUDI</td>
 <td>◐</td>
 <td><a href="../../requirements/eudi-issuance/#req-58">REQ-58</a></td>
-<td>The demo has a central issuance facility with a certificate set per source. Key management and seal are open (<a href="../open-questions/#q-17">Q-17</a>, <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a>). The issuer is the source holder or a designated body (<a href="../findings/#f-81">F-81</a>, <a href="../open-questions/#q-28">Q-28</a>).</td>
+<td>The demo has a central issuance facility with a certificate set per source. Key management and seal are open (<a href="../open-questions/#q-17">Q-17</a>, <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a>). The issuer is the bronhouder or a designated body (<a href="../findings/#f-81">F-81</a>, <a href="../open-questions/#q-28">Q-28</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-14</a></td>
-<td>ASI provider</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</td>
 <td>EUDI</td>
 <td>◐</td>
 <td>see EUDI-2</td>
-<td>The ASIP mock and the authorization server are two roles, each with its own keys. Neither is certified. Each source has one data service (<a href="../../requirements/asi/#req-94">REQ-94</a>, <a href="../findings/#f-89">F-89</a>), and each data service has a discovery record (<a href="../../requirements/asi/#req-99">REQ-99</a>, <a href="../findings/#f-91">F-91</a>). The interface and the seal are law from January 1, 2027 (<a href="../findings/#f-80">F-80</a>). <a href="../open-questions/#q-37">Q-37</a> covers the role of GBO.</td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> mock and the authorization server are two roles, each with its own keys. Neither is certified. Each source has one data service (<a href="../../requirements/asi/#req-94">REQ-94</a>, <a href="../findings/#f-89">F-89</a>), and each data service has a discovery record (<a href="../../requirements/asi/#req-99">REQ-99</a>, <a href="../findings/#f-91">F-91</a>). The interface and the seal are law from January 1, 2027 (<a href="../findings/#f-80">F-80</a>). <a href="../open-questions/#q-37">Q-37</a> covers the role of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-15</a></td>
@@ -5595,7 +5595,7 @@ cannot try out have the status "—".</p>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-16</a></td>
-<td>GBO translation layer</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> translation layer</td>
 <td>Base</td>
 <td>○</td>
 <td>—</td>
@@ -5623,14 +5623,14 @@ cannot try out have the status "—".</p>
 <td>Base</td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/integrator.md"><code>integrator.md</code></a></td>
-<td>First case: an integrator under FSC delegation. The decision uses the acting and the represented party (<a href="https://github.com/ICTU/GBO-demo/pull/464">PR #464</a>, <a href="../findings-closed/#f-73">F-73</a>, <a href="../../requirements/consent/#req-106">REQ-106</a>). <a href="../open-questions/#q-46">Q-46</a> covers the integrator in the proof, and <a href="../open-questions/#q-73">Q-73</a> covers citizen representation.</td>
+<td>First case: an integrator under <abbr title="Federated Service Connectivity">FSC</abbr> delegation. The decision uses the acting and the represented party (<a href="https://github.com/ICTU/GBO-demo/pull/464">PR #464</a>, <a href="../findings-closed/#f-73">F-73</a>, <a href="../../requirements/consent/#req-106">REQ-106</a>). <a href="../open-questions/#q-46">Q-46</a> covers the integrator in the proof, and <a href="../open-questions/#q-73">Q-73</a> covers citizen representation.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="fr-dvtp">FR-DvTP v0.9 (FR-01 to FR-39)<a class="headerlink" href="#fr-dvtp" title="Permanent link">&para;</a></h2>
-<p>Source: the functional requirements for DvTP, v0.9. This version is a
+<h2 id="fr-dvtp">FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 (FR-01 to FR-39)<a class="headerlink" href="#fr-dvtp" title="Permanent link">&para;</a></h2>
+<p>Source: the functional requirements for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, v0.9. This version is a
 draft of July 6, 2026, and it is not public. FR-06 and FR-19 lapsed in
-v0.9. FR-DvTP is not in the
+v0.9. FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> is not in the
 document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <table>
 <thead>
@@ -5647,7 +5647,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-01</td>
 <td>Citizen authentication with a recognized means</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="../../requirements/consent/#req-24">REQ-24</a></td>
 <td>The DigiD mock gives a token, and the backend takes the identity only from that token. Real DigiD and level of assurance are out of scope.</td>
@@ -5655,15 +5655,15 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-02</td>
 <td>Configuration-driven delegation check</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>○</td>
 <td>—</td>
-<td>The demo has no delegation check. FR-DvTP v0.9 lets a service allow or exclude delegation (<a href="../../requirements/consent/#req-118">REQ-118</a>). For more information, see B-19.</td>
+<td>The demo has no delegation check. FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 lets a service allow or exclude delegation (<a href="../../requirements/consent/#req-118">REQ-118</a>). For more information, see B-19.</td>
 </tr>
 <tr>
 <td>FR-03</td>
 <td>Authentication of the private service provider with eHerkenning</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>○</td>
 <td>—</td>
 <td>FR-03 is about the person who logs in for onboarding and management. The admission register has only a local operator. FR-33 and FR-34 cover system identity.</td>
@@ -5671,7 +5671,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-04</td>
 <td>Access through a trusted government domain</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/components/MijnOverheidLayout.tsx"><code>MijnOverheidLayout.tsx</code></a></td>
 <td>The consent screens are inside a MijnOverheid shell on their own origin, apart from the service provider (<a href="../increments/#sl-06a">SL-06a</a>, <a href="../increments/#sl-11">SL-11</a>).</td>
@@ -5679,7 +5679,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-05</td>
 <td>Consent details shown to the citizen (scope)</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx"><code>PortaalConsent.tsx</code></a></td>
 <td>The portal shows who, purpose, source, valid until, and a choice per data set. Criterion 5 (the citizen adjusts the validity within bounds) is not built (<a href="https://github.com/ICTU/GBO-demo/issues/380">#380</a>). <a href="../../requirements/consent/#req-117">REQ-117</a> covers plain language.</td>
@@ -5687,7 +5687,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-06</td>
 <td>Transparency about the integrator (lapsed)</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>—</td>
 <td>—</td>
 <td>Lapsed in v0.9. The integrator role is in FR-18 and FR-37.</td>
@@ -5695,7 +5695,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-07</td>
 <td>Understandable information (language level)</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/data/scopeGroups.ts"><code>scopeGroups.ts</code></a></td>
 <td>All texts are at language level B1. The citizen sees no technical terms.</td>
@@ -5703,7 +5703,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-08</td>
 <td>Acknowledgment of understanding (force to read)</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>○</td>
 <td>—</td>
 <td>The demo asks for no acknowledgment. When the citizen chooses one data set, the button becomes active. <a href="../../requirements/consent/#req-107">REQ-107</a> is the requirement, and <a href="https://github.com/ICTU/GBO-demo/issues/598">#598</a> tracks the build. <a href="../open-questions/#q-51">Q-51</a> asks what must be provable.</td>
@@ -5711,7 +5711,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-09</td>
 <td>Specific consent only</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="../../requirements/consent/#req-12">REQ-12</a></td>
 <td>Each consent is bound to a consumer, a service, and a data scope.</td>
@@ -5719,7 +5719,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-10</td>
 <td>Atomicity per indivisible data set</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="../../requirements/consent/#req-10">REQ-10</a></td>
 <td>The citizen gives consent per data set, as v0.9 asks (<a href="../answered-questions/#q-03">Q-03</a>). Missing: a fixed minimal mandatory set with a legal check (<a href="../open-questions/#q-45">Q-45</a>, <a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
@@ -5727,7 +5727,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-11</td>
 <td>Validity period (configurable)</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L138"><code>consent.rego#L138</code></a> (<code>valid_until</code> must equal <code>exp</code>)</td>
 <td>The validity is enforced and signed in the proof (<a href="../../requirements/consent/#req-19">REQ-19</a>, <a href="../../requirements/consent/#req-68">REQ-68</a>). Reuse within the validity conforms to v0.9 (<a href="../answered-questions/#q-04">Q-04</a>). Missing: a default per service, adjustment by the citizen (<a href="../open-questions/#q-13">Q-13</a>, <a href="https://github.com/ICTU/GBO-demo/issues/380">#380</a>), and the status "retrieved" (<a href="../open-questions/#q-42">Q-42</a>).</td>
@@ -5735,7 +5735,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-12</td>
 <td>Initiation from the private environment</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/pages/Start.tsx"><code>Start.tsx</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/lib/buildPortalUrl.ts"><code>buildPortalUrl.ts</code></a></td>
 <td>The mock service provider website redirects the citizen to the portal, with context (<a href="../../requirements/consent/#req-37">REQ-37</a>).</td>
@@ -5743,23 +5743,23 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-13</td>
 <td>Smooth transfer of context</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/lib/buildPortalUrl.ts"><code>buildPortalUrl.ts</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/useRedirectContext.ts"><code>useRedirectContext.ts</code></a></td>
-<td>The redirect carries the consumer OIN, the service ID, the purpose, the data sets, and the return address (<a href="../../requirements/consent/#req-37">REQ-37</a>). What the citizen sees must come from the registration (<a href="../../requirements/consent/#req-111">REQ-111</a>).</td>
+<td>The redirect carries the consumer <abbr title="Organisatie-identificatienummer">OIN</abbr>, the service ID, the purpose, the data sets, and the return address (<a href="../../requirements/consent/#req-37">REQ-37</a>). What the citizen sees must come from the registration (<a href="../../requirements/consent/#req-111">REQ-111</a>).</td>
 </tr>
 <tr>
 <td>FR-14</td>
 <td>Automatic return</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalBevestiging.tsx"><code>PortaalBevestiging.tsx</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/redirectValidation.ts#L26"><code>redirectValidation.ts#L26</code></a></td>
-<td>The portal returns the citizen with the signed proof in the URL fragment, without BSN. Only the front end checks the return address, against fixed origins (<a href="https://github.com/ICTU/GBO-demo/issues/427">#427</a>, <a href="../../requirements/consent/#req-111">REQ-111</a>). The "Annuleren" button does not return the citizen (<a href="https://github.com/ICTU/GBO-demo/issues/599">#599</a>, <a href="../open-questions/#q-44">Q-44</a>).</td>
+<td>The portal returns the citizen with the signed proof in the URL fragment, without <abbr title="Burgerservicenummer">BSN</abbr>. Only the front end checks the return address, against fixed origins (<a href="https://github.com/ICTU/GBO-demo/issues/427">#427</a>, <a href="../../requirements/consent/#req-111">REQ-111</a>). The cancel button (shown as "Annuleren") does not return the citizen (<a href="https://github.com/ICTU/GBO-demo/issues/599">#599</a>, <a href="../open-questions/#q-44">Q-44</a>).</td>
 </tr>
 <tr>
 <td>FR-15</td>
 <td>Support for web and app</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td>—</td>
 <td>The demo supports web only. App switching is out of scope.</td>
@@ -5767,15 +5767,15 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-16</td>
 <td>Reliable identification of the requesting party and its authority</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../../requirements/authorization/#req-74">REQ-74</a></td>
-<td>Identity (FSC peer with mTLS), admission (<a href="../increments/#sl-45">SL-45</a>), and consent binding work. An integrator can act for a service provider (<a href="../../requirements/consent/#req-106">REQ-106</a>). Missing: admission per service (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
+<td>Identity (<abbr title="Federated Service Connectivity">FSC</abbr> peer with mTLS), admission (<a href="../increments/#sl-45">SL-45</a>), and consent binding work. An integrator can act for a service provider (<a href="../../requirements/consent/#req-106">REQ-106</a>). Missing: admission per service (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
 </tr>
 <tr>
 <td>FR-17</td>
 <td>Fetch data only within a valid consent</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L268"><code>consent.rego#L268</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go"><code>consent_token.go</code></a></td>
 <td>The consumer sends a signed proof. The policy verifies it and checks the status online on every request (<a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../findings-closed/#f-61">F-61</a>).</td>
@@ -5783,15 +5783,15 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-18</td>
 <td>Integrator as processor</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/internal/onboarding/service.go#L50"><code>service.go#L50</code></a> (<code>acts_for</code>)</td>
-<td>The integrator calls under FSC delegation with a registered mandate, and the consent binds the service provider (<a href="../../requirements/consent/#req-106">REQ-106</a>, <a href="../findings-closed/#f-73">F-73</a>). Not enforced: the processor agreement and the rule of no storage (<a href="../../requirements/admission/#av-06">AV-06</a>). <a href="../open-questions/#q-46">Q-46</a> covers the integrator in the proof.</td>
+<td>The integrator calls under <abbr title="Federated Service Connectivity">FSC</abbr> delegation with a registered mandate, and the consent binds the service provider (<a href="../../requirements/consent/#req-106">REQ-106</a>, <a href="../findings-closed/#f-73">F-73</a>). Not enforced: the processor agreement and the rule of no storage (<a href="../../requirements/admission/#av-06">AV-06</a>). <a href="../open-questions/#q-46">Q-46</a> covers the integrator in the proof.</td>
 </tr>
 <tr>
 <td>FR-19</td>
 <td>Verification of received data (lapsed)</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>—</td>
 <td>—</td>
 <td>Lapsed in v0.9. Transparency goes through FR-20 and FR-31.</td>
@@ -5799,15 +5799,15 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-20</td>
 <td>Central overview of consents</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/MijnToestemmingenOverview.tsx"><code>MijnToestemmingenOverview.tsx</code></a></td>
-<td>The citizen has an overview under MijnOverheid with active and expired consents (<a href="../../requirements/consent/#req-40">REQ-40</a>, <a href="../../requirements/pseudonymization/#req-69">REQ-69</a>). Not built: the processing per consent from the LDV (<a href="../open-questions/#q-25">Q-25</a>, <a href="../open-questions/#q-27">Q-27</a>) and the export (<a href="../../requirements/consent/#req-108">REQ-108</a>, <a href="../open-questions/#q-52">Q-52</a>).</td>
+<td>The citizen has an overview under MijnOverheid with active and expired consents (<a href="../../requirements/consent/#req-40">REQ-40</a>, <a href="../../requirements/pseudonymization/#req-69">REQ-69</a>). Not built: the processing per consent from the <abbr title="Logboek Dataverwerkingen">LDV</abbr> (<a href="../open-questions/#q-25">Q-25</a>, <a href="../open-questions/#q-27">Q-27</a>) and the export (<a href="../../requirements/consent/#req-108">REQ-108</a>, <a href="../open-questions/#q-52">Q-52</a>).</td>
 </tr>
 <tr>
 <td>FR-21</td>
 <td>Detail view per transaction</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="../../requirements/consent/#req-38">REQ-38</a></td>
 <td>Each consent has a detail page. There is no transaction view.</td>
@@ -5815,15 +5815,15 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-22</td>
 <td>Status of the consent shown to the citizen</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="../../requirements/consent/#req-38">REQ-38</a></td>
-<td>The statuses active, expired, and revoked are visible. FR-DvTP v0.9 also asks for "retrieved", and the demo does not have it (<a href="../findings/#f-19">F-19</a>, <a href="../findings/#f-97">F-97</a>, <a href="../open-questions/#q-42">Q-42</a>).</td>
+<td>The statuses active, expired, and revoked are visible. FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 also asks for "retrieved", and the demo does not have it (<a href="../findings/#f-19">F-19</a>, <a href="../findings/#f-97">F-97</a>, <a href="../open-questions/#q-42">Q-42</a>).</td>
 </tr>
 <tr>
 <td>FR-23</td>
 <td>Revocation of a valid consent</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L269"><code>portal.go#L269</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/components/consent-detail/RevokeModal.tsx"><code>RevokeModal.tsx</code></a></td>
 <td>Revoke works, and the next request gets a deny (<a href="../../requirements/consent/#req-14">REQ-14</a>). In demo v0.9.0, the backend also accepts a revoke of an expired or revoked consent (<a href="../../requirements/consent/#req-109">REQ-109</a>, <a href="https://github.com/ICTU/GBO-demo/issues/600">#600</a>).</td>
@@ -5831,7 +5831,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-24</td>
 <td>Revocation works forward: data already retrieved</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>✓</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L268"><code>consent.rego#L268</code></a> (status per request)</td>
 <td>Revocation works forward and is possible while the consent is valid. Same gap as FR-23 (<a href="../../requirements/consent/#req-109">REQ-109</a>).</td>
@@ -5839,7 +5839,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-25</td>
 <td>Reference to GDPR rights</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>○</td>
 <td>—</td>
 <td>The user interface has no reference to these rights. <a href="../../requirements/consent/#req-120">REQ-120</a> and <a href="../../requirements/admission/#av-14">AV-14</a> give the requirement.</td>
@@ -5847,15 +5847,15 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-26</td>
 <td>Verification of consent at the source</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="../../requirements/authorization/#req-04">REQ-04</a>, <a href="../../requirements/consent/#req-68">REQ-68</a></td>
-<td>Criteria 1 to 3 run at the source. The PDP behind the source Inway verifies the proof and checks the scope. A request without a valid consent gets a deny (<a href="../findings-closed/#f-06">F-06</a> closed). Open: the check does not use the service catalogue (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
+<td>Criteria 1 to 3 run at the source. The <abbr title="Policy Decision Point">PDP</abbr> behind the source Inway verifies the proof and checks the scope. A request without a valid consent gets a deny (<a href="../findings-closed/#f-06">F-06</a> closed). Open: the check does not use the service catalogue (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
 </tr>
 <tr>
 <td>FR-27</td>
 <td>Sealing of personal data</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>○</td>
 <td>—</td>
 <td>The demo has no qualified seal. <a href="../open-questions/#q-75">Q-75</a> covers one seal for each source response.</td>
@@ -5863,7 +5863,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-28</td>
 <td>Connection through common source access</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td>—</td>
 <td>This is a meta requirement, and the chain exists.</td>
@@ -5871,7 +5871,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-29</td>
 <td>Digital registration and onboarding</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a></td>
 <td>The operator can admit, pause, widen and reconnect a service provider without a policy change (<a href="../../requirements/admission/#req-61">REQ-61</a>). Missing: the applicant side (<a href="../open-questions/#q-74">Q-74</a>). <a href="../answered-questions/#q-22">Q-22</a> answers the grounds.</td>
@@ -5879,7 +5879,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-30</td>
 <td>Validation of connection conditions</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L171"><code>autosign.rego#L171</code></a> (reason codes)</td>
 <td>The demo validates at the contract proposal (<a href="../../requirements/admission/#req-62">REQ-62</a>) and at source activation (<a href="../../requirements/sources-identity/#req-65">REQ-65</a>, <a href="../findings-closed/#f-58">F-58</a>). Missing: the conditions themselves (<a href="../../requirements/admission/#connection-conditions">connection conditions</a>) and criterion 3 (status "trusted" visible to the citizen).</td>
@@ -5887,15 +5887,15 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-31</td>
 <td>Compliance and auditing</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek"><code>ldv-logboek</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/adl.go"><code>adl.go</code></a></td>
-<td>Each system has an LDV logbook (<a href="https://github.com/ICTU/GBO-demo/pull/366">PR #366</a>), the ADL is the audit source (<a href="https://github.com/ICTU/GBO-demo/pull/373">PR #373</a>), and the admission register can pause a party. Open: a chain-wide index (<a href="../findings/#f-68">F-68</a>), audit guarantees (<a href="../findings-closed/#f-07">F-07</a>), and suspension that ends contracts (<a href="../../requirements/admission/#req-110">REQ-110</a>, <a href="../open-questions/#q-53">Q-53</a>).</td>
+<td>Each system has an <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook (<a href="https://github.com/ICTU/GBO-demo/pull/366">PR #366</a>), the <abbr title="Authorization Decision Log">ADL</abbr> is the audit source (<a href="https://github.com/ICTU/GBO-demo/pull/373">PR #373</a>), and the admission register can pause a party. Open: a chain-wide index (<a href="../findings/#f-68">F-68</a>), audit guarantees (<a href="../findings-closed/#f-07">F-07</a>), and suspension that ends contracts (<a href="../../requirements/admission/#req-110">REQ-110</a>, <a href="../open-questions/#q-53">Q-53</a>).</td>
 </tr>
 <tr>
 <td>FR-32</td>
 <td>Process for setting up data needs</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001.rego"><code>dvt0001.rego</code></a></td>
 <td>Scopes are configurable. There is no legal ceiling per use case and no link to service providers (<a href="../findings/#f-74">F-74</a>, <a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
@@ -5903,7 +5903,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-33</td>
 <td>Acquisition and registration of a connection certificate</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>, <a href="../../requirements/sources-identity/#req-67">REQ-67</a>, <a href="../../requirements/admission/#av-04">AV-04</a></td>
 <td>Certificate material is registered, validated, and decisive. Missing: connection certificates of consumers, and the model for issue, rotation, and revocation (<a href="../findings-closed/#f-60">F-60</a>, <a href="../answered-questions/#q-07">Q-07</a>, <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a>).</td>
@@ -5911,23 +5911,23 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-34</td>
 <td>Identification of the requesting party during use</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="../../requirements/authorization/#req-74">REQ-74</a></td>
 <td>The runtime identity comes from mTLS and the contract. There is no regime header and no default regime (<a href="../increments/#sl-48">SL-48</a>). Open: criterion 1, because nothing proves that the browser start comes from the service provider (<a href="https://github.com/ICTU/GBO-demo/issues/427">#427</a>, <a href="../../requirements/consent/#req-111">REQ-111</a>, <a href="../open-questions/#q-60">Q-60</a>).</td>
 </tr>
 <tr>
 <td>FR-35</td>
-<td>BSN-free delivery to a private service provider</td>
-<td>DvTP</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr>-free delivery to a private service provider</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L47"><code>consent_token.go#L47</code></a></td>
-<td>The register stores no BSN. The consumer gets only a placeholder and no identifier (<a href="../increments/#sl-51">SL-51</a>). The values come from a BSNk mock. The demo does not use the real BSNk PP (<a href="../open-questions/#q-01">Q-01</a>, <a href="../open-questions/#q-26">Q-26</a>).</td>
+<td>The register stores no <abbr title="Burgerservicenummer">BSN</abbr>. The consumer gets only a placeholder and no identifier (<a href="../increments/#sl-51">SL-51</a>). The values come from a BSNk mock. The demo does not use the real BSNk <abbr title="Polymorphic pseudonym">PP</abbr> (<a href="../open-questions/#q-01">Q-01</a>, <a href="../open-questions/#q-26">Q-26</a>).</td>
 </tr>
 <tr>
 <td>FR-36</td>
 <td>Voluntariness and an equivalent alternative</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>○</td>
 <td>—</td>
 <td>The consent screen does not say that the route is voluntary and names no alternative (<a href="../../requirements/admission/#av-15">AV-15</a>).</td>
@@ -5935,7 +5935,7 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-37</td>
 <td>Onboarding of an integrator or software party</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/internal/onboarding/service.go#L50"><code>service.go#L50</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L171"><code>autosign.rego#L171</code></a></td>
 <td>The register lists the integrator with its mandates. If a delegated contract has no registration, it stays proposed (<code>DELEGATION_NOT_REGISTERED</code>) (<a href="../../requirements/consent/#req-106">REQ-106</a>, <a href="../../requirements/admission/#av-06">AV-06</a>). The integrator is not in the service catalogue, and there is no digital onboarding.</td>
@@ -5943,23 +5943,23 @@ document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
 <tr>
 <td>FR-38</td>
 <td>Multi-source scope of a consent</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>○</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/main.go#L83"><code>main.go#L83</code></a> (one source per backend)</td>
-<td>The demo does not try out one consent with a rule per source holder. Each consumer backend calls one source (BD or LVG). For more information, see <a href="../findings/#f-68">F-68</a> and <a href="../open-questions/#q-76">Q-76</a>.</td>
+<td>The demo does not try out one consent with a rule per bronhouder. Each consumer backend calls one source (BD or LVG). For more information, see <a href="../findings/#f-68">F-68</a> and <a href="../open-questions/#q-76">Q-76</a>.</td>
 </tr>
 <tr>
 <td>FR-39</td>
 <td>Central policy management and distribution</td>
-<td>DvTP</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
 <td>◐</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml"><code>gbo-pdp.yaml</code></a></td>
-<td>The demo has a PAP and bundles with split roles (<a href="../increments/#sl-44">SL-44</a>). It has no signed bundles and no policy authority. Management stays with each source holder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
+<td>The demo has a <abbr title="Policy Administration Point">PAP</abbr> and bundles with split roles (<a href="../increments/#sl-44">SL-44</a>). It has no signed bundles and no policy authority. Management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
 </tr>
 </tbody>
 </table>
 <h2 id="historical">Reference architecture (historical)<a class="headerlink" href="#historical" title="Permanent link">&para;</a></h2>
-<p>Two earlier sources of this matrix were the GBO reference architecture
+<p>Two earlier sources of this matrix were the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> reference architecture
 v0.6.2 and the PSA open issues of April 2026 (VR-1 to VR-8). The
 reference architecture is archived and was never published. Its
 decisions and gaps became TO architecture decisions. The PSA decision
@@ -5982,11 +5982,11 @@ decision that it was ported to:</p>
 <td>GraphQL over REST</td>
 <td>✓</td>
 <td><a href="../../decisions/0001-graphql-source-access/">ADR-0001</a></td>
-<td>The PDP decides per field on the parsed query. <a href="../open-questions/#q-14">Q-14</a> covers pre-registered queries.</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> decides per field on the parsed query. <a href="../open-questions/#q-14">Q-14</a> covers pre-registered queries.</td>
 </tr>
 <tr>
 <td>CDD-2</td>
-<td>Access basis: consent (PIP) or legal basis (bundle)</td>
+<td>Access basis: consent (<abbr title="Policy Information Point">PIP</abbr>) or legal basis (bundle)</td>
 <td>◐</td>
 <td><a href="../../decisions/0006-consent-register-as-pip/">ADR-0006</a> → <a href="../../decisions/0032-consent-proof/">ADR-0032</a>, <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a></td>
 <td>The path follows from the evidence (<a href="../../requirements/authorization/#req-74">REQ-74</a>). A legal-basis path is out of scope.</td>
@@ -6000,28 +6000,28 @@ decision that it was ported to:</p>
 </tr>
 <tr>
 <td>CDD-4</td>
-<td>BSNk PP for pseudonymization</td>
+<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> for pseudonymization</td>
 <td>✓</td>
 <td><a href="../../decisions/0005-bsnk-pp/">ADR-0005</a>, <a href="../../decisions/0010-pep-bsn-resolution/">ADR-0010</a> → <a href="../../decisions/0011-sidecar-pseudonym-resolution/">ADR-0011</a> → <a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a></td>
 <td>The demo calls BSNk only at the consent, and the source decrypts (<a href="../increments/#sl-51">SL-51</a>). BSNk is a mock.</td>
 </tr>
 <tr>
 <td>CDD-5</td>
-<td>Five-factor authorization, federated PDP</td>
+<td>Five-factor authorization, federated <abbr title="Policy Decision Point">PDP</abbr></td>
 <td>◐</td>
 <td><a href="../../decisions/0004-federated-authorization/">ADR-0004</a></td>
-<td>Organization identity: mTLS, no certificate-bound token. Organization permission: admission and contract. Access basis: consent. Scope: ✓. Constraint: the subject is a placeholder from the proof (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>). Request validity: only presence checks. The demo has one shared PDP.</td>
+<td>Organization identity: mTLS, no certificate-bound token. Organization permission: admission and contract. Access basis: consent. Scope: ✓. Constraint: the subject is a placeholder from the proof (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>). Request validity: only presence checks. The demo has one shared <abbr title="Policy Decision Point">PDP</abbr>.</td>
 </tr>
 <tr>
 <td>CDD-6</td>
-<td>FSC-primary connectivity</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr>-primary connectivity</td>
 <td>◐</td>
 <td><a href="../../decisions/0003-fsc-connectivity/">ADR-0003</a></td>
 <td>All routes run over OpenFSC with mTLS. The <code>sector-pip</code> is removed (<a href="https://github.com/ICTU/GBO-demo/issues/378">#378</a>).</td>
 </tr>
 <tr>
 <td>CDD-7</td>
-<td>AS4 bridge for SDG-OOTS</td>
+<td>AS4 bridge for SDG-<abbr title="Once-Only Technical System">OOTS</abbr></td>
 <td>—</td>
 <td><a href="../../decisions/0020-as4-bridge-for-oots/">ADR-0020</a></td>
 <td>Not in v1.</td>
@@ -6035,7 +6035,7 @@ decision that it was ported to:</p>
 </tr>
 <tr>
 <td>RAGAP-2</td>
-<td>Identity convergence and BSN pseudonymization</td>
+<td>Identity convergence and <abbr title="Burgerservicenummer">BSN</abbr> pseudonymization</td>
 <td>◐</td>
 <td><a href="../../decisions/0023-identity-convergence/">ADR-0023</a></td>
 <td>The path has pseudonymization (<a href="../../requirements/pseudonymization/#req-80">REQ-80</a>). The demo does not model convergence of sector pseudonyms.</td>
@@ -6052,7 +6052,7 @@ decision that it was ported to:</p>
 <td>GraphQL standardization within FDS</td>
 <td>◐</td>
 <td><a href="../../decisions/0025-graphql-fds-datadienst/">ADR-0025</a></td>
-<td>The GraphQL profile is a GBO proposal in the OpenFTV working group (<a href="https://github.com/ICTU/GBO-demo/issues/331">#331</a>).</td>
+<td>The GraphQL profile is a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> proposal in the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> working group (<a href="https://github.com/ICTU/GBO-demo/issues/331">#331</a>).</td>
 </tr>
 <tr>
 <td>RAGAP-5</td>
@@ -6063,14 +6063,14 @@ decision that it was ported to:</p>
 </tr>
 <tr>
 <td>RAGAP-6</td>
-<td>Source holder onboarding toolkit</td>
+<td>Bronhouder onboarding toolkit</td>
 <td>—</td>
 <td><a href="../../decisions/0027-onboarding-toolkit/">ADR-0027</a></td>
 <td>Not in v1. Source metadata and activation cover a part of it (<a href="../increments/#sl-46">SL-46</a>).</td>
 </tr>
 <tr>
 <td>RAGAP-7</td>
-<td>PubEAA provider</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</td>
 <td>—</td>
 <td><a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a></td>
 <td>The demo built issuance anyway (EUDI-1).</td>
@@ -6098,7 +6098,7 @@ decision that it was ported to:</p>
 </tr>
 <tr>
 <td>VR-3</td>
-<td>Citizen identification and the BSN</td>
+<td>Citizen identification and the <abbr title="Burgerservicenummer">BSN</abbr></td>
 <td>◐</td>
 <td>B-07, B-08</td>
 <td>See the <a href="#open-decisions">open decisions</a>.</td>
@@ -6112,7 +6112,7 @@ decision that it was ported to:</p>
 </tr>
 <tr>
 <td>VR-5</td>
-<td>Consent facility SDG-OOTS</td>
+<td>Consent facility SDG-<abbr title="Once-Only Technical System">OOTS</abbr></td>
 <td>—</td>
 <td>B-12</td>
 <td>Not in v1.</td>
@@ -6136,7 +6136,7 @@ decision that it was ported to:</p>
 <td>Transformation architecture</td>
 <td>◐</td>
 <td>B-16, B-12, B-11</td>
-<td>The source describes its mapping, and GBO validates it (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>). There is no canonical model.</td>
+<td>The source describes its mapping, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates it (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>). There is no canonical model.</td>
 </tr>
 </tbody>
 </table>
@@ -6150,6 +6150,7 @@ decision that it was ported to:</p>
 <li>Demo increments: each row links its increments. For all increments, see
   <a href="../increments/">Demo increments</a>.</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4640,15 +4640,15 @@
 
 
 <h1 id="source-onboarding">Source onboarding<a class="headerlink" href="#source-onboarding" title="Permanent link">&para;</a></h1>
-<p>A GBO component must know, for each source, which data service to call,
+<p>A <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component must know, for each source, which data service to call,
 with which query, and what to do with the answer. That knowledge comes
-from the source itself, and GBO takes a source into use in a fixed set of
+from the source itself, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> takes a source into use in a fixed set of
 steps. The decisions are
 <a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a> (mechanism),
 <a href="../../decisions/0017-gbo-simple-v1/">ADR-0017</a> (mapping profile for
 attestations), and
 <a href="../../decisions/0039-asi-source-described-attributes/">ADR-0039</a>
-(attributes for the ASIP). For the requirements, see
+(attributes for the <abbr title="Authentic Source Interface Provider">ASIP</abbr>). For the requirements, see
 <a href="../../requirements/sources-identity/#source-metadata">Source metadata and activation</a>.
 For the components, see the <a href="../../building-blocks/components/">building block view</a>.
 For the step-by-step flow, see
@@ -4659,29 +4659,30 @@ For the step-by-step flow, see
 <h2 id="why-the-source-owns-its-description">Why the source owns its description<a class="headerlink" href="#why-the-source-owns-its-description" title="Permanent link">&para;</a></h2>
 <p>The bronhouder keeps control of its data
 (<a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>). It
-can add services through its source-specific GBO configuration
+can add services through its source-specific <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration
 (<a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">S07</a>).
-Central GBO facilities read the part of this configuration that they
+Central <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> facilities read the part of this configuration that they
 need. They read it in machine-readable form, validated and versioned
 (<a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">S10</a>).</p>
-<p>As a result, a GBO component takes the service description of a source
+<p>As a result, a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component takes the service description of a source
 only from what the source publishes itself
 (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>,
 <a href="../../traceability/findings/#f-57">F-57</a>):</p>
 <ul>
 <li>The component does not keep the description, add to it, or carry it per
   source in code.</li>
-<li>A new service or attestation type needs no code change in GBO.</li>
+<li>A new service or attestation type needs no code change in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</li>
 <li>The source does not publish its GraphQL schema. It publishes the queries
   and mappings that it takes responsibility for.</li>
 </ul>
 <p>Before this mechanism, every new source, attestation type, or tax year
-was a change in GBO code or in a GBO catalog file. With this mechanism,
+was a change in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> code or in a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> catalog file. With this mechanism,
 the adapter parameters come from the source
 (<a href="../../traceability/answered-questions/#q-19">Q-19</a>). In GO terms, the
-document is the service catalog that the bronhouder manages. The
+document is the service catalog (dienstencatalogus) that the bronhouder
+manages. The
 validation rules of the reconciler are the common profile.</p>
-<p>The mechanism (publish, validate, activate, roll back) is a GBO design
+<p>The mechanism (publish, validate, activate, roll back) is a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> design
 decision. The document format <code>gbo-source-metadata-v1</code> is the proposal of
 the demo for the open PSA S10 decision. It is not a final interface
 agreement.</p>
@@ -4697,19 +4698,19 @@ owner:</p>
 </thead>
 <tbody>
 <tr>
-<td><code>source_id</code>, transport, metadata location, FSC Peer ID</td>
-<td>GBO operator</td>
+<td><code>source_id</code>, transport, metadata location, <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operator</td>
 <td>source configuration file (<code>sources/configured/&lt;source_id&gt;.yaml</code>)</td>
 </tr>
 <tr>
-<td>Legal OIN, organization name, issuer name and logo</td>
+<td>Legal <abbr title="Organisatie-identificatienummer">OIN</abbr>, organization name, issuer name and logo</td>
 <td>bronhouder, through its certificate</td>
 <td>certificate set under the key <code>source_id</code> (<a href="../identity-trust/">Identity and trust</a>)</td>
 </tr>
 <tr>
 <td>Access to the metadata and data services</td>
-<td>bronhouder and GBO, by agreement</td>
-<td>FSC contracts and grant hashes</td>
+<td>bronhouder and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, by agreement</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> contracts and grant hashes</td>
 </tr>
 <tr>
 <td>Data service, query, parameters, offers, display, claims, attributes</td>
@@ -4717,19 +4718,19 @@ owner:</p>
 <td>the source document at <code>/.well-known/gbo</code></td>
 </tr>
 <tr>
-<td>Shape of an ASI attribute value (<code>value_schema</code>)</td>
-<td>GBO, until the EU catalog of attributes exists</td>
+<td>Shape of an <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attribute value (<code>value_schema</code>)</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, until the EU catalog of attributes exists</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json"><code>schemas/asi-attributes.json</code></a></td>
 </tr>
 <tr>
 <td>SD-JWT VC Type Metadata</td>
-<td>GBO generates it from the document</td>
-<td>Source Registry</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> generates it from the document</td>
+<td>source registry</td>
 </tr>
 <tr>
 <td>Candidates, states, releases, active pointer</td>
-<td>GBO</td>
-<td>Source Registry (PostgreSQL)</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr></td>
+<td>source registry (PostgreSQL)</td>
 </tr>
 </tbody>
 </table>
@@ -4762,13 +4763,13 @@ owner:</p>
 <ol>
 <li>Configure: the operator adds one file per source in
    <code>sources/configured/</code>. The file name is the stable <code>source_id</code>. The file
-   names the transport, the location of the metadata, and the FSC Peer ID
+   names the transport, the location of the metadata, and the <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID
    of the provider
    (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_configuration.go#L16-L28"><code>source_configuration.go#L16-L28</code></a>).
-   It does not name the OIN or the organization name. These come from the
+   It does not name the <abbr title="Organisatie-identificatienummer">OIN</abbr> or the organization name. These come from the
    certificate set.</li>
 <li>Discover the contracts: for the <code>fsc</code> transport, the reconciler looks
-   in the existing FSC contracts. There it finds the metadata contract and
+   in the existing <abbr title="Federated Service Connectivity">FSC</abbr> contracts. There it finds the metadata contract and
    the data contract of the configured peer. It does not discover sources: a contract
    without a source file activates nothing.</li>
 <li>Fetch or read: only the reconciler fetches source metadata. It uses
@@ -4777,7 +4778,7 @@ owner:</p>
    metadata.</li>
 <li>Validate: the reconciler validates schema, origin, version, validity
    window, query, mapping, offers, claims, and the binding to the data
-   contract. The <code>source_oin</code> in the document must equal the OIN in the
+   contract. The <code>source_oin</code> in the document must equal the <abbr title="Organisatie-identificatienummer">OIN</abbr> in the
    certificate set
    (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/source-registry/onboarding/service.go#L403-L413"><code>source-registry/onboarding/service.go#L403-L413</code></a>).</li>
 <li>Candidate: a valid result becomes a complete candidate with state
@@ -4811,7 +4812,7 @@ owner:</p>
 <tbody>
 <tr>
 <td>EUDI adapter</td>
-<td>source snapshot (source, query, mapping, FSC grant, validity window), Type Metadata, offer catalog <code>/eudi-offers.json</code></td>
+<td>source snapshot (source, query, mapping, <abbr title="Federated Service Connectivity">FSC</abbr> grant, validity window), Type Metadata, offer catalog <code>/eudi-offers.json</code></td>
 <td>live, by polling</td>
 </tr>
 <tr>
@@ -4820,7 +4821,7 @@ owner:</p>
 <td>at a restart of the issuance server</td>
 </tr>
 <tr>
-<td>ASIP</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
 <td>per data service: query, attribute mapping, legal name of the authentic source, discovery records</td>
 <td>live, every 5 seconds (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/main.go#L101"><code>asi-provider/main.go#L101</code></a>)</td>
 </tr>
@@ -4831,11 +4832,11 @@ owner:</p>
 </tr>
 </tbody>
 </table>
-<p>The Source Registry is a shared module,
+<p>The source registry is a shared module,
 <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/source-registry"><code>services/source-registry</code></a>
 (<code>onboarding</code>, <code>postgresregistry</code>, <code>asisnapshot</code>). The reconciler writes to
 it with the writer role. The adapter, the issuance init container, and the
-ASIP read it with the reader role. The reconciler has no Kubernetes API
+<abbr title="Authentic Source Interface Provider">ASIP</abbr> read it with the reader role. The reconciler has no Kubernetes API
 rights. It reads certificates and contracts and writes only to the
 registry.</p>
 <h2 id="transports">Transports<a class="headerlink" href="#transports" title="Permanent link">&para;</a></h2>
@@ -4854,13 +4855,13 @@ its own transport
 <tbody>
 <tr>
 <td><code>fsc</code></td>
-<td>fixed path <code>/.well-known/gbo</code> through a separate FSC metadata service</td>
+<td>fixed path <code>/.well-known/gbo</code> through a separate <abbr title="Federated Service Connectivity">FSC</abbr> metadata service</td>
 <td>the data service named in the document, under its contract</td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>unsecured</code></td>
-<td>an absolute HTTP or HTTPS URL, with no FSC headers and no redirects</td>
+<td>an absolute HTTP or HTTPS URL, with no <abbr title="Federated Service Connectivity">FSC</abbr> headers and no redirects</td>
 <td>an absolute URL</td>
 <td>no</td>
 </tr>
@@ -4879,12 +4880,12 @@ its own transport
 <li><code>fsc</code> metadata with <code>unsecured</code> data is refused.</li>
 <li><code>file</code> metadata needs an explicit <code>data_access</code>.</li>
 <li>If both legs use <code>fsc</code>, the two services must differ.</li>
-<li><code>provider_peer_id</code> is on the leg that speaks FSC, never on both.</li>
+<li><code>provider_peer_id</code> is on the leg that speaks <abbr title="Federated Service Connectivity">FSC</abbr>, never on both.</li>
 </ul>
 <p>The registry reports both legs separately, as <code>transport_authenticated</code>
 and <code>data_transport_authenticated</code>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/source-registry/onboarding/service.go#L56-L66"><code>service.go#L56-L66</code></a>).
-A single flag hides an FSC-authenticated data call whose description came
+A single flag hides an <abbr title="Federated Service Connectivity">FSC</abbr>-authenticated data call whose description came
 over an unauthenticated channel. The party that controls the document
 decides the query, the mapping, and the wallet claims.</p>
 <p>The intended form is <code>fsc</code> on both legs. The other combinations are for
@@ -4911,15 +4912,15 @@ this agreement. The need for agreement is only an instruction in
 </ul>
 <p>Four bounds stay in place with every transport:</p>
 <ul>
-<li>The Peer ID comes from the GBO configuration.</li>
+<li>The Peer ID comes from the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration.</li>
 <li>The grant hash pins the contract.</li>
-<li>The reconciler compares the OIN with the certificate.</li>
+<li>The reconciler compares the <abbr title="Organisatie-identificatienummer">OIN</abbr> with the certificate.</li>
 <li>Promotion is a separate step.</li>
 </ul>
 <p>The trust model for each transport is an open point in demo issue
 <a href="https://github.com/ICTU/GBO-demo/issues/221">#221</a>.</p>
 <h2 id="a-valid-contract-is-not-activation">Contract and activation<a class="headerlink" href="#a-valid-contract-is-not-activation" title="Permanent link">&para;</a></h2>
-<p>A valid FSC contract does not take a source into use. It also does not
+<p>A valid <abbr title="Federated Service Connectivity">FSC</abbr> contract does not take a source into use. It also does not
 put the offer of the source in the wallet
 (<a href="../../requirements/sources-identity/#req-65">REQ-65</a>,
 <a href="../../traceability/findings-closed/#f-58">F-58</a>). Transport and mandate are two
@@ -4948,7 +4949,7 @@ result:</p>
 <td>source <code>blocked</code>: <code>DATA_CONTRACT_NOT_FOUND</code></td>
 </tr>
 <tr>
-<td>FSC Manager unreachable</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> Manager unreachable</td>
 <td>source <code>blocked</code>: <code>FSC_MANAGER_UNAVAILABLE</code></td>
 </tr>
 <tr>
@@ -4965,7 +4966,7 @@ Compose and the Helm example turn it on for the demo. Then the source file
 is the management action. Demo v0.9.0 does not build two things: control
 over who can do that action, and a record of the admission decision
 (PSA B-09 in the
-<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">besluitregister</a>,
+<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">decision register</a>,
 <a href="../../requirements/admission/#req-123">REQ-123</a>).</p>
 <h2 id="versions-freshness-and-isolation">Versions, freshness and isolation<a class="headerlink" href="#versions-freshness-and-isolation" title="Permanent link">&para;</a></h2>
 <p>Source metadata fails closed for each source and ages within fixed
@@ -5021,7 +5022,7 @@ before activation, bounded staleness, atomic promotion, and rollback
 <a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>.</p>
 <h2 id="a-certificate-set-per-source">A certificate set per source<a class="headerlink" href="#a-certificate-set-per-source" title="Permanent link">&para;</a></h2>
 <p>Every source has its own certificate set for issuance: issuer, reader
-(access), and status-list certificates. GBO never shares a set between
+(access), and status-list certificates. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> never shares a set between
 sources and never substitutes one
 (<a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>). The issuer name and
 the purpose that the wallet shows are bound to the signing and reader
@@ -5041,15 +5042,15 @@ show the wrong issuer (<a href="../../traceability/findings-closed/#f-50">F-50</
 <td>source <code>blocked</code>: <code>CERTIFICATE_SET_NOT_FOUND</code></td>
 </tr>
 <tr>
-<td>Set without OIN or organization name</td>
+<td>Set without <abbr title="Organisatie-identificatienummer">OIN</abbr> or organization name</td>
 <td>source <code>blocked</code>: <code>CERTIFICATE_SET_INVALID</code></td>
 </tr>
 <tr>
 <td>Mounted material differs from the active release</td>
-<td>GBO generates no issuance configuration (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_release.go#L113-L116"><code>issuance_release.go#L113-L116</code></a>)</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> generates no issuance configuration (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_release.go#L113-L116"><code>issuance_release.go#L113-L116</code></a>)</td>
 </tr>
 <tr>
-<td>Two sources behind one FSC peer</td>
+<td>Two sources behind one <abbr title="Federated Service Connectivity">FSC</abbr> peer</td>
 <td>each source has its own set</td>
 </tr>
 </tbody>
@@ -5078,7 +5079,7 @@ these fields:</p>
 </tr>
 <tr>
 <td><code>source_oin</code></td>
-<td>20-digit OIN. It must equal the OIN in the certificate set</td>
+<td>20-digit <abbr title="Organisatie-identificatienummer">OIN</abbr>. It must equal the <abbr title="Organisatie-identificatienummer">OIN</abbr> in the certificate set</td>
 </tr>
 <tr>
 <td><code>version</code></td>
@@ -5094,7 +5095,7 @@ these fields:</p>
 </tr>
 <tr>
 <td><code>capabilities.asi</code></td>
-<td>attributes for verification through the ASIP (1.1 only)</td>
+<td>attributes for verification through the <abbr title="Authentic Source Interface Provider">ASIP</abbr> (1.1 only)</td>
 </tr>
 </tbody>
 </table>
@@ -5117,7 +5118,7 @@ structured content:</p>
   <code>never</code>).</li>
 </ul>
 <p>Earlier versions had separate <code>mapping</code>, <code>attribute_schema</code>, and
-<code>type_metadata</code> blocks. The format removed them. GBO derives the mapping
+<code>type_metadata</code> blocks. The format removed them. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> derives the mapping
 from <code>claims</code>. It generates the SD-JWT VC Type Metadata from <code>display</code> and
 <code>claims</code>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/type_metadata.go#L64"><code>type_metadata.go#L64</code></a>).
@@ -5172,13 +5173,13 @@ validation rules apply to the claims
 <li>The order of the claims is the order in which the wallet shows them.</li>
 <li>Validation refuses the datatype <code>number</code> for EUDI, because nl-wallet
   v0.5 cannot show a non-integral value.</li>
-<li>Only scalar datatypes pass. GBO does not support nested claims
+<li>Only scalar datatypes pass. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> does not support nested claims
   (<a href="../../requirements/eudi-issuance/#req-78">REQ-78</a>).</li>
 </ul>
-<p>The VCT of a type version is <code>/types/{source-id}/{type-id}/v{type-version}</code>.
-The value <code>vct#integrity</code> covers the exact bytes that GBO serves at that
+<p>The <abbr title="Verifiable credential type identifier">VCT</abbr> of a type version is <code>/types/{source-id}/{type-id}/v{type-version}</code>.
+The value <code>vct#integrity</code> covers the exact bytes that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> serves at that
 URL. A change to claims or display changes those bytes, so the change
-needs a new <code>type_version</code>. GBO never deletes published type versions
+needs a new <code>type_version</code>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> never deletes published type versions
 automatically.</p>
 <p>For how an answer of the source becomes an attestation, and for the error
 codes if the answer does not fit, see
@@ -5186,16 +5187,16 @@ codes if the answer does not fit, see
 (<a href="../../requirements/eudi-issuance/#req-116">REQ-116</a>).</p>
 <h3 id="the-asi-capability-schema-11">The <code>asi</code> capability (schema 1.1)<a class="headerlink" href="#the-asi-capability-schema-11" title="Permanent link">&para;</a></h3>
 <p>From schema 1.1 on, a source can also describe the attributes that it
-offers for verification through the ASIP
+offers for verification through the <abbr title="Authentic Source Interface Provider">ASIP</abbr>
 (<a href="../../decisions/0039-asi-source-described-attributes/">ADR-0039</a>,
 <a href="../../traceability/open-questions/#q-38">Q-38</a>). The <code>asi</code> capability has
 three parts:</p>
 <ul>
-<li><code>authentic_source</code>: the legal name and the country. The ASIP uses them
+<li><code>authentic_source</code>: the legal name and the country. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> uses them
   in responses and discovery records
   (<a href="../../requirements/asi/#req-94">REQ-94</a>).</li>
 <li><code>graphql</code>: one query that ends in only <code>...Selected</code>, the subject
-  variable, and the result pointer. For each request, the ASIP replaces
+  variable, and the result pointer. For each request, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> replaces
   <code>...Selected</code> with the fields of the requested attributes
   (<a href="../../requirements/asi/#req-92">REQ-92</a>).</li>
 <li>
@@ -5230,7 +5231,7 @@ three parts:</p>
 </table>
 </li>
 </ul>
-<p>The <code>identifier</code> must exist in the attribute catalog of GBO,
+<p>The <code>identifier</code> must exist in the attribute catalog of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json"><code>schemas/asi-attributes.json</code></a>.
 The catalog gives a <code>value_schema</code> for each identifier. The identifiers
 are placeholders until the EU catalog of attributes exists
@@ -5257,12 +5258,12 @@ fields. The BRP document shows this composition
   schema of the source, or whether the policy of the source allows the
   selection. A difference becomes visible at the first request.</li>
 </ul>
-<p>If the description is absent, has no <code>asi</code>, or is stale, the ASIP answers
+<p>If the description is absent, has no <code>asi</code>, or is stale, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> answers
 503 for verify, retrieve, and discovery
 (<a href="../../requirements/asi/#req-93">REQ-93</a>). If no registry is available,
-the ASIP can read a release file (<code>asi-provider write-release-file</code>).</p>
+the <abbr title="Authentic Source Interface Provider">ASIP</abbr> can read a release file (<code>asi-provider write-release-file</code>).</p>
 <h2 id="connection-conditions-for-bronhouders">Connection conditions for bronhouders<a class="headerlink" href="#connection-conditions-for-bronhouders" title="Permanent link">&para;</a></h2>
-<p>GBO asks three things of a bronhouder, as candidate connection
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> asks three things of a bronhouder, as candidate connection
 conditions:</p>
 <ul>
 <li>The bronhouder publishes a machine-readable, versioned description for
@@ -5272,14 +5273,14 @@ conditions:</p>
 <li>If the bronhouder has no endpoint of its own, it agrees provably with
   the description that the operator keeps
   (<a href="../../requirements/admission/#av-08">AV-08</a>).</li>
-<li>The bronhouder provides a certificate set that carries its OIN and
+<li>The bronhouder provides a certificate set that carries its <abbr title="Organisatie-identificatienummer">OIN</abbr> and
   organization name (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>).</li>
 </ul>
 <h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
 <p>Seven points are open:</p>
 <ul>
 <li>The document is not signed. The origin depends on the authenticated
-  transport plus the OIN from the certificate set.</li>
+  transport plus the <abbr title="Organisatie-identificatienummer">OIN</abbr> from the certificate set.</li>
 <li>The description lacks three items: the read API of the logbook of the
   source, a reference to the DCAT-AP-NL description, and central
   findability (<a href="../../traceability/findings/#f-57">F-57</a>,
@@ -5287,8 +5288,8 @@ conditions:</p>
   <a href="../../requirements/admission/#av-07">AV-07</a>). Without the
   read API, a caller cannot fill <code>dpl.read.nextLogbookId</code> from the
   description.</li>
-<li>DvTP does not use the description. The DvTP offer of a source is in the
-  GBO rules. DvTP scope comes from the demand side. EUDI scope comes from
+<li><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> does not use the description. The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> offer of a source is in the
+  <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> rules. <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> scope comes from the demand side. EUDI scope comes from
   the supply side (<a href="../../traceability/findings/#f-74">F-74</a>).</li>
 <li>Traceability of versions: no record shows which versions of the
   mapping, the source schema, and the attestation schema an attestation
@@ -5296,10 +5297,10 @@ conditions:</p>
 <li>Key custody: the central issuance server holds the private keys of the
   issuer and status-list certificates of every source
   (<a href="../../traceability/open-questions/#q-17">Q-17</a>).</li>
-<li>ASI resource list: in demo v0.9.0, the ASI authorization server takes
+<li><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> resource list: in demo v0.9.0, the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server takes
   its data services from configuration. It does not use the descriptions
   (<a href="https://github.com/ICTU/GBO-demo/issues/592">#592</a>).</li>
-<li>Scale: how many sources the ASIP must connect, and how fast, is open
+<li>Scale: how many sources the <abbr title="Authentic Source Interface Provider">ASIP</abbr> must connect, and how fast, is open
   (<a href="../../traceability/open-questions/#q-38">Q-38</a>, sub-question 1).</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -5337,6 +5338,7 @@ conditions:</p>
   <a href="../../decisions/0017-gbo-simple-v1/">ADR-0017</a>,
   <a href="../../decisions/0039-asi-source-described-attributes/">ADR-0039</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

@@ -1349,7 +1349,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1465,7 +1465,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4632,15 +4632,15 @@
 
 
 <h1 id="source-configuration">Source configuration<a class="headerlink" href="#source-configuration" title="Permanent link">&para;</a></h1>
-<p>The Globaal Ontwerp gives each bronhouder a "decentraal
-configuratiecomponent": the source configures what the central GBO
+<p>The Globaal Ontwerp gives each bronhouder a decentral configuration
+component ("decentraal configuratiecomponent"): the source configures what the central <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 facilities offer for it. In the demo, the source describes its own
-services in one document. GBO validates that description and activates
+services in one document. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates that description and activates
 it as an immutable release. The EUDI adapter, the issuance server and the
-ASIP read only the active release. The
+<abbr title="Authentic Source Interface Provider">ASIP</abbr> read only the active release. The
 <a href="../../../concepts/source-onboarding/">Source onboarding</a> concept page has
 the detail and the links to the code.</p>
-<p><a href="../../">Overview</a> › <a href="../">GBO Basis</a> › Source configuration</p>
+<p><a href="../../">Overview</a> › <a href="../"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis</a> › Source configuration</p>
 <h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
 <div class="mermaid">flowchart LR
   subgraph bh["At the bronhouder"]
@@ -4713,13 +4713,13 @@ zoom in.</em></p>
 <tbody>
 <tr>
 <td>Source document</td>
-<td>Describes the data service, the query, the offers, the claims and the ASI attributes of the source.</td>
+<td>Describes the data service, the query, the offers, the claims and the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attributes of the source.</td>
 <td>Holds the GraphQL schema or an access decision</td>
 </tr>
 <tr>
 <td>Source file</td>
-<td>Names the transport, the metadata location and the FSC Peer ID of the source.</td>
-<td>Holds the OIN or the organization name</td>
+<td>Names the transport, the metadata location and the <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID of the source.</td>
+<td>Holds the <abbr title="Organisatie-identificatienummer">OIN</abbr> or the organization name</td>
 </tr>
 <tr>
 <td>Source reconciler</td>
@@ -4741,7 +4741,7 @@ zoom in.</em></p>
 <p>The nl-wallet issuance server reads its configuration only at start. A new
 release therefore needs a controlled restart of that server.</p>
 <h2 id="who-owns-what">Who owns what<a class="headerlink" href="#who-owns-what" title="Permanent link">&para;</a></h2>
-<p>Four parties own a part of the description of one source. GBO never adds
+<p>Four parties own a part of the description of one source. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> never adds
 to the part of the bronhouder
 (<a href="../../../requirements/sources-identity/#req-64">REQ-64</a>):</p>
 <div class="mermaid">flowchart LR
@@ -4792,10 +4792,10 @@ demo v0.9.0:</p>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">service_reference</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gbo-metadata-bd</span>
 </code></pre></div>
 <p>The file name is the stable <code>source_id</code>. The legal identity comes from the
-certificate set under the same key: the OIN from <code>serialNumber</code> and the
-name from <code>O</code>. GBO refuses a configured value that differs
+certificate set under the same key: the <abbr title="Organisatie-identificatienummer">OIN</abbr> from <code>serialNumber</code> and the
+name from <code>O</code>. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> refuses a configured value that differs
 (<a href="../../../requirements/sources-identity/#req-67">REQ-67</a>). The data service
-and the grant hash come from the document and from the FSC contracts in
+and the grant hash come from the document and from the <abbr title="Federated Service Connectivity">FSC</abbr> contracts in
 force.</p>
 <p>A source has a metadata leg and a data leg. Each leg selects one of three
 transports:</p>
@@ -4811,7 +4811,7 @@ transports:</p>
 <tbody>
 <tr>
 <td><code>fsc</code></td>
-<td>Fixed path <code>/.well-known/gbo</code>, through a separate FSC metadata service</td>
+<td>Fixed path <code>/.well-known/gbo</code>, through a separate <abbr title="Federated Service Connectivity">FSC</abbr> metadata service</td>
 <td>The data service in the document, under its contract</td>
 <td>The intended form</td>
 </tr>
@@ -4823,7 +4823,7 @@ transports:</p>
 </tr>
 <tr>
 <td><code>unsecured</code></td>
-<td>An absolute HTTP or HTTPS URL, without FSC headers or redirects</td>
+<td>An absolute HTTP or HTTPS URL, without <abbr title="Federated Service Connectivity">FSC</abbr> headers or redirects</td>
 <td>An absolute URL</td>
 <td>Local demonstrations only</td>
 </tr>
@@ -4831,7 +4831,7 @@ transports:</p>
 </table>
 <p>The reconciler refuses <code>fsc</code> metadata with <code>unsecured</code> data. The registry
 reports one authentication flag per leg. With one flag for both legs, an
-FSC data call can hide that its description came over an unauthenticated
+<abbr title="Federated Service Connectivity">FSC</abbr> data call can hide that its description came over an unauthenticated
 channel.</p>
 <h2 id="lifecycle-of-a-source">Lifecycle of a source<a class="headerlink" href="#lifecycle-of-a-source" title="Permanent link">&para;</a></h2>
 <p>Every reconcile run takes each configured source through the same states.
@@ -4858,7 +4858,7 @@ again at <code>pending</code>.</em></p>
 <li>The reconciler loads the certificate set of the source. Without a
    valid set, the source is <code>blocked</code> before any network call.</li>
 <li>For the <code>fsc</code> transport, the reconciler finds the metadata contract and
-   the data contract of the configured peer in the FSC Manager.</li>
+   the data contract of the configured peer in the <abbr title="Federated Service Connectivity">FSC</abbr> Manager.</li>
 <li>It fetches the document with <code>ETag</code> and <code>If-None-Match</code>. A <code>304</code> only
    extends the freshness. It validates every <code>200</code> in full.</li>
 <li>A valid result becomes a complete candidate. If the candidate differs
@@ -4876,7 +4876,7 @@ again at <code>pending</code>.</em></p>
 Automatic promotion is off by default. Compose and the Helm example turn
 it on, and then the source file is the management action.</p>
 <h2 id="a-contract-is-not-activation">A contract is not activation<a class="headerlink" href="#a-contract-is-not-activation" title="Permanent link">&para;</a></h2>
-<p>A valid FSC contract does not take a source into use. It also does not put
+<p>A valid <abbr title="Federated Service Connectivity">FSC</abbr> contract does not take a source into use. It also does not put
 the offer of the source in the wallet
 (<a href="../../../requirements/sources-identity/#req-65">REQ-65</a>,
 <a href="../../../traceability/findings-closed/#f-58">F-58</a>). Transport and mandate
@@ -4902,7 +4902,7 @@ are two decisions with two owners. Each situation has a fixed result:</p>
 <td><code>blocked</code>: <code>DATA_CONTRACT_NOT_FOUND</code></td>
 </tr>
 <tr>
-<td>FSC Manager unreachable</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> Manager unreachable</td>
 <td><code>FSC_MANAGER_UNAVAILABLE</code>. The candidate stays within grace</td>
 </tr>
 <tr>
@@ -4914,7 +4914,7 @@ are two decisions with two owners. Each situation has a fixed result:</p>
 <p>Demo v0.9.0 does not build two things. No control decides who can add a
 source file. No record keeps the admission decision
 (<a href="../../../requirements/admission/#req-123">REQ-123</a>, PSA B-09 in the
-<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">besluitregister</a>).</p>
+<a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">decision register</a>).</p>
 <h2 id="freshness-versions-and-rollback">Freshness, versions and rollback<a class="headerlink" href="#freshness-versions-and-rollback" title="Permanent link">&para;</a></h2>
 <p>Source metadata fails closed for each source, ages within fixed bounds,
 and can be rolled back
@@ -4953,7 +4953,7 @@ versioning rules are these:</p>
   It also refuses the same version with other content. This rule has no
   test (<a href="https://github.com/ICTU/GBO-demo/issues/610">#610</a>).</li>
 <li>A change to <code>claims</code> or <code>display</code> needs a new <code>type_version</code>, because
-  <code>vct#integrity</code> covers the exact bytes of the Type Metadata. GBO never
+  <code>vct#integrity</code> covers the exact bytes of the Type Metadata. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> never
   deletes a published type version automatically.</li>
 <li>An operator rolls back with <code>activate-source-release --release-id</code>. The
   command refuses a release that the adapter cannot load. An auto-promoter
@@ -4971,14 +4971,14 @@ staleness, atomic promotion and rollback
 side, see <a href="../policy/">Policy rules and their management</a>.</p>
 <h2 id="a-certificate-set-per-source">A certificate set per source<a class="headerlink" href="#a-certificate-set-per-source" title="Permanent link">&para;</a></h2>
 <p>Every source has its own certificate set for issuance: an issuer, a
-reader and a status-list certificate. GBO never shares a set between
+reader and a status-list certificate. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> never shares a set between
 sources and never substitutes one
 (<a href="../../../requirements/eudi-issuance/#req-58">REQ-58</a>). The wallet shows
 the issuer name and the purpose from these certificates. A fallback to the
 set of another source made the wallet show the wrong issuer
 (<a href="../../../traceability/findings-closed/#f-50">F-50</a>).</p>
 <p>Missing material fails for that source only. Without a set, the source is
-<code>blocked</code> with <code>CERTIFICATE_SET_NOT_FOUND</code>. A set without an OIN or an
+<code>blocked</code> with <code>CERTIFICATE_SET_NOT_FOUND</code>. A set without an <abbr title="Organisatie-identificatienummer">OIN</abbr> or an
 organization name gives <code>CERTIFICATE_SET_INVALID</code>. The reconciler gets only
 public certificates. Only the issuance init container gets the private
 keys.</p>
@@ -5019,23 +5019,23 @@ keys.</p>
   class gen eudi</div>
 <p class="caption"><em>Figure 4: The structure of the source document.</em></p>
 <p>A new attestation type, offer or tax year is a change in the document. It
-needs no change in GBO code, because the adapter takes its parameters from
+needs no change in <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> code, because the adapter takes its parameters from
 the source (<a href="../../../traceability/answered-questions/#q-19">Q-19</a>).</p>
-<p>The <code>eudi</code> capability defines each claim once. GBO derives the mapping
+<p>The <code>eudi</code> capability defines each claim once. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> derives the mapping
 and generates the SD-JWT VC Type Metadata from <code>display</code> and <code>claims</code>. As
 a result, the schema of an attestation cannot differ from what the mapping
-fills. The VCT of a type version is
+fills. The <abbr title="Verifiable credential type identifier">VCT</abbr> of a type version is
 <code>/types/{source-id}/{type-id}/v{type-version}</code>.</p>
-<p>The <code>asi</code> capability describes the attributes that the ASIP can verify
+<p>The <code>asi</code> capability describes the attributes that the <abbr title="Authentic Source Interface Provider">ASIP</abbr> can verify
 (<a href="../../../decisions/0039-asi-source-described-attributes/">ADR-0039</a>). Each
-<code>identifier</code> must exist in the attribute catalog of GBO. If <code>asi</code> has an
+<code>identifier</code> must exist in the attribute catalog of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>. If <code>asi</code> has an
 error, onboarding refuses the whole source, also when <code>eudi</code> is valid. How
-many sources the ASIP must connect, and how fast, is open
+many sources the <abbr title="Authentic Source Interface Provider">ASIP</abbr> must connect, and how fast, is open
 (<a href="../../../traceability/open-questions/#q-38">Q-38</a>).</p>
-<p>The document does not hold the GraphQL schema: the PDP keeps its own copy.
+<p>The document does not hold the GraphQL schema: the <abbr title="Policy Decision Point">PDP</abbr> keeps its own copy.
 It also holds no access decision: the rules decide which fields a channel
 gets. The source does not sign the document. Its origin rests on the
-authenticated FSC transport and the OIN in the certificate set.</p>
+authenticated <abbr title="Federated Service Connectivity">FSC</abbr> transport and the <abbr title="Organisatie-identificatienummer">OIN</abbr> in the certificate set.</p>
 <h2 id="compared-with-the-globaal-ontwerp">Compared with the Globaal Ontwerp<a class="headerlink" href="#compared-with-the-globaal-ontwerp" title="Permanent link">&para;</a></h2>
 <p>The demo follows the idea of the Globaal Ontwerp: the bronhouder
 configures, and the central facilities read that configuration. It differs
@@ -5056,13 +5056,13 @@ in three places:</p>
 </tr>
 <tr>
 <td>Findability</td>
-<td>A dienstencatalogus with a shared profile and central findability, based on DCAT-AP-NL</td>
+<td>A service catalog (dienstencatalogus) with a shared profile and central findability, based on DCAT-AP-NL</td>
 <td>No central findability and no DCAT-AP-NL reference (<a href="../../../traceability/findings/#f-57">F-57</a>)</td>
 </tr>
 <tr>
 <td>Channels</td>
 <td>Every channel reads the configuration</td>
-<td>EUDI and ASI read it. DvTP does not: the GBO rules hold the DvTP offer (<a href="../../../traceability/findings/#f-74">F-74</a>)</td>
+<td>EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> read it. <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> does not: the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> rules hold the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> offer (<a href="../../../traceability/findings/#f-74">F-74</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -5074,11 +5074,11 @@ in three places:</p>
   (<a href="../../../traceability/findings/#f-57">F-57</a>).</li>
 <li>The <code>file</code> transport has no recorded agreement of the bronhouder
   (<a href="../../../traceability/findings/#f-71">F-71</a>).</li>
-<li>DvTP scope comes from the demand side and EUDI scope from the supply
+<li><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> scope comes from the demand side and EUDI scope from the supply
   side (<a href="../../../traceability/findings/#f-74">F-74</a>).</li>
 <li>The central issuance server holds the private keys of every source
   (<a href="../../../traceability/open-questions/#q-17">Q-17</a>).</li>
-<li>The ASI attribute identifiers are placeholders until the EU catalog of
+<li>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attribute identifiers are placeholders until the EU catalog of
   attributes exists (<a href="../../../traceability/open-questions/#q-31">Q-31</a>).</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -5104,6 +5104,7 @@ in three places:</p>
   <a href="../../../traceability/increments/#sl-46">SL-46</a> (done),
   <a href="../../../traceability/increments/#sl-49">SL-49</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

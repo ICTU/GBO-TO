@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4637,9 +4637,9 @@
 <h1 id="admission-and-activation">Admission and activation<a class="headerlink" href="#admission-and-activation" title="Permanent link">&para;</a></h1>
 <p>Two management-plane scenarios come before the first request:</p>
 <ol>
-<li>Contract admission: a party asks for an FSC contract. The FSC
-   Manager of the provider asks the PDP whether that party is admitted.</li>
-<li>Source activation: the operator of a GBO component takes a source
+<li>Contract admission: a party asks for an <abbr title="Federated Service Connectivity">FSC</abbr> contract. The <abbr title="Federated Service Connectivity">FSC</abbr>
+   Manager of the provider asks the <abbr title="Policy Decision Point">PDP</abbr> whether that party is admitted.</li>
+<li>Source activation: the operator of a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component takes a source
    into use. The component fetches the service description of the source,
    validates it, and activates it as an immutable release.</li>
 </ol>
@@ -4655,13 +4655,12 @@ and <a href="../../concepts/source-onboarding/">Source onboarding</a>. The
 decisions are <a href="../../decisions/0015-contract-acceptance-by-policy/">ADR-0015</a>
 and <a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a>.</p>
 <h2 id="contract-admission">Scenario 1: contract admission<a class="headerlink" href="#contract-admission" title="Permanent link">&para;</a></h2>
-<p>A consumer, an integrator, or a GBO component (the issuance facility, the
-ASIP, the PDP itself) wants to connect to an FSC service of a source
-holder. The party creates a contract proposal in its own FSC Manager. The
-FSC Manager of the provider does not sign on a flag. It sends every proposal
-to the OpenFTV PDP as an AuthZEN evaluation and signs only on allow
+<p>A consumer, an integrator, or a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component (the issuance facility, the
+<abbr title="Authentic Source Interface Provider">ASIP</abbr>, the <abbr title="Policy Decision Point">PDP</abbr> itself) wants to connect to an <abbr title="Federated Service Connectivity">FSC</abbr> service of a bronhouder. The party creates a contract proposal in its own <abbr title="Federated Service Connectivity">FSC</abbr> Manager. The
+<abbr title="Federated Service Connectivity">FSC</abbr> Manager of the provider does not sign on a flag. It sends every proposal
+to the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> <abbr title="Policy Decision Point">PDP</abbr> as an <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> evaluation and signs only on allow
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L701-L702"><code>fsc-infra/docker-compose.yml#L701-L702</code></a>).
-The FSC Managers of the BRP peer and the consent register peer use the
+The <abbr title="Federated Service Connectivity">FSC</abbr> Managers of the BRP peer and the consent register (toestemmingsregister) peer use the
 same policy
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L892-L893"><code>#L892-L893</code></a>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L1079-L1080"><code>#L1079-L1080</code></a>).</p>
@@ -4689,7 +4688,7 @@ same policy
     end
     CM-&gt;&gt;CM: POST /v1/contracts (grant), signed by the consumer
     CM-&gt;&gt;PM: Contract proposal (FSC, mTLS)
-    PM-&gt;&gt;PDP: AuthZEN evaluation&lt;br/&gt;doelbinding auto_sign_contract
+    PM-&gt;&gt;PDP: AuthZEN evaluation&lt;br/&gt;context.doelbinding = auto_sign_contract
     PDP-&gt;&gt;PDP: Eight ordered checks on the register data
     PDP-&gt;&gt;ADL: Decision record
     alt Allow
@@ -4717,48 +4716,48 @@ same policy
 <td>1</td>
 <td>Administrator → register</td>
 <td>Register UI (<code>localhost:9415</code>), CSRF-protected forms</td>
-<td>FSC Peer ID (20 characters), display name, <code>active</code>, Peer IDs of the admitted source holders</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> Peer ID (20 characters), display name, <code>active</code>, Peer IDs of the admitted bronhouders</td>
 <td>The register has no accounts. Anyone who reaches the UI locally is administrator (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/README.md">README</a>). Integrations (<code>acts_for</code>) and technical participants are part of the deployment configuration. The UI does not manage them</td>
 </tr>
 <tr>
 <td>2 to 3</td>
-<td>PDP → register</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → register</td>
 <td><code>GET /internal/openftv/participants</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/internal/httpapi/handler.go#L63"><code>handler.go#L63</code></a>), interval 5 s, timeout 2 s</td>
 <td><code>data.entities.dvtp_participant</code>, keyed by Peer ID: <code>name</code>, <code>active</code>, <code>allowed_source_peer_ids</code>, <code>acts_for</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/pip-pull/dvtp-onboarding.yaml#L1-L31"><code>dvtp-onboarding.yaml</code></a>)</td>
-<td>The pull uses a network that only the register and the PDP share. Every entry carries <code>acts_for</code>. If the party acts for nobody, <code>acts_for</code> is empty. As a result, a withdrawn mandate replaces the old entity</td>
+<td>The pull uses a network that only the register and the <abbr title="Policy Decision Point">PDP</abbr> share. Every entry carries <code>acts_for</code>. If the party acts for nobody, <code>acts_for</code> is empty. As a result, a withdrawn mandate replaces the old entity</td>
 </tr>
 <tr>
 <td>4</td>
-<td>Consumer → own FSC Manager</td>
+<td>Consumer → own <abbr title="Federated Service Connectivity">FSC</abbr> Manager</td>
 <td><code>POST /v1/contracts</code>, internal API, mTLS (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-connection-hv.sh#L113-L135"><code>seed-bri-connection-hv.sh#L113-L135</code></a>)</td>
 <td>Contract content: grant (type and service), validity, the peers</td>
-<td>FSC grants carry no properties (<a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>)</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> grants carry no properties (<a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>)</td>
 </tr>
 <tr>
 <td>5</td>
 <td>Consumer Manager → provider Manager</td>
-<td>FSC Manager interface, mTLS with the organization certificate (demo CA)</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> Manager interface, mTLS with the organization certificate (demo CA)</td>
 <td>Signed contract proposal</td>
 <td>The contract hash identifies the proposal. A new submission is a new proposal with a new hash</td>
 </tr>
 <tr>
 <td>6</td>
-<td>Provider Manager → PDP</td>
-<td>AuthZEN, <code>https://openftv-pdp:8443/authzen/v1</code>, the Manager pins the PDP CA</td>
+<td>Provider Manager → <abbr title="Policy Decision Point">PDP</abbr></td>
+<td><abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr>, <code>https://openftv-pdp:8443/authzen/v1</code>, the Manager pins the <abbr title="Policy Decision Point">PDP</abbr> CA</td>
 <td><code>subject</code> (<code>self_peer_id</code>, <code>peer_ids</code>), <code>action</code> <code>autosign_contract</code>, <code>resource</code> (contract hash, <code>grant_types</code>), <code>context.doelbinding</code> = <code>auto_sign_contract</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L12-L15"><code>autosign.rego#L12-L15</code></a>)</td>
-<td>The input has no service name and no delegation direction. The PDP judges who connects. It does not judge to which service (<a href="../../traceability/findings-closed/#f-56">F-56</a>)</td>
+<td>The input has no service name and no delegation direction. The <abbr title="Policy Decision Point">PDP</abbr> judges who connects. It does not judge to which service (<a href="../../traceability/findings-closed/#f-56">F-56</a>)</td>
 </tr>
 <tr>
 <td>7 to 8</td>
-<td>PDP</td>
+<td><abbr title="Policy Decision Point">PDP</abbr></td>
 <td>Package <code>doelbinding.auto_sign_contract</code>, separate from the request policy (<a href="../../requirements/admission/#req-62">REQ-62</a>)</td>
-<td>Decision record in the ADL, next to the request decisions</td>
-<td>The doelbinding selects the package. A renamed package resolves to nothing (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L8-L10"><code>autosign.rego#L8-L10</code></a>)</td>
+<td>Decision record in the <abbr title="Authorization Decision Log">ADL</abbr>, next to the request decisions</td>
+<td>The purpose limitation (doelbinding) selects the package. A renamed package resolves to nothing (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L8-L10"><code>autosign.rego#L8-L10</code></a>)</td>
 </tr>
 <tr>
 <td>9 to 11</td>
-<td>PDP → provider Manager → consumer Manager</td>
-<td>AuthZEN response, then FSC signature</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → provider Manager → consumer Manager</td>
+<td><abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> response, then <abbr title="Federated Service Connectivity">FSC</abbr> signature</td>
 <td>Allow: <code>FSC_AUTOSIGN_ADMITTED_PARTY</code>, counterparties, source Peer ID. Deny: first failing code, counterparties, grant types (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L184-L202"><code>autosign.rego#L184-L202</code></a>)</td>
 <td>The response holds only Peer IDs and no personal data</td>
 </tr>
@@ -4802,7 +4801,7 @@ eight reasons, in this order:</p>
 <tr>
 <td>4</td>
 <td><code>ADMISSION_REGISTER_UNAVAILABLE</code></td>
-<td>The PIP pull supplied no register</td>
+<td>The <abbr title="Policy Information Point">PIP</abbr> pull supplied no register</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign_test.rego#L86"><code>#L86</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign_test.rego#L91"><code>#L91</code></a></td>
 </tr>
 <tr>
@@ -4841,7 +4840,7 @@ refuses the whole contract
 <p>A refusal leaves the proposal at <em>proposed</em>. The party can correct its
 admission and submit again. The new submission gets a new assessment
 (<a href="../../requirements/admission/#req-63">REQ-63</a>). This behavior is product
-behavior of the FSC Manager. No automated test covers it. If a setup
+behavior of the <abbr title="Federated Service Connectivity">FSC</abbr> Manager. No automated test covers it. If a setup
 configures an automatic refusal, the setup breaks the requirement.</p>
 <h3 id="delegated-grant">Delegated grant (integrator)<a class="headerlink" href="#delegated-grant" title="Permanent link">&para;</a></h3>
 <p>An integrator connects on behalf of a consumer (the represented party).
@@ -4878,7 +4877,7 @@ connection grant (type 3). The contract has three signatures
 <tr>
 <td>1 to 2</td>
 <td>Delegated grant with the Peer IDs of the integrator, the represented party, and the provider</td>
-<td>The FSC Manager of the represented party has no autosign. In the demo, the seed script accepts on its behalf. The script does what the operator does in the Controller UI (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-delegation-int.sh#L147-L167"><code>#L147-L167</code></a>)</td>
+<td>The <abbr title="Federated Service Connectivity">FSC</abbr> Manager of the represented party has no autosign. In the demo, the seed script accepts on its behalf. The script does what the operator does in the Controller UI (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/scripts/seed-bri-delegation-int.sh#L147-L167"><code>#L147-L167</code></a>)</td>
 </tr>
 <tr>
 <td>4 to 6</td>
@@ -4924,7 +4923,7 @@ decides as follows:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L706"><code>#L706</code></a></td>
 </tr>
 <tr>
-<td>The register is missing from the PDP data</td>
+<td>The register is missing from the <abbr title="Policy Decision Point">PDP</abbr> data</td>
 <td><code>INTEGRATOR_REGISTER_UNAVAILABLE</code> in the trace, request code <code>PIP_UNAVAILABLE</code>. The consumer sees <code>ACCESS_DENIED</code></td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L631"><code>#L631</code></a></td>
 </tr>
@@ -4933,17 +4932,17 @@ decides as follows:</p>
 <p>The register attaches the mandates to the entry of the integrator
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/internal/onboarding/service_test.go#L245"><code>service_test.go#L245</code></a>).
 The consent binds the represented party. It does not bind the integrator
-(<a href="../../requirements/consent/#req-106">REQ-106</a>). For the DvTP query with
-an integrator, see <a href="../dvtp-query/">DvTP query</a>.</p>
+(<a href="../../requirements/consent/#req-106">REQ-106</a>). For the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query with
+an integrator, see <a href="../dvtp-query/"><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> query</a>.</p>
 <h3 id="register-missing-against-register-empty">Register missing against register empty<a class="headerlink" href="#register-missing-against-register-empty" title="Permanent link">&para;</a></h3>
-<p>The PDP data can be in two states that look the same but have a
+<p>The <abbr title="Policy Decision Point">PDP</abbr> data can be in two states that look the same but have a
 different meaning
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L43-L59"><code>autosign.rego#L43-L59</code></a>,
 <a href="https://github.com/ICTU/GBO-demo/pull/579">PR #579</a>):</p>
 <table>
 <thead>
 <tr>
-<th>PDP data</th>
+<th><abbr title="Policy Decision Point">PDP</abbr> data</th>
 <th>Meaning</th>
 <th>Code</th>
 </tr>
@@ -4951,7 +4950,7 @@ different meaning
 <tbody>
 <tr>
 <td>No <code>data.entities</code>, or no <code>dvtp_participant</code> document</td>
-<td>The PIP pull supplied no register: an outage or a wrong mapping</td>
+<td>The <abbr title="Policy Information Point">PIP</abbr> pull supplied no register: an outage or a wrong mapping</td>
 <td><code>ADMISSION_REGISTER_UNAVAILABLE</code></td>
 </tr>
 <tr>
@@ -4965,10 +4964,10 @@ different meaning
 the pull or the admission needs a repair. The readiness script of the demo waits for the first
 successful pull before it seeds contracts
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/wait-openftv-admission.sh"><code>wait-openftv-admission.sh</code></a>).</p>
-<p>The OpenFTV pull adds and replaces entities. If an entity disappears
+<p>The <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> pull adds and replaces entities. If an entity disappears
 from a later response, the pull does not remove it. For this reason, the
 register deactivates a participant and never deletes it. A deleted
-record leaves the old admission in the PDP
+record leaves the old admission in the <abbr title="Policy Decision Point">PDP</abbr>
 (<a href="../../requirements/admission/#req-61">REQ-61</a>).</p>
 <h3 id="main-observations">Main observations<a class="headerlink" href="#main-observations" title="Permanent link">&para;</a></h3>
 <p>Contract admission in gbo-demo v0.9.0 has these properties and gaps:</p>
@@ -4976,7 +4975,7 @@ record leaves the old admission in the PDP
 <li><strong>Admission is register data</strong>
   (<a href="../../traceability/findings-closed/#f-55">F-55</a>). No policy rule holds the
   admission. Adding, suspending, or withdrawing a party changes register
-  data. The PDP sees the change within one pull interval of 5 s, without
+  data. The <abbr title="Policy Decision Point">PDP</abbr> sees the change within one pull interval of 5 s, without
   a policy change or a restart.</li>
 <li><strong>Contract and request rules are separate</strong>
   (<a href="../../requirements/admission/#req-62">REQ-62</a>). The two rule sets
@@ -4995,12 +4994,12 @@ record leaves the old admission in the PDP
   to run the register is assigned to the management organization
   (<a href="../../traceability/answered-questions/#q-22">Q-22</a>). It is open who builds
   the facility (<a href="../../traceability/open-questions/#q-74">Q-74</a>).</li>
-<li><strong>The register key is the FSC Peer ID.</strong> It is open whether policy can
-  read the Peer ID as the OIN of the consumer
+<li><strong>The register key is the <abbr title="Federated Service Connectivity">FSC</abbr> Peer ID.</strong> It is open whether policy can
+  read the Peer ID as the <abbr title="Organisatie-identificatienummer">OIN</abbr> of the consumer
   (<a href="../../traceability/open-questions/#q-68">Q-68</a>).</li>
 </ul>
 <h2 id="source-activation">Scenario 2: source activation<a class="headerlink" href="#source-activation" title="Permanent link">&para;</a></h2>
-<p>For each source, the issuance facility and the ASIP need to know the data
+<p>For each source, the issuance facility and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> need to know the data
 service, the query, the mapping, and the offer. The source publishes that
 description itself (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>,
 <a href="../../traceability/findings/#f-57">F-57</a>). The source reconciler of the
@@ -5009,7 +5008,7 @@ Source Registry. The runtime readers read only activated releases.</p>
 <p>First, the metadata contract and the data contract of the source must be
 valid. They pass <a href="#contract-admission">contract admission</a> like every
 other contract, because the issuance facility is a technical participant
-in the admission register.</p>
+in the admission register (toelatingsregister).</p>
 <div class="mermaid">sequenceDiagram
     autonumber
     box rgb(241,239,232) Operator
@@ -5084,7 +5083,7 @@ in the admission register.</p>
 <td>Operator → reconciler</td>
 <td>One file per source in <code>sources/configured/</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_configuration.go#L16-L28"><code>source_configuration.go#L16-L28</code></a>)</td>
 <td><code>source_id</code> (file name), transport per leg, metadata locator, <code>provider_peer_id</code></td>
-<td>The file holds no OIN and no organization name. Those values come from the certificate</td>
+<td>The file holds no <abbr title="Organisatie-identificatienummer">OIN</abbr> and no organization name. Those values come from the certificate</td>
 </tr>
 <tr>
 <td>2 to 4</td>
@@ -5095,7 +5094,7 @@ in the admission register.</p>
 </tr>
 <tr>
 <td>5 to 6</td>
-<td>Reconciler → FSC Manager</td>
+<td>Reconciler → <abbr title="Federated Service Connectivity">FSC</abbr> Manager</td>
 <td>Internal Manager API, mTLS (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L1846-L1865"><code>docker-compose.yml#L1846-L1865</code></a>)</td>
 <td>Contract snapshot: per provider Peer ID and service, the grant hash</td>
 <td>A contract without a source file activates nothing</td>
@@ -5105,7 +5104,7 @@ in the admission register.</p>
 <td>Reconciler → Outway → source</td>
 <td><code>GET /.well-known/gbo</code> with <code>Fsc-Grant-Hash</code> and <code>If-None-Match</code></td>
 <td>Source metadata document (<code>gbo-source-metadata-v1</code>, version 1.0 or 1.1), <code>ETag</code></td>
-<td>The PDP of the source allows only known peers, on the metadata services, on exactly this path (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/authz.rego#L14-L36"><code>authz.rego#L14-L36</code></a>). The document is public and holds no citizen data. A <code>304</code> extends only the freshness</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> of the source allows only known peers, on the metadata services, on exactly this path (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/authz.rego#L14-L36"><code>authz.rego#L14-L36</code></a>). The document is public and holds no citizen data. A <code>304</code> extends only the freshness</td>
 </tr>
 <tr>
 <td>10</td>
@@ -5137,7 +5136,7 @@ in the admission register.</p>
 </tr>
 <tr>
 <td>15</td>
-<td>ASIP → registry</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> → registry</td>
 <td>Reader role, <code>ASIP_SOURCE_REGISTRY_REFRESH</code> = 5 s (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/main.go#L101"><code>asi-provider/main.go#L101</code></a>)</td>
 <td>Per data service: query, attribute mapping, legal name of the authentic source, discovery records</td>
 <td></td>
@@ -5180,13 +5179,13 @@ Source activation handles each failure as follows:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/fsc_contract_discovery_test.go#L172"><code>#L172</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/fsc_contract_discovery_test.go#L278"><code>#L278</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/source-registry/onboarding/service_test.go#L130"><code>service_test.go#L130</code></a></td>
 </tr>
 <tr>
-<td>Certificate without OIN or organization name</td>
+<td>Certificate without <abbr title="Organisatie-identificatienummer">OIN</abbr> or organization name</td>
 <td><code>blocked</code>: <code>CERTIFICATE_SET_INVALID</code></td>
 <td>code (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/source-registry/onboarding/service.go#L283-L297"><code>service.go#L283-L297</code></a>)</td>
 </tr>
 <tr>
-<td>FSC Manager unreachable</td>
-<td>FSC sources get <code>FSC_MANAGER_UNAVAILABLE</code>, and the candidate stays within grace. Sources without FSC continue</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> Manager unreachable</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> sources get <code>FSC_MANAGER_UNAVAILABLE</code>, and the candidate stays within grace. Sources without <abbr title="Federated Service Connectivity">FSC</abbr> continue</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/source-registry/onboarding/service_test.go#L159"><code>service_test.go#L159</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/source-registry/onboarding/service_test.go#L319"><code>#L319</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/fsc_contract_discovery_test.go#L599"><code>fsc_contract_discovery_test.go#L599</code></a></td>
 </tr>
 <tr>
@@ -5205,7 +5204,7 @@ Source activation handles each failure as follows:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/fsc_contract_discovery_test.go#L851"><code>#L851</code></a></td>
 </tr>
 <tr>
-<td>Document invalid: schema error, OIN differs from the certificate, more or less than one read operation, or valid for less than one hour</td>
+<td>Document invalid: schema error, <abbr title="Organisatie-identificatienummer">OIN</abbr> differs from the certificate, more or less than one read operation, or valid for less than one hour</td>
 <td><code>METADATA_INVALID</code>. The last complete candidate stays</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main_test.go#L628"><code>main_test.go#L628</code></a></td>
 </tr>
@@ -5215,7 +5214,7 @@ Source activation handles each failure as follows:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/asi_onboarding_test.go#L152"><code>asi_onboarding_test.go#L152</code></a></td>
 </tr>
 <tr>
-<td>GBO attribute catalogue unreadable</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> attribute catalogue unreadable</td>
 <td>Only sources with <code>asi</code> are refused</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/asi_onboarding_test.go#L227"><code>asi_onboarding_test.go#L227</code></a></td>
 </tr>
@@ -5265,8 +5264,8 @@ Source activation handles each failure as follows:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime_test.go#L125"><code>source_release_runtime_test.go#L125</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime_test.go#L89"><code>#L89</code></a></td>
 </tr>
 <tr>
-<td>ASIP reads the release</td>
-<td>The ASIP reads per data service from the active release</td>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr> reads the release</td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> reads per data service from the active release</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/asi_onboarding_test.go#L323"><code>asi_onboarding_test.go#L323</code></a></td>
 </tr>
 </tbody>
@@ -5278,14 +5277,14 @@ Source activation handles each failure as follows:</p>
   (<a href="../../traceability/findings-closed/#f-58">F-58</a>). The source file is the
   management action. Transport and mandate are two decisions with two
   owners. Two parts are not built: the rule for who can take the action,
-  and the way GBO records the admission decision. These parts are PSA
+  and the way <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> records the admission decision. These parts are PSA
   B-09 in the
-  <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">besluitregister</a>
+  <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">decision register</a>
   and <a href="../../requirements/admission/#req-123">REQ-123</a>.</li>
 <li><strong>The source owns its description</strong>
-  (<a href="../../traceability/findings/#f-57">F-57</a>). GBO validates and activates
-  the description. Its origin is the authenticated FSC transport plus the
-  OIN from the certificate. The document itself has no signature. The
+  (<a href="../../traceability/findings/#f-57">F-57</a>). <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates and activates
+  the description. Its origin is the authenticated <abbr title="Federated Service Connectivity">FSC</abbr> transport plus the
+  <abbr title="Organisatie-identificatienummer">OIN</abbr> from the certificate. The document itself has no signature. The
   <code>file</code> transport is a visible, temporary exception for a source without
   an endpoint. The demo does not record the agreement of the bronhouder
   (<a href="../../traceability/findings/#f-71">F-71</a>,
@@ -5298,10 +5297,10 @@ Source activation handles each failure as follows:</p>
 <li><strong>Isolation is incomplete.</strong> One failing source freezes new releases
   for all sources, and the offer list fails for all sources at the same
   time (<a href="https://github.com/ICTU/GBO-demo/issues/606">#606</a>).</li>
-<li><strong>DvTP is not covered.</strong> For DvTP, the GBO rules hold the offer of a
+<li><strong><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> is not covered.</strong> For <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> rules hold the offer of a
   source. A publication of the source does not hold it
   (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>). The question of
-  how a source connects to the ASIP is partly answered
+  how a source connects to the <abbr title="Authentic Source Interface Provider">ASIP</abbr> is partly answered
   (<a href="../../traceability/open-questions/#q-38">Q-38</a>).</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
@@ -5311,6 +5310,7 @@ Source activation handles each failure as follows:</p>
 <li>Open questions: <a href="../../traceability/answered-questions/#q-22">Q-22</a> (answered), <a href="../../traceability/open-questions/#q-53">Q-53</a> (open), <a href="../../traceability/open-questions/#q-68">Q-68</a> (open), <a href="../../traceability/open-questions/#q-74">Q-74</a> (open), <a href="../../traceability/open-questions/#q-38">Q-38</a> (partly answered)</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-45">SL-45</a> (done), <a href="../../traceability/increments/#sl-46">SL-46</a> (done), <a href="../../traceability/increments/#sl-09">SL-09</a> (partly covered)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

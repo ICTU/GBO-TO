@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4568,7 +4568,7 @@ it fails in demo v0.9.0. If a scenario fails in demo v0.9.0, its expected
 outcome says so.</p>
 <p>Reason codes have two layers
 (<a href="../concepts/authorization/#reason-codes-two-layers">Reason codes</a>). The
-consumer and the ADL get a client code, for example
+consumer and the <abbr title="Authorization Decision Log">ADL</abbr> get a client code, for example
 <code>FIELD_NOT_PERMITTED</code>. The operator gets the rule code per field in the
 console decision log, for example <code>YEAR_NOT_COVERED</code>. Each scenario names
 the code at the layer where the test checks it.</p>
@@ -4611,12 +4611,12 @@ the code at the layer where the test checks it.</p>
 <tr>
 <td>QS-05</td>
 <td>A request carries a consent proof, or carries none</td>
-<td>With a consent proof, only consent-regime rules judge the request. Without one, only PID-regime rules judge it (<a href="../requirements/authorization/#req-74">REQ-74</a>).</td>
+<td>With a consent proof, only consent-regime rules judge the request. Without one, only <abbr title="Person Identification Data">PID</abbr>-regime rules judge it (<a href="../requirements/authorization/#req-74">REQ-74</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L227"><code>engine_test.rego#L227</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L234"><code>#L234</code></a></td>
 </tr>
 <tr>
 <td>QS-06</td>
-<td>The actor list of a PID rule contains a consent consumer</td>
+<td>The actor list of a <abbr title="Person Identification Data">PID</abbr> rule contains a consent consumer</td>
 <td>The test fails. The lists stay disjoint. The test knows only the local consumers (<a href="../traceability/findings/#f-70">F-70</a>, <a href="../risks/#r21">R21</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L371"><code>engine_test.rego#L371</code></a> (local consumers only)</td>
 </tr>
@@ -4628,7 +4628,7 @@ the code at the layer where the test checks it.</p>
 </tr>
 <tr>
 <td>QS-08</td>
-<td>The PDP gets a schema for a service whose digest the bundle does not pin</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> gets a schema for a service whose digest the bundle does not pin</td>
 <td>Deny.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L108"><code>engine_test.rego#L108</code></a></td>
 </tr>
@@ -4655,12 +4655,12 @@ the code at the layer where the test checks it.</p>
 <tr>
 <td>QS-10</td>
 <td>The citizen revokes a consent between grant and use</td>
-<td>The PDP denies the next request. Rule code <code>CONSENT_WITHDRAWN</code> (<a href="../requirements/consent/#req-14">REQ-14</a>).</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> denies the next request. Rule code <code>CONSENT_WITHDRAWN</code> (<a href="../requirements/consent/#req-14">REQ-14</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent_test.rego#L202"><code>consent_test.rego#L202</code></a></td>
 </tr>
 <tr>
 <td>QS-11</td>
-<td>A forged or tampered consent token reaches the PDP</td>
+<td>A forged or tampered consent token reaches the <abbr title="Policy Decision Point">PDP</abbr></td>
 <td>Deny. Rule code <code>CONSENT_SIGNATURE_INVALID</code>.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent_test.rego#L318"><code>consent_test.rego#L318</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent_test.rego#L324"><code>#L324</code></a></td>
 </tr>
@@ -4678,14 +4678,14 @@ the code at the layer where the test checks it.</p>
 </tr>
 <tr>
 <td>QS-14</td>
-<td>A consumer puts a literal BSN in the query under a valid consent</td>
+<td>A consumer puts a literal <abbr title="Burgerservicenummer">BSN</abbr> in the query under a valid consent</td>
 <td>Deny. Rule code <code>CONSTRAINT_MISMATCH</code> (<a href="../requirements/pseudonymization/#req-79">REQ-79</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001_test.rego#L131"><code>dvt0001_test.rego#L131</code></a></td>
 </tr>
 <tr>
 <td>QS-15</td>
 <td>A request carries two consent proofs</td>
-<td>Deny. The PDP picks neither proof. Rule code <code>CONSENT_CONTEXT_INVALID</code>.</td>
+<td>Deny. The <abbr title="Policy Decision Point">PDP</abbr> picks neither proof. Rule code <code>CONSENT_CONTEXT_INVALID</code>.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent_test.rego#L438"><code>consent_test.rego#L438</code></a></td>
 </tr>
 <tr>
@@ -4710,7 +4710,7 @@ the code at the layer where the test checks it.</p>
 <tbody>
 <tr>
 <td>QS-17</td>
-<td>A suspended participant submits an FSC contract</td>
+<td>A suspended participant submits an <abbr title="Federated Service Connectivity">FSC</abbr> contract</td>
 <td>The contract stays proposed. Reason <code>PARTY_NOT_ACTIVE</code>.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign_test.rego#L138"><code>autosign_test.rego#L138</code></a></td>
 </tr>
@@ -4722,7 +4722,7 @@ the code at the layer where the test checks it.</p>
 </tr>
 <tr>
 <td>QS-19</td>
-<td>The admission register is missing from the PDP data</td>
+<td>The admission register is missing from the <abbr title="Policy Decision Point">PDP</abbr> data</td>
 <td>The contract stays proposed. Reason <code>ADMISSION_REGISTER_UNAVAILABLE</code>. The reason is not "party unknown".</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign_test.rego#L86"><code>autosign_test.rego#L86</code></a></td>
 </tr>
@@ -4760,13 +4760,13 @@ the code at the layer where the test checks it.</p>
 <tbody>
 <tr>
 <td>QS-23</td>
-<td>A DvTP consumer asks for income data under a consent</td>
-<td>The consumer request names the subject with the placeholder <code>consent:identity</code>. The request, the PDP input, and the ADL hold no citizen identifier (<a href="../requirements/pseudonymization/#req-20">REQ-20</a>).</td>
+<td>A <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consumer asks for income data under a consent</td>
+<td>The consumer request names the subject with the placeholder <code>consent:identity</code>. The request, the <abbr title="Policy Decision Point">PDP</abbr> input, and the <abbr title="Authorization Decision Log">ADL</abbr> hold no citizen identifier (<a href="../requirements/pseudonymization/#req-20">REQ-20</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/consumer/consumer_test.go#L86"><code>consumer_test.go#L86</code></a></td>
 </tr>
 <tr>
 <td>QS-24</td>
-<td>The proof carries a value made for another OIN</td>
+<td>The proof carries a value made for another <abbr title="Organisatie-identificatienummer">OIN</abbr></td>
 <td>The source gateway refuses the value and does not forward the request (<a href="../requirements/pseudonymization/#req-80">REQ-80</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/substitution/substitution_test.go#L112"><code>substitution_test.go#L112</code></a></td>
 </tr>
@@ -4779,24 +4779,24 @@ the code at the layer where the test checks it.</p>
 <tr>
 <td>QS-26</td>
 <td>A consent record is read from the register</td>
-<td>The record holds no BSN and no per-party value. The register keeps PI and PP under the <code>subject_ref</code> of the portal, and no consent answer carries them (<a href="../requirements/pseudonymization/#req-69">REQ-69</a>).</td>
+<td>The record holds no <abbr title="Burgerservicenummer">BSN</abbr> and no per-party value. The register keeps <abbr title="Polymorphic identity">PI</abbr> and <abbr title="Polymorphic pseudonym">PP</abbr> under the <code>subject_ref</code> of the portal, and no consent answer carries them (<a href="../requirements/pseudonymization/#req-69">REQ-69</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/polymorphic_test.go#L39"><code>polymorphic_test.go#L39</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/polymorphic_test.go#L85"><code>#L85</code></a></td>
 </tr>
 <tr>
 <td>QS-27</td>
 <td>Two sources get values for the same citizen</td>
-<td>The values differ per recipient and cannot be linked. Not demonstrated in demo v0.9.0: the BSNk mock does not encrypt, and the demo sources share one OIN.</td>
+<td>The values differ per recipient and cannot be linked. Not demonstrated in demo v0.9.0: the BSNk mock does not encrypt, and the demo sources share one <abbr title="Organisatie-identificatienummer">OIN</abbr>.</td>
 <td>Not pinned</td>
 </tr>
 <tr>
 <td>QS-28</td>
-<td>An EUDI or ASI request reaches the PDP</td>
-<td>The PDP input and both decision logs hold no BSN (<a href="../requirements/logging-audit/#req-60">REQ-60</a>). Fails in demo v0.9.0 (<a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>, <a href="../risks/#r22">R22</a>).</td>
+<td>An EUDI or <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> request reaches the <abbr title="Policy Decision Point">PDP</abbr></td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> input and both decision logs hold no <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../requirements/logging-audit/#req-60">REQ-60</a>). Fails in demo v0.9.0 (<a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>, <a href="../risks/#r22">R22</a>).</td>
 <td>Not pinned</td>
 </tr>
 <tr>
 <td>QS-29</td>
-<td>A component writes an LDV record that contains a valid BSN anywhere</td>
+<td>A component writes an <abbr title="Logboek Dataverwerkingen">LDV</abbr> record that contains a valid <abbr title="Burgerservicenummer">BSN</abbr> anywhere</td>
 <td>The logbook refuses the record.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/ldv-logboek/internal/ldv/validate_test.go#L94"><code>validate_test.go#L94</code></a></td>
 </tr>
@@ -4834,14 +4834,14 @@ the code at the layer where the test checks it.</p>
 </tr>
 <tr>
 <td>QS-33</td>
-<td>An auditor holds a transaction ID and looks for the ADL record</td>
-<td>The ADL record carries the trace ID and the transaction ID (<a href="../requirements/logging-audit/#req-71">REQ-71</a>). Partly met in demo v0.9.0: behind the FSC Inway, the record has neither. The reader finds the record through the stored request header (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>, <a href="../risks/#r23">R23</a>).</td>
+<td>An auditor holds a transaction ID and looks for the <abbr title="Authorization Decision Log">ADL</abbr> record</td>
+<td>The <abbr title="Authorization Decision Log">ADL</abbr> record carries the trace ID and the transaction ID (<a href="../requirements/logging-audit/#req-71">REQ-71</a>). Partly met in demo v0.9.0: behind the <abbr title="Federated Service Connectivity">FSC</abbr> Inway, the record has neither. The reader finds the record through the stored request header (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>, <a href="../risks/#r23">R23</a>).</td>
 <td>Not pinned (code: <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/adl.go#L49-L66"><code>adl.go#L49-L66</code></a>)</td>
 </tr>
 <tr>
 <td>QS-34</td>
 <td>An auditor asks which policy version made the decision</td>
-<td>The ADL record names the policy version (<a href="../requirements/logging-audit/#req-59">REQ-59</a>). Fails in demo v0.9.0.</td>
+<td>The <abbr title="Authorization Decision Log">ADL</abbr> record names the policy version (<a href="../requirements/logging-audit/#req-59">REQ-59</a>). Fails in demo v0.9.0.</td>
 <td>Not pinned</td>
 </tr>
 <tr>
@@ -4872,7 +4872,7 @@ the code at the layer where the test checks it.</p>
 </tr>
 <tr>
 <td>QS-37</td>
-<td>A caller posts a BSN to the adapter callback without the issuance server</td>
+<td>A caller posts a <abbr title="Burgerservicenummer">BSN</abbr> to the adapter callback without the issuance server</td>
 <td>Refused (<a href="../requirements/eudi-issuance/#req-45">REQ-45</a>). Fails in demo v0.9.0: the callback is unauthenticated (<a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>, <a href="../risks/#r5">R5</a>).</td>
 <td>Not pinned</td>
 </tr>
@@ -4910,13 +4910,13 @@ the code at the layer where the test checks it.</p>
 <tbody>
 <tr>
 <td>QS-41</td>
-<td>A QTSP uses a token issued for another data service</td>
+<td>A <abbr title="Qualified Trust Service Provider">QTSP</abbr> uses a token issued for another data service</td>
 <td>401. A token is valid for one data service only (<a href="../requirements/asi/#req-95">REQ-95</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/dataservices_test.go#L16"><code>dataservices_test.go#L16</code></a></td>
 </tr>
 <tr>
 <td>QS-42</td>
-<td>A request has no DPoP proof, or replays one</td>
+<td>A request has no <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr> proof, or replays one</td>
 <td>401.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/token_test.go#L158"><code>token_test.go#L158</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/token_test.go#L200"><code>#L200</code></a></td>
 </tr>
@@ -4952,13 +4952,13 @@ the code at the layer where the test checks it.</p>
 </tr>
 <tr>
 <td>QS-48</td>
-<td>A QTSP reads the discovery records of the ASIP</td>
+<td>A <abbr title="Qualified Trust Service Provider">QTSP</abbr> reads the discovery records of the <abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
 <td>Each record leads to the data service endpoint, its contract, and the authorization server metadata (<a href="../requirements/asi/#req-99">REQ-99</a>, <a href="../requirements/asi/#req-100">REQ-100</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/discovery_test.go#L66"><code>discovery_test.go#L66</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/httpapi/discovery_test.go#L105"><code>#L105</code></a></td>
 </tr>
 <tr>
 <td>QS-49</td>
-<td>A QTSP without <code>QEAA_Provider</code> in the register registers, or loses the entitlement later</td>
+<td>A <abbr title="Qualified Trust Service Provider">QTSP</abbr> without <code>QEAA_Provider</code> in the register registers, or loses the entitlement later</td>
 <td>Registration refused (<code>unapproved_software_statement</code>). After a withdrawal, the next re-check deactivates the client (<a href="../requirements/asi/#req-88">REQ-88</a>, <a href="../requirements/asi/#req-89">REQ-89</a>). If the register is unreachable, the client stays active (<a href="../risks/#r27">R27</a>).</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/httpapi/registration_test.go#L152"><code>registration_test.go#L152</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/httpapi/registration_test.go#L276"><code>#L276</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/httpapi/registration_test.go#L306"><code>#L306</code></a></td>
 </tr>
@@ -4970,14 +4970,14 @@ the code at the layer where the test checks it.</p>
 </tr>
 <tr>
 <td>QS-51</td>
-<td>An FSC peer other than the ASIP asks for BRP personal data under the PID regime</td>
+<td>An <abbr title="Federated Service Connectivity">FSC</abbr> peer other than the <abbr title="Authentic Source Interface Provider">ASIP</abbr> asks for BRP personal data under the <abbr title="Person Identification Data">PID</abbr> regime</td>
 <td>Deny. Rule code <code>ACTOR_NOT_ALLOWED</code>. ASI0001 judges service <code>brp</code> only.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001_test.rego#L29"><code>asi0001_test.rego#L29</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001_test.rego#L56"><code>#L56</code></a></td>
 </tr>
 <tr>
 <td>QS-52</td>
-<td>The QTSP holds the access token</td>
-<td>The QTSP cannot read the BSN (<a href="../traceability/findings/#f-86">F-86</a>). Fails in demo v0.9.0 (<a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>, <a href="../risks/#r26">R26</a>).</td>
+<td>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> holds the access token</td>
+<td>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> cannot read the <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../traceability/findings/#f-86">F-86</a>). Fails in demo v0.9.0 (<a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>, <a href="../risks/#r26">R26</a>).</td>
 <td>Not pinned</td>
 </tr>
 </tbody>
@@ -5004,7 +5004,7 @@ open:</p>
   (<a href="../traceability/open-questions/#q-47">Q-47</a>).</li>
 <li>The propagation time, availability, and latency of the consent status
   (<a href="../requirements/consent/#req-75">REQ-75</a>). The register is a
-  dependency of every DvTP decision (<a href="../risks/#r10">R10</a>).</li>
+  dependency of every <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> decision (<a href="../risks/#r10">R10</a>).</li>
 </ul>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5046,6 +5046,7 @@ open:</p>
   <a href="../traceability/increments/#sl-50">SL-50</a> (done),
   <a href="../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

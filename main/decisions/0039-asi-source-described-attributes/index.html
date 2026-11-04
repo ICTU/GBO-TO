@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4576,12 +4576,12 @@
   
 
 
-<h1 id="adr-0039-asi-attributes-described-by-the-source-asi-capability-in-source-metadata">ADR-0039: ASI attributes described by the source (<code>asi</code> capability in source metadata)<a class="headerlink" href="#adr-0039-asi-attributes-described-by-the-source-asi-capability-in-source-metadata" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0039-asi-attributes-described-by-the-source-asi-capability-in-source-metadata">ADR-0039: <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> attributes described by the source (<code>asi</code> capability in source metadata)<a class="headerlink" href="#adr-0039-asi-attributes-described-by-the-source-asi-capability-in-source-metadata" title="Permanent link">&para;</a></h1>
 <ul>
-<li>Status: accepted, partly implemented. In demo v0.9.0, the authorization server takes its resource list from configuration (<a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/GBO-demo#592</a> is open).</li>
+<li>Status: accepted, partly implemented. In demo v0.9.0, the authorization server takes its resource list from configuration (<a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#592</a> is open).</li>
 <li>Date: 2026-11-02</li>
 <li>Satisfies: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">S10</a>, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">S07</a>, <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">S11</a>, <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a>, <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a></li>
-<li>Deliberation: <a href="../../traceability/open-questions/#q-38">Q-38</a>, and demo <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/GBO-demo#592</a> steps 1 to 5, up to <a href="https://github.com/ICTU/GBO-demo/pull/624">PR #624</a></li>
+<li>Deliberation: <a href="../../traceability/open-questions/#q-38">Q-38</a>, and demo <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#592</a> steps 1 to 5, up to <a href="https://github.com/ICTU/GBO-demo/pull/624">PR #624</a></li>
 <li>Implemented in:<ul>
 <li><code>asiCapability</code> in <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/gbo-source-metadata-v1.schema.json#L95">gbo-source-metadata-v1.schema.json#L95</a>.</li>
 <li>The attribute catalogue <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/asi-attributes.json">schemas/asi-attributes.json</a>.</li>
@@ -4595,24 +4595,24 @@
 </li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>Per data service, the ASIP must know three things:</p>
+<p>Per data service, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> must know three things:</p>
 <ul>
 <li>Which attributes the source offers.</li>
 <li>Which source fields make each attribute.</li>
 <li>How to ask for these fields.</li>
 </ul>
-<p>The first demo ASIP had this knowledge in code, as a BRP adapter. That
-breaks <a href="../../requirements/sources-identity/#req-64">REQ-64</a>: a GBO
+<p>The first demo <abbr title="Authentic Source Interface Provider">ASIP</abbr> had this knowledge in code, as a BRP adapter. That
+breaks <a href="../../requirements/sources-identity/#req-64">REQ-64</a>: a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
 component works only with the description that the source publishes
-itself. With the adapter, a new source needs a code change in the ASIP.</p>
+itself. With the adapter, a new source needs a code change in the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</p>
 <p><a href="../../traceability/open-questions/#q-38">Q-38</a> named three options: code,
-GBO configuration, or a description that the source publishes. On
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> configuration, or a description that the source publishes. On
 October 27, the direction became the third option, with a "copy only"
 mapping. ETSI expects attribute identifiers and value schemas from the EU
 catalogue of attributes. That catalogue did not exist on November 2,
 2026.</p>
 <p>This ADR extends <a href="../0016-source-owned-metadata/">ADR-0016</a> from EUDI
-issuance to the ASIP.</p>
+issuance to the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p>The decision has seven parts:</p>
 <ol>
@@ -4627,7 +4627,7 @@ issuance to the ASIP.</p>
   member of the value.</li>
 </ul>
 </li>
-<li>GBO keeps the shape of each value. GBO keeps a <code>value_schema</code> per
+<li><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> keeps the shape of each value. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> keeps a <code>value_schema</code> per
    attribute identifier in <code>schemas/asi-attributes.json</code>, until the EU
    catalogue of attributes provides it. The identifiers are provisional.
    The value schemas use only <code>type</code>, <code>properties</code>, <code>required</code>, <code>items</code>,
@@ -4650,19 +4650,19 @@ is a house number made of three BRP fields.</p>
 <p><code>gbo-simple-v1</code> stays for the <code>eudi</code> capability only
    (<a href="../0017-gbo-simple-v1/">ADR-0017</a>). The two capabilities have
    different targets. The <code>eudi</code> target is wallet claims that the source
-   defines. The <code>asi</code> target is values that the catalogue of GBO
+   defines. The <code>asi</code> target is values that the catalogue of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
    defines.</p>
 </li>
-<li>The reconciler validates, and the ASIP reads the active release. The
+<li>The reconciler validates, and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> reads the active release. The
    reconciler validates <code>asi</code> against the catalogue, as part of the
    source metadata (<a href="../0016-source-owned-metadata/">ADR-0016</a>). If <code>asi</code>
-   is invalid, the reconciler refuses the whole source. The ASIP reads
-   the active release from the Source Registry every 5 seconds, with the
+   is invalid, the reconciler refuses the whole source. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> reads
+   the active release from the source registry every 5 seconds, with the
    reader role.</li>
-<li>One query per request. The ASIP replaces <code>...Selected</code> with only the
+<li>One query per request. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> replaces <code>...Selected</code> with only the
    fields of the requested attributes and fragments
    (<a href="../../requirements/asi/#req-92">REQ-92</a>). If the description does not
-   name an attribute, the ASIP answers 404 and does not ask the source.</li>
+   name an attribute, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> answers 404 and does not ask the source.</li>
 <li>Fuzzy matching follows the value schema. A string with a <code>format</code>,
    such as a date, matches exactly or does not match. Only strings
    without a <code>format</code> get <code>MatchWithVariation</code>
@@ -4670,11 +4670,11 @@ is a house number made of three BRP fields.</p>
 </ol>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>A new source for the ASIP needs a description and a configured data
+<li>A new source for the <abbr title="Authentic Source Interface Provider">ASIP</abbr> needs a description and a configured data
   service. It needs no code. The discovery records and the legal name of
   the source follow the description without a restart.</li>
 <li>If no current description exists (absent, without <code>asi</code>, or stale),
-  the ASIP answers 503 for verify, retrieve, and discovery
+  the <abbr title="Authentic Source Interface Provider">ASIP</abbr> answers 503 for verify, retrieve, and discovery
   (<a href="../../requirements/asi/#req-93">REQ-93</a>).</li>
 <li>A source with <code>asi</code> gets release snapshot version 4.0. A source
   without <code>asi</code> stays at 3.0. Onboarding still refuses a document with
@@ -4684,7 +4684,7 @@ is a house number made of three BRP fields.</p>
   policy of the source allows the selection. A difference shows at the
   first request. A demo test holds the BRP description against rule
   ASI0001.</li>
-<li>The ASIP still normalizes a code without a <code>format</code>, such as a
+<li>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> still normalizes a code without a <code>format</code>, such as a
   nationality or a postal code. For codes, demo v0.9.0 does not meet
   <a href="../../requirements/asi/#req-113">REQ-113</a>
   (<a href="../../traceability/open-questions/#q-70">Q-70</a>).</li>
@@ -4698,7 +4698,7 @@ is a house number made of three BRP fields.</p>
   <code>AZSP_RESOURCES</code>
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/main.go#L105">main.go#L105</a>),
   and not from the descriptions. This is the open part of
-  <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/GBO-demo#592</a>.</li>
+  <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#592</a>.</li>
 <li>The identifiers and value schemas move to the EU catalogue of
   attributes when it exists
   (<a href="../../traceability/open-questions/#q-31">Q-31</a>).</li>
@@ -4725,6 +4725,7 @@ is a house number made of three BRP fields.</p>
 <li>Demo increments: <a href="../../traceability/increments/#sl-28">SL-28</a>,
   <a href="../../traceability/increments/#sl-46">SL-46</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

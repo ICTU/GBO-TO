@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4592,46 +4592,46 @@
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
 <p>ETSI TS 119 478 lets a verify or retrieve response name one authentic
-source (<code>authenticSource</code>, REQ-ASIP-6.1.1.2-08 and REQ-ASIP-6.1.2.2-04).
+source (<code>authenticSource</code>, REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.1.2-08 and REQ-<abbr title="Authentic Source Interface Provider">ASIP</abbr>-6.1.2.2-04).
 Article 9(4) requires that the result names the body that is responsible
-for that source. GBO offers one ASIP for several sources. For this
-reason, that ASIP must keep every request inside one source
+for that source. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> offers one <abbr title="Authentic Source Interface Provider">ASIP</abbr> for several sources. For this
+reason, that <abbr title="Authentic Source Interface Provider">ASIP</abbr> must keep every request inside one source
 (<a href="../../traceability/findings/#f-89">F-89</a>).</p>
 <p>The token has the same problem. The citizen approves a request for one
 source (<a href="../../requirements/asi/#req-91">REQ-91</a>). If the token is also
-valid at another source, the QTSP can verify data at a source that the
+valid at another source, the <abbr title="Qualified Trust Service Provider">QTSP</abbr> can verify data at a source that the
 citizen did not see. ETSI does not specify the reach of a token per data
 service.</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p>The decision has four parts:</p>
 <ol>
-<li>An ASIP that serves several authentic sources offers one data service
+<li>An <abbr title="Authentic Source Interface Provider">ASIP</abbr> that serves several authentic sources offers one data service
    per source. Each data service has its own base URL
    (<code>/&lt;data service&gt;/authsrc-api</code>), its own contract, its own
    <code>dataService</code> records, and its own token audience
    (<a href="../../requirements/asi/#req-94">REQ-94</a>,
    <a href="../../requirements/asi/#req-99">REQ-99</a>).</li>
-<li>Every response names the ASIP (<code>provider</code>) and the one authentic
+<li>Every response names the <abbr title="Authentic Source Interface Provider">ASIP</abbr> (<code>provider</code>) and the one authentic
    source of the data service (<code>authenticSource</code>). Since step 5 of
-   <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/GBO-demo#592</a>, the
+   <a href="https://github.com/ICTU/GBO-demo/issues/592">ICTU/<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>-demo#592</a>, the
    legal name comes from the description of the source
    (<a href="../0039-asi-source-described-attributes/">ADR-0039</a>). A data service
    without an authentic source is not possible.</li>
-<li>If an attribute belongs to another data service, the ASIP answers 404.
-   The ASIP then asks no source.</li>
+<li>If an attribute belongs to another data service, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> answers 404.
+   The <abbr title="Authentic Source Interface Provider">ASIP</abbr> then asks no source.</li>
 <li>An authorization request names exactly one data service as <code>resource</code>
    (RFC 8707):<ul>
 <li>If the request has no <code>resource</code>, two, or an unknown one, the
   result is <code>invalid_target</code>.</li>
 <li>The token has the base URL of that data service as <code>aud</code>.</li>
-<li>The ASIP refuses a token for another data service with 401
+<li>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> refuses a token for another data service with 401
   (<a href="../../requirements/asi/#req-95">REQ-95</a>).</li>
 </ul>
 </li>
 </ol>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>If a QTSP needs attributes of two sources, it authorizes twice. The
+<li>If a <abbr title="Qualified Trust Service Provider">QTSP</abbr> needs attributes of two sources, it authorizes twice. The
   citizen logs in twice.</li>
 <li>The request page can name one source and its legal name
   (<a href="../../requirements/asi/#req-91">REQ-91</a>).</li>
@@ -4644,7 +4644,7 @@ service.</p>
   configuration (<code>AZSP_RESOURCES</code>). It does not take the list from the
   source descriptions (<a href="../0039-asi-source-described-attributes/">ADR-0039</a>,
   an open part of #592).</li>
-<li>It is open whether an ASIP for several sources makes GBO an
+<li>It is open whether an <abbr title="Authentic Source Interface Provider">ASIP</abbr> for several sources makes <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> an
   intermediary in the sense of article 9(4)
   (<a href="../../traceability/open-questions/#q-37">Q-37</a>).</li>
 </ul>
@@ -4673,6 +4673,7 @@ service.</p>
 <li>Standards feedback: <a href="../../traceability/standards-feedback/#e3">E3</a></li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-28">SL-28</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

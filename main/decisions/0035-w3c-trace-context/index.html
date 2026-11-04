@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4576,7 +4576,7 @@
   
 
 
-<h1 id="adr-0035-w3c-trace-context-is-the-correlation-key-and-the-fsc-transaction-id-is-recorded-next-to-it">ADR-0035: W3C Trace Context is the correlation key, and the FSC transaction ID is recorded next to it<a class="headerlink" href="#adr-0035-w3c-trace-context-is-the-correlation-key-and-the-fsc-transaction-id-is-recorded-next-to-it" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0035-w3c-trace-context-is-the-correlation-key-and-the-fsc-transaction-id-is-recorded-next-to-it">ADR-0035: W3C Trace Context is the correlation key, and the <abbr title="Federated Service Connectivity">FSC</abbr> transaction ID is recorded next to it<a class="headerlink" href="#adr-0035-w3c-trace-context-is-the-correlation-key-and-the-fsc-transaction-id-is-recorded-next-to-it" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Status: accepted</li>
 <li>Date: 2026-11-02</li>
@@ -4591,14 +4591,14 @@
 </li>
 </ul>
 <h2 id="context-and-problem-statement">Context and problem statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
-<p>An auditor must follow one request through the consumer, the PDP, the
-source gateway, the source, and the consent register. Three standards
+<p>An auditor must follow one request through the consumer, the <abbr title="Policy Decision Point">PDP</abbr>, the
+source gateway, the source, and the consent register (toestemmingsregister). Three standards
 record parts of the request:</p>
 <ul>
-<li>LDV (processing records) and the ADL (decision records) require that a
-  component takes the incoming trace ID over unchanged (LDV §3.3.1, W3C
+<li><abbr title="Logboek Dataverwerkingen">LDV</abbr> (processing records) and the <abbr title="Authorization Decision Log">ADL</abbr> (decision records) require that a
+  component takes the incoming trace ID over unchanged (<abbr title="Logboek Dataverwerkingen">LDV</abbr> §3.3.1, W3C
   Trace Context §3.1).</li>
-<li>FSC-Logging gives every FSC transaction its own transaction ID, unique
+<li><abbr title="Federated Service Connectivity">FSC</abbr>-Logging gives every <abbr title="Federated Service Connectivity">FSC</abbr> transaction its own transaction ID, unique
   per transaction (§3.4.1.1).</li>
 </ul>
 <p><a href="../0019-fsc-transaction-id-tracing/">ADR-0019</a> used one value for both.
@@ -4607,16 +4607,16 @@ That choice breaks in three cases
 <ul>
 <li>A caller sends its own <code>traceparent</code>.</li>
 <li>One processing calls several sources.</li>
-<li>The request takes an extra FSC hop, for example the status lookup of
-  the PDP.</li>
+<li>The request takes an extra <abbr title="Federated Service Connectivity">FSC</abbr> hop, for example the status lookup of
+  the <abbr title="Policy Decision Point">PDP</abbr>.</li>
 </ul>
-<p>FSC forwards <code>traceparent</code> on the data path. Only the AuthZEN call of
-the Inway to the PDP drops it (<a href="../../traceability/findings-closed/#f-39">F-39</a>,
+<p><abbr title="Federated Service Connectivity">FSC</abbr> forwards <code>traceparent</code> on the data path. Only the <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> call of
+the Inway to the <abbr title="Policy Decision Point">PDP</abbr> drops it (<a href="../../traceability/findings-closed/#f-39">F-39</a>,
 <a href="../../traceability/findings-closed/#f-41">F-41</a>).</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p>The decision has four parts:</p>
 <ul>
-<li>Every GBO component takes the trace ID unchanged from the incoming
+<li>Every <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> component takes the trace ID unchanged from the incoming
   <code>traceparent</code>. If the caller is in the same trace, the component sets
   the span of the caller as parent. The component sends <code>traceparent</code>
   and <code>tracestate</code> on every outbound call.</li>
@@ -4624,9 +4624,9 @@ the Inway to the PDP drops it (<a href="../../traceability/findings-closed/#f-39
   <code>Fsc-Transaction-Id</code>, then <code>X-Request-Id</code>, then the ambient span, and
   then a new trace.</li>
 <li>The <code>Fsc-Transaction-Id</code> never replaces an incoming trace. A component
-  that starts or receives an FSC transaction records the transaction ID
+  that starts or receives an <abbr title="Federated Service Connectivity">FSC</abbr> transaction records the transaction ID
   next to the trace ID. It records the ID as span attribute
-  <code>gbo.fsc.transaction_id</code>, and in the ADL as <code>adl.fsc.transaction_id</code>.</li>
+  <code>gbo.fsc.transaction_id</code>, and in the <abbr title="Authorization Decision Log">ADL</abbr> as <code>adl.fsc.transaction_id</code>.</li>
 <li>If an entry component receives no <code>traceparent</code>, it can tie its new
   trace to the UUIDv7 transaction ID that it mints. This part of
   ADR-0019 stays.</li>
@@ -4634,12 +4634,12 @@ the Inway to the PDP drops it (<a href="../../traceability/findings-closed/#f-39
 <h2 id="considered-options">Considered options<a class="headerlink" href="#considered-options" title="Permanent link">&para;</a></h2>
 <ol>
 <li>W3C Trace Context, with the transaction ID next to it (chosen). This
-   option follows LDV, ADL, and FSC-Logging at the same time.</li>
+   option follows <abbr title="Logboek Dataverwerkingen">LDV</abbr>, <abbr title="Authorization Decision Log">ADL</abbr>, and <abbr title="Federated Service Connectivity">FSC</abbr>-Logging at the same time.</li>
 <li>The transaction ID equals the trace ID
    (<a href="../0019-fsc-transaction-id-tracing/">ADR-0019</a>).
    <a href="../../traceability/findings-closed/#f-67">F-67</a> showed that this option
    fails.</li>
-<li>A custom correlation header. Not chosen: LDV mandates W3C Trace
+<li>A custom correlation header. Not chosen: <abbr title="Logboek Dataverwerkingen">LDV</abbr> mandates W3C Trace
    Context.</li>
 </ol>
 <h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
@@ -4647,14 +4647,14 @@ the Inway to the PDP drops it (<a href="../../traceability/findings-closed/#f-39
 <li>One processing has one trace ID and several transaction IDs. Logs and
   traces join on equal identifiers. They do not join on time stamps.</li>
 <li>The consent status lookup carries the trace and the transaction ID of
-  the request. The LDV record of the register lands in the trace of the
+  the request. The <abbr title="Logboek Dataverwerkingen">LDV</abbr> record of the register lands in the trace of the
   request.</li>
 <li>Separate units of work keep separate traces. The <code>consent_id</code> joins the
   consent issuance and the later query. A trace does not join them
   (<a href="../../traceability/findings-closed/#f-16">F-16</a>).</li>
-<li>Behind the FSC Inway, the ADL record has its own random trace and no
+<li>Behind the <abbr title="Federated Service Connectivity">FSC</abbr> Inway, the <abbr title="Authorization Decision Log">ADL</abbr> record has its own random trace and no
   <code>adl.fsc.transaction_id</code>. The cause is that the Inway sends neither
-  header to the PDP. A reader finds the record through the request
+  header to the <abbr title="Policy Decision Point">PDP</abbr>. A reader finds the record through the request
   headers stored in it. The fix is upstream in open-fsc
   (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>,
   <a href="../0036-adl-decision-record/">ADR-0036</a>).</li>
@@ -4670,6 +4670,7 @@ the Inway to the PDP drops it (<a href="../../traceability/findings-closed/#f-39
 <li>Open questions: none</li>
 <li>Demo increments: <a href="../../traceability/increments/#sl-07">SL-07</a> (done), <a href="../../traceability/increments/#sl-38">SL-38</a> (done), <a href="../../traceability/increments/#sl-50">SL-50</a> (exploration done, build delivered)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

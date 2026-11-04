@@ -1334,7 +1334,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1450,7 +1450,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -4557,7 +4557,7 @@
 
 <h1 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h1>
 <p>Four sources set the constraints for this design: the PSA, the law, the
-GDI standards, and the functional requirements for DvTP. Each constraint
+GDI standards, and the functional requirements for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>. Each constraint
 links to its normative text, and the TO does not restate that text. If a
 design element conflicts with a constraint, one of these records the
 conflict:</p>
@@ -4567,7 +4567,7 @@ conflict:</p>
 <li>an <a href="../decisions/">architecture decision</a>.</li>
 </ul>
 <h2 id="architecture-principles-psa">Architecture principles (PSA)<a class="headerlink" href="#architecture-principles-psa" title="Permanent link">&para;</a></h2>
-<p>The 16 architectuurprincipes of the PSA bind this design. The PSA page
+<p>The 16 architecture principles of the PSA bind this design. The PSA page
 has no anchor per principle. For this reason, each link opens the
 <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">principles page</a>.
 The following principles constrain the technical design most directly:</p>
@@ -4583,59 +4583,59 @@ The following principles constrain the technical design most directly:</p>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-01</a></td>
 <td>Legal basis before exchange</td>
-<td>Before data flows, the PDP judges every request under a regime. The evidence in the request selects the regime (<a href="../decisions/0031-regime-from-evidence/">ADR-0031</a>).</td>
+<td>Before data flows, the <abbr title="Policy Decision Point">PDP</abbr> judges every request under a regime. The evidence in the request selects the regime (<a href="../decisions/0031-regime-from-evidence/">ADR-0031</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a></td>
 <td>Minimal data processing</td>
-<td>The PDP decides on each field of the GraphQL query (<a href="../requirements/authorization/#req-17">REQ-17</a>).</td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> decides on each field of the GraphQL query (<a href="../requirements/authorization/#req-17">REQ-17</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a></td>
-<td>BSN-free for private consumers</td>
-<td>In DvTP, the consumer holds no citizen identifier. After the allow decision, the source decrypts its own value (<a href="../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>). See <a href="../concepts/pseudonymization/">Pseudonymization</a>.</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr>-free for private consumers</td>
+<td>In <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, the consumer holds no citizen identifier. After the allow decision, the source decrypts its own value (<a href="../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a>). See <a href="../concepts/pseudonymization/">Pseudonymization</a>.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-06</a></td>
 <td>Support for the EUDI wallet</td>
-<td>The PSA treats this principle as a hook outside version 1. The demo still proves EUDI issuance and ASI verification.</td>
+<td>The PSA treats this principle as a hook outside version 1. The demo still proves EUDI issuance and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-07</a></td>
 <td>Trust through recognized admission and trust anchors (until September 2026: "trust framework based on PKI")</td>
-<td>Every FSC connection uses mTLS with PKI certificates. Admission comes from a register (<a href="../requirements/admission/#req-61">REQ-61</a>). The legal identity comes from the certificate (<a href="../requirements/sources-identity/#req-67">REQ-67</a>). See <a href="../concepts/identity-trust/">Identity and trust</a>.</td>
+<td>Every <abbr title="Federated Service Connectivity">FSC</abbr> connection uses mTLS with PKI certificates. Admission comes from a register (<a href="../requirements/admission/#req-61">REQ-61</a>). The legal identity comes from the certificate (<a href="../requirements/sources-identity/#req-67">REQ-67</a>). See <a href="../concepts/identity-trust/">Identity and trust</a>.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-09</a></td>
 <td>Open standards and vendor independence</td>
-<td>The design uses FSC, AuthZEN, OpenID4VCI and OpenID4VP, GraphQL, OPA, LDV, W3C Trace Context, and OAuth 2.0.</td>
+<td>The design uses <abbr title="Federated Service Connectivity">FSC</abbr>, <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr>, <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> and <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr>, GraphQL, OPA, <abbr title="Logboek Dataverwerkingen">LDV</abbr>, W3C Trace Context, and OAuth 2.0.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a></td>
-<td>Data sovereignty: the source holder keeps control</td>
-<td>Sources own their schema, service description, decryption keys, and policy. PAP and PDP are at the source holder (<a href="../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>).</td>
+<td>Data sovereignty: the bronhouder keeps control</td>
+<td>Sources own their schema, service description, decryption keys, and policy. <abbr title="Policy Administration Point">PAP</abbr> and <abbr title="Policy Decision Point">PDP</abbr> are at the bronhouder (<a href="../decisions/0021-central-pap-signed-bundles/">ADR-0021</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-12</a></td>
 <td>Logging and non-repudiation</td>
-<td>The design has three authoritative records, one per Logius standard. The ADL holds the authorization decisions (<a href="../decisions/0036-adl-decision-record/">ADR-0036</a>). The LDV logbook of each controller holds the processings (<a href="../decisions/0026-ldv-integration/">ADR-0026</a>). FSC-Logging holds the transport. The W3C trace ID joins the three records, and the FSC transaction ID is recorded next to it (<a href="../decisions/0035-w3c-trace-context/">ADR-0035</a>). See <a href="../concepts/logging/">Logging, audit and traceability</a>.</td>
+<td>The design has three authoritative records, one per Logius standard. The <abbr title="Authorization Decision Log">ADL</abbr> holds the authorization decisions (<a href="../decisions/0036-adl-decision-record/">ADR-0036</a>). The <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook of each controller holds the processings (<a href="../decisions/0026-ldv-integration/">ADR-0026</a>). <abbr title="Federated Service Connectivity">FSC</abbr>-Logging holds the transport. The W3C trace ID joins the three records, and the <abbr title="Federated Service Connectivity">FSC</abbr> transaction ID is recorded next to it (<a href="../decisions/0035-w3c-trace-context/">ADR-0035</a>). See <a href="../concepts/logging/">Logging, audit and traceability</a>.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-13</a></td>
 <td>Transparency and access for the citizen</td>
-<td>The citizen views and revokes consents (<a href="../requirements/consent/#req-38">REQ-38</a>). Each controller can answer an access request from its LDV logbook.</td>
+<td>The citizen views and revokes consents (<a href="../requirements/consent/#req-38">REQ-38</a>). Each controller can answer an access request from its <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-14</a></td>
 <td>Separation of generic and specific functions</td>
-<td>GBO has one generic chain. Trajectory-specific adapters are at the edge (<a href="../requirements/authorization/#req-44">REQ-44</a>).</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has one generic chain. Route-specific adapters are at the edge (<a href="../requirements/authorization/#req-44">REQ-44</a>).</td>
 </tr>
 </tbody>
 </table>
 <p>For the full list (P-01 to P-16) and the status of each principle in the
 demo, see the <a href="../traceability/matrix/#architecture-principles">matrix</a>.</p>
 <h2 id="design-principles-psa">Design principles (PSA)<a class="headerlink" href="#design-principles-psa" title="Permanent link">&para;</a></h2>
-<p>The 14 ontwerpprincipes govern how the GBO components are built. Each
+<p>The 14 design principles govern how the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components are built. Each
 link opens the
 <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">design principles page</a>.
 The following design principles constrain the TO most directly:</p>
@@ -4651,17 +4651,17 @@ The following design principles constrain the TO most directly:</p>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-01</a></td>
 <td>Decentral where possible, central where necessary</td>
-<td>Each source holder has its own PDP and PAP. Each provider issues its own tokens. GBO has central components only where they are necessary: the consent service and the admission register.</td>
+<td>Each bronhouder has its own <abbr title="Policy Decision Point">PDP</abbr> and <abbr title="Policy Administration Point">PAP</abbr>. Each provider issues its own tokens. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has central components only where they are necessary: the consent facility (toestemmingsvoorziening) and the admission register.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-03</a></td>
 <td>Use national generic facilities (GDI) unless</td>
-<td>GBO reuses FSC, FTV, BSNk PP, DigiD, and PKIoverheid and does not rebuild them. The demo mocks DigiD, BSNk, and MijnOverheid.</td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> reuses <abbr title="Federated Service Connectivity">FSC</abbr>, <abbr title="Federatieve Toegangsverlening">FTV</abbr>, BSNk <abbr title="Polymorphic pseudonym">PP</abbr>, DigiD, and PKIoverheid and does not rebuild them. The demo mocks DigiD, BSNk, and MijnOverheid.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-07</a></td>
 <td>Open source unless</td>
-<td>All GBO components and the demo are open source (EUPL).</td>
+<td>All <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components and the demo are open source (EUPL).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-08</a></td>
@@ -4671,12 +4671,12 @@ The following design principles constrain the TO most directly:</p>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-09</a></td>
 <td>API-first</td>
-<td>All koppelvlakken are specified APIs. See <a href="../context/">Context and scope</a>.</td>
+<td>All interfaces (koppelvlakken) are specified APIs. See <a href="../context/">Context and scope</a>.</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-11</a></td>
 <td>Least privilege</td>
-<td>Authorization is closed-world: without a rule, there is no access. Only the FSC Inway reaches the source gateway (<a href="../requirements/pseudonymization/#req-81">REQ-81</a>).</td>
+<td>Authorization is closed-world: without a rule, there is no access. Only the <abbr title="Federated Service Connectivity">FSC</abbr> Inway reaches the source gateway (<a href="../requirements/pseudonymization/#req-81">REQ-81</a>).</td>
 </tr>
 <tr>
 <td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-13</a></td>
@@ -4689,17 +4689,17 @@ The following design principles constrain the TO most directly:</p>
 <a href="../traceability/matrix/#design-principles">matrix</a>.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <p>The <a href="../requirements/">requirements</a> state testable demands on what
-GBO builds and on the interfaces between GBO and other parties. Each
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> builds and on the interfaces between <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> and other parties. Each
 requirement names its source. The source is a passage in the GO, the PSA,
-or FR-DvTP, or a principle for which a demo finding showed the need. The
+or FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, or a principle for which a demo finding showed the need. The
 arc42 sections explain how the design meets the requirements. The status
 of each requirement is one of these words: draft, ready for review,
 approved, covered, or withdrawn.</p>
 <p>The requirements page also lists the guidelines for bronhouders
 (<a href="../requirements/authorization/#policy-management">RL-01 to RL-05</a>). A guideline is a
-recommendation for bronhouders. It puts no demand on GBO.</p>
+recommendation for bronhouders. It puts no demand on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</p>
 <h2 id="connection-conditions-candidates">Connection conditions (candidates)<a class="headerlink" href="#connection-conditions-candidates" title="Permanent link">&para;</a></h2>
-<p>Some demands fall on the parties that connect to GBO, and GBO itself does
+<p>Some demands fall on the parties that connect to <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> itself does
 not carry them. The TO collects these demands as candidate connection
 conditions (<a href="../requirements/admission/#connection-conditions">AV-01 to AV-15</a>).
 They are input for the management organization, which sets the real
@@ -4716,31 +4716,31 @@ connection conditions
 <tbody>
 <tr>
 <td>Consumer</td>
-<td><a href="../requirements/admission/#av-01">AV-01</a> trace context, <a href="../requirements/admission/#av-02">AV-02</a> LDV, <a href="../requirements/admission/#av-03">AV-03</a> consent service and BSNk PP, <a href="../requirements/admission/#av-04">AV-04</a> own FSC peer. <a href="../requirements/admission/#av-05">AV-05</a> proof sent unchanged, <a href="../requirements/admission/#av-14">AV-14</a> contact details for GDPR rights, <a href="../requirements/admission/#av-15">AV-15</a> equivalent alternative.</td>
+<td><a href="../requirements/admission/#av-01">AV-01</a> trace context, <a href="../requirements/admission/#av-02">AV-02</a> <abbr title="Logboek Dataverwerkingen">LDV</abbr>, <a href="../requirements/admission/#av-03">AV-03</a> consent facility and BSNk <abbr title="Polymorphic pseudonym">PP</abbr>, <a href="../requirements/admission/#av-04">AV-04</a> own <abbr title="Federated Service Connectivity">FSC</abbr> peer. <a href="../requirements/admission/#av-05">AV-05</a> proof sent unchanged, <a href="../requirements/admission/#av-14">AV-14</a> contact details for GDPR rights, <a href="../requirements/admission/#av-15">AV-15</a> equivalent alternative.</td>
 </tr>
 <tr>
 <td>Integrator</td>
 <td><a href="../requirements/admission/#av-06">AV-06</a> admitted separately, acts as processor</td>
 </tr>
 <tr>
-<td>Source holder</td>
-<td><a href="../requirements/admission/#av-07">AV-07</a> to <a href="../requirements/admission/#av-13">AV-13</a>: service description, consent to a taken-over description, old decryption keys, LDV for relation attestations, and validity and revocation policy</td>
+<td>Bronhouder</td>
+<td><a href="../requirements/admission/#av-07">AV-07</a> to <a href="../requirements/admission/#av-13">AV-13</a>: service description, consent to a taken-over description, old decryption keys, <abbr title="Logboek Dataverwerkingen">LDV</abbr> for relation attestations, and validity and revocation policy</td>
 </tr>
 </tbody>
 </table>
 <h2 id="bsnk-preconditions">BSNk preconditions<a class="headerlink" href="#bsnk-preconditions" title="Permanent link">&para;</a></h2>
-<p>BSNk PP sets preconditions that the DvTP design must respect
+<p>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> sets preconditions that the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> design must respect
 (<a href="../requirements/pseudonymization/#bsnk-preconditions">BSNK-01 to BSNK-11</a>). These
 preconditions are facts about an external facility. They are not
-requirements on GBO. Three of them shape the design most:</p>
+requirements on <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>. Three of them shape the design most:</p>
 <ul>
 <li>Transformation is possible only while the citizen is logged in
   (<a href="../requirements/pseudonymization/#bsnk-04">BSNK-04</a>). As a result,
-  the consent service makes all values at consent time, and the proof
+  the consent facility makes all values at consent time, and the proof
   freezes at consent (<a href="../traceability/findings/#f-78">F-78</a>).</li>
 <li>Only a recognized party can activate and transform
   (<a href="../requirements/pseudonymization/#bsnk-01">BSNK-01</a>). It is open
-  whether the consent service can be such a party
+  whether the consent facility can be such a party
   (<a href="../traceability/open-questions/#q-26">Q-26</a>,
   <a href="../traceability/open-questions/#q-49">Q-49</a>).</li>
 <li>The interfaces are SOAP with PKIoverheid
@@ -4751,12 +4751,12 @@ requirements on GBO. Three of them shape the design most:</p>
 working assumption is
 <a href="../requirements/pseudonymization/#route-d">route D</a>
 (<a href="../decisions/0040-route-d-citizen-recognition/">ADR-0040</a>, proposed).</p>
-<h2 id="functional-requirements-dvtp-fr-dvtp-v09">Functional requirements DvTP (FR-DvTP v0.9)<a class="headerlink" href="#functional-requirements-dvtp-fr-dvtp-v09" title="Permanent link">&para;</a></h2>
-<p>FR-DvTP v0.9 contains the functional requirements FR-01 to FR-39 for the
-DvTP trajectory. The document is not public. For this reason, the TO
+<h2 id="functional-requirements-dvtp-fr-dvtp-v09">Functional requirements <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9)<a class="headerlink" href="#functional-requirements-dvtp-fr-dvtp-v09" title="Permanent link">&para;</a></h2>
+<p>FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 contains the functional requirements FR-01 to FR-39 for the
+<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> route. The document is not public. For this reason, the TO
 names a criterion without a link, for example "FR-34, criterion 1". The
 <a href="../traceability/matrix/#fr-dvtp">matrix</a> gives the demo status per FR.</p>
-<p>FR-DvTP v0.9 has known contradictions. If the text and a decision
+<p>FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 has known contradictions. If the text and a decision
 conflict, the requirements follow the decision. The known contradictions
 are:</p>
 <ul>
@@ -4769,8 +4769,8 @@ are:</p>
   that the design does not use (<a href="../traceability/findings/#f-98">F-98</a>).</li>
 </ul>
 <h2 id="legal-and-regulatory-constraints">Legal and regulatory constraints<a class="headerlink" href="#legal-and-regulatory-constraints" title="Permanent link">&para;</a></h2>
-<p>The PSA groups its principles by legal kader. The following kaders
-constrain this design:</p>
+<p>The PSA groups its principles by legal framework. The following
+frameworks constrain this design:</p>
 <table>
 <thead>
 <tr>
@@ -4781,59 +4781,59 @@ constrain this design:</p>
 </thead>
 <tbody>
 <tr>
-<td>AVG (GDPR)</td>
-<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA architectuurprincipes</a>, kader 1</td>
-<td>Data minimization, doelbinding, and grondslag. Each controller (Verantwoordelijke) logs its own processing (<a href="../decisions/0026-ldv-integration/">ADR-0026</a>).</td>
+<td><abbr title="Algemene verordening gegevensbescherming (GDPR)">AVG</abbr> (GDPR)</td>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA architecture principles</a>, framework 1</td>
+<td>Data minimization, purpose limitation (doelbinding), and legal basis (grondslag). Each controller (Verantwoordelijke) logs its own processing (<a href="../decisions/0026-ldv-integration/">ADR-0026</a>).</td>
 </tr>
 <tr>
-<td>Wdo and PKIoverheid</td>
-<td>PSA kader 3</td>
-<td>Organization identity through PKI certificates and the OIN.</td>
+<td>Digital Government Act (Wdo) and PKIoverheid</td>
+<td>PSA framework 3</td>
+<td>Organization identity through PKI certificates and the <abbr title="Organisatie-identificatienummer">OIN</abbr>.</td>
 </tr>
 <tr>
 <td>eIDAS2 and ARF</td>
-<td>PSA kader 4</td>
+<td>PSA framework 4</td>
 <td>EUDI wallet support. Article 45e: the Authentic Source Interface (<a href="../decisions/0037-asi-oauth-front-door/">ADR-0037</a>).</td>
 </tr>
 <tr>
-<td>eIDAS implementing regulations of 2026 (ASI)</td>
+<td>eIDAS implementing regulations of 2026 (<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>)</td>
 <td>CIR (EU) 2025/1569 art. 9, CIR (EU) 2026/1735 Annex IV</td>
 <td>Art. 9 applies from August 19, 2026. From January 1, 2027, the verify interface follows ETSI TS 119 478 clause 6.1.1, clause 6.2.3, or both. From that date, every result is sealed. The authorization part stays a national choice (<a href="../traceability/findings/#f-80">F-80</a>).</td>
 </tr>
 <tr>
-<td>eIDAS implementing regulations of 2026 (PuB-EAA)</td>
+<td>eIDAS implementing regulations of 2026 (<abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr>)</td>
 <td>CIR (EU) 2026/1735 (ETSI TS 119 471), CIR (EU) 2026/1731 (ETSI TS 119 412-6, TS 119 472-3), CIR (EU) 2026/1730, and CIR (EU) 2025/848</td>
-<td>PuB-EAA issuance falls under the same standard as QEAA issuance. The issuer needs designation and a registration with entitlement <code>PUB_EAA_Provider</code>. It also needs an access certificate, a registration certificate, and a qualified seal certificate with its own profile (<a href="../traceability/findings/#f-81">F-81</a>, <a href="../traceability/open-questions/#q-28">Q-28</a>).</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance falls under the same standard as <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr> issuance. The issuer needs designation and a registration with entitlement <code>PUB_EAA_Provider</code>. It also needs an access certificate, a registration certificate, and a qualified seal certificate with its own profile (<a href="../traceability/findings/#f-81">F-81</a>, <a href="../traceability/open-questions/#q-28">Q-28</a>).</td>
 </tr>
 <tr>
-<td>BSN legislation (Wabb)</td>
-<td>PSA kader 6</td>
-<td>Private parties must not process the BSN. This rule drives pseudonymization and the BSN exception for the QTSP (<a href="../traceability/findings/#f-86">F-86</a>).</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr> legislation (Wabb)</td>
+<td>PSA framework 6</td>
+<td>Private parties must not process the <abbr title="Burgerservicenummer">BSN</abbr>. This rule drives pseudonymization and the <abbr title="Burgerservicenummer">BSN</abbr> exception for the <abbr title="Qualified Trust Service Provider">QTSP</abbr> (<a href="../traceability/findings/#f-86">F-86</a>).</td>
 </tr>
 <tr>
-<td>SDG-verordening (EU 2018/1724)</td>
-<td><a href="https://ictu.github.io/GBO-GO/main/#3-interactiepatronen">GO interactiepatronen</a></td>
-<td>The OOTS connection over AS4 is an obligation under EU law, and GBO has no choice in it (<a href="../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>).</td>
+<td>Single Digital Gateway Regulation (EU 2018/1724)</td>
+<td><a href="https://ictu.github.io/GBO-GO/main/#3-interactiepatronen">GO interaction patterns</a></td>
+<td>The <abbr title="Once-Only Technical System">OOTS</abbr> connection over AS4 is an obligation under EU law, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> has no choice in it (<a href="../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>).</td>
 </tr>
 </tbody>
 </table>
 <h2 id="standards">Standards<a class="headerlink" href="#standards" title="Permanent link">&para;</a></h2>
-<p>The capabilities chapter of the PSA lists the afspraken, standards, and
-voorzieningen per capability, with their gaps. See
+<p>The capabilities chapter of the PSA lists the agreements, standards, and
+facilities (voorzieningen) per capability, with their gaps. See
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/">capabilities S01 to S11</a>.
 The design builds directly on the following standards:</p>
 <ul>
-<li>Connectivity and authorization: OpenFSC, OpenFTV with OpenID AuthZEN
-  1.0 and the FTV GraphQL profile, OPA/Rego, GraphQL, and PKIoverheid.</li>
-<li>Pseudonymization: BSNk PP.</li>
-<li>EUDI issuance: OpenID4VCI, OpenID4VP, and SD-JWT VC.</li>
-<li>ASI verification: ETSI TS 119 478, OAuth 2.0 with PKCE, DPoP
-  (RFC 9449), and JWT access tokens (RFC 9068). ASI verification also
+<li>Connectivity and authorization: OpenFSC, <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> with OpenID <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr>
+  1.0 and the <abbr title="Federatieve Toegangsverlening">FTV</abbr> GraphQL profile, OPA/Rego, GraphQL, and PKIoverheid.</li>
+<li>Pseudonymization: BSNk <abbr title="Polymorphic pseudonym">PP</abbr>.</li>
+<li>EUDI issuance: <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr>, <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr>, and SD-JWT VC.</li>
+<li><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification: ETSI TS 119 478, OAuth 2.0 with PKCE, <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr>
+  (RFC 9449), and JWT access tokens (RFC 9068). <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification also
   uses dynamic client registration (RFC 7591), authorization server
   metadata (RFC 8414), resource indicators (RFC 8707), rich authorization
   requests (RFC 9396), and problem details (RFC 9457).</li>
-<li>Logging and traceability: LDV 1.0.0 (Logboek Dataverwerkingen),
-  ADL (Authorization Decision Log), FSC-Logging (draft), W3C Trace
+<li>Logging and traceability: <abbr title="Logboek Dataverwerkingen">LDV</abbr> 1.0.0 (Logboek Dataverwerkingen),
+  <abbr title="Authorization Decision Log">ADL</abbr> (Authorization Decision Log), <abbr title="Federated Service Connectivity">FSC</abbr>-Logging (draft), W3C Trace
   Context, and OpenTelemetry.</li>
 </ul>
 <p>If the demo deviates from a standard that the PSA names, a risk entry
@@ -4866,6 +4866,7 @@ policy language (<a href="../risks/#r16">R16</a>).</p>
 <li>Demo increments: <a href="../traceability/increments/#sl-28">SL-28</a> (done),
   <a href="../traceability/increments/#sl-51">SL-51</a> (done)</li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 

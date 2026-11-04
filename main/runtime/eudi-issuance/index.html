@@ -1188,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Toestemmingsvoorziening
+    Consent facility
   
 
     
@@ -1304,7 +1304,7 @@
   <span class="md-ellipsis">
     
   
-    PubEAA provider
+    PuB-EAA provider
   
 
     
@@ -1723,7 +1723,7 @@
   <a href="#related-person-attestation-akte-van-overlijden" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related-person attestation: akte van overlijden
+        Related-person attestation: death certificate
       
     </span>
   </a>
@@ -4611,10 +4611,10 @@
   
 
 
-<h1 id="eudi-issuance-the-pub-eaa-route">EUDI issuance: the PuB-EAA route<a class="headerlink" href="#eudi-issuance-the-pub-eaa-route" title="Permanent link">&para;</a></h1>
-<p>A citizen scans a QR code, shares the PID from the NL Wallet, and gets an
+<h1 id="eudi-issuance-the-pub-eaa-route">EUDI issuance: the <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> route<a class="headerlink" href="#eudi-issuance-the-pub-eaa-route" title="Permanent link">&para;</a></h1>
+<p>A citizen scans a QR code, shares the <abbr title="Person Identification Data">PID</abbr> from the NL Wallet, and gets an
 attestation with data from an authentic source. The bronhouder is the
-PuB-EAA provider. GBO operates the technical issuance facility
+<abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> operates the technical issuance facility
 (<a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a>,
 <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">PSA S11</a>).
 The decision for this route is
@@ -4629,8 +4629,8 @@ not explain the concepts again. For the concepts, see these pages:</p>
 <li>The source description and its release:
   <a href="../../concepts/source-onboarding/">Source onboarding</a>.</li>
 <li>The certificates: <a href="../../concepts/identity-trust/#eudi-trust-roles">EUDI trust roles</a>.</li>
-<li>The BSN in this route:
-  <a href="../../concepts/pseudonymization/#exception-the-bsn-in-the-eudi-and-asi-routes">Exception: the BSN in the EUDI and ASI routes</a>.</li>
+<li>The <abbr title="Burgerservicenummer">BSN</abbr> in this route:
+  <a href="../../concepts/pseudonymization/#exception-the-bsn-in-the-eudi-and-asi-routes">Exception: the <abbr title="Burgerservicenummer">BSN</abbr> in the EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> routes</a>.</li>
 </ul>
 <h2 id="before-the-first-qr-code">Before the first QR code<a class="headerlink" href="#before-the-first-qr-code" title="Permanent link">&para;</a></h2>
 <p>The route runs only from an active source release. For each source, the
@@ -4642,10 +4642,10 @@ release holds these items:</p>
 <li>The display texts.</li>
 <li>A reference to the certificate set.</li>
 </ul>
-<p>GBO generates the issuance configuration and the Type Metadata from the
+<p><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> generates the issuance configuration and the Type Metadata from the
 release (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>,
 <a href="../../decisions/0016-source-owned-metadata/">ADR-0016</a>,
-<a href="../../decisions/0017-gbo-simple-v1/">ADR-0017</a>). A valid FSC contract does
+<a href="../../decisions/0017-gbo-simple-v1/">ADR-0017</a>). A valid <abbr title="Federated Service Connectivity">FSC</abbr> contract does
 not activate a source (<a href="../../requirements/sources-identity/#req-65">REQ-65</a>).
 For that run, see <a href="../admission/">Admission and activation</a>. If no release
 is active, no offer exists and the portal shows no QR code.</p>
@@ -4655,7 +4655,7 @@ is active, no offer exists and the portal shows no QR code.</p>
 <tr>
 <th>Type</th>
 <th>Source (<code>source_id</code>)</th>
-<th>FSC service</th>
+<th><abbr title="Federated Service Connectivity">FSC</abbr> service</th>
 <th>Rule</th>
 <th>Offers</th>
 <th>Subject of the data</th>
@@ -4663,20 +4663,20 @@ is active, no offer exists and the portal shows no QR code.</p>
 </thead>
 <tbody>
 <tr>
-<td>Inkomensverklaring</td>
+<td>Income statement (inkomensverklaring)</td>
 <td><code>belastingdienst</code></td>
 <td><code>bri</code></td>
 <td>EUD0001</td>
-<td><code>jaar</code> 2024 and 2025</td>
-<td>The PID holder</td>
+<td>Year (<code>jaar</code>) 2024 and 2025</td>
+<td>The <abbr title="Person Identification Data">PID</abbr> holder</td>
 </tr>
 <tr>
-<td>Akte van overlijden</td>
+<td>Death certificate (akte van overlijden)</td>
 <td><code>rvig</code></td>
 <td><code>brp</code></td>
 <td>EUD0002</td>
 <td>One, without parameters</td>
-<td>The deceased partner of the PID holder (<a href="#related-person-attestation-akte-van-overlijden">related-person attestation</a>)</td>
+<td>The deceased partner of the <abbr title="Person Identification Data">PID</abbr> holder (<a href="#related-person-attestation-akte-van-overlijden">related-person attestation</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -4684,9 +4684,9 @@ is active, no offer exists and the portal shows no QR code.</p>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/graphql-server/config/gbo-source-metadata.json">BD</a>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/brp-graphql-server/config/gbo-source-metadata.json">BRP</a>).
 In the default demo, both sources are on the Belastingdienst peer <code>…0200</code>
-(<a href="../../deployment/#fsc-peers">FSC peers</a>).</p>
+(<a href="../../deployment/#fsc-peers"><abbr title="Federated Service Connectivity">FSC</abbr> peers</a>).</p>
 <h2 id="sequence">Sequence<a class="headerlink" href="#sequence" title="Permanent link">&para;</a></h2>
-<p>The sequence shows the income declaration for 2024, cross-device.</p>
+<p>The sequence shows the income statement for 2024, cross-device.</p>
 <div class="mermaid">sequenceDiagram
     autonumber
     box rgb(221,235,247) Citizen
@@ -4775,35 +4775,35 @@ steps of the sequence:</p>
 <td>Wallet ↔ issuance server</td>
 <td><code>POST /disclosure/&lt;offer&gt;/request_uri</code></td>
 <td>The disclosure request</td>
-<td>The request asks for one PID claim, <code>bsn</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_config.go#L162"><code>issuance_config.go#L162</code></a>). The reader certificate of the source names the issuer and the purpose (<a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>).</td>
+<td>The request asks for one <abbr title="Person Identification Data">PID</abbr> claim, <code>bsn</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_config.go#L162"><code>issuance_config.go#L162</code></a>). The reader certificate of the source names the issuer and the purpose (<a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>).</td>
 </tr>
 <tr>
 <td>8 to 10</td>
 <td>Wallet → issuance server</td>
-<td>OpenID4VP</td>
-<td><strong>PID</strong> with the <strong>BSN</strong></td>
-<td>The issuance server checks the presentation against <code>issuer_trust_anchors</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/config/issuance_server.toml.example#L3-L9"><code>issuance_server.toml.example#L3-L9</code></a>). That list also holds non-PID anchors (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>). The approval in the wallet is no legal basis (<a href="../../traceability/findings/#f-83">F-83</a>).</td>
+<td><abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr></td>
+<td><strong><abbr title="Person Identification Data">PID</abbr></strong> with the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
+<td>The issuance server checks the presentation against <code>issuer_trust_anchors</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/config/issuance_server.toml.example#L3-L9"><code>issuance_server.toml.example#L3-L9</code></a>). That list also holds non-<abbr title="Person Identification Data">PID</abbr> anchors (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>). The approval in the wallet is no legal basis (<a href="../../traceability/findings/#f-83">F-83</a>).</td>
 </tr>
 <tr>
 <td>11</td>
 <td>Issuance server → adapter</td>
 <td><code>POST /attestations/{sourceID}/{typeID}?&lt;offer parameters&gt;</code></td>
-<td><strong>Disclosed attributes</strong>, <code>urn:eudi:pid:nl:1</code> with the <strong>BSN</strong></td>
+<td><strong>Disclosed attributes</strong>, <code>urn:eudi:pid:nl:1</code> with the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
 <td>Public HTTPS (an ISRG-rooted certificate, through a tunnel). The route has no caller authentication (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L69-L81"><code>source_release_runtime.go#L69-L81</code></a>, <a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>). For more information, see <a href="#the-callback-gap">The callback gap</a>.</td>
 </tr>
 <tr>
 <td>12</td>
 <td>Adapter (internal)</td>
 <td>Active release</td>
-<td>In: path and body. Out: the <strong>BSN</strong></td>
-<td>The binding of <code>sourceID</code> and <code>typeID</code> must exist in the active release. The adapter takes the BSN from the PID and does not check a signature (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L143-L162"><code>main.go#L143-L162</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L23-L26"><code>#L23-L26</code></a>).</td>
+<td>In: path and body. Out: the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
+<td>The binding of <code>sourceID</code> and <code>typeID</code> must exist in the active release. The adapter takes the <abbr title="Burgerservicenummer">BSN</abbr> from the <abbr title="Person Identification Data">PID</abbr> and does not check a signature (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L143-L162"><code>main.go#L143-L162</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L23-L26"><code>#L23-L26</code></a>).</td>
 </tr>
 <tr>
 <td>13</td>
 <td>Adapter → logbook</td>
-<td>LDV write</td>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr> write</td>
 <td>Record <code>dataverwerking.pid-bsn-extractie</code></td>
-<td>The record names the data subject by a pseudonym that is local to the logbook. It does not hold the BSN. If the logbook does not acknowledge the record, the adapter does not call the source (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L256-L262"><code>main.go#L256-L262</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_issuance.go#L101-L147"><code>ldv_issuance.go#L101-L147</code></a>, <a href="../../requirements/logging-audit/#req-72">REQ-72</a>).</td>
+<td>The record names the data subject by a pseudonym that is local to the logbook. It does not hold the <abbr title="Burgerservicenummer">BSN</abbr>. If the logbook does not acknowledge the record, the adapter does not call the source (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L256-L262"><code>main.go#L256-L262</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_issuance.go#L101-L147"><code>ldv_issuance.go#L101-L147</code></a>, <a href="../../requirements/logging-audit/#req-72">REQ-72</a>).</td>
 </tr>
 <tr>
 <td>14</td>
@@ -4816,42 +4816,42 @@ steps of the sequence:</p>
 <td>15</td>
 <td>Adapter → edi-outway</td>
 <td><code>POST {outway}/graphql</code></td>
-<td><code>{query, variables}</code> with the <strong>BSN</strong>, and the headers <code>Fsc-Grant-Hash</code>, <code>Fsc-Transaction-Id</code>, and <code>traceparent</code></td>
-<td>The adapter checks that the source document names the contracted service (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L466-L503"><code>main.go#L466-L503</code></a>). No <code>X-GBO-Scope</code> and no <code>flow</code>. The txlog and the trace carry the transaction ID. The ADL record behind the Inway gets its own trace and no transaction ID (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>, <a href="../../requirements/logging-audit/#req-55">REQ-55</a>, <a href="../../decisions/0035-w3c-trace-context/">ADR-0035</a>).</td>
+<td><code>{query, variables}</code> with the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong>, and the headers <code>Fsc-Grant-Hash</code>, <code>Fsc-Transaction-Id</code>, and <code>traceparent</code></td>
+<td>The adapter checks that the source document names the contracted service (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L466-L503"><code>main.go#L466-L503</code></a>). No <code>X-GBO-Scope</code> and no <code>flow</code>. The txlog and the trace carry the transaction ID. The <abbr title="Authorization Decision Log">ADL</abbr> record behind the Inway gets its own trace and no transaction ID (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>, <a href="../../requirements/logging-audit/#req-55">REQ-55</a>, <a href="../../decisions/0035-w3c-trace-context/">ADR-0035</a>).</td>
 </tr>
 <tr>
 <td>16 to 17</td>
 <td>edi-outway ↔ edi-manager</td>
-<td>FSC access token</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr> access token</td>
 <td>In: the grant hash. Out: a certificate-bound token</td>
 <td>The Outway caches the token. The grant carries no properties.</td>
 </tr>
 <tr>
 <td>18</td>
 <td>edi-outway → bd-inway</td>
-<td>FSC, mTLS</td>
-<td>Body 1:1 with the <strong>BSN</strong></td>
-<td>Every channel goes through FSC with a valid certificate (<a href="../../requirements/sources-identity/#req-46">REQ-46</a>).</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr>, mTLS</td>
+<td>Body 1:1 with the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
+<td>Every channel goes through <abbr title="Federated Service Connectivity">FSC</abbr> with a valid certificate (<a href="../../requirements/sources-identity/#req-46">REQ-46</a>).</td>
 </tr>
 <tr>
 <td>19</td>
-<td>bd-inway → PDP</td>
+<td>bd-inway → <abbr title="Policy Decision Point">PDP</abbr></td>
 <td><code>POST /authzen/v1/evaluation</code></td>
-<td>AuthZEN envelope: Outway peer <code>…0100</code>, service <code>bri</code>, and the body with the <strong>BSN</strong></td>
-<td>The Inway is the PEP. The mapper parses the GraphQL and does not call BSNk (<a href="../../concepts/authorization/#regime-selection">Regime selection</a>).</td>
+<td><abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> envelope: Outway peer <code>…0100</code>, service <code>bri</code>, and the body with the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
+<td>The Inway is the <abbr title="Policy Enforcement Point">PEP</abbr>. The mapper parses the GraphQL and does not call BSNk (<a href="../../concepts/authorization/#regime-selection">Regime selection</a>).</td>
 </tr>
 <tr>
 <td>20</td>
-<td>PDP → bd-inway</td>
-<td>AuthZEN response</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> → bd-inway</td>
+<td><abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> response</td>
 <td>Allow or deny, per field</td>
-<td>The request has no consent token, so the PID regime applies. EUD0001 checks the designated issuer, the BSN in the root argument, and <code>allowed_years</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001.rego#L45-L75"><code>eud0001.rego#L45-L75</code></a>, <a href="../../requirements/authorization/#req-74">REQ-74</a>, <a href="../../requirements/authorization/#req-97">REQ-97</a>). The PDP writes the BSN to the ADL and the console decision log (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>).</td>
+<td>The request has no consent token, so the <abbr title="Person Identification Data">PID</abbr> regime applies. EUD0001 checks the designated issuer, the <abbr title="Burgerservicenummer">BSN</abbr> in the root argument, and <code>allowed_years</code> (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001.rego#L45-L75"><code>eud0001.rego#L45-L75</code></a>, <a href="../../requirements/authorization/#req-74">REQ-74</a>, <a href="../../requirements/authorization/#req-97">REQ-97</a>). The <abbr title="Policy Decision Point">PDP</abbr> writes the <abbr title="Burgerservicenummer">BSN</abbr> to the <abbr title="Authorization Decision Log">ADL</abbr> and the console decision log (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>).</td>
 </tr>
 <tr>
 <td>21 to 22</td>
 <td>bd-inway → gateway → source</td>
 <td><code>POST /graphql</code></td>
-<td>The judged query with the <strong>BSN</strong></td>
+<td>The judged query with the <strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
 <td>The request has no consent token, so the gateway passes it through unchanged (<a href="../../building-blocks/components/#level-2-bronhouder">Level 2: bronhouder</a>). The source logs its own processing.</td>
 </tr>
 <tr>
@@ -4859,7 +4859,7 @@ steps of the sequence:</p>
 <td>Source → adapter</td>
 <td>GraphQL response</td>
 <td><strong>Income data</strong> for the year</td>
-<td>Back through the same FSC chain, 1:1.</td>
+<td>Back through the same <abbr title="Federated Service Connectivity">FSC</abbr> chain, 1:1.</td>
 </tr>
 <tr>
 <td>24</td>
@@ -4871,7 +4871,7 @@ steps of the sequence:</p>
 <tr>
 <td>25</td>
 <td>Adapter → logbook</td>
-<td>LDV write</td>
+<td><abbr title="Logboek Dataverwerkingen">LDV</abbr> write</td>
 <td>Record <code>dataverwerking.attestatie-samenstellen</code></td>
 <td>The record names the number of claims without their values. It points at the logbook of the source. The adapter writes it for every outcome after the call to the source. If the logbook does not acknowledge the record, the adapter withholds the answer (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L283-L292"><code>main.go#L283-L292</code></a>).</td>
 </tr>
@@ -4880,12 +4880,12 @@ steps of the sequence:</p>
 <td>Adapter → issuance server</td>
 <td>Response to hop 11</td>
 <td><code>[{attestation_type: &lt;VCT&gt;, attributes, format: "dc+sd-jwt", id}]</code> with the <strong>claims</strong></td>
-<td>The VCT is the URL of the generated Type Metadata (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L319-L334"><code>main.go#L319-L334</code></a>).</td>
+<td>The <abbr title="Verifiable credential type identifier">VCT</abbr> is the URL of the generated Type Metadata (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L319-L334"><code>main.go#L319-L334</code></a>).</td>
 </tr>
 <tr>
 <td>27 to 28</td>
 <td>Issuance server → wallet</td>
-<td>OpenID4VCI</td>
+<td><abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr></td>
 <td><strong>Attestation</strong> (SD-JWT VC)</td>
 <td>Signed with the issuer certificate of the source. Valid 365 days, with one status list per type (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/issuance_config.go#L166-L180"><code>issuance_config.go#L166-L180</code></a>, <a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>). The wallet shows the issuer from the certificate.</td>
 </tr>
@@ -4913,7 +4913,7 @@ steps of the sequence:</p>
 <tr>
 <td><code>GET /types/{sourceID}/{typeID}/v{version}</code></td>
 <td>Wallet, relying parties</td>
-<td>The SD-JWT VC Type Metadata that GBO generates from the claims. Its URL is the VCT.</td>
+<td>The SD-JWT VC Type Metadata that <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> generates from the claims. Its URL is the <abbr title="Verifiable credential type identifier">VCT</abbr>.</td>
 <td>503</td>
 </tr>
 <tr>
@@ -4930,12 +4930,12 @@ different <code>type_version</code>
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/type_metadata.go#L17-L40"><code>type_metadata.go#L17-L40</code></a>,
 <a href="../../concepts/source-onboarding/#the-eudi-capability-claims-once-type-metadata-generated">The <code>eudi</code> capability</a>).</p>
 <h2 id="the-callback-gap">The callback gap<a class="headerlink" href="#the-callback-gap" title="Permanent link">&para;</a></h2>
-<p>The issuance server checks the PID. The adapter does not know that the
-request comes from the issuance server. No mechanism binds the BSN in hop
+<p>The issuance server checks the <abbr title="Person Identification Data">PID</abbr>. The adapter does not know that the
+request comes from the issuance server. No mechanism binds the <abbr title="Burgerservicenummer">BSN</abbr> in hop
 11 to a checked disclosure (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>,
 <a href="../../traceability/open-questions/#q-18">Q-18</a>,
 <a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>). The demo uses this
-gap itself. The developer portal has a playground that posts a typed BSN
+gap itself. The developer portal has a playground that posts a typed <abbr title="Burgerservicenummer">BSN</abbr>
 to the adapter
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/developer-portal/src/components/EudiQrPanel.tsx#L36-L51"><code>EudiQrPanel.tsx#L36-L51</code></a>,
 <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/developer-portal/nginx.conf#L36-L42"><code>nginx.conf#L36-L42</code></a>).</p>
@@ -4973,13 +4973,13 @@ to the adapter
 <tbody>
 <tr>
 <td>1</td>
-<td><strong>Any BSN</strong></td>
+<td><strong>Any <abbr title="Burgerservicenummer">BSN</abbr></strong></td>
 <td>No caller authentication, and no proof of a checked disclosure.</td>
 </tr>
 <tr>
 <td>2 to 4</td>
-<td><strong>BSN</strong></td>
-<td>The request has no consent token, so it enters the PID regime. The only gate of this regime is the list of designated issuers (<a href="../../traceability/findings/#f-70">F-70</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eudi_helper.rego#L13-L30"><code>eudi_helper.rego#L13-L30</code></a>).</td>
+<td><strong><abbr title="Burgerservicenummer">BSN</abbr></strong></td>
+<td>The request has no consent token, so it enters the <abbr title="Person Identification Data">PID</abbr> regime. The only gate of this regime is the list of designated issuers (<a href="../../traceability/findings/#f-70">F-70</a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eudi_helper.rego#L13-L30"><code>eudi_helper.rego#L13-L30</code></a>).</td>
 </tr>
 <tr>
 <td>5 to 6</td>
@@ -4988,8 +4988,8 @@ to the adapter
 </tr>
 </tbody>
 </table>
-<p><a href="../../traceability/increments/#sl-25">SL-25</a> removed the PID check from the
-adapter, because the issuance server checks the PID. The issuance server
+<p><a href="../../traceability/increments/#sl-25">SL-25</a> removed the <abbr title="Person Identification Data">PID</abbr> check from the
+adapter, because the issuance server checks the <abbr title="Person Identification Data">PID</abbr>. The issuance server
 checks the signature, so the gap is in the callback. REQ-45 names two
 fixes:</p>
 <ul>
@@ -4998,15 +4998,15 @@ fixes:</p>
   evidence.</li>
 </ul>
 <p>Both fixes need the binding of the disclosure to the request. The reference
-QTSP callback on the same issuance server uses a secret path over CA-pinned
+<abbr title="Qualified Trust Service Provider">QTSP</abbr> callback on the same issuance server uses a secret path over CA-pinned
 HTTPS
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/qtsp_issuance.go#L134-L152"><code>qtsp_issuance.go#L134-L152</code></a>,
-<a href="../asi-verification/#test-statement-to-the-wallet">ASI verification</a>).</p>
+<a href="../asi-verification/#test-statement-to-the-wallet"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification</a>).</p>
 <h2 id="error-paths">Error paths<a class="headerlink" href="#error-paths" title="Permanent link">&para;</a></h2>
 <p>The consumer of the adapter is the issuance server. The issuance server
 gets only the HTTP status. The details are in the adapter log (<code>stage</code>).
-For a PDP deny, the details are also in the ADL.</p>
-<p>The FSC Inway removes the reason of a deny
+For a <abbr title="Policy Decision Point">PDP</abbr> deny, the details are also in the <abbr title="Authorization Decision Log">ADL</abbr>.</p>
+<p>The <abbr title="Federated Service Connectivity">FSC</abbr> Inway removes the reason of a deny
 (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/ftv-graphql-profile.md#L93-L95"><code>ftv-graphql-profile.md#L93-L95</code></a>).
 In every error path, no attestation reaches the wallet. The error paths
 have these triggers and outcomes:</p>
@@ -5045,12 +5045,12 @@ have these triggers and outcomes:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L234-L246"><code>main.go#L234-L246</code></a></td>
 </tr>
 <tr>
-<td>PID without a BSN</td>
+<td><abbr title="Person Identification Data">PID</abbr> without a <abbr title="Burgerservicenummer">BSN</abbr></td>
 <td>400 <code>no BSN in disclosed PID</code>. The adapter logs nothing and does not call the source.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L249-L253"><code>main.go#L249-L253</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L402"><code>ldv_test.go#L402</code></a></td>
 </tr>
 <tr>
-<td>The logbook does not acknowledge the LDV record of hop 13</td>
+<td>The logbook does not acknowledge the <abbr title="Logboek Dataverwerkingen">LDV</abbr> record of hop 13</td>
 <td>500. The adapter does not call the source.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L256-L262"><code>main.go#L256-L262</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L354"><code>ldv_test.go#L354</code></a></td>
 </tr>
@@ -5060,27 +5060,27 @@ have these triggers and outcomes:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L263-L268"><code>main.go#L263-L268</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main_test.go#L434"><code>main_test.go#L434</code></a></td>
 </tr>
 <tr>
-<td>PDP deny: the caller is not a designated issuer</td>
-<td><code>ACTOR_NOT_ALLOWED</code> in the ADL. The adapter answers 502.</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> deny: the caller is not a designated issuer</td>
+<td><code>ACTOR_NOT_ALLOWED</code> in the <abbr title="Authorization Decision Log">ADL</abbr>. The adapter answers 502.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001_test.rego#L65"><code>eud0001_test.rego#L65</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002_test.rego#L36"><code>eud0002_test.rego#L36</code></a></td>
 </tr>
 <tr>
-<td>PDP deny: no BSN, or a placeholder, in the root argument</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> deny: no <abbr title="Burgerservicenummer">BSN</abbr>, or a placeholder, in the root argument</td>
 <td><code>PID_NOT_PRESENT</code>. The adapter answers 502.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001_test.rego#L71-L80"><code>eud0001_test.rego#L71-L80</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002_test.rego#L42"><code>eud0002_test.rego#L42</code></a></td>
 </tr>
 <tr>
-<td>PDP deny: the request carries a consent token</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> deny: the request carries a consent token</td>
 <td><code>PID_NOT_PRESENT</code>. The adapter answers 502.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001_test.rego#L83"><code>eud0001_test.rego#L83</code></a></td>
 </tr>
 <tr>
-<td>PDP deny: a year outside <code>allowed_years</code>, or no year filter</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> deny: a year outside <code>allowed_years</code>, or no year filter</td>
 <td><code>YEAR_NOT_ALLOWED</code>. The adapter answers 502.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001_test.rego#L39-L58"><code>eud0001_test.rego#L39-L58</code></a></td>
 </tr>
 <tr>
-<td>PDP deny: a field outside the rule (closed world)</td>
+<td><abbr title="Policy Decision Point">PDP</abbr> deny: a field outside the rule (closed world)</td>
 <td><code>FIELD_NOT_PERMITTED</code> or <code>NO_APPLICABLE_RULE</code>. The adapter answers 502.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L282"><code>engine.rego#L282</code></a>, <a href="../../concepts/authorization/#rule-model">Rule model</a></td>
 </tr>
@@ -5105,7 +5105,7 @@ have these triggers and outcomes:</p>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L310-L315"><code>main.go#L310-L315</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/internal/gbosimplev1/testdata/cases.json#L82-L86"><code>cases.json#L82-L86</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/ldv_test.go#L505"><code>ldv_test.go#L505</code></a></td>
 </tr>
 <tr>
-<td>The logbook does not acknowledge the LDV record of hop 25</td>
+<td>The logbook does not acknowledge the <abbr title="Logboek Dataverwerkingen">LDV</abbr> record of hop 25</td>
 <td>500. The adapter withholds the attestation.</td>
 <td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/main.go#L284-L292"><code>main.go#L284-L292</code></a></td>
 </tr>
@@ -5115,16 +5115,16 @@ have these triggers and outcomes:</p>
 <td><a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>, <a href="../../concepts/source-onboarding/#a-certificate-set-per-source">A certificate set per source</a></td>
 </tr>
 <tr>
-<td>A caller posts a body with any BSN directly to the adapter</td>
+<td>A caller posts a body with any <abbr title="Burgerservicenummer">BSN</abbr> directly to the adapter</td>
 <td>Allowed in demo v0.9.0. The source answers, and the caller gets the claims.</td>
 <td>Not built: <a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>, <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="related-person-attestation-akte-van-overlijden">Related-person attestation: akte van overlijden<a class="headerlink" href="#related-person-attestation-akte-van-overlijden" title="Permanent link">&para;</a></h2>
-<p>The akte van overlijden holds data about the deceased partner of the
-citizen who shares the PID. The subject of the claims differs from the
-person who discloses the PID (<a href="../../traceability/findings/#f-47">F-47</a>,
+<h2 id="related-person-attestation-akte-van-overlijden">Related-person attestation: death certificate<a class="headerlink" href="#related-person-attestation-akte-van-overlijden" title="Permanent link">&para;</a></h2>
+<p>The death certificate holds data about the deceased partner of the
+citizen who shares the <abbr title="Person Identification Data">PID</abbr>. The subject of the claims differs from the
+person who discloses the <abbr title="Person Identification Data">PID</abbr> (<a href="../../traceability/findings/#f-47">F-47</a>,
 <a href="../../requirements/eudi-issuance/#req-57">REQ-57</a>,
 <a href="../../traceability/increments/#sl-43">SL-43</a>). The run is the same as the
 run in the preceding sections, with these differences per hop:</p>
@@ -5142,11 +5142,11 @@ run in the preceding sections, with these differences per hop:</p>
 </tr>
 <tr>
 <td>14 to 15</td>
-<td>The query is <code>akteVanOverlijden(bsn: $bsn)</code> with the BSN of the PID holder, on service <code>brp</code>.</td>
+<td>The query is <code>akteVanOverlijden(bsn: $bsn)</code> with the <abbr title="Burgerservicenummer">BSN</abbr> of the <abbr title="Person Identification Data">PID</abbr> holder, on service <code>brp</code>.</td>
 </tr>
 <tr>
 <td>19 to 20</td>
-<td>EUD0002 decides. It grants a closed list of output fields and checks the BSN in the root argument. It has no year check (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego#L20-L66"><code>eud0002.rego#L20-L66</code></a>).</td>
+<td>EUD0002 decides. It grants a closed list of output fields and checks the <abbr title="Burgerservicenummer">BSN</abbr> in the root argument. It has no year check (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego#L20-L66"><code>eud0002.rego#L20-L66</code></a>).</td>
 </tr>
 <tr>
 <td>21 to 22</td>
@@ -5162,10 +5162,10 @@ run in the preceding sections, with these differences per hop:</p>
 </tr>
 </tbody>
 </table>
-<p>The PDP sees only the flat output of the source view. It does not see the
+<p>The <abbr title="Policy Decision Point">PDP</abbr> sees only the flat output of the source view. It does not see the
 relation. The relation depends on the source and on the subject from the
-PID. Because of the callback gap, a caller can ask for the akte for any
-BSN.</p>
+<abbr title="Person Identification Data">PID</abbr>. Because of the callback gap, a caller can ask for the death certificate
+for any <abbr title="Burgerservicenummer">BSN</abbr>.</p>
 <p>The preferred design puts the relation in filter arguments of the
 published schema. The policy then requires these arguments with fixed
 values (<a href="https://github.com/ICTU/GBO-demo/issues/425">#425</a>,
@@ -5175,7 +5175,7 @@ description does not mark the relation.</p>
 <p>The run of an issuance in demo v0.9.0 shows these facts:</p>
 <ul>
 <li>The regime follows from the evidence. A request without a consent token
-  goes into the PID regime. That regime has no positive evidence of its
+  goes into the <abbr title="Person Identification Data">PID</abbr> regime. That regime has no positive evidence of its
   own. Its only gate is the list of designated issuers. This list must stay
   disjoint from the consent consumers
   (<a href="../../requirements/authorization/#req-74">REQ-74</a>,
@@ -5183,40 +5183,40 @@ description does not mark the relation.</p>
   <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a>). A test pins the
   disjointness only for the seeded consumers
   (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine_test.rego#L366-L376"><code>engine_test.rego#L366-L376</code></a>).</li>
-<li>The PID check and the source query have no link. The issuance server
-  checks the PID. The adapter callback has no authentication
+<li>The <abbr title="Person Identification Data">PID</abbr> check and the source query have no link. The issuance server
+  checks the <abbr title="Person Identification Data">PID</abbr>. The adapter callback has no authentication
   (<a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>,
-  <a href="../../traceability/open-questions/#q-18">Q-18</a>). The PID trust list also
-  trusts the GBO development CA and the issuer CA of every source.</li>
-<li>The BSN is in the decision logs. The adapter puts the plain BSN in the
-  query variables. As a result, the BSN is in the PDP input, the ADL, and
+  <a href="../../traceability/open-questions/#q-18">Q-18</a>). The <abbr title="Person Identification Data">PID</abbr> trust list also
+  trusts the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> development CA and the issuer CA of every source.</li>
+<li>The <abbr title="Burgerservicenummer">BSN</abbr> is in the decision logs. The adapter puts the plain <abbr title="Burgerservicenummer">BSN</abbr> in the
+  query variables. As a result, the <abbr title="Burgerservicenummer">BSN</abbr> is in the <abbr title="Policy Decision Point">PDP</abbr> input, the <abbr title="Authorization Decision Log">ADL</abbr>, and
   the console decision log
   (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>,
   <a href="../../traceability/findings/#f-54">F-54</a>,
   <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>,
-  <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>). The LDV records
-  of the adapter hold no BSN.</li>
+  <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>). The <abbr title="Logboek Dataverwerkingen">LDV</abbr> records
+  of the adapter hold no <abbr title="Burgerservicenummer">BSN</abbr>.</li>
 <li>The offer and the policy are independent limits. The source offers 2024
   and 2025. EUD0001 allows 2024 and 2025. A request for 2023 fails at the
-  adapter (no offer). The PDP also denies it (<code>YEAR_NOT_ALLOWED</code>).
+  adapter (no offer). The <abbr title="Policy Decision Point">PDP</abbr> also denies it (<code>YEAR_NOT_ALLOWED</code>).
   Publication by a source does not authorize the published data
   (<a href="../../traceability/findings/#f-74">F-74</a>).</li>
 <li>The adapter holds no knowledge of a source. The query, the parameters,
   the claims, the display, and the Type Metadata come from the release
   (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>,
   <a href="../../traceability/findings/#f-57">F-57</a>). The source decides through its
-  own PDP (<a href="../../requirements/authorization/#req-44">REQ-44</a>).</li>
+  own <abbr title="Policy Decision Point">PDP</abbr> (<a href="../../requirements/authorization/#req-44">REQ-44</a>).</li>
 <li>No partial attestation exists. Any projection error gives 502 and no
   attestation (<a href="../../requirements/eudi-issuance/#req-116">REQ-116</a>). The
   issuance server sees no reason code.</li>
-<li>The validity is fixed. Every source attestation is valid 365 days. GBO
-  has no change feed from the source. As a result, GBO cannot revoke an
+<li>The validity is fixed. Every source attestation is valid 365 days. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>
+  has no change feed from the source. As a result, <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> cannot revoke an
   attestation when the source data changes
   (<a href="../../requirements/eudi-issuance/#req-77">REQ-77</a>,
   <a href="../../traceability/findings/#f-82">F-82</a>).</li>
 <li>Correlation works, with one gap. The adapter sends one
-  <code>Fsc-Transaction-Id</code> and a <code>traceparent</code>. The txlog, the LDV records of
-  the adapter and the source, and the trace share them. The ADL record
+  <code>Fsc-Transaction-Id</code> and a <code>traceparent</code>. The txlog, the <abbr title="Logboek Dataverwerkingen">LDV</abbr> records of
+  the adapter and the source, and the trace share them. The <abbr title="Authorization Decision Log">ADL</abbr> record
   behind the Inway has its own trace and no transaction ID
   (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>)
   (<a href="../../requirements/logging-audit/#req-55">REQ-55</a>,
@@ -5229,8 +5229,8 @@ description does not mark the relation.</p>
   source query
   (<a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>,
   <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>).</li>
-<li>A PID trust list with PID-provider anchors only.</li>
-<li>The BSN out of the PDP input
+<li>A <abbr title="Person Identification Data">PID</abbr> trust list with <abbr title="Person Identification Data">PID</abbr>-provider anchors only.</li>
+<li>The <abbr title="Burgerservicenummer">BSN</abbr> out of the <abbr title="Policy Decision Point">PDP</abbr> input
   (<a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>,
   <a href="../../decisions/0043-identifiers-out-of-pdp-input/">ADR-0043</a>, proposed).</li>
 <li>Validity and revocation per type, set by the bronhouder, with revocation
@@ -5245,7 +5245,7 @@ description does not mark the relation.</p>
   description (<a href="https://github.com/ICTU/GBO-demo/issues/425">#425</a>,
   <a href="../../requirements/eudi-issuance/#req-57">REQ-57</a>).</li>
 <li>
-<p>The regulatory frame for PuB-EAA issuance
+<p>The regulatory frame for <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance
   (<a href="../../traceability/findings/#f-81">F-81</a>,
   <a href="../../traceability/open-questions/#q-28">Q-28</a>). This frame has these
   parts:</p>
@@ -5255,26 +5255,26 @@ description does not mark the relation.</p>
 <li>A qualified seal in a QSCD.</li>
 <li>Conformity with ETSI TS 119 471 and TS 119 472-3.</li>
 </ul>
-<p>The trust list for PuB-EAA providers is open
+<p>The trust list for <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> providers is open
 (<a href="../../traceability/open-questions/#q-30">Q-30</a>). Key custody is open
 (<a href="../../traceability/open-questions/#q-17">Q-17</a>).</p>
 </li>
 <li>
 <p>A second initiation route next to the QR code in the developer portal.</p>
 </li>
-<li>Cross-route items from the ASI work
-  (<a href="../asi-verification/">ASI verification</a>):<ul>
+<li>Cross-route items from the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> work
+  (<a href="../asi-verification/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification</a>):<ul>
 <li>The BRP document also publishes the <code>asi</code> capability. An error in
   <code>asi</code> refuses the whole source, and this includes its EUDI issuance
   (<a href="https://github.com/ICTU/GBO-demo/issues/592">#592</a>,
   <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/source-onboarding.md#L400-L401"><code>source-onboarding.md#L400-L401</code></a>).</li>
 <li>The issuance server also issues the test statement of the reference
-  QTSP. That use case runs only in the local stack. A deployment in
+  <abbr title="Qualified Trust Service Provider">QTSP</abbr>. That use case runs only in the local stack. A deployment in
   the simulation environment is
   <a href="https://github.com/ICTU/GBO-demo/issues/594">#594</a>.</li>
-<li><a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a> (BSN in the ASI
+<li><a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a> (<abbr title="Burgerservicenummer">BSN</abbr> in the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>
   token) and <a href="https://github.com/ICTU/GBO-demo/issues/596">#596</a>
-  (same-device wallet login on a phone) concern only the ASI route.</li>
+  (same-device wallet login on a phone) concern only the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route.</li>
 </ul>
 </li>
 </ul>
@@ -5325,6 +5325,7 @@ description does not mark the relation.</p>
   <a href="../../traceability/increments/#sl-48">SL-48</a>,
   <a href="../../traceability/increments/#sl-49">SL-49</a></li>
 </ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
 
 
 
