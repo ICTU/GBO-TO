@@ -1871,7 +1871,7 @@ There is no working assumption, because the demo has no OOTS route.
     - **Why the demo cannot answer it**: The demo does not touch OOTS.
     - **Options**: The OOTS adapter can come from one of two parties:
         - (a) GBO builds the OOTS adapter, behind the national interface of OOTS-V.
-        - (b) The OOTS-V operator extends its facility with the GBO interface. GBO delivers only the generic source access.
+        - (b) The OOTS-V operator extends its facility with the GBO interface. GBO delivers only the source access.
     - **Current working assumption**: None. The demo has no OOTS route.
     - **Related**: [REQ-04](../requirements/authorization.md#req-04), [REQ-44](../requirements/authorization.md#req-44), [REQ-46](../requirements/sources-identity.md#req-46), [REQ-74](../requirements/authorization.md#req-74), [REQ-124](../requirements/eudi-issuance.md#req-124), [ADR 0031](../decisions/0031-regime-from-evidence.md), [ADR 0020](../decisions/0020-as4-bridge-for-oots.md), [Q-64](#q-64), [Q-67](#q-67).
     - **History**: this question had the number Q-77 before.

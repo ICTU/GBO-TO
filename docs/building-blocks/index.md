@@ -19,7 +19,7 @@ flowchart LR
     subgraph gbo["GBO Basis"]
       direction TB
       cfg("Source configuration<br/>source metadata, registry")
-      core("Generic source access<br/>FSC · GraphQL · PBAC")
+      core("Source access + authorization<br/>FSC · GraphQL · PBAC")
       tools("GBO tools<br/>translation layer<br/><i>design only</i>")
     end
   end
@@ -75,7 +75,7 @@ flowchart LR
   style oots fill:#F4F5F7,stroke:#D1D5DB
   style dvtp fill:#F4F5F7,stroke:#D1D5DB
 
-  click core "gbo-basis/" "GBO Basis: generic source access"
+  click core "gbo-basis/" "GBO Basis"
   click cfg "gbo-basis/source-configuration/" "Source configuration"
   click tv "dvtp/" "DvTP channel"
   click pp "../concepts/pseudonymization/" "Pseudonymization"
@@ -94,7 +94,7 @@ The overview has seven GBO blocks. Five of them run in the demo:
 
 | Block | What it does | In demo v0.9.0 | Zoom in |
 |---|---|---|---|
-| Generic source access | Opens a source over FSC with GraphQL. The PDP of the source decides on every request, field by field. | Built | [GBO Basis](gbo-basis/index.md) |
+| Source access and authorization | Opens a source over FSC with GraphQL. The PDP of the source decides on every request, field by field. | Built | [GBO Basis](gbo-basis/index.md) |
 | Source configuration | The source describes its own services. GBO validates the description and activates it as a release. | Built | [Source configuration](gbo-basis/source-configuration.md) |
 | GBO tools | Help a bronhouder that cannot offer GraphQL, through a translation layer. | Design only | [ADR-0027](../decisions/0027-onboarding-toolkit.md) |
 | Consent facility (toestemmingsvoorziening) | The citizen gives, views and revokes consent. The register signs a consent proof for the consumer. | Built, with a DigiD mock | [DvTP channel](dvtp/index.md) |

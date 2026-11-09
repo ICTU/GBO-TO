@@ -11,8 +11,8 @@ GBO delivers the components, and the bronhouder runs them
 
 ## Inside GBO Basis
 
-The Globaal Ontwerp names four parts: a standard interface, generic source
-access, configurable authorization, and GBO tools. The following figure
+The Globaal Ontwerp names four parts: a standard interface, source access,
+configurable authorization, and GBO tools. The following figure
 shows the components that make up these parts in gbo-demo v0.9.0:
 
 ```mermaid
@@ -30,7 +30,7 @@ flowchart LR
       pdp("PDP<br/>OpenFTV + OPA/Rego")
       pol("Policy set<br/>engine + 5 rules")
     end
-    subgraph access["Generic source access"]
+    subgraph access["Source access"]
       direction TB
       gw("Source gateway")
       dec("Decryption<br/>component")
@@ -93,7 +93,7 @@ The parts have the following roles:
 |---|---|---|---|
 | Standard interface | FSC Inway, FSC Manager, FSC Outway of the caller | Every connection to a source runs over FSC, with mTLS and a contract ([ADR-0003](../../decisions/0003-fsc-connectivity.md)). The Inway is the PEP. | [FSC group](../components.md#level-2-fsc-group) |
 | Configurable authorization | PDP, policy set, admission register | The PDP decides on every request and on every contract proposal. Policy is configuration, not code. | [Authorization](authorization.md) |
-| Generic source access | Source gateway, decryption component, source API | The source answers one GraphQL query. Under consent, the gateway first puts the citizen in the query. | [Source access](source-access.md) |
+| Source access | Source gateway, decryption component, source API | The source answers one GraphQL query. Under consent, the gateway first puts the citizen in the query. | [Source access](source-access.md) |
 | Policy rules | Policy set, its tests and its distribution | The rules are data for the PDP. Each bronhouder manages its own set. | [Policy rules](policy.md) |
 | Records | ADL, LDV logbooks, FSC txlog | Every decision, processing and transport leaves a record, linked by one trace ID. | [Records](records.md) |
 | Source configuration | Source metadata, source registry | The source describes its own services. GBO validates and activates that description. | [Source configuration](source-configuration.md) |
