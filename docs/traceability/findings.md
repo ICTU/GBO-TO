@@ -973,6 +973,38 @@ builders do not get two conflicting sources.
     - **Addressee**: owner of FR-DvTP, and the PSA authors (S02).
     - **Related**: [F-06](findings-closed.md#f-06), [F-09](findings-closed.md#f-09), [F-97](#f-97), [REQ-04](../requirements/authorization.md#req-04), [REQ-68](../requirements/consent.md#req-68), [REQ-69](../requirements/pseudonymization.md#req-69), [REQ-109](../requirements/consent.md#req-109), [REQ-117](../requirements/consent.md#req-117), [REQ-120](../requirements/consent.md#req-120), [REQ-121](../requirements/consent.md#req-121), [RL-01](../requirements/authorization.md#rl-01), [RL-05](../requirements/authorization.md#rl-05), [Q-02](answered-questions.md#q-02), [Q-21](answered-questions.md#q-21), [ADR-0021](../decisions/0021-central-pap-signed-bundles.md), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md).
 
+### F-99: The citizen sees the intended use and the registered attributes only if the wallet checks and shows the registration certificate {#f-99}
+
+- **Status**: open
+
+The registration certificate of a wallet relying party describes its
+intended use and the attributes that it registered to request. That
+protects the
+citizen only if the wallet checks the certificate and shows what is in
+it. The regulation requires wallets to validate the registration
+certificate only from August 11, 2028. Until then, the design cannot
+assume that the citizen sees in the wallet why the authorization server
+asks for the PID. The request page of the authorization server
+([REQ-91](../requirements/asi.md#req-91)) must then inform the citizen
+on its own.
+
+??? note "Evidence, impact and proposal"
+
+    - **Type**: exposed assumption
+    - **Trigger**: a design round compared REQ-91 and REQ-102 with the implementing regulations and the ARF (November 10, 2026).
+    - **Observation**:
+        - Implementing Regulation (EU) [2025/848](https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj) article 2 and Annex I: the certificate describes the intended use and the registered attributes.
+        - Implementing Regulation (EU) [2024/2982](https://eur-lex.europa.eu/eli/reg_impl/2024/2982/oj) article 3(7): wallet units display, where applicable, the information in the registration certificate. ARF v3.0.0, RPA_10: when it asks for approval, the wallet unit shows the user-friendly description of the intended use.
+        - Article 3(4) of the same regulation, as replaced by Implementing Regulation (EU) [2026/1731](https://eur-lex.europa.eu/eli/reg_impl/2026/1731/oj): wallet units authenticate and validate the registration certificate. Under the new article 8, this applies from August 11, 2028.
+        - In the wallet, the citizen sees the authorization server as relying party. The QTSP does not appear there. The notes of [REQ-91](../requirements/asi.md#req-91) say that the request page and the purpose in the certificate explain that relation.
+    - **Why it matters**: until wallets validate and show the registration, the citizen cannot rely on the wallet to say why the PID is asked. Nor can the citizen rely on it to say whether the request stays within the registration. The request page is then the only place where the design knows that the citizen sees who asks what, at which source, and why.
+    - **Proposal**:
+        - The request page of REQ-91 suffices on its own. The design does not count on the purpose in the wallet.
+        - Every GBO component that asks for the PID still registers its intended use and attributes, and asks only those ([REQ-102](../requirements/asi.md#req-102)).
+        - Review this finding when wallets must validate the registration certificate (August 11, 2028).
+    - **Addressee**: GBO-delivered component: the authorization server.
+    - **Related**: [REQ-91](../requirements/asi.md#req-91), [REQ-102](../requirements/asi.md#req-102), [F-93](#f-93).
+
 ## Summary for the PSA
 
 The demo shows that the generic chain works end to end for three routes: DvTP, EUDI issuance, and the Authentic Source Interface (ASI). The following sections group the open findings per theme (state of November 2, 2026) and name what the PSA must decide.
@@ -1035,7 +1067,7 @@ In total, 34 findings are open. The review of September 21, 2026 closed 28 of 39
 
 ### Authentic Source Interface
 
-- **Open**: [F-80](#f-80), [F-84](#f-84) to [F-89](#f-89), and [F-91](#f-91) to [F-96](#f-96).
+- **Open**: [F-80](#f-80), [F-84](#f-84) to [F-89](#f-89), [F-91](#f-91) to [F-96](#f-96), and [F-99](#f-99).
 - **Decided in the TO**: the ASI is an OAuth front door per ETSI TS 119 478 clause 6.1, and the QTSP is not an FSC participant ([ADR-0037](../decisions/0037-asi-oauth-front-door.md)). Each source has one data service, with one token per data service ([ADR-0038](../decisions/0038-asi-data-service-per-source.md)). The source describes its ASI attributes ([ADR-0039](../decisions/0039-asi-source-described-attributes.md)). Two ADRs are proposed: the seal format ([ADR-0041](../decisions/0041-asi-seal-format.md)) and the optional per-attribute binding ([ADR-0042](../decisions/0042-asi-attribute-token-binding.md)).
 - **PSA to decide** (S11, B-14): Annex IV and the seal duty apply from January 1, 2027. The PSA must decide five points:
     1. The role of GBO and the designated intermediary ([Q-37](open-questions.md#q-37), [Q-28](open-questions.md#q-28)), and who holds the qualified seal certificate ([Q-17](open-questions.md#q-17), [Q-32](open-questions.md#q-32)).
