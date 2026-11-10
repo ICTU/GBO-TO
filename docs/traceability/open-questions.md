@@ -1875,3 +1875,33 @@ There is no working assumption, because the demo has no OOTS route.
     - **Current working assumption**: None. The demo has no OOTS route.
     - **Related**: [REQ-04](../requirements/authorization.md#req-04), [REQ-44](../requirements/authorization.md#req-44), [REQ-46](../requirements/sources-identity.md#req-46), [REQ-74](../requirements/authorization.md#req-74), [REQ-124](../requirements/eudi-issuance.md#req-124), [ADR 0031](../decisions/0031-regime-from-evidence.md), [ADR 0020](../decisions/0020-as4-bridge-for-oots.md), [Q-64](#q-64), [Q-67](#q-67).
     - **History**: this question had the number Q-77 before.
+
+### Q-80: Which component onboards sources for all channels, and who manages their lifecycle? {#q-80}
+
+- **Status**: open
+
+More than one channel depends on the description that a source
+publishes. Attestation issuance and the ASIP both read the active
+release from the source registry. In the building block view, the
+EUDI adapter fetches, validates and refreshes that description, so the
+ASIP depends on a component of another channel. A source that offers
+only verification attributes then has no natural place. The GBO team
+proposes a separate onboarding component that serves all channels,
+while the channels only read. Also open is who manages the lifecycle of
+a source and acts when its description expires.
+
+??? note "Options, working assumption and links"
+
+    - **Forum**: tech lead and the management organization.
+    - **Question**: Every channel needs a current, validated description per source ([REQ-64](../requirements/sources-identity.md#req-64), [REQ-66](../requirements/sources-identity.md#req-66)). Without one, the ASIP cannot answer ([REQ-93](../requirements/asi.md#req-93)) and has no discovery record for the source ([REQ-99](../requirements/asi.md#req-99)). Onboarding covers the steps in [Source onboarding](../concepts/source-onboarding.md#lifecycle): configure, discover contracts, fetch, validate, promote and refresh.
+
+        1. Which component onboards sources and keeps their descriptions current, for all channels?
+        2. Who manages the lifecycle of a source: who connects it, who refreshes it, and who acts when its description expires?
+
+    - **Why the demo cannot answer it**: It is a choice about components and management: which component owns a task that several channels share, and which organization runs it. The demo has one operator for all components, so it cannot show the effect of either choice.
+    - **Options**:
+        - (a) The EUDI adapter keeps onboarding sources, for all channels, including sources without attestations.
+        - (b) A separate onboarding component onboards sources and manages their lifecycle. It writes to the source registry. The EUDI adapter, the ASIP and later channels only read the active release. This is the proposal: no channel depends on another, a source can connect for one channel only, and expiry is watched in one place.
+        - (c) Each channel onboards the sources it needs, with its own copy of the description.
+    - **Current working assumption**: Option a, as in the [building block view](../building-blocks/components.md).
+    - **Related**: [Q-37](#q-37), [Q-38](#q-38), [Q-74](#q-74), [REQ-64](../requirements/sources-identity.md#req-64), [REQ-65](../requirements/sources-identity.md#req-65), [REQ-66](../requirements/sources-identity.md#req-66), [REQ-93](../requirements/asi.md#req-93), [REQ-99](../requirements/asi.md#req-99), [ADR 0016](../decisions/0016-source-owned-metadata.md).
