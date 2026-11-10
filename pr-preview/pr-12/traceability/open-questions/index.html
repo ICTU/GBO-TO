@@ -7395,21 +7395,22 @@ There is no working assumption, because the demo has no <abbr title="Once-Only T
 <ul>
 <li><strong>Status</strong>: open</li>
 </ul>
-<p>HAIP 1.0 requires the authorization code flow for issuance. In that
-flow, an authorization server identifies the citizen and records
-consent, instead of the citizen sharing the <abbr title="Person Identification Data">PID</abbr> with the issuer.
-<abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> 1.0 leaves open how that server identifies the citizen.
-ETSI TS 119 478 covers only verification for QTSPs. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> already
-plans an authorization server for the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> that identifies the citizen
-and shows a request page per source. The question is which
-authorization server identifies the citizen for issuance, and what that
-means for the requirements that assume only a <abbr title="Person Identification Data">PID</abbr> disclosure.</p>
+<p>In the authorization code flow, an authorization server identifies the
+citizen and records consent, instead of the citizen sharing the <abbr title="Person Identification Data">PID</abbr> with
+the issuer. HAIP 1.0 requires this flow, while ETSI TS 119 472-3 asks an
+issuer to offer at least one of the two flows. <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> 1.0 leaves open
+how the authorization server identifies the citizen, and ETSI TS 119 478
+covers only verification for QTSPs. <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> already plans an authorization
+server for the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> that identifies the citizen and shows a request page
+per source. The question is which authorization server identifies the
+citizen if <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> offers this flow. It also asks what that means for the
+requirements that assume only a <abbr title="Person Identification Data">PID</abbr> disclosure.</p>
 <details class="note">
 <summary>Options, working assumption and links</summary>
 <ul>
 <li><strong>Forum</strong>: tech lead. PSA <a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">S11</a>.</li>
 <li>
-<p><strong>Question</strong>: <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">HAIP 1.0</a> section 4 says that the wallet and the credential issuer must support the authorization code flow. <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"><abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> 1.0</a> section 3 leaves the authentication of the citizen to the authorization server. One example the specification gives is a credential presentation.</p>
+<p><strong>Question</strong>: <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">HAIP 1.0</a> section 4 says that the wallet and the credential issuer must support the authorization code flow. <a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/11947203/01.01.01_60/ts_11947203v010101p.pdf">ETSI TS 119 472-3</a>, which Implementing Regulation (EU) 2026/1731 applies to the issuance interface, asks the wallet to support both flows (GEN-REQ-4.1-03). It asks an issuer to implement at least one of them (GEN-REQ-4.1-04). <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"><abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> 1.0</a> section 3 leaves the authentication of the citizen to the authorization server. One example the specification gives is a credential presentation.</p>
 <ol>
 <li>Which authorization server identifies the citizen and records consent for issuance with the authorization code flow?</li>
 <li>If the authorization server of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> also serves issuance: which clients and resources does it accept? <a href="../../requirements/asi/#req-88">REQ-88</a> and <a href="../../requirements/asi/#req-89">REQ-89</a> admit only clients with the entitlement <code>QEAA_Provider</code>.</li>
