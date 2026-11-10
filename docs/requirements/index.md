@@ -265,6 +265,7 @@ These requirements apply to GBO-delivered components and interface agreements:
 | [REQ-122](consent.md#req-122) | The citizen gets a confirmation of their choice | DvTP | [Consent (DvTP)](consent.md) | design | draft |
 | [REQ-123](admission.md#req-123) | Every change to an admission, mandate, or activation is traceable | GBO Basis | [Admission and contracts](admission.md) | design | draft |
 | [REQ-124](eudi-issuance.md#req-124) | For every attestation, the versions of the mapping, the source schema, and the attestation schema are traceable | EUDI | [EUDI issuance](eudi-issuance.md) | design | draft |
+| [REQ-125](eudi-issuance.md#req-125) | Issuance to the EUDI wallet follows the EU issuance profile, and a deviation for one wallet stays documented and separate | EUDI | [EUDI issuance](eudi-issuance.md) | design | draft |
 
 ### Guidelines for bronhouders (RL) {#guidelines-for-bronhouders-rl}
 
