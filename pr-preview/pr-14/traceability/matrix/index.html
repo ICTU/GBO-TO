@@ -1,0 +1,6254 @@
+
+<!doctype html>
+<html lang="nl" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ictu.github.io/GBO-TO/traceability/matrix/">
+      
+      
+        <link rel="prev" href="../coverage/">
+      
+      
+        <link rel="next" href="../increments/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Design to demo matrix - Gemeenschappelijke Bronontsluiting</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/pdf.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#design-to-demo-matrix" class="md-skip">
+          Ga naar inhoud
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+  
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+      href="../.."
+      title="Gemeenschappelijke Bronontsluiting"
+      class="md-header__button md-logo"
+      aria-label="Gemeenschappelijke Bronontsluiting"
+      data-md-component="logo"
+    >
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Gemeenschappelijke Bronontsluiting
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Design to demo matrix
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+
+    <!-- User preference: color palette -->
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Knop voor PDF Download -->
+    <a href="javascript:void(0)"
+       onclick="downloadPDF('../../print_page/')"
+       title="Download PDF"
+       class="md-header__button md-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5zm5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5zm4-3H17v1h1.5V13H17v2h-1.5V9h3zm-6.5 0h1v3h-1zm-5 0h1v1H7z"/></svg>
+    </a>
+
+    <!-- Button to open search modal -->
+    
+      
+
+      <!-- Check if search is actually enabled - see https://t.ly/DT_0V -->
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+
+        <!-- Search interface -->
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Zoeken" placeholder="Zoeken" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Zoeken">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Leegmaken" aria-label="Leegmaken" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Zoeken initialiseren
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+
+    <!-- Repository information -->
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ICTU/GBO-TO" title="Ga naar repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ictu/gbo-to
+  </div>
+</a>
+      </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Gemeenschappelijke Bronontsluiting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO/latest/context" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Context
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO-GO/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Globaal Ontwerp
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO-PSA/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projectstartarchitectuur
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Technisch Ontwerp
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../requirements/" class="md-tabs__link">
+          
+  
+  
+  Technische Requirements
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO-Semantiek/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Semantiek
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://gbo.simulatie.datastelsel.nl/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Demo
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigatie" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Gemeenschappelijke Bronontsluiting" class="md-nav__button md-logo" aria-label="Gemeenschappelijke Bronontsluiting" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Gemeenschappelijke Bronontsluiting
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ICTU/GBO-TO" title="Ga naar repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ictu/gbo-to
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemeenschappelijke Bronontsluiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO/latest/context" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO-GO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Globaal Ontwerp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO-PSA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projectstartarchitectuur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technisch Ontwerp
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Technisch Ontwerp
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction and goals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../constraints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constraints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context and scope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../solution-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building block view
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Building block view
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_2" id="__nav_5_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GBO Basis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GBO Basis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GBO Basis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/source-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/source-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policy rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/gbo-basis/records/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Records
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_3" id="__nav_5_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP channel
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DvTP channel
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/dvtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP channel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/dvtp/consent-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consent facility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_4" id="__nav_5_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI wallet channel
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EUDI wallet channel
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/eudi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI wallet channel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/eudi/pubeaa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PuB-EAA provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/eudi/asi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/oots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OOTS channel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-blocks/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime view
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runtime view
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../runtime/dvtp-consent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP consent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../runtime/dvtp-query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP query
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../runtime/dvtp-citizen-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP citizen access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../runtime/eudi-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../runtime/asi-verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../runtime/admission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admission and activation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../runtime/policy-distribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policy distribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../runtime/design-level/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design-level scenarios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment view
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crosscutting concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Crosscutting concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/consent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/pseudonymization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pseudonymization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/source-onboarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source onboarding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/identity-trust/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity and trust
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/policy-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policy lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging, audit and traceability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture decisions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture decisions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_2" id="__nav_5_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accepted
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Accepted
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0001-graphql-source-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0001 GraphQL source access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0002-opa-rego-authzen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0002 OPA/Rego and AuthZEN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0003-fsc-connectivity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0003 FSC connectivity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0004-federated-authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0004 Federated authorization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0005-bsnk-pp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0005 BSNk PP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0009-closed-world-rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0009 Closed-world rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0013-pdp-request-mapper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0013 PDP request mapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0015-contract-acceptance-by-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0015 Contract acceptance by policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0016-source-owned-metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0016 Source-owned metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0017-gbo-simple-v1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0017 gbo-simple-v1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0018-eudi-disclosure-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0018 EUDI disclosure issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0020-as4-bridge-for-oots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0020 AS4 bridge for OOTS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0021-central-pap-signed-bundles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0021 Policy management per source holder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0023-identity-convergence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0023 Organization identity and EUDI certificate roles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0026-ldv-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0026 LDV logbook per controller
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0031-regime-from-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0031 Regime from evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0032-consent-proof/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0032 Consent proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0033-gateway-decrypts-after-allow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0033 Gateway decrypts after allow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0034-integrator-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0034 Integrator delegation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0035-w3c-trace-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0035 W3C Trace Context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0036-adl-decision-record/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0036 ADL decision record
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0037-asi-oauth-front-door/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0037 ASI OAuth front door
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0038-asi-data-service-per-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0038 ASI data service per source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0039-asi-source-described-attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0039 ASI source-described attributes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_3" id="__nav_5_9_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proposed
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proposed
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0024-canonical-semantic-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0024 Canonical semantic models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0025-graphql-fds-datadienst/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0025 GraphQL FDS datadienst
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0027-onboarding-toolkit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0027 Onboarding toolkit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0028-pubeaa-productization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0028 PubEAA productization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0040-route-d-citizen-recognition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0040 Route D citizen recognition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0041-asi-seal-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0041 ASI seal format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0042-asi-attribute-token-binding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0042 ASI attribute token binding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0043-identifiers-out-of-pdp-input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0043 Identifiers out of PDP input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0044-issuance-flows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0044 Issuance flows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_4" id="__nav_5_9_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deferred
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deferred
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0022-sector-grants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0022 Sector grants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_5" id="__nav_5_9_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Superseded
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Superseded
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0006-consent-register-as-pip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0006 Consent register as PIP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0007-consent-signed-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0007 Consent signed token
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0008-dienstencatalogus-ceiling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0008 Dienstencatalogus ceiling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0010-pep-bsn-resolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0010 PEP BSN resolution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0011-sidecar-pseudonym-resolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0011 Sidecar pseudonym resolution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0012-opa-graphql-parse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0012 OPA graphql.parse_query
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0014-provider-signed-flow-claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0014 Provider-signed flow claims
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0019-fsc-transaction-id-tracing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0019 FSC transaction ID tracing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0029-authentic-source-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0029 Authentic Source Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0030-grant-properties/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0030 Grant properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../risks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risks and technical debt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technische Requirements
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Technische Requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization and data access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/logging-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging and audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/admission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admission and connection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/sources-identity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sources and identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/consent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consent (DvTP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/pseudonymization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pseudonymization and BSNk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/eudi-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/asi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentic Source Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Traceability
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Traceability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to trace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coverage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coverage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design to demo matrix
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design to demo matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhoudsopgave">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhoudsopgave
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture principles (P-01 to P-16)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design principles (D-01 to D-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generic functions (F1 to F8)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities (S01 to S11)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interaction-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interaction patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eudi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EUDI wallet and regulation (EUDI-1 to EUDI-11)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open decisions (B-01 to B-19)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fr-dvtp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FR-DvTP v0.9 (FR-01 to FR-39)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference architecture (historical)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traceability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traceability
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../increments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo increments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../findings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings (open)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../findings-closed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings (closed)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../open-questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../answered-questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Answered questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../standards-feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO-Semantiek/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semantiek
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://gbo.simulatie.datastelsel.nl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+  <nav class="md-path" aria-label="Navigatie" >
+    <ol class="md-path__list">
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../requirements/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Technische Requirements
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Traceability
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="design-to-demo-matrix">Design to demo matrix<a class="headerlink" href="#design-to-demo-matrix" title="Permanent link">&para;</a></h1>
+<p>This matrix lists the design elements of four sources:</p>
+<ul>
+<li>the Globaal Ontwerp (GO),</li>
+<li>the Projectstartarchitectuur (PSA),</li>
+<li>the functional requirements for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> (FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9),</li>
+<li>the EUDI regulation.</li>
+</ul>
+<p>For each element, the matrix
+records if the <a href="https://github.com/ICTU/GBO-demo"><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> demo</a> covers it,
+and gives the evidence. The <a href="../findings/">findings</a> and the
+<a href="../open-questions/">open questions</a> give the reverse direction, from demo
+to design.</p>
+<p>Each row has a status, an evidence link, and a note on the state of the
+demo. The notes link to the requirements, findings, open questions, demo
+increments, and ADRs that explain the row. The port to the TO on
+November 2, 2026 brought the evidence and the notes up to demo
+<a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0">v0.9.0</a>. No status
+changed.</p>
+<h2 id="summary">Coverage summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>The summary counts the rows on this page. It does not count the
+historical rows of the <a href="#historical">reference architecture</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>✓</th>
+<th>◐</th>
+<th>○</th>
+<th>In scope</th>
+<th>Hook or out</th>
+<th>Rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#architecture-principles">P: architecture principles</a></td>
+<td>2</td>
+<td>12</td>
+<td>1</td>
+<td>15</td>
+<td>1</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="#design-principles">D: design principles</a></td>
+<td>4</td>
+<td>8</td>
+<td>2</td>
+<td>14</td>
+<td>0</td>
+<td>14</td>
+</tr>
+<tr>
+<td><a href="#generic-functions">F: generic functions</a></td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>8</td>
+<td>0</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="#capabilities">S: capabilities</a></td>
+<td>3</td>
+<td>7</td>
+<td>0</td>
+<td>10</td>
+<td>1</td>
+<td>11</td>
+</tr>
+<tr>
+<td><a href="#interaction-patterns">PAT: interaction patterns</a></td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="#eudi">EUDI: EUDI wallet and regulation</a></td>
+<td>0</td>
+<td>8</td>
+<td>3</td>
+<td>11</td>
+<td>0</td>
+<td>11</td>
+</tr>
+<tr>
+<td><a href="#open-decisions">B: open decisions</a></td>
+<td>0</td>
+<td>12</td>
+<td>2</td>
+<td>14</td>
+<td>5</td>
+<td>19</td>
+</tr>
+<tr>
+<td><a href="#fr-dvtp">FR: FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9</a></td>
+<td>8</td>
+<td>22</td>
+<td>7</td>
+<td>37</td>
+<td>2</td>
+<td>39</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>19</strong></td>
+<td><strong>74</strong></td>
+<td><strong>18</strong></td>
+<td><strong>111</strong></td>
+<td><strong>10</strong></td>
+<td><strong>121</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Of the 111 in-scope rows, 17% are covered, 67% are partial, and 16% are
+not covered.</p>
+<p>Most partial rows can become covered only after a governance decision or
+with production infrastructure. Three examples of such rows are:</p>
+<ul>
+<li>the <abbr title="Logboek Dataverwerkingen">LDV</abbr> schema and retention (<a href="../open-questions/#q-08">Q-08</a>),</li>
+<li>the link of organization identifiers in PSA S04,</li>
+<li>PKIoverheid certificates instead of the demo CA (the direction is
+  answered in <a href="../answered-questions/#q-07">Q-07</a>).</li>
+</ul>
+<p>Three items of concrete demo work are open in demo v0.9.0:</p>
+<ul>
+<li>validate a policy set before activation (<a href="../findings/#f-52">F-52</a>),</li>
+<li>admission per service (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>),</li>
+<li>the <abbr title="Burgerservicenummer">BSN</abbr> in the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> token (<a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>).</li>
+</ul>
+<h2 id="legend">Legend<a class="headerlink" href="#legend" title="Permanent link">&para;</a></h2>
+<p>The status column uses five symbols:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✓</td>
+<td>Covered: the feature works end to end in the demo, with evidence.</td>
+</tr>
+<tr>
+<td>◐</td>
+<td>Partial: some parts are covered, and the rest is open.</td>
+</tr>
+<tr>
+<td>○</td>
+<td>Not covered: in scope, but not built.</td>
+</tr>
+<tr>
+<td>—</td>
+<td>Out of scope or hook: deliberately not in v1.</td>
+</tr>
+<tr>
+<td>?</td>
+<td>To be checked against the demo. In demo v0.9.0, no row has this status.</td>
+</tr>
+</tbody>
+</table>
+<p>The scope column uses five values:</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base</td>
+<td>The shared foundation for all routes: <abbr title="Policy Enforcement Point">PEP</abbr>, <abbr title="Policy Decision Point">PDP</abbr>, <abbr title="Policy Information Point">PIP</abbr>, connectivity, audit, and semantics.</td>
+</tr>
+<tr>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>Specific to the consent route (data sharing with third parties).</td>
+</tr>
+<tr>
+<td>EUDI</td>
+<td>Specific to the EUDI wallet routes: issuance (<abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr>) and verification for QTSPs (<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr>).</td>
+</tr>
+<tr>
+<td>Hook</td>
+<td>Not in v1, but the demo keeps an extension point open.</td>
+</tr>
+<tr>
+<td>Out</td>
+<td>Not relevant for the v1 demo.</td>
+</tr>
+</tbody>
+</table>
+<p>The evidence column follows three rules:</p>
+<ul>
+<li>A status is valid only with evidence. The evidence is a link to the
+  demo at <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0">v0.9.0</a>, a demo
+  pull request or issue, or a requirement that carries the evidence.</li>
+<li>Some links pin an older demo commit. They are historical evidence for
+  the state at the time of the check.</li>
+<li>FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 is not public. The matrix names its criteria without a
+  link.</li>
+</ul>
+<h2 id="architecture-principles">Architecture principles (P-01 to P-16)<a class="headerlink" href="#architecture-principles" title="Permanent link">&para;</a></h2>
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">PSA architecture principles</a>.
+These principles are invariants: the demo must not break them.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Scope</th>
+<th>Status</th>
+<th>Evidence</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-01</a></td>
+<td>Legal basis before exchange</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../../requirements/consent/#req-14">REQ-14</a>, <a href="../../requirements/consent/#req-19">REQ-19</a></td>
+<td>Before an allow, the <abbr title="Policy Decision Point">PDP</abbr> checks that the consent is valid, unexpired, and not revoked. A legal-basis path (government to government) is out of scope.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-02</a></td>
+<td>Minimal data processing</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/authorization/#req-08">REQ-08</a>, <a href="../../requirements/authorization/#req-17">REQ-17</a></td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> decides each field of the parsed query (<a href="../increments/#sl-03a">SL-03a</a>). Under a consent, the subject comes only from the proof (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-03</a></td>
+<td>Privacy by design and by default</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="../../requirements/pseudonymization/#req-21">REQ-21</a>, <a href="../../requirements/consent/#req-23">REQ-23</a>, <a href="../../requirements/pseudonymization/#req-69">REQ-69</a>, <a href="../../requirements/pseudonymization/#req-82">REQ-82</a></td>
+<td>The register holds no <abbr title="Burgerservicenummer">BSN</abbr>. The proof carries an encrypted value per source, and the consumer gets no identifier (<a href="../increments/#sl-51">SL-51</a>). In the demo, BSNk is a mock, and the pseudonym form is open (<a href="../open-questions/#q-01">Q-01</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-04</a></td>
+<td><abbr title="Burgerservicenummer">BSN</abbr>-free for private consumers</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L47"><code>consent_token.go#L47</code></a> (no plain <abbr title="Burgerservicenummer">BSN</abbr> in the proof), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/decryption/decryption.go#L76"><code>decryption.go#L76</code></a> (the source decrypts its own value)</td>
+<td>The consumer has no identifier at all: it sends a placeholder, and the source replaces it after the allow (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>, <a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="../increments/#sl-51">SL-51</a>). <a href="../findings/#f-76">F-76</a> describes the effects on logging and recognition.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-05</a></td>
+<td>Recognized authentication means at an adequate level of assurance</td>
+<td>Base</td>
+<td>○</td>
+<td>DigiD mock in the consent portal (toestemmingsportaal) (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/DigiDAuth.tsx"><code>DigiDAuth.tsx</code></a>), <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> authorization server with DigiD mock and NL Wallet (<a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/client.go#L119"><code>client.go#L119</code></a>)</td>
+<td>The demo has no real means at a set level of assurance. Real means are out of scope. <a href="../open-questions/#q-36">Q-36</a> asks which level ETSI TS 119 461 requires for the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route, and if DigiD meets it.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-06</a></td>
+<td>Support for the EUDI wallet</td>
+<td>Hook</td>
+<td>—</td>
+<td>—</td>
+<td>The principle row stays a hook. The wallet routes are in the <a href="#eudi">EUDI rows</a>.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-07</a></td>
+<td>Trust through recognized admission and trust anchors</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/fsc-infra/pki"><code>fsc-infra/pki</code></a>, <a href="../../requirements/sources-identity/#req-67">REQ-67</a></td>
+<td>The demo runs real OpenFSC with mTLS and its own CA (<a href="../increments/#sl-34a">SL-34a</a>). The certificate carries the legal identity (<a href="../increments/#sl-49">SL-49</a>, <a href="../findings-closed/#f-60">F-60</a>). Open: PKIoverheid certificates instead of the demo CA (direction answered in <a href="../answered-questions/#q-07">Q-07</a>). Also open: the issuing model, with one certificate set or a set per source (<a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-08</a></td>
+<td>Record once, use many times</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/authorization/#req-11">REQ-11</a></td>
+<td>The source stays authoritative, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components keep no copy. The demo does not show reuse explicitly.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-09</a></td>
+<td>Open standards and vendor independence</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml"><code>docker-compose.yml</code></a></td>
+<td>GraphQL, OPA, <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr>, OpenFSC with mTLS, OTel, <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr>, and <abbr title="Protocols for credential issuance and presentation">OpenID4VP</abbr> are open standards. The GraphQL profile for <abbr title="Federated Service Connectivity">FSC</abbr> is a proposal and has no standard status (<a href="#open-decisions">B-02</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-10</a></td>
+<td>Data sovereignty: the bronhouder keeps control</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L101"><code>source_metadata.go#L101</code></a> (validation of the source description), <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L171"><code>autosign.rego#L171</code></a></td>
+<td>The source decides who connects (<a href="../increments/#sl-45">SL-45</a>), what is available (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../findings/#f-57">F-57</a>), and when (<a href="../../requirements/sources-identity/#req-65">REQ-65</a>). The <abbr title="Policy Decision Point">PDP</abbr> behind the source Inway checks each request (<a href="../findings-closed/#f-06">F-06</a> closed). In demo v0.9.0, REQ-64 is built for EUDI and the <abbr title="Authentic Source Interface Provider">ASIP</abbr> (<a href="https://github.com/ICTU/GBO-demo/issues/592">#592</a>). It is not built for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-11</a></td>
+<td>FAIR principles for data</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../../requirements/admission/#av-07">AV-07</a></td>
+<td>Findable and accessible: each source publishes a versioned description at a fixed location. Not interoperable or reusable: the mapping is per source, with no canonical model (<a href="../answered-questions/#q-11">Q-11</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-12</a></td>
+<td>Logging and non-repudiation</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml#L125"><code>docker-compose.yml#L125</code></a> (<abbr title="Authorization Decision Log">ADL</abbr>), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/adl.go"><code>adl.go</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek"><code>ldv-logboek</code></a></td>
+<td>The <abbr title="Authorization Decision Log">ADL</abbr> is the audit source (<a href="../../requirements/logging-audit/#req-71">REQ-71</a>), with an <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook per system (<a href="../../requirements/logging-audit/#req-72">REQ-72</a>) and one trace ID (<a href="../../requirements/logging-audit/#req-55">REQ-55</a>). Open: the <abbr title="Burgerservicenummer">BSN</abbr> in both decision logs (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>, <a href="../findings/#f-54">F-54</a>, <a href="https://github.com/ICTU/GBO-demo/issues/368">#368</a>), field detail only in the console log (<a href="../findings/#f-72">F-72</a>), and production guarantees (<a href="../open-questions/#q-08">Q-08</a>, <a href="../findings-closed/#f-07">F-07</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-13</a></td>
+<td>Transparency and access for the citizen</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="../../requirements/consent/#req-38">REQ-38</a>, <a href="../../requirements/consent/#req-39">REQ-39</a>, <a href="../../requirements/consent/#req-40">REQ-40</a></td>
+<td>For each consent, the citizen sees who, what, purpose, and duration, and can revoke the consent (<a href="../increments/#sl-06a">SL-06a</a>, <a href="../increments/#sl-06b">SL-06b</a>). Missing: usage status (<a href="../findings/#f-19">F-19</a>) and processing per consent (<a href="../open-questions/#q-25">Q-25</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-14</a></td>
+<td>Separation of generic and specific functions</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/authorization/#req-44">REQ-44</a>, <a href="../../requirements/asi/#req-92">REQ-92</a></td>
+<td>Each capability is a service of its own, and the front ends call it directly (<a href="../increments/#sl-11">SL-11</a>, <a href="../increments/#sl-15">SL-15</a>). The EUDI adapter holds no use-case knowledge (<a href="../increments/#sl-46">SL-46</a>). The generic chain also runs behind the <abbr title="Authentic Source Interface Provider">ASIP</abbr> (<a href="../findings/#f-87">F-87</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-15</a></td>
+<td>Decoupling for agility</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml"><code>gbo-pdp.yaml</code></a></td>
+<td>Policy changes reach the <abbr title="Policy Decision Point">PDP</abbr> as a bundle, without a new <abbr title="Policy Decision Point">PDP</abbr> image (<a href="../increments/#sl-44">SL-44</a>, <a href="../../requirements/authorization/#rl-01">RL-01</a>). Mostly covered.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/architectuurprincipes/">P-16</a></td>
+<td>Transparent access for private parties</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L171"><code>autosign.rego#L171</code></a></td>
+<td>Admission is a registration, and each contract proposal gets an explicit decision with reasons (<a href="../../requirements/admission/#req-61">REQ-61</a>, <a href="../../requirements/admission/#req-62">REQ-62</a>, <a href="../../requirements/admission/#req-63">REQ-63</a>). Missing: the grounds (FR-30), an objection procedure, and admission per service (<a href="../findings-closed/#f-56">F-56</a>, <a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>). <a href="../answered-questions/#q-22">Q-22</a> gives the answer on grounds and granularity.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="design-principles">Design principles (D-01 to D-14)<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h2>
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">PSA design principles</a>.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Scope</th>
+<th>Status</th>
+<th>Evidence</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-01</a></td>
+<td>Decentral where possible, central where necessary</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L773"><code>fsc-infra/docker-compose.yml#L773</code></a> (one shared <abbr title="Policy Decision Point">PDP</abbr>)</td>
+<td>One shared <abbr title="Policy Decision Point">PDP</abbr> behind all Inways is a demo shortcut. A <abbr title="Policy Decision Point">PDP</abbr> per source is possible with bundles (<a href="../increments/#sl-44">SL-44</a>). <a href="../answered-questions/#q-02">Q-02</a> is answered: federated, per bronhouder.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-02</a></td>
+<td>Agreements before standards before facilities</td>
+<td>Base</td>
+<td>○</td>
+<td>—</td>
+<td>This is governance, and the demo cannot show it.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-03</a></td>
+<td>Use national generic facilities (GDI) unless</td>
+<td>Base</td>
+<td>○</td>
+<td>—</td>
+<td>DigiD, BSNk and MijnOverheid are mocks. Real GDI facilities are out of scope.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-04</a></td>
+<td>Robust, modular, and flexible design</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services"><code>services/</code></a></td>
+<td>The services are modular. Some services run in memory or as a mock.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-05</a></td>
+<td>Data at the source, no unnecessary copies</td>
+<td>Base</td>
+<td>✓</td>
+<td><a href="../../requirements/authorization/#req-11">REQ-11</a></td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> components fetch per request from the source and keep no copy.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-06</a></td>
+<td>Component-based working</td>
+<td>Base</td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services"><code>services/</code></a></td>
+<td>The services are separate and reusable.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-07</a></td>
+<td>Open source unless</td>
+<td>Base</td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docker-compose.yml"><code>docker-compose.yml</code></a></td>
+<td>All components are open source.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-08</a></td>
+<td>Comply or explain: mandatory open standards</td>
+<td>Base</td>
+<td>◐</td>
+<td>—</td>
+<td>The demo uses GraphQL, JWT, OTel, and <abbr title="Federated Service Connectivity">FSC</abbr> with mTLS. The GraphQL profile for <abbr title="Federated Service Connectivity">FSC</abbr> is open (<a href="#open-decisions">B-02</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-09</a></td>
+<td>API-first</td>
+<td>Base</td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/graphql-server"><code>graphql-server</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/openftv-pdp"><code>openftv-pdp</code></a></td>
+<td>All interaction goes through APIs.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-10</a></td>
+<td>Information security and privacy by design</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/pull/242">PR #242</a> (CA keys outside the runtime), <a href="https://github.com/ICTU/GBO-demo/pull/222">PR #222</a>, <a href="https://github.com/ICTU/GBO-demo/pull/220">PR #220</a>, <a href="../../requirements/pseudonymization/#req-69">REQ-69</a>, <a href="../../requirements/sources-identity/#req-66">REQ-66</a></td>
+<td>The demo has mTLS over <abbr title="Federated Service Connectivity">FSC</abbr>, CA keys outside the application runtime, no per-party values in the register, and source metadata that fails closed. Open: there is no penetration test or audit (D-12), and the demo uses its own CA instead of PKIoverheid (<a href="../answered-questions/#q-07">Q-07</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-11</a></td>
+<td>Least privilege</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/authorization/#req-48">REQ-48</a>, <a href="../../requirements/pseudonymization/#req-81">REQ-81</a></td>
+<td>The demo limits the fields per scope and takes the subject from the proof. Every rule names its services (<a href="../../requirements/authorization/#req-97">REQ-97</a>), and only the Inway reaches the source gateway. <a href="../findings-closed/#f-08">F-08</a> is closed: no source requires a certificate-bound token.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-12</a></td>
+<td>Demonstrable security: audit and penetration testing</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/policies/gbo"><code>policies/gbo</code></a> (policy tests), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/conformance/etsi-ts-119478.yaml"><code>etsi-ts-119478.yaml</code></a></td>
+<td>Policy unit tests and an ETSI conformance matrix with a check in CI. No penetration test or audit.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-13</a></td>
+<td>Standardize where possible</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001.rego#L65"><code>dvt0001.rego#L65</code></a></td>
+<td>The scope convention <code>bd:ib:&lt;year&gt;</code> is ad hoc.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/">D-14</a></td>
+<td>Interoperability: semantic and technical alignment</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/graphql-server"><code>graphql-server</code></a></td>
+<td>The source schemas follow the gbo-semantiek v0.3 source profiles. There is no canonical semantic model.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generic-functions">Generic functions (F1 to F8)<a class="headerlink" href="#generic-functions" title="Permanent link">&para;</a></h2>
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/">PSA generic functions</a>
+and section 4 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Scope</th>
+<th>Status</th>
+<th>Evidence</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f1-identiteit-vertrouwen">F1</a></td>
+<td>Identity and trust</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/fsc-infra"><code>fsc-infra</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a></td>
+<td>Organizations connect as real <abbr title="Federated Service Connectivity">FSC</abbr> peers with mTLS, and a register admits them (<a href="../../requirements/admission/#req-61">REQ-61</a>). Transport identity and legal identity are apart (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>). The citizen login is a mock. The demo uses its own CA, and production uses PKIoverheid (<a href="../answered-questions/#q-07">Q-07</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f2-toegang-interactie">F2</a></td>
+<td>Access and interaction</td>
+<td>Base</td>
+<td>✓</td>
+<td><a href="../../requirements/authorization/#req-04">REQ-04</a>, <a href="../../requirements/sources-identity/#req-46">REQ-46</a></td>
+<td>The chain <abbr title="Federated Service Connectivity">FSC</abbr> Outway → Inway → <abbr title="Policy Decision Point">PDP</abbr> → source works end to end.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f3-gegevensvoorziening">F3</a></td>
+<td>Data provision</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/authorization/#req-11">REQ-11</a>, <a href="../../requirements/authorization/#req-97">REQ-97</a></td>
+<td>Three sources answer over <abbr title="Federated Service Connectivity">FSC</abbr>: BD, BRP, and LVG. Each <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> consent and each request reaches only one source (FR-38).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f4-semantiek-eenheid-van-taal">F4</a></td>
+<td>Semantics and common language</td>
+<td>Base</td>
+<td>○</td>
+<td>—</td>
+<td>No canonical model. The mapping is per source.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f5-gegevenskwaliteit-validatie">F5</a></td>
+<td>Data quality and validation</td>
+<td>Base</td>
+<td>○</td>
+<td>—</td>
+<td>The demo has no validation layer.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f6-grondslag-beleid">F6</a></td>
+<td>Legal basis and policy</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../../requirements/consent/#req-14">REQ-14</a>, <a href="../../requirements/consent/#req-19">REQ-19</a></td>
+<td>Consent works as legal basis, and policy management runs (<a href="../increments/#sl-44">SL-44</a>). The demo has no legal-basis path.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f7-orkestratie-integratie">F7</a></td>
+<td>Orchestration and integration</td>
+<td>Base</td>
+<td>○</td>
+<td>—</td>
+<td>The demo has no orchestration or integration layer. An integrator can call under <abbr title="Federated Service Connectivity">FSC</abbr> delegation (<a href="../../requirements/consent/#req-106">REQ-106</a>), but there is no FDS broker.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/generieke-functies/#f8-beheer-continuiteit">F8</a></td>
+<td>Management and continuity</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/openftv-manager-ui"><code>openftv-manager-ui</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/openftv-manager/authz"><code>openftv-manager/authz</code></a></td>
+<td>Policy management has roles and a management interface (<a href="../../requirements/authorization/#rl-02">RL-02</a>, <a href="../../requirements/authorization/#rl-03">RL-03</a>). Continuity is weak: one bad rule stops every decision (<a href="../findings/#f-52">F-52</a>, <a href="../../requirements/authorization/#rl-05">RL-05</a>).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="capabilities">Capabilities (S01 to S11)<a class="headerlink" href="#capabilities" title="Permanent link">&para;</a></h2>
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/capabilities/">PSA capabilities</a>.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Scope</th>
+<th>Status</th>
+<th>Evidence</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s01-toestemmingsregistratie">S01</a></td>
+<td>Consent registration</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L47"><code>consent_token.go#L47</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/postgres_store.go"><code>postgres_store.go</code></a></td>
+<td>The register issues the signed proof (<a href="../../requirements/consent/#req-68">REQ-68</a>) and keeps the polymorphic values under its own reference (<a href="../../requirements/pseudonymization/#req-69">REQ-69</a>). It signs the value per source and does not store it (<a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="../findings/#f-78">F-78</a>, <a href="../../requirements/pseudonymization/#req-82">REQ-82</a>). The local stack runs in memory (<a href="../increments/#sl-12">SL-12</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s02-toestemmingsportaal">S02</a></td>
+<td>Consent portal (citizen interaction)</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="../../requirements/consent/#req-38">REQ-38</a>, <a href="../../requirements/consent/#req-39">REQ-39</a>, <a href="../../requirements/consent/#req-40">REQ-40</a></td>
+<td>The portal has its own backend and front end on a government origin, a DigiD mock token, and an ownership check on revoke (<a href="../increments/#sl-11">SL-11</a>, <a href="../increments/#sl-06b">SL-06b</a>). Not built: the acknowledgment that the citizen read the text (<a href="../../requirements/consent/#req-107">REQ-107</a>), and the export (<a href="../../requirements/consent/#req-108">REQ-108</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s03-burgeridentificatie-pseudonimisering">S03</a></td>
+<td>Citizen identification and pseudonymization</td>
+<td>Base</td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/bsnk/bsnk.go#L65"><code>bsnk.go#L65</code></a> (activate), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/bsnk/bsnk.go#L106"><code>bsnk.go#L106</code></a> (transform), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/decryption/decryption.go#L76"><code>decryption.go#L76</code></a></td>
+<td>The portal backend activates and transforms at the consent. The source decrypts its own value after the allow (<a href="../../requirements/pseudonymization/#req-21">REQ-21</a>, <a href="../../requirements/pseudonymization/#req-81">REQ-81</a>). The BSNk mock follows the BSNk interface.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel">S04</a></td>
+<td>Organization authentication and trust framework</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/fsc-infra"><code>fsc-infra</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L171"><code>autosign.rego#L171</code></a></td>
+<td>A register admits organizations to the system, and the <abbr title="Policy Decision Point">PDP</abbr> decides on contracts (<a href="../../requirements/admission/#req-61">REQ-61</a>, <a href="../../requirements/admission/#req-62">REQ-62</a>). Transport and legal identity are apart (<a href="../../requirements/sources-identity/#req-67">REQ-67</a>, <a href="../findings-closed/#f-60">F-60</a>). Open: PKIoverheid certificates in place of the demo CA (<a href="../answered-questions/#q-07">Q-07</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie">S05</a></td>
+<td>Authorization (<abbr title="Policy Enforcement Point">PEP</abbr>/<abbr title="Policy Decision Point">PDP</abbr>/<abbr title="Policy Information Point">PIP</abbr>)</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L173"><code>engine.rego#L173</code></a> (regime), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L268"><code>consent.rego#L268</code></a> (status), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-pdp/mapper/ftvgraphql.go"><code>ftvgraphql.go</code></a></td>
+<td>The regime follows from the evidence (<a href="../../requirements/authorization/#req-74">REQ-74</a>, <a href="../findings/#f-70">F-70</a>). The policy verifies the proof and asks for the status (<a href="../../requirements/consent/#req-68">REQ-68</a>). The subject must be a placeholder (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>, <a href="../findings/#f-77">F-77</a>), and every rule names its services (<a href="../../requirements/authorization/#req-97">REQ-97</a>). The contract decision has a policy tree of its own (<a href="../../requirements/admission/#req-62">REQ-62</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s06-beleidsbeheer-distributie">S06</a></td>
+<td>Policy management and distribution (<abbr title="Policy Administration Point">PAP</abbr>)</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml"><code>gbo-pdp.yaml</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/scripts/seed-openftv-manager.py"><code>seed-openftv-manager.py</code></a></td>
+<td>The <abbr title="Policy Administration Point">PAP</abbr> runs at the source side and distributes versioned bundles (<a href="../../requirements/authorization/#rl-01">RL-01</a> to <a href="../../requirements/authorization/#rl-04">RL-04</a>). These RL items are guidelines: management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>). Open: validation before activation (<a href="../findings/#f-52">F-52</a>, <a href="../../requirements/authorization/#rl-05">RL-05</a>), push distribution (<a href="../findings/#f-51">F-51</a>), and the policy version in the decision record (<a href="../../requirements/logging-audit/#req-59">REQ-59</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s07-gegevensontsluiting">S07</a></td>
+<td>Data access (source access API)</td>
+<td>Base</td>
+<td>✓</td>
+<td><a href="../../requirements/authorization/#req-17">REQ-17</a>, <a href="../../requirements/authorization/#req-97">REQ-97</a></td>
+<td>GraphQL source access works for three sources. PSA S07 asks for pre-registered selective queries. The <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> path lets the consumer send free queries within a field allowlist (<a href="../open-questions/#q-14">Q-14</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s08-oots-adapter">S08</a></td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr> adapter</td>
+<td>Hook</td>
+<td>—</td>
+<td>—</td>
+<td>Not in v1 (<a href="../../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid">S09</a></td>
+<td>Logging, audit and traceability</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/adl.go"><code>adl.go</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek"><code>ldv-logboek</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/observability/grafana/dashboards/request-flow.json"><code>request-flow.json</code></a></td>
+<td>The <abbr title="Authorization Decision Log">ADL</abbr> is the audit source (<a href="../../requirements/logging-audit/#req-71">REQ-71</a>). Each system has an <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook (<a href="../../requirements/logging-audit/#req-72">REQ-72</a>), and the trace comes from <code>traceparent</code> (<a href="../../requirements/logging-audit/#req-55">REQ-55</a>, <a href="../findings-closed/#f-67">F-67</a>). Open: the <abbr title="Burgerservicenummer">BSN</abbr> in the decision logs (<a href="../../requirements/logging-audit/#req-60">REQ-60</a>), and the record behind the Inway without a trace (<a href="https://github.com/ICTU/GBO-demo/issues/369">#369</a>). Also open: the read route to the consent log (<a href="../open-questions/#q-25">Q-25</a>, <a href="../findings/#f-68">F-68</a>), and the register of processing activities (<a href="../open-questions/#q-08">Q-08</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s10-semantiek-gegevenscatalogus">S10</a></td>
+<td>Semantics and data catalogue</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/schemas/gbo-source-metadata-v1.schema.json"><code>gbo-source-metadata-v1.schema.json</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L101"><code>source_metadata.go#L101</code></a></td>
+<td>The source owns its service description on <code>/.well-known/gbo</code>, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates and activates it (<a href="../findings/#f-57">F-57</a>, <a href="../../requirements/sources-identity/#req-64">REQ-64</a>). In demo v0.9.0, this is built for EUDI and the <abbr title="Authentic Source Interface Provider">ASIP</abbr>. <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> scopes come from rule files on the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> side (<a href="../findings-closed/#f-17">F-17</a>). There is no DCAT-AP-NL reference and no central findability. <a href="../findings/#f-74">F-74</a> covers the <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> catalogue per FR-32.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte">S11</a></td>
+<td>Attestation issuance (<abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> / <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr>)</td>
+<td>EUDI</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-issuance-server"><code>eudi-issuance-server</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-adapter"><code>eudi-adapter</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego"><code>eud0002.rego</code></a></td>
+<td>Issuance works for products of two sources (<a href="../increments/#sl-43">SL-43</a>, <a href="../../requirements/eudi-issuance/#req-57">REQ-57</a>, <a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>). Missing: a qualified seal and a trust list. <a href="../findings/#f-80">F-80</a> and <a href="../findings/#f-81">F-81</a> cover the regulation, <a href="../findings/#f-82">F-82</a> covers change notification, and <a href="../open-questions/#q-30">Q-30</a> covers the trust list.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="interaction-patterns">Interaction patterns<a class="headerlink" href="#interaction-patterns" title="Permanent link">&para;</a></h2>
+<p>Source: <a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PSA interaction patterns</a>
+and section 3 of the <a href="https://ictu.github.io/GBO-GO/main/">GO</a>.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Scope</th>
+<th>Status</th>
+<th>Evidence</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PAT-A</a></td>
+<td>Citizen uses the EUDI wallet</td>
+<td>EUDI</td>
+<td>◐</td>
+<td><a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>, <a href="../../requirements/sources-identity/#req-64">REQ-64</a></td>
+<td>The route works end to end against a pre-production wallet, with products from offers that the sources publish (<a href="../increments/#sl-46">SL-46</a>). Missing: a seal, trust lists, and an authenticated adapter callback (<a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>). For more information, see EUDI-3 to EUDI-5.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PAT-B</a></td>
+<td>Cross-border SDG/<abbr title="Once-Only Technical System">OOTS</abbr></td>
+<td>Hook</td>
+<td>—</td>
+<td>—</td>
+<td>Not in v1 (<a href="../../decisions/0020-as4-bridge-for-oots/">ADR-0020</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/interactiepatronen/">PAT-C</a></td>
+<td>Data request by a private service provider (dienstverlener) in <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../../requirements/consent/#req-14">REQ-14</a>, <a href="../../requirements/consent/#req-19">REQ-19</a></td>
+<td>Consent, query, allow or deny, and revoke work end to end, for the BD and LVG sources, and through an integrator (<a href="https://github.com/ICTU/GBO-demo/pull/464">PR #464</a>).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="eudi">EUDI wallet and regulation (EUDI-1 to EUDI-11)<a class="headerlink" href="#eudi" title="Permanent link">&para;</a></h2>
+<p>The EUDI rows have five sources:</p>
+<ul>
+<li>the GO sections on attestation issuance and on the
+  <a href="https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider">verification service for QTSPs</a>,</li>
+<li>PSA S11,</li>
+<li>eIDAS article 45e,</li>
+<li>the implementing regulations (EU) 2025/1569 and 2026/1735,</li>
+<li>ETSI TS 119 478.</li>
+</ul>
+<p>The EUDI-NN IDs belong to this matrix.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Scope</th>
+<th>Status</th>
+<th>Evidence</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EUDI-1</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider and <abbr title="Protocols for credential issuance and presentation">OpenID4VCI</abbr> issuance</td>
+<td>EUDI</td>
+<td>◐</td>
+<td><a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>, <a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../../requirements/eudi-issuance/#req-77">REQ-77</a></td>
+<td>Issuance works against mock trust (<a href="../../decisions/0018-eudi-disclosure-issuance/">ADR-0018</a>). <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance falls under ETSI TS 119 471 and needs designation (<a href="../findings/#f-81">F-81</a>, <a href="../open-questions/#q-28">Q-28</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider">EUDI-2</a></td>
+<td>Authentic Source Interface (<abbr title="Qualified Trust Service Provider">QTSP</abbr> verification, art. 45e)</td>
+<td>EUDI</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-provider/internal/seal/seal.go#L45"><code>seal.go#L45</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/authorization/registration.go#L222"><code>registration.go#L222</code></a> (re-check), <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/asi/asi0001.rego#L23"><code>asi0001.rego#L23</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/conformance/etsi-ts-119478.yaml"><code>etsi-ts-119478.yaml</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/asi-route.md"><code>asi-route.md</code></a></td>
+<td><a href="../increments/#sl-28">SL-28</a> is done. It built sealed verify and retrieve, its own authorization server, and the chain behind the <abbr title="Authentic Source Interface Provider">ASIP</abbr> over <abbr title="Federated Service Connectivity">FSC</abbr>. It also built discovery, a reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>, and login with a DigiD mock and the NL Wallet. The <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> profile is in the <a href="../../requirements/asi/#asi-profile"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> profile</a>: <a href="../../requirements/asi/#req-83">REQ-83</a> to <a href="../../requirements/asi/#req-115">REQ-115</a>. Open: the <abbr title="Burgerservicenummer">BSN</abbr> in the token (<a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>, <a href="../findings/#f-86">F-86</a>), and an external <abbr title="Qualified Trust Service Provider">QTSP</abbr> (<a href="https://github.com/ICTU/GBO-demo/issues/594">#594</a>). The <abbr title="Authentic Source Interface Provider">ASIP</abbr> has no certification and seals with a development certificate.</td>
+</tr>
+<tr>
+<td>EUDI-3</td>
+<td><abbr title="Person Identification Data">PID</abbr> presentation and signature verification</td>
+<td>EUDI</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/asi-authorization-server/internal/walletverifier/client.go#L119"><code>client.go#L119</code></a> (<abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route)</td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route: the nl-wallet verifier verifies the <abbr title="Person Identification Data">PID</abbr> against a fixed list of issuers (<a href="../../requirements/asi/#req-102">REQ-102</a>). Issuance route: the issuance server verifies the <abbr title="Person Identification Data">PID</abbr>. The callback to the adapter has no authentication, so nothing binds the <abbr title="Burgerservicenummer">BSN</abbr> to the verified disclosure (<a href="https://github.com/ICTU/GBO-demo/issues/133">#133</a>, <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>, <a href="../findings/#f-70">F-70</a>).</td>
+</tr>
+<tr>
+<td>EUDI-4</td>
+<td>Qualified seal and signing infrastructure (eIDAS2, ARF)</td>
+<td>EUDI</td>
+<td>○</td>
+<td>—</td>
+<td>The demo has no qualified seal. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> seals with a development certificate (<a href="../../requirements/asi/#req-83">REQ-83</a>). For more information, see FR-27.</td>
+</tr>
+<tr>
+<td>EUDI-5</td>
+<td>Trusted lists and trust anchors</td>
+<td>EUDI</td>
+<td>○</td>
+<td>—</td>
+<td>The demo uses mock trust. The list on which <abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuers appear is open (<a href="../open-questions/#q-30">Q-30</a>).</td>
+</tr>
+<tr>
+<td>EUDI-6</td>
+<td>Attestation schemas and serialization (SD-JWT VC, mdoc)</td>
+<td>EUDI</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/pull/224">PR #224</a> (schemas published by the source, fixed per version)</td>
+<td>Each source publishes its schemas, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates and activates them (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>). An integrity reference binds the schema to the credential. <a href="../answered-questions/#q-20">Q-20</a> (closed) covers the claim shape for related-person data.</td>
+</tr>
+<tr>
+<td>EUDI-7</td>
+<td>Self-service access basis (subject = resource owner)</td>
+<td>EUDI</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L173"><code>engine.rego#L173</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0001.rego"><code>eud0001.rego</code></a></td>
+<td>The regime follows from the evidence (<a href="../../requirements/authorization/#req-74">REQ-74</a>). If a request carries no consent proof, it enters the <abbr title="Person Identification Data">PID</abbr> regime. The <abbr title="Person Identification Data">PID</abbr> regime has no positive evidence of its own (<a href="../findings/#f-70">F-70</a>, <a href="../../requirements/eudi-issuance/#req-45">REQ-45</a>).</td>
+</tr>
+<tr>
+<td>EUDI-8</td>
+<td>Thin channel adapter / protocol translation</td>
+<td>EUDI</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_metadata.go#L272"><code>source_metadata.go#L272</code></a> (query plan from the source description)</td>
+<td>The adapter cannot hold use-case knowledge: query, parameters, mapping, and offers come from the validated source description (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>, <a href="../../requirements/authorization/#req-44">REQ-44</a>). It projects with gbo-simple-v1. If a result is ambiguous, the adapter fails closed (<a href="../../decisions/0017-gbo-simple-v1/">ADR-0017</a>).</td>
+</tr>
+<tr>
+<td>EUDI-9</td>
+<td>Issuer role and liability (<abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> or <abbr title="Qualified Trust Service Provider">QTSP</abbr>)</td>
+<td>EUDI</td>
+<td>○</td>
+<td>—</td>
+<td>This is governance (<a href="../open-questions/#q-17">Q-17</a>). The reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues a test attestation after an <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification (<a href="../increments/#sl-28">SL-28</a>, part 13 of epic #336). Role and liability stay a governance matter.</td>
+</tr>
+<tr>
+<td>EUDI-10</td>
+<td>Shared authorization service for both routes</td>
+<td>EUDI</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/engine.rego#L173"><code>engine.rego#L173</code></a></td>
+<td>One <abbr title="The OpenID standard for the evaluation interface from PEP to PDP">AuthZEN</abbr> endpoint for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, EUDI issuance and the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route. The regime follows from the evidence (<a href="../../requirements/authorization/#req-74">REQ-74</a>). Approval in the wallet is not a legal basis (<a href="../findings/#f-83">F-83</a>).</td>
+</tr>
+<tr>
+<td>EUDI-11</td>
+<td>Related-person credential (subject of the claim is not the discloser)</td>
+<td>EUDI</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/eudi/eud0002.rego"><code>eud0002.rego</code></a>, <a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/brp-graphql-server"><code>brp-graphql-server</code></a></td>
+<td>A surviving partner discloses his <abbr title="Person Identification Data">PID</abbr> and gets the death certificate of the partner (<a href="../increments/#sl-43">SL-43</a>). The source fixes the relation, and the <abbr title="Policy Decision Point">PDP</abbr> limits the output fields. <a href="../../requirements/eudi-issuance/#req-57">REQ-57</a> prefers the relation as enforceable filters in the schema (<a href="https://github.com/ICTU/GBO-demo/issues/425">#425</a>). For more information, see <a href="../findings/#f-47">F-47</a>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="open-decisions">Open decisions (B-01 to B-19)<a class="headerlink" href="#open-decisions" title="Permanent link">&para;</a></h2>
+<p>Source: the <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">PSA decision register</a>.
+The status shows how far the demo tries out or follows the preferred
+direction of the PSA. Governance and organization decisions that the demo
+cannot try out have the status "—".</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Scope</th>
+<th>Status</th>
+<th>Evidence</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-01</a></td>
+<td>Governance of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> agreements</td>
+<td>Base</td>
+<td>—</td>
+<td>—</td>
+<td>PSA direction: FDS as the base, with GDI and domain governance. This is governance. For more information, see <a href="../answered-questions/#q-16">Q-16</a>.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-02</a></td>
+<td>API profile for source access</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/ftv-graphql-profile.md"><code>ftv-graphql-profile.md</code></a></td>
+<td>PSA direction: GraphQL, comply or explain. The demo uses GraphQL over <abbr title="Federated Service Connectivity">FSC</abbr> for all routes. The profile is a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> proposal in the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> working group (<a href="https://github.com/ICTU/GBO-demo/issues/331">#331</a>). For more information, see <a href="../open-questions/#q-14">Q-14</a>.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-03</a></td>
+<td>Service catalogue</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/sources-identity/#req-64">REQ-64</a></td>
+<td>PSA direction: federated content, with a common profile for central findability. EUDI and <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> are federated. <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> scopes are on the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> side, without a ceiling per use case (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>, <a href="../findings/#f-74">F-74</a>). The demo has no central findability.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-04</a></td>
+<td><abbr title="Policy Decision Point">PDP</abbr> placement</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/fsc-infra/docker-compose.yml#L773"><code>fsc-infra/docker-compose.yml#L773</code></a></td>
+<td>PSA direction: several variants under one <abbr title="Policy Enforcement Point">PEP</abbr>-<abbr title="Policy Decision Point">PDP</abbr> interface. Demo shortcut: one shared <abbr title="Policy Decision Point">PDP</abbr>. A <abbr title="Policy Decision Point">PDP</abbr> per source works with bundles (<a href="../increments/#sl-44">SL-44</a>). For more information, see <a href="../answered-questions/#q-02">Q-02</a> and <a href="../answered-questions/#q-10">Q-10</a>.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-05</a></td>
+<td>Policy governance</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/authorization/#rl-03">RL-03</a></td>
+<td>PSA direction: content ownership apart from technical management. The <abbr title="Policy Administration Point">PAP</abbr> splits read, write and publish (<a href="../increments/#sl-44">SL-44</a>). Management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-06</a></td>
+<td>Consent in <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="../../requirements/consent/#req-68">REQ-68</a></td>
+<td>PSA direction: a central or nationally coherent facility, anchored in law, with an equivalent alternative. The demo has a central register and portal. Missing: the alternative (<a href="../../requirements/admission/#av-15">AV-15</a>). For more information, see <a href="../answered-questions/#q-05">Q-05</a> and <a href="../open-questions/#q-13">Q-13</a>.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-07</a></td>
+<td>Pseudonymous identity</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/bsnk/bsnk.go#L65"><code>bsnk.go#L65</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/bron-sidecar/decryption/decryption.go#L76"><code>decryption.go#L76</code></a></td>
+<td>The register holds no <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../../requirements/pseudonymization/#req-69">REQ-69</a>). The demo follows the BSNk <abbr title="Polymorphic pseudonym">PP</abbr> model on a mock (<a href="../increments/#sl-51">SL-51</a>, <a href="../../requirements/pseudonymization/#req-80">REQ-80</a>, <a href="../../requirements/pseudonymization/#bsnk-01">BSNK-01</a> to <a href="../../requirements/pseudonymization/#bsnk-11">BSNK-11</a>, <a href="../findings/#f-75">F-75</a>). Open: recognition (<a href="../open-questions/#q-26">Q-26</a>), and a consumer pseudonym (<a href="../open-questions/#q-27">Q-27</a>, <a href="https://github.com/ICTU/GBO-demo/issues/478">#478</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-08</a></td>
+<td>Identity matching</td>
+<td>EUDI</td>
+<td>—</td>
+<td>—</td>
+<td>Not in v1: the <abbr title="Person Identification Data">PID</abbr> carries the <abbr title="Burgerservicenummer">BSN</abbr>, so no match is necessary (<a href="../open-questions/#q-18">Q-18</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-09</a></td>
+<td>Trust framework for private parties</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a></td>
+<td>PSA direction: FDS functions plus a legal and organizational framework. Demo: an admission register and <abbr title="Federated Service Connectivity">FSC</abbr> peers with certificates (<a href="../increments/#sl-45">SL-45</a>, <a href="../increments/#sl-49">SL-49</a>). The <a href="../../requirements/admission/#connection-conditions">connection conditions</a> are candidates for the framework. <a href="../answered-questions/#q-07">Q-07</a> and <a href="../answered-questions/#q-22">Q-22</a> give the answered direction. The PSA decision <a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-09</a> is open.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-10</a></td>
+<td>Logging and citizen access</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="../../requirements/logging-audit/#req-55">REQ-55</a>, <a href="../../requirements/logging-audit/#req-71">REQ-71</a>, <a href="../../requirements/logging-audit/#req-72">REQ-72</a></td>
+<td>PSA direction: logs stay decentral, correlation is federated. Open: the read route from <abbr title="Authorization Decision Log">ADL</abbr> to <abbr title="Logboek Dataverwerkingen">LDV</abbr> (<a href="../open-questions/#q-25">Q-25</a>) and the access model for the citizen (<a href="../findings-closed/#f-65">F-65</a>, <a href="../findings/#f-68">F-68</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-11</a></td>
+<td>Semantic governance</td>
+<td>Base</td>
+<td>○</td>
+<td>—</td>
+<td>The mapping is per source, without shared concepts (F4, S10). For more information, see <a href="../answered-questions/#q-11">Q-11</a>.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-12</a></td>
+<td><abbr title="Once-Only Technical System">OOTS</abbr> function boundaries</td>
+<td>Hook</td>
+<td>—</td>
+<td>—</td>
+<td>Not in v1 (PAT-B).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-13</a></td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> issuance model</td>
+<td>EUDI</td>
+<td>◐</td>
+<td><a href="../../requirements/eudi-issuance/#req-58">REQ-58</a></td>
+<td>The demo has a central issuance facility with a certificate set per source. Key management and seal are open (<a href="../open-questions/#q-17">Q-17</a>, <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a>). The issuer is the bronhouder or a designated body (<a href="../findings/#f-81">F-81</a>, <a href="../open-questions/#q-28">Q-28</a>).</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-14</a></td>
+<td><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</td>
+<td>EUDI</td>
+<td>◐</td>
+<td>see EUDI-2</td>
+<td>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> mock and the authorization server are two roles, each with its own keys. Neither is certified. Each source has one data service (<a href="../../requirements/asi/#req-94">REQ-94</a>, <a href="../findings/#f-89">F-89</a>), and each data service has a discovery record (<a href="../../requirements/asi/#req-99">REQ-99</a>, <a href="../findings/#f-91">F-91</a>). The interface and the seal are law from January 1, 2027 (<a href="../findings/#f-80">F-80</a>). <a href="../open-questions/#q-37">Q-37</a> covers the role of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-15</a></td>
+<td>Start of attestation issuance</td>
+<td>EUDI</td>
+<td>◐</td>
+<td>—</td>
+<td>PSA direction: several standardized start routes. The demo has one route: a QR code from the developer portal.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-16</a></td>
+<td><abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> translation layer</td>
+<td>Base</td>
+<td>○</td>
+<td>—</td>
+<td>Not in the demo: all sources use GraphQL.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-17</a></td>
+<td>Management of reference components</td>
+<td>Base</td>
+<td>—</td>
+<td>—</td>
+<td>Organization decision. The demo cannot try it out.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-18</a></td>
+<td>Report of errors or suspected inaccuracies</td>
+<td>Base</td>
+<td>—</td>
+<td>—</td>
+<td>Not in v1. The PSA does not describe it in detail.</td>
+</tr>
+<tr>
+<td><a href="https://ictu.github.io/GBO-PSA/main/vraagstukken/#besluitregister">B-19</a></td>
+<td>Representation and authority credentials</td>
+<td>Base</td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/integrator.md"><code>integrator.md</code></a></td>
+<td>First case: an integrator under <abbr title="Federated Service Connectivity">FSC</abbr> delegation. The decision uses the acting and the represented party (<a href="https://github.com/ICTU/GBO-demo/pull/464">PR #464</a>, <a href="../findings-closed/#f-73">F-73</a>, <a href="../../requirements/consent/#req-106">REQ-106</a>). <a href="../open-questions/#q-46">Q-46</a> covers the integrator in the proof, and <a href="../open-questions/#q-73">Q-73</a> covers citizen representation.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fr-dvtp">FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 (FR-01 to FR-39)<a class="headerlink" href="#fr-dvtp" title="Permanent link">&para;</a></h2>
+<p>Source: the functional requirements for <abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr>, v0.9. This version is a
+draft of July 6, 2026, and it is not public. FR-06 and FR-19 lapsed in
+v0.9. FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> is not in the
+document hierarchy of the GO. If they differ, the GO and the PSA lead.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Scope</th>
+<th>Status</th>
+<th>Evidence</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FR-01</td>
+<td>Citizen authentication with a recognized means</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="../../requirements/consent/#req-24">REQ-24</a></td>
+<td>The DigiD mock gives a token, and the backend takes the identity only from that token. Real DigiD and level of assurance are out of scope.</td>
+</tr>
+<tr>
+<td>FR-02</td>
+<td>Configuration-driven delegation check</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>○</td>
+<td>—</td>
+<td>The demo has no delegation check. FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 lets a service allow or exclude delegation (<a href="../../requirements/consent/#req-118">REQ-118</a>). For more information, see B-19.</td>
+</tr>
+<tr>
+<td>FR-03</td>
+<td>Authentication of the private service provider with eHerkenning</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>○</td>
+<td>—</td>
+<td>FR-03 is about the person who logs in for onboarding and management. The admission register has only a local operator. FR-33 and FR-34 cover system identity.</td>
+</tr>
+<tr>
+<td>FR-04</td>
+<td>Access through a trusted government domain</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/components/MijnOverheidLayout.tsx"><code>MijnOverheidLayout.tsx</code></a></td>
+<td>The consent screens are inside a MijnOverheid shell on their own origin, apart from the service provider (<a href="../increments/#sl-06a">SL-06a</a>, <a href="../increments/#sl-11">SL-11</a>).</td>
+</tr>
+<tr>
+<td>FR-05</td>
+<td>Consent details shown to the citizen (scope)</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx"><code>PortaalConsent.tsx</code></a></td>
+<td>The portal shows who, purpose, source, valid until, and a choice per data set. Criterion 5 (the citizen adjusts the validity within bounds) is not built (<a href="https://github.com/ICTU/GBO-demo/issues/380">#380</a>). <a href="../../requirements/consent/#req-117">REQ-117</a> covers plain language.</td>
+</tr>
+<tr>
+<td>FR-06</td>
+<td>Transparency about the integrator (lapsed)</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>—</td>
+<td>—</td>
+<td>Lapsed in v0.9. The integrator role is in FR-18 and FR-37.</td>
+</tr>
+<tr>
+<td>FR-07</td>
+<td>Understandable information (language level)</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/data/scopeGroups.ts"><code>scopeGroups.ts</code></a></td>
+<td>All texts are at language level B1. The citizen sees no technical terms.</td>
+</tr>
+<tr>
+<td>FR-08</td>
+<td>Acknowledgment of understanding (force to read)</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>○</td>
+<td>—</td>
+<td>The demo asks for no acknowledgment. When the citizen chooses one data set, the button becomes active. <a href="../../requirements/consent/#req-107">REQ-107</a> is the requirement, and <a href="https://github.com/ICTU/GBO-demo/issues/598">#598</a> tracks the build. <a href="../open-questions/#q-51">Q-51</a> asks what must be provable.</td>
+</tr>
+<tr>
+<td>FR-09</td>
+<td>Specific consent only</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="../../requirements/consent/#req-12">REQ-12</a></td>
+<td>Each consent is bound to a consumer, a service, and a data scope.</td>
+</tr>
+<tr>
+<td>FR-10</td>
+<td>Atomicity per indivisible data set</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="../../requirements/consent/#req-10">REQ-10</a></td>
+<td>The citizen gives consent per data set, as v0.9 asks (<a href="../answered-questions/#q-03">Q-03</a>). Missing: a fixed minimal mandatory set with a legal check (<a href="../open-questions/#q-45">Q-45</a>, <a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
+</tr>
+<tr>
+<td>FR-11</td>
+<td>Validity period (configurable)</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L138"><code>consent.rego#L138</code></a> (<code>valid_until</code> must equal <code>exp</code>)</td>
+<td>The validity is enforced and signed in the proof (<a href="../../requirements/consent/#req-19">REQ-19</a>, <a href="../../requirements/consent/#req-68">REQ-68</a>). Reuse within the validity conforms to v0.9 (<a href="../answered-questions/#q-04">Q-04</a>). Missing: a default per service, adjustment by the citizen (<a href="../open-questions/#q-13">Q-13</a>, <a href="https://github.com/ICTU/GBO-demo/issues/380">#380</a>), and the status "retrieved" (<a href="../open-questions/#q-42">Q-42</a>).</td>
+</tr>
+<tr>
+<td>FR-12</td>
+<td>Initiation from the private environment</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/pages/Start.tsx"><code>Start.tsx</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/lib/buildPortalUrl.ts"><code>buildPortalUrl.ts</code></a></td>
+<td>The mock service provider website redirects the citizen to the portal, with context (<a href="../../requirements/consent/#req-37">REQ-37</a>).</td>
+</tr>
+<tr>
+<td>FR-13</td>
+<td>Smooth transfer of context</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/lib/buildPortalUrl.ts"><code>buildPortalUrl.ts</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/useRedirectContext.ts"><code>useRedirectContext.ts</code></a></td>
+<td>The redirect carries the consumer <abbr title="Organisatie-identificatienummer">OIN</abbr>, the service ID, the purpose, the data sets, and the return address (<a href="../../requirements/consent/#req-37">REQ-37</a>). What the citizen sees must come from the registration (<a href="../../requirements/consent/#req-111">REQ-111</a>).</td>
+</tr>
+<tr>
+<td>FR-14</td>
+<td>Automatic return</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalBevestiging.tsx"><code>PortaalBevestiging.tsx</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/redirectValidation.ts#L26"><code>redirectValidation.ts#L26</code></a></td>
+<td>The portal returns the citizen with the signed proof in the URL fragment, without <abbr title="Burgerservicenummer">BSN</abbr>. Only the front end checks the return address, against fixed origins (<a href="https://github.com/ICTU/GBO-demo/issues/427">#427</a>, <a href="../../requirements/consent/#req-111">REQ-111</a>). The cancel button (shown as "Annuleren") does not return the citizen (<a href="https://github.com/ICTU/GBO-demo/issues/599">#599</a>, <a href="../open-questions/#q-44">Q-44</a>).</td>
+</tr>
+<tr>
+<td>FR-15</td>
+<td>Support for web and app</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td>—</td>
+<td>The demo supports web only. App switching is out of scope.</td>
+</tr>
+<tr>
+<td>FR-16</td>
+<td>Reliable identification of the requesting party and its authority</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../../requirements/authorization/#req-74">REQ-74</a></td>
+<td>Identity (<abbr title="Federated Service Connectivity">FSC</abbr> peer with mTLS), admission (<a href="../increments/#sl-45">SL-45</a>), and consent binding work. An integrator can act for a service provider (<a href="../../requirements/consent/#req-106">REQ-106</a>). Missing: admission per service (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
+</tr>
+<tr>
+<td>FR-17</td>
+<td>Fetch data only within a valid consent</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L268"><code>consent.rego#L268</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go"><code>consent_token.go</code></a></td>
+<td>The consumer sends a signed proof. The policy verifies it and checks the status online on every request (<a href="../../requirements/consent/#req-68">REQ-68</a>, <a href="../findings-closed/#f-61">F-61</a>).</td>
+</tr>
+<tr>
+<td>FR-18</td>
+<td>Integrator as processor</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/internal/onboarding/service.go#L50"><code>service.go#L50</code></a> (<code>acts_for</code>)</td>
+<td>The integrator calls under <abbr title="Federated Service Connectivity">FSC</abbr> delegation with a registered mandate, and the consent binds the service provider (<a href="../../requirements/consent/#req-106">REQ-106</a>, <a href="../findings-closed/#f-73">F-73</a>). Not enforced: the processor agreement and the rule of no storage (<a href="../../requirements/admission/#av-06">AV-06</a>). <a href="../open-questions/#q-46">Q-46</a> covers the integrator in the proof.</td>
+</tr>
+<tr>
+<td>FR-19</td>
+<td>Verification of received data (lapsed)</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>—</td>
+<td>—</td>
+<td>Lapsed in v0.9. Transparency goes through FR-20 and FR-31.</td>
+</tr>
+<tr>
+<td>FR-20</td>
+<td>Central overview of consents</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/MijnToestemmingenOverview.tsx"><code>MijnToestemmingenOverview.tsx</code></a></td>
+<td>The citizen has an overview under MijnOverheid with active and expired consents (<a href="../../requirements/consent/#req-40">REQ-40</a>, <a href="../../requirements/pseudonymization/#req-69">REQ-69</a>). Not built: the processing per consent from the <abbr title="Logboek Dataverwerkingen">LDV</abbr> (<a href="../open-questions/#q-25">Q-25</a>, <a href="../open-questions/#q-27">Q-27</a>) and the export (<a href="../../requirements/consent/#req-108">REQ-108</a>, <a href="../open-questions/#q-52">Q-52</a>).</td>
+</tr>
+<tr>
+<td>FR-21</td>
+<td>Detail view per transaction</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="../../requirements/consent/#req-38">REQ-38</a></td>
+<td>Each consent has a detail page. There is no transaction view.</td>
+</tr>
+<tr>
+<td>FR-22</td>
+<td>Status of the consent shown to the citizen</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="../../requirements/consent/#req-38">REQ-38</a></td>
+<td>The statuses active, expired, and revoked are visible. FR-<abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr> v0.9 also asks for "retrieved", and the demo does not have it (<a href="../findings/#f-19">F-19</a>, <a href="../findings/#f-97">F-97</a>, <a href="../open-questions/#q-42">Q-42</a>).</td>
+</tr>
+<tr>
+<td>FR-23</td>
+<td>Revocation of a valid consent</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal.go#L269"><code>portal.go#L269</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/components/consent-detail/RevokeModal.tsx"><code>RevokeModal.tsx</code></a></td>
+<td>Revoke works, and the next request gets a deny (<a href="../../requirements/consent/#req-14">REQ-14</a>). In demo v0.9.0, the backend also accepts a revoke of an expired or revoked consent (<a href="../../requirements/consent/#req-109">REQ-109</a>, <a href="https://github.com/ICTU/GBO-demo/issues/600">#600</a>).</td>
+</tr>
+<tr>
+<td>FR-24</td>
+<td>Revocation works forward: data already retrieved</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>✓</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/consent.rego#L268"><code>consent.rego#L268</code></a> (status per request)</td>
+<td>Revocation works forward and is possible while the consent is valid. Same gap as FR-23 (<a href="../../requirements/consent/#req-109">REQ-109</a>).</td>
+</tr>
+<tr>
+<td>FR-25</td>
+<td>Reference to GDPR rights</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>○</td>
+<td>—</td>
+<td>The user interface has no reference to these rights. <a href="../../requirements/consent/#req-120">REQ-120</a> and <a href="../../requirements/admission/#av-14">AV-14</a> give the requirement.</td>
+</tr>
+<tr>
+<td>FR-26</td>
+<td>Verification of consent at the source</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="../../requirements/authorization/#req-04">REQ-04</a>, <a href="../../requirements/consent/#req-68">REQ-68</a></td>
+<td>Criteria 1 to 3 run at the source. The <abbr title="Policy Decision Point">PDP</abbr> behind the source Inway verifies the proof and checks the scope. A request without a valid consent gets a deny (<a href="../findings-closed/#f-06">F-06</a> closed). Open: the check does not use the service catalogue (<a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
+</tr>
+<tr>
+<td>FR-27</td>
+<td>Sealing of personal data</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>○</td>
+<td>—</td>
+<td>The demo has no qualified seal. <a href="../open-questions/#q-75">Q-75</a> covers one seal for each source response.</td>
+</tr>
+<tr>
+<td>FR-28</td>
+<td>Connection through common source access</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td>—</td>
+<td>This is a meta requirement, and the chain exists.</td>
+</tr>
+<tr>
+<td>FR-29</td>
+<td>Digital registration and onboarding</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/dvtp-onboarding-register"><code>dvtp-onboarding-register</code></a></td>
+<td>The operator can admit, pause, widen and reconnect a service provider without a policy change (<a href="../../requirements/admission/#req-61">REQ-61</a>). Missing: the applicant side (<a href="../open-questions/#q-74">Q-74</a>). <a href="../answered-questions/#q-22">Q-22</a> answers the grounds.</td>
+</tr>
+<tr>
+<td>FR-30</td>
+<td>Validation of connection conditions</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L171"><code>autosign.rego#L171</code></a> (reason codes)</td>
+<td>The demo validates at the contract proposal (<a href="../../requirements/admission/#req-62">REQ-62</a>) and at source activation (<a href="../../requirements/sources-identity/#req-65">REQ-65</a>, <a href="../findings-closed/#f-58">F-58</a>). Missing: the conditions themselves (<a href="../../requirements/admission/#connection-conditions">connection conditions</a>) and criterion 3 (status "trusted" visible to the citizen).</td>
+</tr>
+<tr>
+<td>FR-31</td>
+<td>Compliance and auditing</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/ldv-logboek"><code>ldv-logboek</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dev-portal-backend/adl.go"><code>adl.go</code></a></td>
+<td>Each system has an <abbr title="Logboek Dataverwerkingen">LDV</abbr> logbook (<a href="https://github.com/ICTU/GBO-demo/pull/366">PR #366</a>), the <abbr title="Authorization Decision Log">ADL</abbr> is the audit source (<a href="https://github.com/ICTU/GBO-demo/pull/373">PR #373</a>), and the admission register can pause a party. Open: a chain-wide index (<a href="../findings/#f-68">F-68</a>), audit guarantees (<a href="../findings-closed/#f-07">F-07</a>), and suspension that ends contracts (<a href="../../requirements/admission/#req-110">REQ-110</a>, <a href="../open-questions/#q-53">Q-53</a>).</td>
+</tr>
+<tr>
+<td>FR-32</td>
+<td>Process for setting up data needs</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/gbo/rules/dvtp/dvt0001.rego"><code>dvt0001.rego</code></a></td>
+<td>Scopes are configurable. There is no legal ceiling per use case and no link to service providers (<a href="../findings/#f-74">F-74</a>, <a href="https://github.com/ICTU/GBO-demo/issues/382">#382</a>).</td>
+</tr>
+<tr>
+<td>FR-33</td>
+<td>Acquisition and registration of a connection certificate</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="../../requirements/eudi-issuance/#req-58">REQ-58</a>, <a href="../../requirements/sources-identity/#req-67">REQ-67</a>, <a href="../../requirements/admission/#av-04">AV-04</a></td>
+<td>Certificate material is registered, validated, and decisive. Missing: connection certificates of consumers, and the model for issue, rotation, and revocation (<a href="../findings-closed/#f-60">F-60</a>, <a href="../answered-questions/#q-07">Q-07</a>, <a href="https://github.com/ICTU/GBO-demo/issues/225">#225</a>).</td>
+</tr>
+<tr>
+<td>FR-34</td>
+<td>Identification of the requesting party during use</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="../../requirements/authorization/#req-74">REQ-74</a></td>
+<td>The runtime identity comes from mTLS and the contract. There is no regime header and no default regime (<a href="../increments/#sl-48">SL-48</a>). Open: criterion 1, because nothing proves that the browser start comes from the service provider (<a href="https://github.com/ICTU/GBO-demo/issues/427">#427</a>, <a href="../../requirements/consent/#req-111">REQ-111</a>, <a href="../open-questions/#q-60">Q-60</a>).</td>
+</tr>
+<tr>
+<td>FR-35</td>
+<td><abbr title="Burgerservicenummer">BSN</abbr>-free delivery to a private service provider</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/consent_token.go#L47"><code>consent_token.go#L47</code></a></td>
+<td>The register stores no <abbr title="Burgerservicenummer">BSN</abbr>. The consumer gets only a placeholder and no identifier (<a href="../increments/#sl-51">SL-51</a>). The values come from a BSNk mock. The demo does not use the real BSNk <abbr title="Polymorphic pseudonym">PP</abbr> (<a href="../open-questions/#q-01">Q-01</a>, <a href="../open-questions/#q-26">Q-26</a>).</td>
+</tr>
+<tr>
+<td>FR-36</td>
+<td>Voluntariness and an equivalent alternative</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>○</td>
+<td>—</td>
+<td>The consent screen does not say that the route is voluntary and names no alternative (<a href="../../requirements/admission/#av-15">AV-15</a>).</td>
+</tr>
+<tr>
+<td>FR-37</td>
+<td>Onboarding of an integrator or software party</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dvtp-onboarding-register/internal/onboarding/service.go#L50"><code>service.go#L50</code></a>, <a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/policies/fsc/autosign.rego#L171"><code>autosign.rego#L171</code></a></td>
+<td>The register lists the integrator with its mandates. If a delegated contract has no registration, it stays proposed (<code>DELEGATION_NOT_REGISTERED</code>) (<a href="../../requirements/consent/#req-106">REQ-106</a>, <a href="../../requirements/admission/#av-06">AV-06</a>). The integrator is not in the service catalogue, and there is no digital onboarding.</td>
+</tr>
+<tr>
+<td>FR-38</td>
+<td>Multi-source scope of a consent</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>○</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/dienstverlener-backend/main.go#L83"><code>main.go#L83</code></a> (one source per backend)</td>
+<td>The demo does not try out one consent with a rule per bronhouder. Each consumer backend calls one source (BD or LVG). For more information, see <a href="../findings/#f-68">F-68</a> and <a href="../open-questions/#q-76">Q-76</a>.</td>
+</tr>
+<tr>
+<td>FR-39</td>
+<td>Central policy management and distribution</td>
+<td><abbr title="Delen van gegevens via Toestemming met Private dienstverleners">DvTP</abbr></td>
+<td>◐</td>
+<td><a href="https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/openftv-manager/bundles/gbo-pdp.yaml"><code>gbo-pdp.yaml</code></a></td>
+<td>The demo has a <abbr title="Policy Administration Point">PAP</abbr> and bundles with split roles (<a href="../increments/#sl-44">SL-44</a>). It has no signed bundles and no policy authority. Management stays with each bronhouder (<a href="../answered-questions/#q-21">Q-21</a>).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="historical">Reference architecture (historical)<a class="headerlink" href="#historical" title="Permanent link">&para;</a></h2>
+<p>Two earlier sources of this matrix were the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> reference architecture
+v0.6.2 and the PSA open issues of April 2026 (VR-1 to VR-8). The
+reference architecture is archived and was never published. Its
+decisions and gaps became TO architecture decisions. The PSA decision
+register replaced the VR issues. The summary does not count these rows.</p>
+<p>Each historical row gives its last status in the analysis and the TO
+decision that it was ported to:</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Last status</th>
+<th>Ported to</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CDD-1</td>
+<td>GraphQL over REST</td>
+<td>✓</td>
+<td><a href="../../decisions/0001-graphql-source-access/">ADR-0001</a></td>
+<td>The <abbr title="Policy Decision Point">PDP</abbr> decides per field on the parsed query. <a href="../open-questions/#q-14">Q-14</a> covers pre-registered queries.</td>
+</tr>
+<tr>
+<td>CDD-2</td>
+<td>Access basis: consent (<abbr title="Policy Information Point">PIP</abbr>) or legal basis (bundle)</td>
+<td>◐</td>
+<td><a href="../../decisions/0006-consent-register-as-pip/">ADR-0006</a> → <a href="../../decisions/0032-consent-proof/">ADR-0032</a>, <a href="../../decisions/0031-regime-from-evidence/">ADR-0031</a></td>
+<td>The path follows from the evidence (<a href="../../requirements/authorization/#req-74">REQ-74</a>). A legal-basis path is out of scope.</td>
+</tr>
+<tr>
+<td>CDD-3</td>
+<td>Consent model: multi-source, service catalogue, integrator</td>
+<td>◐</td>
+<td><a href="../../decisions/0008-dienstencatalogus-ceiling/">ADR-0008</a> → <a href="../../decisions/0009-closed-world-rules/">ADR-0009</a>, <a href="../../decisions/0034-integrator-delegation/">ADR-0034</a></td>
+<td>The data model is multi-source, but each request reaches one source. An integrator acts by mandate (<a href="../../requirements/consent/#req-106">REQ-106</a>).</td>
+</tr>
+<tr>
+<td>CDD-4</td>
+<td>BSNk <abbr title="Polymorphic pseudonym">PP</abbr> for pseudonymization</td>
+<td>✓</td>
+<td><a href="../../decisions/0005-bsnk-pp/">ADR-0005</a>, <a href="../../decisions/0010-pep-bsn-resolution/">ADR-0010</a> → <a href="../../decisions/0011-sidecar-pseudonym-resolution/">ADR-0011</a> → <a href="../../decisions/0033-gateway-decrypts-after-allow/">ADR-0033</a></td>
+<td>The demo calls BSNk only at the consent, and the source decrypts (<a href="../increments/#sl-51">SL-51</a>). BSNk is a mock.</td>
+</tr>
+<tr>
+<td>CDD-5</td>
+<td>Five-factor authorization, federated <abbr title="Policy Decision Point">PDP</abbr></td>
+<td>◐</td>
+<td><a href="../../decisions/0004-federated-authorization/">ADR-0004</a></td>
+<td>Organization identity: mTLS, no certificate-bound token. Organization permission: admission and contract. Access basis: consent. Scope: ✓. Constraint: the subject is a placeholder from the proof (<a href="../../requirements/pseudonymization/#req-79">REQ-79</a>). Request validity: only presence checks. The demo has one shared <abbr title="Policy Decision Point">PDP</abbr>.</td>
+</tr>
+<tr>
+<td>CDD-6</td>
+<td><abbr title="Federated Service Connectivity">FSC</abbr>-primary connectivity</td>
+<td>◐</td>
+<td><a href="../../decisions/0003-fsc-connectivity/">ADR-0003</a></td>
+<td>All routes run over OpenFSC with mTLS. The <code>sector-pip</code> is removed (<a href="https://github.com/ICTU/GBO-demo/issues/378">#378</a>).</td>
+</tr>
+<tr>
+<td>CDD-7</td>
+<td>AS4 bridge for SDG-<abbr title="Once-Only Technical System">OOTS</abbr></td>
+<td>—</td>
+<td><a href="../../decisions/0020-as4-bridge-for-oots/">ADR-0020</a></td>
+<td>Not in v1.</td>
+</tr>
+<tr>
+<td>RAGAP-1</td>
+<td>Authorization policy lifecycle</td>
+<td>◐</td>
+<td><a href="../../decisions/0021-central-pap-signed-bundles/">ADR-0021</a></td>
+<td>The demo has bundles, versions, and retirement (<a href="../increments/#sl-44">SL-44</a>). Open: validation before activation (<a href="../findings/#f-52">F-52</a>).</td>
+</tr>
+<tr>
+<td>RAGAP-2</td>
+<td>Identity convergence and <abbr title="Burgerservicenummer">BSN</abbr> pseudonymization</td>
+<td>◐</td>
+<td><a href="../../decisions/0023-identity-convergence/">ADR-0023</a></td>
+<td>The path has pseudonymization (<a href="../../requirements/pseudonymization/#req-80">REQ-80</a>). The demo does not model convergence of sector pseudonyms.</td>
+</tr>
+<tr>
+<td>RAGAP-3</td>
+<td>Semantic mapping</td>
+<td>○</td>
+<td><a href="../../decisions/0024-canonical-semantic-models/">ADR-0024</a></td>
+<td>The demo has no canonical model.</td>
+</tr>
+<tr>
+<td>RAGAP-4</td>
+<td>GraphQL standardization within FDS</td>
+<td>◐</td>
+<td><a href="../../decisions/0025-graphql-fds-datadienst/">ADR-0025</a></td>
+<td>The GraphQL profile is a <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> proposal in the <abbr title="Federatieve Toegangsverlening">OpenFTV</abbr> working group (<a href="https://github.com/ICTU/GBO-demo/issues/331">#331</a>).</td>
+</tr>
+<tr>
+<td>RAGAP-5</td>
+<td>Traceability correlation</td>
+<td>✓</td>
+<td><a href="../../decisions/0026-ldv-integration/">ADR-0026</a>, <a href="../../decisions/0035-w3c-trace-context/">ADR-0035</a></td>
+<td>One trace ID per request (<a href="../../requirements/logging-audit/#req-55">REQ-55</a>).</td>
+</tr>
+<tr>
+<td>RAGAP-6</td>
+<td>Bronhouder onboarding toolkit</td>
+<td>—</td>
+<td><a href="../../decisions/0027-onboarding-toolkit/">ADR-0027</a></td>
+<td>Not in v1. Source metadata and activation cover a part of it (<a href="../increments/#sl-46">SL-46</a>).</td>
+</tr>
+<tr>
+<td>RAGAP-7</td>
+<td><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</td>
+<td>—</td>
+<td><a href="../../decisions/0028-pubeaa-productization/">ADR-0028</a></td>
+<td>The demo built issuance anyway (EUDI-1).</td>
+</tr>
+<tr>
+<td>RAGAP-8</td>
+<td>Authentic Source Interface</td>
+<td>—</td>
+<td><a href="../../decisions/0029-authentic-source-interface/">ADR-0029</a> → <a href="../../decisions/0037-asi-oauth-front-door/">ADR-0037</a></td>
+<td>Built in <a href="../increments/#sl-28">SL-28</a> (EUDI-2).</td>
+</tr>
+<tr>
+<td>VR-1</td>
+<td>Identification and authentication of private parties</td>
+<td>◐</td>
+<td>B-09, B-19</td>
+<td>See the <a href="#open-decisions">open decisions</a>.</td>
+</tr>
+<tr>
+<td>VR-2</td>
+<td>Authorization central or distributed</td>
+<td>◐</td>
+<td>B-04, B-05</td>
+<td>See the <a href="#open-decisions">open decisions</a>.</td>
+</tr>
+<tr>
+<td>VR-3</td>
+<td>Citizen identification and the <abbr title="Burgerservicenummer">BSN</abbr></td>
+<td>◐</td>
+<td>B-07, B-08</td>
+<td>See the <a href="#open-decisions">open decisions</a>.</td>
+</tr>
+<tr>
+<td>VR-4</td>
+<td>Trust framework</td>
+<td>◐</td>
+<td>B-09</td>
+<td>See the <a href="#open-decisions">open decisions</a>.</td>
+</tr>
+<tr>
+<td>VR-5</td>
+<td>Consent facility SDG-<abbr title="Once-Only Technical System">OOTS</abbr></td>
+<td>—</td>
+<td>B-12</td>
+<td>Not in v1.</td>
+</tr>
+<tr>
+<td>VR-6</td>
+<td>Qualified EAA</td>
+<td>—</td>
+<td>B-13, B-14, B-15</td>
+<td>See the <a href="#open-decisions">open decisions</a>.</td>
+</tr>
+<tr>
+<td>VR-7</td>
+<td>Central components</td>
+<td>◐</td>
+<td>B-04, B-06, B-13, B-14, B-16</td>
+<td><a href="../answered-questions/#q-10">Q-10</a> (answered) covers which functions must be central.</td>
+</tr>
+<tr>
+<td>VR-8</td>
+<td>Transformation architecture</td>
+<td>◐</td>
+<td>B-16, B-12, B-11</td>
+<td>The source describes its mapping, and <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> validates it (<a href="../../requirements/sources-identity/#req-64">REQ-64</a>). There is no canonical model.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Requirements: each row links its requirements.</li>
+<li>Findings: each row links its findings. For all findings, see
+  <a href="../findings/">Findings</a>.</li>
+<li>Open questions: each row links its open questions. For all questions,
+  see <a href="../open-questions/">Open questions</a>.</li>
+<li>Demo increments: each row links its increments. For all increments, see
+  <a href="../increments/">Demo increments</a>.</li>
+</ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Terug naar boven
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.integrate", "content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Gekopieerd naar klembord", "clipboard.copy": "Kopi\u00ebren naar klembord", "search.result.more.one": "1 extra overeenkomst op deze pagina", "search.result.more.other": "# extra overeenkomsten op deze pagina", "search.result.none": "Geen overeenkomende documenten", "search.result.one": "1 overeenkomende document", "search.result.other": "# overeenkomende documenten", "search.result.placeholder": "Let op: er wordt alleen gezocht binnen dit documentatie-onderdeel. Om in andere onderdelen te zoeken: ga via het hoofdmenu eerst naar het onderdeel en voer dan de zoekterm in.", "search.result.term.missing": "Ontbreekt", "select.version": "Selecteer versie"}, "version": {"alias": true, "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascript/mermaid-init.js"></script>
+      
+        <script src="../../javascript/print.js"></script>
+      
+        <script src="../../javascript/print-site-toc-fix.js"></script>
+      
+    
+  </body>
+</html>
