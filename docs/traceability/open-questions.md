@@ -1875,3 +1875,34 @@ There is no working assumption, because the demo has no OOTS route.
     - **Current working assumption**: None. The demo has no OOTS route.
     - **Related**: [REQ-04](../requirements/authorization.md#req-04), [REQ-44](../requirements/authorization.md#req-44), [REQ-46](../requirements/sources-identity.md#req-46), [REQ-74](../requirements/authorization.md#req-74), [REQ-124](../requirements/eudi-issuance.md#req-124), [ADR 0031](../decisions/0031-regime-from-evidence.md), [ADR 0020](../decisions/0020-as4-bridge-for-oots.md), [Q-64](#q-64), [Q-67](#q-67).
     - **History**: this question had the number Q-77 before.
+
+### Q-83: Which authorization server identifies the citizen when an attestation is issued with the authorization code flow? {#q-83}
+
+- **Status**: open
+
+HAIP 1.0 requires the authorization code flow for issuance. In that
+flow, an authorization server identifies the citizen and records
+consent, instead of the citizen sharing the PID with the issuer.
+OpenID4VCI 1.0 leaves open how that server identifies the citizen.
+ETSI TS 119 478 covers only verification for QTSPs. GBO already
+plans an authorization server for the ASI that identifies the citizen
+and shows a request page per source. The question is which
+authorization server identifies the citizen for issuance, and what that
+means for the requirements that assume only a PID disclosure.
+
+??? note "Options, working assumption and links"
+
+    - **Forum**: tech lead. PSA [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
+    - **Question**: [HAIP 1.0](https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html) section 4 says that the wallet and the credential issuer must support the authorization code flow. [OpenID4VCI 1.0](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html) section 3 leaves the authentication of the citizen to the authorization server. One example the specification gives is a credential presentation.
+
+        1. Which authorization server identifies the citizen and records consent for issuance with the authorization code flow?
+        2. If the authorization server of the ASI also serves issuance: which clients and resources does it accept? [REQ-88](../requirements/asi.md#req-88) and [REQ-89](../requirements/asi.md#req-89) admit only clients with the entitlement `QEAA_Provider`.
+        3. [REQ-45](../requirements/eudi-issuance.md#req-45) takes the subject of a source query only from a verified PID disclosure. Which identification replaces it in this flow, and which identification means count ([Q-36](#q-36))?
+
+    - **Why the demo cannot answer it**: It is a choice about components and responsibilities: which party identifies the citizen and records consent for issuance. The demo can build each option, but cannot choose between them.
+    - **Options**:
+        - (a) The issuer has its own authorization server, with its own login.
+        - (b) The authorization server of the ASI is also the authorization server of the issuer. The wallet sends its authorization request and token request there.
+        - (c) The issuer keeps its own authorization server toward the wallet, and is an OAuth client of the authorization server of the ASI. The citizen logs in and consents there. This is the proposal: one place where the citizen logs in and consents per source, in the same pattern as ETSI TS 119 478.
+    - **Current working assumption**: None. The TO describes issuance only after a PID disclosure ([ADR 0018](../decisions/0018-eudi-disclosure-issuance.md)).
+    - **Related**: [Q-28](#q-28), [Q-36](#q-36), [Q-37](#q-37), [REQ-45](../requirements/eudi-issuance.md#req-45), [REQ-88](../requirements/asi.md#req-88), [REQ-89](../requirements/asi.md#req-89), [REQ-91](../requirements/asi.md#req-91), [ADR 0018](../decisions/0018-eudi-disclosure-issuance.md), [ADR 0037](../decisions/0037-asi-oauth-front-door.md).
