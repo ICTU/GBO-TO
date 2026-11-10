@@ -1875,3 +1875,34 @@ There is no working assumption, because the demo has no OOTS route.
     - **Current working assumption**: None. The demo has no OOTS route.
     - **Related**: [REQ-04](../requirements/authorization.md#req-04), [REQ-44](../requirements/authorization.md#req-44), [REQ-46](../requirements/sources-identity.md#req-46), [REQ-74](../requirements/authorization.md#req-74), [REQ-124](../requirements/eudi-issuance.md#req-124), [ADR 0031](../decisions/0031-regime-from-evidence.md), [ADR 0020](../decisions/0020-as4-bridge-for-oots.md), [Q-64](#q-64), [Q-67](#q-67).
     - **History**: this question had the number Q-77 before.
+
+### Q-82: May the authorization server offer wallet login on another device, where it has no session binding? {#q-82}
+
+- **Status**: open
+
+When the authorization server identifies the citizen with the EUDI
+wallet on the same device, the wallet returns the browser with a code.
+The server then checks that the presentation belongs to the session that
+asked for it ([REQ-102](../requirements/asi.md#req-102)). With a wallet
+on another device, the browser of the wallet does not have that session,
+so the check is not possible. HAIP 1.0 therefore recommends the
+same-device flow only, unless the verifier does not rely on session
+binding for phishing resistance. The question is whether GBO accepts the
+other-device flow, for every route that logs in at the authorization
+server.
+
+??? note "Options, working assumption and links"
+
+    - **Forum**: tech lead and security officer.
+    - **Question**: [OpenID4VP 1.0](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) section 14.2 describes session fixation for response mode `direct_post`. The protection with a response code works only on the same device. [HAIP 1.0](https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html) section 5.1 makes the same-device flow mandatory and recommends using only that flow.
+
+        1. Does the authorization server offer wallet login on another device?
+        2. If so, for which routes (verification for a QTSP, issuance of attestations), and with which measures that limit the risk?
+
+    - **Why the demo cannot answer it**: It is a risk decision: login from a laptop against resistance to phishing. The demo can build each option, but cannot weigh them.
+    - **Options**:
+        - (a) Same device only, as HAIP recommends. A citizen who starts on a laptop continues on the phone.
+        - (b) Also another device, with the risk accepted and limited, for example by a short validity and single use of the request.
+        - (c) Another device only through the W3C Digital Credentials API (HAIP 1.0 section 5.2), where wallet and browser support it. Until then, same device only.
+    - **Current working assumption**: Option b, as in the [runtime view of ASI verification](../runtime/asi-verification.md).
+    - **Related**: [REQ-102](../requirements/asi.md#req-102), [F-93](findings.md#f-93), [Q-18](#q-18), [Q-40](#q-40), [R28](../risks.md#r28).

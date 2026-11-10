@@ -383,7 +383,9 @@ The ASI route in gbo-demo v0.9.0 has these properties and gaps:
   cross-device route, another phone can scan the QR code
   ([F-93](../traceability/findings.md#f-93),
   [Q-40](../traceability/open-questions.md#q-40),
-  [E6](../traceability/standards-feedback.md#e6)).
+  [E6](../traceability/standards-feedback.md#e6)). Whether the
+  authorization server offers the cross-device route at all is open
+  ([Q-82](../traceability/open-questions.md#q-82)).
 - **The BSN travels in two places where it is not needed.** The QTSP can read the BSN
   in the token ([F-86](../traceability/findings.md#f-86),
   [#595](https://github.com/ICTU/GBO-demo/issues/595)). The PDP input and
@@ -512,7 +514,8 @@ Demo v0.9.0 does not build these parts of the ASI route:
   [Q-64](../traceability/open-questions.md#q-64),
   [Q-65](../traceability/open-questions.md#q-65),
   [Q-66](../traceability/open-questions.md#q-66),
-  [Q-67](../traceability/open-questions.md#q-67)
+  [Q-67](../traceability/open-questions.md#q-67),
+  [Q-82](../traceability/open-questions.md#q-82)
 - Standards feedback: [E1](../traceability/standards-feedback.md#e1),
   [E2](../traceability/standards-feedback.md#e2),
   [E3](../traceability/standards-feedback.md#e3),
