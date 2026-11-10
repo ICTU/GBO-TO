@@ -65,6 +65,7 @@ These decisions are proposed:
 | [0041](0041-asi-seal-format.md) | Seal format of ASI results | [REQ-83](../requirements/asi.md#req-83) | [Q-32](../traceability/open-questions.md#q-32) |
 | [0042](0042-asi-attribute-token-binding.md) | Optional per-attribute token binding for ASI tokens | [REQ-103](../requirements/asi.md#req-103) | [Q-33](../traceability/open-questions.md#q-33) |
 | [0043](0043-identifiers-out-of-pdp-input.md) | Keep identifiers out of the PDP input instead of masking decision logs | [REQ-60](../requirements/logging-audit.md#req-60) | Demo [#368](https://github.com/ICTU/GBO-demo/issues/368) |
+| [0044](0044-issuance-flows.md) | Issuance offers the authorization code flow, and pre-auth only after identification in the same session | [REQ-45](../requirements/eudi-issuance.md#req-45) | Open question on the authorization server for issuance |
 
 ## Superseded
 
