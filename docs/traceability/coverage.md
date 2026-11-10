@@ -147,6 +147,7 @@ Each register entry has one row. The row names the TO pages and the decisions th
 | [REQ-122](../requirements/consent.md#req-122) | The citizen gets a confirmation of their choice | draft | [DvTP: the citizen gives consent](../runtime/dvtp-consent.md) |
 | [REQ-123](../requirements/admission.md#req-123) | Every change to an admission, mandate, or activation is traceable | draft | [Component catalog](../building-blocks/components.md), [Source configuration](../building-blocks/gbo-basis/source-configuration.md), [Authorization](../concepts/authorization.md), [Source onboarding](../concepts/source-onboarding.md), [ADR-0015](../decisions/0015-contract-acceptance-by-policy.md), [Admission and activation](../runtime/admission.md) |
 | [REQ-124](../requirements/eudi-issuance.md#req-124) | For every attestation, the versions of the mapping, the source schema, and the attestation schema are traceable | draft | [OOTS channel](../building-blocks/oots.md), [Source onboarding](../concepts/source-onboarding.md), [ADR-0017](../decisions/0017-gbo-simple-v1.md), [ADR-0024](../decisions/0024-canonical-semantic-models.md), [Design-level scenarios](../runtime/design-level.md), [EUDI issuance: the PuB-EAA route](../runtime/eudi-issuance.md) |
+| [REQ-125](../requirements/eudi-issuance.md#req-125) | Issuance to the EUDI wallet follows the EU issuance profile, and a deviation for one wallet stays documented and separate | draft | — |
 
 ### Guidelines
 
