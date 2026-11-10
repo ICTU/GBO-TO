@@ -1880,20 +1880,21 @@ There is no working assumption, because the demo has no OOTS route.
 
 - **Status**: open
 
-HAIP 1.0 requires the authorization code flow for issuance. In that
-flow, an authorization server identifies the citizen and records
-consent, instead of the citizen sharing the PID with the issuer.
-OpenID4VCI 1.0 leaves open how that server identifies the citizen.
-ETSI TS 119 478 covers only verification for QTSPs. GBO already
-plans an authorization server for the ASI that identifies the citizen
-and shows a request page per source. The question is which
-authorization server identifies the citizen for issuance, and what that
-means for the requirements that assume only a PID disclosure.
+In the authorization code flow, an authorization server identifies the
+citizen and records consent, instead of the citizen sharing the PID with
+the issuer. HAIP 1.0 requires this flow, while ETSI TS 119 472-3 asks an
+issuer to offer at least one of the two flows. OpenID4VCI 1.0 leaves open
+how the authorization server identifies the citizen, and ETSI TS 119 478
+covers only verification for QTSPs. GBO already plans an authorization
+server for the ASI that identifies the citizen and shows a request page
+per source. The question is which authorization server identifies the
+citizen if GBO offers this flow. It also asks what that means for the
+requirements that assume only a PID disclosure.
 
 ??? note "Options, working assumption and links"
 
     - **Forum**: tech lead. PSA [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
-    - **Question**: [HAIP 1.0](https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html) section 4 says that the wallet and the credential issuer must support the authorization code flow. [OpenID4VCI 1.0](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html) section 3 leaves the authentication of the citizen to the authorization server. One example the specification gives is a credential presentation.
+    - **Question**: [HAIP 1.0](https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html) section 4 says that the wallet and the credential issuer must support the authorization code flow. [ETSI TS 119 472-3](https://www.etsi.org/deliver/etsi_ts/119400_119499/11947203/01.01.01_60/ts_11947203v010101p.pdf), which Implementing Regulation (EU) 2026/1731 applies to the issuance interface, asks the wallet to support both flows (GEN-REQ-4.1-03). It asks an issuer to implement at least one of them (GEN-REQ-4.1-04). [OpenID4VCI 1.0](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html) section 3 leaves the authentication of the citizen to the authorization server. One example the specification gives is a credential presentation.
 
         1. Which authorization server identifies the citizen and records consent for issuance with the authorization code flow?
         2. If the authorization server of the ASI also serves issuance: which clients and resources does it accept? [REQ-88](../requirements/asi.md#req-88) and [REQ-89](../requirements/asi.md#req-89) admit only clients with the entitlement `QEAA_Provider`.
