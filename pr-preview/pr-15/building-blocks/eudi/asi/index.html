@@ -1,0 +1,5203 @@
+
+<!doctype html>
+<html lang="nl" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ictu.github.io/GBO-TO/building-blocks/eudi/asi/">
+      
+      
+        <link rel="prev" href="../pubeaa/">
+      
+      
+        <link rel="next" href="../../oots/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>ASI provider - Gemeenschappelijke Bronontsluiting</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/pdf.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#asi-provider" class="md-skip">
+          Ga naar inhoud
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+  
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+      href="../../.."
+      title="Gemeenschappelijke Bronontsluiting"
+      class="md-header__button md-logo"
+      aria-label="Gemeenschappelijke Bronontsluiting"
+      data-md-component="logo"
+    >
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Gemeenschappelijke Bronontsluiting
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ASI provider
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+
+    <!-- User preference: color palette -->
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Knop voor PDF Download -->
+    <a href="javascript:void(0)"
+       onclick="downloadPDF('../../../print_page/')"
+       title="Download PDF"
+       class="md-header__button md-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5zm5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5zm4-3H17v1h1.5V13H17v2h-1.5V9h3zm-6.5 0h1v3h-1zm-5 0h1v1H7z"/></svg>
+    </a>
+
+    <!-- Button to open search modal -->
+    
+      
+
+      <!-- Check if search is actually enabled - see https://t.ly/DT_0V -->
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+
+        <!-- Search interface -->
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Zoeken" placeholder="Zoeken" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Zoeken">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Leegmaken" aria-label="Leegmaken" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Zoeken initialiseren
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+
+    <!-- Repository information -->
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ICTU/GBO-TO" title="Ga naar repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ictu/gbo-to
+  </div>
+</a>
+      </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Gemeenschappelijke Bronontsluiting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO/latest/context" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Context
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO-GO/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Globaal Ontwerp
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO-PSA/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projectstartarchitectuur
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+  Technisch Ontwerp
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../requirements/" class="md-tabs__link">
+          
+  
+  
+  Technische Requirements
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://ictu.github.io/GBO-Semantiek/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Semantiek
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://gbo.simulatie.datastelsel.nl/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Demo
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigatie" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Gemeenschappelijke Bronontsluiting" class="md-nav__button md-logo" aria-label="Gemeenschappelijke Bronontsluiting" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Gemeenschappelijke Bronontsluiting
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ICTU/GBO-TO" title="Ga naar repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ictu/gbo-to
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemeenschappelijke Bronontsluiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO/latest/context" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO-GO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Globaal Ontwerp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO-PSA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projectstartarchitectuur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technisch Ontwerp
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Technisch Ontwerp
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction and goals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../constraints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constraints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context and scope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../solution-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building block view
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Building block view
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_2" id="__nav_5_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GBO Basis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GBO Basis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gbo-basis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GBO Basis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gbo-basis/authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gbo-basis/source-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gbo-basis/source-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gbo-basis/policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policy rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gbo-basis/records/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Records
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_3" id="__nav_5_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP channel
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DvTP channel
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dvtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP channel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dvtp/consent-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consent facility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_4" id="__nav_5_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI wallet channel
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EUDI wallet channel
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI wallet channel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pubeaa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PuB-EAA provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI provider
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhoudsopgave">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhoudsopgave
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#components-and-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Components and interfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trust-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trust boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-verify-and-retrieve-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The verify and retrieve flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-data-service-per-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One data service per source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributes-described-by-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attributes described by the source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-and-the-seal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results and the seal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compared-with-the-globaal-ontwerp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compared with the Globaal Ontwerp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traceability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traceability
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OOTS channel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime view
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runtime view
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../runtime/dvtp-consent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP consent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../runtime/dvtp-query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP query
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../runtime/dvtp-citizen-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DvTP citizen access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../runtime/eudi-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../runtime/asi-verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../runtime/admission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admission and activation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../runtime/policy-distribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policy distribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../runtime/design-level/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design-level scenarios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment view
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crosscutting concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Crosscutting concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/consent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/pseudonymization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pseudonymization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/source-onboarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source onboarding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/identity-trust/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity and trust
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/policy-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policy lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging, audit and traceability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture decisions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture decisions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_2" id="__nav_5_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accepted
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Accepted
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0001-graphql-source-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0001 GraphQL source access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0002-opa-rego-authzen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0002 OPA/Rego and AuthZEN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0003-fsc-connectivity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0003 FSC connectivity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0004-federated-authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0004 Federated authorization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0005-bsnk-pp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0005 BSNk PP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0009-closed-world-rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0009 Closed-world rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0013-pdp-request-mapper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0013 PDP request mapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0015-contract-acceptance-by-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0015 Contract acceptance by policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0016-source-owned-metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0016 Source-owned metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0017-gbo-simple-v1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0017 gbo-simple-v1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0018-eudi-disclosure-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0018 EUDI disclosure issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0020-as4-bridge-for-oots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0020 AS4 bridge for OOTS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0021-central-pap-signed-bundles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0021 Policy management per source holder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0023-identity-convergence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0023 Organization identity and EUDI certificate roles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0026-ldv-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0026 LDV logbook per controller
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0031-regime-from-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0031 Regime from evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0032-consent-proof/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0032 Consent proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0033-gateway-decrypts-after-allow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0033 Gateway decrypts after allow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0034-integrator-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0034 Integrator delegation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0035-w3c-trace-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0035 W3C Trace Context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0036-adl-decision-record/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0036 ADL decision record
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0037-asi-oauth-front-door/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0037 ASI OAuth front door
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0038-asi-data-service-per-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0038 ASI data service per source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0039-asi-source-described-attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0039 ASI source-described attributes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_3" id="__nav_5_9_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proposed
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proposed
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0024-canonical-semantic-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0024 Canonical semantic models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0025-graphql-fds-datadienst/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0025 GraphQL FDS datadienst
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0027-onboarding-toolkit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0027 Onboarding toolkit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0028-pubeaa-productization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0028 PubEAA productization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0040-route-d-citizen-recognition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0040 Route D citizen recognition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0041-asi-seal-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0041 ASI seal format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0042-asi-attribute-token-binding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0042 ASI attribute token binding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0043-identifiers-out-of-pdp-input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0043 Identifiers out of PDP input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_4" id="__nav_5_9_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deferred
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deferred
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0022-sector-grants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0022 Sector grants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9_5" id="__nav_5_9_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Superseded
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_9_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Superseded
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0006-consent-register-as-pip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0006 Consent register as PIP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0007-consent-signed-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0007 Consent signed token
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0008-dienstencatalogus-ceiling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0008 Dienstencatalogus ceiling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0010-pep-bsn-resolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0010 PEP BSN resolution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0011-sidecar-pseudonym-resolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0011 Sidecar pseudonym resolution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0012-opa-graphql-parse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0012 OPA graphql.parse_query
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0014-provider-signed-flow-claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0014 Provider-signed flow claims
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0019-fsc-transaction-id-tracing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0019 FSC transaction ID tracing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0029-authentic-source-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0029 Authentic Source Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/0030-grant-properties/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0030 Grant properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../risks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risks and technical debt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technische Requirements
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Technische Requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization and data access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/logging-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging and audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/admission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admission and connection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/sources-identity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sources and identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/consent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consent (DvTP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/pseudonymization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pseudonymization and BSNk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/eudi-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EUDI issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/asi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentic Source Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Traceability
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Traceability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../traceability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to trace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../traceability/coverage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coverage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../traceability/matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design to demo matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../traceability/increments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo increments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../traceability/findings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings (open)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../traceability/findings-closed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings (closed)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../traceability/open-questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../traceability/answered-questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Answered questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../traceability/standards-feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ictu.github.io/GBO-Semantiek/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semantiek
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://gbo.simulatie.datastelsel.nl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+  <nav class="md-path" aria-label="Navigatie" >
+    <ol class="md-path__list">
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../.." class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Technisch Ontwerp
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Building block view
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    EUDI wallet channel
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="asi-provider"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider<a class="headerlink" href="#asi-provider" title="Permanent link">&para;</a></h1>
+<p>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider lets a qualified trust service provider (<abbr title="Qualified Trust Service Provider">QTSP</abbr>) verify or
+retrieve attributes of a citizen at the authentic source. The exchange
+follows eIDAS article 45e and ETSI TS 119 478, clause 6.1. It is flow B of
+interaction pattern (interactiepatroon) A in the
+<a href="https://ictu.github.io/GBO-GO/main/#verificatie-en-retrievedienst-voor-qtsps-asi-provider">Globaal Ontwerp</a>.
+<abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> offers it as an OAuth front door with two services: the Authentic
+Source Interface Provider (<abbr title="Authentic Source Interface Provider">ASIP</abbr>) and its own authorization server
+(<a href="../../../decisions/0037-asi-oauth-front-door/">ADR-0037</a>). The
+<a href="../../../runtime/asi-verification/"><abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> verification</a> runtime page has
+every hop and the links to the code.</p>
+<p><a href="../../">Overview</a> › <a href="../">EUDI wallet channel</a> › <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider</p>
+<h2 id="components-and-interfaces">Components and interfaces<a class="headerlink" href="#components-and-interfaces" title="Permanent link">&para;</a></h2>
+<div class="mermaid">flowchart LR
+  burger(["Citizen"])
+  subgraph outer["External roles"]
+    direction TB
+    qtsp["QTSP&lt;br/&gt;&lt;i&gt;reference QTSP&lt;/i&gt;"]
+    dip["Discover Interface&lt;br/&gt;&lt;i&gt;stub&lt;/i&gt;"]
+    reg[("Register of&lt;br/&gt;relying parties&lt;br/&gt;&lt;i&gt;stub&lt;/i&gt;")]
+    wallet["NL Wallet"]
+  end
+  subgraph asi["ASI provider"]
+    direction TB
+    as("Authorization server&lt;br/&gt;registration, login, tokens")
+    wv("Wallet verifier&lt;br/&gt;nl-wallet")
+    dg["DigiD mock"]
+    asip("ASIP&lt;br/&gt;data service brp")
+  end
+  rel[("Source registry&lt;br/&gt;asi description")]
+  subgraph basis["GBO Basis at the source"]
+    direction TB
+    pdp("PEP + PDP&lt;br/&gt;rule ASI0001")
+    src[("BRP mock")]
+  end
+
+  qtsp -- "① find the data service" --&gt; dip
+  dip -. "records" .-&gt; asip
+  qtsp -- "② register, get a token" --&gt; as
+  as -. "entitlement" .-&gt; reg
+  burger -- "③ log in" --&gt; as
+  wallet -- "PID" --&gt; wv
+  as --- wv
+  as --- dg
+  qtsp -- "④ verify, retrieve" --&gt; asip
+  asip -. "token keys" .-&gt; as
+  rel -. "every 5 s" .-&gt; asip
+  asip -- "query + BSN&lt;br/&gt;over FSC" --&gt; pdp
+  pdp --&gt; src
+  %% GBO diagram palette: the same colors as the Globaal Ontwerp
+  classDef basis fill:#DCFCE7,stroke:#16A34A,color:#0F172A
+  classDef dvtp fill:#FEDCD8,stroke:#E28F80,color:#1E293B
+  classDef eudi fill:#FFEDD5,stroke:#EA580C,color:#0F172A
+  classDef source fill:#DDEBF7,stroke:#6F94B8,color:#1E293B
+  classDef ext fill:#F1EFE8,stroke:#5F5E5A,color:#444441
+  classDef store fill:#EDE9FE,stroke:#7C3AED,color:#1E1B4B
+  classDef mock fill:#F3F4F6,stroke:#9CA3AF,color:#374151,stroke-dasharray:4 3
+  classDef planned fill:#FFFFFF,stroke:#9CA3AF,color:#6B7280,stroke-dasharray:6 4
+  classDef zoom stroke-width:3px
+
+  class burger,src source
+  class qtsp,dip,reg,dg mock
+  class wallet ext
+  class as,wv,asip eudi
+  class rel store
+  class pdp basis
+  class as,asip,rel,pdp zoom
+  style outer fill:#F4F5F7,stroke:#D1D5DB
+  style asi fill:#F4F5F7,stroke:#EA580C
+  style basis fill:#F4F5F7,stroke:#16A34A
+  click as "#trust-boundary" "Trust boundary"
+  click asip "#the-verify-and-retrieve-flow" "Verify and retrieve"
+  click rel "../../../concepts/source-onboarding/#the-asi-capability-schema-11" "The asi capability"
+  click pdp "../../gbo-basis/authorization/#the-rules" "The rules"</div>
+<p class="caption"><em>Figure 1: The components of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider and their interfaces. Grey
+dashed: stubs and the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>. Thick border: click to zoom in.</em></p>
+<p>Each component has one job:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Job</th>
+<th>In demo v0.9.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><abbr title="Authentic Source Interface Provider">ASIP</abbr></td>
+<td>Offers verify and retrieve per data service at <code>/&lt;ds&gt;/authsrc-api</code>. Checks the <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr>-bound token first and takes the <abbr title="Burgerservicenummer">BSN</abbr> only from the token (<a href="../../../requirements/asi/#req-87">REQ-87</a>). Seals every 200 response.</td>
+<td>Real</td>
+</tr>
+<tr>
+<td>Authorization server</td>
+<td>Registers a <abbr title="Qualified Trust Service Provider">QTSP</abbr>, shows the request page, runs the login, and issues a <abbr title="Demonstrating Proof of Possession (RFC 9449)">DPoP</abbr>-bound token of 10 minutes for one data service.</td>
+<td>Real. It keeps the registered clients in memory.</td>
+</tr>
+<tr>
+<td>Wallet verifier</td>
+<td>The nl-wallet verification server. It runs the <abbr title="Person Identification Data">PID</abbr> disclosure for the login and asks for the <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../../../requirements/asi/#req-102">REQ-102</a>).</td>
+<td>Real. It also serves the login of the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr>, as a demo shortcut.</td>
+</tr>
+<tr>
+<td>DigiD mock</td>
+<td>A second means to log in.</td>
+<td>Stub. It checks for nine digits and gives only a <abbr title="Burgerservicenummer">BSN</abbr> (<a href="../../../traceability/findings/#f-88">F-88</a>).</td>
+</tr>
+<tr>
+<td>Register of relying parties</td>
+<td>Holds the entitlement <code>QEAA_Provider</code> of each <abbr title="Qualified Trust Service Provider">QTSP</abbr>.</td>
+<td>Stub: a file</td>
+</tr>
+<tr>
+<td>Discover Interface</td>
+<td>An external role. Tells a <abbr title="Qualified Trust Service Provider">QTSP</abbr> which data service offers an attribute, from the records of the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.</td>
+<td>Stub</td>
+</tr>
+<tr>
+<td>Reference <abbr title="Qualified Trust Service Provider">QTSP</abbr></td>
+<td>An external role. Discovers, registers, gets a token, verifies, and checks the seal.</td>
+<td>Real client behavior. It is not a real <abbr title="Qualified Trust Service Provider">QTSP</abbr>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="trust-boundary">Trust boundary<a class="headerlink" href="#trust-boundary" title="Permanent link">&para;</a></h2>
+<p>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> and the source belong to two trust domains. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> is the only
+part that acts in both:</p>
+<div class="mermaid">flowchart LR
+  subgraph oauth["OAuth trust, outside FSC"]
+    direction TB
+    qtsp["QTSP&lt;br/&gt;OAuth client"]
+    cert["QTSP certificate&lt;br/&gt;organizationIdentifier"]
+    ent[("Register entry&lt;br/&gt;QEAA_Provider")]
+    as("Authorization server")
+  end
+  asip("ASIP&lt;br/&gt;FSC peer …1200")
+  subgraph fsc["FSC trust, inside the GBO chain"]
+    direction TB
+    inw("PEP + PDP&lt;br/&gt;rule ASI0001")
+    src[("BRP mock")]
+  end
+  qtsp -- "software statement" --&gt; as
+  as -. "chain to a trust anchor" .-&gt; cert
+  as -. "lookup, every hour" .-&gt; ent
+  qtsp -- "DPoP token" --&gt; asip
+  asip -- "actor is the ASIP peer,&lt;br/&gt;nothing about the QTSP" --&gt; inw
+  inw --&gt; src
+  %% GBO diagram palette: the same colors as the Globaal Ontwerp
+  classDef basis fill:#DCFCE7,stroke:#16A34A,color:#0F172A
+  classDef dvtp fill:#FEDCD8,stroke:#E28F80,color:#1E293B
+  classDef eudi fill:#FFEDD5,stroke:#EA580C,color:#0F172A
+  classDef source fill:#DDEBF7,stroke:#6F94B8,color:#1E293B
+  classDef ext fill:#F1EFE8,stroke:#5F5E5A,color:#444441
+  classDef store fill:#EDE9FE,stroke:#7C3AED,color:#1E1B4B
+  classDef mock fill:#F3F4F6,stroke:#9CA3AF,color:#374151,stroke-dasharray:4 3
+  classDef planned fill:#FFFFFF,stroke:#9CA3AF,color:#6B7280,stroke-dasharray:6 4
+  classDef zoom stroke-width:3px
+
+  class qtsp,ent mock
+  class cert ext
+  class as,asip eudi
+  class inw basis
+  class src source
+  class inw zoom
+  style oauth fill:#FFF7ED,stroke:#EA580C
+  style fsc fill:#F0FDF4,stroke:#16A34A
+  click inw "../../gbo-basis/authorization/" "Authorization"</div>
+<p class="caption"><em>Figure 2: The trust boundary of the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> route
+(<a href="../../../traceability/findings/#f-87">F-87</a>).</em></p>
+<p>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> is an OAuth client of the authorization server. It has no <abbr title="Federated Service Connectivity">FSC</abbr>
+peer, no <abbr title="Organisatie-identificatienummer">OIN</abbr> and no PKIoverheid certificate. The reference architecture
+placed the interface in front of the <abbr title="Federated Service Connectivity">FSC</abbr> chain. The demo showed that this
+placement does not fit a <abbr title="Qualified Trust Service Provider">QTSP</abbr>, so the <abbr title="Qualified Trust Service Provider">QTSP</abbr> trust ends before <abbr title="Federated Service Connectivity">FSC</abbr>
+(<a href="../../../decisions/0037-asi-oauth-front-door/">ADR-0037</a>).</p>
+<p>The admission of a <abbr title="Qualified Trust Service Provider">QTSP</abbr> has two parts
+(<a href="../../../requirements/asi/#req-88">REQ-88</a>):</p>
+<ul>
+<li>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> registers with a software statement, sealed with its
+  certificate. The authorization server checks the chain and the
+  <code>organizationIdentifier</code>.</li>
+<li>The register entry must carry <code>QEAA_Provider</code> and the same
+  <code>organizationIdentifier</code>. The server checks the entry again every hour
+  (<a href="../../../requirements/asi/#req-89">REQ-89</a>). If the register does not
+  answer, the client stays active
+  (<a href="../../../traceability/open-questions/#q-34">Q-34</a>).</li>
+</ul>
+<p>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> is an <abbr title="Federated Service Connectivity">FSC</abbr> consumer peer of its own, with a contract for the
+service <code>brp</code> at the source. For the <abbr title="Policy Decision Point">PDP</abbr>, the actor is always the <abbr title="Authentic Source Interface Provider">ASIP</abbr>.
+Rule ASI0001 grants the <abbr title="Authentic Source Interface Provider">ASIP</abbr> peer the fields of the Personal Records
+Database (BRP) behind the attributes, on
+<code>brp</code> only. The rule does not check the token or the <abbr title="Qualified Trust Service Provider">QTSP</abbr>. The <abbr title="Policy Decision Point">PDP</abbr> input
+and the <abbr title="Authorization Decision Log">ADL</abbr> hold the <abbr title="Burgerservicenummer">BSN</abbr>
+(<a href="../../../requirements/logging-audit/#req-60">REQ-60</a>).</p>
+<h2 id="the-verify-and-retrieve-flow">The verify and retrieve flow<a class="headerlink" href="#the-verify-and-retrieve-flow" title="Permanent link">&para;</a></h2>
+<p>A verification runs through discovery, registration, authorization with a
+login, the token, the query through <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> Basis, and the seal:</p>
+<div class="mermaid">sequenceDiagram
+  autonumber
+  actor B as Citizen
+  box rgb(241,239,232) External
+    participant Q as QTSP
+    participant D as Discover Interface
+    participant W as NL Wallet
+  end
+  box rgb(255,237,213) ASI provider
+    participant AS as Authorization server
+    participant ASIP as ASIP
+  end
+  box rgb(220,252,231) GBO Basis at the source
+    participant PDP as PEP + PDP
+  end
+  box rgb(221,235,247) Source
+    participant S as BRP mock
+  end
+  rect rgb(255,250,245)
+  Note over Q,AS: Once per QTSP
+  Q-&gt;&gt;D: which data service offers these attributes?
+  D--&gt;&gt;Q: dataService records of the ASIP
+  Q-&gt;&gt;AS: register with a sealed software statement
+  AS--&gt;&gt;Q: client_id, after the register check
+  end
+  rect rgb(246,252,248)
+  Note over B,S: For every request
+  B-&gt;&gt;Q: ask for a statement, with values to check
+  Q--&gt;&gt;B: redirect with resource, scope, attributes
+  B-&gt;&gt;AS: request page, who asks what at which source
+  W-&gt;&gt;AS: PID with the BSN (or the DigiD mock)
+  AS--&gt;&gt;Q: code, through the browser
+  Q-&gt;&gt;AS: token request with PKCE, client assertion, DPoP
+  AS--&gt;&gt;Q: access token for one data service, with the BSN
+  Q-&gt;&gt;ASIP: verify, with the token and the values
+  Note over ASIP: check the token,&lt;br/&gt;BSN from the token,&lt;br/&gt;one query from the description
+  ASIP-&gt;&gt;PDP: query with the BSN, over FSC
+  Note over PDP: PID regime, ASI0001
+  PDP-&gt;&gt;S: allow, query through the gateway
+  S--&gt;&gt;ASIP: fields of the person
+  ASIP--&gt;&gt;Q: sealed result per attribute
+  Note over Q: no valid seal,&lt;br/&gt;no accepted result
+  end</div>
+<p class="caption"><em>Figure 3: Verify through the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider, at essence level.</em></p>
+<p>The login is the approval (<a href="../../../requirements/asi/#req-90">REQ-90</a>).
+Before the login, the request page shows the legal name of the <abbr title="Qualified Trust Service Provider">QTSP</abbr>, the
+operation, the source, and the attributes
+(<a href="../../../requirements/asi/#req-91">REQ-91</a>). If the citizen refuses, no
+login takes place and the source gets no request.</p>
+<p>Retrieve runs the same way, with the scope <code>retrieve</code>. The request names
+attribute identifiers without values, and the sealed answer carries the
+values. If the source holds no value for one attribute, the answer is 404,
+without a partial result (<a href="../../../requirements/asi/#req-101">REQ-101</a>).</p>
+<p>After an accepted result, the reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues a test statement to
+the wallet. It uses the issuance server of the
+<a href="../pubeaa/"><abbr title="Public Body Electronic Attestation of Attributes">PuB-EAA</abbr> provider</a>. The statement has a test marking and is not
+a <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr>.</p>
+<h2 id="one-data-service-per-source">One data service per source<a class="headerlink" href="#one-data-service-per-source" title="Permanent link">&para;</a></h2>
+<p>An <abbr title="Authentic Source Interface Provider">ASIP</abbr> that serves several sources offers one data service per source
+(<a href="../../../decisions/0038-asi-data-service-per-source/">ADR-0038</a>). Each
+data service has its own base URL, contract, discovery records and token
+audience:</p>
+<div class="mermaid">flowchart LR
+  qtsp["QTSP"]
+  subgraph asip["ASIP"]
+    direction TB
+    ds1("Data service brp&lt;br/&gt;/brp/authsrc-api")
+    ds2("Data service of&lt;br/&gt;a second source&lt;br/&gt;&lt;i&gt;unit tests only&lt;/i&gt;")
+  end
+  s1[("RvIG&lt;br/&gt;BRP mock")]
+  s2[("Second source")]
+  qtsp -- "token 1, audience brp" --&gt; ds1
+  qtsp -. "token 2, second login" .-&gt; ds2
+  ds1 --&gt; s1
+  ds2 -.-&gt; s2
+  %% GBO diagram palette: the same colors as the Globaal Ontwerp
+  classDef basis fill:#DCFCE7,stroke:#16A34A,color:#0F172A
+  classDef dvtp fill:#FEDCD8,stroke:#E28F80,color:#1E293B
+  classDef eudi fill:#FFEDD5,stroke:#EA580C,color:#0F172A
+  classDef source fill:#DDEBF7,stroke:#6F94B8,color:#1E293B
+  classDef ext fill:#F1EFE8,stroke:#5F5E5A,color:#444441
+  classDef store fill:#EDE9FE,stroke:#7C3AED,color:#1E1B4B
+  classDef mock fill:#F3F4F6,stroke:#9CA3AF,color:#374151,stroke-dasharray:4 3
+  classDef planned fill:#FFFFFF,stroke:#9CA3AF,color:#6B7280,stroke-dasharray:6 4
+  classDef zoom stroke-width:3px
+
+  class qtsp mock
+  class ds1 eudi
+  class ds2,s2 planned
+  class s1 source
+  style asip fill:#F4F5F7,stroke:#EA580C</div>
+<p class="caption"><em>Figure 4: One data service and one token per source. Dashed: only in unit
+tests in demo v0.9.0.</em></p>
+<p>ETSI lets a response name one authentic source. Article 9(4) requires that
+the result names the responsible body
+(<a href="../../../traceability/findings/#f-89">F-89</a>,
+<a href="../../../requirements/asi/#req-94">REQ-94</a>). An authorization request
+names exactly one data service as <code>resource</code>, or the answer is
+<code>invalid_target</code>. The <abbr title="Authentic Source Interface Provider">ASIP</abbr> refuses a token for another data service with
+401 (<a href="../../../requirements/asi/#req-95">REQ-95</a>). A <abbr title="Qualified Trust Service Provider">QTSP</abbr> that needs
+attributes of two sources authorizes twice, and the citizen logs in twice.</p>
+<p>By default, a token binds per operation, as ETSI specifies. A <abbr title="Qualified Trust Service Provider">QTSP</abbr> can
+also bind the token to the attributes with <code>authorization_details</code>. The
+<abbr title="Authentic Source Interface Provider">ASIP</abbr> then refuses any other attribute
+(<a href="../../../decisions/0042-asi-attribute-token-binding/">ADR-0042</a>,
+proposed, <a href="../../../traceability/open-questions/#q-33">Q-33</a>).</p>
+<h2 id="attributes-described-by-the-source">Attributes described by the source<a class="headerlink" href="#attributes-described-by-the-source" title="Permanent link">&para;</a></h2>
+<p>The source describes the attributes that it offers, in the <code>asi</code>
+capability of its source document
+(<a href="../../../decisions/0039-asi-source-described-attributes/">ADR-0039</a>). The
+<abbr title="Authentic Source Interface Provider">ASIP</abbr> has no source knowledge in its code:</p>
+<div class="mermaid">flowchart LR
+  subgraph doc["Source document: capabilities.asi"]
+    direction TB
+    au["authentic_source&lt;br/&gt;legal name, country"]
+    gq["graphql&lt;br/&gt;query that ends in ...Selected"]
+    at["attributes&lt;br/&gt;identifier and fields"]
+  end
+  ops["pointer · join · const · each"]
+  cat[("GBO attribute catalog&lt;br/&gt;value_schema per identifier")]
+  rec("Reconciler&lt;br/&gt;validates, promotes")
+  rel[("Active release")]
+  asip("ASIP&lt;br/&gt;one query per request,&lt;br/&gt;only the needed fields")
+  au --&gt; rec
+  gq --&gt; rec
+  at --&gt; rec
+  at --- ops
+  cat -.-&gt; rec
+  rec --&gt; rel
+  rel -- "every 5 s" --&gt; asip
+  %% GBO diagram palette: the same colors as the Globaal Ontwerp
+  classDef basis fill:#DCFCE7,stroke:#16A34A,color:#0F172A
+  classDef dvtp fill:#FEDCD8,stroke:#E28F80,color:#1E293B
+  classDef eudi fill:#FFEDD5,stroke:#EA580C,color:#0F172A
+  classDef source fill:#DDEBF7,stroke:#6F94B8,color:#1E293B
+  classDef ext fill:#F1EFE8,stroke:#5F5E5A,color:#444441
+  classDef store fill:#EDE9FE,stroke:#7C3AED,color:#1E1B4B
+  classDef mock fill:#F3F4F6,stroke:#9CA3AF,color:#374151,stroke-dasharray:4 3
+  classDef planned fill:#FFFFFF,stroke:#9CA3AF,color:#6B7280,stroke-dasharray:6 4
+  classDef zoom stroke-width:3px
+
+  class au,gq,at,ops source
+  class cat,rel store
+  class rec basis
+  class asip eudi
+  class rec zoom
+  style doc fill:#FFFFFF,stroke:#6F94B8,stroke-dasharray:4 3
+  click rec "../../../concepts/source-onboarding/#the-asi-capability-schema-11" "The asi capability"</div>
+<p class="caption"><em>Figure 5: From the <code>asi</code> capability to one query per request.</em></p>
+<p>Each attribute has an identifier from the <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr> catalog and the source fields
+per member of the value. Four operations build a value: <code>pointer</code>, <code>join</code>,
+<code>const</code> and <code>each</code>. A house number, for example, is three BRP fields. For
+each request, the <abbr title="Authentic Source Interface Provider">ASIP</abbr> replaces <code>...Selected</code> with the fields of the
+requested attributes only (<a href="../../../requirements/asi/#req-92">REQ-92</a>).</p>
+<p>The identifiers and their value schemas are provisional until the EU
+catalog of attributes exists
+(<a href="../../../traceability/open-questions/#q-31">Q-31</a>). If the <code>asi</code> part has
+an error, the reconciler refuses the whole source, with its EUDI issuance.
+In demo v0.9.0, the authorization server takes its list of data services
+from configuration (<code>AZSP_RESOURCES</code>). The source descriptions do not feed
+that list (<a href="../../../traceability/open-questions/#q-38">Q-38</a>).</p>
+<h2 id="results-and-the-seal">Results and the seal<a class="headerlink" href="#results-and-the-seal" title="Permanent link">&para;</a></h2>
+<p>The <abbr title="Authentic Source Interface Provider">ASIP</abbr> builds each value from the source fields and compares it with the
+value that the <abbr title="Qualified Trust Service Provider">QTSP</abbr> sent. Each attribute gets one of four results:</p>
+<div class="mermaid">flowchart LR
+  q("Query over FSC")
+  f[("Fields from&lt;br/&gt;the source")]
+  b("Build the value&lt;br/&gt;from the description")
+  c{"Compare with the&lt;br/&gt;value of the QTSP"}
+  m(["Match"])
+  mv(["MatchWithVariation&lt;br/&gt;free text only"])
+  nm(["NoMatch"])
+  u(["Unknown&lt;br/&gt;the source has no value"])
+  e(["503 or 500&lt;br/&gt;never Unknown"])
+  s("Seal: detached JWS&lt;br/&gt;ES256, x5c")
+  r["200 with&lt;br/&gt;X-JWS-Signature"]
+  q --&gt; f
+  q -. "no answer, or a deny" .-&gt; e
+  f --&gt; b --&gt; c
+  c --&gt; m
+  c --&gt; mv
+  c --&gt; nm
+  f -. "no value" .-&gt; u
+  m &amp; mv &amp; nm &amp; u --&gt; s
+  s --&gt; r
+  %% GBO diagram palette: the same colors as the Globaal Ontwerp
+  classDef basis fill:#DCFCE7,stroke:#16A34A,color:#0F172A
+  classDef dvtp fill:#FEDCD8,stroke:#E28F80,color:#1E293B
+  classDef eudi fill:#FFEDD5,stroke:#EA580C,color:#0F172A
+  classDef source fill:#DDEBF7,stroke:#6F94B8,color:#1E293B
+  classDef ext fill:#F1EFE8,stroke:#5F5E5A,color:#444441
+  classDef store fill:#EDE9FE,stroke:#7C3AED,color:#1E1B4B
+  classDef mock fill:#F3F4F6,stroke:#9CA3AF,color:#374151,stroke-dasharray:4 3
+  classDef planned fill:#FFFFFF,stroke:#9CA3AF,color:#6B7280,stroke-dasharray:6 4
+  classDef zoom stroke-width:3px
+
+  class q basis
+  class f source
+  class b,c,m,mv,nm,u,s eudi
+  class e dvtp
+  class r ext</div>
+<p class="caption"><em>Figure 6: The result per attribute, and the seal on the response. Red: an
+error, never a result.</em></p>
+<p>Three rules apply to the results:</p>
+<ul>
+<li><code>Unknown</code> means only that the source holds no value
+  (<a href="../../../requirements/asi/#req-84">REQ-84</a>). A chain that does not
+  answer gives 503 (<a href="../../../requirements/asi/#req-93">REQ-93</a>). A <abbr title="Policy Decision Point">PDP</abbr> deny
+  or GraphQL errors give 500.</li>
+<li>A verify response holds no source value
+  (<a href="../../../requirements/asi/#req-85">REQ-85</a>). <code>MatchWithVariation</code> also
+  returns no value. The conformance matrix records that row as failing
+  (<a href="../../../traceability/findings/#f-92">F-92</a>).</li>
+<li>Fuzzy matching applies only to strings without a <code>format</code>
+  (<a href="../../../requirements/asi/#req-113">REQ-113</a>).</li>
+</ul>
+<p>From January 1, 2027, every verification result must be sealed
+(<a href="../../../requirements/asi/#req-83">REQ-83</a>). The <abbr title="Authentic Source Interface Provider">ASIP</abbr> seals the exact
+body of every 200 response with a detached JWS in <code>X-JWS-Signature</code>
+(<a href="../../../decisions/0041-asi-seal-format/">ADR-0041</a>, proposed). It does
+not seal errors. The <abbr title="Qualified Trust Service Provider">QTSP</abbr> refuses a result without a valid seal. ETSI
+defines no seal format, so the format waits for a decision
+(<a href="../../../traceability/open-questions/#q-32">Q-32</a>). The demo seals with a
+development certificate, and it is open who holds the qualified seal
+certificate in production (<a href="../../../traceability/open-questions/#q-28">Q-28</a>).</p>
+<h2 id="compared-with-the-globaal-ontwerp">Compared with the Globaal Ontwerp<a class="headerlink" href="#compared-with-the-globaal-ontwerp" title="Permanent link">&para;</a></h2>
+<p>The demo follows flow B of pattern A. It differs in four steps:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Globaal Ontwerp</th>
+<th>Demo v0.9.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authorization</td>
+<td>The verify and retrieve service uses the authorization facility (autorisatievoorziening) of <abbr title="Gemeenschappelijke Bronontsluiting">GBO</abbr>.</td>
+<td>The <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider has its own OAuth authorization server, as ETSI clause 6.1.3 describes (<a href="../../../decisions/0037-asi-oauth-front-door/">ADR-0037</a>).</td>
+</tr>
+<tr>
+<td>Approval</td>
+<td>The wallet shows the request and asks for consent.</td>
+<td>The citizen logs in with the NL Wallet or the DigiD mock. The demo stores no approval (<a href="../../../requirements/asi/#req-90">REQ-90</a>).</td>
+</tr>
+<tr>
+<td>ISO 15000</td>
+<td>A request over ISO 15000 needs no authorization.</td>
+<td>Clause 6.2 is not offered (<a href="../../../requirements/asi/#req-112">REQ-112</a>).</td>
+</tr>
+<tr>
+<td>After an accepted result</td>
+<td>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues a <abbr title="Qualified Electronic Attestation of Attributes">QEAA</abbr>.</td>
+<td>The reference <abbr title="Qualified Trust Service Provider">QTSP</abbr> issues a test statement that is not qualified.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="open-points">Open points<a class="headerlink" href="#open-points" title="Permanent link">&para;</a></h2>
+<p>The main open points in the <abbr title="Authentic Source Interface: the interface of ETSI TS 119 478 through which a QTSP verifies or retrieves attributes at an authentic source (eIDAS article 45e)">ASI</abbr> provider are these:</p>
+<ul>
+<li>The <abbr title="Qualified Trust Service Provider">QTSP</abbr> can read the <abbr title="Burgerservicenummer">BSN</abbr> in the access token
+  (<a href="../../../traceability/findings/#f-86">F-86</a>,
+  <a href="https://github.com/ICTU/GBO-demo/issues/595">#595</a>).</li>
+<li>The register of relying parties and the certificate profile for QTSPs do
+  not exist (<a href="../../../traceability/findings/#f-85">F-85</a>).</li>
+<li>Nothing links the citizen who logs in at the <abbr title="Qualified Trust Service Provider">QTSP</abbr> to the citizen who
+  logs in at the authorization server
+  (<a href="../../../traceability/findings/#f-93">F-93</a>,
+  <a href="../../../traceability/open-questions/#q-40">Q-40</a>).</li>
+<li>The NL <abbr title="Person Identification Data">PID</abbr> has no place of birth, and the DigiD mock gives only the <abbr title="Burgerservicenummer">BSN</abbr>
+  (<a href="../../../traceability/findings/#f-94">F-94</a>,
+  <a href="../../../traceability/findings/#f-88">F-88</a>).</li>
+<li>Who decides the seal format for all Dutch ASIPs
+  (<a href="../../../traceability/open-questions/#q-32">Q-32</a>).</li>
+</ul>
+<h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Requirements: <a href="../../../requirements/logging-audit/#req-60">REQ-60</a>,
+  <a href="../../../requirements/asi/#req-83">REQ-83</a>,
+  <a href="../../../requirements/asi/#req-84">REQ-84</a>,
+  <a href="../../../requirements/asi/#req-85">REQ-85</a>,
+  <a href="../../../requirements/asi/#req-87">REQ-87</a>,
+  <a href="../../../requirements/asi/#req-88">REQ-88</a>,
+  <a href="../../../requirements/asi/#req-89">REQ-89</a>,
+  <a href="../../../requirements/asi/#req-90">REQ-90</a>,
+  <a href="../../../requirements/asi/#req-91">REQ-91</a>,
+  <a href="../../../requirements/asi/#req-92">REQ-92</a>,
+  <a href="../../../requirements/asi/#req-93">REQ-93</a>,
+  <a href="../../../requirements/asi/#req-94">REQ-94</a>,
+  <a href="../../../requirements/asi/#req-95">REQ-95</a>,
+  <a href="../../../requirements/asi/#req-101">REQ-101</a>,
+  <a href="../../../requirements/asi/#req-102">REQ-102</a>,
+  <a href="../../../requirements/asi/#req-112">REQ-112</a>,
+  <a href="../../../requirements/asi/#req-113">REQ-113</a></li>
+<li>Findings: <a href="../../../traceability/findings/#f-85">F-85</a> (open),
+  <a href="../../../traceability/findings/#f-86">F-86</a> (open),
+  <a href="../../../traceability/findings/#f-87">F-87</a> (open),
+  <a href="../../../traceability/findings/#f-88">F-88</a> (open),
+  <a href="../../../traceability/findings/#f-89">F-89</a> (open),
+  <a href="../../../traceability/findings/#f-92">F-92</a> (open),
+  <a href="../../../traceability/findings/#f-93">F-93</a> (open),
+  <a href="../../../traceability/findings/#f-94">F-94</a> (open)</li>
+<li>Open questions: <a href="../../../traceability/open-questions/#q-28">Q-28</a> (open),
+  <a href="../../../traceability/open-questions/#q-31">Q-31</a> (open),
+  <a href="../../../traceability/open-questions/#q-32">Q-32</a> (open),
+  <a href="../../../traceability/open-questions/#q-33">Q-33</a> (open),
+  <a href="../../../traceability/open-questions/#q-34">Q-34</a> (open),
+  <a href="../../../traceability/open-questions/#q-38">Q-38</a> (partly answered),
+  <a href="../../../traceability/open-questions/#q-40">Q-40</a> (open)</li>
+<li>Demo increments: <a href="../../../traceability/increments/#sl-28">SL-28</a> (done)</li>
+</ul>
+<!-- Generated by scripts/gen_abbreviations.py from docs/glossary.md. Do not edit. -->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Terug naar boven
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "toc.integrate", "content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "toc.follow"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Gekopieerd naar klembord", "clipboard.copy": "Kopi\u00ebren naar klembord", "search.result.more.one": "1 extra overeenkomst op deze pagina", "search.result.more.other": "# extra overeenkomsten op deze pagina", "search.result.none": "Geen overeenkomende documenten", "search.result.one": "1 overeenkomende document", "search.result.other": "# overeenkomende documenten", "search.result.placeholder": "Let op: er wordt alleen gezocht binnen dit documentatie-onderdeel. Om in andere onderdelen te zoeken: ga via het hoofdmenu eerst naar het onderdeel en voer dan de zoekterm in.", "search.result.term.missing": "Ontbreekt", "select.version": "Selecteer versie"}, "version": {"alias": true, "provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../../js/print-site.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../javascript/mermaid-init.js"></script>
+      
+        <script src="../../../javascript/print.js"></script>
+      
+        <script src="../../../javascript/print-site-toc-fix.js"></script>
+      
+    
+  </body>
+</html>
