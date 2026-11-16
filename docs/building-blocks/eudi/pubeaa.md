@@ -486,6 +486,9 @@ The main open points in the PuB-EAA provider are these:
 - Issuance with the authorization code flow, which HAIP 1.0 requires:
   which authorization server identifies the citizen and records consent
   ([Q-83](../../traceability/open-questions.md#q-83)).
+- Whether the issuer must verify a PID from the wallet before every
+  issuance, or whether another login is enough
+  ([Q-84](../../traceability/open-questions.md#q-84)).
 
 ## Traceability
 
@@ -509,7 +512,8 @@ The main open points in the PuB-EAA provider are these:
   [Q-18](../../traceability/open-questions.md#q-18) (open),
   [Q-28](../../traceability/open-questions.md#q-28) (open),
   [Q-30](../../traceability/open-questions.md#q-30) (open),
-  [Q-83](../../traceability/open-questions.md#q-83) (open)
+  [Q-83](../../traceability/open-questions.md#q-83) (open),
+  [Q-84](../../traceability/open-questions.md#q-84) (open)
 - Demo increments: [SL-25](../../traceability/increments.md#sl-25) (dropped),
   [SL-26](../../traceability/increments.md#sl-26) (done),
   [SL-43](../../traceability/increments.md#sl-43) (done),
