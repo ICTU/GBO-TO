@@ -1907,3 +1907,36 @@ requirements that assume only a PID disclosure.
         - (c) The issuer keeps its own authorization server toward the wallet, and is an OAuth client of the authorization server of the ASI. The citizen logs in and consents there. This is the proposal: one place where the citizen logs in and consents per source, in the same pattern as ETSI TS 119 478.
     - **Current working assumption**: None. The TO describes issuance only after a PID disclosure ([ADR 0018](../decisions/0018-eudi-disclosure-issuance.md)).
     - **Related**: [Q-28](#q-28), [Q-36](#q-36), [Q-37](#q-37), [REQ-45](../requirements/eudi-issuance.md#req-45), [REQ-88](../requirements/asi.md#req-88), [REQ-89](../requirements/asi.md#req-89), [REQ-91](../requirements/asi.md#req-91), [ADR 0018](../decisions/0018-eudi-disclosure-issuance.md), [ADR 0037](../decisions/0037-asi-oauth-front-door.md).
+
+### Q-84: Must a PuB-EAA issuer verify a PID from the wallet before it issues? {#q-84}
+
+- **Status**: open
+
+Implementing Regulation (EU) 2025/1569, as amended by Implementing
+Regulation (EU) 2026/1735, makes ETSI TS 119 471 apply to QEAA and
+PuB-EAA providers. That standard requires the issuer to verify the PID
+received from the wallet before it issues to an EUDI Wallet. The ARF
+lets a wallet without a PID request a PuB-EAA. It is open whether a PID
+is always needed, or only when the wallet presents one. It is also open
+whether a PID check at an authorization server counts. The answer decides which
+login routes a PuB-EAA issuer can offer. In the working assumption, the
+issuer issues only after a PID disclosure.
+
+??? note "Options, working assumption and links"
+
+    - **Forum**: tech lead, and BZK for the reading of the implementing act. If the reading stays unclear: the European Commission or ETSI ESI. PSA [S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
+    - **Question**: Article 3(1) and Annex I of Implementing Regulation (EU) 2025/1569 apply [ETSI TS 119 471](https://www.etsi.org/deliver/etsi_ts/119400_119499/119471/01.01.01_60/ts_119471v010101p.pdf) V1.1.1 to QEAA and PuB-EAA providers. Annex I of Implementing Regulation (EU) 2026/1735 replaced that annex. Before the amendment, Annex I named only ETSI EN 319 401.
+
+        Clause 4.2.2.3 says: "Before the EAA is issued to a EUDIW, the EAASP shall verify and validate the PID/LPID received from the Wallet Unit" (REQ-EAASP-4.2.2.3-01). The amendment adapts REQ-EAASP-4.2.2.3-02 and -03, but not -01. The ARF (section 4.6.4) lets a wallet in the state Operational, so without a valid PID, request a QEAA or PuB-EAA. The question has three parts:
+
+        1. Is a PID from the wallet always required, or only when the wallet presents one?
+        2. Does a PID check at an authorization server count as a check by the issuer, if the issuer uses that server ([Q-83](#q-83))?
+        3. Is a login without the wallet, such as DigiD, allowed for PuB-EAA issuance at all?
+
+    - **Why the demo cannot answer it**: It is a reading of an implementing act and the standard that it applies. The demo can build each route, but cannot decide which route meets the requirement.
+    - **Options**:
+        - (a) Always a PID. The issuer verifies a PID from the wallet for every PuB-EAA. A login without the wallet is not enough.
+        - (b) A PID when the wallet presents one. Another login at the right level is allowed. The issuer verifies a presented PID.
+        - (c) The PID check at the authorization server counts, if that server acts for the issuer. Option (c) of [Q-83](#q-83) then meets the requirement when the citizen logs in with the wallet.
+    - **Current working assumption**: The issuer issues only after a PID disclosure ([ADR 0018](../decisions/0018-eudi-disclosure-issuance.md), [REQ-45](../requirements/eudi-issuance.md#req-45)). This route meets all three readings.
+    - **Related**: [Q-28](#q-28), [Q-36](#q-36), [Q-83](#q-83), [REQ-45](../requirements/eudi-issuance.md#req-45), [ADR 0018](../decisions/0018-eudi-disclosure-issuance.md).
