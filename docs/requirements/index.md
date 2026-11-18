@@ -119,8 +119,8 @@ The verification field states how the build shows the requirement:
 | demonstration | a person shows the behavior in a running system. |
 | analysis | an argument, a calculation, or a model shows the requirement. |
 
-A method other than `test` names its reason in one sentence after the
-method. The script `scripts/gen_traceability.py` checks the case numbers
+A method other than `test` names its reason in one sentence, after a
+colon. An example is `inspection: a reviewer checks the configuration`. The script `scripts/gen_traceability.py` checks the case numbers
 and the field. The [coverage page](../traceability/coverage.md#verification)
 lists the method and the number of cases of each requirement.
 
