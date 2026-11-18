@@ -99,6 +99,13 @@ The design decision is
 > on single requests. The two MUST NOT share rules or deny reasons. They
 > MAY read the same admission data from the register.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | A contract proposal | the admission rule set decides, and no request rule is evaluated |
+| 2 | A data request | the admission rule set is not evaluated |
+| 3 | The two rule sets | share no rule and no deny reason, checked statically in CI |
+
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
