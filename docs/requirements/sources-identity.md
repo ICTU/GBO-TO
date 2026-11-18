@@ -37,20 +37,21 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 > If the answer of the source does not fit the published mapping exactly, or holds more than one result, issuance MUST refuse. It MUST NOT pick a result, and it MUST NOT add or convert a value.
 
-| Case | Outcome |
-|---|---|
-| Valid description, OIN equal to the certificate set, contracts present | candidate activated |
-| OIN in the description differs from the certificate set | not activated: `METADATA_INVALID` |
-| No contract for the data service the description names | not activated: `DATA_CONTRACT_NOT_FOUND` |
-| Query is not exactly one read operation, or unknown mapping profile | not activated: `METADATA_INVALID` |
-| Valid for less than one hour, or `expires_at` not after `issued_at` | not activated: `METADATA_INVALID` |
-| Issuance request with parameters outside the published offer | refused (HTTP 400) |
-| Answer does not fit the mapping (path missing, other datatype, result not a list) | no attestation (HTTP 502): `GBO_SIMPLE_PATH_MISSING`, `GBO_SIMPLE_TYPE_MISMATCH`, `GBO_SIMPLE_RESULT_TYPE` (code) |
-| Answer with more than one result | no attestation (HTTP 502): `GBO_SIMPLE_RESULT_AMBIGUOUS` (code) |
-| Answer without a result | no attestation (HTTP 404) (code) |
-| Source without its own endpoint, where the operator maintains the document | admitted as an exception, visible as unauthenticated transport, lapses after `expires_at` |
-| Read API of the logbook in the description | *proposal and not built* |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Valid description, OIN equal to the certificate set, contracts present | candidate activated |
+| 2 | OIN in the description differs from the certificate set | not activated: `METADATA_INVALID` |
+| 3 | No contract for the data service the description names | not activated: `DATA_CONTRACT_NOT_FOUND` |
+| 4 | Query is not exactly one read operation, or unknown mapping profile | not activated: `METADATA_INVALID` |
+| 5 | Valid for less than one hour, or `expires_at` not after `issued_at` | not activated: `METADATA_INVALID` |
+| 6 | Issuance request with parameters outside the published offer | refused (HTTP 400) |
+| 7 | Answer does not fit the mapping (path missing, other datatype, result not a list) | no attestation (HTTP 502): `GBO_SIMPLE_PATH_MISSING`, `GBO_SIMPLE_TYPE_MISMATCH`, `GBO_SIMPLE_RESULT_TYPE` (code) |
+| 8 | Answer with more than one result | no attestation (HTTP 502): `GBO_SIMPLE_RESULT_AMBIGUOUS` (code) |
+| 9 | Answer without a result | no attestation (HTTP 404) (code) |
+| 10 | Source without its own endpoint, where the operator maintains the document | admitted as an exception, visible as unauthenticated transport, lapses after `expires_at` |
+| 11 | Read API of the logbook in the description | *proposal and not built* |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -195,13 +196,14 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 > separate promotion. A component MUST NOT discover and activate a source
 > by itself.
 
-| Case | Outcome |
-|---|---|
-| Valid metadata contract, no source configuration | nothing activated |
-| Source configuration, no metadata contract | source blocked: `METADATA_CONTRACT_NOT_FOUND` |
-| Source configuration, no contract for the data service | source blocked: `DATA_CONTRACT_NOT_FOUND` |
-| Validated candidate without promotion | not active |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Valid metadata contract, no source configuration | nothing activated |
+| 2 | Source configuration, no metadata contract | source blocked: `METADATA_CONTRACT_NOT_FOUND` |
+| 3 | Source configuration, no contract for the data service | source blocked: `DATA_CONTRACT_NOT_FOUND` |
+| 4 | Validated candidate without promotion | not active |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -246,19 +248,20 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 > An activated version MUST be immutable, MUST be activated as a whole, and MUST be possible to roll back to an earlier valid version. A version number MUST identify one content. A candidate with the same version but other content MUST NOT be activated. A candidate with a lower version than the last validated candidate of that source MUST NOT be activated either. Only the explicit management action of [REQ-65](#req-65) can go back to an earlier version.
 
-| Case | Outcome |
-|---|---|
-| Refresh fails, previous version within grace | source `stale`, and issuance on the previous version |
-| Refresh fails, no previous version or grace over | source `blocked` |
-| Active version of a source past grace | issuance for that source refused (HTTP 503) |
-| Certificate set of one source missing | that source blocked, the others activated |
-| One configured source without a valid version | no new release for any source, and the active release stays (*deviates from the requirement, see notes*) |
-| One source past grace | offer list for all sources HTTP 503 (*deviates from the requirement*) |
-| Roll back to a stored release | active. Automatic promotion does not undo that. |
-| Roll back to a release the adapter cannot load | refused |
-| Source publishes the same version with other content | not activated (code, no test) |
-| Source publishes a lower version than the last validated one | not activated (code, no test) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Refresh fails, previous version within grace | source `stale`, and issuance on the previous version |
+| 2 | Refresh fails, no previous version or grace over | source `blocked` |
+| 3 | Active version of a source past grace | issuance for that source refused (HTTP 503) |
+| 4 | Certificate set of one source missing | that source blocked, the others activated |
+| 5 | One configured source without a valid version | no new release for any source, and the active release stays (*deviates from the requirement, see notes*) |
+| 6 | One source past grace | offer list for all sources HTTP 503 (*deviates from the requirement*) |
+| 7 | Roll back to a stored release | active. Automatic promotion does not undo that. |
+| 8 | Roll back to a release the adapter cannot load | refused |
+| 9 | Source publishes the same version with other content | not activated (code, no test) |
+| 10 | Source publishes a lower version than the last validated one | not activated (code, no test) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -363,12 +366,13 @@ the certificate roles. Evidence links to gbo-demo point at tag `v0.9.0`.
 > or revoked, the connection MUST be refused. The revocation check MUST
 > NOT be disabled.
 
-| Case | Outcome |
-|---|---|
-| Certificate of the calling party expired | connection refused |
-| Certificate of the calling party revoked | connection refused, after the revocation propagates. Time limit: [Q-53](../traceability/open-questions.md#q-53) |
-| Revocation check disabled in an Inway, Outway or Manager | not allowed *(proposal: not checked)* |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Certificate of the calling party expired | connection refused |
+| 2 | Certificate of the calling party revoked | connection refused, after the revocation propagates. Time limit: [Q-53](../traceability/open-questions.md#q-53) |
+| 3 | Revocation check disabled in an Inway, Outway or Manager | not allowed *(proposal: not checked)* |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -420,12 +424,13 @@ the certificate roles. Evidence links to gbo-demo point at tag `v0.9.0`.
 > bronhouder. A value that an
 > operator can fill in freely MUST NOT be the source for it.
 
-| Case | Outcome |
-|---|---|
-| Certificate with the OIN in `serialNumber` and exactly one organization name | OIN and name come from the certificate |
-| Configured OIN or name differs from the certificate | refused: the certificate set is not loaded |
-| Certificate without a 20-digit OIN, or without exactly one organization name | refused |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Certificate with the OIN in `serialNumber` and exactly one organization name | OIN and name come from the certificate |
+| 2 | Configured OIN or name differs from the certificate | refused: the certificate set is not loaded |
+| 3 | Certificate without a 20-digit OIN, or without exactly one organization name | refused |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"

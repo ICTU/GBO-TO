@@ -66,8 +66,9 @@ Each requirement entry has this format:
 
 > The [component] MUST [testable demand].
 
-| Case | Outcome |        (optional: what must hold, with the deny reason)
-|---|---|
+| # | Case | Outcome |    (optional: what must hold, with the deny reason)
+|---|---|---|
+| 1 | ... | ... |
 
 - **Source**: design — PSA S04, FR-34 criterion 1
              or: derived — serves PSA S01: why, in one sentence
@@ -76,6 +77,7 @@ Each requirement entry has this format:
                or: not built — issue
 - **Related**: links only (REQ, F, Q, ADR)
 - **Notes**: only what a builder needs; an open point as a link to the Q
+- **Verification**: test | inspection | demonstration | analysis
 - **Status**: draft | ready for review | approved | covered | withdrawn
 ```
 
@@ -93,6 +95,34 @@ The fields have these rules:
 - **Related**: only references that work as links.
 - **Notes**: limits, design choices, and open points. No history: the
   page describes the design as it is.
+
+### Cases and verification {#cases}
+
+A case is one situation that must hold, with its outcome. The `#` column
+gives each case a number. Together with the ID, the number is the case
+ID, for example `REQ-48.1`. A test in the build refers to the case ID
+that it shows. These rules keep a case ID stable:
+
+- A new case gets the next free number, also if it goes between other
+  rows. The number is no row position.
+- A removed case keeps its number. Nobody uses that number again in the
+  same requirement.
+- A changed case keeps its number only if the same test still shows it.
+  Otherwise the case gets a new number.
+
+The verification field states how the build shows the requirement:
+
+| Method | Meaning |
+|---|---|
+| test | an automated test shows every case. The requirement has a case table. |
+| inspection | a reviewer checks the code, the configuration, or a document. |
+| demonstration | a person shows the behavior in a running system. |
+| analysis | an argument, a calculation, or a model shows the requirement. |
+
+A method other than `test` names its reason in one sentence, after a
+colon. An example is `inspection: a reviewer checks the configuration`. The script `scripts/gen_traceability.py` checks the case numbers
+and the field. The [coverage page](../traceability/coverage.md#verification)
+lists the method and the number of cases of each requirement.
 
 ### Status {#status}
 
