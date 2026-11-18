@@ -22,8 +22,8 @@ It writes docs/traceability/coverage.md with three tables:
 It exits with status 1 when a page refers to an ID that no register
 defines, or when an open finding or open question has no TO page or ADR.
 It also exits with status 1 when a case table has no numbers, a case
-number is not unique, or the verification of a requirement breaks the
-rules in docs/requirements/index.md#cases.
+number is not unique, a requirement has no verification method, or the
+verification breaks the rules in docs/requirements/index.md#cases.
 
 Usage: python3 scripts/gen_traceability.py [--check]
   --check  do not write; fail when coverage.md is out of date.
@@ -146,8 +146,8 @@ def verification_problems(i, e):
         return out
     if v == "test" and not e["cases"]:
         out.append("has verification test but no cases")
-    if e["case_table"] and v is None:
-        out.append("has cases but no verification line")
+    if v is None:
+        out.append("has no verification line")
     if v in METHODS and v != "test" and not e["reason"]:
         out.append(f"has verification {v} without a reason")
     return out
@@ -282,12 +282,7 @@ def build(reg, pages):
         e = reg[i]
         w(f"| {link(reg, i)} | {e['status']} | {e['verification'] or '—'} | "
           f"{len(e['cases']) or '—'} |")
-    without = [i for i in reqs if reg[i]["verification"] is None]
     w("")
-    if without:
-        w(f"{len(without)} of {len(reqs)} requirements have no verification method yet.\n")
-    else:
-        w(f"All {len(reqs)} requirements have a verification method.\n")
 
     w("## Not explained\n")
     if missing:

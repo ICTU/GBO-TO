@@ -192,6 +192,13 @@ share one OIN and one decryption component.
 
 > The consent register MUST NOT record more identifying data about the citizen than it needs to manage and show consents. It MAY keep the polymorphic identity and the polymorphic pseudonym of the first activation under its own reference to the citizen. This reference is not a BSN. It MUST NOT keep the encrypted identity and the encrypted pseudonym for a receiving party. Those values travel in the signed proof to that party.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | First activation of a citizen | the register keeps the polymorphic identity and the polymorphic pseudonym under its own reference, which is no BSN |
+| 2 | A consent for a receiving party | the register does not store the encrypted identity and pseudonym for that party. They appear only in the signed proof. |
+| 3 | The stored data about a citizen | holds no identifying data beyond the reference and the polymorphic values |
+
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"

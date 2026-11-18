@@ -174,7 +174,7 @@ government:
    replaces the placeholder. BSNk is not in the query path
    ([REQ-21](../requirements/pseudonymization.md#req-21)).
 
-The register never gets a BSN, not even for a short time
+The register stores no BSN
 ([REQ-23](../requirements/consent.md#req-23)). The consumer never
 gets a BSN in the proof or in the response.
 

@@ -110,7 +110,7 @@ that it shows. These rules keep a case ID stable:
 - A changed case keeps its number only if the same test still shows it.
   Otherwise the case gets a new number.
 
-The verification field states how the build shows the requirement:
+Every requirement has a verification field. The field states how the build shows the requirement:
 
 | Method | Meaning |
 |---|---|
@@ -220,7 +220,7 @@ These requirements apply to GBO-delivered components and interface agreements:
 | [REQ-19](consent.md#req-19) | A consent has a finite validity, and after that the PDP denies | DvTP | [Consent lifecycle](consent.md#consent-lifecycle) | design | ready for review |
 | [REQ-20](pseudonymization.md#req-20) | In the consent path the consumer gets no BSN in the proof or in the response | DvTP | [Pseudonymization](pseudonymization.md) | design | draft |
 | [REQ-21](pseudonymization.md#req-21) | The source converts the value from the proof itself, only after a positive decision and without a central party | DvTP | [Pseudonymization](pseudonymization.md) | design | ready for review |
-| [REQ-23](consent.md#req-23) | The consent register (toestemmingsregister) gets no BSN, not even temporarily | DvTP | [Consent roles](consent.md#consent-roles) | design | draft |
+| [REQ-23](consent.md#req-23) | The consent register (toestemmingsregister) stores no BSN and returns none | DvTP | [Consent roles](consent.md#consent-roles) | design | draft |
 | [REQ-24](consent.md#req-24) | The citizen identity comes from the authentication service assertion at the required assurance level and not from client input | DvTP | [Consent roles](consent.md#consent-roles) | design | ready for review |
 | [REQ-32](logging-audit.md#req-32) | Audit records are protected, complete, and stored apart from operational logs | GBO Basis | [Decision audit](logging-audit.md#decision-audit) | design | ready for review |
 | [REQ-37](consent.md#req-37) | A consent request names the consumer, the service, the requested data sets, and the return address | DvTP | [Consent initiation](consent.md#consent-initiation) | design | draft |
