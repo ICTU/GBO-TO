@@ -72,7 +72,7 @@ Each register entry has one row. The row names the TO pages and the decisions th
 | [REQ-19](../requirements/consent.md#req-19) | A consent has a finite validity, and after that the PDP denies | ready for review | [Consent](../concepts/consent.md), [ADR-0032](../decisions/0032-consent-proof.md) |
 | [REQ-20](../requirements/pseudonymization.md#req-20) | In the consent path the consumer gets no BSN in the proof or in the response | draft | [DvTP channel](../building-blocks/dvtp/index.md), [Consent](../concepts/consent.md), [Pseudonymization](../concepts/pseudonymization.md), [ADR-0005](../decisions/0005-bsnk-pp.md), [ADR-0032](../decisions/0032-consent-proof.md), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md), [ADR-0043](../decisions/0043-identifiers-out-of-pdp-input.md), [Introduction and goals](../index.md), [Quality requirements](../quality.md), [DvTP: the citizen views and revokes consents](../runtime/dvtp-citizen-access.md), [DvTP: the citizen gives consent](../runtime/dvtp-consent.md) |
 | [REQ-21](../requirements/pseudonymization.md#req-21) | The source converts the value from the proof itself, only after a positive decision and without a central party | ready for review | [Component catalog](../building-blocks/components.md), [DvTP channel](../building-blocks/dvtp/index.md), [Generic source access](../building-blocks/gbo-basis/source-access.md), [Pseudonymization](../concepts/pseudonymization.md), [Context and scope](../context.md), [ADR-0005](../decisions/0005-bsnk-pp.md), [ADR-0010](../decisions/0010-pep-bsn-resolution.md), [ADR-0011](../decisions/0011-sidecar-pseudonym-resolution.md), [ADR-0032](../decisions/0032-consent-proof.md), [ADR-0033](../decisions/0033-gateway-decrypts-after-allow.md), [DvTP: the consumer queries a source under consent](../runtime/dvtp-query.md), [Solution strategy](../solution-strategy.md) |
-| [REQ-23](../requirements/consent.md#req-23) | The consent register gets no BSN, not even temporarily | draft | [Consent facility](../building-blocks/dvtp/consent-service.md), [Pseudonymization](../concepts/pseudonymization.md), [Context and scope](../context.md), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md), [DvTP: the citizen gives consent](../runtime/dvtp-consent.md) |
+| [REQ-23](../requirements/consent.md#req-23) | The consent register stores no BSN and returns none | draft | [Consent facility](../building-blocks/dvtp/consent-service.md), [Pseudonymization](../concepts/pseudonymization.md), [Context and scope](../context.md), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md), [DvTP: the citizen gives consent](../runtime/dvtp-consent.md) |
 | [REQ-24](../requirements/consent.md#req-24) | The citizen identity comes from the authentication service assertion at the required assurance level and not from client input | ready for review | [Context and scope](../context.md), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md), [DvTP: the citizen views and revokes consents](../runtime/dvtp-citizen-access.md), [DvTP: the citizen gives consent](../runtime/dvtp-consent.md) |
 | [REQ-32](../requirements/logging-audit.md#req-32) | Audit records are protected, complete, and stored apart from operational logs | ready for review | [Records: decisions, processing, transport](../building-blocks/gbo-basis/records.md), [Logging, audit and traceability](../concepts/logging.md), [ADR-0026](../decisions/0026-ldv-integration.md), [ADR-0036](../decisions/0036-adl-decision-record.md), [Deployment view](../deployment.md) |
 | [REQ-37](../requirements/consent.md#req-37) | A consent request names the consumer, the service, the requested data sets, and the return address | draft | [DvTP channel](../building-blocks/dvtp/index.md), [Context and scope](../context.md), [DvTP: the citizen gives consent](../runtime/dvtp-consent.md) |
@@ -469,7 +469,7 @@ Each requirement has one row. The row names the verification method and the numb
 | [REQ-19](../requirements/consent.md#req-19) | ready for review | test | 5 |
 | [REQ-20](../requirements/pseudonymization.md#req-20) | draft | test | 2 |
 | [REQ-21](../requirements/pseudonymization.md#req-21) | ready for review | test | 6 |
-| [REQ-23](../requirements/consent.md#req-23) | draft | — | — |
+| [REQ-23](../requirements/consent.md#req-23) | draft | test | 3 |
 | [REQ-24](../requirements/consent.md#req-24) | ready for review | test | 2 |
 | [REQ-32](../requirements/logging-audit.md#req-32) | ready for review | test | 4 |
 | [REQ-37](../requirements/consent.md#req-37) | draft | test | 5 |
@@ -494,11 +494,11 @@ Each requirement has one row. The row names the verification method and the numb
 | [REQ-66](../requirements/sources-identity.md#req-66) | ready for review | test | 10 |
 | [REQ-67](../requirements/sources-identity.md#req-67) | draft | test | 3 |
 | [REQ-68](../requirements/consent.md#req-68) | draft | test | 7 |
-| [REQ-69](../requirements/pseudonymization.md#req-69) | ready for review | — | — |
+| [REQ-69](../requirements/pseudonymization.md#req-69) | ready for review | test | 3 |
 | [REQ-71](../requirements/logging-audit.md#req-71) | ready for review | test | 4 |
 | [REQ-72](../requirements/logging-audit.md#req-72) | ready for review | test | 6 |
 | [REQ-74](../requirements/authorization.md#req-74) | ready for review | test | 3 |
-| [REQ-75](../requirements/consent.md#req-75) | draft | — | — |
+| [REQ-75](../requirements/consent.md#req-75) | draft | test | 3 |
 | [REQ-76](../requirements/consent.md#req-76) | draft | test | 4 |
 | [REQ-77](../requirements/eudi-issuance.md#req-77) | draft | test | 4 |
 | [REQ-78](../requirements/eudi-issuance.md#req-78) | draft | test | 2 |
@@ -508,7 +508,7 @@ Each requirement has one row. The row names the verification method and the numb
 | [REQ-82](../requirements/pseudonymization.md#req-82) | draft | test | 5 |
 | [REQ-83](../requirements/asi.md#req-83) | ready for review | test | 3 |
 | [REQ-84](../requirements/asi.md#req-84) | ready for review | test | 7 |
-| [REQ-85](../requirements/asi.md#req-85) | draft | — | — |
+| [REQ-85](../requirements/asi.md#req-85) | draft | test | 3 |
 | [REQ-86](../requirements/asi.md#req-86) | ready for review | test | 4 |
 | [REQ-87](../requirements/asi.md#req-87) | ready for review | test | 8 |
 | [REQ-88](../requirements/asi.md#req-88) | ready for review | test | 9 |
@@ -531,7 +531,7 @@ Each requirement has one row. The row names the verification method and the numb
 | [REQ-109](../requirements/consent.md#req-109) | ready for review | test | 5 |
 | [REQ-110](../requirements/admission.md#req-110) | draft | test | 5 |
 | [REQ-111](../requirements/consent.md#req-111) | ready for review | test | 5 |
-| [REQ-112](../requirements/asi.md#req-112) | draft | — | — |
+| [REQ-112](../requirements/asi.md#req-112) | draft | test | 4 |
 | [REQ-113](../requirements/asi.md#req-113) | draft | test | 2 |
 | [REQ-114](../requirements/asi.md#req-114) | draft | test | 3 |
 | [REQ-115](../requirements/asi.md#req-115) | draft | test | 3 |
@@ -544,8 +544,6 @@ Each requirement has one row. The row names the verification method and the numb
 | [REQ-122](../requirements/consent.md#req-122) | draft | test | 4 |
 | [REQ-123](../requirements/admission.md#req-123) | draft | test | 4 |
 | [REQ-124](../requirements/eudi-issuance.md#req-124) | draft | test | 3 |
-
-5 of 87 requirements have no verification method yet.
 
 ## Not explained
 
