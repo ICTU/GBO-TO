@@ -52,13 +52,14 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > consent. If a request asks fields of a set without consent, the PDP MUST
 > deny it.
 
-| Case | Outcome |
-|---|---|
-| Consent for the set, and the request asks fields of that set | allowed (code) |
-| The request also asks a field that is not part of the set | that field denied: `NO_APPLICABLE_RULE` (code) |
-| Consent only for another set | denied: `SCOPE_NOT_ALLOWED`, or `YEAR_NOT_COVERED` for another tax year (code) |
-| The citizen switches a set off | no consent for that set. The citizen cannot switch off a part of a set (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Consent for the set, and the request asks fields of that set | allowed (code) |
+| 2 | The request also asks a field that is not part of the set | that field denied: `NO_APPLICABLE_RULE` (code) |
+| 3 | Consent only for another set | denied: `SCOPE_NOT_ALLOWED`, or `YEAR_NOT_COVERED` for another tax year (code) |
+| 4 | The citizen switches a set off | no consent for that set. The citizen cannot switch off a part of a set (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -113,14 +114,15 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > consent portal backend MUST refuse it with `CONSENT_SCOPE_MISSING`. The
 > UI then offers no button.
 
-| Case | Outcome |
-|---|---|
-| Consumer, purpose, and at least one known set | recorded (code) |
-| No consumer | not recorded. The register refuses (code: HTTP 400 `dienstverlener_oin is required`) |
-| No set chosen | button disabled. The backend refuses: `CONSENT_SCOPE_MISSING` (not built in the backend in demo v0.9.0) |
-| No purpose | refused: `CONSENT_SCOPE_MISSING` (the demo fills in `hypotheek` (mortgage), which deviates) |
-| A set that the portal does not know | no consent question. The citizen sees the message unknown request (shown as "Onbekend verzoek") (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Consumer, purpose, and at least one known set | recorded (code) |
+| 2 | No consumer | not recorded. The register refuses (code: HTTP 400 `dienstverlener_oin is required`) |
+| 3 | No set chosen | button disabled. The backend refuses: `CONSENT_SCOPE_MISSING` (not built in the backend in demo v0.9.0) |
+| 4 | No purpose | refused: `CONSENT_SCOPE_MISSING` (the demo fills in `hypotheek` (mortgage), which deviates) |
+| 5 | A set that the portal does not know | no consent question. The citizen sees the message unknown request (shown as "Onbekend verzoek") (code) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -174,11 +176,12 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > was valid before the revocation. The deny MUST work without any action
 > by the consumer and without a message to the consumer.
 
-| Case | Outcome |
-|---|---|
-| Consent revoked, and a request with the proof | denied: `CONSENT_WITHDRAWN` (code) |
-| The same proof before and after the revocation | first allowed, then denied. The proof itself does not change (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Consent revoked, and a request with the proof | denied: `CONSENT_WITHDRAWN` (code) |
+| 2 | The same proof before and after the revocation | first allowed, then denied. The proof itself does not change (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -245,16 +248,17 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > the citizen, and the consumer on which the PDP decides MUST come from that
 > established proof.
 
-| Case | Outcome |
-|---|---|
-| Valid proof, consent active, consumer matches | allowed (code) |
-| Signature does not verify, unknown key, or another algorithm | denied: `CONSENT_SIGNATURE_INVALID` (code) |
-| The PDP cannot get the verification keys | denied: `CONSENT_KEYS_UNAVAILABLE`. The consumer sees `ACCESS_DENIED` (code) |
-| Another issuer, another audience, another type, or a mandatory claim is missing | denied: `CONSENT_CONTEXT_INVALID` (code) |
-| Consent given to another consumer | denied: `CONSENT_ACTOR_MISMATCH` (code) |
-| The register does not know the consent | denied: `CONSENT_NOT_FOUND` (code) |
-| The PDP cannot establish the status (time-out, error, unexpected answer) | denied: `CONSENT_STATUS_UNAVAILABLE`. The consumer sees `ACCESS_DENIED` (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Valid proof, consent active, consumer matches | allowed (code) |
+| 2 | Signature does not verify, unknown key, or another algorithm | denied: `CONSENT_SIGNATURE_INVALID` (code) |
+| 3 | The PDP cannot get the verification keys | denied: `CONSENT_KEYS_UNAVAILABLE`. The consumer sees `ACCESS_DENIED` (code) |
+| 4 | Another issuer, another audience, another type, or a mandatory claim is missing | denied: `CONSENT_CONTEXT_INVALID` (code) |
+| 5 | Consent given to another consumer | denied: `CONSENT_ACTOR_MISMATCH` (code) |
+| 6 | The register does not know the consent | denied: `CONSENT_NOT_FOUND` (code) |
+| 7 | The PDP cannot establish the status (time-out, error, unexpected answer) | denied: `CONSENT_STATUS_UNAVAILABLE`. The consumer sees `ACCESS_DENIED` (code) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -408,13 +412,14 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > processing log ([REQ-72](logging-audit.md#req-72)). Along the same
 > path, only the status of the register MUST be reachable.
 
-| Case | Outcome |
-|---|---|
-| PDP peer with a contract asks the status | status delivered. The peer is the processor in the LDV record (code) |
-| Query without an FSC peer | denied: HTTP 401 (code) |
-| Another path than the status through the status service (detail, list, revoke) | denied (code) |
-| Peer with a contract, but not the PDP of a source of that service | denied. Not built in demo v0.9.0: the demo delivers the status (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | PDP peer with a contract asks the status | status delivered. The peer is the processor in the LDV record (code) |
+| 2 | Query without an FSC peer | denied: HTTP 401 (code) |
+| 3 | Another path than the status through the status service (detail, list, revoke) | denied (code) |
+| 4 | Peer with a contract, but not the PDP of a source of that service | denied. Not built in demo v0.9.0: the demo delivers the status (code) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -483,19 +488,20 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > A contract in which a party connects on behalf of another party MAY come
 > into force only if that representation is registered.
 
-| Case | Outcome |
-|---|---|
-| Consent for service provider X, and integrator registered for X and this rule | allowed |
-| Consent given to another service provider | denied: `CONSENT_ACTOR_MISMATCH` |
-| Integrator registered only for another rule | denied: `INTEGRATOR_NOT_REGISTERED` |
-| Integrator suspended | denied: `INTEGRATOR_NOT_REGISTERED` |
-| Mandate not in force at that time, or expired | denied: `INTEGRATOR_NOT_REGISTERED` *(proposal: not built)* |
-| The admission register delivers no data | denied: `INTEGRATOR_REGISTER_UNAVAILABLE` |
-| Consent given to the integrator itself instead of the service provider | denied: `CONSENT_ACTOR_MISMATCH` |
-| No registration of the representation | contract stays proposed: `DELEGATION_NOT_REGISTERED` |
-| Service provider suspended, for a delegated contract | contract stays proposed: `PARTY_NOT_ACTIVE` |
-| The service provider calls itself, with or without an integrator in the chain | allowed, unchanged |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Consent for service provider X, and integrator registered for X and this rule | allowed |
+| 2 | Consent given to another service provider | denied: `CONSENT_ACTOR_MISMATCH` |
+| 3 | Integrator registered only for another rule | denied: `INTEGRATOR_NOT_REGISTERED` |
+| 4 | Integrator suspended | denied: `INTEGRATOR_NOT_REGISTERED` |
+| 5 | Mandate not in force at that time, or expired | denied: `INTEGRATOR_NOT_REGISTERED` *(proposal: not built)* |
+| 6 | The admission register delivers no data | denied: `INTEGRATOR_REGISTER_UNAVAILABLE` |
+| 7 | Consent given to the integrator itself instead of the service provider | denied: `CONSENT_ACTOR_MISMATCH` |
+| 8 | No registration of the representation | contract stays proposed: `DELEGATION_NOT_REGISTERED` |
+| 9 | Service provider suspended, for a delegated contract | contract stays proposed: `PARTY_NOT_ACTIVE` |
+| 10 | The service provider calls itself, with or without an integrator in the chain | allowed, unchanged |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -576,14 +582,15 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > 2.1 AA. If a request to give consent has no confirmation, the consent portal
 > backend MUST refuse it, before any processing.
 
-| Case | Outcome |
-|---|---|
-| Not confirmed | button disabled |
-| Confirmed, and at least one scope chosen | button active, consent recorded |
-| Confirmation undone again | button disabled again |
-| Request to the backend without confirmation, for example directly on the API | refused: `CONFIRMATION_MISSING`. No record, and no activation or transformation at BSNk |
-| Keyboard or screen reader only | confirming and giving work |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Not confirmed | button disabled |
+| 2 | Confirmed, and at least one scope chosen | button active, consent recorded |
+| 3 | Confirmation undone again | button disabled again |
+| 4 | Request to the backend without confirmation, for example directly on the API | refused: `CONFIRMATION_MISSING`. No record, and no activation or transformation at BSNk |
+| 5 | Keyboard or screen reader only | confirming and giving work |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -648,16 +655,17 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > description that the consent facility knows. It MUST NOT come from the
 > request of the consumer.
 
-| Case | Outcome |
-|---|---|
-| Request for known sets | consumer, purpose, valid until, and per set the title and description in B1 (code) |
-| Data elements per set | per set the elements, without values *(proposal: the demo shows only title and description)* |
-| A set with elements of more than one bronhouder | per element the bronhouder *(proposal: not built)* |
-| Admitted, active consumer | the screen states that the consumer is admitted *(proposal: not built)* |
-| Mandatory and optional sets | the screen shows a mandatory set as mandatory, and the citizen cannot switch it off *(proposal)* |
-| Voluntariness and alternative | stated on the screen *(proposal: not built)* |
-| The citizen refuses | back to the consumer with `status=denied`, and no consent (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Request for known sets | consumer, purpose, valid until, and per set the title and description in B1 (code) |
+| 2 | Data elements per set | per set the elements, without values *(proposal: the demo shows only title and description)* |
+| 3 | A set with elements of more than one bronhouder | per element the bronhouder *(proposal: not built)* |
+| 4 | Admitted, active consumer | the screen states that the consumer is admitted *(proposal: not built)* |
+| 5 | Mandatory and optional sets | the screen shows a mandatory set as mandatory, and the citizen cannot switch it off *(proposal)* |
+| 6 | Voluntariness and alternative | stated on the screen *(proposal: not built)* |
+| 7 | The citizen refuses | back to the consumer with `status=denied`, and no consent (code) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -743,15 +751,16 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > case, the login is on behalf of another person, and the service
 > description does not state whether the service excludes delegation.
 
-| Case | Outcome |
-|---|---|
-| Service excludes delegation, and login on behalf of another person | no consent screen, and a message to the representative. The backend refuses: `DELEGATION_NOT_ALLOWED`. No consent, and no activation or transformation at BSNk |
-| Service excludes delegation, and the citizen logs in for themselves | consent screen |
-| Service allows delegation, and login with a valid authorization | consent screen. [Q-73](../traceability/open-questions.md#q-73) asks whose consent it then is |
-| The consent facility cannot establish whether the login is on behalf of another person | refused: `DELEGATION_NOT_ALLOWED`, and no consent screen |
-| The service does not state whether it excludes delegation, and login on behalf of another person | refused: `DELEGATION_NOT_ALLOWED`, and no consent screen |
-| The service does not state whether it excludes delegation, and the citizen logs in for themselves | consent screen |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Service excludes delegation, and login on behalf of another person | no consent screen, and a message to the representative. The backend refuses: `DELEGATION_NOT_ALLOWED`. No consent, and no activation or transformation at BSNk |
+| 2 | Service excludes delegation, and the citizen logs in for themselves | consent screen |
+| 3 | Service allows delegation, and login with a valid authorization | consent screen. [Q-73](../traceability/open-questions.md#q-73) asks whose consent it then is |
+| 4 | The consent facility cannot establish whether the login is on behalf of another person | refused: `DELEGATION_NOT_ALLOWED`, and no consent screen |
+| 5 | The service does not state whether it excludes delegation, and login on behalf of another person | refused: `DELEGATION_NOT_ALLOWED`, and no consent screen |
+| 6 | The service does not state whether it excludes delegation, and the citizen logs in for themselves | consent screen |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -798,12 +807,13 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > An administrator MUST be able to add or change a set without a code change
 > in the portal UI or the consent portal backend.
 
-| Case | Outcome |
-|---|---|
-| An administrator adds a set to a service | set usable in initiation and screen, without a new release of UI or backend *(proposal)* |
-| The reference policy allows under a set a field that the description does not name, or misses one | a test of the policy set fails *(proposal)* |
-| The screen shows for a set an element that the description does not name | a test fails *(proposal)* |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | An administrator adds a set to a service | set usable in initiation and screen, without a new release of UI or backend *(proposal)* |
+| 2 | The reference policy allows under a set a field that the description does not name, or misses one | a test of the policy set fails *(proposal)* |
+| 3 | The screen shows for a set an element that the description does not name | a test fails *(proposal)* |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -852,13 +862,14 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > confirmation MUST follow only a choice that is recorded. If recording
 > fails, the citizen MUST be told so and see no confirmation.
 
-| Case | Outcome |
-|---|---|
-| Consent given and recorded | confirmation with consumer, service, purpose, sets, and valid until. Then the return ([REQ-119](consent.md#req-119)) |
-| The citizen refuses | confirmation that no consent was given. Return with the outcome refusal |
-| Consent revoked | confirmation of the revocation (FR-23, step C-10a) |
-| Recording or revoking fails | error message. No confirmation, and no return as successful |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Consent given and recorded | confirmation with consumer, service, purpose, sets, and valid until. Then the return ([REQ-119](consent.md#req-119)) |
+| 2 | The citizen refuses | confirmation that no consent was given. Return with the outcome refusal |
+| 3 | Consent revoked | confirmation of the revocation (FR-23, step C-10a) |
+| 4 | Recording or revoking fails | error message. No confirmation, and no return as successful |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -920,14 +931,15 @@ validity period is open again
 > Within the validity, the consent MUST be usable repeatedly. If the
 > valid-until moment is missing or cannot be read, the PDP MUST deny.
 
-| Case | Outcome |
-|---|---|
-| Within the validity | allowed (code) |
-| Second request within the validity | allowed (design FR-11 criterion 2, code: no reuse check) |
-| After the valid-until moment, within 30 s clock skew | denied: `CONSENT_EXPIRED` (code) |
-| More than 30 s after the valid-until moment | denied: `CONSENT_TOKEN_EXPIRED` (code) |
-| Valid-until missing, or different from the expiry time of the proof | denied: `CONSENT_CONTEXT_INVALID` (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Within the validity | allowed (code) |
+| 2 | Second request within the validity | allowed (design FR-11 criterion 2, code: no reuse check) |
+| 3 | After the valid-until moment, within 30 s clock skew | denied: `CONSENT_EXPIRED` (code) |
+| 4 | More than 30 s after the valid-until moment | denied: `CONSENT_TOKEN_EXPIRED` (code) |
+| 5 | Valid-until missing, or different from the expiry time of the proof | denied: `CONSENT_CONTEXT_INVALID` (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -1018,14 +1030,15 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 > The name and purpose of the consumer MAY be missing. They come from the
 > registration ([REQ-111](#req-111)).
 
-| Case | Outcome |
-|---|---|
-| Complete request, known data sets | after the login, the consent screen with this context at once *(from code)* |
-| One of the mandatory items is missing | refused: `INITIATION_INCOMPLETE`, no consent screen (demo: only the UI, the message no session, shown as "Geen sessie") |
-| Unknown data set | refused: `UNKNOWN_SCOPE`, no consent screen (demo: only the UI, the message unknown request, [PR #435](https://github.com/ICTU/GBO-demo/pull/435)) |
-| Known data set that does not belong to the requested service, or is not recorded for this consumer | refused: `SCOPE_NOT_REGISTERED`, no consent screen *(not built)* |
-| Request on behalf of a consumer through an integrator | the request also names the integrator *(proposal from FR-12 criterion 2: not built)* |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Complete request, known data sets | after the login, the consent screen with this context at once *(from code)* |
+| 2 | One of the mandatory items is missing | refused: `INITIATION_INCOMPLETE`, no consent screen (demo: only the UI, the message no session, shown as "Geen sessie") |
+| 3 | Unknown data set | refused: `UNKNOWN_SCOPE`, no consent screen (demo: only the UI, the message unknown request, [PR #435](https://github.com/ICTU/GBO-demo/pull/435)) |
+| 4 | Known data set that does not belong to the requested service, or is not recorded for this consumer | refused: `SCOPE_NOT_REGISTERED`, no consent screen *(not built)* |
+| 5 | Request on behalf of a consumer through an integrator | the request also names the integrator *(proposal from FR-12 criterion 2: not built)* |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1090,14 +1103,15 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 > screen. The same applies to a request with a name or purpose that
 > differs from the registration.
 
-| Case | Outcome |
-|---|---|
-| Active consumer, registered return address | consent screen, with name and purpose from the registration |
-| Name or purpose in the request differs from the registration | refused: `INITIATION_MISMATCH` |
-| Consumer suspended or not admitted | refused: `PARTY_NOT_ACTIVE` |
-| Consumer active, but not admitted for this service | refused (no decision on the reason), no consent screen *(not built)* |
-| Return address not registered for that consumer | refused: `RETURN_URL_NOT_REGISTERED`, no return to that address |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Active consumer, registered return address | consent screen, with name and purpose from the registration |
+| 2 | Name or purpose in the request differs from the registration | refused: `INITIATION_MISMATCH` |
+| 3 | Consumer suspended or not admitted | refused: `PARTY_NOT_ACTIVE` |
+| 4 | Consumer active, but not admitted for this service | refused (no decision on the reason), no consent screen *(not built)* |
+| 5 | Return address not registered for that consumer | refused: `RETURN_URL_NOT_REGISTERED`, no return to that address |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -1154,15 +1168,16 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 > consent. If the consent facility cannot establish the return address, it
 > MUST NOT return the citizen.
 
-| Case | Outcome |
-|---|---|
-| The citizen gives consent | back with the outcome success. The proof reaches the consumer as [Q-44](../traceability/open-questions.md#q-44) decides |
-| The citizen refuses | back with the outcome refusal (demo: `status=denied`, code) |
-| The consent cannot be recorded (for example no value for a source, [REQ-82](pseudonymization.md#req-82), or the register does not answer) | back with the outcome error, no consent |
-| Refused by [REQ-118](consent.md#req-118) (delegation) | back with an outcome. Refusal or error: [Q-44](../traceability/open-questions.md#q-44) |
-| Consumer or return address cannot be established ([REQ-111](#req-111)) | no return. What the citizen sees: no decision |
-| The citizen closes the window or the session expires | no return ([Q-43](../traceability/open-questions.md#q-43), [Q-44](../traceability/open-questions.md#q-44)) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The citizen gives consent | back with the outcome success. The proof reaches the consumer as [Q-44](../traceability/open-questions.md#q-44) decides |
+| 2 | The citizen refuses | back with the outcome refusal (demo: `status=denied`, code) |
+| 3 | The consent cannot be recorded (for example no value for a source, [REQ-82](pseudonymization.md#req-82), or the register does not answer) | back with the outcome error, no consent |
+| 4 | Refused by [REQ-118](consent.md#req-118) (delegation) | back with an outcome. Refusal or error: [Q-44](../traceability/open-questions.md#q-44) |
+| 5 | Consumer or return address cannot be established ([REQ-111](#req-111)) | no return. What the citizen sees: no decision |
+| 6 | The citizen closes the window or the session expires | no return ([Q-43](../traceability/open-questions.md#q-43), [Q-44](../traceability/open-questions.md#q-44)) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1275,11 +1290,12 @@ and backend stay two systems, and which of them is the BSNk participant
 > the set minimum, or no level. If so, the backend MUST show no personal
 > data and no consent options. It MUST also record or revoke nothing.
 
-| Case | Outcome |
-|---|---|
-| Assertion at the minimum level or higher | identity accepted |
-| Assertion at a level lower than the minimum, or without a level | refused (no decision on the reason). Nothing shown, recorded, or revoked *(proposal: not built)* |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Assertion at the minimum level or higher | identity accepted |
+| 2 | Assertion at a level lower than the minimum, or without a level | refused (no decision on the reason). Nothing shown, recorded, or revoked *(proposal: not built)* |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -1371,15 +1387,16 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
 > the validity, on the same grounds on which the authorization chain
 > denies.
 
-| Case | Outcome |
-|---|---|
-| Logged in, overview | the own consents, each with the status active, expired, or revoked *(from code)* |
-| Validity passed | expired *(from code)* |
-| Revoked, also if the validity passed later | revoked *(from code)* |
-| Logged in, revoke an own active consent | revoked *(from code)* |
-| Detail of a consent | for each set, the same data elements as on the consent screen, without values *(proposal: not built)* |
-| Not logged in, or invalid assertion | refused, nothing shown or changed *(from code: HTTP 401)* |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Logged in, overview | the own consents, each with the status active, expired, or revoked *(from code)* |
+| 2 | Validity passed | expired *(from code)* |
+| 3 | Revoked, also if the validity passed later | revoked *(from code)* |
+| 4 | Logged in, revoke an own active consent | revoked *(from code)* |
+| 5 | Detail of a consent | for each set, the same data elements as on the consent screen, without values *(proposal: not built)* |
+| 6 | Not logged in, or invalid assertion | refused, nothing shown or changed *(from code: HTTP 401)* |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1448,12 +1465,13 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
 > component MUST NOT be able to call the register for these actions
 > directly.
 
-| Case | Outcome |
-|---|---|
-| The consent portal backend creates, queries, or revokes | allowed |
-| The portal UI or the browser calls the register directly | not reachable *(proposal, reachable in the demo)* |
-| The PDP of a source asks for the status | only through the entry for the status ([REQ-76](consent.md#req-76)), no other actions *(from code)* |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The consent portal backend creates, queries, or revokes | allowed |
+| 2 | The portal UI or the browser calls the register directly | not reachable *(proposal, reachable in the demo)* |
+| 3 | The PDP of a source asks for the status | only through the entry for the status ([REQ-76](consent.md#req-76)), no other actions *(from code)* |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1509,13 +1527,14 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
 > outcome: not found (`CONSENT_NOT_FOUND`). Then the answer does not reveal
 > whether a consent exists.
 
-| Case | Outcome |
-|---|---|
-| Overview | only the consents of this citizen *(from code)* |
-| Revoke an own consent | revoked *(from code)* |
-| Revoke the consent of another citizen | refused: `CONSENT_NOT_FOUND` (HTTP 404), consent unchanged (demo: 403 `consent_not_owned_by_caller`) |
-| Revoke an unknown consent | refused: `CONSENT_NOT_FOUND` (HTTP 404) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Overview | only the consents of this citizen *(from code)* |
+| 2 | Revoke an own consent | revoked *(from code)* |
+| 3 | Revoke the consent of another citizen | refused: `CONSENT_NOT_FOUND` (HTTP 404), consent unchanged (demo: 403 `consent_not_owned_by_caller`) |
+| 4 | Revoke an unknown consent | refused: `CONSENT_NOT_FOUND` (HTTP 404) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1570,13 +1589,14 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
 > consents. The export MUST contain the same consents and data as the
 > overview, and MUST NOT contain the BSN or the name of the citizen.
 
-| Case | Outcome |
-|---|---|
-| A logged-in citizen exports | a file with all consents of the overview (active, and recently expired or revoked): consumer, service, sets, valid until, and status |
-| A citizen without consents | empty export, no error |
-| Not logged in | no export |
-| Content | only consents of this citizen, no BSN, and no name |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | A logged-in citizen exports | a file with all consents of the overview (active, and recently expired or revoked): consumer, service, sets, valid until, and status |
+| 2 | A citizen without consents | empty export, no error |
+| 3 | Not logged in | no export |
+| 4 | Content | only consents of this citizen, no BSN, and no name |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -1610,14 +1630,15 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
 > revocation of an expired or already revoked consent. It MUST NOT change
 > the status or make a new registration then.
 
-| Case | Outcome |
-|---|---|
-| Active | button visible, revoked after the citizen approves |
-| Retrieved (still valid) | button visible, revoked after the citizen approves (to build after [Q-42](../traceability/open-questions.md#q-42)) |
-| Expired | no button. The backend refuses a direct request: `CONSENT_NOT_REVOCABLE`. The status stays expired |
-| Already revoked | no button. The backend refuses a direct request: `CONSENT_NOT_REVOCABLE`. No new registration |
-| The consent of another citizen | refused, as in demo v0.9.0 ([REQ-40](#req-40)) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Active | button visible, revoked after the citizen approves |
+| 2 | Retrieved (still valid) | button visible, revoked after the citizen approves (to build after [Q-42](../traceability/open-questions.md#q-42)) |
+| 3 | Expired | no button. The backend refuses a direct request: `CONSENT_NOT_REVOCABLE`. The status stays expired |
+| 4 | Already revoked | no button. The backend refuses a direct request: `CONSENT_NOT_REVOCABLE`. No new registration |
+| 5 | The consent of another citizen | refused, as in demo v0.9.0 ([REQ-40](#req-40)) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -1657,13 +1678,14 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
 > contact details from the registration of the consumer and not from the
 > request of the consumer.
 
-| Case | Outcome |
-|---|---|
-| The citizen opens the detail view of a consent | text about GDPR rights, with the contact details from the registration *(proposal: not built)* |
-| The citizen revokes a consent | the message after the revocation states that data already given stays with the consumer, with the contact details *(proposal: not built)* |
-| No data fetched yet under the consent | the notice still shows. The requirement does not depend on [Q-42](../traceability/open-questions.md#q-42) |
-| Consumer without registered contact details | does not occur for an admitted consumer: no admission without these details ([AV-14](admission.md#av-14)) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The citizen opens the detail view of a consent | text about GDPR rights, with the contact details from the registration *(proposal: not built)* |
+| 2 | The citizen revokes a consent | the message after the revocation states that data already given stays with the consumer, with the contact details *(proposal: not built)* |
+| 3 | No data fetched yet under the consent | the notice still shows. The requirement does not depend on [Q-42](../traceability/open-questions.md#q-42) |
+| 4 | Consumer without registered contact details | does not occur for an admitted consumer: no admission without these details ([AV-14](admission.md#av-14)) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"

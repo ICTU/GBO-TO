@@ -451,6 +451,102 @@ Each register entry has one row. The row names the TO pages and the decisions th
 | [E9](standards-feedback.md#e9) | RFC 9207 (`iss` in the authorization response) is missing | open | [ADR-0037](../decisions/0037-asi-oauth-front-door.md), [ASI verification: a QTSP verifies or retrieves an attribute](../runtime/asi-verification.md) |
 | [E10](standards-feedback.md#e10) | The meaning of a revoked right for issued tokens is not defined | open | [ADR-0037](../decisions/0037-asi-oauth-front-door.md), [ASI verification: a QTSP verifies or retrieves an attribute](../runtime/asi-verification.md) |
 
+## Verification {#verification}
+
+Each requirement has one row. The row names the verification method and the number of cases. A test in the build refers to a case as the ID with the case number, for example `REQ-48.1`. For the rules, see [Cases and verification](../requirements/index.md#cases).
+
+| ID | Status | Verification | Cases |
+|---|---|---|---|
+| [REQ-04](../requirements/authorization.md#req-04) | ready for review | — | — |
+| [REQ-06](../requirements/authorization.md#req-06) | ready for review | test | 3 |
+| [REQ-08](../requirements/authorization.md#req-08) | ready for review | — | — |
+| [REQ-10](../requirements/consent.md#req-10) | ready for review | test | 4 |
+| [REQ-11](../requirements/authorization.md#req-11) | ready for review | — | — |
+| [REQ-12](../requirements/consent.md#req-12) | draft | test | 5 |
+| [REQ-14](../requirements/consent.md#req-14) | ready for review | test | 2 |
+| [REQ-17](../requirements/authorization.md#req-17) | ready for review | test | 8 |
+| [REQ-18](../requirements/authorization.md#req-18) | ready for review | test | 2 |
+| [REQ-19](../requirements/consent.md#req-19) | ready for review | test | 5 |
+| [REQ-20](../requirements/pseudonymization.md#req-20) | draft | test | 2 |
+| [REQ-21](../requirements/pseudonymization.md#req-21) | ready for review | test | 6 |
+| [REQ-23](../requirements/consent.md#req-23) | draft | — | — |
+| [REQ-24](../requirements/consent.md#req-24) | ready for review | test | 2 |
+| [REQ-32](../requirements/logging-audit.md#req-32) | ready for review | — | — |
+| [REQ-37](../requirements/consent.md#req-37) | draft | test | 5 |
+| [REQ-38](../requirements/consent.md#req-38) | draft | test | 6 |
+| [REQ-39](../requirements/consent.md#req-39) | draft | test | 3 |
+| [REQ-40](../requirements/consent.md#req-40) | draft | test | 4 |
+| [REQ-42](../requirements/authorization.md#req-42) | ready for review | — | — |
+| [REQ-44](../requirements/authorization.md#req-44) | ready for review | — | — |
+| [REQ-45](../requirements/eudi-issuance.md#req-45) | draft | test | 5 |
+| [REQ-46](../requirements/sources-identity.md#req-46) | ready for review | test | 3 |
+| [REQ-48](../requirements/authorization.md#req-48) | ready for review | test | 7 |
+| [REQ-55](../requirements/logging-audit.md#req-55) | ready for review | test | 4 |
+| [REQ-57](../requirements/eudi-issuance.md#req-57) | draft | test | 7 |
+| [REQ-58](../requirements/eudi-issuance.md#req-58) | ready for review | test | 5 |
+| [REQ-59](../requirements/logging-audit.md#req-59) | ready for review | — | — |
+| [REQ-60](../requirements/logging-audit.md#req-60) | ready for review | test | 4 |
+| [REQ-61](../requirements/admission.md#req-61) | ready for review | test | 6 |
+| [REQ-62](../requirements/admission.md#req-62) | ready for review | — | — |
+| [REQ-63](../requirements/admission.md#req-63) | draft | test | 2 |
+| [REQ-64](../requirements/sources-identity.md#req-64) | ready for review | test | 11 |
+| [REQ-65](../requirements/sources-identity.md#req-65) | ready for review | test | 4 |
+| [REQ-66](../requirements/sources-identity.md#req-66) | ready for review | test | 10 |
+| [REQ-67](../requirements/sources-identity.md#req-67) | draft | test | 3 |
+| [REQ-68](../requirements/consent.md#req-68) | draft | test | 7 |
+| [REQ-69](../requirements/pseudonymization.md#req-69) | ready for review | — | — |
+| [REQ-71](../requirements/logging-audit.md#req-71) | ready for review | test | 4 |
+| [REQ-72](../requirements/logging-audit.md#req-72) | ready for review | — | — |
+| [REQ-74](../requirements/authorization.md#req-74) | ready for review | test | 3 |
+| [REQ-75](../requirements/consent.md#req-75) | draft | — | — |
+| [REQ-76](../requirements/consent.md#req-76) | draft | test | 4 |
+| [REQ-77](../requirements/eudi-issuance.md#req-77) | draft | test | 4 |
+| [REQ-78](../requirements/eudi-issuance.md#req-78) | draft | test | 2 |
+| [REQ-79](../requirements/pseudonymization.md#req-79) | ready for review | test | 9 |
+| [REQ-80](../requirements/pseudonymization.md#req-80) | ready for review | test | 5 |
+| [REQ-81](../requirements/pseudonymization.md#req-81) | ready for review | test | 3 |
+| [REQ-82](../requirements/pseudonymization.md#req-82) | draft | test | 5 |
+| [REQ-83](../requirements/asi.md#req-83) | ready for review | test | 3 |
+| [REQ-84](../requirements/asi.md#req-84) | ready for review | test | 7 |
+| [REQ-85](../requirements/asi.md#req-85) | draft | — | — |
+| [REQ-86](../requirements/asi.md#req-86) | ready for review | test | 4 |
+| [REQ-87](../requirements/asi.md#req-87) | ready for review | test | 8 |
+| [REQ-88](../requirements/asi.md#req-88) | ready for review | test | 9 |
+| [REQ-89](../requirements/asi.md#req-89) | ready for review | test | 3 |
+| [REQ-90](../requirements/asi.md#req-90) | ready for review | test | 7 |
+| [REQ-91](../requirements/asi.md#req-91) | ready for review | test | 5 |
+| [REQ-92](../requirements/asi.md#req-92) | ready for review | test | 3 |
+| [REQ-93](../requirements/asi.md#req-93) | ready for review | test | 4 |
+| [REQ-94](../requirements/asi.md#req-94) | ready for review | test | 3 |
+| [REQ-95](../requirements/asi.md#req-95) | ready for review | test | 4 |
+| [REQ-97](../requirements/authorization.md#req-97) | ready for review | — | — |
+| [REQ-99](../requirements/asi.md#req-99) | draft | test | 3 |
+| [REQ-100](../requirements/asi.md#req-100) | draft | test | 2 |
+| [REQ-101](../requirements/asi.md#req-101) | ready for review | test | 4 |
+| [REQ-102](../requirements/asi.md#req-102) | ready for review | test | 4 |
+| [REQ-103](../requirements/asi.md#req-103) | draft | test | 5 |
+| [REQ-106](../requirements/consent.md#req-106) | ready for review | test | 10 |
+| [REQ-107](../requirements/consent.md#req-107) | ready for review | test | 5 |
+| [REQ-108](../requirements/consent.md#req-108) | ready for review | test | 4 |
+| [REQ-109](../requirements/consent.md#req-109) | ready for review | test | 5 |
+| [REQ-110](../requirements/admission.md#req-110) | draft | test | 5 |
+| [REQ-111](../requirements/consent.md#req-111) | ready for review | test | 5 |
+| [REQ-112](../requirements/asi.md#req-112) | draft | — | — |
+| [REQ-113](../requirements/asi.md#req-113) | draft | test | 2 |
+| [REQ-114](../requirements/asi.md#req-114) | draft | test | 3 |
+| [REQ-115](../requirements/asi.md#req-115) | draft | test | 3 |
+| [REQ-116](../requirements/eudi-issuance.md#req-116) | draft | test | 7 |
+| [REQ-117](../requirements/consent.md#req-117) | draft | test | 7 |
+| [REQ-118](../requirements/consent.md#req-118) | draft | test | 6 |
+| [REQ-119](../requirements/consent.md#req-119) | draft | test | 6 |
+| [REQ-120](../requirements/consent.md#req-120) | draft | test | 4 |
+| [REQ-121](../requirements/consent.md#req-121) | draft | test | 3 |
+| [REQ-122](../requirements/consent.md#req-122) | draft | test | 4 |
+| [REQ-123](../requirements/admission.md#req-123) | draft | test | 4 |
+| [REQ-124](../requirements/eudi-issuance.md#req-124) | draft | test | 3 |
+
+15 of 87 requirements have no verification method yet.
+
 ## Not explained
 
 Every open finding and every open question is cited by at least one TO page or decision.

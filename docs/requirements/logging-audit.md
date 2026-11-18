@@ -114,13 +114,14 @@ trace ID.
 > fails, the request does not continue. Masking in the decision log MUST
 > NOT be the only safeguard.
 
-| Case | Outcome |
-|---|---|
-| Operational log or span | no BSN. A data subject (Betrokkene) only as pseudonym or opaque reference |
-| PDP input, DvTP | no identity: a placeholder, which the source replaces only after the consent |
-| Decryption or replacement fails | the request does not reach the source |
-| PDP input, EUDI and ASI | no BSN (not met in demo v0.9.0, see the notes) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Operational log or span | no BSN. A data subject (Betrokkene) only as pseudonym or opaque reference |
+| 2 | PDP input, DvTP | no identity: a placeholder, which the source replaces only after the consent |
+| 3 | Decryption or replacement fails | the request does not reach the source |
+| 4 | PDP input, EUDI and ASI | no BSN (not met in demo v0.9.0, see the notes) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -182,13 +183,14 @@ trace ID.
 > MUST be the designated audit source. Other streams MUST NOT be an audit
 > source.
 
-| Case | Outcome |
-|---|---|
-| Allowed or denied | one record, with outcome and reason code |
-| Evaluation fails | also one record |
-| Decision depends on the consent status | the status answer is in or with the record |
-| Request through FSC | `adl.fsc.transaction_id` next to `trace_id` |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Allowed or denied | one record, with outcome and reason code |
+| 2 | Evaluation fails | also one record |
+| 3 | Decision depends on the consent status | the status answer is in or with the record |
+| 4 | Request through FSC | `adl.fsc.transaction_id` next to `trace_id` |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -364,13 +366,14 @@ record.
 > component that starts or receives an FSC transaction MUST record the
 > transaction ID next to the trace ID.
 
-| Case | Outcome |
-|---|---|
-| Request with `traceparent` | trace ID taken over, and the span of the caller is parent. An `Fsc-Transaction-Id` that comes with it does not change the trace ID |
-| Request without `traceparent`, with `Fsc-Transaction-Id` | the transaction ID MAY be the trace ID |
-| Entry component without `traceparent` that starts a transaction itself | MAY choose its trace ID equal to that transaction ID |
-| Processing with more than one FSC hop | one trace ID, several transaction IDs. The link runs through the records that carry both, and does not depend on equality |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Request with `traceparent` | trace ID taken over, and the span of the caller is parent. An `Fsc-Transaction-Id` that comes with it does not change the trace ID |
+| 2 | Request without `traceparent`, with `Fsc-Transaction-Id` | the transaction ID MAY be the trace ID |
+| 3 | Entry component without `traceparent` that starts a transaction itself | MAY choose its trace ID equal to that transaction ID |
+| 4 | Processing with more than one FSC hop | one trace ID, several transaction IDs. The link runs through the records that carry both, and does not depend on equality |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"

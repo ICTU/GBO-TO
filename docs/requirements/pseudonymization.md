@@ -52,11 +52,12 @@ share one OIN and one decryption component.
 
 > In the consent path, the consumer MUST NOT receive a BSN. The BSN MUST NOT be in the consent proof, in another value from the consent facility, or in the answer of the source. The consumer MUST be able to make a request without knowing an identifier of the citizen. A rule in the consent regime MUST NOT allow a field that returns the BSN. A policy set MUST enforce that with a test per rule.
 
-| Case | Outcome |
-|---|---|
-| The consumer reads the consent proof | only the consent ID and the scopes. The citizen is in the proof only as values that the sources can read. |
-| Under consent, the consumer asks for the BSN field of the source | denied with `NO_APPLICABLE_RULE`. The consumer sees `FIELD_NOT_PERMITTED`. |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The consumer reads the consent proof | only the consent ID and the scopes. The citizen is in the proof only as values that the sources can read. |
+| 2 | Under consent, the consumer asks for the BSN field of the source | denied with `NO_APPLICABLE_RULE`. The consumer sees `FIELD_NOT_PERMITTED`. |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -118,15 +119,16 @@ share one OIN and one decryption component.
 
 > The source MUST convert the value from the consent proof itself, to the BSN or to its own pseudonym. The conversion MUST take place after a positive decision of its PDP, and MUST NOT take place after a deny. The BSN MUST stay limited to the source and exists there only for the source call. The conversion MUST NOT need a call to BSNk or another central party. If the conversion fails, the request MUST NOT reach the source.
 
-| Case | Outcome |
-|---|---|
-| Allowed request with `consent:identity` | one decryption. The source gets the BSN in the place of the placeholder. |
-| Allowed request with `consent:pseudonym` | the source gets its own pseudonym. The identity is not read. |
-| Request without a subject | passes unchanged, and nothing is decrypted |
-| Request outside the transport subset of the profile | refused, and nothing is decrypted |
-| Decryption fails | not forwarded, and recorded as a failed processing |
-| Decryption cannot be recorded | not forwarded |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Allowed request with `consent:identity` | one decryption. The source gets the BSN in the place of the placeholder. |
+| 2 | Allowed request with `consent:pseudonym` | the source gets its own pseudonym. The identity is not read. |
+| 3 | Request without a subject | passes unchanged, and nothing is decrypted |
+| 4 | Request outside the transport subset of the profile | refused, and nothing is decrypted |
+| 5 | Decryption fails | not forwarded, and recorded as a failed processing |
+| 6 | Decryption cannot be recorded | not forwarded |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -262,18 +264,19 @@ share one OIN and one decryption component.
 
 > The placeholder MUST apply only under a proof that the PDP verified itself. Without such a proof, the placeholder stands for nobody. The placeholder MUST come as a variable of the request. If the placeholder is written literally in the query text, the PDP MUST deny.
 
-| Case | Outcome |
-|---|---|
-| Verified proof, placeholder that the rule accepts | the subject is the citizen of the proof, and the other checks decide |
-| Literal BSN under a proof | denied with `CONSTRAINT_MISMATCH` |
-| Placeholder literally in the query text | denied (in the demo: allowed, and the source finds nobody) |
-| Placeholder that the rule does not accept (`consent:pseudonym` for DVT0001 and LVG0001) | denied with `CONSTRAINT_MISMATCH` |
-| Unknown placeholder (`consent:subject`) | denied with `CONSTRAINT_MISMATCH` |
-| Placeholder under a proof that does not verify | denied with the reason of the proof, and with `CONSTRAINT_MISMATCH` |
-| Subject only from a schema default | denied with `CONSTRAINT_MISMATCH` |
-| Placeholder without a proof | PID regime, denied with `PID_NOT_PRESENT` |
-| A literal value under a proof still reaches the source gateway | refused, and nothing is decrypted |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Verified proof, placeholder that the rule accepts | the subject is the citizen of the proof, and the other checks decide |
+| 2 | Literal BSN under a proof | denied with `CONSTRAINT_MISMATCH` |
+| 3 | Placeholder literally in the query text | denied (in the demo: allowed, and the source finds nobody) |
+| 4 | Placeholder that the rule does not accept (`consent:pseudonym` for DVT0001 and LVG0001) | denied with `CONSTRAINT_MISMATCH` |
+| 5 | Unknown placeholder (`consent:subject`) | denied with `CONSTRAINT_MISMATCH` |
+| 6 | Placeholder under a proof that does not verify | denied with the reason of the proof, and with `CONSTRAINT_MISMATCH` |
+| 7 | Subject only from a schema default | denied with `CONSTRAINT_MISMATCH` |
+| 8 | Placeholder without a proof | PID regime, denied with `PID_NOT_PRESENT` |
+| 9 | A literal value under a proof still reaches the source gateway | refused, and nothing is decrypted |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -349,14 +352,15 @@ share one OIN and one decryption component.
 
 > The consent proof MUST name the citizen only in values that are made per receiving party. Each value carries the identification of that party and the version of its keys. A recipient MUST decrypt its value itself, with keys that it received in advance. A recipient MUST refuse a value that, according to the value itself, was made for another party. The consent register and the consumer MUST NOT be able to read the values.
 
-| Case | Outcome |
-|---|---|
-| Proof without values, or with a party without a pseudonym | the register gives no consent. The PDP denies with `CONSENT_CONTEXT_INVALID`. |
-| Proof without a value for this source | refused at the source, and nothing is decrypted |
-| Value under the OIN of the source, but made for another party | refused at the source |
-| Identity asked, the source has only a pseudonym | refused at the source. The source does not read the pseudonym instead. |
-| A source that points to a key directory without keys | the gateway does not start |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Proof without values, or with a party without a pseudonym | the register gives no consent. The PDP denies with `CONSENT_CONTEXT_INVALID`. |
+| 2 | Proof without a value for this source | refused at the source, and nothing is decrypted |
+| 3 | Value under the OIN of the source, but made for another party | refused at the source |
+| 4 | Identity asked, the source has only a pseudonym | refused at the source. The source does not read the pseudonym instead. |
+| 5 | A source that points to a key directory without keys | the gateway does not start |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -439,12 +443,13 @@ share one OIN and one decryption component.
 
 > The source gateway converts the value from the consent proof to the BSN or to the own pseudonym of the source. The gateway MUST be reachable only for the component that enforces the authorization decision (the PEP of the source). This way, the conversion can take place only after a positive decision. A check of the proof by the gateway itself MUST NOT replace this restriction.
 
-| Case | Outcome |
-|---|---|
-| Request through the Inway of the source | reaches the gateway, after the decision of the PDP |
-| Request from the network of a consumer, directly to the gateway | not reachable |
-| Request from the host | not reachable, because the gateway publishes no port |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Request through the Inway of the source | reaches the gateway, after the decision of the PDP |
+| 2 | Request from the network of a consumer, directly to the gateway | not reachable |
+| 3 | Request from the host | not reachable, because the gateway publishes no port |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -501,14 +506,15 @@ share one OIN and one decryption component.
 
 > Some sources need to find the citizen under a consent. When the consent is given, the consent facility MUST know the identification (OIN) of each of these sources. It MUST also know the current version of the keys of each source and its authorization to process the BSN. The consent facility MUST have a value made for each source, in the form that belongs to that authorization. If no value can be made for one of those sources, a consent MUST NOT be given. If it is not established at that moment which sources are allowed to process the BSN, a consent MUST NOT be given either.
 
-| Case | Outcome |
-|---|---|
-| Source on the BSN Authorization List | a pseudonym and an identity |
-| Source not on the list | only a pseudonym |
-| No source configured | no consent, and BSNk is not called |
-| BSNk makes no value for a source | no consent, and nothing is kept |
-| Copy of the list expired and cannot be renewed | no consent |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Source on the BSN Authorization List | a pseudonym and an identity |
+| 2 | Source not on the list | only a pseudonym |
+| 3 | No source configured | no consent, and BSNk is not called |
+| 4 | BSNk makes no value for a source | no consent, and nothing is kept |
+| 5 | Copy of the list expired and cannot be renewed | no consent |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"

@@ -79,12 +79,13 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 
 > The PDP MUST give a machine-readable reason for every denial. The consumer MUST get only a code that tells that the request was denied and in which class. That code MUST NOT reveal which field was denied, whether a field exists, or which check failed. For the operator of the source, the record MUST show which rules decided on each denied field, and with which reasons. The most fundamental reason MUST come first. A fault on the side of the source MUST appear to the consumer as a normal access denial.
 
-| Case | Outcome |
-|---|---|
-| Field is outside the rule | consumer: `FIELD_NOT_PERMITTED`. Operator: per field the rule and the reason, for example `YEAR_NOT_COVERED`. |
-| Query cannot be verified | consumer: `COVERAGE_UNVERIFIABLE` with a subcode. For `INVALID_QUERY`, the consumer gets `FIELD_NOT_PERMITTED`. |
-| Register unreachable, rule cannot be evaluated | consumer: `ACCESS_DENIED`. Operator: `PIP_UNAVAILABLE` or `CONFIG_ERROR` with trace. |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Field is outside the rule | consumer: `FIELD_NOT_PERMITTED`. Operator: per field the rule and the reason, for example `YEAR_NOT_COVERED`. |
+| 2 | Query cannot be verified | consumer: `COVERAGE_UNVERIFIABLE` with a subcode. For `INVALID_QUERY`, the consumer gets `FIELD_NOT_PERMITTED`. |
+| 3 | Register unreachable, rule cannot be evaluated | consumer: `ACCESS_DENIED`. Operator: `PIP_UNAVAILABLE` or `CONFIG_ERROR` with trace. |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -134,11 +135,12 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 
 > What the consumer sends (header, body, query argument) MUST state only what is asked. It MUST NOT carry a decision without that own check. The PDP MUST ignore decision information that arrives in the question as a ready-made fact.
 
-| Case | Outcome |
-|---|---|
-| Consent record sent in the question, no token | ignored. The PID regime applies, and the placeholder names nobody: `PID_NOT_PRESENT`. |
-| Register gives no status | denied: `CONSENT_STATUS_UNAVAILABLE` |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Consent record sent in the question, no token | ignored. The PID regime applies, and the placeholder names nobody: `PID_NOT_PRESENT`. |
+| 2 | Register gives no status | denied: `CONSENT_STATUS_UNAVAILABLE` |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -259,16 +261,17 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 > field is allowed. A policy set MUST enforce with a test that every rule
 > has its own actor check.
 
-| Case | Outcome |
-|---|---|
-| Consent given to another party | denied: `CONSENT_ACTOR_MISMATCH` |
-| Year outside the consent, or no year filter | denied: `YEAR_NOT_COVERED` |
-| PID regime, caller is not a designated issuer | denied: `ACTOR_NOT_ALLOWED` |
-| PID regime, year outside the rule | denied: `YEAR_NOT_ALLOWED` |
-| ASI rule, caller is not the ASIP | denied: `ACTOR_NOT_ALLOWED` |
-| Integrator without a mandate for this rule | denied: `INTEGRATOR_NOT_REGISTERED` |
-| One field denied, the rest allowed | the whole request denied |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Consent given to another party | denied: `CONSENT_ACTOR_MISMATCH` |
+| 2 | Year outside the consent, or no year filter | denied: `YEAR_NOT_COVERED` |
+| 3 | PID regime, caller is not a designated issuer | denied: `ACTOR_NOT_ALLOWED` |
+| 4 | PID regime, year outside the rule | denied: `YEAR_NOT_ALLOWED` |
+| 5 | ASI rule, caller is not the ASIP | denied: `ACTOR_NOT_ALLOWED` |
+| 6 | Integrator without a mandate for this rule | denied: `INTEGRATOR_NOT_REGISTERED` |
+| 7 | One field denied, the rest allowed | the whole request denied |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -336,12 +339,13 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 > MUST be disjoint from the actors under another regime. A test MUST
 > enforce this for every environment in which the policy runs.
 
-| Case | Outcome |
-|---|---|
-| Consent token present, valid or not | consent regime. Only DVT0001 and LVG0001 judge. |
-| No consent token | PID regime. Only EUD0001, EUD0002, and ASI0001 judge. |
-| Two consent tokens | denied: `CONSENT_CONTEXT_INVALID` |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Consent token present, valid or not | consent regime. Only DVT0001 and LVG0001 judge. |
+| 2 | No consent token | PID regime. Only EUD0001, EUD0002, and ASI0001 judge. |
+| 3 | Two consent tokens | denied: `CONSENT_CONTEXT_INVALID` |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -468,17 +472,18 @@ the FTV GraphQL profile for AuthZEN.
 > PDP MUST deny a request that changes data or opens a subscription, also
 > if a rule covers its fields.
 
-| Case | Outcome |
-|---|---|
-| Query cannot be parsed or is not valid against the schema | denied: `COVERAGE_UNVERIFIABLE` / `INVALID_QUERY`. The consumer sees `FIELD_NOT_PERMITTED` |
-| Schema differs from the pinned schema of the service | denied: `CONFIG_ERROR` / `SCHEMA_MISMATCH` |
-| A field without a rule (also introspection) | denied: `NO_APPLICABLE_RULE`. The whole request is denied |
-| Source runs a schema that differs from the schema of the PDP (other type, extra argument or default, other member or enum value) | not taken into use: the check fails and names the element |
-| Request reaches the source gateway in another form than the PDP judges (other path, a method other than POST, query string, other media type, `Content-Encoding` or `Upgrade`) | refused by the gateway, nothing decrypted (code) |
-| Mutation or subscription | denied: `OPERATION_NOT_SUPPORTED`. The consumer sees that code (code) |
-| Request without a data field (only `__typename`) | denied: `NO_DATA_FIELDS`. The consumer sees that code (code) |
-| Every field allowed by a rule | allowed |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Query cannot be parsed or is not valid against the schema | denied: `COVERAGE_UNVERIFIABLE` / `INVALID_QUERY`. The consumer sees `FIELD_NOT_PERMITTED` |
+| 2 | Schema differs from the pinned schema of the service | denied: `CONFIG_ERROR` / `SCHEMA_MISMATCH` |
+| 3 | A field without a rule (also introspection) | denied: `NO_APPLICABLE_RULE`. The whole request is denied |
+| 4 | Source runs a schema that differs from the schema of the PDP (other type, extra argument or default, other member or enum value) | not taken into use: the check fails and names the element |
+| 5 | Request reaches the source gateway in another form than the PDP judges (other path, a method other than POST, query string, other media type, `Content-Encoding` or `Upgrade`) | refused by the gateway, nothing decrypted (code) |
+| 6 | Mutation or subscription | denied: `OPERATION_NOT_SUPPORTED`. The consumer sees that code (code) |
+| 7 | Request without a data field (only `__typename`) | denied: `NO_DATA_FIELDS`. The consumer sees that code (code) |
+| 8 | Every field allowed by a rule | allowed |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
