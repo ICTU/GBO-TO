@@ -31,6 +31,14 @@ trace ID.
 > operational logs and traces. Operational logs MAY carry the same trace
 > ID, but they are no audit source.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The writing role changes a record | refused |
+| 2 | The writing role deletes a record | refused |
+| 3 | N decisions or N processings | exactly N records, without sampling |
+| 4 | A reader of operational logs reads an audit record | refused |
+
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -75,6 +83,13 @@ trace ID.
 > version became active when. The source decides how it forms that
 > version (bundle ID with version, commit hash, image version).
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The PDP makes a decision | the record carries the identity and the version of the policy set in `adl.core.policies` |
+| 2 | A new policy version becomes active | the next record carries the new version |
+| 3 | A policy set has several versions | for each version, you can retrieve the moment that it became active |
+
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -261,8 +276,9 @@ such as the decryption by the source gateway, is a processing
 > Logboek Dataverwerkingen for each action. It MUST write the record to the
 > logbook of the controller of that processing. The trace ID in that
 > record MUST follow from [REQ-55](logging-audit.md#req-55). There MUST be
-> a separate log record for each data subject. A further data subject of
-> the same processing hangs as a child under the first.
+> a separate log record for each data subject. Each data subject of the
+> same processing MUST get its own action under the processing action,
+> with the span of that action as `parent_span_id`.
 
 > The field `dpl.core.data_subject_id` MUST name the data subject in an
 > identifier space of the controller itself, with an explicit
@@ -272,6 +288,16 @@ such as the decryption by the source gateway, is a processing
 > processing MUST set `dpl.read.nextLogbookId` to the read API of that
 > party. Only trace metadata crosses an organization boundary.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | A processing of one data subject | one record in the logbook of the controller |
+| 2 | A processing of two data subjects | one record for each data subject, each as its own action under the processing action |
+| 3 | Any record | `dpl.core.data_subject_id` is no BSN, and `dpl.core.data_subject_id_type` is set |
+| 4 | Any record | `dpl.core.processing_activity_id` refers to a versioned, resolvable processing activity |
+| 5 | The component calls another party | `dpl.read.nextLogbookId` points to the read API of that party |
+| 6 | Any record | the trace ID follows from [REQ-55](logging-audit.md#req-55) |
+
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
