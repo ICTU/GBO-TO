@@ -462,7 +462,7 @@ conditions:
 
 ## Open points
 
-Seven points are open:
+Eight points are open:
 
 - The document is not signed. The origin depends on the authenticated
   transport plus the OIN from the certificate set.
@@ -487,6 +487,10 @@ Seven points are open:
   ([#592](https://github.com/ICTU/GBO-demo/issues/592)).
 - Scale: how many sources the ASIP must connect, and how fast, is open
   ([Q-38](../traceability/open-questions.md#q-38), sub-question 1).
+- Owner: the EUDI adapter onboards sources, also for the ASIP. Which
+  component onboards sources for all channels, and who manages their
+  lifecycle, is open
+  ([Q-80](../traceability/open-questions.md#q-80)).
 
 ## Traceability
 
@@ -515,7 +519,8 @@ Seven points are open:
 - Open questions: [Q-17](../traceability/open-questions.md#q-17) (open),
   [Q-19](../traceability/answered-questions.md#q-19) (answered),
   [Q-31](../traceability/open-questions.md#q-31) (open),
-  [Q-38](../traceability/open-questions.md#q-38) (partly answered)
+  [Q-38](../traceability/open-questions.md#q-38) (partly answered),
+  [Q-80](../traceability/open-questions.md#q-80) (open)
 - Demo increments: [SL-32](../traceability/increments.md#sl-32) (done),
   [SL-46](../traceability/increments.md#sl-46) (done),
   [SL-49](../traceability/increments.md#sl-49) (done)

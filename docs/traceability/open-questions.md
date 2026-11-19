@@ -939,3 +939,19 @@ PID regimes, so it denies an OOTS request without its own evidence.
 There is no working assumption, because the demo has no OOTS route.
 
 Forum, options, working assumption and links: [issue #81](https://github.com/ICTU/GBO-TO/issues/81).
+
+### Q-80: Which component onboards sources for all channels, and who manages their lifecycle? {#q-80}
+
+- **Status**: open
+
+More than one channel depends on the description that a source
+publishes. Attestation issuance and the ASIP both read the active
+release from the source registry. In the building block view, the
+EUDI adapter fetches, validates and refreshes that description, so the
+ASIP depends on a component of another channel. A source that offers
+only verification attributes then has no natural place. The GBO team
+proposes a separate onboarding component that serves all channels,
+while the channels only read. Also open is who manages the lifecycle of
+a source and acts when its description expires.
+
+Forum, options, working assumption and links: [issue #83](https://github.com/ICTU/GBO-TO/issues/83).
