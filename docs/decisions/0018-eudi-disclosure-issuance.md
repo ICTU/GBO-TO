@@ -6,6 +6,10 @@
 - Deliberation: Reference architecture v0.6.2, PuB-EAA Provider (archived and unpublished), [REQ-45](../requirements/eudi-issuance.md#req-45), [SL-25](../traceability/increments.md#sl-25), demo constraints in [AGENTS.md](https://github.com/ICTU/GBO-demo/blob/v0.9.0/AGENTS.md)
 - Implemented in: [services/eudi-adapter](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-adapter), [services/eudi-issuance-server](https://github.com/ICTU/GBO-demo/tree/v0.9.0/services/eudi-issuance-server) (nl-wallet v0.5.0), PID trust anchors in [issuance_server.toml.example#L3-L9](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/config/issuance_server.toml.example#L3-L9), adapter route in [source_release_runtime.go#L69](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/eudi-adapter/source_release_runtime.go#L69)
 
+[ADR-0044](0044-issuance-flows.md) (proposed) replaces the protocol and
+the flow of this decision once it is accepted. The rest of this decision
+stays.
+
 ## Context and problem statement
 
 Citizens must receive attestations from government sources into their

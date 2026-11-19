@@ -187,6 +187,7 @@ nav:
               - ADR-0041 ASI seal format: decisions/0041-asi-seal-format.md
               - ADR-0042 ASI attribute token binding: decisions/0042-asi-attribute-token-binding.md
               - ADR-0043 Identifiers out of PDP input: decisions/0043-identifiers-out-of-pdp-input.md
+              - ADR-0044 Issuance flows: decisions/0044-issuance-flows.md
           - Deferred:
               - ADR-0022 Sector grants: decisions/0022-sector-grants.md
           - Superseded:
