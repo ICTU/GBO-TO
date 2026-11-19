@@ -561,22 +561,7 @@ asks for the PID. The request page of the authorization server
 ([REQ-91](../requirements/asi.md#req-91)) must then inform the citizen
 on its own.
 
-??? note "Evidence, impact and proposal"
-
-    - **Type**: exposed assumption
-    - **Trigger**: a design round compared REQ-91 and REQ-102 with the implementing regulations and the ARF (November 10, 2026).
-    - **Observation**:
-        - Implementing Regulation (EU) [2025/848](https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj) article 2 and Annex I: the certificate describes the intended use and the registered attributes.
-        - Implementing Regulation (EU) [2024/2982](https://eur-lex.europa.eu/eli/reg_impl/2024/2982/oj) article 3(7): wallet units display, where applicable, the information in the registration certificate. ARF v3.0.0, RPA_10: when it asks for approval, the wallet unit shows the user-friendly description of the intended use.
-        - Article 3(4) of the same regulation, as replaced by Implementing Regulation (EU) [2026/1731](https://eur-lex.europa.eu/eli/reg_impl/2026/1731/oj): wallet units authenticate and validate the registration certificate. Under the new article 8, this applies from August 11, 2028.
-        - In the wallet, the citizen sees the authorization server as relying party. The QTSP does not appear there. The notes of [REQ-91](../requirements/asi.md#req-91) say that the request page and the purpose in the certificate explain that relation.
-    - **Why it matters**: until wallets validate and show the registration, the citizen cannot rely on the wallet to say why the PID is asked. Nor can the citizen rely on it to say whether the request stays within the registration. The request page is then the only place where the design knows that the citizen sees who asks what, at which source, and why.
-    - **Proposal**:
-        - The request page of REQ-91 suffices on its own. The design does not count on the purpose in the wallet.
-        - Every GBO component that asks for the PID still registers its intended use and attributes, and asks only those ([REQ-102](../requirements/asi.md#req-102)).
-        - Review this finding when wallets must validate the registration certificate (August 11, 2028).
-    - **Addressee**: GBO-delivered component: the authorization server.
-    - **Related**: [REQ-91](../requirements/asi.md#req-91), [REQ-102](../requirements/asi.md#req-102), [F-93](#f-93).
+Evidence, impact, proposal and links: [issue #122](https://github.com/ICTU/GBO-TO/issues/122).
 
 ## Summary for the PSA
 
