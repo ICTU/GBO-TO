@@ -52,7 +52,7 @@ These terms follow the [building block view](building-blocks/index.md):
 |---|---|---|---|
 | Bronhouder | bronhouder | The government organization responsible for an authentic register and the access to it. The TO keeps this Dutch government term, also in English text, without translation. | source holder |
 | Source | bron | A system of a bronhouder that answers queries. | — |
-| Source access | bronontsluiting | The provision of register data through a standard interface. | bronontsluiting |
+| Source access | (generieke) bronontsluiting | The part of GBO Basis that opens a source with one standard interface: the source gateway, the decryption component, and the GraphQL source API ([Source access](building-blocks/gbo-basis/source-access.md)). | bronontsluiting, generic source access |
 | Citizen | burger | The data subject in GBO flows. | — |
 | Consent | toestemming | The informed agreement of the citizen to a specific data exchange. | — |
 | Consumer | afnemer | An organization that asks a bronhouder for data, in any channel. | afnemer |

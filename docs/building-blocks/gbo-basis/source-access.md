@@ -1,7 +1,6 @@
-# Generic source access
+# Source access
 
-The Globaal Ontwerp calls this part "generieke bronontsluiting", which
-means generic source access. It is the
+Source access (generieke bronontsluiting) is the
 path behind the PEP: after the PDP allows a request, the source gateway
 passes it to the source API. Under consent, the gateway first puts the
 citizen into the query. The source answers one GraphQL query and returns
@@ -10,7 +9,7 @@ only the fields that the query selects. The
 [Authorization](../../concepts/authorization.md) concept pages have the
 detail and the links to the code.
 
-[Overview](../index.md) › [GBO Basis](index.md) › Generic source access
+[Overview](../index.md) › [GBO Basis](index.md) › Source access
 
 ## Components behind the PEP
 
@@ -25,7 +24,7 @@ flowchart LR
       pdp("Mapper + policy")
       copy[("Schema copy<br/>and pins")]
     end
-    subgraph acc["Generic source access"]
+    subgraph acc["Source access"]
       direction TB
       gw("Source gateway<br/>bron-sidecar")
       dec("Decryption<br/>component")
@@ -57,7 +56,7 @@ flowchart LR
   click dec "../../../concepts/pseudonymization/#where-the-boundary-is-enforced" "Pseudonymization"
 ```
 
-*Figure 1: The components of generic source access at one source. Thick
+*Figure 1: The components of source access at one source. Thick
 border: click to zoom in.*
 {: .caption }
 
@@ -367,7 +366,7 @@ queries. It differs in three places:
 
 ## Open points
 
-The main open points in generic source access are these:
+The main open points in source access are these:
 
 - The isolation of the gateway outside Docker Compose, and a nonce as a
   second line ([F-79](../../traceability/findings.md#f-79)).

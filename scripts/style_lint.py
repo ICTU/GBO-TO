@@ -112,6 +112,16 @@ BANNED_RX = [(re.compile(r"(?<![-/\w(])(?<!trust )(?<!technical )" + re.escape(w
              for w, t in BANNED.items()]
 
 
+def in_short_parens(text, m):
+    """True when the match is inside a short "(...)" gloss: a Dutch name."""
+    op = text.rfind("(", 0, m.start())
+    cl = text.find(")", m.end())
+    if op == -1 or cl == -1:
+        return False
+    inner = text[op + 1:cl]
+    return "(" not in inner and ")" not in inner and len(inner.split()) <= 5
+
+
 def strip_nonprose(text):
     text = re.sub(r"<!--.*?-->", " ", text, flags=re.S)
     out, fence = [], False
@@ -247,7 +257,8 @@ def lint_file(path):
                 add("E", rule, ln, text_nolabel[max(0, m.start() - 40):m.end() + 60])
         if rel != "glossary.md":
             for rx, word, term in BANNED_RX:
-                m = rx.search(text_nolabel)
+                m = next((x for x in rx.finditer(text_nolabel)
+                          if not in_short_parens(text_nolabel, x)), None)
                 if m:
                     add("E", f"glossary: use '{term}', not '{word}'", ln,
                         text_nolabel[max(0, m.start() - 40):m.end() + 60])
