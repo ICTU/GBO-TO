@@ -497,6 +497,56 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
         - S10 asks the same for the mapping to OOTS-EDM. That requirement
             follows after [Q-79](../traceability/open-questions.md#q-79).
 
+## REQ-125: Issuance to the EUDI wallet follows the EU issuance profile, and a deviation for one wallet stays documented and separate {#req-125}
+
+> The GBO issuance facility MUST issue attestations to the EUDI wallet
+> with OpenID4VCI 1.0. It MUST follow the issuer profile of HAIP 1.0
+> sections 4 and 6, with the changes of ETSI TS 119 472-3. It MUST offer at least
+> one of the two flows: the authorization code flow or the
+> pre-authorized code flow. A deviation that one wallet needs MUST be
+> documented, and MUST NOT weaken issuance to wallets that follow the
+> profile.
+
+| Case | Outcome |
+|---|---|
+| Wallet that follows TS 119 472-3 | issued with the flows that GBO offers |
+| Wallet that needs a documented deviation | issued under that deviation only. Other wallets keep the full profile. |
+| Request outside the profile, without a documented deviation | refused |
+
+- **Status**: draft
+
+??? note "Source, evidence and notes"
+
+    - **Source**: design:
+        - ARF v3.0.0 Annex 2
+            [ISSU_01a](https://eudi.dev/3.0.0/annexes/annex-2/annex-2.02-high-level-requirements-by-topic/#ISSU_01a):
+            attestation providers support OpenID4VCI as HAIP sections 4 and 6 profile it.
+        - [ETSI TS 119 472-3](https://www.etsi.org/deliver/etsi_ts/119400_119499/11947203/01.01.01_60/ts_11947203v010101p.pdf)
+            V1.1.1, GEN-REQ-4.1-02 and -04. Implementing Regulation (EU)
+            [2026/1731](https://eur-lex.europa.eu/eli/reg_impl/2026/1731/oj)
+            applies this specification to the issuance interface of wallet
+            units (Annex I to Implementing Regulation (EU) 2024/2982).
+        - [ETSI TS 119 471](https://www.etsi.org/deliver/etsi_ts/119400_119499/119471/01.01.01_60/ts_119471v010101p.pdf)
+            V1.1.1, REQ-EAASP-4.2.1.2-01, through Implementing Regulation (EU)
+            [2026/1735](https://eur-lex.europa.eu/eli/reg_impl/2026/1735/oj).
+        - [PSA S11](https://ictu.github.io/GBO-PSA/main/capabilities/#s11-attesteringsuitgifte).
+    - **Addressee**: GBO-delivered component: the issuance facility.
+    - **Evidence**: not built in gbo-demo v0.9.0, which issues after a PID
+        disclosure on the nl-wallet stack
+        ([ADR 0018](../decisions/0018-eudi-disclosure-issuance.md)). Work in
+        [ICTU/GBO-demo#614](https://github.com/ICTU/GBO-demo/issues/614).
+    - **Related**: [REQ-45](#req-45), [REQ-58](#req-58), [REQ-78](#req-78),
+        [ADR 0018](../decisions/0018-eudi-disclosure-issuance.md),
+        [ADR 0028](../decisions/0028-pubeaa-productization.md).
+    - **Notes**:
+        - HAIP 1.0 requires the authorization code flow. TS 119 472-3 asks
+            the issuer for at least one flow (GEN-REQ-4.1-04), and the wallet
+            for both (GEN-REQ-4.1-03). Which flows GBO offers is an open
+            design choice.
+        - TS 119 471 says "should" and allows "an equivalent". An EUDI wallet
+            requests issuance only through TS 119 472-3, so this requirement
+            follows the wallet side.
+
 ## Removed numbers
 
 - REQ-51: removed. [REQ-44](authorization.md#req-44) (thin channel
