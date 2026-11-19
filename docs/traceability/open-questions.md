@@ -939,3 +939,20 @@ PID regimes, so it denies an OOTS request without its own evidence.
 There is no working assumption, because the demo has no OOTS route.
 
 Forum, options, working assumption and links: [issue #81](https://github.com/ICTU/GBO-TO/issues/81).
+
+### Q-82: May the authorization server offer wallet login on another device, where it has no session binding? {#q-82}
+
+- **Status**: open
+
+When the authorization server identifies the citizen with the EUDI
+wallet on the same device, the wallet returns the browser with a code.
+The server then checks that the presentation belongs to the session that
+asked for it ([REQ-102](../requirements/asi.md#req-102)). With a wallet
+on another device, the browser of the wallet does not have that session,
+so the check is not possible. HAIP 1.0 therefore recommends the
+same-device flow only, unless the verifier does not rely on session
+binding for phishing resistance. The question is whether GBO accepts the
+other-device flow, for every route that logs in at the authorization
+server.
+
+Forum, options, working assumption and links: [issue #84](https://github.com/ICTU/GBO-TO/issues/84).
