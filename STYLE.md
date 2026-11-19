@@ -190,11 +190,14 @@ Each entry keeps its structure: the heading with the ID and the anchor,
 then the `- **Status**:` line (the traceability script reads it), then
 the readable part, then a collapsible block with the labeled fields.
 
-- A finding or an open question starts with a plain summary of three to
-  five sentences that a newcomer can read. The fields with evidence,
-  links and history go into a collapsible block, for example
+- A finding starts with a plain summary of three to five sentences that
+  a newcomer can read. The fields with evidence, links and history go
+  into a collapsible block, for example
   `??? note "Evidence, impact and proposal"`, with the content indented
   by four spaces.
+- An open question has the same plain summary, then one line that links
+  to its GitHub issue. The issue holds the fields (forum, options,
+  working assumption, links). The entry has no collapsible block.
 - A requirement shows the requirement statement (the blockquote) and the
   case table. Its fields (source, addressee, evidence, related, notes) go
   into the block `??? note "Source, evidence and notes"`.
