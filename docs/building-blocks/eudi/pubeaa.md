@@ -483,6 +483,9 @@ The main open points in the PuB-EAA provider are these:
   [REQ-77](../../requirements/eudi-issuance.md#req-77)).
 - The source description does not mark the relation behind a
   related-person attestation ([F-47](../../traceability/findings.md#f-47)).
+- Issuance with the authorization code flow, which HAIP 1.0 requires:
+  which authorization server identifies the citizen and records consent
+  ([Q-83](../../traceability/open-questions.md#q-83)).
 
 ## Traceability
 
@@ -505,7 +508,8 @@ The main open points in the PuB-EAA provider are these:
   [Q-17](../../traceability/open-questions.md#q-17) (open),
   [Q-18](../../traceability/open-questions.md#q-18) (open),
   [Q-28](../../traceability/open-questions.md#q-28) (open),
-  [Q-30](../../traceability/open-questions.md#q-30) (open)
+  [Q-30](../../traceability/open-questions.md#q-30) (open),
+  [Q-83](../../traceability/open-questions.md#q-83) (open)
 - Demo increments: [SL-25](../../traceability/increments.md#sl-25) (dropped),
   [SL-26](../../traceability/increments.md#sl-26) (done),
   [SL-43](../../traceability/increments.md#sl-43) (done),

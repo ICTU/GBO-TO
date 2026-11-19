@@ -939,3 +939,20 @@ PID regimes, so it denies an OOTS request without its own evidence.
 There is no working assumption, because the demo has no OOTS route.
 
 Forum, options, working assumption and links: [issue #81](https://github.com/ICTU/GBO-TO/issues/81).
+
+### Q-83: Which authorization server identifies the citizen when an attestation is issued with the authorization code flow? {#q-83}
+
+- **Status**: open
+
+In the authorization code flow, an authorization server identifies the
+citizen and records consent, instead of the citizen sharing the PID with
+the issuer. HAIP 1.0 requires this flow, while ETSI TS 119 472-3 asks an
+issuer to offer at least one of the two flows. OpenID4VCI 1.0 leaves open
+how the authorization server identifies the citizen, and ETSI TS 119 478
+covers only verification for QTSPs. GBO already plans an authorization
+server for the ASI that identifies the citizen and shows a request page
+per source. The question is which authorization server identifies the
+citizen if GBO offers this flow. It also asks what that means for the
+requirements that assume only a PID disclosure.
+
+Forum, options, working assumption and links: [issue #85](https://github.com/ICTU/GBO-TO/issues/85).
