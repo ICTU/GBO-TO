@@ -26,14 +26,15 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 > The trust list for that check MUST hold only the anchors of PID providers.
 
-| Case | Outcome |
-|---|---|
-| Verified PID disclosure, provably for this request | source queried with the BSN from the PID (*proposal, binding not built*) |
-| Disclosure without a BSN | refused before the source with HTTP 400 (*from the code*) |
-| Shared attestation is not a PID | refused (*proposal, reason open*) |
-| Request not provably from the verifying runtime | refused (*proposal and not built: the adapter route has no caller authentication*) |
-| Signature invalid or provider not on the list | no request to the adapter (*the issuance server verifies, without an independent test*) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Verified PID disclosure, provably for this request | source queried with the BSN from the PID (*proposal, binding not built*) |
+| 2 | Disclosure without a BSN | refused before the source with HTTP 400 (*from the code*) |
+| 3 | Shared attestation is not a PID | refused (*proposal, reason open*) |
+| 4 | Request not provably from the verifying runtime | refused (*proposal and not built: the adapter route has no caller authentication*) |
+| 5 | Signature invalid or provider not on the list | no request to the adapter (*the issuance server verifies, without an independent test*) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -118,16 +119,17 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 > An attestation can hold data about someone other than the requester. For such an attestation, the chain that GBO delivers MUST query the source only along a relation that the source recorded in its service description. The starting point MUST be the subject from the verified PID ([REQ-45](#req-45)). The starting point MUST NOT be a value that the caller chooses. The reference policy MUST deny a query that takes another entry point or asks for fields outside that relation. The service description MUST mark such a relation, with the kind of relation.
 
-| Case | Outcome |
-|---|---|
-| Requester with a marriage that ended by the death of the partner | certificate with the data of that partner (*from the code*) |
-| Partner died on another date than the dissolution | no certificate. The source returns nothing, and the adapter answers HTTP 404 (*from the code*). |
-| Date incomplete (only year and month) | certificate (*from the code*) |
-| Entry point without the BSN of a citizen | denied: `PID_NOT_PRESENT` (*from the code*) |
-| Field outside the view | denied: `FIELD_NOT_PERMITTED` (*from the code*) |
-| Entry point with the BSN of someone other than the PID holder | the PDP cannot tell the difference, so this case depends on REQ-45 (*proposal*) |
-| Relation not marked in the service description | *proposal, outcome open* |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Requester with a marriage that ended by the death of the partner | certificate with the data of that partner (*from the code*) |
+| 2 | Partner died on another date than the dissolution | no certificate. The source returns nothing, and the adapter answers HTTP 404 (*from the code*). |
+| 3 | Date incomplete (only year and month) | certificate (*from the code*) |
+| 4 | Entry point without the BSN of a citizen | denied: `PID_NOT_PRESENT` (*from the code*) |
+| 5 | Field outside the view | denied: `FIELD_NOT_PERMITTED` (*from the code*) |
+| 6 | Entry point with the BSN of someone other than the PID holder | the PDP cannot tell the difference, so this case depends on REQ-45 (*proposal*) |
+| 7 | Relation not marked in the service description | *proposal, outcome open* |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -191,14 +193,15 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 > The GBO issuance facility MUST keep a certificate set of its own per bronhouder. The set holds a certificate that signs attestations, and an access certificate with which issuance shows itself to the wallet. The facility MUST NOT sign an attestation or a request to the wallet with the set of another bronhouder, in any case. If the set of a source is missing, incomplete, or differs from what is activated, issuance MUST refuse for that source. Issuance MUST NOT fall back to another set.
 
-| Case | Outcome |
-|---|---|
-| Source with a complete set of its own | issuance under its own issuer and access certificate |
-| Set missing | source blocked: `CERTIFICATE_SET_NOT_FOUND`. Other sources continue. |
-| Set without OIN or organization name | source blocked: `CERTIFICATE_SET_INVALID` |
-| Mounted material differs from the active release | no issuance configuration generated |
-| Two sources behind one FSC peer | each its own set |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Source with a complete set of its own | issuance under its own issuer and access certificate |
+| 2 | Set missing | source blocked: `CERTIFICATE_SET_NOT_FOUND`. Other sources continue. |
+| 3 | Set without OIN or organization name | source blocked: `CERTIFICATE_SET_INVALID` |
+| 4 | Mounted material differs from the active release | no issuance configuration generated |
+| 5 | Two sources behind one FSC peer | each its own set |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -266,13 +269,14 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 > For each attestation type, the GBO issuance facility MUST apply the validity period that the bronhouder records. The facility MUST NOT apply a value from its own code. An attestation that is valid for more than 24 hours MUST carry a status reference with which it can be revoked. On instruction of the bronhouder, the facility MUST be able to revoke an issued attestation, without an action of the holder.
 
-| Case | Outcome |
-|---|---|
-| Validity recorded by the bronhouder | issued with that validity (*proposal, demo v0.9.0 uses 365 days for every source*) |
-| Validity longer than 24 hours | status reference in the attestation (*from the code: status list per type*) |
-| Source data changed while the attestation is still valid for at least 24 hours | revoked (*proposal, who signals the change is open*) |
-| Bronhouder revokes | status set to revoked (*proposal*) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Validity recorded by the bronhouder | issued with that validity (*proposal, demo v0.9.0 uses 365 days for every source*) |
+| 2 | Validity longer than 24 hours | status reference in the attestation (*from the code: status list per type*) |
+| 3 | Source data changed while the attestation is still valid for at least 24 hours | revoked (*proposal, who signals the change is open*) |
+| 4 | Bronhouder revokes | status set to revoked (*proposal*) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -343,11 +347,12 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 > The attestation schema of the source can define a claim as an object or a list. The GBO issuance facility MUST be able to issue such a claim in that form. It MUST apply the selective disclosure that the schema prescribes for each claim, also for each nested property and each list element. It MUST NOT refuse a schema, or flatten it, because it contains nested claims.
 
-| Case | Outcome |
-|---|---|
-| Schema with only single-valued claims | issued, with `sd` per claim (*from the code*) |
-| Schema with an object or a list (for example the parents per person) | issued, with disclosure per element (*proposal, demo v0.9.0 refuses it at validation*) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Schema with only single-valued claims | issued, with `sd` per claim (*from the code*) |
+| 2 | Schema with an object or a list (for example the parents per person) | issued, with disclosure per element (*proposal, demo v0.9.0 refuses it at validation*) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -392,16 +397,17 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 > An answer does not fit the mapping if a mandatory claim is missing or empty. It also does not fit if a value does not have the recorded type, or if the answer holds more than one result. If the answer does not fit the mapping, the facility MUST NOT issue an attestation. That includes an attestation with only the claims that do fit. An answer without a result MUST end as "not found", distinct from an error.
 
-| Case | Outcome |
-|---|---|
-| Answer fits the mapping | attestation with exactly the mapped claims. Fields outside the mapping stay out (code). |
-| Amount with cents, datatype `number` | value unchanged in the claim and without rounding (code) |
-| Mandatory claim missing | no attestation: HTTP 502, `GBO_SIMPLE_PATH_MISSING` in the log (code) |
-| Mandatory claim is `null`, or has another type | no attestation: HTTP 502, `GBO_SIMPLE_TYPE_MISMATCH` in the log (code) |
-| More than one result | no attestation: HTTP 502, `GBO_SIMPLE_RESULT_AMBIGUOUS` in the log (code) |
-| No result | not found: HTTP 404. The processing is still logged (code). |
-| Optional claim missing or `null` | claim left out, the rest issued (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Answer fits the mapping | attestation with exactly the mapped claims. Fields outside the mapping stay out (code). |
+| 2 | Amount with cents, datatype `number` | value unchanged in the claim and without rounding (code) |
+| 3 | Mandatory claim missing | no attestation: HTTP 502, `GBO_SIMPLE_PATH_MISSING` in the log (code) |
+| 4 | Mandatory claim is `null`, or has another type | no attestation: HTTP 502, `GBO_SIMPLE_TYPE_MISMATCH` in the log (code) |
+| 5 | More than one result | no attestation: HTTP 502, `GBO_SIMPLE_RESULT_AMBIGUOUS` in the log (code) |
+| 6 | No result | not found: HTTP 404. The processing is still logged (code). |
+| 7 | Optional claim missing or `null` | claim left out, the rest issued (code) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -461,12 +467,13 @@ Evidence links to gbo-demo point at tag `v0.9.0`.
 
 > For every issued attestation, the GBO issuance facility MUST make the applied versions traceable. These are the versions of the mapping of the bronhouder, of the source schema, and of the attestation schema. The facility MUST apply only the mapping that the bronhouder recorded for that data service in its GBO configuration ([REQ-116](#req-116)). If the bronhouder recorded no mapping, the facility MUST convert nothing.
 
-| Case | Outcome |
-|---|---|
-| Mapping recorded and activated | converted. The mapping version, the source version, and the target version are traceable at issuance. |
-| No mapping recorded | nothing converted, and no attestation |
-| New mapping version activated | later issuances name the new version, and earlier ones name the old version |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Mapping recorded and activated | converted. The mapping version, the source version, and the target version are traceable at issuance. |
+| 2 | No mapping recorded | nothing converted, and no attestation |
+| 3 | New mapping version activated | later issuances name the new version, and earlier ones name the old version |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"

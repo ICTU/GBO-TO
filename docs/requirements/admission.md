@@ -36,15 +36,16 @@ The design decision is
 > are a service connection, or a delegated service connection with a
 > registered representation ([REQ-106](consent.md#req-106)).
 
-| Case | Outcome |
-|---|---|
-| Party actively admitted to this bronhouder | contract co-signed |
-| Party not in the register | refused: `PARTY_NOT_IN_REGISTRY` |
-| Party suspended | refused: `PARTY_NOT_ACTIVE` |
-| Party admitted, but not to this bronhouder | refused: `SOURCE_NOT_ALLOWED` |
-| Register gives no data | refused: `ADMISSION_REGISTER_UNAVAILABLE` |
-| Proposal with another kind of grant, with both kinds at the same time, or without a grant | refused: `GRANT_TYPE_NOT_ALLOWED`. The proposal stays pending (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Party actively admitted to this bronhouder | contract co-signed |
+| 2 | Party not in the register | refused: `PARTY_NOT_IN_REGISTRY` |
+| 3 | Party suspended | refused: `PARTY_NOT_ACTIVE` |
+| 4 | Party admitted, but not to this bronhouder | refused: `SOURCE_NOT_ALLOWED` |
+| 5 | Register gives no data | refused: `ADMISSION_REGISTER_UNAVAILABLE` |
+| 6 | Proposal with another kind of grant, with both kinds at the same time, or without a grant | refused: `GRANT_TYPE_NOT_ALLOWED`. The proposal stays pending (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -140,11 +141,12 @@ The design decision is
 > MUST be able to submit again without an action of the other party. The new
 > submission MUST get a new assessment.
 
-| Case | Outcome |
-|---|---|
-| Policy refuses the proposal | the proposal stays pending, no co-signature |
-| Admission corrected, proposal submitted again | new assessment, co-signed if allowed |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Policy refuses the proposal | the proposal stays pending, no co-signature |
+| 2 | Admission corrected, proposal submitted again | new assessment, co-signed if allowed |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -177,14 +179,15 @@ The design decision is
 > termination MUST NOT change any consent. After a suspension ends, the
 > existing consents MUST be usable again.
 
-| Case | Outcome |
-|---|---|
-| Active consumer, valid consent | allowed |
-| Consumer suspended | denied within the period, consent unchanged |
-| Suspension ended | allowed again, without a new consent |
-| Consumer terminated | denied |
-| Consent expires during the suspension | expires as always |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Active consumer, valid consent | allowed |
+| 2 | Consumer suspended | denied within the period, consent unchanged |
+| 3 | Suspension ended | allowed again, without a new consent |
+| 4 | Consumer terminated | denied |
+| 5 | Consent expires during the suspension | expires as always |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -238,13 +241,14 @@ The design decision is
 > the component runs itself. The component MUST protect the record in the
 > same way as the audit records of [REQ-32](logging-audit.md#req-32).
 
-| Case | Outcome |
-|---|---|
-| Administrator suspends a party | record: administrator, moment, active → suspended |
-| Change without an authenticated, authorized administrator | refused, nothing changed |
-| Client deactivated after a re-check ([REQ-89](asi.md#req-89)) | record with the re-check as actor |
-| Source activated or rolled back ([REQ-65](sources-identity.md#req-65), [REQ-66](sources-identity.md#req-66)) | record with the version before and after |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Administrator suspends a party | record: administrator, moment, active → suspended |
+| 2 | Change without an authenticated, authorized administrator | refused, nothing changed |
+| 3 | Client deactivated after a re-check ([REQ-89](asi.md#req-89)) | record with the re-check as actor |
+| 4 | Source activated or rolled back ([REQ-65](sources-identity.md#req-65), [REQ-66](sources-identity.md#req-66)) | record with the version before and after |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"

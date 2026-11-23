@@ -138,12 +138,13 @@ ASIP. The profile needs these external facilities to apply in full:
 > qualified seal certificate of the responsible public sector body or of
 > the designated intermediary.
 
-| Case | Outcome |
-|---|---|
-| verify, 200 | sealed (code) |
-| retrieve, 200 | sealed (code) |
-| error response (400, 401, 404, 500, 501, 503) | not sealed (code, design choice) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | verify, 200 | sealed (code) |
+| 2 | retrieve, 200 | sealed (code) |
+| 3 | error response (400, 401, 404, 500, 501, 503) | not sealed (code, design choice) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -199,16 +200,17 @@ ASIP. The profile needs these external facilities to apply in full:
 > deliver MUST get 404 ([REQ-94](#req-94)) and MUST NOT get `Unknown`. A
 > source that does not answer MUST NOT get `Unknown` either ([REQ-93](#req-93)).
 
-| Case | Outcome |
-|---|---|
-| The source has an equal value | `Match` (code) |
-| The source has a different value | `NoMatch` (code) |
-| The source does not know the BSN | `Unknown` (code) |
-| The source has no value for this citizen, for example no residential address because he is not a resident | `Unknown` (code) |
-| The source has an incomplete value: an address without street, house number, postal code, or town | `Unknown` (code) |
-| An attribute that this data service does not deliver | 404, and the ASIP does not ask the source (code) |
-| The source is unreachable, or the chain refuses | 503 or 500, see [REQ-93](#req-93) (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The source has an equal value | `Match` (code) |
+| 2 | The source has a different value | `NoMatch` (code) |
+| 3 | The source does not know the BSN | `Unknown` (code) |
+| 4 | The source has no value for this citizen, for example no residential address because he is not a resident | `Unknown` (code) |
+| 5 | The source has an incomplete value: an address without street, house number, postal code, or town | `Unknown` (code) |
+| 6 | An attribute that this data service does not deliver | 404, and the ASIP does not ask the source (code) |
+| 7 | The source is unreachable, or the chain refuses | 503 or 500, see [REQ-93](#req-93) (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -320,13 +322,14 @@ ASIP. The profile needs these external facilities to apply in full:
 > token. The BSN in the token MUST be readable only for the ASIP. A QTSP
 > without BSN authority that holds the token MUST NOT be able to read it.
 
-| Case | Outcome |
-|---|---|
-| Logged in with DigiD (mock) | the BSN, with `acr` and `amr` set to `digid-mock`, and no PID attributes (code) |
-| A QTSP without BSN authority reads the token | no readable BSN. *This is a proposal. In the demo, the BSN in the token is readable.* |
-| Logged in with the NL Wallet | the BSN, `family_name`, `given_name`, `birthdate`, and `nationalities`, with `acr` and `amr` set to `nl-wallet`. No place of birth ([F-94](../traceability/findings.md#f-94)) (code). |
-| The means delivers no BSN | no authorization code. The citizen sees the request page again, and the transaction stays (code). |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Logged in with DigiD (mock) | the BSN, with `acr` and `amr` set to `digid-mock`, and no PID attributes (code) |
+| 2 | A QTSP without BSN authority reads the token | no readable BSN. *This is a proposal. In the demo, the BSN in the token is readable.* |
+| 3 | Logged in with the NL Wallet | the BSN, `family_name`, `given_name`, `birthdate`, and `nationalities`, with `acr` and `amr` set to `nl-wallet`. No place of birth ([F-94](../traceability/findings.md#f-94)) (code). |
+| 4 | The means delivers no BSN | no authorization code. The citizen sees the request page again, and the transaction stays (code). |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -407,17 +410,18 @@ ASIP. The profile needs these external facilities to apply in full:
 > the keys of the authorization server are not available, the ASIP MUST
 > give 503.
 
-| Case | Outcome |
-|---|---|
-| No token | 401, challenge without an error code (code) |
-| Signature, issuer, audience, expiry, or `typ` is wrong, or the token has no `cnf` or no BSN | 401 `invalid_token` (code) |
-| No proof | 401 `invalid_request` (code) |
-| Proof invalid, reused, or with another key than `cnf.jkt` | 401 `invalid_dpop_proof` (code) |
-| The scope does not cover the operation | 401 `insufficient_scope`, with the scope in the challenge (code) |
-| The token names attributes and the request asks another attribute | 401 `insufficient_scope` ([REQ-103](#req-103)) (code) |
-| An invalid token and an invalid request | 401: the token comes first (code) |
-| Keys of the authorization server not available | 503 (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | No token | 401, challenge without an error code (code) |
+| 2 | Signature, issuer, audience, expiry, or `typ` is wrong, or the token has no `cnf` or no BSN | 401 `invalid_token` (code) |
+| 3 | No proof | 401 `invalid_request` (code) |
+| 4 | Proof invalid, reused, or with another key than `cnf.jkt` | 401 `invalid_dpop_proof` (code) |
+| 5 | The scope does not cover the operation | 401 `insufficient_scope`, with the scope in the challenge (code) |
+| 6 | The token names attributes and the request asks another attribute | 401 `insufficient_scope` ([REQ-103](#req-103)) (code) |
+| 7 | An invalid token and an invalid request | 401: the token comes first (code) |
+| 8 | Keys of the authorization server not available | 503 (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -476,18 +480,19 @@ ASIP. The profile needs these external facilities to apply in full:
 > a QTSP that is on the trusted list as a qualified provider, and MUST NOT
 > know clients outside this registration.
 
-| Case | Outcome |
-|---|---|
-| Valid statement, and an entry with `QEAA_Provider` and the organization of the certificate | client registered, `private_key_jwt` with the certificate key (code) |
-| No statement, `alg none`, signed with another key, or no `x5c` | `invalid_software_statement` (code) |
-| The chain reaches no trusted anchor, or the certificate is expired, has no `organizationIdentifier`, or has no digitalSignature | `invalid_software_statement` (code) |
-| The statement is expired, has `iat` in the future, or has no `iss`, `iat`, `exp` or `registryURI` | `invalid_software_statement` (code) |
-| `registryURI` unknown in the register | `unapproved_software_statement` (code) |
-| Entry without `QEAA_Provider` | `unapproved_software_statement` (code) |
-| The organization of the certificate is not in the entry | `unapproved_software_statement` (code) |
-| The registration names `jwks` or `jwks_uri` | `invalid_client_metadata` (code) |
-| The register cannot be consulted | 503 `temporarily_unavailable` (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Valid statement, and an entry with `QEAA_Provider` and the organization of the certificate | client registered, `private_key_jwt` with the certificate key (code) |
+| 2 | No statement, `alg none`, signed with another key, or no `x5c` | `invalid_software_statement` (code) |
+| 3 | The chain reaches no trusted anchor, or the certificate is expired, has no `organizationIdentifier`, or has no digitalSignature | `invalid_software_statement` (code) |
+| 4 | The statement is expired, has `iat` in the future, or has no `iss`, `iat`, `exp` or `registryURI` | `invalid_software_statement` (code) |
+| 5 | `registryURI` unknown in the register | `unapproved_software_statement` (code) |
+| 6 | Entry without `QEAA_Provider` | `unapproved_software_statement` (code) |
+| 7 | The organization of the certificate is not in the entry | `unapproved_software_statement` (code) |
+| 8 | The registration names `jwks` or `jwks_uri` | `invalid_client_metadata` (code) |
+| 9 | The register cannot be consulted | 503 `temporarily_unavailable` (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -541,12 +546,13 @@ ASIP. The profile needs these external facilities to apply in full:
 > then deactivate the client. A deactivated client gets no more
 > authorizations and no more tokens.
 
-| Case | Outcome |
-|---|---|
-| Entitlement unchanged | the client stays active, and the authorization server takes over the name from the entry ([REQ-91](#req-91)) (code) |
-| Entitlement withdrawn | client deactivated. A token request gets `invalid_client`. An authorization request gets an error page without redirect (code). |
-| The register cannot be consulted | the client stays active until the next check (code, demo choice, [Q-34](../traceability/open-questions.md#q-34)) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Entitlement unchanged | the client stays active, and the authorization server takes over the name from the entry ([REQ-91](#req-91)) (code) |
+| 2 | Entitlement withdrawn | client deactivated. A token request gets `invalid_client`. An authorization request gets an error page without redirect (code). |
+| 3 | The register cannot be consulted | the client stays active until the next check (code, demo choice, [Q-34](../traceability/open-questions.md#q-34)) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -595,16 +601,17 @@ ASIP. The profile needs these external facilities to apply in full:
 > client. If the login fails or the means is unreachable, the request MUST
 > stay open for a new attempt or another means.
 
-| Case | Outcome |
-|---|---|
-| The citizen refuses, before or instead of a login | `access_denied` to the QTSP, without a login (code) |
-| The citizen logs in and the means identifies him | authorization code to the QTSP (code) |
-| The means does not identify him: DigiD (mock) gets no BSN of nine digits, or the wallet gives no usable PID | the page again, with the reason. The transaction stays (code). |
-| Refused in the wallet, or the session expired | the request page again, with the reason. The transaction stays (code). |
-| The means is unreachable. This includes the case where the shared attributes cannot be fetched after a completed session. | error page (503). The transaction stays for another means (code). |
-| A decision without a transaction cookie, with the cookie of another transaction, or for an unknown, used, or expired transaction | error page (400), no redirect (code) |
-| A wallet session of another transaction, or a session token from the browser | no identification (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The citizen refuses, before or instead of a login | `access_denied` to the QTSP, without a login (code) |
+| 2 | The citizen logs in and the means identifies him | authorization code to the QTSP (code) |
+| 3 | The means does not identify him: DigiD (mock) gets no BSN of nine digits, or the wallet gives no usable PID | the page again, with the reason. The transaction stays (code). |
+| 4 | Refused in the wallet, or the session expired | the request page again, with the reason. The transaction stays (code). |
+| 5 | The means is unreachable. This includes the case where the shared attributes cannot be fetched after a completed session. | error page (503). The transaction stays for another means (code). |
+| 6 | A decision without a transaction cookie, with the cookie of another transaction, or for an unknown, used, or expired transaction | error page (400), no redirect (code) |
+| 7 | A wallet session of another transaction, or a session token from the browser | no identification (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -671,14 +678,15 @@ ASIP. The profile needs these external facilities to apply in full:
 > show them too. If the request names no attributes, the page MUST NOT
 > name any.
 
-| Case | Outcome |
-|---|---|
-| Registered QTSP | the legal name from the entry. A changed name shows after the next re-check (code). |
-| Client from the configuration without a name | the `client_id` (code, demo glue) |
-| Data service without a source name in the configuration | the authorization server does not start (code) |
-| Request with `authorization_details` | the attributes, and what the QTSP gets to see (code) |
-| Request without `authorization_details` | no attributes and no promise about them (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Registered QTSP | the legal name from the entry. A changed name shows after the next re-check (code). |
+| 2 | Client from the configuration without a name | the `client_id` (code, demo glue) |
+| 3 | Data service without a source name in the configuration | the authorization server does not start (code) |
+| 4 | Request with `authorization_details` | the attributes, and what the QTSP gets to see (code) |
+| 5 | Request without `authorization_details` | no attributes and no promise about them (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -743,12 +751,13 @@ ASIP. The profile needs these external facilities to apply in full:
 > ASIP MUST refuse a request with an attribute that the data service does
 > not deliver, before it asks the source anything.
 
-| Case | Outcome |
-|---|---|
-| Verify with three attributes and a fragment | one query to the source, with the fields of each attribute once (code) |
-| An attribute outside the catalogue next to a valid attribute | 404, and the ASIP does not ask the source (code) |
-| An attribute for which the ASIP knows no fields | error, and the ASIP does not ask the source (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Verify with three attributes and a fragment | one query to the source, with the fields of each attribute once (code) |
+| 2 | An attribute outside the catalogue next to a valid attribute | 404, and the ASIP does not ask the source (code) |
+| 3 | An attribute for which the ASIP knows no fields | error, and the ASIP does not ask the source (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -812,13 +821,14 @@ ASIP. The profile needs these external facilities to apply in full:
 > these cases, the ASIP MUST NOT return a verification result. This also
 > excludes `Unknown`.
 
-| Case | Outcome |
-|---|---|
-| Outway not reachable | 503 (code) |
-| Outway answers with a 5xx (for example 502, source unreachable) | 503 (code) |
-| The PDP of the source refuses (the Inway gives 401) | 500 (code) |
-| The source answers with GraphQL errors, or with something other than JSON | 500 (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Outway not reachable | 503 (code) |
+| 2 | Outway answers with a 5xx (for example 502, source unreachable) | 503 (code) |
+| 3 | The PDP of the source refuses (the Inway gives 401) | 500 (code) |
+| 4 | The source answers with GraphQL errors, or with something other than JSON | 500 (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -870,12 +880,13 @@ ASIP. The profile needs these external facilities to apply in full:
 > attribute of another source MUST give 404, and the ASIP MUST NOT ask
 > any source anything.
 
-| Case | Outcome |
-|---|---|
-| Data service with an authentic source behind the ASIP | `provider` and `authenticSource` in every response (code) |
-| Data service of which the ASIP is itself the source | `provider`, no `authenticSource`. This is historical code, in unit tests only. In v0.9.0, the ASIP always takes `authenticSource` from the source description. |
-| Attribute of another data service | 404, and the ASIP asks no source (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Data service with an authentic source behind the ASIP | `provider` and `authenticSource` in every response (code) |
+| 2 | Data service of which the ASIP is itself the source | `provider`, no `authenticSource`. This is historical code, in unit tests only. In v0.9.0, the ASIP always takes `authenticSource` from the source description. |
+| 3 | Attribute of another data service | 404, and the ASIP asks no source (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -936,13 +947,14 @@ ASIP. The profile needs these external facilities to apply in full:
 > unknown one. The authorization server MUST then refuse it with
 > `invalid_target`. The ASIP MUST refuse a token for another data service.
 
-| Case | Outcome |
-|---|---|
-| One known `resource` | token with its base URL as `aud` (code) |
-| No `resource`, two, or an unknown one | `invalid_target` (code) |
-| Token request with another `resource` than the one of the code | `invalid_target` (code) |
-| Token for data service A at data service B | 401 `invalid_token` (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | One known `resource` | token with its base URL as `aud` (code) |
+| 2 | No `resource`, two, or an unknown one | `invalid_target` (code) |
+| 3 | Token request with another `resource` than the one of the code | `invalid_target` (code) |
+| 4 | Token for data service A at data service B | 401 `invalid_token` (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -991,12 +1003,13 @@ ASIP. The profile needs these external facilities to apply in full:
 > QTSP can then verify or retrieve without prior knowledge of the
 > addresses of the ASIP.
 
-| Case | Outcome |
-|---|---|
-| Data service `brp` with three attributes | three records, each with endpoint, contract, provider, and country. The records conform to the ETSI schema (code). |
-| Record → contract | `servers` is the endpoint of the record. The contract names the metadata of the authorization server (code). |
-| Unknown data service | no records, 404 (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Data service `brp` with three attributes | three records, each with endpoint, contract, provider, and country. The records conform to the ETSI schema (code). |
+| 2 | Record → contract | `servers` is the endpoint of the record. The contract names the metadata of the authorization server (code). |
+| 3 | Unknown data service | no records, 404 (code) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1061,11 +1074,12 @@ ASIP. The profile needs these external facilities to apply in full:
 > `/.well-known/oauth-authorization-server` between host and path of the
 > issuer.
 
-| Case | Outcome |
-|---|---|
-| Issuer `https://host` | `https://host/.well-known/oauth-authorization-server` (code) |
-| Issuer with path `https://host/issuer1` | `https://host/.well-known/oauth-authorization-server/issuer1` (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Issuer `https://host` | `https://host/.well-known/oauth-authorization-server` (code) |
+| 2 | Issuer with path `https://host/issuer1` | `https://host/.well-known/oauth-authorization-server/issuer1` (code) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1106,13 +1120,14 @@ ASIP. The profile needs these external facilities to apply in full:
 > retrieve MUST NOT give a partial result: a 200 MUST contain every
 > requested attribute. Verify still gives `Unknown` ([REQ-84](#req-84)).
 
-| Case | Outcome |
-|---|---|
-| The source has a value for every requested attribute | 200 with every attribute, sealed (code) |
-| The source has no value for one attribute, also next to an attribute with a value | 404 without a seal. The reason names the attribute (code). |
-| Attribute not in the catalogue of the data service | 404 ([REQ-94](#req-94)) (code) |
-| Verify, the source has no value | `Unknown` ([REQ-84](#req-84)) (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The source has a value for every requested attribute | 200 with every attribute, sealed (code) |
+| 2 | The source has no value for one attribute, also next to an attribute with a value | 404 without a seal. The reason names the attribute (code). |
+| 3 | Attribute not in the catalogue of the data service | 404 ([REQ-94](#req-94)) (code) |
+| 4 | Verify, the source has no value | `Unknown` ([REQ-84](#req-84)) (code) |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -1148,13 +1163,14 @@ ASIP. The profile needs these external facilities to apply in full:
 > contain a BSN. A presentation of another type, or without a BSN, MUST
 > NOT lead to an identification.
 
-| Case | Outcome |
-|---|---|
-| PID `urn:eudi:pid:nl:1` with BSN, from a trusted issuer | identified. The BSN and the PID attributes go into the token ([REQ-86](#req-86)) (code). |
-| PID without BSN, another type, another query ID, or no presentation | not identified (code) |
-| Return on the same device with the session of another browser, or without a valid nonce | not identified (code) |
-| Verifier not reachable | means not available. The transaction stays ([REQ-90](#req-90)) (code). |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | PID `urn:eudi:pid:nl:1` with BSN, from a trusted issuer | identified. The BSN and the PID attributes go into the token ([REQ-86](#req-86)) (code). |
+| 2 | PID without BSN, another type, another query ID, or no presentation | not identified (code) |
+| 3 | Return on the same device with the session of another browser, or without a valid nonce | not identified (code) |
+| 4 | Verifier not reachable | means not available. The transaction stays ([REQ-90](#req-90)) (code). |
 
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -1235,14 +1251,15 @@ ASIP. The profile needs these external facilities to apply in full:
 > authorization per operation according to ETSI TS 119 478. The catalogue
 > of the data service is then the limit.
 
-| Case | Outcome |
-|---|---|
-| No list | authorization per operation, a page without attributes, and a token without a list. The ASIP allows every attribute from the catalogue (code). |
-| No list, list made mandatory | `invalid_request` (code) |
-| The list is empty, of an unknown type, or for another data service. Or the list has other operations than the scope, no attributes, or invalid or duplicate attributes. | `invalid_request` (code) |
-| Valid list | attributes on the page and unchanged in the token (code) |
-| Token with a list, and the request names another attribute | 401 `insufficient_scope`. The reason names the attribute (code). |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | No list | authorization per operation, a page without attributes, and a token without a list. The ASIP allows every attribute from the catalogue (code). |
+| 2 | No list, list made mandatory | `invalid_request` (code) |
+| 3 | The list is empty, of an unknown type, or for another data service. Or the list has other operations than the scope, no attributes, or invalid or duplicate attributes. | `invalid_request` (code) |
+| 4 | Valid list | attributes on the page and unchanged in the token (code) |
+| 5 | Token with a list, and the request names another attribute | 401 `insufficient_scope`. The reason names the attribute (code). |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1345,11 +1362,12 @@ ASIP. The profile needs these external facilities to apply in full:
 > to dates, codes, and numbers. It MUST publish the rules that it applies. A
 > QTSP then knows when it can get `MatchWithVariation`.
 
-| Case | Outcome |
-|---|---|
-| A name that differs only in case, diacritics, hyphens, or white space | `MatchWithVariation` (code) |
-| A date or code that differs only in this way, for example `1990-01-01` and `1990 01 01` | `NoMatch`. For dates, the demo does this since v0.9.0 (code). For codes, see the notes. |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | A name that differs only in case, diacritics, hyphens, or white space | `MatchWithVariation` (code) |
+| 2 | A date or code that differs only in this way, for example `1990-01-01` and `1990 01 01` | `NoMatch`. For dates, the demo does this since v0.9.0 (code). For codes, see the notes. |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1398,12 +1416,13 @@ ASIP. The profile needs these external facilities to apply in full:
 > retrieve requests on behalf of another subject (`mandate`). It MUST
 > answer them with 501, without asking the source anything.
 
-| Case | Outcome |
-|---|---|
-| Verify with `mandate` | 501, and the ASIP does not ask the source (code) |
-| Retrieve with `mandate` | 501, and the ASIP does not ask the source (code) |
-| Malformed request with `mandate` | 400 comes first (code) |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Verify with `mandate` | 501, and the ASIP does not ask the source (code) |
+| 2 | Retrieve with `mandate` | 501, and the ASIP does not ask the source (code) |
+| 3 | Malformed request with `mandate` | 400 comes first (code) |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1440,12 +1459,13 @@ ASIP. The profile needs these external facilities to apply in full:
 > describe which JSONPath expressions (RFC 9535) the ASIP accepts for a
 > fragment.
 
-| Case | Outcome |
-|---|---|
-| Fragment with an expression from the supported subset | `Match`, `MatchWithVariation`, or `NoMatch` (code) |
-| Expression that selects nothing in the source value | `Unknown` (code) |
-| Expression outside the subset | 400 (code). There is no decision whether this must be 400 or 501. |
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Fragment with an expression from the supported subset | `Match`, `MatchWithVariation`, or `NoMatch` (code) |
+| 2 | Expression that selects nothing in the source value | `Unknown` (code) |
+| 3 | Expression outside the subset | 400 (code). There is no decision whether this must be 400 or 501. |
 
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"

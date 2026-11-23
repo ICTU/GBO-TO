@@ -7,18 +7,23 @@ The script reads:
   open questions, demo increments and standards feedback
   (docs/traceability/*.md). Each entry is a heading
   "## ID — title {#anchor}" or "### ID — title {#anchor}" followed by a
-  "- **Status**: ..." line;
+  "- **Status**: ..." line. A requirement can have a numbered case table
+  ("| # | Case | Outcome |") and a "- **Verification**: ..." line;
 - the "## Traceability" footer of every arc42 page, concept page,
   runtime page and ADR.
 
-It writes docs/traceability/coverage.md with two tables:
+It writes docs/traceability/coverage.md with three tables:
 
 1. decision chains: ADR -> requirements -> increments -> findings ->
    open questions;
-2. where each ID is explained: ID -> TO pages and ADRs.
+2. where each ID is explained: ID -> TO pages and ADRs;
+3. verification: requirement -> method and number of cases.
 
 It exits with status 1 when a page refers to an ID that no register
 defines, or when an open finding or open question has no TO page or ADR.
+It also exits with status 1 when a case table has no numbers, a case
+number is not unique, or the verification of a requirement breaks the
+rules in docs/requirements/index.md#cases.
 
 Usage: python3 scripts/gen_traceability.py [--check]
   --check  do not write; fail when coverage.md is out of date.
@@ -34,6 +39,11 @@ OUT = DOCS / "traceability" / "coverage.md"
 ID = r"(?:REQ|RL|AV|BSNK|F|Q|SL)-\d+[a-c]?|E\d+"
 HEAD = re.compile(rf"^#{{2,3}} ({ID})(?: —|:) (.+?) \{{#([a-z0-9-]+)\}}\s*$")
 STATUS = re.compile(r"^- \*\*Status\*\*: (.+)$")
+VERIFICATION = re.compile(r"^- \*\*Verification\*\*: (\S+?):?(?: (.*))?$")
+METHODS = ("test", "inspection", "demonstration", "analysis")
+CASE_HEAD = "| # | Case | Outcome |"
+OLD_CASE_HEAD = "| Case | Outcome |"
+CASE_ROW = re.compile(r"^\| *([^|]*?) *\|")
 OPEN_PAGES = {"traceability/findings.md": "F", "traceability/open-questions.md": "Q"}
 CLOSED_PAGES = {"traceability/findings-closed.md": "F", "traceability/answered-questions.md": "Q"}
 LINK = re.compile(rf"\[({ID})\]\(([^)]+)\)")
@@ -83,20 +93,64 @@ def read_registers():
             continue
         rel = f.relative_to(DOCS).as_posix()
         cur = None
+        in_cases = False
         for line in f.read_text().splitlines():
             m = HEAD.match(line)
             if m:
                 cur = m.group(1)
                 reg[cur] = {"title": m.group(2), "anchor": m.group(3),
-                            "page": rel, "status": ""}
+                            "page": rel, "status": "", "cases": [],
+                            "case_table": False, "verification": None,
+                            "reason": "", "problems": []}
+                in_cases = False
                 continue
+            if cur and line.startswith(OLD_CASE_HEAD):
+                reg[cur]["problems"].append("has a case table without the # column")
+            if cur and line.startswith(CASE_HEAD):
+                reg[cur]["case_table"] = True
+                in_cases = True
+                continue
+            if in_cases:
+                if not line.startswith("|"):
+                    in_cases = False
+                elif not line.startswith("|---"):
+                    n = CASE_ROW.match(line).group(1)
+                    if not re.fullmatch(r"[1-9]\d*", n):
+                        reg[cur]["problems"].append(f"has a case without a number: {line[:40]}")
+                    elif n in reg[cur]["cases"]:
+                        reg[cur]["problems"].append(f"uses case number {n} twice")
+                    else:
+                        reg[cur]["cases"].append(n)
+            if cur and reg[cur]["verification"] is None:
+                v = VERIFICATION.match(line)
+                if v:
+                    reg[cur]["verification"] = v.group(1)
+                    reg[cur]["reason"] = (v.group(2) or "").strip()
             if cur and not reg[cur]["status"]:
                 s = STATUS.match(line)
                 if s:
                     reg[cur]["status"] = short_status(s.group(1))
             if line.startswith("## ") and not HEAD.match(line):
                 cur = None
+                in_cases = False
     return reg
+
+
+def verification_problems(i, e):
+    """Rules from docs/requirements/index.md#cases, for one register entry."""
+    out = list(e["problems"])
+    v = e["verification"]
+    if v is not None and v not in METHODS:
+        out.append(f"has verification '{v}', which is not one of {', '.join(METHODS)}")
+    if kind(i) != "REQ":
+        return out
+    if v == "test" and not e["cases"]:
+        out.append("has verification test but no cases")
+    if e["case_table"] and v is None:
+        out.append("has cases but no verification line")
+    if v in METHODS and v != "test" and not e["reason"]:
+        out.append(f"has verification {v} without a reason")
+    return out
 
 
 def page_title(text, fallback):
@@ -216,6 +270,25 @@ def build(reg, pages):
                if not where.get(i) and (
                    (kind(i) == "F" and reg[i]["status"] in OPEN_F) or
                    (kind(i) == "Q" and reg[i]["status"] in OPEN_Q))]
+    w("## Verification {#verification}\n")
+    w("Each requirement has one row. The row names the verification method and "
+      "the number of cases. A test in the build refers to a case as the ID with "
+      "the case number, for example `REQ-48.1`. "
+      "For the rules, see [Cases and verification](../requirements/index.md#cases).\n")
+    reqs = sorted([i for i in reg if kind(i) == "REQ"], key=sort_key)
+    w("| ID | Status | Verification | Cases |")
+    w("|---|---|---|---|")
+    for i in reqs:
+        e = reg[i]
+        w(f"| {link(reg, i)} | {e['status']} | {e['verification'] or '—'} | "
+          f"{len(e['cases']) or '—'} |")
+    without = [i for i in reqs if reg[i]["verification"] is None]
+    w("")
+    if without:
+        w(f"{len(without)} of {len(reqs)} requirements have no verification method yet.\n")
+    else:
+        w(f"All {len(reqs)} requirements have a verification method.\n")
+
     w("## Not explained\n")
     if missing:
         w("No TO page or decision cites these open findings and open questions:\n")
@@ -245,6 +318,9 @@ def main():
             errors.append(f"{i} is linked in {', '.join(sorted(files))} but no register defines it")
     for i in missing:
         errors.append(f"{i} ({reg[i]['status']}) has no TO page or decision")
+    for i, e in sorted(reg.items(), key=lambda x: sort_key(x[0])):
+        for p in verification_problems(i, e):
+            errors.append(f"{i} {p}")
     for i, e in reg.items():
         is_open = (kind(i) == "F" and e["status"] in OPEN_F) or (
             kind(i) == "Q" and e["status"] in OPEN_Q)

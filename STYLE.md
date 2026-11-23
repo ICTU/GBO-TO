@@ -196,9 +196,10 @@ the readable part, then a collapsible block with the labeled fields.
   type, trigger, observation, impact, proposal, links; for a question:
   forum, options, working assumption, links). The entry has no
   collapsible block.
-- A requirement shows the requirement statement (the blockquote) and the
-  case table. Its fields (source, addressee, evidence, related, notes) go
-  into the block `??? note "Source, evidence and notes"`.
+- A requirement shows the requirement statement (the blockquote), the
+  numbered case table, and the `- **Verification**:` line. That line
+  comes just before the status line. Its other fields (source, addressee, evidence, related, notes)
+  go into the block `??? note "Source, evidence and notes"`.
 - Closed findings and answered questions are short entries and have no
   collapsible block. They live on their own pages.
 ## Diagrams
