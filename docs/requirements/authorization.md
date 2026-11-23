@@ -268,8 +268,8 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 | 3 | PID regime, caller is not a designated issuer | denied: `ACTOR_NOT_ALLOWED` |
 | 4 | PID regime, year outside the rule | denied: `YEAR_NOT_ALLOWED` |
 | 5 | ASI rule, caller is not the ASIP | denied: `ACTOR_NOT_ALLOWED` |
-| 6 | Integrator without a mandate for this rule | denied: `INTEGRATOR_NOT_REGISTERED` |
 | 7 | One field denied, the rest allowed | the whole request denied |
+| 8 | Integrator without a mandate for the represented party | denied: `INTEGRATOR_NOT_REGISTERED` |
 
 - **Verification**: test
 - **Status**: ready for review

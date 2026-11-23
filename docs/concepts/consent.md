@@ -119,7 +119,7 @@ citizen is ([F-76](../traceability/findings.md#f-76)).
 An integrator calls the source for a consumer under FSC delegation
 ([ADR-0034](../decisions/0034-integrator-delegation.md)). The proof binds
 only the represented party, which is the consumer. The integrator needs
-its own mandate for each consumer and rule in the admission register
+its own mandate for each consumer in the admission register
 ([REQ-106](../requirements/consent.md#req-106)). If this mandate is
 absent, the PDP denies with `INTEGRATOR_NOT_REGISTERED`.
 
