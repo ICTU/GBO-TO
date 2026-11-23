@@ -546,6 +546,18 @@ builders do not get two conflicting sources.
 
 Evidence, impact, proposal and links: [issue #120](https://github.com/ICTU/GBO-TO/issues/120).
 
+### F-102: Automatic return after a delay conflicts with accessibility {#f-102}
+
+- **Status**: open
+
+REQ-119 asks for an automatic return to the consumer. A return after a
+fixed delay is a time limit that the citizen cannot stop or extend.
+WCAG 2.2 success criterion 2.2.1 requires that a user can turn off,
+adjust or extend such a limit. The options are a return through a button
+only, or an automatic return with a control that stops the delay.
+
+Evidence, impact, proposal and links: [issue #129](https://github.com/ICTU/GBO-TO/issues/129).
+
 ## Summary for the PSA
 
 The demo shows that the generic chain works end to end for three routes: DvTP, EUDI issuance, and the Authentic Source Interface (ASI). The following sections group the open findings per theme (state of November 2, 2026) and name what the PSA must decide.
@@ -563,7 +575,7 @@ In total, 34 findings are open. The review of September 21, 2026 closed 28 of 39
 
 ### Consent and its lifecycle
 
-- **Open**: [F-19](#f-19) (no "retrieved" status), [F-74](#f-74) (scope is the intersection of legal ceiling and source offer), [F-78](#f-78) (the proof freezes at consent), and [F-97](#f-97) and [F-98](#f-98) (FR-DvTP contradictions).
+- **Open**: [F-19](#f-19) (no "retrieved" status), [F-74](#f-74) (scope is the intersection of legal ceiling and source offer), [F-78](#f-78) (the proof freezes at consent), [F-102](#f-102) (automatic return after a delay), and [F-97](#f-97) and [F-98](#f-98) (FR-DvTP contradictions).
 - **Decided**: the legal basis travels as a signed proof. The status is checked online and fails closed ([F-61](findings-closed.md#f-61), [ADR-0032](../decisions/0032-consent-proof.md)). An integrator connects under FSC delegation, and the consent binds the represented party ([F-73](findings-closed.md#f-73), [ADR-0034](../decisions/0034-integrator-delegation.md)).
 - **PSA to decide**:
     1. When a consent counts as retrieved, and how the register learns it ([Q-42](open-questions.md#q-42)).
