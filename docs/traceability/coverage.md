@@ -435,6 +435,7 @@ Each register entry has one row. The row names the TO pages and the decisions th
 | [Q-77](open-questions.md#q-77) | What is a change of a consent: a new consent or an amendment of the existing one? | open | [Consent](../concepts/consent.md) |
 | [Q-78](open-questions.md#q-78) | How does the reference policy show that it is not tied to one policy language or engine? | open | [Policy rules and their management](../building-blocks/gbo-basis/policy.md), [Policy lifecycle](../concepts/policy-lifecycle.md) |
 | [Q-79](open-questions.md#q-79) | Does GBO build the OOTS adapter, or does the OOTS-V operator extend its facility with the GBO interface? | open | [OOTS channel](../building-blocks/oots.md), [Context and scope](../context.md), [ADR-0020](../decisions/0020-as4-bridge-for-oots.md), [ADR-0024](../decisions/0024-canonical-semantic-models.md), [Design-level scenarios](../runtime/design-level.md), [Runtime view](../runtime/index.md) |
+| [Q-80](open-questions.md#q-80) | Which component onboards sources for all channels, and who manages their lifecycle? | open | [Source onboarding](../concepts/source-onboarding.md) |
 
 ### Standards feedback items
 
