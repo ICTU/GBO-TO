@@ -399,7 +399,7 @@ the certificate roles. Evidence links to gbo-demo point at tag `v0.9.0`.
         [REQ-74](authorization.md#req-74),
         [REQ-111](consent.md#req-111),
         [Q-53](../traceability/open-questions.md#q-53),
-        [Q-60](../traceability/open-questions.md#q-60),
+        [Q-60](../traceability/answered-questions.md#q-60),
         [ADR 0003](../decisions/0003-fsc-connectivity.md).
     - **Notes**:
         - FSC establishes the organization. That says nothing about what the
@@ -414,7 +414,7 @@ the certificate roles. Evidence links to gbo-demo point at tag `v0.9.0`.
         - The consent process blocks through the status in the register
             ([REQ-111](consent.md#req-111)), as long as the initiation
             is not bound to the certificate
-            ([Q-60](../traceability/open-questions.md#q-60)).
+            ([Q-60](../traceability/answered-questions.md#q-60)).
 
 ### REQ-67: The legal identity of a bronhouder comes from its certificate and not from configuration {#req-67}
 

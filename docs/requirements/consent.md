@@ -308,7 +308,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
       [F-61](../traceability/findings-closed.md#f-61),
       [F-72](../traceability/findings.md#f-72),
       [F-78](../traceability/findings.md#f-78),
-      [Q-44](../traceability/open-questions.md#q-44),
+      [Q-44](../traceability/answered-questions.md#q-44),
       [Q-55](../traceability/open-questions.md#q-55),
       [Q-68](../traceability/open-questions.md#q-68),
       [ADR 0032](../decisions/0032-consent-proof.md).
@@ -786,14 +786,14 @@ change between the review commit `819f3eb` and `v0.9.0`.
     - **Related**: [REQ-24](consent.md#req-24),
       [REQ-40](consent.md#req-40),
       [REQ-119](consent.md#req-119), [REQ-121](#req-121),
-      [Q-44](../traceability/open-questions.md#q-44),
+      [Q-44](../traceability/answered-questions.md#q-44),
       [Q-61](../traceability/open-questions.md#q-61),
       [Q-73](../traceability/open-questions.md#q-73).
     - **Notes**: if MijnOverheid already blocks earlier
       ([Q-61](../traceability/open-questions.md#q-61) sub-question 7), the
       refusal in the backend is still necessary for a client that skips the
       step. [REQ-119](consent.md#req-119) and
-      [Q-44](../traceability/open-questions.md#q-44) cover whether the citizen
+      [Q-44](../traceability/answered-questions.md#q-44) cover whether the citizen
       returns after the message, and with which outcome.
 
 ### REQ-121: Screen, initiation check, and reference policy follow the same data-set description {#req-121}
@@ -886,7 +886,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
       [REQ-117](#req-117), [REQ-119](consent.md#req-119),
       [REQ-120](consent.md#req-120),
       [Q-43](../traceability/open-questions.md#q-43),
-      [Q-44](../traceability/open-questions.md#q-44),
+      [Q-44](../traceability/answered-questions.md#q-44),
       [Q-61](../traceability/open-questions.md#q-61).
     - **Notes**:
         - The requirement chooses no form. The possible forms are these:
@@ -1001,13 +1001,13 @@ choice, the portal sends the citizen back to the consumer with the
 outcome. The requirements cover that request, the data that the portal
 takes from the registration instead of the request, and the return.
 
-In the demo, the consumer sends the context as query parameters: consumer
-OIN, scopes, purpose, and return address. The portal keeps the context in
-the browser session during the mock login. It refuses a scope that it
-cannot describe, and shows only the requested scopes. On success, the
-proof goes back in the URL fragment. On refusal, the return carries
-`status=denied`. In demo v0.9.0, the consent portal backend does not check
-the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
+The consumer pushes its request over FSC, and the browser carries only a
+short reference to the portal
+([ADR-0045](../decisions/0045-pushed-consent-request.md)). The consent
+portal backend checks the request against the registration before any
+consent screen. On a given consent, the return carries a one-time code
+that the consumer exchanges over FSC for the proof. On a refusal or an
+error, the return carries `error=access_denied` or `error=server_error`.
 
 ### REQ-37: A consent request names the consumer, the service, the requested data sets, and the return address {#req-37}
 
@@ -1032,9 +1032,9 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 
 | # | Case | Outcome |
 |---|---|---|
-| 1 | Complete request, known data sets | after the login, the consent screen with this context at once *(from code)* |
-| 2 | One of the mandatory items is missing | refused: `INITIATION_INCOMPLETE`, no consent screen (demo: only the UI, the message no session, shown as "Geen sessie") |
-| 3 | Unknown data set | refused: `UNKNOWN_SCOPE`, no consent screen (demo: only the UI, the message unknown request, [PR #435](https://github.com/ICTU/GBO-demo/pull/435)) |
+| 1 | Complete request, known data sets | after the login, the consent screen with the context from the registration |
+| 2 | One of the mandatory items is missing | refused: `INITIATION_INCOMPLETE`, no consent screen |
+| 3 | Unknown data set | refused: `UNKNOWN_SCOPE`, no consent screen |
 | 4 | Known data set that does not belong to the requested service, or is not recorded for this consumer | refused: `SCOPE_NOT_REGISTERED`, no consent screen *(not built)* |
 | 5 | Request on behalf of a consumer through an integrator | the request also names the integrator *(proposal from FR-12 criterion 2: not built)* |
 
@@ -1050,41 +1050,39 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
         - FR-10 description (within the legal ceiling of the service
           catalog: "binnen het wettelijke plafond van de dienstencatalogus").
         - FR-17 criterion 2, FR-32 criterion 2, and FR-38 criterion 5.
-    - **Addressee**: interface agreement: the initiation interface (koppelvlak) between
-      consumer and consent facility. GBO-delivered component: the portal UI
-      inside MijnOverheid, which shows no consent screen.
-    - **Evidence**: partly, only in the UI. Code and tests:
-        - The mandatory fields are in
-          [`useRedirectContext.ts#L29-L41`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/useRedirectContext.ts#L29-L41).
-        - The refusal is in
-          [`PortaalConsent.tsx#L49-L75`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L49-L75).
-        - A test of the unknown data set is in
-          [`scopeGroups.test.mjs#L16`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/tests/scopeGroups.test.mjs#L16).
-        - The consumer mocks build the request in
-          [`buildPortalUrl.ts#L69-L80`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/dienstverlener-mock/src/lib/buildPortalUrl.ts#L69-L80).
-        - The backend checks nothing.
-          [ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)
-          adds that check.
+    - **Addressee**: interface agreement: the pushed request between
+      consumer and consent facility
+      ([ADR-0045](../decisions/0045-pushed-consent-request.md)).
+      GBO-delivered component: the consent portal backend, which refuses
+      the request before any consent screen.
+    - **Evidence**: cases 1 to 3 are built. Code and tests:
+        - The checks are in
+          [`initiation.go`](https://github.com/ICTU/GBO-demo/blob/afcef2065578f902b0f5531d9b18e2bae11fce37/services/consent-portal-backend/consent/initiation.go)
+          and run on the pushed request in
+          [`par.go`](https://github.com/ICTU/GBO-demo/blob/afcef2065578f902b0f5531d9b18e2bae11fce37/services/consent-portal-backend/consent/par.go).
+        - The tests are in `initiation_test.go` and `fschttp_test.go`.
+        - Case 4 is [ICTU/GBO-demo#701](https://github.com/ICTU/GBO-demo/issues/701).
+          Case 5 is [ICTU/GBO-demo#702](https://github.com/ICTU/GBO-demo/issues/702).
     - **Related**: [REQ-10](consent.md#req-10), [REQ-106](consent.md#req-106),
       [REQ-111](#req-111), [REQ-121](consent.md#req-121),
-      [Q-44](../traceability/open-questions.md#q-44),
+      [Q-44](../traceability/answered-questions.md#q-44),
       [Q-45](../traceability/open-questions.md#q-45),
-      [Q-60](../traceability/open-questions.md#q-60),
+      [Q-60](../traceability/answered-questions.md#q-60),
       [Q-61](../traceability/open-questions.md#q-61).
     - **Notes**:
-        - The form of the request is open: query parameters, a signed request,
-          or a reference to a request sent in advance. How the request
-          survives the login at MijnOverheid is also open:
-          [Q-60](../traceability/open-questions.md#q-60),
-          [Q-61](../traceability/open-questions.md#q-61) sub-questions 2 and 4.
+        - The consumer pushes the request over FSC. Only a short reference
+          has to survive the login
+          ([ADR-0045](../decisions/0045-pushed-consent-request.md),
+          [Q-60](../traceability/answered-questions.md#q-60),
+          [Q-61](../traceability/open-questions.md#q-61)).
         - Name and purpose come from the registration ([REQ-111](#req-111)).
-          The demo also demands them in the request.
-        - The demo knows the data sets from a fixed list in the UI
-          ([`scopeGroups.ts#L35-L43`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/data/scopeGroups.ts#L35-L43))
-          and does not take them from the service catalog.
+          The request does not need them.
+        - The demo knows the data sets from configuration
+          (`CONSENT_KNOWN_SCOPES`) and does not take them from the service
+          catalog.
         - In the demo, the service does not get into the consent. The register
-          receives the purpose as `use_case`
-          ([`PortaalConsent.tsx#L82-L87`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L82-L87)).
+          receives the purpose from the registration as `use_case`
+          ([`authorize.go`](https://github.com/ICTU/GBO-demo/blob/afcef2065578f902b0f5531d9b18e2bae11fce37/services/consent-portal-backend/consent/authorize.go)).
         - `SCOPE_NOT_REGISTERED` is a reason of its own next to
           `UNKNOWN_SCOPE`. With it, the consumer can tell "this set does not
           exist" from "you are not allowed to ask this set for this service".
@@ -1108,7 +1106,7 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 | 1 | Active consumer, registered return address | consent screen, with name and purpose from the registration |
 | 2 | Name or purpose in the request differs from the registration | refused: `INITIATION_MISMATCH` |
 | 3 | Consumer suspended or not admitted | refused: `PARTY_NOT_ACTIVE` |
-| 4 | Consumer active, but not admitted for this service | refused (no decision on the reason), no consent screen *(not built)* |
+| 4 | Consumer active, but not admitted for this service | refused: `INITIATION_MISMATCH`, no consent screen |
 | 5 | Return address not registered for that consumer | refused: `RETURN_URL_NOT_REGISTERED`, no return to that address |
 
 - **Verification**: test
@@ -1129,25 +1127,26 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
     - **Addressee**: GBO-delivered component: the consent portal backend.
       Management organization: the return addresses in the admission
       register.
-    - **Evidence**: not built:
-      [ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427). The
-      portal reads consumer, name, scope, and return address from the URL
-      ([`useRedirectContext.ts#L29-L38`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/hooks/useRedirectContext.ts#L29-L38)).
-      Only the frontend checks the address, against a fixed list of origins.
+    - **Evidence**: built
+      ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
+      The checks are in
+      [`initiation.go`](https://github.com/ICTU/GBO-demo/blob/afcef2065578f902b0f5531d9b18e2bae11fce37/services/consent-portal-backend/consent/initiation.go),
+      tested in `initiation_test.go`. The return addresses and the purpose
+      per service are in the admission register (`service_providers`).
     - **Related**: [REQ-37](#req-37), [REQ-61](admission.md#req-61),
       [REQ-110](admission.md#req-110), [REQ-117](consent.md#req-117),
-      [REQ-119](#req-119), [Q-44](../traceability/open-questions.md#q-44),
+      [REQ-119](#req-119), [Q-44](../traceability/answered-questions.md#q-44),
       [Q-53](../traceability/open-questions.md#q-53),
       [Q-59](../traceability/open-questions.md#q-59),
-      [Q-60](../traceability/open-questions.md#q-60),
+      [Q-60](../traceability/answered-questions.md#q-60),
       [Q-69](../traceability/open-questions.md#q-69).
     - **Notes**:
         - With these checks, a forged request can lead only to a consent to
           the real consumer, with the right name. The return also goes only to
           the address of that consumer.
-        - It is open whether it must also be provable that the consumer made
-          the request (FR-34 criterion 1):
-          [Q-60](../traceability/open-questions.md#q-60).
+        - The pushed request over FSC also proves which consumer made the
+          request ([ADR-0045](../decisions/0045-pushed-consent-request.md),
+          [Q-60](../traceability/answered-questions.md#q-60)).
         - The return addresses are in the admission register and not in the
           service catalog. They belong to the consumer, and the admission is
           already there ([REQ-61](admission.md#req-61)).
@@ -1170,12 +1169,12 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
 
 | # | Case | Outcome |
 |---|---|---|
-| 1 | The citizen gives consent | back with the outcome success. The proof reaches the consumer as [Q-44](../traceability/open-questions.md#q-44) decides |
-| 2 | The citizen refuses | back with the outcome refusal (demo: `status=denied`, code) |
-| 3 | The consent cannot be recorded (for example no value for a source, [REQ-82](pseudonymization.md#req-82), or the register does not answer) | back with the outcome error, no consent |
-| 4 | Refused by [REQ-118](consent.md#req-118) (delegation) | back with an outcome. Refusal or error: [Q-44](../traceability/open-questions.md#q-44) |
+| 1 | The citizen gives consent | back with `code` and `state`. The consumer exchanges the code for the proof ([REQ-127](#req-127)) |
+| 2 | The citizen refuses | back with `error=access_denied` and `state`, no consent |
+| 3 | The consent cannot be recorded (for example no value for a source, [REQ-82](pseudonymization.md#req-82), or the register does not answer) | back with `error=server_error` and `state`, no consent |
+| 4 | Refused by [REQ-118](consent.md#req-118) (delegation) | back with an outcome *(not built: which of the two is not decided)* |
 | 5 | Consumer or return address cannot be established ([REQ-111](#req-111)) | no return. What the citizen sees: no decision |
-| 6 | The citizen closes the window or the session expires | no return ([Q-43](../traceability/open-questions.md#q-43), [Q-44](../traceability/open-questions.md#q-44)) |
+| 6 | The citizen closes the window or the session expires | no return ([Q-43](../traceability/open-questions.md#q-43), [Q-44](../traceability/answered-questions.md#q-44)) |
 
 - **Verification**: test
 - **Status**: draft
@@ -1187,26 +1186,125 @@ the request ([ICTU/GBO-demo#427](https://github.com/ICTU/GBO-demo/issues/427)).
     - **Addressee**: GBO-delivered component: the portal UI inside
       MijnOverheid and the consent portal backend. Interface agreement: the
       outcome values in the return.
-    - **Evidence**: partly. A refusal returns with `status=denied`
-      ([`PortaalConsent.tsx#L100-L106`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L100-L106)).
-      A success returns with the proof in the URL fragment
-      (`PortaalBevestiging.tsx`). The cancel button (shown as "Annuleren") does not return
-      ([`PortaalConsent.tsx#L108`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/toestemmingsportaal-frontend/src/pages/PortaalConsent.tsx#L108)).
-      The return after an error is not checked.
+    - **Evidence**: cases 1 to 3 and 5 are built. The backend decides the
+      return in
+      [`authorize.go`](https://github.com/ICTU/GBO-demo/blob/afcef2065578f902b0f5531d9b18e2bae11fce37/services/consent-portal-backend/consent/authorize.go),
+      tested in `authorize_test.go`. The portal follows that return after a
+      short confirmation. The consent screen has no cancel button anymore.
     - **Related**: [REQ-37](#req-37), [REQ-82](pseudonymization.md#req-82),
       [REQ-111](#req-111), [REQ-117](consent.md#req-117),
       [REQ-118](consent.md#req-118), [REQ-122](consent.md#req-122),
       [Q-43](../traceability/open-questions.md#q-43),
-      [Q-44](../traceability/open-questions.md#q-44).
+      [Q-44](../traceability/answered-questions.md#q-44).
     - **Notes**:
-        - These points are open in
-          [Q-44](../traceability/open-questions.md#q-44) (partly answered):
-            - which outcomes the consumer tells apart, and what they are
-              called
-            - how the proof arrives on success: through the browser, or
-              through a code that the consumer exchanges
-            - whether the consumer gets the allowed sets back separately
+        - [Q-44](../traceability/answered-questions.md#q-44) fixes the
+          outcomes and the transfer of the proof
+          ([ADR-0045](../decisions/0045-pushed-consent-request.md)). The
+          allowed sets come back with the proof.
         - "Aborted" is not an outcome.
+
+### REQ-126: A pushed request lives briefly, binds to the first citizen who opens it, and one decision spends it {#req-126}
+
+> The consent portal backend MUST keep a pushed request under a reference
+> (`request_uri`) that cannot be guessed and that holds for a limited time.
+> The lifetime MUST cover the login of the citizen. The first citizen who
+> resolves the reference MUST be bound to it. The same citizen MAY resolve
+> it again, for example after a reload.
+
+> The backend MUST refuse the reference before the consent screen if it is
+> unknown, expired, or spent. The same applies to another `client_id` than
+> the consumer that pushed it, and to another citizen than the bound one.
+> The backend MUST accept a decision only from the citizen who resolved the
+> reference. Exactly one decision MUST spend it.
+
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Citizen resolves a fresh reference | consent screen, with name and purpose from the registration |
+| 2 | Same citizen resolves it again before the decision | consent screen again |
+| 3 | Unknown reference | refused: `REQUEST_URI_UNKNOWN` |
+| 4 | Expired reference | refused: `REQUEST_URI_EXPIRED` |
+| 5 | Reference after a decision | refused: `REQUEST_URI_SPENT` |
+| 6 | Another `client_id` than the consumer that pushed it | refused: `CLIENT_ID_MISMATCH` |
+| 7 | Another citizen than the one bound to it | refused: `REQUEST_URI_OTHER_CITIZEN`, for resolve and decision |
+| 8 | Decision without a resolve by this citizen | refused: `REQUEST_URI_NOT_RESOLVED`, the reference stays usable |
+| 9 | Two decisions at the same time | exactly one spends the reference |
+| 10 | Decision with a data set outside the request, a data set named twice, or none | refused, the reference stays usable |
+
+- **Verification**: test
+- **Status**: draft
+
+??? note "Source, evidence and notes"
+
+    - **Source**: design:
+        - [ADR-0045](../decisions/0045-pushed-consent-request.md).
+        - RFC 9126 section 2.2 (the reference "MUST contain some part
+          generated using a cryptographically strong pseudorandom
+          algorithm") and section 4 (one-time use, with room for a reload).
+        - FR-13 (the context of the consumer survives the login).
+        - Tightened: the reference is bound to the citizen, so that a link
+          passed on does not work for someone else.
+    - **Addressee**: GBO-delivered component: the consent portal backend.
+    - **Evidence**: built in
+      [`par.go`](https://github.com/ICTU/GBO-demo/blob/afcef2065578f902b0f5531d9b18e2bae11fce37/services/consent-portal-backend/consent/par.go)
+      and
+      [`authorize.go`](https://github.com/ICTU/GBO-demo/blob/afcef2065578f902b0f5531d9b18e2bae11fce37/services/consent-portal-backend/consent/authorize.go),
+      tested in `authorize_test.go`.
+    - **Related**: [REQ-37](#req-37), [REQ-111](#req-111),
+      [REQ-127](#req-127), [Q-61](../traceability/open-questions.md#q-61).
+    - **Notes**:
+        - The lifetime is configuration. The demo uses 10 minutes.
+        - The citizen sees one text for every refused reference. The reason
+          codes are for the logs and the tests.
+
+### REQ-127: Only the consumer that pushed the request gets the consent proof, for a one-time code {#req-127}
+
+> After a given consent, the consent facility MUST return the citizen with
+> a one-time code. It MUST NOT put the consent proof in a URL or in the
+> browser. The code MUST hold briefly.
+
+> The consent facility MUST give the proof for the code only to the
+> consumer that pushed the request, over FSC. The exchange MUST name the
+> redirect URI of the request and a PKCE verifier that matches the
+> challenge, with method S256. A code MUST work once. A failed exchange
+> MUST NOT give the proof.
+
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Consumer exchanges the code in time, with the right verifier | the consent proof as `access_token` |
+| 2 | Second exchange of the same code | refused: `invalid_grant` |
+| 3 | Code expired | refused: `invalid_grant` |
+| 4 | Code presented by another consumer | refused: `invalid_grant` |
+| 5 | Another `redirect_uri` | refused: `invalid_grant` |
+| 6 | Wrong or missing verifier | refused: `invalid_grant`, the code stays usable for its consumer |
+| 7 | Another `grant_type` | refused: `unsupported_grant_type` |
+| 8 | Exchange without an FSC peer identity | refused: `invalid_client` |
+| 9 | Pushed request without a PKCE challenge, or with method `plain` | refused: `INITIATION_INCOMPLETE` |
+| 10 | Answer to the decision of the citizen | holds no consent proof |
+
+- **Verification**: test
+- **Status**: draft
+
+??? note "Source, evidence and notes"
+
+    - **Source**: design:
+        - [ADR-0045](../decisions/0045-pushed-consent-request.md).
+        - RFC 6749 section 4.1.2 (a code is used once and is bound to the
+          client identifier and redirection URI) and section 4.1.3.
+        - RFC 7636 (PKCE).
+    - **Addressee**: GBO-delivered component: the consent portal backend.
+      Interface agreement: the token exchange over FSC.
+    - **Evidence**: built in
+      [`token.go`](https://github.com/ICTU/GBO-demo/blob/afcef2065578f902b0f5531d9b18e2bae11fce37/services/consent-portal-backend/consent/token.go)
+      and
+      [`fschttp.go`](https://github.com/ICTU/GBO-demo/blob/afcef2065578f902b0f5531d9b18e2bae11fce37/services/consent-portal-backend/fschttp/fschttp.go),
+      tested in `authorize_test.go` and `token_test.go`.
+    - **Related**: [REQ-119](#req-119), [REQ-126](#req-126),
+      [AV-16](admission.md#av-16), [F-101](../traceability/findings.md#f-101).
+    - **Notes**:
+        - A reused code does not revoke the consent it gave. RFC 6749 says
+          that the server SHOULD do so. [ADR-0045](../decisions/0045-pushed-consent-request.md)
+          gives the reason.
+        - The code lifetime is configuration. The demo uses 60 seconds.
 
 ## Role split between consent register and consent portal (S01/S02) {#consent-roles}
 

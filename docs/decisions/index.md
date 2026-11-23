@@ -48,6 +48,7 @@ These decisions are accepted:
 | [0037](0037-asi-oauth-front-door.md) | Authentic Source Interface as an OAuth front door per ETSI TS 119 478 clause 6.1 | [REQ-112](../requirements/asi.md#req-112), [REQ-87](../requirements/asi.md#req-87), [REQ-102](../requirements/asi.md#req-102) | Supersedes 0029. Demo grade |
 | [0038](0038-asi-data-service-per-source.md) | One data service per authentic source, one token per data service | [REQ-94](../requirements/asi.md#req-94), [REQ-95](../requirements/asi.md#req-95), [REQ-99](../requirements/asi.md#req-99) | |
 | [0039](0039-asi-source-described-attributes.md) | ASI attributes described by the source (`asi` capability in source metadata) | [REQ-64](../requirements/sources-identity.md#req-64), [REQ-92](../requirements/asi.md#req-92) | Partly implemented ([#592](https://github.com/ICTU/GBO-demo/issues/592)) |
+| [0045](0045-pushed-consent-request.md) | A consent flow starts with a pushed request over FSC and ends with a code that the consumer exchanges over FSC | [REQ-126](../requirements/consent.md#req-126), [REQ-127](../requirements/consent.md#req-127), [AV-16](../requirements/admission.md#av-16) | Answers [Q-44](../traceability/answered-questions.md#q-44) and [Q-60](../traceability/answered-questions.md#q-60) |
 
 ## Proposed
 
