@@ -465,6 +465,10 @@ change between the review commit `819f3eb` and `v0.9.0`.
         - The Manager of the register signs a contract only for peers admitted
           in the admission register (toelatingsregister): the PDP peer. Thus in the demo, the FSC
           contract is the authorization.
+        - Contract acceptance does not see the service. A party admitted to
+          the register's peer for another service can therefore also connect
+          to the consent status
+          ([F-100](../traceability/findings.md#f-100)).
         - The register can check which source belongs to which service only
           with the catalog.
         - The status service trusts the `Fsc-Authorization` header that the

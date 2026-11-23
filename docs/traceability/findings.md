@@ -546,6 +546,21 @@ builders do not get two conflicting sources.
 
 Evidence, impact, proposal and links: [issue #120](https://github.com/ICTU/GBO-TO/issues/120).
 
+### F-100: FSC contract acceptance does not see the service, so admission to a peer opens all its services {#f-100}
+
+- **Status**: open
+
+Contract acceptance decides which organisation connects to which source
+peer, but not to which service, because the Manager sends the decision
+no service name. A party admitted to a peer can get a contract for every
+service that peer publishes. Service providers admitted to the consent
+register's peer to push consent requests can also connect to the consent
+status. The proposal checks the service on every call, at the Inway of
+each peer. For DvTP data, a consent covers only the data sets registered
+for the service.
+
+Evidence, impact, proposal and links: [issue #125](https://github.com/ICTU/GBO-TO/issues/125).
+
 ## Summary for the PSA
 
 The demo shows that the generic chain works end to end for three routes: DvTP, EUDI issuance, and the Authentic Source Interface (ASI). The following sections group the open findings per theme (state of November 2, 2026) and name what the PSA must decide.
@@ -587,7 +602,7 @@ In total, 34 findings are open. The review of September 21, 2026 closed 28 of 39
 
 ### Admission and service descriptions
 
-- **Open**: [F-57](#f-57) (the source owns its description, but the DCAT-AP-NL reference and central findability are missing), and [F-71](#f-71) (an operator takes over a description, and the recorded agreement of the bronhouder is not built).
+- **Open**: [F-57](#f-57) (the source owns its description, but the DCAT-AP-NL reference and central findability are missing), [F-71](#f-71) (an operator takes over a description, and the recorded agreement of the bronhouder is not built), and [F-100](#f-100) (contract acceptance does not see the service).
 - **Decided**: admission is a register entry instead of a policy rule ([F-55](findings-closed.md#f-55)).
 - **PSA to decide**: accept or reject the role split "the source publishes, GBO validates and activates" (S10), and decide where central findability lives.
 

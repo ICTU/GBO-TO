@@ -72,6 +72,6 @@ become rejected.
 ## Traceability
 
 - Requirements: [REQ-61](../requirements/admission.md#req-61), [REQ-62](../requirements/admission.md#req-62), [REQ-63](../requirements/admission.md#req-63), [REQ-110](../requirements/admission.md#req-110), [REQ-123](../requirements/admission.md#req-123), [AV-06](../requirements/admission.md#av-06)
-- Findings: [F-55](../traceability/findings-closed.md#f-55) (closed), [F-56](../traceability/findings-closed.md#f-56) (closed), [F-52](../traceability/findings.md#f-52) (open)
+- Findings: [F-55](../traceability/findings-closed.md#f-55) (closed), [F-56](../traceability/findings-closed.md#f-56) (closed), [F-52](../traceability/findings.md#f-52) (open), [F-100](../traceability/findings.md#f-100) (open)
 - Open questions: [Q-22](../traceability/answered-questions.md#q-22) (answered), [Q-53](../traceability/open-questions.md#q-53) (open), [Q-74](../traceability/open-questions.md#q-74) (open)
 - Demo increments: [SL-09](../traceability/increments.md#sl-09) (mostly covered), [SL-45](../traceability/increments.md#sl-45) (done)
