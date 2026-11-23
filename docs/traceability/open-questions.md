@@ -939,3 +939,16 @@ PID regimes, so it denies an OOTS request without its own evidence.
 There is no working assumption, because the demo has no OOTS route.
 
 Forum, options, working assumption and links: [issue #81](https://github.com/ICTU/GBO-TO/issues/81).
+
+### Q-88: Which person key lets a citizen see every processing about them through the data usage index? {#q-88}
+
+- **Status**: open
+
+The data usage index finds uses by consent. A general overview of what
+happened with the data of a citizen must find registrations by person.
+The index then needs a person key that is the same for every source,
+without a BSN. The known routes are a BSNk pseudonym, an own key service
+as in the TransparantieApp, or no index at all. The working assumption
+is that the index finds uses by consent only.
+
+Forum, options, working assumption and links: [issue #134](https://github.com/ICTU/GBO-TO/issues/134).
