@@ -269,6 +269,13 @@ ASIP. The profile needs these external facilities to apply in full:
 > `attributeValue`, and for fragments no `fragmentValue`. The QTSP only
 > learns whether its value is correct.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Verify with the result `Match` | no `attributeValue` |
+| 2 | Verify with the result `MatchWithVariation` | no `attributeValue` |
+| 3 | Verify of a fragment with `Match` or `MatchWithVariation` | no `fragmentValue` |
+
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1328,6 +1335,14 @@ ASIP. The profile needs these external facilities to apply in full:
 > [Q-64](../traceability/open-questions.md#q-64) decides otherwise, the ASIP does not offer the interface of
 > clause 6.2 (ISO 15000).
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Verify over HTTP with a valid OAuth 2.0 token | answered as clause 6.1 prescribes |
+| 2 | Retrieve over HTTP with a valid OAuth 2.0 token | answered as clause 6.1 prescribes |
+| 3 | A request without a valid OAuth 2.0 token | refused |
+| 4 | A request on the ISO 15000 interface of clause 6.2 | not offered |
+
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"

@@ -352,6 +352,13 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > mechanism has a propagation time of more than zero, it MUST record that
 > time.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The citizen revokes a consent, with a set propagation time | the first deny in the chain comes within that time |
+| 2 | The register does not answer within the set latency | the chain denies |
+| 3 | A mechanism with a propagation time above zero | the register records that time |
+
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -400,6 +407,9 @@ change between the review commit `819f3eb` and `v0.9.0`.
           LDV records of the register show which sources one processing
           touched (FR-31, [F-68](../traceability/findings.md#f-68)). A status
           list removes that information.
+        - The tests set their own values for the propagation time and the
+          latency. The values for operation follow from
+          [Q-47](../traceability/open-questions.md#q-47).
 
 ### REQ-76: The register gives consent status only to an authenticated, authorized PDP, over FSC, and records who asked {#req-76}
 
@@ -1227,12 +1237,21 @@ and backend stay two systems, and which of them is the BSNk participant
 ([Q-49](../traceability/open-questions.md#q-49),
 [ADR 0040](../decisions/0040-route-d-citizen-recognition.md), proposed).
 
-### REQ-23: The consent register gets no BSN, not even temporarily {#req-23}
+### REQ-23: The consent register stores no BSN and returns none {#req-23}
 
-> A request to the consent register MUST NOT contain a BSN. The same
-> applies to every answer of the register and to every data item that it
-> stores, also temporarily while it handles a request.
+> The consent register MUST NOT store a BSN in its database, files, logs,
+> or cache. Its answers MUST NOT contain a BSN. If the register
+> receives a BSN during a request, it MAY use the BSN only to derive the
+> stable key and to activate at BSNk. It MUST NOT keep the BSN after that
+> request.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The register handles a request that carries a known test BSN | after the request, no data item of the register (database, files, logs, cache) holds that BSN |
+| 2 | Any answer of the register | holds no BSN |
+| 3 | The register receives a BSN | the BSN goes out only to BSNk, for the activation |
+
+- **Verification**: test
 - **Status**: draft
 
 ??? note "Source, evidence and notes"
@@ -1245,8 +1264,6 @@ and backend stay two systems, and which of them is the BSNk participant
           (only components and organizations with a valid legal basis process
           the BSN: "alleen componenten en organisaties met een geldige grondslag verwerken het BSN").
         - FR-35 criterion 1.
-        - Tightened: the BSN is also not in a request or an answer, so that
-          the BSN stays limited to one component.
     - **Addressee**: GBO-delivered component: the consent register, and
       the consent portal backend that calls it.
     - **Evidence**: [PR #148](https://github.com/ICTU/GBO-demo/pull/148),
@@ -1275,10 +1292,11 @@ and backend stay two systems, and which of them is the BSNk participant
         - It is open who makes the reference from the BSN. The demo does it in
           the backend. The working assumption
           ([route D](pseudonymization.md#route-d)) puts it in the register.
-        - If the design follows the working assumption, or if register and
-          backend become one system, this requirement does not apply in this
-          form: [Q-49](../traceability/open-questions.md#q-49). The requirement
-          applies to the register as long as it is a component of its own.
+        - The requirement holds for every answer to
+          [Q-49](../traceability/open-questions.md#q-49). Under
+          [route D](pseudonymization.md#route-d), the register receives the
+          BSN at every login. It uses the BSN for the stable key and for the
+          activation at BSNk. That processing needs a legal basis.
 
 ### REQ-24: The citizen identity comes from the authentication service assertion at the required assurance level and not from client input {#req-24}
 
