@@ -939,3 +939,16 @@ PID regimes, so it denies an OOTS request without its own evidence.
 There is no working assumption, because the demo has no OOTS route.
 
 Forum, options, working assumption and links: [issue #81](https://github.com/ICTU/GBO-TO/issues/81).
+
+### Q-87: What counts as a use of a consent? {#q-87}
+
+- **Status**: open
+
+FR-11 and FR-22 ask the register to record when data was first retrieved
+under a consent. How the register learns of a delivery has an answer in
+the demo: the data usage index. What counts as a use is still open: a
+status lookup, a delivery, or only a delivery with data. The working
+assumption counts every 200 answer of a source to a request with a
+consent token.
+
+Forum, options, working assumption and links: [issue #133](https://github.com/ICTU/GBO-TO/issues/133).
