@@ -390,6 +390,10 @@ The ASI route in gbo-demo v0.9.0 has these properties and gaps:
   the ADL also hold the BSN
   ([REQ-60](../requirements/logging-audit.md#req-60),
   [ADR-0043](../decisions/0043-identifiers-out-of-pdp-input.md)).
+- **The wallet may not show why.** The wallet shows the authorization
+  server as relying party. Until wallets must validate the registration
+  certificate, the request page alone tells the citizen who asks what
+  and why ([F-99](../traceability/findings.md#f-99)).
 - **Approval is a login, not a consent.** The citizen approves one request.
   The demo stores no approval, and the citizen cannot revoke one
   ([REQ-90](../requirements/asi.md#req-90),
@@ -495,7 +499,8 @@ Demo v0.9.0 does not build these parts of the ASI route:
   [F-93](../traceability/findings.md#f-93) (open),
   [F-94](../traceability/findings.md#f-94) (open),
   [F-95](../traceability/findings.md#f-95) (open),
-  [F-96](../traceability/findings.md#f-96) (open)
+  [F-96](../traceability/findings.md#f-96) (open),
+  [F-99](../traceability/findings.md#f-99) (open)
 - Open questions: [Q-28](../traceability/open-questions.md#q-28),
   [Q-29](../traceability/open-questions.md#q-29),
   [Q-31](../traceability/open-questions.md#q-31),

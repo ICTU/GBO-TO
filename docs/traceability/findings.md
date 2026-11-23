@@ -546,6 +546,23 @@ builders do not get two conflicting sources.
 
 Evidence, impact, proposal and links: [issue #120](https://github.com/ICTU/GBO-TO/issues/120).
 
+### F-99: The citizen sees the intended use and the registered attributes only if the wallet checks and shows the registration certificate {#f-99}
+
+- **Status**: open
+
+The registration certificate of a wallet relying party describes its
+intended use and the attributes that it registered to request. That
+protects the
+citizen only if the wallet checks the certificate and shows what is in
+it. The regulation requires wallets to validate the registration
+certificate only from August 11, 2028. Until then, the design cannot
+assume that the citizen sees in the wallet why the authorization server
+asks for the PID. The request page of the authorization server
+([REQ-91](../requirements/asi.md#req-91)) must then inform the citizen
+on its own.
+
+Evidence, impact, proposal and links: [issue #122](https://github.com/ICTU/GBO-TO/issues/122).
+
 ## Summary for the PSA
 
 The demo shows that the generic chain works end to end for three routes: DvTP, EUDI issuance, and the Authentic Source Interface (ASI). The following sections group the open findings per theme (state of November 2, 2026) and name what the PSA must decide.
@@ -608,7 +625,7 @@ In total, 34 findings are open. The review of September 21, 2026 closed 28 of 39
 
 ### Authentic Source Interface
 
-- **Open**: [F-80](#f-80), [F-84](#f-84) to [F-89](#f-89), and [F-91](#f-91) to [F-96](#f-96).
+- **Open**: [F-80](#f-80), [F-84](#f-84) to [F-89](#f-89), [F-91](#f-91) to [F-96](#f-96), and [F-99](#f-99).
 - **Decided in the TO**: the ASI is an OAuth front door per ETSI TS 119 478 clause 6.1, and the QTSP is not an FSC participant ([ADR-0037](../decisions/0037-asi-oauth-front-door.md)). Each source has one data service, with one token per data service ([ADR-0038](../decisions/0038-asi-data-service-per-source.md)). The source describes its ASI attributes ([ADR-0039](../decisions/0039-asi-source-described-attributes.md)). Two ADRs are proposed: the seal format ([ADR-0041](../decisions/0041-asi-seal-format.md)) and the optional per-attribute binding ([ADR-0042](../decisions/0042-asi-attribute-token-binding.md)).
 - **PSA to decide** (S11, B-14): Annex IV and the seal duty apply from January 1, 2027. The PSA must decide five points:
     1. The role of GBO and the designated intermediary ([Q-37](open-questions.md#q-37), [Q-28](open-questions.md#q-28)), and who holds the qualified seal certificate ([Q-17](open-questions.md#q-17), [Q-32](open-questions.md#q-32)).

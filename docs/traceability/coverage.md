@@ -351,6 +351,7 @@ Each register entry has one row. The row names the TO pages and the decisions th
 | [F-96](findings.md#f-96) | ETSI does not name RFC 9207, so a QTSP that verifies at several ASIPs has no defense against mix-up | open | [ADR-0037](../decisions/0037-asi-oauth-front-door.md), [ASI verification: a QTSP verifies or retrieves an attribute](../runtime/asi-verification.md) |
 | [F-97](findings.md#f-97) | FR-22 to FR-24 name the same statuses with different words, and the rationale of FR-23 contradicts its criteria | open | [Consent](../concepts/consent.md), [Constraints](../constraints.md), [DvTP: the citizen views and revokes consents](../runtime/dvtp-citizen-access.md) |
 | [F-98](findings.md#f-98) | FR-DvTP v0.9 contradicts decisions and its own criteria on four points, and PSA S02 is ambiguous on one point | open | [Pseudonymization](../concepts/pseudonymization.md), [Constraints](../constraints.md), [ADR-0040](../decisions/0040-route-d-citizen-recognition.md) |
+| [F-99](findings.md#f-99) | The citizen sees the intended use and the registered attributes only if the wallet checks and shows the registration certificate | open | [ASI verification: a QTSP verifies or retrieves an attribute](../runtime/asi-verification.md) |
 
 ### Open questions
 
