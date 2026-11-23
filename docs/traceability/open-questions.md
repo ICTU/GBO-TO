@@ -939,3 +939,17 @@ PID regimes, so it denies an OOTS request without its own evidence.
 There is no working assumption, because the demo has no OOTS route.
 
 Forum, options, working assumption and links: [issue #81](https://github.com/ICTU/GBO-TO/issues/81).
+
+### Q-86: Must a source withhold a delivery under a consent when it cannot register or record it? {#q-86}
+
+- **Status**: open
+
+A source that delivers data under a consent registers the delivery at
+the data usage index and records it in a delivery logbook. The demo
+withholds the data when one of these steps fails. ADR 0026 decides the
+opposite for log records: a local outbox, and an outage never fails the
+request. The choice trades the availability of the chain against the
+completeness of what the citizen sees. The working assumption is that
+the source withholds the data.
+
+Forum, options, working assumption and links: [issue #132](https://github.com/ICTU/GBO-TO/issues/132).
