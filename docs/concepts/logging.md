@@ -458,7 +458,8 @@ points to must stay available as long as the record exists.
 - Open questions: [Q-08](../traceability/open-questions.md#q-08) (open),
   [Q-25](../traceability/open-questions.md#q-25) (open),
   [Q-27](../traceability/open-questions.md#q-27) (open),
-  [Q-72](../traceability/open-questions.md#q-72) (open)
+  [Q-72](../traceability/open-questions.md#q-72) (open),
+  [Q-86](../traceability/open-questions.md#q-86) (open)
 - Demo increments: [SL-38](../traceability/increments.md#sl-38) (done),
   [SL-50](../traceability/increments.md#sl-50) (exploration done, build
   delivered), [SL-51](../traceability/increments.md#sl-51) (done)
