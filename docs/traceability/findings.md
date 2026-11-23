@@ -546,6 +546,20 @@ builders do not get two conflicting sources.
 
 Evidence, impact, proposal and links: [issue #120](https://github.com/ICTU/GBO-TO/issues/120).
 
+### F-103: The LDV read extension has no paging, so a reader cannot get all records of a large trace {#f-103}
+
+- **Status**: open
+
+The LDV read extension recommends a maximum number of records per
+answer, and waits for a pagination module that is not there yet. A
+reader cannot get the rest of a cut-off answer, and has no standard way
+to see that an answer was cut off. The demo caps an answer at 500
+records and marks a cut-off answer with its own header. The proposal is
+feedback to Logius: a pagination module, or at least a standard signal
+for a cut-off answer.
+
+Evidence, impact, proposal and links: [issue #135](https://github.com/ICTU/GBO-TO/issues/135).
+
 ## Summary for the PSA
 
 The demo shows that the generic chain works end to end for three routes: DvTP, EUDI issuance, and the Authentic Source Interface (ASI). The following sections group the open findings per theme (state of November 2, 2026) and name what the PSA must decide.
@@ -593,7 +607,7 @@ In total, 34 findings are open. The review of September 21, 2026 closed 28 of 39
 
 ### Audit and logging
 
-- **Open**: [F-54](#f-54) (BSN in both decision logs on the EUDI and ASI routes), [F-68](#f-68) (no route from the ADL at the source to the consent logbook), [F-72](#f-72) (the ADL lacks policy version, consent status answer, and configuration), and [F-76](#f-76) (what the consumer logs under).
+- **Open**: [F-54](#f-54) (BSN in both decision logs on the EUDI and ASI routes), [F-68](#f-68) (no route from the ADL at the source to the consent logbook), [F-72](#f-72) (the ADL lacks policy version, consent status answer, and configuration), [F-76](#f-76) (what the consumer logs under), and [F-103](#f-103) (no paging in the LDV read extension).
 - **Decided**: three standards give three records. ADL is for decisions ([ADR-0036](../decisions/0036-adl-decision-record.md)), LDV is per controller ([ADR-0026](../decisions/0026-ldv-integration.md)), and FSC-Logging is for transport. W3C Trace Context is the correlation key ([ADR-0035](../decisions/0035-w3c-trace-context.md)). The register index covers the chain start ([F-68](#f-68) point 1).
 - **PSA to decide**: keep identifiers out of the PDP input instead of masking logs ([ADR-0043](../decisions/0043-identifiers-out-of-pdp-input.md), proposed). The questions to Logius ([Q-25](open-questions.md#q-25), [Q-27](open-questions.md#q-27)) and to OpenFTV (fill the ADL fields) need an owner.
 
