@@ -36,7 +36,7 @@ flowchart LR
   pdp("PDP of a source")
   log[("LDV logbook<br/>consent facility")]
 
-  dv -- "redirect: consumer, service,<br/>data sets, return address" --> pf
+  dv -- "pushed request over FSC,<br/>then redirect with request_uri" --> pf
   burger --> pf
   pf -- "login" --> digid
   pf --> pb
@@ -44,7 +44,8 @@ flowchart LR
   pb -- "only the backend" --> api
   api --- db
   st --- db
-  pf -- "proof in the URL fragment" --> dv
+  pf -- "return with a one-time code" --> dv
+  dv -- "code for the proof, over FSC" --> pb
   pdp -- "over FSC" --> inw --> st
   pdp -. "keys, cached 5 min" .-> jw
   api -.-> log

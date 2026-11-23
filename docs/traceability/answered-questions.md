@@ -197,3 +197,16 @@ These questions have an answer, or they are closed. Each entry gives the answer 
 - **Answer**: The minimum is normative: the consumer sends W3C Trace Context and records the transaction ID. In [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid), every data request gets a request identifier that is usable across the whole chain. Full LDV at the private consumer is a candidate connection condition. FR-31 (FR-DvTP v0.9) puts the chain audit at the service. The LDV records of the status queries at the register form that chain-wide index. This is true only while the PDP calls for the status per request ([REQ-75](../requirements/consent.md#req-75), [F-68](findings.md#f-68)).
 - **Landed in**: [AV-01](../requirements/admission.md#av-01) (minimum), [AV-02](../requirements/admission.md#av-02) (full LDV, candidate), [F-68](findings.md#f-68).
 
+### Q-44: What does the return redirect give back to the consumer, and how does the consent proof reach it? {#q-44}
+
+- **Status**: answered
+- **Question**: After every outcome, the citizen returns to a registered address of the consumer. Which outcomes must the consumer tell apart, and does the proof travel through the browser or as a code that the consumer exchanges?
+- **Answer**: The consumer tells apart a given consent, a refusal and an error. The return carries `code` and `state`, `error=access_denied` and `state`, or `error=server_error` and `state`. An abort remains no outcome. The return carries a one-time code, and the consumer exchanges it over FSC, with the PKCE verifier of its request, for the consent proof. The proof never passes through the browser. The data sets the citizen consented to come with the proof ([issue #46](https://github.com/ICTU/GBO-TO/issues/46)).
+- **Landed in**: [ADR-0045](../decisions/0045-pushed-consent-request.md), [REQ-119](../requirements/consent.md#req-119), [REQ-127](../requirements/consent.md#req-127).
+
+### Q-60: If name, purpose, return address, and status come from the registration, must the origin of the initiation request be provable? {#q-60}
+
+- **Status**: answered
+- **Question**: Besides the checks against the registration, must the origin of the initiation request be provable? The options were a signed request in the URL, or a request that the consumer sends in advance over FSC.
+- **Answer**: Yes, through a request that the consumer sends in advance. The consumer pushes its request over FSC to the consent facility, as a pushed authorization request (RFC 9126). The FSC peer identity proves which consumer sent it, so the consumer does not sign the request separately. Only a short-lived reference goes through the browser and the login. The checks of REQ-111 run on the pushed request, before the citizen sees a consent screen ([issue #62](https://github.com/ICTU/GBO-TO/issues/62)).
+- **Landed in**: [ADR-0045](../decisions/0045-pushed-consent-request.md), [REQ-111](../requirements/consent.md#req-111), [REQ-126](../requirements/consent.md#req-126).

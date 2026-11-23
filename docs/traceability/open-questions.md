@@ -402,22 +402,6 @@ citizen to the consumer with a denied status and records nothing.
 
 Forum, options, working assumption and links: [issue #45](https://github.com/ICTU/GBO-TO/issues/45).
 
-### Q-44: What does the return redirect give back to the consumer, and how does the consent proof reach it? {#q-44}
-
-- **Status**: partly answered
-
-After every outcome, the consent portal (toestemmingsportaal) sends the citizen back to a
-registered address of the consumer. On success, the signed consent proof
-tells the consumer what is allowed, and on refusal or error a separate
-outcome is necessary. It is open which outcomes the consumer must tell
-apart, and whether the proof travels through the browser or as an
-exchange code. One point is answered: an abort is no outcome, because a
-citizen who closes the window does not return. In the working
-assumption, the demo puts the proof in the URL fragment of the return
-redirect.
-
-Forum, options, working assumption and links: [issue #46](https://github.com/ICTU/GBO-TO/issues/46).
-
 ### Q-45: Does the consent facility enforce the minimal mandatory set, and who decides which sets are mandatory? {#q-45}
 
 - **Status**: open
@@ -640,25 +624,9 @@ against a fixed list of origins.
 
 Forum, options, working assumption and links: [issue #61](https://github.com/ICTU/GBO-TO/issues/61).
 
-### Q-60: If name, purpose, return address, and status come from the registration, must the origin of the initiation request be provable? {#q-60}
-
-- **Status**: open
-
-The functional requirements say that the initiation request of a
-consumer must provably come from that service provider. The portal backend
-takes name, purpose and return address from the registration, so a
-forged request only gives a consent for the real consumer. A third party
-can still start a request for a consumer that asked for nothing. The
-question is whether that risk is acceptable, or whether the consumer
-must sign the request or send it in advance over FSC. The demo passes
-the context as query parameters, and its backend does not do these
-checks.
-
-Forum, options, working assumption and links: [issue #62](https://github.com/ICTU/GBO-TO/issues/62).
-
 ### Q-61: What must MijnOverheid deliver or allow for the portal UI and the link to the consent facility? {#q-61}
 
-- **Status**: open
+- **Status**: partly answered
 
 GBO builds the UI of the consent portal as a contribution to the
 MijnOverheid code base. Several requirements therefore depend on what
@@ -668,7 +636,9 @@ all. They include the interface to the portal backend, the redirect
 protocol, the request context across the login, and ownership of the UI.
 Others are accessibility, house style, the switch to the apps, and
 delegation. There is no working assumption apart from the imitated shell
-in which the demo runs the portal.
+in which the demo runs the portal. The redirect protocol (sub-question 2)
+is answered by [ADR-0045](../decisions/0045-pushed-consent-request.md),
+and the request context across the login is a short reference.
 
 Forum, options, working assumption and links: [issue #63](https://github.com/ICTU/GBO-TO/issues/63).
 

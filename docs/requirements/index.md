@@ -294,6 +294,8 @@ These requirements apply to GBO-delivered components and interface agreements:
 | [REQ-121](consent.md#req-121) | Screen, initiation check, and reference policy follow the same data-set description | DvTP | [Consent (DvTP)](consent.md) | design | draft |
 | [REQ-122](consent.md#req-122) | The citizen gets a confirmation of their choice | DvTP | [Consent (DvTP)](consent.md) | design | draft |
 | [REQ-123](admission.md#req-123) | Every change to an admission, mandate, or activation is traceable | GBO Basis | [Admission and contracts](admission.md) | design | draft |
+| [REQ-126](consent.md#req-126) | A pushed request lives briefly, binds to the first citizen who opens it, and one decision spends it | DvTP | [Consent initiation](consent.md#consent-initiation) | design | draft |
+| [REQ-127](consent.md#req-127) | Only the consumer that pushed the request gets the consent proof, for a one-time code | DvTP | [Consent initiation](consent.md#consent-initiation) | design | draft |
 | [REQ-124](eudi-issuance.md#req-124) | For every attestation, the versions of the mapping, the source schema, and the attestation schema are traceable | EUDI | [EUDI issuance](eudi-issuance.md) | design | draft |
 
 ### Guidelines for bronhouders (RL) {#guidelines-for-bronhouders-rl}
@@ -329,6 +331,7 @@ The candidates are obligations for other participants, and each entry names the 
 | [AV-13](admission.md#av-13) | Bronhouder gives the instruction to revoke an attestation | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 | [AV-14](admission.md#av-14) | Consumer has registered contact details for GDPR rights | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 | [AV-15](admission.md#av-15) | Consumer declares an equivalent alternative at admission | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
+| [AV-16](admission.md#av-16) | Consumer requests consent with a pushed request and keeps the proof on its server | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 
 ### BSNk PP preconditions (BSNK)
 

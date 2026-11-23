@@ -50,7 +50,7 @@ These findings are closed, resolved in the demo, superseded, or no longer apply.
     - The legal identity comes from the certificate ([F-60](#f-60)).
     - [Q-07](answered-questions.md#q-07) answers the question of the PKIoverheid anchor.
     - No source asks for a certificate-bound token (RFC 8705). FR-34 v0.9 asks for a binding only outside the secure connection.
-    - The review found a further gap: nothing proves that the browser initiation comes from the service provider (dienstverlener) (FR-34, criterion 1). Demo issue [#427](https://github.com/ICTU/GBO-demo/issues/427), [REQ-111](../requirements/consent.md#req-111), and [Q-60](open-questions.md#q-60) record this gap.
+    - The review found a further gap: nothing proves that the browser initiation comes from the service provider (dienstverlener) (FR-34, criterion 1). Demo issue [#427](https://github.com/ICTU/GBO-demo/issues/427), [REQ-111](../requirements/consent.md#req-111), and [Q-60](answered-questions.md#q-60) record this gap.
 - **Landed in**: [REQ-46](../requirements/sources-identity.md#req-46), [REQ-67](../requirements/sources-identity.md#req-67), [ADR-0003](../decisions/0003-fsc-connectivity.md), [ADR-0023](../decisions/0023-identity-convergence.md).
 
 ### F-09: No policy lifecycle: hot reload without bundle, signing or versioning {#f-09}

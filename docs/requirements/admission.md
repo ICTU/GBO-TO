@@ -633,3 +633,25 @@ on one of these groups:
         - [Q-62](../traceability/open-questions.md#q-62) sub-question 3.
     - **Related**: [REQ-117](consent.md#req-117)
 
+### AV-16: Consumer requests consent with a pushed request and keeps the proof on its server {#av-16}
+
+> A private consumer MUST push its consent request over FSC, with `state`
+> and a PKCE challenge with method S256. It MUST send the browser of the
+> citizen only with `client_id` and `request_uri`. On the return, it MUST
+> check `state` and exchange the code over FSC from its server. It MUST
+> keep the consent proof on its server, and MUST NOT put it in a URL or in
+> browser storage. It SHOULD remove the code from the address bar and send
+> no referrer from its return page.
+
+- **Status**: candidate
+
+??? note "Source, evidence and notes"
+
+    - **Obliged party**: private consumer
+    - **Channel**: DvTP
+    - **Source**: [ADR-0045](../decisions/0045-pushed-consent-request.md),
+      [REQ-127](consent.md#req-127).
+    - **Related**: [AV-04](#av-04), [AV-05](#av-05),
+      [REQ-126](consent.md#req-126).
+    - **Notes**: the demo consumer backends do this in
+      [`consentrequest.go`](https://github.com/ICTU/GBO-demo/blob/afcef2065578f902b0f5531d9b18e2bae11fce37/services/dienstverlener-backend/consentrequest/consentrequest.go).
