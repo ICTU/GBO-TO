@@ -217,6 +217,10 @@ Contract admission in gbo-demo v0.9.0 has these properties and gaps:
   share no rules and no reason codes. They do share one policy set and
   one availability object. As a result, one broken module stops both
   ([F-52](../traceability/findings.md#f-52)).
+- **Admission opens a peer, not a service.** The Manager sends the
+  contract decision no service name. A party admitted to a peer can get a
+  contract for every service of that peer
+  ([F-100](../traceability/findings.md#f-100)).
 - **A suspended consumer keeps its access.** A suspension stops only new
   contracts. At request time, the policy checks the status of an
   integrator. It does not check the status of a direct consumer. A
@@ -395,6 +399,6 @@ Source activation in gbo-demo v0.9.0 has these properties and gaps:
 ## Traceability
 
 - Requirements: [REQ-61](../requirements/admission.md#req-61), [REQ-62](../requirements/admission.md#req-62), [REQ-63](../requirements/admission.md#req-63), [REQ-110](../requirements/admission.md#req-110), [REQ-123](../requirements/admission.md#req-123), [REQ-106](../requirements/consent.md#req-106), [REQ-64](../requirements/sources-identity.md#req-64), [REQ-65](../requirements/sources-identity.md#req-65), [REQ-66](../requirements/sources-identity.md#req-66), [REQ-58](../requirements/eudi-issuance.md#req-58), [AV-06](../requirements/admission.md#av-06), [AV-08](../requirements/admission.md#av-08)
-- Findings: [F-55](../traceability/findings-closed.md#f-55) (closed), [F-56](../traceability/findings-closed.md#f-56) (closed), [F-52](../traceability/findings.md#f-52) (open), [F-73](../traceability/findings-closed.md#f-73) (closed), [F-57](../traceability/findings.md#f-57) (open), [F-58](../traceability/findings-closed.md#f-58) (closed), [F-59](../traceability/findings-closed.md#f-59) (closed), [F-71](../traceability/findings.md#f-71) (open)
+- Findings: [F-55](../traceability/findings-closed.md#f-55) (closed), [F-56](../traceability/findings-closed.md#f-56) (closed), [F-52](../traceability/findings.md#f-52) (open), [F-73](../traceability/findings-closed.md#f-73) (closed), [F-57](../traceability/findings.md#f-57) (open), [F-58](../traceability/findings-closed.md#f-58) (closed), [F-59](../traceability/findings-closed.md#f-59) (closed), [F-71](../traceability/findings.md#f-71) (open), [F-100](../traceability/findings.md#f-100) (open)
 - Open questions: [Q-22](../traceability/answered-questions.md#q-22) (answered), [Q-53](../traceability/open-questions.md#q-53) (open), [Q-68](../traceability/open-questions.md#q-68) (open), [Q-74](../traceability/open-questions.md#q-74) (open), [Q-38](../traceability/open-questions.md#q-38) (partly answered)
 - Demo increments: [SL-45](../traceability/increments.md#sl-45) (done), [SL-46](../traceability/increments.md#sl-46) (done), [SL-09](../traceability/increments.md#sl-09) (partly covered)
