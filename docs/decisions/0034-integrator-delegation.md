@@ -2,6 +2,7 @@
 
 - Status: accepted
 - Date: 2026-11-02
+- Amended: 2026-11-23. The mandate covers the service provider, not a rule of a source ([REQ-106](../requirements/consent.md#req-106)).
 - Satisfies: [S04](https://ictu.github.io/GBO-PSA/main/capabilities/#s04-organisatie-authenticatie-vertrouwensstelsel), [S05](https://ictu.github.io/GBO-PSA/main/capabilities/#s05-autorisatie), [P-01](https://ictu.github.io/GBO-PSA/main/architectuurprincipes/), [D-11](https://ictu.github.io/GBO-PSA/main/ontwerpprincipes/)
 - Deliberation: [REQ-106](../requirements/consent.md#req-106), [F-20](../traceability/findings-closed.md#f-20), [F-73](../traceability/findings-closed.md#f-73), [Q-12](../traceability/answered-questions.md#q-12), and demo [#379](https://github.com/ICTU/GBO-demo/issues/379), [PR #464](https://github.com/ICTU/GBO-demo/pull/464), [docs/integrator.md](https://github.com/ICTU/GBO-demo/blob/v0.9.0/docs/integrator.md)
 - Implemented in:
@@ -39,9 +40,9 @@ The decision has four parts:
   If not, the decision refuses with `DELEGATION_NOT_REGISTERED`
   ([ADR-0015](0015-contract-acceptance-by-policy.md)).
 - Mandate. The admission register records per integrator the consumers
-  and the rules that it acts for (`integrations`, pulled into OpenFTV as
-  `acts_for`). At request time, every delegated call needs a mandate for
-  the represented party and the granting rule:
+  that it acts for (`integrations`, pulled into OpenFTV as `acts_for`). At
+  request time, every delegated call needs a mandate for the represented
+  party:
     - If the mandate is missing, the engine denies with
       `INTEGRATOR_NOT_REGISTERED`.
     - If the register data is missing, the engine denies with

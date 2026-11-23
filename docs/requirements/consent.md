@@ -480,19 +480,21 @@ change between the review commit `819f3eb` and `v0.9.0`.
 > decision MUST check the consent against the represented party. It MUST NOT
 > check the consent against the party that makes the connection.
 
-> The connecting party MUST have a registered mandate for that
-> service provider and that use. If there is no mandate, the request MUST be
-> denied. A mandate MUST have a validity. Outside that validity, a request
-> MUST be denied as if there is no mandate.
+> The connecting party MUST have a registered mandate for that service
+> provider. If there is no mandate, the request MUST be denied. A mandate
+> MUST have a validity. Outside that validity, a request MUST be denied as
+> if there is no mandate. The consents of the service provider set what the
+> integrator can ask for. A narrower limit belongs in the processing
+> agreement between service provider and integrator
+> ([AV-06](admission.md#av-06)).
 
 > A contract in which a party connects on behalf of another party MAY come
 > into force only if that representation is registered.
 
 | # | Case | Outcome |
 |---|---|---|
-| 1 | Consent for service provider X, and integrator registered for X and this rule | allowed |
+| 1 | Consent for service provider X, and integrator registered for X | allowed |
 | 2 | Consent given to another service provider | denied: `CONSENT_ACTOR_MISMATCH` |
-| 3 | Integrator registered only for another rule | denied: `INTEGRATOR_NOT_REGISTERED` |
 | 4 | Integrator suspended | denied: `INTEGRATOR_NOT_REGISTERED` |
 | 5 | Mandate not in force at that time, or expired | denied: `INTEGRATOR_NOT_REGISTERED` *(proposal: not built)* |
 | 6 | The admission register delivers no data | denied: `INTEGRATOR_REGISTER_UNAVAILABLE` |
@@ -500,6 +502,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
 | 8 | No registration of the representation | contract stays proposed: `DELEGATION_NOT_REGISTERED` |
 | 9 | Service provider suspended, for a delegated contract | contract stays proposed: `PARTY_NOT_ACTIVE` |
 | 10 | The service provider calls itself, with or without an integrator in the chain | allowed, unchanged |
+| 11 | Integrator registered only for another service provider | denied: `INTEGRATOR_NOT_REGISTERED` |
 
 - **Verification**: test
 - **Status**: ready for review
@@ -526,6 +529,10 @@ change between the review commit `819f3eb` and `v0.9.0`.
           reikwijdte en geldigheid").
         - Tightened: the requirement also applies when the contract comes into
           force.
+        - Interpretation of PSA S05: the scope of the authority ("reikwijdte")
+          is the represented service provider. The mandate does not narrow it
+          to a use or a rule. A narrower limit is part of the processing
+          agreement.
     - **Addressee**: GBO-delivered component: the reference policy for
       requests and contracts, and the admission register with the mandates.
       Interface agreement: the FSC delegation
@@ -573,6 +580,8 @@ change between the review commit `819f3eb` and `v0.9.0`.
         - An integrator is always a processor
           ([AV-06](admission.md#av-06)), so its role needs no
           separate check.
+        - A mandate names no rule IDs. Rules belong to the policy of a
+          source, while the admission register is shared by all sources.
 
 ### REQ-107: Consent can be given only after confirmation that the citizen saw the information {#req-107}
 
