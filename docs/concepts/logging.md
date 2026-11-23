@@ -454,7 +454,8 @@ points to must stay available as long as the record exists.
   [F-67](../traceability/findings-closed.md#f-67) (resolved in demo),
   [F-68](../traceability/findings.md#f-68) (open),
   [F-69](../traceability/findings-closed.md#f-69) (resolved in demo),
-  [F-72](../traceability/findings.md#f-72) (open)
+  [F-72](../traceability/findings.md#f-72) (open),
+  [F-103](../traceability/findings.md#f-103) (open)
 - Open questions: [Q-08](../traceability/open-questions.md#q-08) (open),
   [Q-25](../traceability/open-questions.md#q-25) (open),
   [Q-27](../traceability/open-questions.md#q-27) (open),
