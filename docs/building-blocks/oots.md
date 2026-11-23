@@ -56,7 +56,7 @@ flowchart LR
   click pa "../../runtime/design-level/#sdg-oots" "SDG-OOTS scenario"
   click map "../../decisions/0024-canonical-semantic-models/" "Canonical semantic models"
   click pdp "../gbo-basis/authorization/" "Authorization"
-  click gw "../gbo-basis/source-access/" "Generic source access"
+  click gw "../gbo-basis/source-access/" "Source access"
 ```
 
 *Figure 1: The OOTS channel. Dashed: design only (not built in demo
