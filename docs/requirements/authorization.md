@@ -43,6 +43,14 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 > NOT be reachable for a consumer by another route. If no decision comes,
 > the request MUST be denied.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The PDP allows | the request reaches the source |
+| 2 | The PDP denies | denied, and the request does not reach the source |
+| 3 | The PDP does not answer or gives an error | denied: `ACCESS_DENIED`, and the request does not reach the source |
+| 4 | A consumer calls the source gateway or the source service directly | no connection |
+
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -182,6 +190,13 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 
 > The question from PEP to PDP MUST follow the AuthZEN NLGov profile. In that profile, the caller is the subject, the request is the action and the resource, and the transport context is the context. The PEP MUST pass the request on unchanged (for GraphQL: the raw body). The PEP MUST NOT interpret or add to the request. The PDP side decides which data the request asks for.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | A GraphQL request | the PDP gets the raw body unchanged. The caller is the subject, the request is the action and the resource, and the transport is the context. |
+| 2 | A request passes the PEP | the question holds nothing that the PEP added or interpreted |
+| 3 | A request without a body, or a body that is not JSON | denied |
+
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -216,6 +231,7 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 
 > A channel adapter MUST query the source through the source access that the source offers for all GBO interaction patterns. It MUST NOT ask a source for a channel-specific interface (koppelvlak).
 
+- **Verification**: inspection: the requirement is about what the adapter does not contain or decide, so a reviewer checks the code
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -395,6 +411,15 @@ reasons to deny ([REQ-48](#req-48)). The reference policy has five rules:
 
 > A rule of the PDP MUST name the FSC services that it applies to. The PDP MUST count a rule only on a request for one of those services. The service in the transport token that the source signed decides this. A rule MUST NOT allow fields on another service that happen to have the same key (`Type.field`). This prohibition also applies to a root field alone. A policy set MUST enforce with a test that every rule names its services.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | A rule for service A, and a request on A for that field | the rule counts |
+| 2 | A request on service B for the same `Type.field` | the rule does not count: `FIELD_NOT_PERMITTED` |
+| 3 | As case 2, for a root field alone | the rule does not count: `FIELD_NOT_PERMITTED` |
+| 4 | The request names another service than the signed token | the service in the token decides |
+| 5 | A rule names no service | the test of the policy set fails |
+
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -570,6 +595,12 @@ That rule is [REQ-10](consent.md#req-10) on the consent page.
 > be able to state for each field which data it asks for, and the source
 > MUST deliver only those fields.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | The request selects the fields A and B | the response contains only A and B |
+| 2 | The request selects one nested field | the response contains only that field |
+
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
@@ -606,6 +637,12 @@ That rule is [REQ-10](consent.md#req-10) on the consent page.
 > data from the source for each request. It MUST NOT store the data after
 > it handles that request.
 
+| # | Case | Outcome |
+|---|---|---|
+| 1 | Two identical requests in a row | the component calls the source twice |
+| 2 | The component has handled a request | its storage (database, files, cache) holds no source data |
+
+- **Verification**: test
 - **Status**: ready for review
 
 ??? note "Source, evidence and notes"
