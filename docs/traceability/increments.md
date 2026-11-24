@@ -46,9 +46,11 @@ that was not part of an increment.
 - **What it showed**: not built. The increment waited on
   [Q-04](answered-questions.md#q-04) (single use or repeatable). Q-04 is
   answered: FR-DvTP v0.9 makes a consent repeatable within its validity
-  period, so single use is not necessary. The status
-  "retrieved" from FR-22 is open: [Q-42](open-questions.md#q-42) asks
-  who marks a consent as retrieved, and when.
+  period, so single use is not necessary.
+
+  The status "retrieved" from FR-22 is open:
+  [Q-87](open-questions.md#q-87) asks what counts as a use. How the register learns of a delivery is decided
+  in [ADR-0046](../decisions/0046-data-usage-index.md).
 - **Produced**: rest of [F-04](findings-closed.md#f-04) (closed),
   [F-19](findings.md#f-19).
 - **Explained in**: [Consent](../concepts/consent.md)

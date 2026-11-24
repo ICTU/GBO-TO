@@ -374,20 +374,6 @@ and issued tokens stay valid until they expire, at most 10 minutes.
 
 Forum, options, working assumption and links: [issue #43](https://github.com/ICTU/GBO-TO/issues/43).
 
-### Q-42: When is a consent "retrieved", and how does the register learn that? {#q-42}
-
-- **Status**: open
-
-The functional requirements ask the consent register to record
-whether and when a source first retrieved data under a consent. The
-register cannot see a delivery, so the question is how it learns of one.
-It is also open whether retrieved means a delivery or a use of the
-consent. Each option changes what a source must build, from nothing to
-an extra interface (koppelvlak) to the register. In the working assumption, the demo
-shows no retrieved status, only Active, Expired, and Revoked.
-
-Forum, options, working assumption and links: [issue #44](https://github.com/ICTU/GBO-TO/issues/44).
-
 ### Q-43: For what purpose is a citizen's refusal recorded, and in which form? {#q-43}
 
 - **Status**: partly answered

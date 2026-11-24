@@ -213,7 +213,7 @@ change between the review commit `819f3eb` and `v0.9.0`.
           [`status_test.go#L23-L48`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/status_test.go#L23-L48).
     - **Related**: [REQ-38](consent.md#req-38), [REQ-68](#req-68),
       [REQ-75](#req-75), [REQ-109](consent.md#req-109),
-      [Q-42](../traceability/open-questions.md#q-42),
+      [Q-87](../traceability/open-questions.md#q-87),
       [Q-48](../traceability/open-questions.md#q-48).
     - **Notes**: design choices:
         - A revocation changes only the status in the register. The record
@@ -971,7 +971,7 @@ validity period is open again
       [F-11](../traceability/findings-closed.md#f-11),
       [Q-04](../traceability/answered-questions.md#q-04),
       [Q-13](../traceability/open-questions.md#q-13),
-      [Q-42](../traceability/open-questions.md#q-42),
+      [Q-87](../traceability/open-questions.md#q-87),
       [Q-76](../traceability/open-questions.md#q-76).
     - **Notes**:
         - FR-11 criterion 1 lets the default period for each service come from
@@ -991,7 +991,7 @@ validity period is open again
           depending on the moment: `CONSENT_EXPIRED` within the skew, and
           `CONSENT_TOKEN_EXPIRED` after it. The design accepts that.
         - FR-11 criterion 2 also asks to record when a consumer first fetched
-          data: [Q-42](../traceability/open-questions.md#q-42).
+          data: [Q-87](../traceability/open-questions.md#q-87).
 
 ## Consent initiation and return requirements {#consent-initiation}
 
@@ -1369,7 +1369,7 @@ Viewing and revoking do not call BSNk. The authorization chain denies the
 next request on a revoked consent with `CONSENT_WITHDRAWN`
 ([REQ-14](consent.md#req-14)). The status names follow
 [F-97](../traceability/findings.md#f-97). The status retrieved (shown as
-"Opgehaald") waits for [Q-42](../traceability/open-questions.md#q-42).
+"Opgehaald") waits for [Q-87](../traceability/open-questions.md#q-87).
 
 ### REQ-38: A logged-in citizen can view consents with status and revoke them {#req-38}
 
@@ -1432,13 +1432,13 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
       [REQ-121](consent.md#req-121),
       [F-19](../traceability/findings.md#f-19),
       [Q-25](../traceability/open-questions.md#q-25),
-      [Q-42](../traceability/open-questions.md#q-42),
+      [Q-87](../traceability/open-questions.md#q-87),
       [Q-53](../traceability/open-questions.md#q-53),
       [Q-61](../traceability/open-questions.md#q-61),
       [Q-63](../traceability/open-questions.md#q-63).
     - **Notes**:
         - The status retrieved follows after
-          [Q-42](../traceability/open-questions.md#q-42). The processings for
+          [Q-87](../traceability/open-questions.md#q-87). The processings for
           each consent (FR-20 criterion 2) follow after
           [Q-25](../traceability/open-questions.md#q-25).
         - The length of "recently" depends on the retention period:
@@ -1533,6 +1533,8 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
 | 2 | Revoke an own consent | revoked *(from code)* |
 | 3 | Revoke the consent of another citizen | refused: `CONSENT_NOT_FOUND` (HTTP 404), consent unchanged (demo: 403 `consent_not_owned_by_caller`) |
 | 4 | Revoke an unknown consent | refused: `CONSENT_NOT_FOUND` (HTTP 404) |
+| 5 | View the uses of the consent of another citizen | refused: `CONSENT_NOT_FOUND` (HTTP 404), the register is not asked for the uses (demo: 404 without the code) |
+| 6 | View the uses of an unknown consent | refused: `CONSENT_NOT_FOUND` (HTTP 404) (demo: 404 without the code) |
 
 - **Verification**: test
 - **Status**: draft
@@ -1564,11 +1566,19 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
           [`#L266`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/consent/portal_test.go#L266).
         - The refusal reason is in
           [`portalhttp.go#L167-L169`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-portal-backend/portalhttp/portalhttp.go#L167-L169).
+        - The uses of one consent are in
+          [`portal.go#L308-L328`](https://github.com/ICTU/GBO-demo/blob/088eb2b07393b0f136247a6e109d78f568c282ae/services/consent-portal-backend/consent/portal.go#L308-L328),
+          tested in
+          [`consent/uses_test.go#L31`](https://github.com/ICTU/GBO-demo/blob/088eb2b07393b0f136247a6e109d78f568c282ae/services/consent-portal-backend/consent/uses_test.go#L31),
+          [`#L46`](https://github.com/ICTU/GBO-demo/blob/088eb2b07393b0f136247a6e109d78f568c282ae/services/consent-portal-backend/consent/uses_test.go#L46)
+          and
+          [`uses_test.go#L18`](https://github.com/ICTU/GBO-demo/blob/088eb2b07393b0f136247a6e109d78f568c282ae/services/consent-portal-backend/uses_test.go#L18).
     - **Related**: [REQ-24](consent.md#req-24), [REQ-38](#req-38),
       [REQ-39](#req-39), [REQ-109](#req-109),
       [Q-49](../traceability/open-questions.md#q-49),
       [Q-56](../traceability/open-questions.md#q-56),
-      [ADR 0040](../decisions/0040-route-d-citizen-recognition.md).
+      [ADR 0040](../decisions/0040-route-d-citizen-recognition.md),
+      [ADR-0046](../decisions/0046-data-usage-index.md).
     - **Notes**:
         - Design choice: the backend recognizes the citizen by an HMAC of the
           BSN under its own key
@@ -1580,8 +1590,9 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
         - The ownership check is in the backend, because the register does not
           see who calls. So the register must accept calls only from the
           backend ([REQ-39](#req-39)).
-        - The demo has no route for one consent. If such a route comes, the
-          same check applies.
+        - The uses of one consent are the first route for one consent
+          ([ADR-0046](../decisions/0046-data-usage-index.md)). The same
+          check applies.
 
 ### REQ-108: The citizen can export the overview of consents {#req-108}
 
@@ -1633,7 +1644,7 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
 | # | Case | Outcome |
 |---|---|---|
 | 1 | Active | button visible, revoked after the citizen approves |
-| 2 | Retrieved (still valid) | button visible, revoked after the citizen approves (to build after [Q-42](../traceability/open-questions.md#q-42)) |
+| 2 | Retrieved (still valid) | button visible, revoked after the citizen approves (to build after [Q-87](../traceability/open-questions.md#q-87)) |
 | 3 | Expired | no button. The backend refuses a direct request: `CONSENT_NOT_REVOCABLE`. The status stays expired |
 | 4 | Already revoked | no button. The backend refuses a direct request: `CONSENT_NOT_REVOCABLE`. No new registration |
 | 5 | The consent of another citizen | refused, as in demo v0.9.0 ([REQ-40](#req-40)) |
@@ -1661,7 +1672,7 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
       [`main.go#L282`](https://github.com/ICTU/GBO-demo/blob/v0.9.0/services/consent-register/main.go#L282)).
     - **Related**: [REQ-14](consent.md#req-14), [REQ-40](#req-40),
       [F-97](../traceability/findings.md#f-97),
-      [Q-42](../traceability/open-questions.md#q-42).
+      [Q-87](../traceability/open-questions.md#q-87).
     - **Notes**: the statuses active, retrieved, expired, and revoked have
       the screen names that [F-97](../traceability/findings.md#f-97) chose:
       "Actief", "Opgehaald", "Verlopen", and "Ingetrokken". Their form on
@@ -1682,7 +1693,7 @@ next request on a revoked consent with `CONSENT_WITHDRAWN`
 |---|---|---|
 | 1 | The citizen opens the detail view of a consent | text about GDPR rights, with the contact details from the registration *(proposal: not built)* |
 | 2 | The citizen revokes a consent | the message after the revocation states that data already given stays with the consumer, with the contact details *(proposal: not built)* |
-| 3 | No data fetched yet under the consent | the notice still shows. The requirement does not depend on [Q-42](../traceability/open-questions.md#q-42) |
+| 3 | No data fetched yet under the consent | the notice still shows. The requirement does not depend on [Q-87](../traceability/open-questions.md#q-87) |
 | 4 | Consumer without registered contact details | does not occur for an admitted consumer: no admission without these details ([AV-14](admission.md#av-14)) |
 
 - **Verification**: test
@@ -1791,7 +1802,7 @@ Open questions decide these places in the model:
 
 | Place | What the model needs when the question is answered | Question |
 |---|---|---|
-| Retrieved | Whether and when a consumer used a consent, and how the register learns that. | [Q-42](../traceability/open-questions.md#q-42) |
+| Retrieved | Whether and when a consumer used a consent. The register learns of a delivery through the data usage index ([ADR-0046](../decisions/0046-data-usage-index.md)). What counts as a use is open. | [Q-87](../traceability/open-questions.md#q-87) |
 | Validity period | Whether the register records only the result, or also the default period and a change by the citizen. | [Q-13](../traceability/open-questions.md#q-13) |
 | Validity per source | One valid-until for each consent, as in demo v0.9.0, or a valid-until for each source within the consent. | [Q-76](../traceability/open-questions.md#q-76) |
 | Change | Whether a consent can change. If so, whether the record changes or a new record replaces the old one. | [Q-77](../traceability/open-questions.md#q-77) |

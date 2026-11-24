@@ -329,6 +329,7 @@ The candidates are obligations for other participants, and each entry names the 
 | [AV-13](admission.md#av-13) | Bronhouder gives the instruction to revoke an attestation | EUDI | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 | [AV-14](admission.md#av-14) | Consumer has registered contact details for GDPR rights | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 | [AV-15](admission.md#av-15) | Consumer declares an equivalent alternative at admission | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
+| [AV-17](admission.md#av-17) | Bronhouder registers and records each delivery under a consent | DvTP | [Connection conditions](admission.md#connection-conditions) | — | candidate |
 
 ### BSNk PP preconditions (BSNK)
 

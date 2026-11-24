@@ -320,7 +320,7 @@ on one of these groups:
 | All channels | bronhouder | [AV-07](#av-07) |
 | DvTP | private consumer | [AV-01](#av-01), [AV-02](#av-02), [AV-03](#av-03), [AV-04](#av-04), [AV-05](#av-05), [AV-14](#av-14), [AV-15](#av-15) |
 | DvTP | integrator | [AV-06](#av-06) |
-| DvTP | bronhouder | [AV-09](#av-09) |
+| DvTP | bronhouder | [AV-09](#av-09), [AV-17](#av-17) |
 | EUDI | bronhouder | [AV-08](#av-08), [AV-10](#av-10), [AV-11](#av-11), [AV-12](#av-12), [AV-13](#av-13) |
 
 ### AV-01: Consumer sends trace context and records the transaction ID {#av-01}
@@ -633,3 +633,37 @@ on one of these groups:
         - [Q-62](../traceability/open-questions.md#q-62) sub-question 3.
     - **Related**: [REQ-117](consent.md#req-117)
 
+### AV-17: Bronhouder registers and records each delivery under a consent {#av-17}
+
+> For each delivery under a consent, a bronhouder SHOULD register the
+> delivery over FSC at the data usage index. The registration SHOULD hold
+> its logbook ID, the trace ID of the delivery, the legal basis `consent`
+> and the consent ID. The bronhouder SHOULD record the delivery in its own
+> LDV logbook under the same trace ID. It SHOULD offer that logbook to the
+> consent register through the LDV read extension over FSC. It SHOULD allow
+> that read only for the peer of the consent register, and only by one
+> trace ID.
+
+- **Status**: candidate
+
+??? note "Source, evidence and notes"
+
+    - **Obliged party**: bronhouder
+    - **Channel**: DvTP
+    - **Source**: [ADR-0046](../decisions/0046-data-usage-index.md),
+      [REQ-72](logging-audit.md#req-72).
+    - **Related**: [REQ-40](consent.md#req-40),
+      [Q-86](../traceability/open-questions.md#q-86),
+      [Q-87](../traceability/open-questions.md#q-87),
+      [F-103](../traceability/findings.md#f-103).
+    - **Notes**:
+        - GBO offers the source gateway as a reference implementation
+          ([`bron-sidecar/main.go#L170-L240`](https://github.com/ICTU/GBO-demo/blob/088eb2b07393b0f136247a6e109d78f568c282ae/services/bron-sidecar/main.go#L170-L240)).
+          A bronhouder can also build the same behavior itself.
+        - What a bronhouder does when it cannot register or record a
+          delivery is open ([Q-86](../traceability/open-questions.md#q-86)).
+          What counts as a delivery is open
+          ([Q-87](../traceability/open-questions.md#q-87)).
+        - In the demo, the record names the data subject by the
+          pseudonym of the source and does not hold the consent ID
+          ([Q-72](../traceability/open-questions.md#q-72)).

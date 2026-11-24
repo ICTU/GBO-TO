@@ -197,3 +197,9 @@ These questions have an answer, or they are closed. Each entry gives the answer 
 - **Answer**: The minimum is normative: the consumer sends W3C Trace Context and records the transaction ID. In [PSA S09](https://ictu.github.io/GBO-PSA/main/capabilities/#s09-logging-audit-traceerbaarheid), every data request gets a request identifier that is usable across the whole chain. Full LDV at the private consumer is a candidate connection condition. FR-31 (FR-DvTP v0.9) puts the chain audit at the service. The LDV records of the status queries at the register form that chain-wide index. This is true only while the PDP calls for the status per request ([REQ-75](../requirements/consent.md#req-75), [F-68](findings.md#f-68)).
 - **Landed in**: [AV-01](../requirements/admission.md#av-01) (minimum), [AV-02](../requirements/admission.md#av-02) (full LDV, candidate), [F-68](findings.md#f-68).
 
+### Q-42: When is a consent "retrieved", and how does the register learn that? {#q-42}
+
+- **Status**: answered
+- **Question**: The register cannot see a delivery. How does it learn that a source delivered data under a consent?
+- **Answer**: Through the data usage index. A source registers each delivery under a consent at the index, and records it in its own logbook. The register looks up the registrations of a consent and reads each trace back from the logbook of the source over FSC. It shows one use per record it finds. The register keeps no "retrieved" field. What counts as a use, the first part of the original question, moved to [Q-87](open-questions.md#q-87) ([issue #44](https://github.com/ICTU/GBO-TO/issues/44)).
+- **Landed in**: [ADR-0046](../decisions/0046-data-usage-index.md), [AV-17](../requirements/admission.md#av-17), [Q-87](open-questions.md#q-87).

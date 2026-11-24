@@ -176,8 +176,10 @@ The main open points in the consent facility are these:
   ([Q-49](../../traceability/open-questions.md#q-49)).
 - Who sets the validity period, and whether the citizen can change it
   ([Q-13](../../traceability/open-questions.md#q-13)).
-- When a consent counts as "retrieved", and how the register learns that
-  ([Q-42](../../traceability/open-questions.md#q-42)).
+- What counts as a use of a consent
+  ([Q-87](../../traceability/open-questions.md#q-87)). The register
+  learns of a delivery through the data usage index
+  ([ADR-0046](../../decisions/0046-data-usage-index.md)).
 - Where the signing key lives and how it rotates
   ([Q-55](../../traceability/open-questions.md#q-55)).
 - Whether the register must authenticate the portal backend, or whether
@@ -197,7 +199,7 @@ The main open points in the consent facility are these:
   [F-78](../../traceability/findings.md#f-78) (open)
 - Open questions: [Q-04](../../traceability/answered-questions.md#q-04) (answered),
   [Q-13](../../traceability/open-questions.md#q-13) (open),
-  [Q-42](../../traceability/open-questions.md#q-42) (open),
+  [Q-42](../../traceability/answered-questions.md#q-42) (answered),
   [Q-47](../../traceability/open-questions.md#q-47) (open),
   [Q-49](../../traceability/open-questions.md#q-49) (open),
   [Q-55](../../traceability/open-questions.md#q-55) (open),
