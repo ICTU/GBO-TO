@@ -48,6 +48,7 @@ These decisions are accepted:
 | [0037](0037-asi-oauth-front-door.md) | Authentic Source Interface as an OAuth front door per ETSI TS 119 478 clause 6.1 | [REQ-112](../requirements/asi.md#req-112), [REQ-87](../requirements/asi.md#req-87), [REQ-102](../requirements/asi.md#req-102) | Supersedes 0029. Demo grade |
 | [0038](0038-asi-data-service-per-source.md) | One data service per authentic source, one token per data service | [REQ-94](../requirements/asi.md#req-94), [REQ-95](../requirements/asi.md#req-95), [REQ-99](../requirements/asi.md#req-99) | |
 | [0039](0039-asi-source-described-attributes.md) | ASI attributes described by the source (`asi` capability in source metadata) | [REQ-64](../requirements/sources-identity.md#req-64), [REQ-92](../requirements/asi.md#req-92) | Partly implemented ([#592](https://github.com/ICTU/GBO-demo/issues/592)) |
+| [0046](0046-data-usage-index.md) | A source registers each delivery under a consent at a data usage index, and the register reads it back from the source's logbook | [AV-17](../requirements/admission.md#av-17), [REQ-40](../requirements/consent.md#req-40) | Answers [Q-42](../traceability/answered-questions.md#q-42) |
 
 ## Proposed
 

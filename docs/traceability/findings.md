@@ -566,7 +566,7 @@ In total, 34 findings are open. The review of September 21, 2026 closed 28 of 39
 - **Open**: [F-19](#f-19) (no "retrieved" status), [F-74](#f-74) (scope is the intersection of legal ceiling and source offer), [F-78](#f-78) (the proof freezes at consent), and [F-97](#f-97) and [F-98](#f-98) (FR-DvTP contradictions).
 - **Decided**: the legal basis travels as a signed proof. The status is checked online and fails closed ([F-61](findings-closed.md#f-61), [ADR-0032](../decisions/0032-consent-proof.md)). An integrator connects under FSC delegation, and the consent binds the represented party ([F-73](findings-closed.md#f-73), [ADR-0034](../decisions/0034-integrator-delegation.md)).
 - **PSA to decide**:
-    1. When a consent counts as retrieved, and how the register learns it ([Q-42](open-questions.md#q-42)).
+    1. What counts as a use of a consent ([Q-87](open-questions.md#q-87)). How the register learns of a delivery is decided ([ADR-0046](../decisions/0046-data-usage-index.md)).
     2. A DvTP catalogue per FR-32 as the single source for scopes, with an intersection check at activation (B-03, [REQ-121](../requirements/consent.md#req-121)).
     3. A version for the proof, and how long an old version stays valid ([REQ-82](../requirements/pseudonymization.md#req-82)).
     4. What "transparent" means in S02 ([F-98](#f-98)).
