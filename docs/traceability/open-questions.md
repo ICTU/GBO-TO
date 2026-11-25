@@ -939,3 +939,18 @@ PID regimes, so it denies an OOTS request without its own evidence.
 There is no working assumption, because the demo has no OOTS route.
 
 Forum, options, working assumption and links: [issue #81](https://github.com/ICTU/GBO-TO/issues/81).
+
+### Q-89: When a wallet offers more keys than the batch size, does the issuer refuse, cap, or issue one credential per key? {#q-89}
+
+- **Status**: open
+
+A credential issuer publishes a batch size, for all its attestation
+types or for one type in its reuse policy. A wallet can offer more
+holder keys than that, for example in a key attestation. OpenID4VCI 1.0
+bounds only the number of proofs, lets the issuer issue fewer
+credentials than keys, and asks for one credential per attested key.
+The issuer can refuse the request, issue up to the batch size, or issue
+one credential per key. The working assumption is that the issuer
+refuses the request.
+
+Forum, options, working assumption and links: [issue #141](https://github.com/ICTU/GBO-TO/issues/141).
